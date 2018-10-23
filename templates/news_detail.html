@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>news_detail</title>
+</head>
+<body>
+{% for new in news %}
+    {{ new.title }}
+    {{ new.update_time }}
+    <p>{{ new.content|safe }}</p>
+
+{% endfor %}
+
+
+</body>
+</html>
