@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View
 from .models import *
@@ -15,6 +16,11 @@ class NewsView(View):
 
 
 class NewsDetailView(View):
-    def get(self,req):
+    def get(self, req):
         news = New.objects.all()
-        return render(req,'news_detail.html',{'news':news})
+        return render(req, 'news_detail.html', {'news': news})
+
+
+class RnodesView(View):
+    def get(self, req):
+       return HttpResponse('rnodes')

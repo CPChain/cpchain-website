@@ -23,7 +23,8 @@ urlpatterns = [
     path('news', NewsView.as_view(), name='news'),
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('news_detail', NewsDetailView.as_view(), name='news_detail')
+    path('news_detail', NewsDetailView.as_view(), name='news_detail'),
+    path('rnodes', RnodesView.as_view(), name='rnodes')
 ]
 
 # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
