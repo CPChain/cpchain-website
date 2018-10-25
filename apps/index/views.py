@@ -13,6 +13,7 @@ class NewsView(View):
     def get(self, req):
         return render(req, 'news.html')
 
+
 class NewsDetailView(View):
     def get(self,req):
         news = New.objects.all()
