@@ -1,46 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-US" class="no-js no-svg">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="shortcut icon" href="https://cpchain.io/wp-content/themes/cpchain/favicon.ico"/>
 
-    <link href="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/@fontawesome/fontawesome-free/css/all.css"
-          rel="stylesheet" type="text/css">
+{% extends 'base.html' %}
 
-    <link href="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/css/swiper.css"
-          rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Source+Sans+Pro:400,600,700,900"
-          rel="stylesheet">
-
-    <script>(function (html) {
-        html.className = html.className.replace(/\bno-js\b/, 'js')
-    })(document.documentElement);</script>
-    <title>News &#8211; CPChain</title>
-    <link rel='dns-prefetch' href='//s.w.org'/>
-    <link rel='stylesheet' id='wpm-main-css'
-          href='//cpchain.io/wp-content/plugins/wp-multilang/assets/styles/main.min.css?ver=2.2.6' type='text/css'
-          media='all'/>
-    <link rel='stylesheet' id='twentyseventeen-style-css'
-          href='https://cpchain.io/wp-content/themes/cpchain/style.css?ver=4.9.7' type='text/css' media='all'/>
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://cpchain.io/xmlrpc.php?rsd"/>
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://cpchain.io/wp-includes/wlwmanifest.xml"/>
-    <link rel="canonical" href="https://cpchain.io/news/"/>
-    <link rel='shortlink' href='https://cpchain.io/?p=15'/>
-    <link rel="alternate" hreflang="x-default" href="https://cpchain.io/news/"/>
-    <link rel="alternate" hreflang="en-us" href="https://cpchain.io/news/"/>
-    <link rel="alternate" hreflang="zh-cn" href="https://cpchain.io/zh/news/"/>
-    <style type="text/css">.recentcomments a {
-        display: inline !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }</style>
-</head>
+{% block content %}
 
 
-<body class="page-template page-template-news page-template-news-php page page-id-15 logged-in language-en has-header-image page-two-column colors-light">
+
 <div id="page" class="site">
 
     <header class="py-4 mx-auto w-100 " id="header">
@@ -748,5 +712,4 @@
 
 </script>
 
-</body>
-</html>
+{% endblock %}
