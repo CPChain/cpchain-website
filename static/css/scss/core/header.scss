@@ -3,7 +3,7 @@ header {
     top: 0;
     transition: 0.4s ease 0s, height 0.4s ease 0s;
     z-index: 4;
-    font-family : $font-family-monospace !important;
+    font-family : 'Archivo', sans-serif !important;
     &.active {
         background: $white;
         box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
