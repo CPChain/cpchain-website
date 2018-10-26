@@ -1,0 +1,113 @@
+.show-here {
+    display: block !important;
+}
+section.rnodes {
+    font-family: $font-family-monospace !important;
+    .section-article {
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+    }
+    b {
+        font-weight: 600;
+    }
+    > .row {
+        top: 0;
+        background: rgba(247, 249, 252, 0.8);
+    }
+}
+
+.banner.rnodes {
+    bottom: 0;
+    z-index: 5;
+    transition: transform 0.4s ease 0s;
+    transform: translateY(0);
+    height: 102px;
+    background-image: url('../img/rnodes/Banner.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    &.closed {
+        transform: translateY(125px);
+    }
+    .background-container {
+        background: linear-gradient(to right, #F7F9FC 0%, #F7F9FC 50%, #DDE4F0 50%, #DDE4F0 100%);
+    }
+    .row {
+        .col-sm {
+            &.logo {
+                img {
+                    width: 40px;
+                }
+            }
+            &.close-icon {
+                .close-banner {
+                    background: #DDE4F0;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    right: 20%;
+                    top: -1rem;
+                    cursor: pointer;
+                    z-index: 5;
+                    border: 4px solid #fff;
+                    svg {
+                        height: 20px;
+                    }
+                }
+            }
+        }
+        .above {
+            a {
+                font-family: $font-family-monospace !important;
+                width: 148px;
+                right: 50%;
+                bottom: 15%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .banner.rnodes {
+        bottom: -1px !important;
+        &:after {
+            background-size: cover;
+        }
+        &:before {
+            display: none;
+        }
+        .row {
+            .col-sm {
+                &.logo {
+                    img {
+                        margin-left: 2rem;
+                        padding-top: 1rem;
+                    }
+                }
+                &.close-icon {
+                    .close-banner {
+                        top: -2.2rem;
+                    }
+                }
+            }
+            .above {
+                img {
+                    height: 50px !important;
+                }
+                .close-banner {
+                    width: 35px !important;
+                    height: 35px !important;
+                    top: -1rem !important;
+                }
+                a.btn {
+                    right: 0 !important;
+                    left: 10px !important; 
+                    width: 100px !important;
+                }
+            }
+        }
+    }
+}

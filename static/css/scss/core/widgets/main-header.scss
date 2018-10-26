@@ -1,0 +1,76 @@
+section.section-one {
+    height: 80vh;
+    overflow: hidden;
+    font-family : $font-family-monospace !important;
+    .container {
+        z-index: 2;
+    }
+    .opacity-holder {
+        height: 101% !important;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.84) 80%, rgba(255,255,255,1) 100%);
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.84) 80%,rgba(255,255,255,1) 100%);
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.84) 80%,rgba(255,255,255,1) 100%);
+    }
+    video {
+        object-fit: cover;
+        background-repeat: no-repeat;
+        height: 100% !important;
+    }
+    h1 {
+        letter-spacing: 5px;
+    }
+    p {
+        font-size: 24px;
+        font-weight: 500;
+    }
+    .image-wrapper {
+        bottom: 0;
+    }
+    .rounded-wrapper {
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%);
+        .rounded-holder {
+            padding: 2rem;
+            .scroll-downs {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              margin: auto;
+              
+              width : 55px;
+              height: 55px;
+            }
+            .mousey {
+                width: 3px;
+                padding: 9px 13px;
+                height: 30px;
+                border: 2px solid #305278;
+                border-radius: 25px;
+                opacity: 0.75;
+                box-sizing: content-box;
+            }
+            .scroller {
+              width: 3px;
+              height: 10px;
+              border-radius: 25%;
+              background-color: $black;
+              animation-name: scroll;
+              animation-duration: 2.2s;
+              animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+              animation-iteration-count: infinite;
+            }
+            @keyframes scroll {
+              0% { opacity: 0; }
+              10% { transform: translateY(0); opacity: 1; }
+              100% { transform: translateY(15px); opacity: 0;}
+            }
+        }
+    }
+   
+}
