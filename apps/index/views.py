@@ -7,7 +7,11 @@ from .models import *
 # Create your views here.
 class IndexView(View):
     def get(self, req):
-        return render(req, 'index.html')
+        search = req.GET.get('s')
+        if not search:
+            return render(req, 'index.html')
+        else:
+            return HttpResponse(search)
 
 
 class NewsView(View):
