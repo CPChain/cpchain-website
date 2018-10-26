@@ -21,8 +21,8 @@ class NewsView(View):
 
 class NewsDetailView(View):
     def get(self, req):
-
-        return render(req, 'news_detail.html')
+        news = list(New.objects.all())[1]
+        return render(req, 'news_detail.html',locals())
 
 
 class RnodesView(View):

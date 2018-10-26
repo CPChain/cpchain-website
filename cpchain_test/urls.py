@@ -16,7 +16,8 @@ Including another URLconf
 from django.urls import path, include
 import xadmin
 from index.views import *
-
+from django.views.static import serve
+from cpchain_test.settings import MEDIA_ROOT
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
@@ -24,7 +25,8 @@ urlpatterns = [
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('news_detail', NewsDetailView.as_view(), name='news_detail'),
-    path('rnodes', RnodesView.as_view(), name='rnodes')
+    path('rnodes', RnodesView.as_view(), name='rnodes'),
+    path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT})
 ]
 
 # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
