@@ -21,7 +21,8 @@ class NewsView(View):
 
 class NewsDetailView(View):
     def get(self, req):
-        news = New.objects.all()
+        news = list(New.objects.all())[0]
+
         return render(req, 'news_detail.html', {'news': news})
 
 
