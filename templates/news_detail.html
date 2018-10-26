@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>news_detail</title>
-</head>
-<body>
-{% for new in news %}
-    {{ new.title }}
-    {{ new.update_time }}
-    <p>{{ new.content|safe }}</p>
+{% extends 'base.html' %}
+{% block content %}
 
-{% endfor %}
+    {{ news.title }}
+    {{ news.update_time }}
+    {{ news.content|safe }}
 
-
-</body>
-</html>
+{% endblock %}
