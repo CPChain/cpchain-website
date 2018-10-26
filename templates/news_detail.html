@@ -1,6 +1,346 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
 
-    content
+{#    {{ news.title }}#}
+{#    {{ news.update_time }}#}
+{#    {{ news.content|safe }}#}
+<body class="post-template-default single single-post postid-143 single-format-standard language-en has-header-image has-sidebar colors-light">
+<div id="page" class="site">
 
+	<header class="py-4 mx-auto w-100 " id="header">
+		<div class="container">
+			<div class="row">
+			<div class="col-4 d-flex flex-row align-items-center">
+    <a href="https://cpchain.io" class="logo-hov">
+        <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
+            <img src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo_new.svg" class="disable-select">
+        </div>
+    </a>
+</div>
+
+<div class="menu col-8 d-flex align-items-center justify-content-end">
+
+    <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0" id="mySidenav">
+
+        <li class="d-sm-none d-block w-100">
+            <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#fff"/>
+                </svg>
+            </a>
+        </li>
+                <!-- <li>
+            <a href="https://cpchain.io#cpchain" class="font-weight-bold" onclick="openMenu(0)">
+                About CPChain
+            </a>
+        </li> -->
+        <li>
+            <a href="https://cpchain.io#application" class="font-weight-bold" onclick="openMenu(0)">
+                Application
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io#roadmap" class="font-weight-bold" onclick="openMenu(0)">
+                Roadmap
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io#team" class="font-weight-bold" onclick="openMenu(0)">
+                Team
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io/news" class="font-weight-bold" onclick="openMenu(0)">
+                News
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io#vision" class="font-weight-bold" onclick="openMenu(0)">
+                Partners
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io/rnodes" class="font-weight-bold">
+                RNode
+            </a>
+        </li>
+        <li>
+            <a href="https://cpchain.io#contact" class="font-weight-bold" onclick="openMenu(0)">
+                Contact
+            </a>
+        </li>
+
+
+
+        <li class="line"></li>
+
+        <li class="dropdown bg-transparent">
+            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
+                    ENG                </a>
+                <div class="image-holder d-flex align-items-center justify-content-center">
+                    <svg height="24px" class="d-none d-sm-block" id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g opacity="0.4"><path d="M7,10l5,5,5-5Z" fill="#305278"/><path d="M0,0H24V24H0Z" fill="none"/></g></svg>
+                </div>
+                <ul class="dropdown-menu list-unstyled rounded">
+                    <a href="https://cpchain.io" class="small">ENG</a>
+                    <a href="https://cpchain.io/zh" class="small">中文</a>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="col-8 menuopen position-absolute d-flex justify-content-end align-items-center">
+    <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-sm-none"></i></a>
+</div>			</div>
+		</div>
+	</header> <!-- header -->
+
+	<div class="site-content-contain">
+		<div id="content" class="site-content">
+
+<div class="wrap">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+
+<section class="section-partners py-5 d-flex align-items-center justify-content-center">
+    <div class="container h-100">
+        <div class="row">
+
+            <div class="blog-view-holder">
+                <div class="upper col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-auto">
+
+					<a href="https://cpchain.io/category/news/community-updates" class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white text-primary mr-0 mr-sm-2 mb-sm-0 mb-3">
+						Community Updates					</a>
+
+                    <h4 class="my-3">
+                        <a href="javascript:void(0)">
+							CPChain Announces Token Buyback Program						</a>
+                    </h4>
+                    <h6 class="mb-5 text-muted">by CPChain					 at Aug 29, 2018					</h6>
+                </div>
+
+                <div class="middle col-12">
+                    <div class="image-holder-main">
+
+													<img width="800" height="400" src="https://cpchain.io/wp-content/uploads/2018/08/1-cjhXxe4kmo9OHWGQa7p9Q.jpeg" class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt="" sizes="100vw" />
+                    </div>
+                </div>
+                <div class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 d-flex align-items-center justify-content-center flex-column">
+
+                    <blockquote><p>&#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable us to return value to our investors through our future RNode Plan and token repurchases, while at the same time to bring back the true and fair value of our project. We believe that the company&#8217;s tokens are an attractive investment opportunity and repurchasing tokens is an important part of our token allocation strategy.&#8221;</p>
+<p>-Dr. Long Cheng Nian, CEO, CPChain </p></blockquote>
+<p><strong>Shanghai, August 29, 2018 </strong><br />
+CPChain is pleased to announce that over the following 12 months, we will buyback up to 50 million CPC tokens from major exchanges, accounting for 13 percent of the total tokens issued. The buyback program will allow the CPC token to retain value by being removed from current market conditions. The program also demonstrates the company’s commitment to increase value for CPC token holders.</p>
+<p>The repurchase of CPC will be used exclusively for community operations and construction, under the vision of safeguarding community interests as well as optimizing the CPChain ecosystem. CPChain Co-Founder and COO, Shi stressed: “the repurchase of CPC tokens will not be burned, but will be locked up for one year, becoming an important component of the CPC economic model. Planned buy-backs exceed 13 percent of the total circulation supply.”</p>
+<p>We are also going to announce CPChain RNode Ecosystem Structure on August 31st, 2018. Please stay tuned for further RNode details on the landing date!</p>
+<p>Media Reports Links<br />
+<a href="https://www.prnewswire.com/news-releases/cpchain-announces-first-of-its-kind-token-buyback-plan-300703565.html?tc=eml_cleartime"><em>PR Newswire</em>|</a></p>
+<p><strong class="markup--strong markup--p-strong">Learn more about CPChain:<br />
+</strong><a class="markup--anchor markup--p-anchor" href="https://twitter.com/cpchain_io" target="_blank" rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://twitter.com/cpchain_io"><strong class="markup--strong markup--p-strong">Twitter</strong></a><strong class="markup--strong markup--p-strong"> | </strong><a class="markup--anchor markup--p-anchor" href="https://t.me/CPChain" target="_blank" rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://t.me/CPChain"><strong class="markup--strong markup--p-strong">Telegram</strong></a><strong class="markup--strong markup--p-strong"> | </strong><a class="markup--anchor markup--p-anchor" href="https://reddit.com/r/CPChain_Official" target="_blank" rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://reddit.com/r/CPChain_Official"><strong class="markup--strong markup--p-strong">Reddit</strong></a><strong class="markup--strong markup--p-strong"> | </strong><a class="markup--anchor markup--p-anchor" href="https://discord.gg/X8WxPst" target="_blank" rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://discord.gg/X8WxPst"><strong class="markup--strong markup--p-strong">Discord</strong></a><strong class="markup--strong markup--p-strong"> | <a href="https://medium.com/@cpchain">Medium</a> |</strong><a class="markup--anchor markup--p-anchor" href="https://github.com/cpchain" target="_blank" rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://github.com/cpchain"><strong class="markup--strong markup--p-strong">GitHub</strong></a><strong class="markup--strong markup--p-strong"> | </strong><a class="markup--anchor markup--p-anchor" href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg" target="_blank" rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"><strong class="markup--strong markup--p-strong">Youtube</strong></a><strong class="markup--strong markup--p-strong"> | </strong><a class="markup--anchor markup--p-anchor" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect" target="_blank" rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener" data-href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect"><strong class="markup--strong markup--p-strong">WeChat</strong></a></p>
+
+                </div> <!-- body content -->
+
+
+
+                <div class="line-holder col-sm-10 col-12 mx-auto">
+                    <hr>
+                </div>
+            </div> <!-- blog-view holder  -->
+        </div>
+
+        <div class="row">
+                            <div class="card blog border-0 col-sm-4  my-4">
+
+
+
+    <a href= "https://cpchain.io/cpchain-announces-token-buyback-program/" >
+        <div class="image-holder position-relative">
+                            <img width="800" height="400" src="https://cpchain.io/wp-content/uploads/2018/08/1-cjhXxe4kmo9OHWGQa7p9Q.jpeg" class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt="" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" />                    </div>
+    </a>
+
+    <div class="card-body px-0 pb-0">
+
+        <h6 class="card-title text-primary news">
+            <a href="https://cpchain.io/cpchain-announces-token-buyback-program/" class="text-primary small">
+                Community Updates            </a>
+        </h6>
+        <h5 class="card-title">
+            <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
+                CPChain Announces Token Buyback Program            </a>
+        </h5>
+
+        <p class="card-text">
+            &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable us to return value to our investors through our future RNode Plan and token repurchases, while at...        </p>
+        <div class="card border-0 d-flex flex-row ml-0 w-100">
+            <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
+                    <div class="image-smaller-holder">
+                        <img class="card-img-top bottom-cards disable-select h-100" src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg" alt="Card image cap">
+                    </div>
+            </a>
+            <div class="card-body py-0 d-flex align-items-center">
+                <p class="card-text card-bottom-text">
+                    <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"> CPChain </a>
+                    <br> Aug 29, 2018                </p>
+            </div>
+        </div>
+
+    </div>
+</div>                            <div class="card blog border-0 col-sm-4  my-4">
+
+
+
+    <a href= "https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/" >
+        <div class="image-holder position-relative">
+                            <img width="800" height="592" src="https://cpchain.io/wp-content/uploads/2018/08/1-7xO5q6mCYZmbJJx9ajBqug.jpeg" class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt="" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" />                    </div>
+    </a>
+
+    <div class="card-body px-0 pb-0">
+
+        <h6 class="card-title text-primary news">
+            <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/" class="text-primary small">
+                Community Updates            </a>
+        </h6>
+        <h5 class="card-title">
+            <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
+                CPChain and Drug Safety: Smart Healthcare Solutions            </a>
+        </h5>
+
+        <p class="card-text">
+            Throughout the past decade, China has faced several acts of unethical behavior regarding drug safety. The Jilin Changchun vaccine scandal is a recent example in which the company was...        </p>
+        <div class="card border-0 d-flex flex-row ml-0 w-100">
+            <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
+                    <div class="image-smaller-holder">
+                        <img class="card-img-top bottom-cards disable-select h-100" src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg" alt="Card image cap">
+                    </div>
+            </a>
+            <div class="card-body py-0 d-flex align-items-center">
+                <p class="card-text card-bottom-text">
+                    <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"> CPChain </a>
+                    <br> Aug 27, 2018                </p>
+            </div>
+        </div>
+
+    </div>
+</div>                            <div class="card blog border-0 col-sm-4  my-4">
+
+
+
+    <a href= "https://cpchain.io/cpchain-announces-partnership-with-nuggets/" >
+        <div class="image-holder position-relative">
+                            <img width="800" height="381" src="https://cpchain.io/wp-content/uploads/2018/08/1-DkY2S-8-coipxen1kGW69g.jpeg" class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt="" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" />                    </div>
+    </a>
+
+    <div class="card-body px-0 pb-0">
+
+        <h6 class="card-title text-primary news">
+            <a href="https://cpchain.io/cpchain-announces-partnership-with-nuggets/" class="text-primary small">
+                Community Updates            </a>
+        </h6>
+        <h5 class="card-title">
+            <a href="https://cpchain.io/cpchain-announces-partnership-with-nuggets/">
+                CPChain Announces Partnership with Nuggets            </a>
+        </h5>
+
+        <p class="card-text">
+            Dear Community CPChain is glad to announce a new Partnership. We have just reached agreement with Nuggets, a UK-based Blockchain company, focused on establishing a privacy-assured e-commerce payments and...        </p>
+        <div class="card border-0 d-flex flex-row ml-0 w-100">
+            <a href="https://cpchain.io/cpchain-announces-partnership-with-nuggets/">
+                    <div class="image-smaller-holder">
+                        <img class="card-img-top bottom-cards disable-select h-100" src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg" alt="Card image cap">
+                    </div>
+            </a>
+            <div class="card-body py-0 d-flex align-items-center">
+                <p class="card-text card-bottom-text">
+                    <a href="https://cpchain.io/cpchain-announces-partnership-with-nuggets/"> CPChain </a>
+                    <br> Aug 09, 2018                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+        </div>
+
+    </div>
+</section>
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+</div><!-- .wrap -->
+
+
+		</div><!-- #content -->
+
+	</div><!-- .site-content-contain -->
+</div><!-- #page -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type='text/javascript' src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>
+<script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>
+
+<script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/vanilla-tilt/dist/vanilla-tilt.min.js"></script>
+
+<script>
+
+let header = document.getElementById('header');
+window.addEventListener('scroll', function(e) {
+    (window.scrollY > 30 ) ? header.classList.add('active') : header.classList.remove('active');
+});
+
+//Navigation
+let anchorlinks = document.querySelectorAll('a[href^="#"]');
+for (let item of anchorlinks) {
+    item.addEventListener('click', (e)=> {
+
+        for(let i of anchorlinks) {
+            (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+        }
+
+		let hashval = item.getAttribute('href');
+		let target = document.querySelector(hashval)
+		target.scrollIntoView({
+			behavior: 'smooth'
+		});
+		history.pushState(null, null, hashval);
+		e.preventDefault();
+        openMenu(0);
+	});
+}
+
+
+function openMenu(type) {
+    let menuHolder = document.getElementById('mySidenav');
+    (type == 1) ? menuHolder.classList.add('col-8','active') : menuHolder.classList.remove('col-8','active');
+}
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// swiper for application pages
+var swiperTeam = new Swiper('.swiper-container-applications', {
+    slidesPerView: 1,
+    autoplay: false,
+    grabCursor: false,
+    allowTouchMove: false,
+    autoHeight: true,
+});
+
+swiperTeam.on('slideChange', function() {
+    // change active image
+    let currentSlide = this.activeIndex;
+});
+
+function goToApplicationSwiper(index, e) {
+    swiperTeam.slideTo(index, 200);
+}
+
+</script>
+
+</body>
 {% endblock %}
+
+
+
