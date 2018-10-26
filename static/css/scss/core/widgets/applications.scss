@@ -1,0 +1,40 @@
+section.section-six {
+    .box-holder {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+        grid-template-rows: 400px;
+        img {
+            object-fit: cover;
+            height: 400px;
+            object-position: 35% 0;
+        }
+        .item {
+            p {
+                font-family: $font-family-monospace !important;
+                font-weight: 600;
+                bottom: 0;
+                font-size: 18px;
+            }
+        }
+        h2 {
+            font-weight: 600;
+        }
+        .image-holder {
+            transform-style: preserve-3d;
+            img {
+                transform-style: preserve-3d;
+            }       
+            &:hover {
+                p {                
+                    transform: translateZ(50px);       
+                }
+            }
+        }
+        .overlay-image {
+            position: absolute;
+            background: linear-gradient(to right,rgba(22, 68, 120, 0),rgba(22, 68, 120, 0.47));
+            bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+footer.footer {
+    background-color: #F7F9FC;
+    .glyphicon{  
+        -webkit-transition: 0.6s ease-out;
+        -moz-transition:  0.6s ease-out;
+        transition:  0.6s ease-out;
+        &:hover {
+                -webkit-transform: rotateZ(720deg) scale(2.5);
+                -moz-transform: rotateZ(720deg) scale(2.5);
+                transform: rotateZ(720deg) scale(2.5);
+        }
+    }
+    i {
+        font-size: 20px;
+    }
+    .logo-hov {
+        &:hover {
+            text-decoration: none !important;
+            color: $black;
+        }
+    }
+    .text-opacity {
+        font-family: $font-family-monospace;
+        color: rgba(48, 82, 120, 0.5);
+    }
+    .countdown {
+        p {
+            font-size: 20px!important;
+        }
+    }
+    .show-here {
+        display: block !important;
+        height: 300px;
+        background-color: red;
+    }
+    .banner.rnodes {
+       .above {
+        a {
+            font-family: $font-family-monospace !important;
+        }
+       }
+    }
+}

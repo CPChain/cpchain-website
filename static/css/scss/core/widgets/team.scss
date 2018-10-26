@@ -1,0 +1,190 @@
+section.section-nine {
+    h2 {
+        font-family: $font-family-monospace;
+        font-size: 30px;
+    }
+    h6 {
+        color: rgba(48, 82, 120, 0.7);
+    }
+    background: linear-gradient(
+        to right, 
+        $gray-700 0%, 
+        $gray-700 50%, 
+        #fff 50%, 
+        #fff 100%
+    );
+    .bigger {
+        height: 200px !important;
+        width: 200px !important;
+        box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05);
+        border-radius: 100px;
+        transition: .2s ease box-shadow;
+        &:hover {
+            box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05); 
+        }
+    }
+    .smaller {
+        width: 52px;
+        height: 52px;
+    }
+    svg {
+        &:hover {
+            path {
+                fill: $warning;
+            }
+        }
+    }
+    .full-team .image-holder img {   
+        &:hover {
+            transition: .2s;
+            border-radius: 100px;
+            box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05);
+        }
+        
+    }
+    .left-side {
+        a {
+            font-family: $font-family-monospace !important;
+        }
+    }
+}
+
+section.section-ten {
+    font-family: $font-family-monospace;
+
+    .dropbtn {
+        border: none;
+    }
+    
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    ul,li {
+      list-style: none;
+    }
+    
+    .button-arrow {
+        font-size: 29px;
+        font-weight: 600;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width:  280px;
+        font-weight: 600;
+        box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05) !important;
+        z-index: 3;
+    }
+    
+    .dropdown-content a {
+        color: rgba(48, 82, 120, 0.5);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: $gray-200;
+        color: $black;
+    }
+
+    .show {
+    display: block;
+    }
+    
+    .container {
+    overflow: hidden;
+    }
+    
+    .show {
+    display: block;
+    }
+
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .swiper-container {
+        .swiper-slide {
+            text-align: center;
+            background: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            img {
+                height: 160px;
+                &:hover {
+                    transition: .2s;
+                    border-radius: 205px;
+                    box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05);
+                }
+            }
+            p {
+                font-size: 14px !important;
+            }
+        }
+        .pic {
+            cursor: pointer;
+          }
+          .overlay {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(247, 249, 252, 1);
+          }
+          .pic:hover .overlay {
+            opacity: 1;
+          }
+          .text {
+            color: $black;
+            font-size: 1rem;
+            position: absolute;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            .social-icons {
+                bottom: 0;
+                right: 0;
+            }
+            .change {
+                font-family: $font-family-base;
+            }
+          }
+    }
+    .swiper-container-two {
+        overflow: hidden !important;
+        .swiper-slide {
+            text-align: center;
+            background: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    }
+
+}

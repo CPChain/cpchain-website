@@ -1,0 +1,32 @@
+
+section.section-four {
+    background: url('data:image/svg+xml;utf8,<svg id="148b6cc3-aa6e-45b0-b282-87337ac0eb0c" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="1920" height="689.73" viewBox="0 0 1920 689.73"><path d="M0,40.74v76.11c189.47,278,509.57,536.73,1036.8,557.62,69.24-1.15,438.71,9.43,883.2-166.11V2.27C1359.57,314.51,841.43,298.9,758.1,300.29,432.34,287.38,185.66,183.69,0,40.74Z" transform="translate(0 -2.27)" fill="rgba(255, 255, 255, 0.7)" style="isolation:isolate"/><path d="M0,116.85V692H1920V508.36c-444.49,175.54-814,165-883.2,166.11C509.57,653.58,189.47,394.88,0,116.85Z" transform="translate(0 -2.27)" fill="%23fff"/></svg>');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #F3F5F7;
+    h2 {
+        font-family: $font-family-monospace;
+    }
+    svg {
+        display: block;
+        background-color: #F3F5F7;
+        background-size: contain;
+        fill: rgba(255, 255, 255, 0.7);
+    }
+    .video-holder {
+        iframe {
+            box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05);
+            height: 377px !important;
+        }
+    }
+}
+section.section-five {
+    p {
+        font-weight: 600;
+    }
+    h2 {
+        font-weight: 600;
+        font-family: $font-family-monospace;
+    }
+}

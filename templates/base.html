@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="{% static '/img/favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static '/css/all.css' %}">
     <link rel="stylesheet" href="{% static '/css/swiper.css' %}">
+    <link rel='stylesheet' id='twentyseventeen-style-css'  href="{% static '/css/style.css' %}" type='text/css' media='all' />
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Source+Sans+Pro:400,600,700,900"
           rel="stylesheet">
 
@@ -19,7 +21,8 @@
     <link rel='stylesheet' id='wpm-main-css'
           href="{% static '/css/main.min.css' %}" type='text/css'
           media='all'/>
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+{#    <link rel="stylesheet" href="">#}
+
     <link rel="canonical" href="https://cpchain.io/"/>
     <link rel='shortlink' href='https://cpchain.io/'/>
     <link rel="alternate" hreflang="x-default" href="https://cpchain.io/"/>
@@ -139,7 +142,7 @@
                         <div class="col-sm-4 col-6 d-flex flex-row align-items-center">
                             <a href="https://cpchain.io" class="logo-hov">
                                 <div class="image-footer-holder d-flex flex-row align-items-center justify-content-start">
-                                    <img src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo_new.svg"
+                                    <img src="{% static '/img/logo_new.svg' %}"
                                          class="disable-select">
                                 </div>
                             </a>

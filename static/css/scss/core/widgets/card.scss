@@ -1,0 +1,44 @@
+.card {
+    &.blog {
+
+        // card image
+        .image-holder {
+            height: 200px;
+            overflow: hidden;
+            img {
+                object-fit: cover;
+                transition: transform .8s;
+                &:hover {
+                    transform: scale(1.5);
+                }
+            }
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 20px;
+            font-family: $font-family-monospace;
+        }
+        .card-text {
+            color : $indigo;
+            font-family: $font-family-base !important;
+        }
+        .card-bottom-text {
+            font-size: 14px !important;
+        }
+        .bottom-cards {
+            width: 36px;
+        }
+
+        // author
+        .image-smaller-holder {
+            height: 36px;
+            width: 36px;
+            img {
+                object-fit: cover;
+                border-radius: 200px;
+            }
+        }
+
+    }
+}

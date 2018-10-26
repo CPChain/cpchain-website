@@ -1,0 +1,280 @@
+@media only screen and (max-width: 768px) {
+
+    /*
+        * Header
+        * Footer
+        * Pages
+            * Home
+                * Section One
+                * Section Two
+                * Section Three
+                * Section Four
+                * Section Five
+                * Section Six
+                * Section Seven
+                * Section Eight
+                * Section Nine
+                * Section Ten
+                * Section Eleven
+                * Section Twelve
+                * Section Thirteen
+        * Core
+        * Widgets
+    */
+   
+    //Header
+    header {
+        img {
+            height: 40px !important;
+        }
+        &.active {
+            padding-bottom: 1.5rem !important;
+            padding-top: 1.5rem !important;
+        }
+        span {
+            font-size: 15px !important;
+        }
+        .sidenav {
+            width: 70% !important;
+            height: 100vh;
+            position: fixed;
+            z-index: 11;
+            top: 0;
+            right: -25rem;
+            background-color: #383C43;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 20px;
+            &.active {
+                right: 0;
+                transition: 0.5s;
+                width:70%;
+            }
+            a {
+                padding: 8px 8px 8px 25px;
+                text-decoration: none;
+                transition: 0.5s;       
+                color: $white !important;
+                display: block;
+                font-size: 16px;
+                font-weight: 500 !important;
+                &:first-child {
+                    margin-bottom: 1rem !important;
+                    font-weight: 400 !important;
+                }
+                &:not(:first-child) {
+                    margin-top: 1rem;
+                    font-size: 16px !important;
+                }
+                &:hover {
+                    transition: .5s !important;
+                    color: $gray-600 !important;
+                }
+            }
+            .closebtn {
+                top: 6.5rem;
+                right: 44rem;
+                color: $white !important;
+            }
+            .closebtn-height {
+                font-size: 50px !important;
+            }
+        }
+        .line {
+            &:before {
+                content: "";
+                display: block;
+                width: 200px !important;
+                height: 1px !important;
+                background-color: rgba(255, 255, 255, .2) !important;
+            }
+        }
+        .menuopen {
+            right: 15px;
+            top: 29px;
+            font-size: 24px;
+        }
+        .dropdown {
+            border: 0 !important;
+        }
+        .dropdown-menu {
+            display: block !important;
+            border: 0 !important;
+            background-color: transparent !important;
+            a {
+                color: $gray-600 !important;
+                &:first-child {
+                    color: white !important;
+                }
+                &:hover {
+                    background-color: transparent !important;
+                    color: white !important;
+                }
+            }
+            
+        }
+        .selected {
+            text-decoration: underline !important;
+            color: $gray-500;
+        }
+    } 
+    //Footer
+    .footer {
+        img {
+            height: 32px !important;
+        }
+        span, h6 {
+            font-size: 15px !important;
+        }
+        h6 a {
+            font-size: 15px !important;
+        }
+        i {
+            font-size: 22px !important;
+        }
+        h6.text-opacity {
+            font-size: 12px !important;
+        }
+        ul {
+            width: 80% !important;
+        }
+    }
+    //Section one
+    section.section-one {
+        height: 100vh !important;
+        .container {
+            .row {
+                height: 80% !important;
+                h1 {
+                    font-size: 28px !important;
+                    letter-spacing: 5px !important;
+                }
+                p {
+                    font-size: 14px !important;
+                }
+                .main-buttons {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+    //Section two
+    section.section-two {
+        .first {
+            order: 2;
+        }
+        .second {
+            order: 1;
+        }
+    }
+    section.section-three, section.section-four, section.section-five, section.section-six, section.section-seven, section.section-eight ,section.section-nine, section.section-ten, section.section-eleven {
+        h2 {
+        font-size: 1.5rem !important;
+        }
+    }
+     //Section six
+    section.section-six {
+        .box-holder {
+            grid-template-rows: 169px !important;
+            grid-gap: 5px 5px !important;
+            grid-template-columns: auto auto auto !important;
+            font-size: 14px !important;
+            .item-one {
+                grid-column: 1/12 !important;
+                p {
+                    font-size: 14px !important;
+                }
+            }
+            .item-two {
+                grid-column: 1/6 !important;
+                p {
+                    font-size: 14px !important;
+                }
+            }
+            .item-three {
+                grid-column: 7/12 !important;
+                p {
+                    font-size: 14px !important;
+                }
+            }
+            img {
+                height: 169px !important;
+            }
+        }
+    }
+    //Section seven
+    section.section-seven {
+        background-position: bottom left !important;
+        background-size: cover !important;
+    }
+    //Section eight
+    section.section-eight {
+        .item {
+            height: 106px !important;
+            width: 106px !important;
+        }
+    }
+    //Section nine
+    section.section-nine {
+        background: linear-gradient(to bottom, #F7F9FC 0%, #F7F9FC 35%, #fff 35%, #fff 100%) !important;
+        .custom-pagination-arrow {
+            svg {
+                width: 50px;
+                height: 42px;
+            }
+        }
+    }
+    //Section ten
+    section.section-ten {
+        .swiper-pagination {
+            z-index: 3;
+        }
+    }
+     //Section eleven
+    section.section-eleven, section.section-twelve, section.section-media {
+        img {
+            height: 46px !important;
+        }
+        .row-first {
+            grid-gap: 0px;
+            grid-template-columns: repeat(2, auto) !important;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+    //Section twelve
+    section.section-twelve, section.section-media {
+        .bottom {
+            grid-gap: 0px;
+            grid-template-columns: repeat(2, auto) !important;
+        }
+    }
+    //Section thirteen
+    section.section-thirteen {
+        h5 {
+           font-size: 14px !important; 
+        }
+        h1 {
+            font-size: 2.5rem !important;
+        }
+    }
+    //blog
+    .corporate {
+        .card {
+            width: 334px !important;
+        }
+    }
+    //blog-view
+    .box-items {
+        .image-holder {
+            height: 245px !important;
+        }
+    }
+    //banner
+    .banner.rnodes {
+        height: 50px !important;
+    }
+    
+}
