@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>explorer</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/default.js"></script>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/index.css" content="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div id="toggle">
+            switch
+            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>
+                <input type="checkbox" id="togglesocket" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="info">
+            <ul>
+                <li></li>
+                <li></li>
+                <li>rnode</li>
+                <li>committee</li>
+            </ul>
+        </div>
+        <div class="search">
+            <form action="search">
+                <input type="text" placeholder="address/hash/number" name="q">
+                <button>search</button>
+
+            </form>
+        </div>
+    </div>
+    <div class="recent_block">
+        <h3>blocks</h3>
+        <span class="recent_"><a href="blocks">view all</a></span>
+        <ul id="block_0">
+            <li><a href="#">number:#<span class="number0"></span></a></li>
+            <li><a href="#">produced by:<span class="miner0"></span></a></li>
+            <li><a href="#">transactions:<span class="txs0"></span></a></li>
+            <li>time:<span class="time0"></span></li>
+        </ul>
+        <ul id="block_1">
+            <li><a href="#">number:#<span class="number1"></span></a></li>
+            <li><a href="#">produced by:<span class="miner1"></span></a></li>
+            <li><a href="#">transactions:<span class="txs1"></span></a></li>
+            <li>time:<span class="time1"></span></li>
+        </ul>
+        <ul id="block_2">
+            <li><a href="#">number:#<span class="number2"></span></a></li>
+            <li><a href="#">produced by:<span class="miner2"></span></a></li>
+            <li><a href="#">transactions:<span class="txs2"></span></a></li>
+            <li>time:<span class="time2"></span></li>
+        </ul>
+        <ul id="block_3">
+            <li><a href="#">number:#<span class="number3"></span></a></li>
+            <li><a href="#">produced by:<span class="miner3"></span></a></li>
+            <li><a href="#">transactions:<span class="txs3"></span></a></li>
+            <li>time:<span class="time3"></span></li>
+        </ul>
+        <ul id="block_4">
+            <li><a href="#">number:#<span class="number4"></span></a></li>
+            <li><a href="#">produced by:<span class="miner4"></span></a></li>
+            <li><a href="#">transactions:<span class="txs4"></span></a></li>
+            <li>time:<span class="time4"></span></li>
+        </ul>
+
+    </div>
+    <div class="recent_txs">
+        <h3>transactions</h3>
+        <span class="recent_"><a href="txs">view all</a></span>
+        <ul id="tx_0">
+            <li><a href="#">tx# <span id="txhash0"></span></a></li>
+            <li>from: <a href=""><span id="from0"></span></a></li>
+            <li>to: <a href=""><span id="to0"></span></a></li>
+            <li>time:<span id="time0"></span></li>
+        </ul>
+        <ul id="tx_1">
+            <li><a href="#">tx# <span id="txhash1"></span></a></li>
+            <li>from: <a href=""><span id="from1"></span></a></li>
+            <li>to: <a href=""><span id="to1"></span></a></li>
+            <li>time:<span id="time1"></span></li>
+        </ul>
+        <ul id="tx_2">
+            <li><a href="#">tx# <span id="txhash2"></span></a></li>
+            <li>from: <a href=""><span id="from2"></span></a></li>
+            <li>to: <a href=""><span id="to2"></span></a></li>
+            <li>time:<span id="time2"></span></li>
+        </ul>
+        <ul id="tx_3">
+            <li><a href="#">tx# <span id="txhash3"></span></a></li>
+            <li>from: <a href=""><span id="from3"></span></a></li>
+            <li>to:<a href=""><span id="to3"></span></a></li>
+            <li>time: <span id="time3"></span></li>
+        </ul>
+        <ul id="tx_4">
+            <li><a href="#">tx# <span id="txhash4"></span></a></li>
+            <li>from: <a href=""><span id="from4"></span></a></li>
+            <li>to: <a href=""><span id="to4"></span></a></li>
+            <li>time: <span id="time4"></span></li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'index',
     'ckeditor',
     'ckeditor_uploader',
+    'pure_pagination',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,16 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = 'upload/'
+
+# explorer settings
+WEBSOCKET_ACCEPT_ALL = True
+
+from web3 import Web3
+
+web3 = Web3(Web3.HTTPProvider('http://192.168.0.135:8501'))
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 6,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

@@ -1,0 +1,134 @@
+#info {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#info ul li {
+    width: 150px;
+    float: left;
+    margin-right: 20px;
+}
+
+/* switch */
+
+.pull-right {
+    float: right
+}
+
+.pull-left {
+    float: left
+}
+
+.switch {
+    position: absolute;
+    display: inline-block;
+    left: 400px;
+    top: 50px;
+    width: 26px;
+    height: 14px;
+}
+
+.switch input {
+    display: none;
+}
+
+.container {
+    width: 1200px;
+    margin: 50px auto;
+}
+
+/*搜索框8*/
+
+.search input {
+    width: 300px;
+    height: 30px;
+}
+
+.search button {
+    height: 30px;
+    width: 80px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #33DDFF;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+span a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.recent_block ul {
+    margin: 20px 0;
+}
+
+.recent_block {
+    float: left;
+    width: 500px;
+    padding: 20px 0;
+    margin-right: 50px;
+}
+
+.recent_ {
+    float: right;
+}
+
+.recent_ :hover {
+    color: black;
+}
+
+.recent_txs {
+    float: left;
+    width: 500px;
+    padding: 20px;
+}
+
+.recent_txs ul {
+    margin: 20px 0;
+}

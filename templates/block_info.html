@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>block info</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $('#parentHash a').attr('href', '/block/' + $('#parentHash span').text())
+        })
+    </script>
+</head>
+<body>
+<h1><a href="/">index</a></h1>
+block info
+<br>
+#{{ height }}
+<br>
+<ul>
+    <li>height: {{ height }}</li>
+    <li>hash: {{ block_hash }}</li>
+    <li id="parentHash"><a href="#">parent hash: <span>{{ parentHash }}</span></a></li>
+    <li>time: {{ timestamp }}</li>
+    <li><a href="/txs/?block={{ height }}">transactions: {{ txs }} transactions</a></li>
+    <li>produced by: <a href="/address/{{ miner }}">{{ miner }}</a></li>
+    <li>size: {{ size }}</li>
+    <li>gas used: {{ gasUsed }}</li>
+    <li>gas limit: {{ gasLimit }}</li>
+    <li>block reward:</li>
+    <li>uncles reward:</li>
+    <li>extra data:</li>
+    <textarea name="" id="" cols="150" rows="20">{{ extraData }}</textarea>
+</ul>
+
+</body>
+</html>

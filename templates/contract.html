@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contract</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <style>
+        a:hover {
+            color: black;
+        }
+
+        h2 {
+            margin: 20px;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .txs ul {
+            height: 20px;
+            width: 100%;
+            margin: 10px;
+        }
+
+        .txs li {
+            float: left;
+            margin-right: 20px;
+            width: 100px;
+        }
+
+        .flag_out {
+            color: green;
+        }
+
+        .flag_in {
+            color: red;
+        }
+
+        .flag_self {
+            color: grey;
+        }
+
+        .pagelist li {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .active a {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1><a href="/">index</a></h1>
+    <h2>Contract {{ address }}</h2>
+    <span>overview</span>
+    <h3>Balance: {{ balance }}</h3>
+
+
+    <div class="txs">
+        <h3>transactions:{{ txs_count }}</h3>
+
+        <ul class="header">
+            <li>TxHash</li>
+            <li>Block</li>
+            <li>Age</li>
+            <li>From</li>
+            <li>&nbsp;</li>
+            <li>To</li>
+            <li>Value</li>
+            <li>TxType</li>
+            <li>TxFee</li>
+        </ul>
+
+        {% for tx in txs %}
+            <ul>
+                <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
+                <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
+                <li>{{ tx.date }}</li>
+                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
+                <li class="{% if tx.flag == 'in' %}flag_in
+                {% elif tx.flag == 'out' %}flag_out
+                {% else %}flag_self
+                {% endif %}">{{ tx.flag }}</li>
+                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
+                <li>{{ tx.value }}</li>
+                <li>None</li>
+                <li>{{ tx.txfee }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+{#    <div class="pageturn .clear">#}
+{#        <ul class="pagelist fl">#}
+{#            {% if txs.has_previous %}#}
+{#                <li class="long"><a#}
+{#                        href="?{{ txs.previous_page_number.querystring }}">上一页</a></li>#}
+{#            {% endif %}#}
+{#            {% for page in txs.pages %}#}
+{#                {% if page %}#}
+{#                    {% ifequal page txs.number %}#}
+{#                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>#}
+{#                    {% else %}#}
+{#                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>#}
+{#                    {% endifequal %}#}
+{#                {% else %}#}
+{#                    <li><a href="" class="none">...</a></li>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#            {% if txs.has_next %}#}
+{#                <li class="long"><a href="?{{ txs.next_page_number.querystring }}">下一页</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    </div>#}
+</div>
+<br>
+
+
+</body>
+</html>
