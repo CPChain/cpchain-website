@@ -15,7 +15,6 @@
             margin: 0 auto;
         }
 
-
         .txs ul {
             height: 20px;
             width: 100%;
@@ -28,7 +27,7 @@
             width: 120px;
         }
 
-   .pageturn {
+        .pageturn {
             clear: both;
             height: 30px;
             margin: 50px auto;
@@ -75,6 +74,7 @@
         .pageturn .none a {
             border: 0;
         }
+
         .active a {
             color: #000;
         }
@@ -98,14 +98,14 @@
 
         {% for tx in txs.object_list %}
             <ul>
-                <li><a href="/tx/{{ tx.hash}}">{{ tx.hash|slice:":16"}}...</a></li>
+                <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
                 <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
                 <li>{{ tx.date }}</li>
-                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16"}}...</a></li>
-                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16"}}...</a></li>
+                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
+                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
                 <li>{{ tx.value }}</li>
                 <li>None</li>
-            <li>{{ tx.txfee }}</li>
+                <li>{{ tx.txfee }}</li>
             </ul>
         {% endfor %}
     </div>

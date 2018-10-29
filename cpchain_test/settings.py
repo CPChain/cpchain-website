@@ -137,7 +137,11 @@ WEBSOCKET_ACCEPT_ALL = True
 
 from web3 import Web3
 
+# cpchain
 web3 = Web3(Web3.HTTPProvider('http://192.168.0.135:8501'))
+# eth
+# web3 = Web3(Web3.HTTPProvider('http://192.168.0.132:8545'))
+
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
     'MARGIN_PAGES_DISPLAYED': 2,

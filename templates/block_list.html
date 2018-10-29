@@ -85,9 +85,9 @@
     </style>
 </head>
 <body>
-
+{% load static %}
 <div class="container">
-    <h1><a href="/">index</a></h1>
+    <h1><a href="{% url 'explorer:explorer' %}">index</a></h1>
     <div class="blocks">
         <ul class="header">
             <li>Height</li>
@@ -101,14 +101,14 @@
 
         {% for b in blocks.object_list %}
             <ul>
-                <li><a href="/block/{{ b.number }}">{{ b.number }}</a></li>
+                <li><a href="{% url 'explorer:block'  b.number %}">{{ b.number }}</a></li>
                 <li>{{ b.timestamp }}</li>
                 <li>{% ifnotequal b.transactions|length 0 %}
-                    <a href="/txs?block={{ b.number }}">{{ b.transactions|length }}</a>
+                    <a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions|length }}</a>
                 {% else %}
                     {{ b.transactions|length }}
                 {% endifnotequal %}</li>
-                <li id="miner"><a href="/address/{{ b.miner }}">{{ b.miner|slice:":16" }}...</a></li>
+                <li id="miner"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner|slice:":16" }}...</a></li>
                 <li>{{ b.gasUsed }}</li>
                 <li>{{ b.gasLimit }}</li>
                 <li>0</li>

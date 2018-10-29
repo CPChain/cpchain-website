@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>explorer</title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="/static/js/default.js"></script>
+    <script src="/static/js/default2.js"></script>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/index.css" content="text/css">
 </head>
@@ -36,7 +36,7 @@
     </div>
     <div class="recent_block">
         <h3>blocks</h3>
-        <span class="recent_"><a href="blocks">view all</a></span>
+        <span class="recent_"><a href="{% url 'explorer:blocks' %}">view all</a></span>
         <ul id="block_0">
             <li><a href="#">number:#<span class="number0"></span></a></li>
             <li><a href="#">produced by:<span class="miner0"></span></a></li>
