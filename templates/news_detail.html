@@ -209,138 +209,53 @@
 
                                     {#下边三个小新闻列表#}
                                     <div class="row">
-                                        <div class="card blog border-0 col-sm-4  my-4">
-                                            <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                <div class="image-holder position-relative">
-                                                    <img width="800" height="400"
-                                                         src="{% static '/img/blog-view/travel.jpeg' %}"
-                                                         class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
-                                                         alt=""
-                                                         sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                                </div>
-                                            </a>
-                                            <div class="card-body px-0 pb-0">
-                                                <h6 class="card-title text-primary news">
-                                                    <a href="{% url 'news_detail' %}/cpchain-announces-token-buyback-program/"
-                                                       class="text-primary small">
-                                                        Community Updates
-                                                    </a>
-                                                </h6>
-                                                <h5 class="card-title">
-                                                    <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                        CPChain Announces Token Buyback Program
-                                                    </a>
-                                                </h5>
-                                                <p class="card-text" style="margin-bottom: 1rem;">
-                                                    &#8220;We are pleased that CPChain’s strong balance sheet and cash
-                                                    flow enable us to return value to our investors through our future
-                                                    RNode Plan and token repurchases, while at...
-                                                </p>
-                                            </div>
-
-                                            <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                                <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                    <div class="image-smaller-holder">
-                                                        <img class="card-img-top bottom-cards disable-select h-100"
-                                                             src="{% static '/img/logo.svg' %}" alt="Card image cap">
+                                        {% for news in latest %}
+                                            <div class="card blog border-0 col-sm-4  my-4">
+                                                <a href="{% url 'news_detail' news.title %}">
+                                                    <div class="image-holder position-relative">
+                                                        <img width="800" height="400"
+                                                             src="{{ MEDIA_URL }}{{ news.banner }}"
+                                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                             alt=""
+                                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
                                                     </div>
                                                 </a>
-                                                <div class="card-body py-0 d-flex align-items-center">
-                                                    <p class="card-text card-bottom-text">
-                                                        <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                            CPChain </a><br> Aug 29, 2018
+                                                <div class="card-body px-0 pb-0">
+                                                    <h6 class="card-title text-primary news">
+                                                        <a href="{% url 'news_detail' news.title %}"
+                                                           class="text-primary small">
+                                                            Community Updates
+                                                        </a>
+                                                    </h6>
+                                                    <h5 class="card-title">
+                                                        <a href="{% url 'news_detail' news.title %}">
+                                                            {{ news.title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="card-text" style="margin-bottom: 1rem;">
+                                                        {{ news.content|slice:':200'|safe }}...
                                                     </p>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="card blog border-0 col-sm-4  my-4">
-                                            <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                <div class="image-holder position-relative">
-                                                    <img width="800" height="400"
-                                                         src="{% static '/img/blog-view/travel.jpeg' %}"
-                                                         class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
-                                                         alt=""
-                                                         sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                                </div>
-                                            </a>
-                                            <div class="card-body px-0 pb-0">
-                                                <h6 class="card-title text-primary news">
-                                                    <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/"
-                                                       class="text-primary small">
-                                                        Community Updates
-                                                    </a>
-                                                </h6>
-                                                <h5 class="card-title">
-                                                    <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                        CPChain Announces Token Buyback Program
-                                                    </a>
-                                                </h5>
-                                                <p class="card-text">
-                                                    &#8220;We are pleased that CPChain’s strong balance sheet and cash
-                                                    flow enable us to return value to our investors through our future
-                                                    RNode Plan and token repurchases, while at...
-                                                </p>
-                                            </div>
 
-                                            <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                                <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                    <div class="image-smaller-holder">
-                                                        <img class="card-img-top bottom-cards disable-select h-100"
-                                                             src="{% static '/img/logo.svg' %}" alt="Card image cap">
+                                                <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                                    <a href="{% url 'news_detail' news.title %}">
+                                                        <div class="image-smaller-holder">
+                                                            <img class="card-img-top bottom-cards disable-select h-100"
+                                                                 src="{% static '/img/logo.svg' %}"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </a>
+                                                    <div class="card-body py-0 d-flex align-items-center">
+                                                        <p class="card-text card-bottom-text">
+                                                            <a href="{% url 'news_detail' news.title %}">
+                                                                CPChain </a><br> {{ news.update_time }}
+                                                        </p>
                                                     </div>
-                                                </a>
-                                                <div class="card-body py-0 d-flex align-items-center">
-                                                    <p class="card-text card-bottom-text">
-                                                        <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                            CPChain </a><br> Aug 29, 2018
-                                                    </p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card blog border-0 col-sm-4  my-4">
-                                            <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                <div class="image-holder position-relative">
-                                                    <img width="800" height="400"
-                                                         src="{% static '/img/blog-view/travel.jpeg' %}"
-                                                         class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
-                                                         alt=""
-                                                         sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                                </div>
-                                            </a>
-                                            <div class="card-body px-0 pb-0">
-                                                <h6 class="card-title text-primary news">
-                                                    <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/"
-                                                       class="text-primary small">
-                                                        Community Updates
-                                                    </a>
-                                                </h6>
-                                                <h5 class="card-title">
-                                                    <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                        CPChain Announces Token Buyback Program
-                                                    </a>
-                                                </h5>
-                                                <p class="card-text">
-                                                    &#8220;We are pleased that CPChain’s strong balance sheet and cash
-                                                    flow enable us to return value to our investors through our future
-                                                    RNode Plan and token repurchases, while at...
-                                                </p>
-                                            </div>
+                                        {% endfor %}
 
-                                            <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                                <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                    <div class="image-smaller-holder">
-                                                        <img class="card-img-top bottom-cards disable-select h-100"
-                                                             src="{% static '/img/logo.svg' %}" alt="Card image cap">
-                                                    </div>
-                                                </a>
-                                                <div class="card-body py-0 d-flex align-items-center">
-                                                    <p class="card-text card-bottom-text">
-                                                        <a href="{% url 'index' %}/cpchain-announces-token-buyback-program/">
-                                                            CPChain </a><br> Aug 29, 2018
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     {#下边三个小新闻列表#}
                                 </div>
@@ -371,51 +286,51 @@
 
         //Navigation
         let anchorlinks = document.querySelectorAll('a[href^=" #"]');
-    for (let item of anchorlinks) {
-    item.addEventListener('click', (e) => {
+        for (let item of anchorlinks) {
+            item.addEventListener('click', (e) => {
 
-    for (let i of anchorlinks) {
-    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
-    }
+                for (let i of anchorlinks) {
+                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                }
 
-    let hashval = item.getAttribute('href');
-    let target = document.querySelector(hashval)
-    target.scrollIntoView({
-    behavior: 'smooth'
-    });
-    history.pushState(null, null, hashval);
-    e.preventDefault();
-    openMenu(0);
-    });
-    }
+                let hashval = item.getAttribute('href');
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                history.pushState(null, null, hashval);
+                e.preventDefault();
+                openMenu(0);
+            });
+        }
 
 
-    function openMenu(type) {
-    let menuHolder = document.getElementById('mySidenav');
-    (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
-    }
+        function openMenu(type) {
+            let menuHolder = document.getElementById('mySidenav');
+            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        }
 
-    function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-    }
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
-    // swiper for application pages
-    var swiperTeam = new Swiper('.swiper-container-applications', {
-    slidesPerView: 1,
-    autoplay: false,
-    grabCursor: false,
-    allowTouchMove: false,
-    autoHeight: true,
-    });
+        // swiper for application pages
+        var swiperTeam = new Swiper('.swiper-container-applications', {
+            slidesPerView: 1,
+            autoplay: false,
+            grabCursor: false,
+            allowTouchMove: false,
+            autoHeight: true,
+        });
 
-    swiperTeam.on('slideChange', function () {
-    // change active image
-    let currentSlide = this.activeIndex;
-    });
+        swiperTeam.on('slideChange', function () {
+            // change active image
+            let currentSlide = this.activeIndex;
+        });
 
-    function goToApplicationSwiper(index, e) {
-    swiperTeam.slideTo(index, 200);
-    }
+        function goToApplicationSwiper(index, e) {
+            swiperTeam.slideTo(index, 200);
+        }
 
     </script>
 

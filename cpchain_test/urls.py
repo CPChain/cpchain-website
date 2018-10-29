@@ -22,9 +22,9 @@ from cpchain_test.settings import MEDIA_ROOT
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('news', NewsView.as_view(), name='news'),
-    path('news_detail', NewsDetailView.as_view(), name='news_detail'),
-    path('rnodes', RnodesView.as_view(), name='rnodes'),
+    path('news/', NewsView.as_view(), name='news'),
+    path('<title>', NewsDetailView.as_view(), name='news_detail'),
+    path('rnodes/', RnodesView.as_view(), name='rnodes'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
 
 
