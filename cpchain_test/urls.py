@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include,re_path
+from django.urls import path, include, re_path
 import xadmin
 from index.views import *
 from django.views.static import serve
@@ -23,14 +23,14 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('news/', NewsView.as_view(), name='news'),
-    path('<title>', NewsDetailView.as_view(), name='news_detail'),
+    path('<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('rnodes/', RnodesView.as_view(), name='rnodes'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
-
 
     # functions
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('download/<paper>/', DownloadView.as_view(), name='download'),
     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT})
 ]
 
