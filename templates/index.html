@@ -875,9 +875,9 @@
                                                     <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row" id="outputen-team">
                                                         CPChain Team
                                                     </div>
-                                                    <i class="fas fa-caret-down ml-2" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+                                                    <i class="fas fa-caret-down ml-2 teamDown" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
 
-                                                    <ul class="dropdown-content mt-5 p-0" id="dropdown-content">
+                                                    <ul class="dropdown-content mt-5 p-0 teamList" id="dropdown-content">
                                                         <li class="choice choice-en-team">
                                                             <a href="javascript:void(0)" onclick="switchTeamCategory('all')">
                                                                 CPChain Team
@@ -942,9 +942,9 @@
                                                     <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row" id="outputen-ambassadors">
                                                         CPChain Global Team
                                                     </div>
-                                                    <i class="fas fa-caret-down ml-2" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+                                                    <i class="fas fa-caret-down ml-2 globlDown" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
 
-                                                    <ul class="dropdown-content mt-5 p-0" id="dropdown-content">
+                                                    <ul class="dropdown-content mt-5 p-0 team globlList" id="dropdown-content">
                                                         <li class="choice choice-en-ambassadors">
                                                             <a href="javascript:void(0)" onclick="switchTeamAmbassadors('all')">
                                                                 CPChain Global Team
@@ -1517,7 +1517,7 @@
 
 
 {#<script data-cfasync="false" src="{% static 'css/email-decode.min.js' %}"></script>#}
-
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 <script type='text/javascript'
         src="{% static '/js/skip-link-focus-fix.js' %}"></script>
 <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
@@ -1526,6 +1526,25 @@
 <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
 
 <script>
+$(".teamDown").click(function(){
+    $('.teamList').css("display","block");
+    })
+
+$(".globlDown").click(function(){
+    $('.globlList').css("display","block");
+    })
+
+$(".teamList").click(function(){
+    $('.teamList').css("display","none");
+    })
+$(".globlList").click(function(){
+    $('.globlList').css("display","none");
+    })
+
+/*$('body').click(function(){
+    $('.teamList').css("display","none");
+    $('.globlList').css("display","none");
+})*/
 
     function closeBanner() {
         let rnode = document.getElementById('banner-rnodes');
@@ -2328,8 +2347,6 @@ listItemszhteam.forEach(function(item) {
     document.getElementById('outputch-team').innerText = this.innerText;
 }
 });
-
-
 
 
 
