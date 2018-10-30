@@ -34,9 +34,9 @@ class NewsDetailView(View):
         return render(req, 'news_detail.html', {'news': news, 'latest': latest_news})
 
 
-class RnodesView(View):
+class RnodeView(View):
     def get(self, req):
-        return HttpResponse('rnodes')
+        return HttpResponse('rnode')
 
 
 class DownloadView(View):
