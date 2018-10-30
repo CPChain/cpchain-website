@@ -935,7 +935,6 @@
                                 <div class="container py-sm-5 py-0">
                                     <div class="row py-sm-0 pb-5">
 
-
                                         <div class="upper text-left col-sm-12 col-sm-5">
                                             <div class="dropdown position-relative upper d-flex align-items-center justify-content-sm-start justify-content-center px-0 col">
                                                 <div class="dropdown position-relative d-flex flex-row pb-3">
@@ -962,7 +961,6 @@
                                                             </a>
                                                         </li>
                                                     </ul>
-
 
                                                 </div>
                                             </div>
@@ -1696,11 +1694,13 @@
         // reInit();
     });
 
-    var swiperr = new Swiper('.swiper-container-two', {
-        slidesPerView: 1,
+
+
+    var swiperAmbassadors = new Swiper('.swiper-container-main', {
+        slidesPerView: 4,
         spaceBetween: 50,
         pagination: {
-            el: '.swiper-paginationn',
+            el: '.swiper-pagination',
             dynamicBullets: true,
             clickable: true,
         },
@@ -2286,12 +2286,11 @@ function setupTeamSlides(teams, typeOfSwiper, type){
         teams.forEach(function(team,i) {
             if(languageType == 'ch') {
                 typeOfSwiper.addSlide(i, [
-                    '<div>aa</div><div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder"> <div class="image-holder  mb-4"> <img src="'+team.ch.image+'"></div><p class="font-weight-bold mb-0 ">'+team.ch.name+'</p><h6 class="font-italic text-center small">'+team.ch.title+'</h6></div> </div>'
-
+                    '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder"> <div class="image-holder  mb-4"> <img width="160px" height="160px" src="'+team.ch.image+'"></div><p class="font-weight-bold mb-0">'+team.ch.name+'</p><h6 class="font-italic small">'+team.ch.title+'</h6></div> </div>'
                 ]);
             } else {
                 typeOfSwiper.addSlide(i, [
-                    '<div>aa</div><div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder"> <div class="image-holder  mb-4"> <img src="'+team.en.image+'"></div><p class="font-weight-bold mb-0 ">'+team.en.name+'</p><h6 class="font-italic small text-center">'+team.en.title+'</h6></div> </div>'
+                    '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder">  <div class="image-holder  mb-4"> <img width="160px" height="160px" src="'+team.en.image+'"></div><p class="font-weight-bold mb-0">'+team.en.name+'</p><h6 class="font-italic small">'+team.en.title+'</h6></div> </div>'
                 ]);
             }
         });
