@@ -10,9 +10,11 @@ from urllib.parse import unquote
 # Create your views here.
 class IndexView(View):
     def get(self, req):
+        partners = Partner.objects.filter(type='Partners')
+        investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
-        return render(req, 'index.html',locals())
 
+        return render(req, 'index.html', locals())
 
 
 class NewsView(View):

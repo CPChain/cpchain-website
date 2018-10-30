@@ -140,13 +140,13 @@
                                         </p>
                                     </div>
                                     <div class="pt-5 mt-3 main-buttons ">
-                                        <a href="https://www.cpchain.io/CPChain_Whitepaper_English.pdf"
+                                        <a href="/download/CPChain_Whitepaper_English.pdf"
                                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 "
                                            target="_blank"
                                            style="font-family: 'Poppins', sans-serif !important;">
                                             WHITE PAPER
                                         </a>
-                                        <a href="https://www.cpchain.io/CPChain_lightpaper_English.pdf"
+                                        <a href="/download/CPChain_lightpaper_English.pdf"
                                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
                                            target="_blank"
                                            style="font-family: 'Poppins', sans-serif !important;">
@@ -158,7 +158,7 @@
                                             <i class="fab fa-github glyphicon pr-2"></i>
                                             GITHUB
                                         </a>
-                                        <a href="https://cpchain.io/rnodes"
+                                        <a href="{% url 'rnode' %}"
                                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 ml-sm-2 poppins-font"
                                            style="font-family: 'Poppins', sans-serif !important;">
                                             RNode
@@ -1108,12 +1108,12 @@
 
                                                 <div class="bottom partners d-flex align-items-center justify-content-center">
                                                     <div class="row-first mb-4">
-                                                        {% for e in exchanges %}
+                                                        {% for p in partners %}
 
                                                             <div class="image-holder exchangesImg">
-                                                                <a href="{{ e.link }}" target="_blank">
+                                                                <a href="{{ p.link }}" target="_blank">
                                                                     <img class="h-100 disable-select img-fluid d-block"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                         src="{{ MEDIA_URL }}{{ p.image }}">
                                                                 </a>
                                                             </div>
 
@@ -1125,12 +1125,12 @@
                                             <div class="swiper-slide">
                                                 <div class="bottom investor d-flex align-items-center justify-content-center">
                                                     <div class="row-first mb-4">
-                                                        {% for e in exchanges %}
+                                                        {% for i in investors %}
 
                                                             <div class="image-holder exchangesImg">
-                                                                <a href="{{ e.link }}" target="_blank">
+                                                                <a href="{{ i.link }}" target="_blank">
                                                                     <img class="h-100 disable-select img-fluid d-block"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                         src="{{ MEDIA_URL }}{{ i.image }}">
                                                                 </a>
                                                             </div>
 
@@ -1568,11 +1568,8 @@
 
 
     {#<script data-cfasync="false" src="{% static 'css/email-decode.min.js' %}"></script>#}
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-        <
-        script
-        type = 'text/javascript'
-        src = "{% static '/js/skip-link-focus-fix.js' %}" ></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
     <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
 
     <script src="{% static '/js/swiper.min.js' %}"></script>
