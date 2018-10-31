@@ -4,40 +4,44 @@
 {% load staticfiles %}
 {% block content %}
     <style>
-    @font-face {
-        font-family: "poppins";
-        src: url("../static/css/Font/Poppins-Light.otf");
-        src: url("../static/css/Font/Poppins-ExtraLight.otf");
-        src: url("../static/css/Font/Poppins-Bold.otf");
-        src: url("../static/css/Font/Poppins-Regular.otf");
-    }
-    .poppins-font {
-        font-family: 'Poppins', sans-serif !important;
-    }
-    body{
-        font-family: "Archivo";
-    }
-    header{
-        font-family: "Archivo", sans-serif !important;
-    }
-    .wiper-slide-holder p{
-       --font-family-sans-serif: "Archivo";
-    }
+        @font-face {
+            font-family: "poppins";
+            src: url("../static/css/Font/Poppins-Light.otf");
+            src: url("../static/css/Font/Poppins-ExtraLight.otf");
+            src: url("../static/css/Font/Poppins-Bold.otf");
+            src: url("../static/css/Font/Poppins-Regular.otf");
+        }
+
+        .poppins-font {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        body {
+            font-family: "Archivo";
+        }
+
+        header {
+            font-family: "Archivo", sans-serif !important;
+        }
+
+        .wiper-slide-holder p {
+            --font-family-sans-serif: "Archivo";
+        }
     </style>
     <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
-        <div id="page" class="site">
-            <header class="py-4 mx-auto w-100  position-fixed " id="header" >
-                <div class="container">
-                    <div class="row">
-                        {#logo#}
-                        <div class="col-4 d-flex flex-row align-items-center">
-                            <a href="https://cpchain.io" class="logo-hov">
-                                <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
-                                    <img src="{% static '/img/logo_new.svg' %}"  class="disable-select">
-                                </div>
-                            </a>
-                        </div>
-                        {#logo#}
+    <div id="page" class="site">
+        <header class="py-4 mx-auto w-100  position-fixed " id="header">
+            <div class="container">
+                <div class="row">
+                    {#logo#}
+                    <div class="col-4 d-flex flex-row align-items-center">
+                        <a href="https://cpchain.io" class="logo-hov">
+                            <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
+                                <img src="{% static '/img/logo_new.svg' %}" class="disable-select">
+                            </div>
+                        </a>
+                    </div>
+                    {#logo#}
 
                         <div class="menu col-8 d-flex align-items-center justify-content-end">
                             <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0" id="mySidenav">

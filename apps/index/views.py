@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.http import FileResponse
+
 from .models import *
 from urllib.parse import unquote
 
@@ -32,6 +34,15 @@ class NewsDetailView(View):
         return render(req, 'news_detail.html', {'news': news, 'latest': latest_news})
 
 
-class RnodesView(View):
+class RnodeView(View):
     def get(self, req):
-        return HttpResponse('rnodes')
+        return HttpResponse('rnode')
+
+
+class DownloadView(View):
+    def get(self, req, paper):
+        file = open('static/' + paper, 'rb')
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/octet-stream'
+        response['Content-Disposition'] = 'attachment;filename="{}"'.format(paper)
+        return response
