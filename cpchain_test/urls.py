@@ -26,6 +26,7 @@ urlpatterns = [
     path('news/<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
+    path('app/<app>',AppView.as_view(),name='app' ),
 
     # functions
     # 配置富文本media地址
