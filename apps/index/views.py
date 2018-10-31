@@ -48,6 +48,7 @@ class DownloadView(View):
         response['Content-Disposition'] = 'attachment;filename="{}"'.format(paper)
         return response
 
+
 class AppView(View):
-    def get(self,req,app):
-        return render(req,app+'.html')
+    def get(self, req, app):
+        return render(req, app + '.html')
