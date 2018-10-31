@@ -1,10 +1,435 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <script>(function (html) {
+        html.className = html.className.replace(/\bno-js\b/, 'js')
+    })(document.documentElement);</script>
 
-</body>
-</html>
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        section.application-pages {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 60vh;
+            max-height: 550px;
+            overflow: hidden;
+            background-position: bottom;
+        }
+
+        .fixed-width-button {
+            width: 262px !important;
+        }
+    </style>
+    <body class="page-template-default page page-id-179 language-en has-header-image page-two-column colors-light">
+    <div id="page" class="site">
+
+        <header class="py-4 mx-auto w-100 " id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 d-flex flex-row align-items-center">
+                        <a href="https://cpchain.io" class="logo-hov">
+                            <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
+                                <img src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo_new.svg"
+                                     class="disable-select">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="menu col-8 d-flex align-items-center justify-content-end">
+
+                        <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
+                            id="mySidenav">
+
+                            <li class="d-sm-none d-block w-100">
+                                <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                              fill="#fff"/>
+                                    </svg>
+                                </a>
+                            </li>
+                            <!-- <li>
+                        <a href="https://cpchain.io#cpchain" class="font-weight-bold" onclick="openMenu(0)">
+                            About CPChain
+                        </a>
+                    </li> -->
+                            <li>
+                                <a href="https://cpchain.io#application" class="font-weight-bold" onclick="openMenu(0)">
+                                    Application
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io#roadmap" class="font-weight-bold" onclick="openMenu(0)">
+                                    Roadmap
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io#team" class="font-weight-bold" onclick="openMenu(0)">
+                                    Team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io/news" class="font-weight-bold" onclick="openMenu(0)">
+                                    News
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io#vision" class="font-weight-bold" onclick="openMenu(0)">
+                                    Partners
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io/rnodes" class="font-weight-bold">
+                                    RNode
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cpchain.io#contact" class="font-weight-bold" onclick="openMenu(0)">
+                                    Contact
+                                </a>
+                            </li>
+
+
+                            <li class="line"></li>
+
+                            <li class="dropdown bg-transparent">
+                                <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                                    <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
+                                        ENG </a>
+                                    <div class="image-holder d-flex align-items-center justify-content-center">
+                                        <svg height="24px" class="d-none d-sm-block"
+                                             id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24">
+                                            <g opacity="0.4">
+                                                <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                                <path d="M0,0H24V24H0Z" fill="none"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <ul class="dropdown-menu list-unstyled rounded">
+                                        <a href="https://cpchain.io" class="small">ENG</a>
+                                        <a href="https://cpchain.io/zh" class="small">中文</a>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-8 menuopen position-absolute d-flex justify-content-end align-items-center">
+                        <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-sm-none"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header> <!-- header -->
+
+        <div class="site-content-contain">
+            <div id="content" class="site-content">
+
+                <div class="wrap">
+                    <div id="primary" class="content-area">
+                        <main id="main" class="site-main" role="main">
+
+
+                            <section
+                                    class="d-flex align-items-center justify-content-center position-relative application-pages medical"
+                                    style="background-image: url({% static '/img/application/smart/smart.jpg' %});">
+                                <div class="container h-100">
+                                    <div class="row pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center justify-content-center">
+
+                                        <div class="text-center mt-sm-0 pt-sm-0 pt-0 mt-0">
+                                            <h4 class="col-10 col-sm-12 font-weight-light p-0 mx-auto text-white archivo-font">
+                                                <i>Application</i>
+                                            </h4>
+                                            <h1 class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto text-white poppins-font">
+                                                Smart Medical
+                                            </h1>
+                                        </div>
+
+                                        <div class="pt-lg-5 flex-lg-row flex-column mt-sm-3 mt-3 d-flex main-buttons mx-auto">
+                                            <a href="{% url 'app' 'intelligent-transportation' %}"
+                                               class="btn btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 poppins-font mr-2">
+                                                Intelligent Transportation
+                                            </a>
+                                            <a href="{% url 'app' 'security' %}"
+                                               class="btn btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3  poppins-font">
+                                                Public Security
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </section>  <!-- end of application-pages  -->
+
+                            <section
+                                    class="section-two-intelligent d-flex align-items-center justify-content-center position-relative">
+                                <div class="container h-100">
+
+                                    <div class="row mt-5 pt-sm-0 pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center">
+                                        <div class="d-flex col-12 flex-column">
+                                            <ul class="list-unstyled d-flex flex-row my-4 col-lg-12 main scroller-tab">
+                                                <li class="col-md-3 col-12 pb-2">
+                                                    <a class="tablinks tab_drive archivo-font" href="javascript:void(0)"
+                                                       onclick="goToApplicationSwiper(0, this);">
+                                                        Medicine Anti-counterfeiting <br> and Source-tracing
+                                                    </a>
+                                                </li>
+                                                <li class="col-md-3 col-12">
+                                                    <a class="tablinks tab_vehicle archivo-font"
+                                                       href="javascript:void(0)"
+                                                       onclick="goToApplicationSwiper(1, this);">
+                                                        AI Support for Public Health Signal Data
+                                                    </a>
+                                                </li>
+                                            </ul> <!-- end of header tabs -->
+                                            <hr class="mb-7">
+                                        </div>
+                                    </div> <!-- end of row -->
+
+
+                                    <div class="swiper-container-applications w-100" style="overflow: hidden;">
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
+
+                                                <div class="col-sm col-12">
+                                                    <h5 class="archivo-font font-italic">
+                                                        Background
+                                                    </h5>
+                                                </div> <!-- end of title -->
+                                                <div class="col-sm-7 col-12">
+                                                    <p class="font-weight-light archivo-font text-justify">
+                                                        Medicine Safety is always a public affair. Counterfeit drugs
+                                                        will do
+                                                        more harm to our health rather than healing people. If
+                                                        pharmaceutical enterprises do not handle such issues well, there
+                                                        will be very serious consequences. We can see a lot of negative
+                                                        cases caused by manufacturers tampering with production records.
+                                                    </p>
+                                                </div> <!-- end of desc -->
+                                                <div class="col-sm col-12">
+                                                    <img class="w-100"
+                                                         src="{% static '/img/application/smart/smart.jpg' %}">
+                                                </div> <!-- end of image -->
+
+                                                <div class="col-12 mt-2 py-5">
+                                                    <h5 class="archivo-font font-italic mb-0">
+                                                        Solutions
+                                                    </h5><br>
+                                                    <p class="font-weight-light archivo-font text-justify">
+                                                        In order to eliminate consumers doubts fundamentally, it is
+                                                        necessary to perfect the traceability system of drug quality and
+                                                        realize the traceability of drug information from the supply of
+                                                        raw
+                                                        materials to the whole supply chain of drug sales.
+                                                        Pharmaceutical
+                                                        companies also urgently need to build up the supply chain
+                                                        upstream
+                                                        and downstream effective communication channels. When problems
+                                                        arise, we can quickly find out the reasons and reduce the risk
+                                                        of
+                                                        responsibility. Based on the mainnet of CPChain and the
+                                                        following
+                                                        medicine industry side chain, the drugs are recorded from raw
+                                                        materials to production, sales to avoid the problem of data
+                                                        tampering in centralized system and to improve drug safety.
+                                                    </p>
+                                                </div> <!-- end of solutions -->
+
+
+                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-1.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medical Industry Side Chain
+                                                    </div>
+                                                </div><!-- end of solution-icons -->
+
+                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-2.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medicine Quality Trace
+                                                    </div>
+                                                </div><!-- end of solution-icons -->
+
+                                                <div class="col-sm  my-4  pb-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-3.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medicine Quality Trace
+                                                    </div>
+                                                </div> <!-- end of solution-icons -->
+
+                                            </div> <!-- end of swiper-slide 1 -->
+
+                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
+
+                                                <div class="col-sm-3 col-12 col-12">
+                                                    <img class="w-100"
+                                                         src="{% static '/img/application/smart/slide-2.png' %}">
+                                                </div> <!-- end of image -->
+                                                <div class="col-sm col-12 offset-0 offset-sm-1">
+                                                    <h5 class="archivo-font font-italic">
+                                                        Background
+                                                    </h5>
+                                                    <p class="font-weight-light archivo-font text-justify">
+                                                        Medicine Safety is always a public affair. Counterfeit drugs
+                                                        will do
+                                                        more harm to our health rather than healing people. If
+                                                        pharmaceutical enterprises do not handle such issues well, there
+                                                        will be very serious consequences. We can see a lot of negative
+                                                        cases caused by manufacturers tampering with production records.
+                                                    </p>
+                                                </div> <!-- end of desc -->
+
+                                                <div class="col-12 mt-2 py-5">
+                                                    <h5 class="archivo-font font-italic mb-0">
+                                                        Solutions
+                                                    </h5><br>
+                                                    <p class="font-weight-light archivo-font text-justify">
+                                                        With PDash, the fundamental platform of CPChain, patients who
+                                                        own
+                                                        health monitoring devices, can upload their health data at their
+                                                        will to centralized or distributed cloud space, meanwhile,
+                                                        creating
+                                                        description of their data set, recording hash for the data on
+                                                        CPChain mainnet for verification. CPChain has special design for
+                                                        privacy protection in the process of data sharing. Besides, due
+                                                        to
+                                                        the fact that there is no need for real-name authentication in
+                                                        AI
+                                                        training, CPChain can provide effective support for application
+                                                        such
+                                                        as AI, with refined security of privacy.
+                                                    </p>
+                                                </div> <!-- end of solutions -->
+
+
+                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-4.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medical Industry Side Chain
+                                                    </div>
+                                                </div><!-- end of solution-icons -->
+
+                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons ">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-5.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medicine Quality Trace
+                                                    </div>
+                                                </div><!-- end of solution-icons -->
+
+                                                <div class="col-sm  my-4  pb-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons ">
+                                                    <div class="icon pr-4">
+                                                        <img class="w-100"
+                                                             src="{% static '/img/application/smart/solution-6.png' %}">
+                                                    </div>
+                                                    <div class="title font-weight-light archivo-font">
+                                                        Medicine Quality Trace
+                                                    </div>
+                                                </div> <!-- end of solution-icons -->
+
+                                            </div> <!-- end of swiper 2 -->
+
+
+                                        </div> <!-- swiper-wrapper -->
+                                    </div> <!-- swiper-container -->
+
+
+                                </div>
+                            </section>
+
+                        </main><!-- #main -->
+                    </div><!-- #primary -->
+                </div><!-- .wrap -->
+
+
+            </div><!-- #content -->
+
+
+        </div><!-- .site-content-contain -->
+    </div><!-- #page -->
+
+    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
+    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
+
+    <script src="{% static '/js/swiper.min.js' %}"></script>
+    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
+
+    <script>
+
+        let header = document.getElementById('header');
+        window.addEventListener('scroll', function (e) {
+            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+        });
+
+        //Navigation
+        let anchorlinks = document.querySelectorAll('a[href^="#"]');
+        for (let item of anchorlinks) {
+            item.addEventListener('click', (e) => {
+
+                for (let i of anchorlinks) {
+                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                }
+
+                let hashval = item.getAttribute('href');
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                history.pushState(null, null, hashval);
+                e.preventDefault();
+                openMenu(0);
+            });
+        }
+
+
+        function openMenu(type) {
+            let menuHolder = document.getElementById('mySidenav');
+            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        }
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // swiper for application pages
+        var swiperTeam = new Swiper('.swiper-container-applications', {
+            slidesPerView: 1,
+            autoplay: false,
+            grabCursor: false,
+            allowTouchMove: false,
+            autoHeight: true,
+        });
+
+        swiperTeam.on('slideChange', function () {
+            // change active image
+            let currentSlide = this.activeIndex;
+        });
+
+        function goToApplicationSwiper(index, e) {
+            swiperTeam.slideTo(index, 200);
+        }
+
+    </script>
+
+    </body>
+{% endblock %}
+
