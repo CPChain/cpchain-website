@@ -1645,10 +1645,10 @@
         $('.globlAll').click(function () {
             $('.globlList').css("display", "none");
         })
-        $(".teamList").click(function () {
-            $('.teamList').css("display", "none");
+        $(".globlDown").mouseover(function () {
+            $('.globlList').css("display", "block");
         })
-        $(".globlList").click(function () {
+        $(".globlDown").mouseout(function () {
             $('.globlList').css("display", "none");
         })
 
@@ -1861,48 +1861,6 @@
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
-
-        // Close the dropdown if the user clicks outside of it
-        {#window.onclick = function (event) {#}
-        {#    if (!event.target.matches('.dropbtn')) {#}
-        {##}
-        {#        var dropdowns = document.getElementsByClassName("dropdown-content");#}
-        {#        var i;#}
-        {#        for (i = 0; i < dropdowns.length; i++) {#}
-        {#            var openDropdown = dropdowns[i];#}
-        {#            if (openDropdown.classList.contains('show')) {#}
-        {#                openDropdown.classList.remove('show');#}
-        {#            }#}
-        {#        }#}
-        {#    }#}
-        {#}#}
-
-            //dropdown on click change values
-            {#var listItems = document.querySelectorAll(".choice");#}
-            {##}
-            {#listItems.forEach(function (item) {#}
-            {##}
-            {#    item.onclick = function (e) {#}
-            {#        alert(1);#}
-            {##}
-            {#        var dropitem = document.getElementById('output').innerText = this.innerText;#}
-            {##}
-            {#        var elements = document.getElementsByClassName("team-member");#}
-            {#        var category = '';#}
-            {#        for (var i = 0; i < elements.length; i++) {#}
-            {#            var input = elements[i];#}
-            {#            console.log(dropitem, input.getAttribute('category'));#}
-            {#            return;#}
-            {#            if (dropitem != input.getAttribute('category')) {#}
-            {#                input.remove();#}
-            {#            }#}
-            {#        }#}
-            {##}
-            {#    }#}
-            {#})
-        ;
-        #}
-
 
         var homeURL = 'https://cpchain.io/';
 
