@@ -18,7 +18,7 @@ class TeamMate(models.Model):
     name_zh = models.CharField(max_length=50, null=True, blank=True)
     job = models.CharField(max_length=50)
     job_zh = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='static/img/Team', max_length=100, null=True, blank=True)
+    image = models.ImageField(upload_to='img/Team', max_length=100, null=True, blank=True)
     desc = models.CharField(max_length=500, null=True, blank=True)
     desc_zh = models.CharField(max_length=500, null=True, blank=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)

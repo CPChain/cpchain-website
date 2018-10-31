@@ -23,6 +23,7 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('news/', NewsView.as_view(), name='news'),
+    path('news/<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
 
@@ -31,7 +32,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('download/<paper>/', DownloadView.as_view(), name='download'),
     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
-    path('<title>/', NewsDetailView.as_view(), name='news_detail'),
+
 ]
 
 # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置

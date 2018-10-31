@@ -13,6 +13,7 @@ class IndexView(View):
         partners = Partner.objects.filter(type='Partners')
         investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
+        # team =TeamMate.objects.all()
 
         return render(req, 'index.html', locals())
 
@@ -36,7 +37,7 @@ class NewsDetailView(View):
 
 class RnodeView(View):
     def get(self, req):
-        return HttpResponse('rnode')
+        return render(req, 'rnode.html')
 
 
 class DownloadView(View):
