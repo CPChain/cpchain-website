@@ -24,8 +24,9 @@
             font-family: "Archivo", sans-serif !important;
         }
 
-        .wiper-slide-holder p {
-            --font-family-sans-serif: "Archivo";
+        .exchangesImg {
+            width: 270px;
+            height: 100px;
         }
     </style>
     <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
@@ -1107,34 +1108,16 @@
 
                                                 <div class="bottom partners d-flex align-items-center justify-content-center">
                                                     <div class="row-first mb-4">
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/iOT_alliance.png' %}"
-                                                                 class="h-100 img-fluid disable-select d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/dtalks.png' %}"
-                                                                 class="h-100 disable-select img-fluid d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/hpb.png' %}"
-                                                                 class="h-100 disable-select img-fluid d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/true_media.png' %}"
-                                                                 class="h-100 img-fluid disable-select d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/marzipr.png' %}"
-                                                                 class="h-100 img-fluid disable-select d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/mobi.png' %}"
-                                                                 class="h-100 img-fluid disable-select d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Partners/nuggets.png' %}"
-                                                                 class="h-100 img-fluid disable-select d-block">
-                                                        </div>
+                                                        {% for e in exchanges %}
+
+                                                            <div class="image-holder exchangesImg">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class="h-100 disable-select img-fluid d-block"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -1142,18 +1125,16 @@
                                             <div class="swiper-slide">
                                                 <div class="bottom investor d-flex align-items-center justify-content-center">
                                                     <div class="row-first mb-4">
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Investors/torque.png' %}"
-                                                                 class="h-100 disable-select img-fluid d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Investors/vechain.png' %}"
-                                                                 class="h-100 disable-select img-fluid d-block">
-                                                        </div>
-                                                        <div class="image-holder">
-                                                            <img src="{% static '/img/Investors/visionz.png' %}"
-                                                                 class="h-100 disable-select img-fluid d-block">
-                                                        </div>
+                                                        {% for e in exchanges %}
+
+                                                            <div class="image-holder exchangesImg">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class="h-100 disable-select img-fluid d-block"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -1174,43 +1155,16 @@
                                         <hr class="middle-hr mb-0">
                                     </div>
                                     <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                        <div class="image-holder">
-                                            <a href="https://www.bibox.com/" target="_blank">
-                                                <img src="{% static '/img/Exchanges/bibox.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
-                                        <div class="image-holder">
-                                            <a href="https://tidex.com/" target="_blank">
-                                                <img src="{% static '/img/Exchanges/tidex.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
-                                        <div class="image-holder">
-                                            <a href="https://idex.market/eth/aura?gclid=EAIaIQobChMIwuDT3sSA3QIVlYKyCh1AzgcMEAAYASAAEgKLlvD_BwE‎"
-                                               target="_blank">
-                                                <img src="{% static '/img/Exchanges/idex.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
-                                        <div class="image-holder">
-                                            <a href="https://etherdelta.com/#PPT-ETH‎" target="_blank">
-                                                <img src="{% static '/img/Exchanges/etherdelta.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
-                                        <div class="image-holder">
-                                            <a href="https://www.kucoin.com/#/‎" target="_blank">
-                                                <img src="{% static '/img/Exchanges/kucoin.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
-                                        <div class="image-holder">
-                                            <a href="https://loopring.org/" target="_blank">
-                                                <img src="{% static '/img/Exchanges/loopring.png' %}"
-                                                     class="disable-select d-block">
-                                            </a>
-                                        </div>
+                                        {% for e in exchanges %}
+
+                                            <div class="image-holder exchangesImg">
+                                                <a href="{{ e.link }}" target="_blank">
+                                                    <img class="h-100 disable-select img-fluid d-block"
+                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                </a>
+                                            </div>
+
+                                        {% endfor %}
                                     </div>
 
                                 </div>
