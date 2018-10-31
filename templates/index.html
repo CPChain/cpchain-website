@@ -868,14 +868,14 @@
                                     <div class="row py-sm-0 pb-5">
 
 
-                                        <div class="upper text-left col-sm-12 col-sm-5">
+                                        <div class="upper text-left col-sm-12 col-sm-5 teamAll">
                                             <div class="dropdown upper d-flex align-items-center justify-content-sm-start justify-content-center px-0 col">
-                                                <div class="dropdown d-flex flex-row pb-3">
+                                                <div class="dropdown d-flex flex-row pb-3 teamDown">
 
                                                     <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row" id="outputen-team">
                                                         CPChain Team
                                                     </div>
-                                                    <i class="fas fa-caret-down ml-2 teamDown" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+                                                    <i class="fas fa-caret-down ml-2 " style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
 
                                                     <ul class="dropdown-content mt-5 p-0 teamList" id="dropdown-content">
                                                         <li class="choice choice-en-team">
@@ -935,14 +935,14 @@
                                 <div class="container py-sm-5 py-0">
                                     <div class="row py-sm-0 pb-5">
 
-                                        <div class="upper text-left col-sm-12 col-sm-5">
+                                        <div class="upper text-left col-sm-12 col-sm-5 globlAll">
                                             <div class="dropdown position-relative upper d-flex align-items-center justify-content-sm-start justify-content-center px-0 col">
-                                                <div class="dropdown position-relative d-flex flex-row pb-3">
+                                                <div class="dropdown position-relative d-flex flex-row pb-3 globlDown">
 
                                                     <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row" id="outputen-ambassadors">
                                                         CPChain Global Team
                                                     </div>
-                                                    <i class="fas fa-caret-down ml-2 globlDown" style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+                                                    <i class="fas fa-caret-down ml-2 " style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
 
                                                     <ul class="dropdown-content mt-5 p-0 team globlList" id="dropdown-content">
                                                         <li class="choice choice-en-ambassadors">
@@ -1529,11 +1529,23 @@
 $(".teamDown").click(function(){
     $('.teamList').css("display","block");
     })
+$(".teamAll").click(function(){
+    $('.teamList').css("display","none");
+    })
+
+$(".teamDown").mouseover(function(){
+    $('.teamList').css("display","block");
+    })
+$(".teamDown").mouseout(function(){
+    $('.teamList').css("display","none");
+    })
 
 $(".globlDown").click(function(){
     $('.globlList').css("display","block");
     })
-
+$('.globlAll').click(function(){
+    $('.globlList').css("display","none");
+})
 $(".teamList").click(function(){
     $('.teamList').css("display","none");
     })
@@ -1541,10 +1553,7 @@ $(".globlList").click(function(){
     $('.globlList').css("display","none");
     })
 
-/*$('body').click(function(){
-    $('.teamList').css("display","none");
-    $('.globlList').css("display","none");
-})*/
+
 
     function closeBanner() {
         let rnode = document.getElementById('banner-rnodes');
