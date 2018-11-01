@@ -23,11 +23,12 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('news/', NewsView.as_view(), name='news'),
-    path('news/<title>/', NewsDetailView.as_view(), name='news_detail'),
+    path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
+    path('news/list/<category>', NewsListView.as_view(), name='news_list'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
-    path('app/<app>',AppView.as_view(),name='app' ),
-
+    path('app/<app>', AppView.as_view(), name='app'),
+    path('search',SearchView.as_view(),name='search'),
     # functions
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),

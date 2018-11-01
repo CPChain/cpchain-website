@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.http import FileResponse
+from django.urls import reverse
 
 from .models import *
 from urllib.parse import unquote
@@ -35,6 +36,13 @@ class NewsDetailView(View):
         return render(req, 'news_detail.html', {'news': news, 'latest': latest_news})
 
 
+class NewsListView(View):
+    def get(self, req, category):
+        category = category
+
+        return render(req, 'news_list.html', locals())
+
+
 class RnodeView(View):
     def get(self, req):
         return render(req, 'rnode.html')
@@ -48,6 +56,12 @@ class DownloadView(View):
         response['Content-Disposition'] = 'attachment;filename="{}"'.format(paper)
         return response
 
+
 class AppView(View):
-    def get(self,req,app):
-        return render(req,app+'.html')
+    def get(self, req, app):
+        return render(req, app + '.html')
+
+class SearchView(View):
+    def get(self,req):
+        s = req.GET.get('s','')
+        return render(req,'search.html',locals())
