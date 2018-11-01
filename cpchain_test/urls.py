@@ -21,40 +21,35 @@ from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
 
 
-# urlpatterns = [
-#     path('xadmin/', xadmin.site.urls),
-#     path('', IndexView.as_view(), name='index'),
-#     path('news/', NewsView.as_view(), name='news'),
-#     path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
-#     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
-#     path('rnode/', RnodeView.as_view(), name='rnode'),
-#     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
-#     path('app/<app>', AppView.as_view(), name='app'),
-#     path('search', SearchView.as_view(), name='search'),
-#     # functions
-#     # 配置富文本media地址
-#     path('ckeditor/', include('ckeditor_uploader.urls')),
-#     path('download/<paper>/', DownloadView.as_view(), name='download'),
-#     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
-#
-# ]
-#
-# # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
-# from django.conf import settings
-# from django.conf.urls.static import static
-#
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+indexpatterns = [
+    path('xadmin/', xadmin.site.urls),
+    path('', IndexView.as_view(), name='index'),
+    path('en/', IndexEnView.as_view(), name='en'),
+    path('zh/', IndexZhView.as_view(), name='zh'),
+    path('news/', NewsView.as_view(), name='news'),
+    path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
+    path('news/list/<category>', NewsListView.as_view(), name='news_list'),
+    path('rnode/', RnodeView.as_view(), name='rnode'),
+    path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
+    path('app/<app>', AppView.as_view(), name='app'),
+    path('search', SearchView.as_view(), name='search'),
+    # functions
+    # 配置富文本media地址
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('download/<paper>/', DownloadView.as_view(), name='download'),
+    re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
 
+]
 
-#
-#
-# news_patterns = ([
-#     path('', news_views.index, name='index'),
-#     path('category/<slug:slug>/', news_views.category, name='category'),
-#     path('<slug:slug>/', news_views.details, name='detail'),
-# ], 'news')
 
 urlpatterns = i18n_patterns(
-    path('', i18n, name='i18n'),
-    # prefix_default_language=False
+    path('', include(indexpatterns)),
+    prefix_default_language=False
 )
+
+#
+# # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.http import FileResponse
 from django.urls import reverse
+from django.utils.translation import activate
+
+
+from pure_pagination import Paginator, PageNotAnInteger
 
 from .models import *
 from urllib.parse import unquote
@@ -18,6 +22,16 @@ class IndexView(View):
 
         return render(req, 'index.html', locals())
 
+class IndexEnView(View):
+    def get(self,req):
+        activate('en')
+        return redirect(reverse('index'))
+
+
+class IndexZhView(View):
+    def get(self,req):
+        activate('zh-hans')
+        return redirect(reverse('index'))
 
 class NewsView(View):
     def get(self, req):
@@ -38,9 +52,16 @@ class NewsDetailView(View):
 
 class NewsListView(View):
     def get(self, req, category):
-        category = category
-
-        return render(req, 'news_list.html', locals())
+        category = unquote(category)
+        news_with_category = New.objects.filter(category=category)
+        try:
+            page = req.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        all_news = news_with_category
+        p = Paginator(all_news, 1, request=req)
+        news = p.page(page)
+        return render(req, 'news_list.html', {'category': category, 'news': news})
 
 
 class RnodeView(View):
@@ -68,5 +89,4 @@ class SearchView(View):
         category = 'Search Results for :'
         return render(req,'news_list.html',locals())
 
-def i18n(req):
-    return render(req,'i18n.html')
+
