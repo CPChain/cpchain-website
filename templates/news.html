@@ -131,7 +131,7 @@
                                         <h6 class="m-0 poppins-font">Official CPChain Media</h6>
                                     </a>
                                     <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
-                                          action="{% url 'index' %}">
+                                          action="{% url 'search' %}">
                                         <input class="form-control col-sm-10 col-12 mr-sm-2" name="s" type="search"
                                                placeholder="Search" aria-label="Search">
                                     </form>
@@ -150,7 +150,7 @@
                                 <h6 class="mb-0">Community Updates</h6>
                             </div>
                             <div class="right-side col-6 text-right">
-                                <a href="https://cpchain.io/category/news/community-updates/" class="text-primary">
+                                <a href="{% url 'news_list' 'community-updates'%}" class="text-primary">
                                     See all
                                 </a>
                             </div>
@@ -223,7 +223,7 @@
                                 <h6 class="mb-0">AMA Sessions</h6>
                             </div>
                             <div class="right-side col-6 text-right">
-                                <a href="https://cpchain.io/category/news/ama-sessions/" class="text-primary">
+                                <a href="{% url 'news_list' 'ama-sessions'%}" class="text-primary">
                                     See all
                                 </a>
                             </div>
@@ -292,7 +292,7 @@
                                 <h6 class="mb-0">Media Reports</h6>
                             </div>
                             <div class="right-side col-6 text-right">
-                                <a href="https://cpchain.io/category/news/media-outreach" class="text-primary">
+                                <a href="{% url 'news_list' 'media-reports'%}" class="text-primary">
                                     See all
                                 </a>
                             </div>
