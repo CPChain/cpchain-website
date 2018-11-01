@@ -47,7 +47,7 @@ class NewsListView(View):
         except PageNotAnInteger:
             page = 1
         all_news = news_with_category
-        p = Paginator(all_news, 1, request=req)
+        p = Paginator(all_news, 12, request=req)
         news = p.page(page)
         return render(req, 'news_list.html', {'category': category, 'news': news})
 
