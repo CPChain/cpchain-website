@@ -18,10 +18,14 @@ import xadmin
 from index.views import *
 from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+
+indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
+    path('en/', EnView.as_view(), name='en'),
+    path('zh/', ZhView.as_view(), name='zh'),
     path('news/', NewsView.as_view(), name='news'),
     path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
@@ -37,7 +41,14 @@ urlpatterns = [
 
 ]
 
-# 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
+
+urlpatterns = i18n_patterns(
+    path('', include(indexpatterns)),
+    prefix_default_language=False
+)
+
+#
+# # 上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置
 from django.conf import settings
 from django.conf.urls.static import static
 
