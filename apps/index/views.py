@@ -74,5 +74,5 @@ class AppView(View):
 class SearchView(View):
     def get(self, req):
         s = req.GET.get('s', '')
-        category = 'Search Results for :'
+        category = 'Search Results for : '
         return render(req, 'news_list.html', locals())

@@ -116,9 +116,9 @@
                                         <div class="blog-view-holder">
                                             {#大图片和头部之间的内容#}
                                             <div class="upper col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-auto">
-                                                <a href="{% url 'index' %}/category/news/community-updates"
+                                                <a href="{% url 'news_list' news.category|urlencode %}"
                                                    class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white text-primary mr-0 mr-sm-2 mb-sm-0 mb-3">
-                                                    Community Updates
+                                                    {{ news.category }}
                                                 </a>
                                                 {#标题#}
                                                 <h4 class="my-3">
