@@ -13,32 +13,34 @@
         }
 
         .pageturn {
-            height: 50px;
-            margin-top: 20px;
+            height: 70px;
+            margin-top: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .pagelist {
+            height: 70px;
             overflow: hidden;
             border-radius: 5px;
-            border: 1px solid #1b9dec;
-            color: #1b9dec;
-            font-size: 16px;
+            color: #1BA3FF;
+            font-size: 18px;
         }
-
+        .pagelist a{
+            color: #1BA3FF;
+        }
         .pagelist li {
             list-style: none;
             float: left;
             padding: 3px 12px;
-            margin-left: -1px;
-            border-left: 1px solid #1b9dec;
+            margin-left: 4px;
         }
 
-        .pagelist .active {
-            background: #1b9dec;
-            color: white;
+        .pagelist li:hover{
+            background-color: white !important;
+            border-radius: 50% !important;
+            box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05) !important;
         }
     </style>
 
@@ -246,7 +248,7 @@
                                 {% for page in news.pages %}
                                     {% if page %}
                                         {% ifequal page news.number %}
-                                            <li class="active"><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
+                                            <li><a style="color: #305278;" href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% else %}
                                             <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% endifequal %}
