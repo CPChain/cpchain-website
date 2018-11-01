@@ -22,15 +22,10 @@ class IndexView(View):
         return render(req, 'index.html', locals())
 
 
-class EnView(View):
+class LangView(View):
     def get(self, req):
-        activate('en')
-        return redirect(reverse('index'))
-
-
-class ZhView(View):
-    def get(self, req):
-        activate('zh-hans')
+        lang = req.GET.get("lang")
+        activate(lang)
         return redirect(reverse('index'))
 
 
