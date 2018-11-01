@@ -67,3 +67,6 @@ class SearchView(View):
         s = req.GET.get('s','')
         category = 'Search Results for :'
         return render(req,'news_list.html',locals())
+
+def i18n(req):
+    return render(req,'i18n.html')
