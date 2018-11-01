@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US" class="no-js no-svg">
+{% load i18n %}
 {% load staticfiles %}
 <head>
     <meta charset="UTF-8">
@@ -96,7 +97,7 @@
                         </li>
                         <li>
                             <a href="#application" class="font-weight-bold" onclick="openMenu(0)">
-                                Application
+                                {% trans 'Application' %}
                             </a>
                         </li>
                         <li>
@@ -243,20 +244,12 @@
                                         </h2>
                                         <hr class="right-hr w-100 mb-5">
                                         <p style="color: #305278">
-                                            CPChain is a new distributed infrastructure for next generation IoT.
-                                            CPChain
-                                            intends to build a fundamental data platform for IoT system in
-                                            combination
-                                            with distributed storage, encryption computation and blockchain
-                                            technologies, providing the whole process solution from data
-                                            acquisition,
-                                            storage, sharing to application.
-                                        </p>
-                                        <p style="color: #305278;">
-                                            CPChain is a promising solution to a series of challenges of current
-                                            “chimney architecture” of IoT systems, reducing connectivity cost of
-                                            devices, protecting data privacy and maximizing the value of IoT data.
-                                        </p>
+                                            {% blocktrans %}CPChain is a new distributed infrastructure for next generation IoT. CPChain intends to build a fundamental data platform for IoT system in combination with distributed storage, encryption computation and blockchain technologies, providing the whole process solution from data acquisition, storage, sharing to application.{% endblocktrans %}
+                                                </p>
+                                                <p style="color: #305278;">
+                                               {% blocktrans %}CPChain is a promising solution to a series of challenges of current“chimney architecture” of IoT systems, reducing connectivity cost of devices, protecting data privacy and maximizing the value of IoT data.{% endblocktrans %}
+                                            </p>
+
                                     </div>
                                 </div>
                                 <div class="second col-sm-12 col-md-6">
@@ -588,10 +581,11 @@
                             <div class="row">
 
                                 <div class="col-12 upper mb-5">
-                                    <h2 class="text-lext text-center poppins-font" >Roadmap</h2>
+                                    <h2 class="text-lext text-center poppins-font">Roadmap</h2>
                                 </div>
 
-                                <div class="col-12 middle d-flex align-items-center justify-content-center py-4" id="roadmap">
+                                <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
+                                     id="roadmap">
                                     <div class="middle-holder-upper roadmap-circles flex-row col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-0 px-0">
 
                                         <div class="item d-flex align-items-center justify-content-center animated-box in position-relative active"
@@ -627,7 +621,7 @@
                                     </div>
                                 </div> <!-- end of navigation for roadmap -->
 
-                                <div class="swiper-container-roadmap w-100" >
+                                <div class="swiper-container-roadmap w-100">
                                     <div class="swiper-wrapper">
 
                                         <div class="swiper-slide">
