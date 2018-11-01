@@ -36,7 +36,7 @@
             border-left: 1px solid #1b9dec;
         }
 
-        .pagelist .active{
+        .pagelist .active {
             background: #1b9dec;
             color: white;
         }
@@ -71,11 +71,6 @@
                                     </svg>
                                 </a>
                             </li>
-                            <!-- <li>
-                        <a href="https://cpchain.io#cpchain" class="font-weight-bold" onclick="openMenu(0)">
-                            About CPChain
-                        </a>
-                    </li> -->
                             <li>
                                 <a href="https://cpchain.io#application" class="font-weight-bold" onclick="openMenu(0)">
                                     Application
@@ -176,7 +171,7 @@
 
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 mx-auto">
                                 <h3 class="text-center w-100 my-3">
-                                    Category: Community Updates </h3>
+                                    Category: {{ category }} </h3>
                             </div>
 
                             <div class="col-12 col-sm-12 mt-4">
@@ -187,605 +182,80 @@
                         {# 新闻列表#}
                         <div class="row">
                             {# 循环体#}
-                            <div class="card blog border-0 col-sm-4  my-4">
+                            {% for n in news.object_list %}
+                                <div class="card blog border-0 col-sm-4  my-4">
 
 
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
+                                    <a href="{% url 'news_detail' n.title|urlencode %}">
+                                        <div class="image-holder position-relative">
+                                            <img width="800" height="400"
+                                                 src="{{ MEDIA_URL }}{{ n.banner }}"
+                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                 alt=""
+                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
                                         </div>
-                                    </div>
+                                    </a>
 
+                                    <div class="card-body px-0 pb-0">
+
+                                        <h6 class="card-title text-primary news">
+                                            <a href="{% url 'news_detail' n.title|urlencode %}"
+                                               class="text-primary small">
+                                                {{ category }} </a>
+                                        </h6>
+                                        <h5 class="card-title">
+                                            <a href="{% url 'news_detail' n.title|urlencode %}">
+                                                {{ n.title }} </a>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            {{ n.content|slice:":200"|safe }}...</p>
+                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                            <a href="{% url 'news_detail' n.title|urlencode %}">
+                                                <div class="image-smaller-holder">
+                                                    <img class="card-img-top bottom-cards disable-select h-100"
+                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         alt="Card image cap">
+                                                </div>
+                                            </a>
+                                            <div class="card-body py-0 d-flex align-items-center">
+                                                <p class="card-text card-bottom-text">
+                                                    <a href="{% url 'news_detail' n.title|urlencode %}">
+                                                        CPChain </a>
+                                                    <br> {{ n.update_time }} </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+
+
                             {# 循环体#}
-                            <div class="card blog border-0 col-sm-4  my-4">
 
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="400"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            CPChain Announces Token Buyback Program </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        &#8220;We are pleased that CPChain’s strong balance sheet and cash flow enable
-                                        us to
-                                        return value to our investors through our future RNode Plan and token
-                                        repurchases,
-                                        while at... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-announces-token-buyback-program/">
-                                                    CPChain </a>
-                                                <br> Aug 29, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="card blog border-0 col-sm-4  my-4">
-
-
-                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                    <div class="image-holder position-relative">
-                                        <img width="800" height="592"
-                                             src="{% static '/img/newlist.jpg' %}"
-                                             class="d-block w-100 h-100 img-fluid disable-select wp-post-image" alt=""
-                                             sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                    </div>
-                                </a>
-
-                                <div class="card-body px-0 pb-0">
-
-                                    <h6 class="card-title text-primary news">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/"
-                                           class="text-primary small">
-                                            Community Updates </a>
-                                    </h6>
-                                    <h5 class="card-title">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            CPChain and Drug Safety: Smart Healthcare Solutions </a>
-                                    </h5>
-
-                                    <p class="card-text">
-                                        Throughout the past decade, China has faced several acts of unethical behavior
-                                        regarding drug safety. The Jilin Changchun vaccine scandal is a recent example
-                                        in
-                                        which the company was... </p>
-                                    <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                        <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                            <div class="image-smaller-holder">
-                                                <img class="card-img-top bottom-cards disable-select h-100"
-                                                     src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
-                                                     alt="Card image cap">
-                                            </div>
-                                        </a>
-                                        <div class="card-body py-0 d-flex align-items-center">
-                                            <p class="card-text card-bottom-text">
-                                                <a href="https://cpchain.io/cpchain-and-drug-safety-smart-healthcare-solutions/">
-                                                    CPChain </a>
-                                                <br> Aug 27, 2018 </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                         {# 新闻列表#}
 
                         {#分页器#}
                         <div class="pageturn .clear">
                             <div class="pagelist">
-                                <li>上一页</li>
-                                <li class="active">1</li>
-                                <li>2</li>
-                                <li>...</li>
-                                <li>下一页</li>
-                                {% if txs.has_previous %}
-                                    <li class="long"><a
-                                            href=" ">上一页</a></li>
+
+                                {% if news.has_previous %}
+                                    <li><a href=" ">Last page</a></li>
                                 {% endif %}
-                                {% for page in txs.pages %}
+                                {% for page in news.pages %}
                                     {% if page %}
-                                        {% ifequal page txs.number %}
-                                            <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                        {% ifequal page news.number %}
+                                            <li class="active"><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% else %}
-                                            <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                            <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% endifequal %}
                                     {% else %}
-                                        <li><a href="" class="none">...</a></li>
+                                        <li><a href="">...</a></li>
                                     {% endif %}
                                 {% endfor %}
-                                {% if txs.has_next %}
-                                    <li class="long"><a href="?{{ txs.next_page_number.querystring }}">下一页</a>
+                                {% if news.has_next %}
+                                    <li><a href="?{{ news.next_page_number.querystring }}">Next page</a>
                                     </li>
                                 {% endif %}
                             </div>

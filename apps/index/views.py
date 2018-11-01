@@ -4,6 +4,8 @@ from django.views.generic.base import View
 from django.http import FileResponse
 from django.urls import reverse
 
+from pure_pagination import Paginator, PageNotAnInteger
+
 from .models import *
 from urllib.parse import unquote
 
@@ -38,9 +40,16 @@ class NewsDetailView(View):
 
 class NewsListView(View):
     def get(self, req, category):
-        category = category
-
-        return render(req, 'news_list.html', locals())
+        category = unquote(category)
+        news_with_category = New.objects.filter(category=category)
+        try:
+            page = req.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        all_news = news_with_category
+        p = Paginator(all_news, 1, request=req)
+        news = p.page(page)
+        return render(req, 'news_list.html', {'category': category, 'news': news})
 
 
 class RnodeView(View):
@@ -61,8 +70,9 @@ class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
 
+
 class SearchView(View):
-    def get(self,req):
-        s = req.GET.get('s','')
+    def get(self, req):
+        s = req.GET.get('s', '')
         category = 'Search Results for :'
-        return render(req,'news_list.html',locals())
+        return render(req, 'news_list.html', locals())
