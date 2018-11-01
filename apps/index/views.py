@@ -5,7 +5,6 @@ from django.http import FileResponse
 from django.urls import reverse
 from django.utils.translation import activate
 
-
 from pure_pagination import Paginator, PageNotAnInteger
 
 from .models import *
@@ -22,16 +21,18 @@ class IndexView(View):
 
         return render(req, 'index.html', locals())
 
+
 class EnView(View):
-    def get(self,req):
+    def get(self, req):
         activate('en')
         return redirect(reverse('index'))
 
 
 class ZhView(View):
-    def get(self,req):
+    def get(self, req):
         activate('zh-hans')
         return redirect(reverse('index'))
+
 
 class NewsView(View):
     def get(self, req):
@@ -84,9 +85,7 @@ class AppView(View):
 
 
 class SearchView(View):
-    def get(self,req):
-        s = req.GET.get('s','')
+    def get(self, req):
+        s = req.GET.get('s', '')
         category = 'Search Results for : '
-        return render(req,'news_list.html',locals())
-
-
+        return render(req, 'news_list.html', locals())
