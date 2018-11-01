@@ -22,13 +22,13 @@ class IndexView(View):
 
         return render(req, 'index.html', locals())
 
-class IndexEnView(View):
+class EnView(View):
     def get(self,req):
         activate('en')
         return redirect(reverse('index'))
 
 
-class IndexZhView(View):
+class ZhView(View):
     def get(self,req):
         activate('zh-hans')
         return redirect(reverse('index'))
@@ -59,7 +59,7 @@ class NewsListView(View):
         except PageNotAnInteger:
             page = 1
         all_news = news_with_category
-        p = Paginator(all_news, 1, request=req)
+        p = Paginator(all_news, 12, request=req)
         news = p.page(page)
         return render(req, 'news_list.html', {'category': category, 'news': news})
 
