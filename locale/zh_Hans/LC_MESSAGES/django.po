@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-01 20:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/index.html:100
+msgid "Application"
+msgstr "应用"
+
+#: templates/index.html:247
+msgid ""
+"CPChain is a new distributed infrastructure for next generation IoT. CPChain "
+"intends to build a fundamental data platform for IoT system in combination "
+"with distributed storage, encryption computation and blockchain "
+"technologies, providing the whole process solution from data acquisition, "
+"storage, sharing to application."
+msgstr "物信链是新一代物联网的分布式基础架构，旨在结合分布式存储、加密计算与区块链技术，为物联网系统构建基础数据平台，提供从数据采集、存储、共享到应用的全流程解决方案。"
+
+#: templates/index.html:250
+msgid ""
+"CPChain is a promising solution to a series of challenges of current“chimney "
+"architecture” of IoT systems, reducing connectivity cost of devices, "
+"protecting data privacy and maximizing the value of IoT data."
+msgstr "物信链是应对物联网系统当前“烟囱架构 ”一系列挑战的解决方案，能够降低物联网设备的连接成本，保护用户数据隐私，同时最大化物联网数据价值。"

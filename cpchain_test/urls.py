@@ -25,7 +25,7 @@ indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('en/', EnView.as_view(), name='en'),
-    path('zh/', ZhView.as_view(), name='zh'),
+    path('zh-hans/', ZhView.as_view(), name='zh'),
     path('news/', NewsView.as_view(), name='news'),
     path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
