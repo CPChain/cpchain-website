@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
     <style type="text/css">
-               .pageturn {
+        .pageturn {
             height: 70px;
             margin-top: 30px;
             display: flex;
@@ -20,9 +20,11 @@
             color: #1BA3FF;
             font-size: 18px;
         }
-        .pagelist a{
+
+        .pagelist a {
             color: #1BA3FF;
         }
+
         .pagelist li {
             list-style: none;
             float: left;
@@ -30,7 +32,7 @@
             margin-left: 4px;
         }
 
-        .pagelist li:hover{
+        .pagelist li:hover {
             background-color: white !important;
             border-radius: 50% !important;
             box-shadow: 0px 9px 19px rgba(0, 0, 0, 0.05) !important;
@@ -91,7 +93,7 @@
                                 <div class="card blog border-0 col-sm-4  my-4">
 
 
-                                    <a href="{% url 'news_detail' n.title|urlencode %}">
+                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ n.banner }}"
@@ -104,19 +106,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news">
-                                            <a href="{% url 'news_detail' n.title|urlencode %}"
+                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}"
                                                class="text-primary small">
                                                 {{ category }} </a>
                                         </h6>
                                         <h5 class="card-title">
-                                            <a href="{% url 'news_detail' n.title|urlencode %}">
+                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
                                                 {{ n.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
                                             {{ n.content|slice:":200"|safe }}...</p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news_detail' n.title|urlencode %}">
+                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -125,7 +127,7 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news_detail' n.title|urlencode %}">
+                                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ n.update_time }} </p>
                                             </div>
@@ -151,7 +153,8 @@
                                 {% for page in news.pages %}
                                     {% if page %}
                                         {% ifequal page news.number %}
-                                            <li><a style="color: #305278;" href="?{{ page.querystring }}">Page{{ page }}</a></li>
+                                            <li><a style="color: #305278;"
+                                                   href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% else %}
                                             <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
                                         {% endifequal %}

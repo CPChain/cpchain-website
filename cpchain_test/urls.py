@@ -26,7 +26,6 @@ indexpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('lang/', LangView.as_view(), name='lang'),
     path('news/', NewsView.as_view(), name='news'),
-    path('news/detail/<title>/', NewsDetailView.as_view(), name='news_detail'),
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
@@ -39,7 +38,6 @@ indexpatterns = [
     re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
 
 ]
-
 
 urlpatterns = i18n_patterns(
     path('', include(indexpatterns)),
