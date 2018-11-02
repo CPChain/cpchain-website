@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    <title>Community Updates &#8211; CPChain</title>
+    <title>Search Results for :{{ query }} - CPChain</title>
 {% endblock %}
 {% block content %}
     <style type="text/css">
@@ -55,7 +55,7 @@
                                     <a class="navbar-brand col-sm-6 col-12 mb-4 mb-sm-0">
                                         <h6 class="m-0">Official CPChain Media</h6>
                                     </a>
-                                     <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
+                                    <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
                                           action="{% url 'haystack_search' %}" method="get">
                                         <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
                                                placeholder="Search" aria-label="Search">
@@ -73,11 +73,8 @@
 
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 mx-auto">
                                 <h3 class="text-center w-100 my-3">
-                                    {% ifequal category 'Search Results for : ' %}
-                                        {{ category }}{{ s }}
-                                    {% else %}
-                                        Category: {{ category }}
-                                    {% endifequal %}
+                                    Search Results for :{{ query }}
+
                                 </h3>
                             </div>
 
@@ -86,17 +83,17 @@
                             </div>
                         </div>
 
-                        {# 新闻列表#}
+
                         <div class="row">
-                            {# 循环体#}
-                            {% for n in news.object_list %}
+
+                            {% for n in page.object_list %}
                                 <div class="card blog border-0 col-sm-4  my-4">
 
 
-                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                    <a href="{% url 'news' %}?title={{ n.object.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
-                                                 src="{{ MEDIA_URL }}{{ n.banner }}"
+                                                 src="{{ MEDIA_URL }}{{ n.object.banner }}"
                                                  class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
                                                  alt=""
                                                  sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
@@ -106,19 +103,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}"
+                                            <a href="{% url 'news' %}?title={{ n.object.title|urlencode }}"
                                                class="text-primary small">
-                                                {{ category }} </a>
+                                                {{ n.object.category }} </a>
                                         </h6>
                                         <h5 class="card-title">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
-                                                {{ n.title }} </a>
+                                            <a href="{% url 'news' %}?title={{ n.object.title|urlencode }}">
+                                                {{ n.object.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ n.content|slice:":200"|safe }}...</p>
+                                            {{ n.object.content|slice:":200"|safe }}...</p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                            <a href="{% url 'news' %}?title={{ n.object.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -127,48 +124,40 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                                    <a href="{% url 'news' %}?title={{ n.object.title|urlencode }}">
                                                         CPChain </a>
-                                                    <br> {{ n.update_time }} </p>
+                                                    <br> {{ n.object.update_time }} </p>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
+                            {% empty %}
+                                <p>Sorry, but nothing matched your search terms. Please try again with some different
+                                    keywords.</p>
                             {% endfor %}
 
 
-                            {# 循环体#}
-
                         </div>
-                        {# 新闻列表#}
 
-                        {#分页器#}
                         <div class="pageturn .clear">
                             <div class="pagelist">
 
-                                {% if news.has_previous %}
-                                    <li><a href=" ">Previous page</a></li>
+
+                                {% if page.has_previous or page.has_next %}
+                                    <div>
+                                        {% if page.has_previous %}
+                                            <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}
+                                        {% if page.has_previous %}&laquo; &nbsp; Previous page</a>{% endif %}
+                                        &nbsp;&nbsp;&nbsp;
+                                        {% if page.has_next %}
+                                            <a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}{% if page.has_next %}Next page
+                                         &nbsp;&raquo;</a>{% endif %}
+                                    </div>
                                 {% endif %}
-                                {% for page in news.pages %}
-                                    {% if page %}
-                                        {% ifequal page news.number %}
-                                            <li><a style="color: #305278;"
-                                                   href="?{{ page.querystring }}">Page{{ page }}</a></li>
-                                        {% else %}
-                                            <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
-                                        {% endifequal %}
-                                    {% else %}
-                                        <li><a href="">...</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if news.has_next %}
-                                    <li><a href="?{{ news.next_page_number.querystring }}">Next page</a>
-                                    </li>
-                                {% endif %}
+
                             </div>
                         </div>
-                        {#分页器#}
 
                     </div>
                 </section>
@@ -245,3 +234,5 @@
 
     </body>
 {% endblock %}
+
+

@@ -20,7 +20,6 @@ from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
 
-
 indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
@@ -30,7 +29,8 @@ indexpatterns = [
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
     path('app/<app>', AppView.as_view(), name='app'),
-    path('search', SearchView.as_view(), name='search'),
+    # path('search', SearchView.as_view(), name='search'),
+    path('search/', include('haystack.urls')),
     # functions
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),
