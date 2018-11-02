@@ -149,7 +149,7 @@ msgid ""
 msgstr "CPChain是大型分布式物联网系统数据共享与处理的可信基础平台，广泛应用于智能交通、智能医疗以及公共安全等行业。"
 
 #: templates/index.html:451
-msgid "Public"
+msgid "Public <br> Security"
 msgstr "公共安全"
 
 #: templates/index.html:464
@@ -216,7 +216,7 @@ msgstr "产业链"
 #: templates/index.html:607 templates/index.html:626 templates/index.html:661
 #: templates/index.html:682
 msgid "Q4 / 2018"
-msgstr ""
+msgstr "2018年第四季度"
 
 #: templates/index.html:609 templates/index.html:628
 msgid "PDash 2 release featuring <br> trusted data relay"
