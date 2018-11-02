@@ -79,10 +79,3 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
-
-
-class SearchView(View):
-    def get(self, req):
-        s = req.GET.get('s', '')
-        category = 'Search Results for : '
-        return render(req, 'news_list.html', locals())

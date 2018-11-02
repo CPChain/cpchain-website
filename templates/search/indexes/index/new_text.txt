@@ -1,0 +1,5 @@
+{{object.title}}
+{{object.category}}
+{{object.banner}}
+{{object.update_time}}
+{{object.content}}

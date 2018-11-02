@@ -20,8 +20,8 @@
                                         <h6 class="m-0 poppins-font">Official CPChain Media</h6>
                                     </a>
                                     <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
-                                          action="{% url 'search' %}">
-                                        <input class="form-control col-sm-10 col-12 mr-sm-2" name="s" type="search"
+                                          action="{% url 'haystack_search' %}" method="get">
+                                        <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
                                                placeholder="Search" aria-label="Search">
                                     </form>
                                 </div>
