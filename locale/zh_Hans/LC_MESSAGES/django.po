@@ -22,6 +22,7 @@ msgstr ""
 msgid "Application"
 msgstr "应用"
 
+
 #: templates/index.html:247
 msgid ""
 "CPChain is a new distributed infrastructure for next generation IoT. CPChain "

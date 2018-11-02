@@ -102,32 +102,32 @@
                         </li>
                         <li>
                             <a href="#roadmap" class="font-weight-bold" onclick="openMenu(0)">
-                                Roadmap
+                                {% trans 'Roadmap' %}
                             </a>
                         </li>
                         <li>
                             <a href="#team" class="font-weight-bold" onclick="openMenu(0)">
-                                Team
+                                {% trans 'Team' %}
                             </a>
                         </li>
                         <li>
                             <a href="{% url 'news' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                News
+                                {% trans 'News' %}
                             </a>
                         </li>
                         <li>
                             <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
-                                Partners
+                                {% trans 'Partners' %}
                             </a>
                         </li>
                         <li>
                             <a href="{% url 'rnode' %}" class="font-weight-bold">
-                                RNode
+                                {% trans 'RNode' %}
                             </a>
                         </li>
                         <li>
                             <a href="#contact" class="font-weight-bold" onclick="openMenu(0)">
-                                Contact
+                                {% trans 'Contact' %}
                             </a>
                         </li>
                         <li class="line"></li>
@@ -176,7 +176,7 @@
                                     </h1>
                                     <p class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto"
                                        style="font-family: 'Archivo' !important;">
-                                        A new distributed infrastructure for next generation IoT
+                                        {% blocktrans %} A new distributed infrastructure for next generation IoT {% endblocktrans %}
                                     </p>
                                 </div>
                                 <div class="pt-5 mt-3 main-buttons ">
@@ -184,13 +184,13 @@
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 "
                                        target="_blank"
                                        style="font-family: 'Poppins', sans-serif !important;">
-                                        WHITE PAPER
+                                        {% trans 'WHITE PAPER' %}
                                     </a>
                                     <a href="/download/CPChain_lightpaper_English.pdf"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
                                        target="_blank"
                                        style="font-family: 'Poppins', sans-serif !important;">
-                                        LIGHT PAPER
+                                        {% trans 'LIGHT PAPER' %}
                                     </a>
                                     <a href="https://github.com/CPChain" target="_blank"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
@@ -241,7 +241,7 @@
                                             style="font-family: 'Poppins', sans-serif !important;">WHAT IS
                                             CPCHAIN?</h6>
 
-                                        <h2 class="display-5 poppins-font">Integration <br> of IoT & <br> Blockchain
+                                        <h2 class="display-5 poppins-font"> {% blocktrans %}Integration <br> of IoT & <br> Blockchain{% endblocktrans %}
                                         </h2>
                                         <hr class="right-hr w-100 mb-5">
                                         <p style="color: #305278">
@@ -271,19 +271,11 @@
 
                                 <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 py-5">
                                     <div class="upper col-12 col-sm-6 mb-0 px-0 mx-auto">
-                                        <h2 class="text-center poppins-font">Features</h2>
+                                        <h2 class="text-center poppins-font">{% trans 'Features' %}</h2>
                                         <hr class="middle-hr w-100 mb-0">
                                     </div>
                                     <p class="text-sm-center text-left py-5" style="color: #305278">
-                                        The core feature of the CPChain is to realize the transmission of the value
-                                        of
-                                        cyber-physical systems. The main technology contribution is to propose a
-                                        systematic scheme to address the scalability and real-time problems of
-                                        blockchain technology in IoTs from the perspective of data storage and
-                                        computation, and consensus protocols, including parallel distributed
-                                        architecture, two-layer hybrid consensus mechanism and lightweight side
-                                        chain
-                                        consensus protocol.
+                                        {% blocktrans %}The core feature of the CPChain is to realize the transmission of the valueof cyber-physical systems. The main technology contribution is to propose a systematic scheme to address the scalability and real-time problems of blockchain technology in IoTs from the perspective of data storage and computation, and consensus protocols, including parallel distributed architecture, two-layer hybrid consensus mechanism and lightweight side chain consensus protocol.{% endblocktrans %}
                                     </p>
                                     <div class="box-holder d-flex align-items-center justify-content-between col-xl-7 col-lg-7 col-md-7 col-sm-12 mx-auto">
                                         <div class="item-one">
@@ -292,14 +284,14 @@
                                                      class="d-blocks disable-select p-sm-4"
                                                      alt="Scalability - CPChain">
                                             </div>
-                                            <h6 class="text-center mt-0">Scalability</h6>
+                                            <h6 class="text-center mt-0">{% trans 'Scalability' %}</h6>
                                         </div>
                                         <div class="item-one">
                                             <div class="image-holder">
                                                 <img src="{% static '/img/Icons/security.png' %}"
                                                      class="d-block disable-select p-sm-4" alt="Security - CPChain">
                                             </div>
-                                            <h6 class="text-center mt-0">Security</h6>
+                                            <h6 class="text-center mt-0">{% trans 'Security' %}</h6>
                                         </div>
                                         <div class="item-one">
                                             <div class="image-holder">
@@ -307,7 +299,7 @@
                                                      class="d-block  disable-select p-sm-4"
                                                      alt="Rapidity - CPChain">
                                             </div>
-                                            <h6 class="text-center mt-0">Rapidity</h6>
+                                            <h6 class="text-center mt-0">{% trans 'Rapidity' %}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -322,7 +314,7 @@
 
                                 <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
                                     <h2 class="text-center text-sm-left text-md-left text-lg-left text-xl-left poppins-font">
-                                        Introduction</h2>
+                                        {% trans 'Introduction' %}</h2>
                                     <hr class="right-hr col-10 col-sm-8 col-md-8 col-lg-8 col-xl-8 ml-0 my-4">
                                 </div>
 
@@ -354,7 +346,7 @@
                             <div class="row d-flex align-items-center justify-content-center">
 
                                 <div class="upper col-12 col-sm-5 mb-5">
-                                    <h2 class="text-center poppins-font">Vision</h2>
+                                    <h2 class="text-center poppins-font">{% trans 'Vision' %}</h2>
                                     <hr class="middle-hr w-100">
                                 </div>
                                 <div class="vision-holder d-flex flex-sm-row flex-md-row flex-lg-row flex-xl-row flex-column align-items-center justify-content-center">
@@ -371,10 +363,8 @@
                                                               transform="translate(0.04)" fill="#305278"/>
                                                     </svg>
                                                 </div>
-                                                <p class="mb-0 font-weight-normal">To build a new world of Internet
-                                                    of
-                                                    Things where data from IoT devices are highly integrated and
-                                                    valuable</p>
+                                                <p class="mb-0 font-weight-normal">
+                                                    {% blocktrans %}To build a new world of Internet of Things where data from IoT devices are highly integrated and valuable{% endblocktrans %}</p>
                                             </div>
                                             <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
                                                 <div class="image-holder pr-4">
@@ -389,8 +379,8 @@
                                                               transform="translate(0 0.02)" fill="#305278"/>
                                                     </svg>
                                                 </div>
-                                                <p class="mb-0 font-weight-normal">To share data for business and
-                                                    research purpose</p>
+                                                <p class="mb-0 font-weight-normal">
+                                                    {% blocktrans %}To share data for business and research purpose{% endblocktrans %}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -404,11 +394,8 @@
                                                           transform="translate(0)" fill="#305278"/>
                                                 </svg>
                                             </div>
-                                            <p class="mb-0 font-weight-normal">To fully develop and optimize
-                                                CPChain's
-                                                core technology and seek cooperation with partners to fulfill
-                                                industrial
-                                                landing</p>
+                                            <p class="mb-0 font-weight-normal">
+                                                {% blocktrans %}To fully develop and optimize CPChain's core technology and seek cooperation with partners to fulfill industrial landing{% endblocktrans %}</p>
                                         </div>
                                         <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
                                             <div class="image-holder pr-4">
@@ -424,9 +411,8 @@
                                                     <circle cx="25" cy="25" r="5" fill="#305278"/>
                                                 </svg>
                                             </div>
-                                            <p class="mb-0 font-weight-normal">To seek thorough business landing
-                                                domestically and internationally to maximize the value of IoT
-                                                data</p>
+                                            <p class="mb-0 font-weight-normal">
+                                                {% blocktrans %}To seek thorough business landing domestically and internationally to maximize the value of IoT data{% endblocktrans %}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -440,20 +426,14 @@
                             <div class="row">
 
                                 <div class="upper col-12 col-sm-4 mx-0">
-                                    <h2 class="text-left poppins-font">Application</h2>
+                                    <h2 class="text-left poppins-font">{% trans 'Application' %}</h2>
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
                                 <div class="middle d-flex flex-row mb-sm-5 mb-2">
                                     <div class="col-6 d-sm-block d-none"></div>
                                     <div class="col-6-xl col-6-lg col-6-md col-sm-6">
                                         <p>
-                                            {% blocktrans %}CPChain is a trusted basis platform for data sharing and
-                                                transaction of
-                                                large-scale distributed IoT systems. It is widely applied in industries
-                                                such
-                                                as intelligent transportation, smart medical and intelligent
-                                                manufacturing,
-                                                etc.{% endblocktrans %}
+                                            {% blocktrans %}CPChain is a trusted basis platform for data sharing and transaction of large-scale distributed IoT systems. It is widely applied in industries such as intelligent transportation, smart medical and intelligent manufacturing, etc.{% endblocktrans %}
                                         </p>
                                     </div>
                                 </div>
@@ -468,7 +448,7 @@
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
                                                        style="font-family: 'Archivo', sans-serif !important;">
-                                                        Public <br> Security</p>
+                                                        {% trans 'Public' %} <br> {% trans 'Security' %}</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -481,7 +461,7 @@
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
                                                        style="font-family: 'Archivo', sans-serif !important;">
-                                                        Intelligent <br> Transportation</p>
+                                                        {% trans 'Intelligent' %} <br> {% trans 'Transportation' %}</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -493,9 +473,9 @@
                                                          alt="Smart Medical - CPChain">
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
-                                                       style="font-family: 'Archivo', sans-serif !important;">Smart
+                                                       style="font-family: 'Archivo', sans-serif !important;">{% trans 'Smart' %}
                                                         <br>
-                                                        Medical</p>
+                                                        {% trans 'Medical' %}</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -513,13 +493,10 @@
                                 <div class="left-side col-xl-6 col-md-6 col-sm-12">
                                     <div class="left-side-holder col-xl-10 col-md-10 col-sm-12 px-0">
                                         <h1 class="text-warning display-1">3</h1>
-                                        <h2 class="poppins-font">Three major <br> adoption scenarios</h2>
+                                        <h2 class="poppins-font">{% blocktrans %}Three major <br> adoption scenarios{% endblocktrans %}</h2>
                                         <hr class="right-hr w-100 ml-0">
                                         <p style="color: #305278;font-family: 'Archivo';">
-                                            The value of CPChain comes from the improvement of the physical industry
-                                            efficiency and the innovation of business models, which results from
-                                            data
-                                            aggregation and mobility.
+                                            {% blocktrans %}The value of CPChain comes from the improvement of the physical industry efficiency and the innovation of business models, which results from data aggregation and mobility.{% endblocktrans %}
                                         </p>
                                     </div>
                                 </div>
@@ -534,9 +511,9 @@
                                                 </div>
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                <h6 class="poppins-font">Multi-parties data transaction</h6>
+                                                <h6 class="poppins-font">{% blocktrans %}Multi-parties data transaction{% endblocktrans %}</h6>
                                                 <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
-                                                    multi-party trust created by CPChain</p>
+                                                    {% blocktrans %}multi-party trust created by CPChain{% endblocktrans %}</p>
                                             </div>
                                         </div>
                                         <div class="item d-flex flex-row mb-5">
@@ -548,11 +525,9 @@
                                                 </div>
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                <h6 class="poppins-font">Artificial intelligence decisions based on
-                                                    IoT big data</h6>
+                                                <h6 class="poppins-font">{% blocktrans %}Artificial intelligence decisions based on IoT big data{% endblocktrans %}</h6>
                                                 <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
-                                                    Interoperability of heterogeneous data, forming big data
-                                                    aggregation</p>
+                                                    {% blocktrans %}Interoperability of heterogeneous data, forming big data aggregation{% endblocktrans %}</p>
                                             </div>
                                         </div>
                                         <div class="item d-flex flex-row">
@@ -564,11 +539,9 @@
                                                 </div>
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                <h6 class="poppins-font">Interaction and application of data assets
-                                                    in cross-chain, which led
-                                                    to new business models</h6>
+                                                <h6 class="poppins-font">{% blocktrans %}Interaction and application of data assets in cross-chain, which led to new business models{% endblocktrans %}</h6>
                                                 <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
-                                                    cross-chain relay and collaboration</p>
+                                                    {% blocktrans %}cross-chain relay and collaboration{% endblocktrans %}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -583,7 +556,7 @@
                             <div class="row">
 
                                 <div class="col-12 upper mb-5">
-                                    <h2 class="text-lext text-center poppins-font">Roadmap</h2>
+                                    <h2 class="text-lext text-center poppins-font">{% trans 'Roadmap' %}</h2>
                                 </div>
 
                                 <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
@@ -605,7 +578,7 @@
                                             <h6 class="mb-0 text-center poppins-font">
                                                 <a class="text-primary" href="javascript:void(0)"
                                                    onclick="roadmapNavigate(1, this)">
-                                                    Mainnet
+                                                    {% trans 'Mainnet' %}
                                                 </a>
                                             </h6>
                                         </div>
@@ -615,7 +588,7 @@
                                             <h6 class="mb-0 text-center poppins-font">
                                                 <a class="text-primary" href="javascript:void(0)"
                                                    onclick="roadmapNavigate(2, this)">
-                                                    Industry <br> Chains
+                                                    {% blocktrans %}Industry <br> Chains{% endblocktrans %}
                                                 </a>
                                             </h6>
                                         </div>
@@ -631,54 +604,43 @@
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="first text-left pt-5 pb-5 mb-5">
-                                                            <h6 class="text-primary">Q4 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                2 release featuring <br> trusted data
-                                                                relay</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-left  pt-5">
-                                                            <h6 class="text-primary">Q4 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                4 release featuring <br> incentivized
-                                                                economic model</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
                                                     <div class="right-side-holder">
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">Q2 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr now-quarter pulse w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                release</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="fourth d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
-                                                            <h6 class="text-primary">Q4 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                2 release featuring <br> trusted data
-                                                                relay</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q2 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                3 release featuring <br> de-centralized
-                                                                market</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 3 release featuring <br> de-centralized market{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="five d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
-                                                            <h6 class="text-primary">Q4 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p class="">PDash 4 release featuring <br> incentivized
-                                                                economic model</p>
+                                                            <p class="">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q2 / 2020</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">PDash
-                                                                5 release featuring <br> open ecosystem
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 5 release featuring <br> open ecosystem{% endblocktrans %}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -686,9 +648,8 @@
                                             </div>
                                             <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
                                                 <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
-                                                    Q3 / 2020</h6>
-                                                <p class="text-sm-center text-left">Consolidated IoT-blockchain
-                                                    system</p>
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left">{% blocktrans %}Consolidated IoT-blockchain system{% endblocktrans %}</p>
                                             </div>
                                         </div>
 
@@ -697,55 +658,52 @@
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="second text-left py-5">
-                                                            <h6 class="text-primary">Q4 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                CPChain mainnet release</p>
+                                                                {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q4 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                Consolidated mainnet 2 release <br> (backward
-                                                                compatible)</p>
+                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
                                                     <div class="right-side-holder">
                                                         <div class="first text-right pt-sm-5 pb-sm-5 py-0 mb-5">
-                                                            <h6 class="text-primary">Q3 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">Hybrid
-                                                                consensus protocol specification</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}Hybrid consensus protocol specification{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right d-block d-sm-none d-md-none d-lg-none d-xl-none py-5">
-                                                            <h6 class="text-primary">Q4 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                CPChain mainnet release</p>
+                                                                {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">Q2 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                Sidechain release</p>
+                                                                {% blocktrans %}Sidechain release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5 d-block d-sm-none d-md-none d-lg-none d-xl-none">
-                                                            <h6 class="text-primary">Q4 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                Consolidated mainnet 2 release <br> (backward
-                                                                compatible)</p>
+                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward
+                                                                compatible){% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
                                                 <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
-                                                    Q3 / 2020</h6>
-                                                <p class="text-sm-center text-left">Consolidated IoT-blockchain
-                                                    system</p>
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left">{% blocktrans %}Consolidated IoT-blockchain system{% endblocktrans %}</p>
                                             </div>
                                         </div>
 
@@ -754,78 +712,72 @@
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="second text-left  py-5">
-                                                            <h6 class="text-primary">Q1 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                IoT-chain prototype</p>
+                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q3 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                IoT-chain release <br> Wallet release</p>
+                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q1 / 2020</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">User
-                                                                and developer <br> community building</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
                                                     <div class="right-side-holder">
                                                         <div class="first text-right pt-0 pb-0 py-sm-5 mb-0 mb-sm-5">
-                                                            <h6 class="text-primary">Q3 / 2018</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                IoT-chain specifications <br> and patent</p>
+                                                                {% blocktrans %}IoT-chain specifications <br> and patent{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right d-block d-sm-none py-5">
-                                                            <h6 class="text-primary">Q1 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                IoT-chain prototype</p>
+                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">Q2 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">Token
-                                                                model for chains</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}Token model for chains{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q3 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                IoT-chain release <br> Wallet release</p>
+                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q4 / 2019</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #305278;font-family: 'Archivo';">
-                                                                Iot-chain for specialized industries <br> SDK
-                                                                release</p>
+                                                                {% blocktrans %}Iot-chain for specialized industries <br> SDK release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q1 / 2020</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">User
-                                                                and developer <br> community building</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">Q2 / 2020</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">DApp
-                                                                tutorials and examples</p>
+                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}DApp tutorials and examples{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
                                                 <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
-                                                    Q3 / 2020</h6>
-                                                <p class="text-sm-center text-left">Consolidated IoT-blockchain
-                                                    system</p>
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left">{% blocktrans %}Consolidated IoT-blockchain system{% endblocktrans %}</p>
                                             </div>
                                         </div>
 
@@ -843,14 +795,10 @@
 
                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div class="col-xl-8 col-lg-8 col-md-8 px-0 col-sm-12">
-                                        <h2 class="poppins-font">Team</h2>
+                                        <h2 class="poppins-font">{% trans 'Team' %}</h2>
                                         <hr class="right-hr ml-0 mb-4">
                                         <p style="color: #305278;font-family: 'Archivo';font-weight: 500;">
-                                            The CPChain R&D team is an international, knowledge-structured,
-                                            energetic
-                                            team. The founding team members include top talent from universities,
-                                            Internet of Things industry, financial security companies and business
-                                            operations.
+                                            {% blocktrans %}The CPChain R&D team is an international, knowledge-structured, energetic team. The founding team members include top talent from universities, Internet of Things industry, financial security companies and business operations.{% endblocktrans %}
                                         </p>
                                         <!-- <a href="javascript:void(0);" class="btn mt-4 btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3" target="_blank">
                                             JOIN US
@@ -898,15 +846,10 @@
                                                         <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font">
                                                             Dr. Chengnian Long</h2>
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            Founder, CEO, Professor, Principal Scientist</h6>
+                                                            {% blocktrans %}Founder, CEO, Professor, Principal Scientist{% endblocktrans %}</h6>
                                                         <p class="mt-4"
                                                            style="color: #305278;font-family: 'Archivo';font-weight: 500;">
-                                                            Dr. Long is a full professor and has many years of
-                                                            experience in the fields of cyber physical system
-                                                            security, Internet of Things, distributed intelligent
-                                                            system with blockchain technology. He has published more
-                                                            than 80 papers in internationally renowned journals and
-                                                            conferences, and has more than 10 patents for invention.
+                                                            {% blocktrans %}Dr. Long is a full professor and has many years of experience in the fields of cyber physical system security, Internet of Things, distributed intelligent system with blockchain technology. He has published more than 80 papers in internationally renowned journals and conferences, and has more than 10 patents for invention.{% endblocktrans %}
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 1 -->
@@ -916,15 +859,10 @@
                                                             Dr.
                                                             Bin Zhao</h2>
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            CPChain Co-Founder, CTO</h6>
+                                                            {% blocktrans %}CPChain Co-Founder, CTO{% endblocktrans %}</h6>
                                                         <p class="mt-4"
                                                            style="color: #305278;font-family: 'Archivo';font-weight: 500;">
-                                                            Dr. Zhao has more than 12 years research and develop
-                                                            experience on communication, Internet of Things and
-                                                            FinTech.
-                                                            Extended experience in management of R&D team. He has
-                                                            three
-                                                            patents on inventions in Internet of Things.
+                                                            {% blocktrans %}Dr. Zhao has more than 12 years research and develop experience on communication, Internet of Things and FinTech. Extended experience in management of R&D team. He has three patents on inventions in Internet of Things.{% endblocktrans %}
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 2 -->
@@ -934,14 +872,10 @@
                                                         <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font">
                                                             Qingwei Shi</h2>
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            CPChain Co-Founder, COO</h6>
+                                                            {% blocktrans %}CPChain Co-Founder, COO{% endblocktrans %}</h6>
                                                         <p class="mt-4"
                                                            style="color: #305278;font-family: 'Archivo';font-weight: 500;">
-                                                            Mr Shi is an early participant in the blockchain and
-                                                            digital
-                                                            currency. Founder of the shared finance and HPB,
-                                                            participated in the preparation and investment of many
-                                                            projects.
+                                                            {% blocktrans %}Mr Shi is an early participant in the blockchain and digital currency. Founder of the shared finance and HPB, participated in the preparation and investment of many projects.{% endblocktrans %}
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 2 -->
@@ -995,7 +929,7 @@
 
                                             <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row"
                                                  id="outputen-team">
-                                                CPChain Team
+                                                {% blocktrans %}CPChain Team{% endblocktrans %}
                                             </div>
                                             <i class="fas fa-caret-down ml-2 "
                                                style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
@@ -1004,24 +938,24 @@
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamCategory('all')">
-                                                        CPChain Team
+                                                        {% trans 'CPChain Team' %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)" onclick="switchTeamCategory('rd')">
-                                                        R&D
+                                                        {% trans 'R&D' %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamCategory('marketing')">
-                                                        Marketing
+                                                        {% trans 'Marketing' %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamCategory('administrative')">
-                                                        Administrative
+                                                        {% trans 'Administrative' %}
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1065,7 +999,7 @@
 
                                             <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row"
                                                  id="outputen-ambassadors">
-                                                CPChain Global Team
+                                                {% blocktrans %}CPChain Global Team{% endblocktrans %}
                                             </div>
                                             <i class="fas fa-caret-down ml-2 "
                                                style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
@@ -1075,19 +1009,19 @@
                                                 <li class="choice choice-en-ambassadors">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamAmbassadors('all')">
-                                                        CPChain Global Team
+                                                        {% blocktrans %}CPChain Global Team{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-ambassadors">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamAmbassadors('ambassadors')">
-                                                        Global Ambassador
+                                                        {% blocktrans %}Global Ambassador{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-ambassadors">
                                                     <a href="javascript:void(0)"
                                                        onclick="switchTeamAmbassadors('advisors')">
-                                                        Global Community Advisors
+                                                        {% blocktrans %}Global Community Advisors{% endblocktrans %}
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1128,7 +1062,7 @@
                                     <div class="first-col col-6 text-right swiper-partners-button-prev">
                                         <h2>
                                             <a href="javascript:void(0)">
-                                                <h2 class="text-right poppins-font">Partners</h2>
+                                                <h2 class="text-right poppins-font">{% trans 'Partners' %}</h2>
                                             </a>
                                         </h2>
                                         <hr class="right-hr">
@@ -1136,7 +1070,7 @@
                                     <div class="second-col col-6 swiper-partners-button-next">
                                         <h2>
                                             <a href="javascript:void(0)">
-                                                <h2 class="text-left poppins-font">Investors</h2>
+                                                <h2 class="text-left poppins-font">{% trans 'Investors' %}</h2>
                                             </a>
                                         </h2>
                                         <hr class="left-hr">
@@ -1193,7 +1127,7 @@
                             <div class="row flex-column align-items-center justify-content-center">
 
                                 <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                    <h2 class="text-center poppins-font">Exchanges</h2>
+                                    <h2 class="text-center poppins-font">{% trans 'Exchanges' %}</h2>
                                     <hr class="middle-hr mb-0">
                                 </div>
                                 <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
@@ -1218,14 +1152,11 @@
 
                                 <div class="left-side main col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div class="left-side-holder col-sm-9 col-12 px-0">
-                                        <h5 class="text-warning poppins-font">CONTACT</h5>
-                                        <h1 class="display-4 font-weight-bold poppins-font">Your <br> opinion is
-                                            important.</h1>
+                                        <h5 class="text-warning poppins-font">{% trans 'CONTACT' %}</h5>
+                                        <h1 class="display-4 font-weight-bold poppins-font">{% blocktrans %}Your <br> opinion is important.{% endblocktrans %}</h1>
                                         <hr class="right-hr">
                                         <p class="pt-3">
-                                            If you have any suggestion or idea of enterprise cooperation, please
-                                            feel
-                                            free to contact us.
+                                            {% blocktrans %}If you have any suggestion or idea of enterprise cooperation, please feel free to contact us.{% endblocktrans %}
                                         </p>
                                     </div>
                                 </div>
@@ -1238,7 +1169,7 @@
                                                 <h5 class="text-right">
                                                     <a href="javascript:void(0)" class="font-weight-normal"
                                                        style="font-family: 'Archivo';">
-                                                        I have a question
+                                                        {% blocktrans %}I have a question{% endblocktrans %}
                                                     </a>
                                                 </h5>
                                                 <hr class="right-hr">
@@ -1247,7 +1178,7 @@
                                                 <h5>
                                                     <a href="javascript:void(0)" class="font-weight-normal"
                                                        style="font-family: 'Archivo';">
-                                                        Business/Partnership
+                                                        {% blocktrans %}Business/Partnership{% endblocktrans %}
                                                     </a>
                                                 </h5>
                                                 <hr class="left-hr">
@@ -1261,8 +1192,8 @@
                                                     <form id="contact-form">
                                                         <div class="mx-3 form-group row flex-column mb-4">
                                                             <label for="inputEmail3"
-                                                                   class="col-sm-5 col-form-label px-0">Your Email
-                                                                *</label>
+                                                                   class="col-sm-5 col-form-label px-0">{% blocktrans %}Your Email
+                                                                *{% endblocktrans %}</label>
                                                             <div class="col-sm-12 px-0">
                                                                 <input type="email" name="email"
                                                                        class="form-control"
@@ -1272,32 +1203,28 @@
                                                         </div>
                                                         <fieldset class="mx-3 form-group">
                                                             <div class="row flex-column">
-                                                                <legend class="col-form-label col-sm-12 py-1">You
-                                                                    are
-                                                                    presenting
+                                                                <legend class="col-form-label col-sm-12 py-1">{% blocktrans %}You are presenting{% endblocktrans %}
                                                                 </legend>
                                                                 <div class="col-sm-10 d-flex flex-row">
                                                                     <div class="pr-3">
                                                                         <label class="customcheck d-flex align-items-center pl-4">
                                                                             <input type="checkbox" checked>
                                                                             <span class="d-flex align-items-center justify-content-center checkmark"></span>
-                                                                            individual
+                                                                            {% trans 'individual' %}
                                                                         </label>
                                                                     </div>
                                                                     <div class="pr-3">
                                                                         <label class="customcheck d-flex align-items-center pl-4">
                                                                             <input type="checkbox">
                                                                             <span class="d-flex align-items-center justify-content-center checkmark"></span>
-                                                                            enterprise
+                                                                            {% trans 'enterprise' %}
                                                                         </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </fieldset>
                                                         <div class="mx-3 form-group py-4">
-                                                            <label for="exampleFormControlTextarea1">Your Purpose
-                                                                for
-                                                                CPChain*</label>
+                                                            <label for="exampleFormControlTextarea1">{% blocktrans %}Your Purpose for CPChain*{% endblocktrans %}</label>
                                                             <textarea name="message" class="form-control"
                                                                       style="resize:none;"
                                                                       id="exampleFormControlTextarea1"
@@ -1305,16 +1232,14 @@
                                                                       rows="3" required></textarea>
                                                         </div>
                                                         <div class="mx-3 form-group pb-4">
-                                                            <label for="exampleFormControlTextarea1">Attachment</label>
+                                                            <label for="exampleFormControlTextarea1">{% trans 'Attachment' %}</label>
                                                             <div class="custom-file">
                                                                 <label class="custom-file-label d-flex flex-row align-items-center justify-content-center"
                                                                        for="customFile"
                                                                        class="text-primary d-flex flex-row">
                                                                     <i class="fas fa-plus pr-2"></i>
                                                                     <p class="small mb-0">
-                                                                        Please select or drag and drop the upload
-                                                                        file
-                                                                        and limit it to within 10MB</p>
+                                                                        {% blocktrans %}Please select or drag and drop the upload file and limit it to within 10MB{% endblocktrans %}</p>
                                                                 </label>
                                                                 <input type="file" name="attachment"
                                                                        class="custom-file-input" id="customFile">
@@ -1335,13 +1260,11 @@
                                                         </div> -->
                                                         <div class="mx-3 form-group checking row flex-column pb-5 mb-3">
                                                             <div class="col-sm-12 px-0">
-                                                                <p>You want to</p>
+                                                                <p>{% blocktrans %}You want to{% endblocktrans %}</p>
                                                             </div>
                                                             <label class="containerr d-flex align-items-center pl-4 mb-0">
                                                                 <input type="checkbox" checked="checked">
-                                                                <span class="checkmark"></span> Receive Newsletter
-                                                                from
-                                                                CPChain
+                                                                <span class="checkmark"></span> {% blocktrans %}Receive Newsletter from CPChain{% endblocktrans %}
                                                             </label>
                                                         </div>
                                                         <div class="mx-3 form-group row">
@@ -1349,7 +1272,7 @@
                                                                 <button href="javascript:void(0)"
                                                                         class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
                                                                         target="_blank">
-                                                                    SEND
+                                                                    {% trans 'SEND' %}
                                                                 </button>
                                                             </div>
                                                             <div class="col-sm-5 text-right">
@@ -1508,8 +1431,7 @@
                                                     <form>
                                                         <div class="mx-3 form-group row flex-column mb-4">
                                                             <label for="inputEmail3"
-                                                                   class="col-sm-5 col-form-label px-0">Your Email
-                                                                *</label>
+                                                                   class="col-sm-5 col-form-label px-0">{% blocktrans %}Your Email *{% endblocktrans %}</label>
                                                             <div class="col-sm-12 px-0">
                                                                 <input type="email" class="form-control"
                                                                        id="inputEmail3" placeholder=""
@@ -1518,60 +1440,54 @@
                                                         </div>
                                                         <fieldset class="mx-3 form-group">
                                                             <div class="row flex-column">
-                                                                <legend class="col-form-label col-sm-12 py-1">You
-                                                                    are
-                                                                    presenting
+                                                                <legend class="col-form-label col-sm-12 py-1">{% blocktrans %}You are presenting{% endblocktrans %}
                                                                 </legend>
                                                                 <div class="col-sm-10 d-flex flex-row">
                                                                     <div class="pr-3">
                                                                         <label class="customcheck d-flex align-items-center pl-4">
                                                                             <input type="checkbox" checked>
                                                                             <span class="d-flex align-items-center justify-content-center checkmark"></span>
-                                                                            individual
+                                                                            {% trans 'individual' %}
                                                                         </label>
                                                                     </div>
                                                                     <div class="pr-3">
                                                                         <label class="customcheck d-flex align-items-center pl-4">
                                                                             <input type="checkbox">
                                                                             <span class="d-flex align-items-center justify-content-center checkmark"></span>
-                                                                            enterprise
+                                                                            {% trans 'enterprise' %}
                                                                         </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </fieldset>
                                                         <div class="mx-3 form-group py-4">
-                                                            <label for="exampleFormControlTextarea1">Your Purpose
-                                                                for
-                                                                CPChain*</label>
+                                                            <label for="exampleFormControlTextarea1">{% blocktrans %}Your Purpose for CPChain*{% endblocktrans %}</label>
                                                             <textarea class="form-control" style="resize:none;"
                                                                       id="exampleFormControlTextarea1"
                                                                       maxlength="250"
                                                                       rows="3" required></textarea>
                                                         </div>
                                                         <div class="mx-3 form-group pb-4">
-                                                            <label for="exampleFormControlTextarea1">Attachment</label>
+                                                            <label for="exampleFormControlTextarea1">{% trans 'Attachment' %}</label>
                                                             <div class="custom-file">
                                                                 <label class="custom-file-label d-flex flex-row align-items-center justify-content-center"
                                                                        for="customFile"
                                                                        class="text-primary d-flex flex-row"><i
                                                                         class="fas fa-plus pr-2"></i>
-                                                                    <p class="small mb-0"> Please select or drag and
+                                                                    <p class="small mb-0"> {% blocktrans %}Please select or drag and
                                                                         drop the upload file and limit it to within
-                                                                        10MB</p></label>
+                                                                        10MB{% endblocktrans %}</p></label>
                                                                 <input type="file" name="attachment"
                                                                        class="custom-file-input" id="customFile">
                                                             </div>
                                                         </div>
                                                         <div class="mx-3 form-group checking row flex-column pb-5 mb-3">
                                                             <div class="col-sm-12 px-0">
-                                                                <p>You want to</p>
+                                                                <p>{% blocktrans %}You want to{% endblocktrans %}</p>
                                                             </div>
                                                             <label class="containerr d-flex align-items-center pl-4 mb-0">
                                                                 <input type="checkbox" checked="checked">
-                                                                <span class="checkmark"></span> Receive Newsletter
-                                                                from
-                                                                CPChain
+                                                                <span class="checkmark"></span> {% blocktrans %}Receive Newsletter from CPChain{% endblocktrans %}
                                                             </label>
                                                         </div>
                                                         <div class="mx-3 form-group row">
@@ -1579,7 +1495,7 @@
                                                                 <button href="javascript:void(0)"
                                                                         class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
                                                                         target="_blank">
-                                                                    SEND
+                                                                    {% trans 'SEND' %}
                                                                 </button>
                                                             </div>
                                                         </div>
