@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-02 14:38+0800\n"
+"POT-Creation-Date: 2018-11-02 16:29+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/index.html:100
+#: templates/index.html:100 templates/index.html:429
 msgid "Application"
 msgstr "应用"
 
+#: templates/index.html:105 templates/index.html:559
+msgid "Roadmap"
+msgstr ""
 
-#: templates/index.html:247
+#: templates/index.html:110 templates/index.html:798
+msgid "Team"
+msgstr ""
+
+#: templates/index.html:115
+msgid "News"
+msgstr ""
+
+#: templates/index.html:120 templates/index.html:1065
+msgid "Partners"
+msgstr ""
+
+#: templates/index.html:125
+msgid "RNode"
+msgstr ""
+
+#: templates/index.html:130
+msgid "Contact"
+msgstr ""
+
+#: templates/index.html:179
+msgid " A new distributed infrastructure for next generation IoT "
+msgstr ""
+
+#: templates/index.html:187
+msgid "WHITE PAPER"
+msgstr ""
+
+#: templates/index.html:193
+msgid "LIGHT PAPER"
+msgstr ""
+
+#: templates/index.html:244
+msgid "Integration <br> of IoT & <br> Blockchain"
+msgstr ""
+
+#: templates/index.html:248
 msgid ""
 "CPChain is a new distributed infrastructure for next generation IoT. CPChain "
 "intends to build a fundamental data platform for IoT system in combination "
@@ -35,7 +74,7 @@ msgstr ""
 "术，为物联网系统构建基础数据平台，提供从数据采集、存储、共享到应用的全流程解"
 "决方案。"
 
-#: templates/index.html:250
+#: templates/index.html:251
 msgid ""
 "CPChain is a promising solution to a series of challenges of current“chimney "
 "architecture” of IoT systems, reducing connectivity cost of devices, "
@@ -44,4 +83,405 @@ msgstr ""
 "物信链是应对物联网系统当前“烟囱架构 ”一系列挑战的解决方案，能够降低物联网设备"
 "的连接成本，保护用户数据隐私，同时最大化物联网数据价值。"
 
+#: templates/index.html:274
+msgid "Features"
+msgstr ""
 
+#: templates/index.html:278
+msgid ""
+"The core feature of the CPChain is to realize the transmission of the "
+"valueof cyber-physical systems. The main technology contribution is to "
+"propose a systematic scheme to address the scalability and real-time "
+"problems of blockchain technology in IoTs from the perspective of data "
+"storage and computation, and consensus protocols, including parallel "
+"distributed architecture, two-layer hybrid consensus mechanism and "
+"lightweight side chain consensus protocol."
+msgstr ""
+
+#: templates/index.html:287
+msgid "Scalability"
+msgstr ""
+
+#: templates/index.html:294 templates/index.html:451
+msgid "Security"
+msgstr ""
+
+#: templates/index.html:302
+msgid "Rapidity"
+msgstr ""
+
+#: templates/index.html:317
+msgid "Introduction"
+msgstr ""
+
+#: templates/index.html:349
+msgid "Vision"
+msgstr ""
+
+#: templates/index.html:367
+msgid ""
+"To build a new world of Internet of Things where data from IoT devices are "
+"highly integrated and valuable"
+msgstr ""
+
+#: templates/index.html:383
+msgid "To share data for business and research purpose"
+msgstr ""
+
+#: templates/index.html:398
+msgid ""
+"To fully develop and optimize CPChain's core technology and seek cooperation "
+"with partners to fulfill industrial landing"
+msgstr ""
+
+#: templates/index.html:415
+msgid ""
+"To seek thorough business landing domestically and internationally to "
+"maximize the value of IoT data"
+msgstr ""
+
+#: templates/index.html:436
+msgid ""
+"CPChain is a trusted basis platform for data sharing and transaction of "
+"large-scale distributed IoT systems. It is widely applied in industries such "
+"as intelligent transportation, smart medical and intelligent manufacturing, "
+"etc."
+msgstr ""
+
+#: templates/index.html:451
+msgid "Public"
+msgstr ""
+
+#: templates/index.html:464
+msgid "Intelligent"
+msgstr ""
+
+#: templates/index.html:464
+msgid "Transportation"
+msgstr ""
+
+#: templates/index.html:476
+msgid "Smart"
+msgstr ""
+
+#: templates/index.html:478
+msgid "Medical"
+msgstr ""
+
+#: templates/index.html:496
+msgid "Three major <br> adoption scenarios"
+msgstr ""
+
+#: templates/index.html:499
+msgid ""
+"The value of CPChain comes from the improvement of the physical industry "
+"efficiency and the innovation of business models, which results from data "
+"aggregation and mobility."
+msgstr ""
+
+#: templates/index.html:514
+msgid "Multi-parties data transaction"
+msgstr ""
+
+#: templates/index.html:516
+msgid "multi-party trust created by CPChain"
+msgstr ""
+
+#: templates/index.html:528
+msgid "Artificial intelligence decisions based on IoT big data"
+msgstr ""
+
+#: templates/index.html:530
+msgid "Interoperability of heterogeneous data, forming big data aggregation"
+msgstr ""
+
+#: templates/index.html:542
+msgid ""
+"Interaction and application of data assets in cross-chain, which led to new "
+"business models"
+msgstr ""
+
+#: templates/index.html:544
+msgid "cross-chain relay and collaboration"
+msgstr ""
+
+#: templates/index.html:581
+msgid "Mainnet"
+msgstr ""
+
+#: templates/index.html:591
+msgid "Industry <br> Chains"
+msgstr ""
+
+#: templates/index.html:607 templates/index.html:626 templates/index.html:661
+#: templates/index.html:682
+msgid "Q4 / 2018"
+msgstr ""
+
+#: templates/index.html:609 templates/index.html:628
+msgid "PDash 2 release featuring <br> trusted data relay"
+msgstr ""
+
+#: templates/index.html:612 templates/index.html:636 templates/index.html:667
+#: templates/index.html:694 templates/index.html:759
+msgid "Q4 / 2019"
+msgstr ""
+
+#: templates/index.html:614 templates/index.html:638
+msgid "PDash 4 release featuring <br> incentivized economic model"
+msgstr ""
+
+#: templates/index.html:621
+msgid "Q2 / 2018"
+msgstr ""
+
+#: templates/index.html:623
+msgid "PDash release"
+msgstr ""
+
+#: templates/index.html:631 templates/index.html:688 templates/index.html:748
+msgid "Q2 / 2019"
+msgstr ""
+
+#: templates/index.html:633
+msgid "PDash 3 release featuring <br> de-centralized market"
+msgstr ""
+
+#: templates/index.html:641 templates/index.html:770
+msgid "Q2 / 2020"
+msgstr ""
+
+#: templates/index.html:643
+msgid "PDash 5 release featuring <br> open ecosystem"
+msgstr ""
+
+#: templates/index.html:651 templates/index.html:705 templates/index.html:779
+msgid "Q3 / 2020"
+msgstr ""
+
+#: templates/index.html:652 templates/index.html:706 templates/index.html:780
+msgid "Consolidated IoT-blockchain system"
+msgstr ""
+
+#: templates/index.html:664 templates/index.html:685
+msgid "CPChain mainnet release"
+msgstr ""
+
+#: templates/index.html:670
+msgid "Consolidated mainnet 2 release <br> (backward compatible)"
+msgstr ""
+
+#: templates/index.html:677 templates/index.html:736
+msgid "Q3 / 2018"
+msgstr ""
+
+#: templates/index.html:679
+msgid "Hybrid consensus protocol specification"
+msgstr ""
+
+#: templates/index.html:691
+msgid "Sidechain release"
+msgstr ""
+
+#: templates/index.html:697
+msgid ""
+"Consolidated mainnet 2 release <br> (backward\n"
+"                                                                compatible)"
+msgstr ""
+
+#: templates/index.html:715 templates/index.html:742
+msgid "Q1 / 2019"
+msgstr ""
+
+#: templates/index.html:718 templates/index.html:745
+msgid "IoT-chain prototype"
+msgstr ""
+
+#: templates/index.html:721 templates/index.html:753
+msgid "Q3 / 2019"
+msgstr ""
+
+#: templates/index.html:724 templates/index.html:756
+msgid "IoT-chain release <br> Wallet release"
+msgstr ""
+
+#: templates/index.html:727 templates/index.html:765
+msgid "Q1 / 2020"
+msgstr ""
+
+#: templates/index.html:729 templates/index.html:767
+msgid "User and developer <br> community building"
+msgstr ""
+
+#: templates/index.html:739
+msgid "IoT-chain specifications <br> and patent"
+msgstr ""
+
+#: templates/index.html:750
+msgid "Token model for chains"
+msgstr ""
+
+#: templates/index.html:762
+msgid "Iot-chain for specialized industries <br> SDK release"
+msgstr ""
+
+#: templates/index.html:772
+msgid "DApp tutorials and examples"
+msgstr ""
+
+#: templates/index.html:801
+msgid ""
+"The CPChain R&D team is an international, knowledge-structured, energetic "
+"team. The founding team members include top talent from universities, "
+"Internet of Things industry, financial security companies and business "
+"operations."
+msgstr ""
+
+#: templates/index.html:849
+msgid "Founder, CEO, Professor, Principal Scientist"
+msgstr ""
+
+#: templates/index.html:852
+msgid ""
+"Dr. Long is a full professor and has many years of experience in the fields "
+"of cyber physical system security, Internet of Things, distributed "
+"intelligent system with blockchain technology. He has published more than 80 "
+"papers in internationally renowned journals and conferences, and has more "
+"than 10 patents for invention."
+msgstr ""
+
+#: templates/index.html:862
+msgid "CPChain Co-Founder, CTO"
+msgstr ""
+
+#: templates/index.html:865
+msgid ""
+"Dr. Zhao has more than 12 years research and develop experience on "
+"communication, Internet of Things and FinTech. Extended experience in "
+"management of R&D team. He has three patents on inventions in Internet of "
+"Things."
+msgstr ""
+
+#: templates/index.html:875
+msgid "CPChain Co-Founder, COO"
+msgstr ""
+
+#: templates/index.html:878
+msgid ""
+"Mr Shi is an early participant in the blockchain and digital currency. "
+"Founder of the shared finance and HPB, participated in the preparation and "
+"investment of many projects."
+msgstr ""
+
+#: templates/index.html:932 templates/index.html:941
+msgid "CPChain Team"
+msgstr ""
+
+#: templates/index.html:946
+msgid "R&D"
+msgstr ""
+
+#: templates/index.html:952
+msgid "Marketing"
+msgstr ""
+
+#: templates/index.html:958
+msgid "Administrative"
+msgstr ""
+
+#: templates/index.html:1002 templates/index.html:1012
+msgid "CPChain Global Team"
+msgstr ""
+
+#: templates/index.html:1018
+msgid "Global Ambassador"
+msgstr ""
+
+#: templates/index.html:1024
+msgid "Global Community Advisors"
+msgstr ""
+
+#: templates/index.html:1073
+msgid "Investors"
+msgstr ""
+
+#: templates/index.html:1130
+msgid "Exchanges"
+msgstr ""
+
+#: templates/index.html:1155
+msgid "CONTACT"
+msgstr ""
+
+#: templates/index.html:1156
+msgid "Your <br> opinion is important."
+msgstr ""
+
+#: templates/index.html:1159
+msgid ""
+"If you have any suggestion or idea of enterprise cooperation, please feel "
+"free to contact us."
+msgstr ""
+
+#: templates/index.html:1172
+msgid "I have a question"
+msgstr ""
+
+#: templates/index.html:1181
+msgid "Business/Partnership"
+msgstr ""
+
+#: templates/index.html:1195
+msgid ""
+"Your Email\n"
+"                                                                *"
+msgstr ""
+
+#: templates/index.html:1206 templates/index.html:1443
+msgid "You are presenting"
+msgstr ""
+
+#: templates/index.html:1213 templates/index.html:1450
+msgid "individual"
+msgstr ""
+
+#: templates/index.html:1220 templates/index.html:1457
+msgid "enterprise"
+msgstr ""
+
+#: templates/index.html:1227 templates/index.html:1464
+msgid "Your Purpose for CPChain*"
+msgstr ""
+
+#: templates/index.html:1235 templates/index.html:1471
+msgid "Attachment"
+msgstr ""
+
+#: templates/index.html:1242
+msgid ""
+"Please select or drag and drop the upload file and limit it to within 10MB"
+msgstr ""
+
+#: templates/index.html:1263 templates/index.html:1486
+msgid "You want to"
+msgstr ""
+
+#: templates/index.html:1267 templates/index.html:1490
+msgid "Receive Newsletter from CPChain"
+msgstr ""
+
+#: templates/index.html:1275 templates/index.html:1498
+msgid "SEND"
+msgstr ""
+
+#: templates/index.html:1434
+msgid "Your Email *"
+msgstr ""
+
+#: templates/index.html:1477
+msgid ""
+"Please select or drag and\n"
+"                                                                        drop "
+"the upload file and limit it to within\n"
+"                                                                        10MB"
+msgstr ""
