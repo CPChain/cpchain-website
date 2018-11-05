@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:49+0800\n"
+"POT-Creation-Date: 2018-11-05 16:32+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: templates/index.html:100 templates/index.html:429
+#: templates/intelligent-transportation.html:49 templates/security.html:41
+#: templates/smart-medical.html:48
 msgid "Application"
 msgstr "应用"
 
@@ -500,3 +502,1122 @@ msgid ""
 "the upload file and limit it to within\n"
 "                                                                        10MB"
 msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/intelligent-transportation.html:52 templates/security.html:51
+#: templates/smart-medical.html:58
+#, fuzzy
+#| msgid "Intelligent <br> Transportation"
+msgid "Intelligent Transportation"
+msgstr "智能交通"
+
+#: templates/intelligent-transportation.html:59 templates/security.html:55
+#: templates/smart-medical.html:51
+#, fuzzy
+#| msgid "Smart <br> Medical"
+msgid "Smart Medical"
+msgstr "智能医疗"
+
+#: templates/intelligent-transportation.html:63 templates/security.html:44
+#: templates/smart-medical.html:62
+#, fuzzy
+#| msgid "Public <br> Security"
+msgid "Public Security"
+msgstr "公共安全"
+
+#: templates/intelligent-transportation.html:81
+msgid "Drive License"
+msgstr ""
+
+#: templates/intelligent-transportation.html:81
+msgid "Training Record"
+msgstr ""
+
+#: templates/intelligent-transportation.html:88
+msgid "Vehicle and driver’s operations"
+msgstr ""
+
+#: templates/intelligent-transportation.html:88
+msgid "data record"
+msgstr ""
+
+#: templates/intelligent-transportation.html:95
+msgid "Oil product QR code anti-"
+msgstr ""
+
+#: templates/intelligent-transportation.html:95
+msgid "counterfeiting traceability"
+msgstr ""
+
+#: templates/intelligent-transportation.html:102
+msgid "Garage automatic parking"
+msgstr ""
+
+#: templates/intelligent-transportation.html:118
+#: templates/intelligent-transportation.html:211
+#: templates/intelligent-transportation.html:306
+#: templates/intelligent-transportation.html:392 templates/security.html:95
+#: templates/smart-medical.html:103 templates/smart-medical.html:190
+msgid "Background"
+msgstr ""
+
+#: templates/intelligent-transportation.html:123
+msgid ""
+"\n"
+"                                                        There are more than "
+"25 million new drivers increased each year\n"
+"                                                        in\n"
+"                                                        China. In 2017, "
+"there were more than 360 million drivers in\n"
+"                                                        total.\n"
+"                                                        According to the "
+"regulations of the Ministry of Communications\n"
+"                                                        and\n"
+"                                                        Transport, the "
+"driving school must ensure that the training\n"
+"                                                        hours of\n"
+"                                                        the cadets meet the "
+"requirement. <br><br> However, in recent\n"
+"                                                        years,\n"
+"                                                        driving schools "
+"biased toward profit more than quality. They\n"
+"                                                        forges\n"
+"                                                        the training record, "
+"which affects the training quality and\n"
+"                                                        causes\n"
+"                                                        the potential public "
+"safety problems.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:149
+#: templates/intelligent-transportation.html:240
+#: templates/intelligent-transportation.html:330
+#: templates/intelligent-transportation.html:405 templates/security.html:109
+#: templates/smart-medical.html:125 templates/smart-medical.html:206
+msgid "Solutions"
+msgstr ""
+
+#: templates/intelligent-transportation.html:152
+msgid ""
+"\n"
+"                                                        Through IoT terminal "
+"equipment, the cadets image are sampled at\n"
+"                                                        random intervals, "
+"and compared with the original registered and\n"
+"                                                        verified images to "
+"make sure it is the cadet himself that are\n"
+"                                                        under\n"
+"                                                        training. At the "
+"same time, with PDash, the fundamental data\n"
+"                                                        platform of CPChain, "
+"each driving data sample will be encrypted,\n"
+"                                                        and\n"
+"                                                        the data hash will "
+"be stored on the blockchain for sufficient\n"
+"                                                        time,\n"
+"                                                        which available for "
+"the government regulators to check and\n"
+"                                                        verify.\n"
+"                                                        By integrating with "
+"blockchain technology, records cannot be\n"
+"                                                        tampered with and "
+"thus eliminating false training history.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:177
+msgid "Original Image Sampling"
+msgstr ""
+
+#: templates/intelligent-transportation.html:187
+#: templates/intelligent-transportation.html:276
+msgid "PDash Encrypted Storage"
+msgstr ""
+
+#: templates/intelligent-transportation.html:197
+msgid "Untampered Data"
+msgstr ""
+
+#: templates/intelligent-transportation.html:214
+msgid ""
+"\n"
+"                                                        By implementing OBD "
+"or other on-board devices to monitoring the\n"
+"                                                        driving behavior, "
+"personalized insurance can be realized. When\n"
+"                                                        car\n"
+"                                                        accident happens, "
+"with driving and moving data, more precise\n"
+"                                                        judgement for "
+"accident cause canbe figured out.<br><br> In term\n"
+"                                                        of\n"
+"                                                        used car trading, "
+"through the driving data and operation\n"
+"                                                        records, we\n"
+"                                                        can determine the "
+"value of the vehicle more reasonably. In\n"
+"                                                        current\n"
+"                                                        Used Based Insurance "
+"(UBI), insurance companies usually\n"
+"                                                        collaborate\n"
+"                                                        with OBD "
+"manufacturers of devices and platforms to use these\n"
+"                                                        data to\n"
+"                                                        calculate UBI "
+"premiums, so there is a problem of data trust, as\n"
+"                                                        well\n"
+"                                                        as concerns about "
+"users’ privacy. It also limits the development\n"
+"                                                        of\n"
+"                                                        UBI services.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:243
+msgid ""
+"\n"
+"                                                        CPChain’s PDash "
+"platform can encrypt the UBI or other services\n"
+"                                                        necessary for the "
+"device to be cached in a certain period of\n"
+"                                                        time,\n"
+"                                                        and then store it in "
+"cloud storage or distributed storage, under\n"
+"                                                        the\n"
+"                                                        premise of ensuring "
+"user privacy. At the same time, the hash\n"
+"                                                        value\n"
+"                                                        of this part of the "
+"data is recorded on the main chain of\n"
+"                                                        CPChain,\n"
+"                                                        providing data "
+"support for UBI investigation and calculation,\n"
+"                                                        second-hand vehicle "
+"valuation and so on.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:266
+msgid "User Privacy Protection"
+msgstr ""
+
+#: templates/intelligent-transportation.html:286
+msgid "UBI Investigation"
+msgstr ""
+
+#: templates/intelligent-transportation.html:296
+msgid "Used car value assessment"
+msgstr ""
+
+#: templates/intelligent-transportation.html:311
+msgid ""
+"\n"
+"                                                        In the after-sales "
+"segment of the car, the problem of oil\n"
+"                                                        counterfeiting is "
+"not uncommon. The existing anti-counterfeiting\n"
+"                                                        and\n"
+"                                                        recording methods "
+"are not effective and have poor practicality.\n"
+"                                                        The\n"
+"                                                        phenomenon of "
+"stockpiling in the process of circulation has been\n"
+"                                                        repeatedly banned, "
+"and counterfeit goods are difficult to\n"
+"                                                        source.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:333
+msgid ""
+"\n"
+"                                                        CPChain proposed a "
+"two-dimensional code anti-counterfeiting\n"
+"                                                        traceability system "
+"based on blockchain. After the manufacturer\n"
+"                                                        finished production, "
+"the traceability information related to the\n"
+"                                                        oil\n"
+"                                                        production date, raw "
+"material batch and origin was set as a\n"
+"                                                        two-dimensional "
+"code, and the blockchain was uploaded. End\n"
+"                                                        consumers\n"
+"                                                        can scan the QR code "
+"to verify the oil, ensure that the\n"
+"                                                        consumer's\n"
+"                                                        rights and interests "
+"are not damaged, and the oil production,\n"
+"                                                        logistics, "
+"warehousing, sales and other aspects are closely\n"
+"                                                        linked.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:357
+msgid "QR Code Sanning & Authentication"
+msgstr ""
+
+#: templates/intelligent-transportation.html:367
+msgid "Record source information on the chain"
+msgstr ""
+
+#: templates/intelligent-transportation.html:377
+msgid "Control the supply chain"
+msgstr ""
+
+#: templates/intelligent-transportation.html:395
+msgid ""
+"\n"
+"                                                        With the continuous "
+"intelligence of motor vehicles and the large\n"
+"                                                        amount of relevant "
+"data, the rational and full utilization of\n"
+"                                                        vehicle data has "
+"great practical significance.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:408
+msgid ""
+"\n"
+"                                                        CPChain envisions a "
+"vehicle equipped with an embedded wallet\n"
+"                                                        device\n"
+"                                                        that encrypts the "
+"data and uploads it to the PDash platform.\n"
+"                                                        When\n"
+"                                                        parking, payment of "
+"deposits and fee settlements can be done on\n"
+"                                                        blockchain-based "
+"smart contracts. People do not need to\n"
+"                                                        intervene,\n"
+"                                                        the whole process is "
+"not feeling, real-time, and safe. At the\n"
+"                                                        same\n"
+"                                                        time, data "
+"utilization is realized, and the terminal quickly and\n"
+"                                                        automatically "
+"trades.\n"
+"                                                        "
+msgstr ""
+
+#: templates/intelligent-transportation.html:431
+msgid "Vehicle-carry Nlockchain Coinpurse"
+msgstr ""
+
+#: templates/intelligent-transportation.html:441
+msgid "Benefit from Uploaded Data"
+msgstr ""
+
+#: templates/intelligent-transportation.html:451
+msgid "Senseless payment"
+msgstr ""
+
+#: templates/rnode.html:28
+msgid "CPChain — RNode Ecosystem Structure"
+msgstr ""
+
+#: templates/rnode.html:37
+msgid ""
+"\n"
+"                                                                The origin "
+"of Blockchain is distributed ledger\n"
+"                                                                technology\n"
+"                                                                and "
+"decentralization to develop a fair distribution of\n"
+"                                                                digital "
+"assets. In the CPChain Ecosystem, we guarantee\n"
+"                                                                that\n"
+"                                                                the majority "
+"of the nodes will have the right to\n"
+"                                                                participate\n"
+"                                                                in "
+"supporting the ecosystem. The return on investment\n"
+"                                                                from\n"
+"                                                                such "
+"participation is directly related to the\n"
+"                                                                contribution\n"
+"                                                                from the "
+"nodes.\n"
+"                                                                "
+msgstr ""
+
+#: templates/rnode.html:53
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"\n"
+"                                                                Below you "
+"can find the CPChain RNode Ecosystem Structure\n"
+"                                                                chart:\n"
+"                                                                "
+msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/rnode.html:66
+msgid "CPChain RNode Structure working flow"
+msgstr ""
+
+#: templates/rnode.html:75
+msgid "1. CPChain Nodes Roles"
+msgstr ""
+
+#: templates/rnode.html:77
+msgid "Economy Node: "
+msgstr ""
+
+#: templates/rnode.html:77
+msgid ""
+"Requires a minimum of 20,000 CPC tokens\n"
+"                                                            for\n"
+"                                                            participation. "
+"Investors who meet this requirement may\n"
+"                                                            participate as "
+"an economy node and have the right to vote in\n"
+"                                                            the\n"
+"                                                            community."
+msgstr ""
+
+#: templates/rnode.html:85
+msgid "Reputation Node: "
+msgstr ""
+
+#: templates/rnode.html:85
+msgid ""
+"Requires a minimum of 200,000 CPC\n"
+"                                                            tokens\n"
+"                                                            for "
+"participation. Investors with the basic configuration of\n"
+"                                                            computing and "
+"storing can participate to support the CPChain\n"
+"                                                            Open "
+"Transmission Protocol (COTP).\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:93
+msgid "Industry Node: "
+msgstr ""
+
+#: templates/rnode.html:93
+msgid ""
+"IoT Industry partners and CPChain\n"
+"                                                            ecosystem’s peer "
+"developers have the right to participate as\n"
+"                                                            an\n"
+"                                                            Industry Node.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:102
+msgid "2. Reputation Nodes"
+msgstr ""
+
+#: templates/rnode.html:104
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"\n"
+"                                                            A node has to "
+"meet one of the following requirements to\n"
+"                                                            become a\n"
+"                                                            Reputation "
+"Node:\n"
+"                                                            "
+msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/rnode.html:111
+msgid " a. Economy Node + Computing and Storage Node: "
+msgstr ""
+
+#: templates/rnode.html:112
+msgid ""
+"\n"
+"                                                            An economy node "
+"must lock-up a specific amount of tokens\n"
+"                                                            (200,000 minimum "
+"and 5,000,000 maximum) for 90 days and must\n"
+"                                                            satisfy the "
+"software, hardware, and network connection\n"
+"                                                            requirements. "
+"The locked up tokens have a positive\n"
+"                                                            correlation\n"
+"                                                            with the basic "
+"rewards. Reputation nodes will be refunded\n"
+"                                                            after\n"
+"                                                            they leave the "
+"election.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:124
+msgid "b. Industry Node + Computing and Storage Node:"
+msgstr ""
+
+#: templates/rnode.html:125
+msgid ""
+"\n"
+"                                                            An industry node "
+"will be upgraded to a reputation node once\n"
+"                                                            meeting all the "
+"hardware, software, and network\n"
+"                                                            requirements.\n"
+"                                                            Industry nodes "
+"must be verified by the CPChain foundation.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:133
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"\n"
+"                                                            Reputation Nodes "
+"have the right to be elected as a committee\n"
+"                                                            member and to be "
+"granted rewards from the Blockchain.\n"
+"                                                            "
+msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/rnode.html:141
+msgid "3.DPoR Consensus Overview"
+msgstr ""
+
+#: templates/rnode.html:143
+msgid ""
+"\n"
+"                                                            The CPChain "
+"consensus system adopts the Dynamic Proof of\n"
+"                                                            Reputation "
+"Agreement (DPoR) which is developed by Shanghai\n"
+"                                                            Jiao\n"
+"                                                            Tong University "
+"Distributed and Smart System Lab.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:151
+msgid ""
+"\n"
+"                                                            The CPChain "
+"Ecosystem is divided into three layers as seen\n"
+"                                                            below. Users can "
+"be upgraded to reputation nodes after an\n"
+"                                                            initial "
+"admission test. The specific election algorithm will\n"
+"                                                            pick out a "
+"certain number of nodes from Layer 2 to conduct\n"
+"                                                            the\n"
+"                                                            Layer 3 dynamic "
+"committee in order to maintain the\n"
+"                                                            blockchain.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:162
+msgid ""
+"\n"
+"                                                            Layer 3 "
+"primarily solves the consensus problem of creating,\n"
+"                                                            verifying, "
+"broadcasting, and adding blocks onto the chain.\n"
+"                                                            Generally "
+"speaking, DPor is an appropriate solution for the\n"
+"                                                            three issues of "
+"consensus under the large-scale network,\n"
+"                                                            which\n"
+"                                                            are node "
+"Reputation Assessment, Node Election and Byzantine\n"
+"                                                            Fault Tolerance "
+"(BFT) Consensus within the committee.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:178
+#, fuzzy
+#| msgid ""
+#| "Your Email\n"
+#| "                                                                *"
+msgid ""
+"DPor Consensus Protocol\n"
+"                                                                Overview"
+msgstr "您的邮箱*"
+
+#: templates/rnode.html:185
+msgid "Node Reputation Value Assessment Procedure (RVAP)"
+msgstr ""
+
+#: templates/rnode.html:187
+msgid ""
+"\n"
+"                                                            Based on data "
+"from blockchain, CPChain will conduct the node\n"
+"                                                            reputation "
+"assessment model to calculate and assess the\n"
+"                                                            Reputation Value "
+"(RV) of every node in the system. The\n"
+"                                                            reputation model "
+"will be divided into five parts:\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:195
+msgid "Account Balance"
+msgstr ""
+
+#: templates/rnode.html:196
+msgid "Transaction"
+msgstr ""
+
+#: templates/rnode.html:197
+msgid "Proxy Reputation"
+msgstr ""
+
+#: templates/rnode.html:198
+msgid "Data Contribution"
+msgstr ""
+
+#: templates/rnode.html:199
+msgid "Blockchain Maintenance"
+msgstr ""
+
+#: templates/rnode.html:205
+msgid "1. Account Balance:"
+msgstr ""
+
+#: templates/rnode.html:206
+#, python-format
+msgid ""
+"\n"
+"                                                            CPC token "
+"balance in RNode’s\n"
+"                                                            account will "
+"have a positive correlation with the Reputation\n"
+"                                                            Value. It will "
+"contribute 40%%～50%% in the Reputation Value\n"
+"                                                            Assessment "
+"Procedure (RVAP).\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:217
+msgid "2. Transaction:"
+msgstr ""
+
+#: templates/rnode.html:218
+#, python-format
+msgid ""
+"\n"
+"                                                            “Transaction” "
+"refers to actions\n"
+"                                                            in\n"
+"                                                            which a RNode "
+"uses CPC to buy data in CPChain’s PDash data\n"
+"                                                            marketplace. It "
+"will contribute 15%%～20%% in RVAP.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:229
+msgid "3. Proxy: "
+msgstr ""
+
+#: templates/rnode.html:230
+#, python-format
+msgid ""
+"\n"
+"                                                            Serving as the "
+"role of proxy, a RNode\n"
+"                                                            will\n"
+"                                                            earn reputation "
+"by assisting others in the marketplace. It\n"
+"                                                            will\n"
+"                                                            contribute 10%%～"
+"15%% in RVAP.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:242
+msgid "4. Data Contribution:"
+msgstr ""
+
+#: templates/rnode.html:243
+#, python-format
+msgid ""
+"\n"
+"                                                            A node will earn "
+"reputation\n"
+"                                                            value by "
+"uploading data, it will include base reputation\n"
+"                                                            value\n"
+"                                                            and bonus. A "
+"RNode will earn reputation value by uploading\n"
+"                                                            data\n"
+"                                                            and will earn a "
+"bonus when a related transaction happens.\n"
+"                                                            This\n"
+"                                                            part will "
+"contribute 15%%～20%% in RVAP.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:258
+msgid "5. Blockchain Maintenance: "
+msgstr ""
+
+#: templates/rnode.html:259
+#, python-format
+msgid ""
+"\n"
+"                                                            All the "
+"committee\n"
+"                                                            members\n"
+"                                                            will be granted "
+"a certain amount of reputation value after\n"
+"                                                            blocks being "
+"produced by the committee. This part will\n"
+"                                                            contribute 10%%～"
+"15%%.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:271
+msgid "Characteristics of DPoR:"
+msgstr ""
+
+#: templates/rnode.html:272
+msgid ""
+"\n"
+"                                                            The design of "
+"DPoR has\n"
+"                                                            three\n"
+"                                                            layers of "
+"consideration for the RNodes with regard to value\n"
+"                                                            investment, "
+"volume contribution, and chain maintenance. It\n"
+"                                                            avoids the risks "
+"in the traditional centralized masternode\n"
+"                                                            structure in "
+"which token balance or computing power are\n"
+"                                                            heavily\n"
+"                                                            abused. As for "
+"how to comprehensively value the RNode\n"
+"                                                            contribution to "
+"the entire CPChain ecosystem, DPoR intends\n"
+"                                                            to\n"
+"                                                            build up a "
+"decentralized, diverse and fair network.\n"
+"                                                            Furthermore,\n"
+"                                                            the data set for "
+"calculating the reputation value will be\n"
+"                                                            originated from "
+"the Blockchain with complete traceability\n"
+"                                                            and\n"
+"                                                            temper-"
+"resistance. The election result from the model can be\n"
+"                                                            verified.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:295
+msgid "Dynamic Committee Election"
+msgstr ""
+
+#: templates/rnode.html:297
+msgid ""
+"\n"
+"                                                            For every "
+"committee round, 30–35 reputation nodes will be\n"
+"                                                            elected. The "
+"committee is responsible for the maintenance of\n"
+"                                                            existing blocks, "
+"and adding, broadcasting and verifying new\n"
+"                                                            blocks. A "
+"certain amount of rewards would be granted. DPoR\n"
+"                                                            system election "
+"is based on the reputation nodes’ reputation\n"
+"                                                            value and random "
+"seeds. The election algorithm will be\n"
+"                                                            disclosed, and "
+"any node could execute the algorithm\n"
+"                                                            automatically, "
+"which makes the outcome verifiable, thereby\n"
+"                                                            ensuring the "
+"reliability of the election process. The\n"
+"                                                            election\n"
+"                                                            result has a "
+"certain randomness, and the possibility of one\n"
+"                                                            node\n"
+"                                                            be selected is "
+"proportional to its reputation value.\n"
+"                                                            Currently,\n"
+"                                                            one round is "
+"expected to be 5–10 minutes.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:315
+msgid "Characteristics"
+msgstr ""
+
+#: templates/rnode.html:317
+msgid ""
+"\n"
+"                                                            The DPOR "
+"election is based on nodes’ reputation value and\n"
+"                                                            random\n"
+"                                                            seeds. Every "
+"candidate node has the opportunity to be\n"
+"                                                            elected.\n"
+"                                                            The outcome "
+"cannot be predicted by any node which ensures\n"
+"                                                            the\n"
+"                                                            process is fair "
+"and secure. The election process is\n"
+"                                                            completely\n"
+"                                                            anonymous, "
+"therefore, users’ privacy is protected.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:332
+msgid "Within Committee: LBFT"
+msgstr ""
+
+#: templates/rnode.html:334
+msgid ""
+"\n"
+"                                                            DPoR uses "
+"Lightweight Byzantine Fault Tolerance (LBFT) to\n"
+"                                                            achieve a fast "
+"agreement among the committee members. LBFT\n"
+"                                                            has\n"
+"                                                            two stages: "
+"block distribution and signature collection (the\n"
+"                                                            committee needs "
+"to sign and verify a new block). Currently,\n"
+"                                                            the\n"
+"                                                            system can "
+"tolerate up to one-third of nodes having downtime\n"
+"                                                            or\n"
+"                                                            becoming "
+"malicious. With the release of the main chain in\n"
+"                                                            future\n"
+"                                                            and the "
+"optimized supervision and alternative mechanisms\n"
+"                                                            after\n"
+"                                                            that, it is "
+"expected to achieve up to half nodes have\n"
+"                                                            downtime\n"
+"                                                            or less than "
+"half of the committee members become malicious.\n"
+"                                                            Moreover, LBFT "
+"includes the fault tolerance mechanism for\n"
+"                                                            extreme "
+"situations, i.e., the majority of the committee is\n"
+"                                                            having downtime "
+"or becoming malicious. This mechanism aims\n"
+"                                                            to\n"
+"                                                            enhance the "
+"stability and robustness.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:370
+msgid "4. Node Entitlements & Rewards"
+msgstr ""
+
+#: templates/rnode.html:372
+msgid ""
+"\n"
+"                                                            CPChain’s "
+"ecosystem is established by a lot of Internet of\n"
+"                                                            Things (IoT) "
+"enterprises, developers and users. It is a\n"
+"                                                            long-term "
+"process. As a result, CPChain will divide the\n"
+"                                                            incentive system "
+"into two stages. In the first stage,\n"
+"                                                            CPChain\n"
+"                                                            Foundation would "
+"be the main fund provider, for the\n"
+"                                                            ecosystem\n"
+"                                                            establishment "
+"and the chain maintenance. The next stage is\n"
+"                                                            mainly performed "
+"by the market. With the optimization of\n"
+"                                                            CPChain\n"
+"                                                            ecosystem and "
+"the increase in data sharing and transferring,\n"
+"                                                            the\n"
+"                                                            reward for "
+"RNodes will mainly be generated by smart\n"
+"                                                            contracts\n"
+"                                                            and market "
+"transactions.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:390
+#, fuzzy
+#| msgid ""
+#| "Consolidated mainnet 2 release <br> (backward\n"
+#| "                                                                compatible)"
+msgid ""
+"In the first stage, reputation nodes’ entitlements will be\n"
+"                                                            allocated to two "
+"parts: "
+msgstr "发布合并主网2（向后兼容）"
+
+#: templates/rnode.html:393
+msgid "Basic Rewards:"
+msgstr ""
+
+#: templates/rnode.html:394
+msgid ""
+"\n"
+"                                                            CPChain will "
+"create a reward\n"
+"                                                            pool\n"
+"                                                            with 5 million "
+"CPC annually (1.25 million CPC quarterly,\n"
+"                                                            13,700\n"
+"                                                            CPC daily). The "
+"RNode and the Economy Node receive the\n"
+"                                                            corresponding "
+"CPC reward based on the ratio of the locked\n"
+"                                                            margin\n"
+"                                                            to the total "
+"margin. (Economy Node and RNode will both need\n"
+"                                                            a\n"
+"                                                            90-day lock-up "
+"session).\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:408
+msgid "Blockchain maintenance rewards:"
+msgstr ""
+
+#: templates/rnode.html:409
+#, python-format
+msgid ""
+"\n"
+"                                                            Committee\n"
+"                                                            Nodes are "
+"entitled to blockchain maintenance rewards. Every\n"
+"                                                            block generates "
+"fixed rewards. Block rewards will be\n"
+"                                                            decreased\n"
+"                                                            by 25%% every "
+"year, and run out in 5 years. There would be 40\n"
+"                                                            million CPC in "
+"the first year, and following with 30\n"
+"                                                            million,\n"
+"                                                            22.5 million, 17 "
+"million and 12.75 million for the rest of\n"
+"                                                            four\n"
+"                                                            years "
+"respectively.\n"
+"                                                            "
+msgstr ""
+
+#: templates/rnode.html:423
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"Any questions about our Rnode Ecosystem can be posted in\n"
+"                                                                our\n"
+"                                                                upcoming AMA:"
+msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/rnode.html:438
+msgid "* Around 3,000,000 blocks will be generated annually."
+msgstr ""
+
+#: templates/rnode.html:439
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"** Please note that according to changes in the market\n"
+"                                                                environment, "
+"for the sake of community interest, CPChain\n"
+"                                                                keeps the "
+"right to amend the numbers above in the\n"
+"                                                                future."
+msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+
+#: templates/security.html:73
+msgid "Elevator Operation Data Record"
+msgstr ""
+
+#: templates/security.html:98
+msgid ""
+"\n"
+"                                                        Elevator operation "
+"data, such as the real-time height of the\n"
+"                                                        elevator, up & down "
+"signal, alarm status, and emergency power\n"
+"                                                        status, they are all "
+"useful for running status monitoring, fault\n"
+"                                                        prediction, fault "
+"handling and accident rescue.\n"
+"                                                        "
+msgstr ""
+
+#: templates/security.html:112
+msgid ""
+"\n"
+"                                                        By installing "
+"sensors in elevators and elevator hoistway, the\n"
+"                                                        key\n"
+"                                                        data needed for "
+"maintenance can be collected and uploaded to the\n"
+"                                                        CPChain platform. \n"
+"                                                        "
+msgstr ""
+
+#: templates/security.html:118
+msgid ""
+"\n"
+"                                                        By utilizing the "
+"characteristics of\n"
+"                                                        Blockchain, in which "
+"data can be traced back but cannot be\n"
+"                                                        tampered\n"
+"                                                        with, the data "
+"record of elevator movement and the snapshot of\n"
+"                                                        key\n"
+"                                                        maintenance "
+"operation are stored on the chain, to provide\n"
+"                                                        reliable\n"
+"                                                        records for ACI, "
+"insurance investigation and quality assessment\n"
+"                                                        of\n"
+"                                                        maintenance.\n"
+"                                                        "
+msgstr ""
+
+#: templates/security.html:140 templates/smart-medical.html:156
+#: templates/smart-medical.html:235
+#, fuzzy
+#| msgid "Industry <br> Chains"
+msgid "Medical Industry Side Chain"
+msgstr "产业链"
+
+#: templates/security.html:150 templates/security.html:160
+#: templates/smart-medical.html:166 templates/smart-medical.html:176
+#: templates/smart-medical.html:245 templates/smart-medical.html:255
+msgid "Medicine Quality Trace"
+msgstr ""
+
+#: templates/smart-medical.html:80
+msgid "Medicine Anti-counterfeiting"
+msgstr ""
+
+#: templates/smart-medical.html:80
+msgid "and Source-tracing"
+msgstr ""
+
+#: templates/smart-medical.html:87
+msgid "AI Support for Public Health Signal Data"
+msgstr ""
+
+#: templates/smart-medical.html:108 templates/smart-medical.html:193
+msgid ""
+"\n"
+"                                                        Medicine Safety is "
+"always a public affair. Counterfeit drugs\n"
+"                                                        will do\n"
+"                                                        more harm to our "
+"health rather than healing people. If\n"
+"                                                        pharmaceutical "
+"enterprises do not handle such issues well, there\n"
+"                                                        will be very serious "
+"consequences. We can see a lot of negative\n"
+"                                                        cases caused by "
+"manufacturers tampering with production records.\n"
+"                                                        "
+msgstr ""
+
+#: templates/smart-medical.html:128
+msgid ""
+"\n"
+"                                                        In order to "
+"eliminate consumers doubts fundamentally, it is\n"
+"                                                        necessary to perfect "
+"the traceability system of drug quality and\n"
+"                                                        realize the "
+"traceability of drug information from the supply of\n"
+"                                                        raw\n"
+"                                                        materials to the "
+"whole supply chain of drug sales.\n"
+"                                                        Pharmaceutical\n"
+"                                                        companies also "
+"urgently need to build up the supply chain\n"
+"                                                        upstream\n"
+"                                                        and downstream "
+"effective communication channels. When problems\n"
+"                                                        arise, we can "
+"quickly find out the reasons and reduce the risk\n"
+"                                                        of\n"
+"                                                        responsibility. "
+"Based on the mainnet of CPChain and the\n"
+"                                                        following\n"
+"                                                        medicine industry "
+"side chain, the drugs are recorded from raw\n"
+"                                                        materials to "
+"production, sales to avoid the problem of data\n"
+"                                                        tampering in "
+"centralized system and to improve drug safety.\n"
+"                                                        "
+msgstr ""
+
+#: templates/smart-medical.html:209
+msgid ""
+"\n"
+"                                                        With PDash, the "
+"fundamental platform of CPChain, patients who\n"
+"                                                        own\n"
+"                                                        health monitoring "
+"devices, can upload their health data at their\n"
+"                                                        will to centralized "
+"or distributed cloud space, meanwhile,\n"
+"                                                        creating\n"
+"                                                        description of their "
+"data set, recording hash for the data on\n"
+"                                                        CPChain mainnet for "
+"verification. CPChain has special design for\n"
+"                                                        privacy protection "
+"in the process of data sharing. Besides, due\n"
+"                                                        to\n"
+"                                                        the fact that there "
+"is no need for real-name authentication in\n"
+"                                                        AI\n"
+"                                                        training, CPChain "
+"can provide effective support for application\n"
+"                                                        such\n"
+"                                                        as AI, with refined "
+"security of privacy.\n"
+"                                                        "
+msgstr ""

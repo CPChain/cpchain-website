@@ -24,9 +24,12 @@ class IndexView(View):
 
 class LangView(View):
     def post(self, req):
-        lang = req.GET.get("lang")
+        lang = req.POST.get("lang")
+        path = req.POST.get('path')
         activate(lang)
+        print(path)
         return redirect(reverse('index'))
+
 
 
 class NewsView(View):
@@ -79,8 +82,6 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
-
-
 
 
 

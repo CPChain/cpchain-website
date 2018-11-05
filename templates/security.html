@@ -38,21 +38,21 @@
 
                                         <div class="text-center mt-sm-0 pt-sm-0 pt-0 mt-0">
                                             <h4 class="col-10 col-sm-12 font-weight-light p-0 mx-auto text-white archivo-font">
-                                                <i>Application</i>
+                                                <i>{% blocktrans %}Application{% endblocktrans %}</i>
                                             </h4>
                                             <h1 class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto text-white poppins-font">
-                                                Public Security
+                                                {% blocktrans %}Public Security{% endblocktrans %}
                                             </h1>
                                         </div>
 
                                         <div class="pt-lg-5 flex-lg-row flex-column mt-sm-3 mt-3 d-flex main-buttons mx-auto">
                                             <a href="{% url 'app' 'intelligent-transportation' %}"
                                                class="btn fixed-width-button btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font mr-2 w-100">
-                                                Intelligent Transportation
+                                               {% blocktrans %}Intelligent Transportation{% endblocktrans %}
                                             </a>
                                             <a href="{% url 'app' 'smart-medical' %}"
                                                class="btn btn-sm btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font">
-                                                Smart Medical
+                                               {% blocktrans %}Smart Medical{% endblocktrans %}
                                             </a>
                                         </div>
 
@@ -70,7 +70,7 @@
                                                 <li class="col-md-3 col-12 pb-2">
                                                     <a class="tablinks tab_drive archivo-font" href="javascript:void(0)"
                                                        onclick="goToApplicationSwiper(0, this);">
-                                                        Elevator Operation Data Record
+                                                        {% blocktrans %}Elevator Operation Data Record{% endblocktrans %}
                                                     </a>
                                                 </li>
                                             </ul> <!-- end of header tabs -->
@@ -92,25 +92,31 @@
                                                 </div> <!-- end of image -->
                                                 <div class="col-sm col-12 ">
                                                     <h5 class="archivo-font font-italic">
-                                                        Background
+                                                        {% trans 'Background' %}
                                                     </h5>
                                                     <p class="font-weight-light archivo-font text-justify">
+                                                        {% blocktrans %}
                                                         Elevator operation data, such as the real-time height of the
                                                         elevator, up & down signal, alarm status, and emergency power
                                                         status, they are all useful for running status monitoring, fault
                                                         prediction, fault handling and accident rescue.
+                                                        {% endblocktrans %}
                                                     </p>
                                                 </div> <!-- end of desc -->
 
                                                 <div class="col-12 mt-2 py-5">
                                                     <h5 class="archivo-font font-italic mb-0">
-                                                        Solutions
+                                                        {% blocktrans %}Solutions{% endblocktrans %}
                                                     </h5><br>
                                                     <p class="font-weight-light archivo-font text-justify">
+                                                        {% blocktrans %}
                                                         By installing sensors in elevators and elevator hoistway, the
                                                         key
                                                         data needed for maintenance can be collected and uploaded to the
-                                                        CPChain platform. <br><br> By utilizing the characteristics of
+                                                        CPChain platform. 
+                                                        {% endblocktrans %}<br><br> 
+                                                        {% blocktrans %}
+                                                        By utilizing the characteristics of
                                                         Blockchain, in which data can be traced back but cannot be
                                                         tampered
                                                         with, the data record of elevator movement and the snapshot of
@@ -120,6 +126,7 @@
                                                         records for ACI, insurance investigation and quality assessment
                                                         of
                                                         maintenance.
+                                                        {% endblocktrans %}
                                                     </p>
                                                 </div> <!-- end of solutions -->
 
@@ -130,7 +137,7 @@
                                                              src="{% static '/img/application/solution-1.png' %}">
                                                     </div>
                                                     <div class="title font-weight-light archivo-font">
-                                                        Medical Industry Side Chain
+                                                        {% blocktrans %}Medical Industry Side Chain{% endblocktrans %}
                                                     </div>
                                                 </div><!-- end of solution-icons -->
 
@@ -140,7 +147,7 @@
                                                              src="{% static '/img/application/solution-2.png' %}">
                                                     </div>
                                                     <div class="title font-weight-light archivo-font">
-                                                        Medicine Quality Trace
+                                                        {% blocktrans %}Medicine Quality Trace{% endblocktrans %}
                                                     </div>
                                                 </div><!-- end of solution-icons -->
 
@@ -150,7 +157,7 @@
                                                              src="{% static '/img/application/solution-3.png' %}">
                                                     </div>
                                                     <div class="title font-weight-light archivo-font">
-                                                        Medicine Quality Trace
+                                                        {% blocktrans %}Medicine Quality Trace{% endblocktrans %}
                                                     </div>
                                                 </div> <!-- end of solution-icons -->
 
