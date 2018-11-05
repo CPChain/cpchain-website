@@ -25,7 +25,6 @@ from django.conf.urls.i18n import i18n_patterns
 indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('lang/', LangView.as_view(), name='lang'),
     path('news/', NewsView.as_view(), name='news'),
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
     path('rnode/', RnodeView.as_view(), name='rnode'),

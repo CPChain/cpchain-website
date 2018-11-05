@@ -216,46 +216,21 @@
     data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
     });
     var localUrl = window.location.pathname;
-    $.ajax({
-        async: false,
-        method: 'post',
-        dataType: 'json',
-        url: {% url 'lang' %},
-        data: {lang:'en',path:localUrl},
-        success: function(){
-            console.log('success');
-        }
 
-    })
 
     {#点击英文#}
     $(".en").click(function(){
-        $.ajax({
-            async: false,
-            method: 'post',
-            dataType: 'json',
-            url: {% url 'lang' %},
-            data: {lang:'en',path:localUrl},
-            success: function(){
-                console.log('success');
-            }
+        if (localUrl.startsWith('/zh-hans')){
+            window.location.href = '/en'+window.location.pathname.slice(8,)
+        }
 
-        })
     });
 
     {#点击中文#}
     $(".zh").click(function(){
-        $.ajax({
-            async: false,
-            method: 'post',
-            dataType: 'json',
-            url: {% url 'lang' %},
-            data: {lang:'zh-hans',path:localUrl},
-            success: function(){
-                console.log('success');
-            }
-
-        })
+        if (localUrl.startsWith('/en')) {
+            window.location.href = '/zh-hans' + window.location.pathname.slice(3,)
+        }
     })
     {#获取本地地址和语言#}
 </script>

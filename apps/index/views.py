@@ -1,9 +1,6 @@
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.http import FileResponse
-from django.urls import reverse
-from django.utils.translation import activate
 
 from pure_pagination import Paginator, PageNotAnInteger
 
@@ -20,17 +17,6 @@ class IndexView(View):
         main_teams =TeamMate.objects.filter(is_main=True)
         global_teams = TeamMate.objects.filter(is_main=False)
         return render(req, 'index.html', locals())
-
-
-class LangView(View):
-    def post(self, req):
-        lang = req.POST.get("lang")
-        path = req.POST.get('path')
-        print(lang)
-        activate(lang)
-        print(path)
-        return JsonResponse({'path':path})
-
 
 
 class NewsView(View):
