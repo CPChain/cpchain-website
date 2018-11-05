@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-02 18:45+0800\n"
+"POT-Creation-Date: 2018-11-05 10:18+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,10 @@ msgstr "RNode"
 #: templates/index.html:130
 msgid "Contact"
 msgstr "联系我们"
+
+#: templates/index.html:137
+msgid "ENG"
+msgstr "中文"
 
 #: templates/index.html:179
 msgid " A new distributed infrastructure for next generation IoT "
@@ -176,7 +180,7 @@ msgid ""
 "aggregation and mobility."
 msgstr ""
 "CPChain的价值来自物理行业效率的提高和商业模式的创新，这是数据聚合及其可流动性"
-"的 结果。"
+"的结果。"
 
 #: templates/index.html:513
 msgid "Multi-parties data transaction"
@@ -414,11 +418,11 @@ msgstr "全球社区顾问"
 
 #: templates/index.html:1072
 msgid "Investors"
-msgstr "合作伙伴"
+msgstr "投资者"
 
 #: templates/index.html:1129
 msgid "Exchanges"
-msgstr "投资者"
+msgstr "交易所"
 
 #: templates/index.html:1154
 msgid "CONTACT"
@@ -496,12 +500,3 @@ msgid ""
 "the upload file and limit it to within\n"
 "                                                                        10MB"
 msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
-
-#~ msgid "Intelligent"
-#~ msgstr "智能"
-
-#~ msgid "Smart"
-#~ msgstr "智能"
-
-#~ msgid "Medical"
-#~ msgstr "医疗"
