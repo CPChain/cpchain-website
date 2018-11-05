@@ -41,7 +41,7 @@ class Partner(models.Model):
 class New(models.Model):
     category = models.CharField(choices=NEWS_CATEGORY, max_length=50)
     title = models.CharField(max_length=50)
-    banner = models.ImageField(upload_to='img/News',null=True)
+    banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
     content = RichTextUploadingField(default='')
 
