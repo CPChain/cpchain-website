@@ -16,8 +16,8 @@ class Department(models.Model):
 class TeamMate(models.Model):
     name = models.CharField(max_length=50)
     name_zh = models.CharField(max_length=50, null=True, blank=True)
-    job = models.CharField(max_length=50)
-    job_zh = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
+    title_zh = models.CharField(max_length=50)
     image = models.ImageField(upload_to='img/Team', max_length=100, null=True, blank=True)
     desc = models.CharField(max_length=500, null=True, blank=True)
     desc_zh = models.CharField(max_length=500, null=True, blank=True)

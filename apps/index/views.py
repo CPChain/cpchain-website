@@ -17,8 +17,7 @@ class IndexView(View):
         partners = Partner.objects.filter(type='Partners')
         investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
-        # team =TeamMate.objects.all()
-
+        main_teams =TeamMate.objects.filter(department='R&D')
         return render(req, 'index.html', locals())
 
 
