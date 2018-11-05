@@ -50,3 +50,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'index.views.page_not_found'
+handler500 = 'index.views.page_error'

@@ -17,7 +17,8 @@ class IndexView(View):
         partners = Partner.objects.filter(type='Partners')
         investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
-        main_teams =TeamMate.objects.filter(department='R&D')
+        main_teams =TeamMate.objects.filter(is_main=True)
+        global_teams = TeamMate.objects.filter(is_main=False)
         return render(req, 'index.html', locals())
 
 
@@ -78,3 +79,17 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
+
+
+def page_not_found(request):
+    from django.shortcuts import render_to_response
+    response = render_to_response('404.html',{})
+    response.status_code = 404
+    return response
+
+
+def page_error(request):
+    from django.shortcuts import render_to_response
+    response = render_to_response('500.html',{})
+    response.status_code = 500
+    return response

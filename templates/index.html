@@ -1054,19 +1054,20 @@
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
-                                                    <a href="javascript:void(0)" onclick="switchTeamCategory('rd')">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamCategory('rd')">
                                                         {% trans 'R&D' %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)"
-                                                       onclick="switchTeamCategory('marketing')">
+                                                       onclick="switchTeamCategory('Marketing')">
                                                         {% trans 'Marketing' %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                     <a href="javascript:void(0)"
-                                                       onclick="switchTeamCategory('administrative')">
+                                                       onclick="switchTeamCategory('Administrative')">
                                                         {% trans 'Administrative' %}
                                                     </a>
                                                 </li>
@@ -1126,13 +1127,13 @@
                                                 </li>
                                                 <li class="choice choice-en-ambassadors">
                                                     <a href="javascript:void(0)"
-                                                       onclick="switchTeamAmbassadors('ambassadors')">
+                                                       onclick="switchTeamAmbassadors('Global Ambassador')">
                                                         {% blocktrans %}Global Ambassador{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="choice choice-en-ambassadors">
                                                     <a href="javascript:void(0)"
-                                                       onclick="switchTeamAmbassadors('advisors')">
+                                                       onclick="switchTeamAmbassadors('Global Community Advisors')">
                                                         {% blocktrans %}Global Community Advisors{% endblocktrans %}
                                                     </a>
                                                 </li>
@@ -1973,138 +1974,43 @@
 
     //First swiper for team category
     var teamsAmbassadors = [
-        {
-            en: {
-                name: 'Tommo Coumans',
-                category: 'Global Community Advisors',
-                title: 'CPChain Community Advisor',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/tommo.png',
-                content: 'Tommo is from the Netherlands and has a background in design, photography and clinical nutrition/research. He has worked as an admin for various big communities and has prior experience in Marketing/Design for various companies.',
+        {% for p in global_teams %}
+            {
+                en: {
+                    name: '{{ p.name }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                },
+                ch: {
+                    name: '{{ p.name }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title_zh }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                }
             },
-            ch: {
-                name: 'Tommo Coumans',
-                category: 'Global Community Advisors',
-                title: 'CPChain全球社区顾问',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/tommo.png',
-                content: 'Tommo is from the Netherlands and has a background in design, photography and clinical nutrition/research. He has worked as an admin for various big communities and has prior experience in Marketing/Design for various companies.',
-            }
-        },
-        {
-            en: {
-                name: 'Casper Arntzen',
-                category: 'advisors',
-                title: 'CPChain Community Advisor',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/Casper.png',
-                content: 'Skilled in developing new businesses and nurturing the key relationships required to create win-win scenarios. My experiences ensure continued success in the areas of business development, strategic planning, marketing, and staff motivation.I thoroughly enjoy bringing my motivated work ethic and can-do attitude to my passion for financial markets and Blockchain technology. Throughout my career, I’ve acquired an excellent network of successful and highly skilled contacts that are high-level professionals in their relevant fields and, like me, have a passion for the work which they do.',
-            },
-            ch: {
-                name: 'Casper Arntzen',
-                category: 'advisors',
-                title: 'CPChain全球社区顾问',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/Casper.png',
-                content: 'Skilled in developing new businesses and nurturing the key relationships required to create win-win scenarios. My experiences ensure continued success in the areas of business development, strategic planning, marketing, and staff motivation.I thoroughly enjoy bringing my motivated work ethic and can-do attitude to my passion for financial markets and Blockchain technology. Throughout my career, I’ve acquired an excellent network of successful and highly skilled contacts that are high-level professionals in their relevant fields and, like me, have a passion for the work which they do.',
-            }
-        },
-        {
-            en: {
-                name: 'Mike Hendley',
-                category: 'ambassadors',
-                title: 'CPChain Global Ambassador',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/mike_hendley.png',
-                content: 'Mike Hendley is a cryptocurrency analyst, blockchain business strategist, and former cryptocurrency portfolio manager for high net-worth individuals.  He helped to spearhead the ethereum classic movement starting etcminer.com (which he sold), a primer on mining ethereum classic, gaining a following, and becoming well known in the ecosystem. Hendley has helped hundreds of people grow their wealth through investment in cryptocurrencies, starting his own private network of investors in early 2017.  He was also the former Director of Investor Relations as well as the Lead Cryptocurrency Analyst at xCoins, a leading global bitcoin exchange, located in Santa Monica, CA.  Additionally, Hendley was the Senior Sales Manager at International Blockchain Consulting.',
-            },
-            ch: {
-                name: 'Mike Hendley',
-                category: 'ambassadors',
-                title: 'CPChain全球大使',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/mike_hendley.png',
-                content: 'Mike Hendley is a cryptocurrency analyst, blockchain business strategist, and former cryptocurrency portfolio manager for high net-worth individuals.  He helped to spearhead the ethereum classic movement starting etcminer.com (which he sold), a primer on mining ethereum classic, gaining a following, and becoming well known in the ecosystem. Hendley has helped hundreds of people grow their wealth through investment in cryptocurrencies, starting his own private network of investors in early 2017.  He was also the former Director of Investor Relations as well as the Lead Cryptocurrency Analyst at xCoins, a leading global bitcoin exchange, located in Santa Monica, CA.  Additionally, Hendley was the Senior Sales Manager at International Blockchain Consulting.',
-            }
-        },
-        {
-            en: {
-                name: 'Steven Rubin',
-                category: 'advisors',
-                title: 'CPChain Community Advisor',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/steven.png',
-                content: ' Steven from Switzerland has his background in the finance and banking industry. He worked for reputable banks and brokers including an assignment of a global fortune 500 company in Asia. Beside his Trading License he has degrees in Strategic Marketing and Sales Management. The last years Steven was advising and investing in startups in Switzerland and Thailand.',
-            },
-            ch: {
-                name: 'Steven Rubin',
-                category: 'advisors',
-                title: 'CPChain全球社区顾问',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/steven.png',
-                content: ' Steven from Switzerland has his background in the finance and banking industry. He worked for reputable banks and brokers including an assignment of a global fortune 500 company in Asia. Beside his Trading License he has degrees in Strategic Marketing and Sales Management. The last years Steven was advising and investing in startups in Switzerland and Thailand.',
-            }
-        },
-        {
-            en: {
-                name: 'Parth Soni',
-                category: 'advisors',
-                title: 'CPChain Community Advisor',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/parth.png',
-                content: 'Parth works as a Project Manager in the engineering industry within the United States, he has experience with advising and community management for Blockchain projects. He has a passion for being detail-oriented and improving process effectiveness.',
-            },
-            ch: {
-                name: 'Parth Soni',
-                category: 'advisors',
-                title: 'CPChain全球社区顾问',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/parth.png',
-                content: 'Parth works as a Project Manager in the engineering industry within the United States, he has experience with advising and community management for Blockchain projects. He has a passion for being detail-oriented and improving process effectiveness.',
-            }
-        },
-        {
-            en: {
-                name: 'Martijn van de Weerdt',
-                category: 'ambassadors',
-                title: 'CPChain Global Ambassador',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/martijnvdw.png',
-                content: ' Martijn has experience in (technology) consulting at renowed top tier consultancy firms within Financial Services. As Financial Services were early adopters of distributed ledger technologies, Martijn came in contact with blockchain a long time ago and have been developing his knowledge ever since. His consulting expertise lies in blockchain, strategy, and RegTech. Especially the intersection of those three expertise areas are of particular interest for Martijn. Besides his consultancy work and his own blockchain consulting start-up, Martijn is actively involved in CPChain and became an ambassador of CPChain in July. Martijn holds two bachelor degrees and a MSc in strategic management (honours). ',
-            },
-            ch: {
-                name: 'Martijn van de Weerdt',
-                category: 'ambassadors',
-                title: 'CPChain全球大使',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/martijnvdw.png',
-                content: ' Martijn has experience in (technology) consulting at renowed top tier consultancy firms within Financial Services. As Financial Services were early adopters of distributed ledger technologies, Martijn came in contact with blockchain a long time ago and have been developing his knowledge ever since. His consulting expertise lies in blockchain, strategy, and RegTech. Especially the intersection of those three expertise areas are of particular interest for Martijn. Besides his consultancy work and his own blockchain consulting start-up, Martijn is actively involved in CPChain and became an ambassador of CPChain in July. Martijn holds two bachelor degrees and a MSc in strategic management (honours). ',
-            },
+        {% endfor %}
 
-        },
-        {
-            en: {
-                name: 'Rune',
-                category: 'advisors',
-                title: 'CPChain Community Advisor',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/profile.png',
-                content: '',
-            },
-            ch: {
-                name: 'Rune',
-                category: 'advisors',
-                title: 'CPChain全球社区顾问',
-                image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/profile.png',
-                content: '',
-            },
 
-        },
+
     ];
 
     // Second swiper for team category
     var teams = [
-        {% for exchange in exchanges %}
+        {% for p in main_teams %}
             {
 
                 en: {
-                    name: 'Dr. Matthew Ma',
-                    category: 'rd',
-                    title: 'R&D Director',
-                    image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/shiyao.png',
+                    name: '{{ p.name }}:{{ p.department }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
                 },
                 ch: {
-                    name: 'Dr. Matthew Ma',
-                    category: 'rd',
-                    title: '研发总监',
-                    image: homeURL + 'wp-content/themes/cpchain/assets/img/Team/shiyao.png',
+                    name: '{{ p.name_zh }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title_zh }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
                 }
             },
         {% endfor %}

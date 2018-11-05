@@ -18,9 +18,9 @@ class GlobalSettings(object):
 
 
 class TeamMatesAdmin:
-    list_display = ['name', 'name_zh', 'job', 'job_zh', 'image', 'desc', 'desc_zh', 'department', ]
-    search_fields = ['name', 'name_zh', 'job', 'job_zh', 'image', 'desc', 'desc_zh', 'department', ]
-    list_filter = ['name', 'name_zh', 'job', 'department', ]
+    list_display = ['name', 'name_zh', 'title', 'title_zh', 'image', 'desc', 'desc_zh', 'department', ]
+    search_fields = ['name', 'name_zh', 'title', 'title_zh', 'image', 'desc', 'desc_zh', 'department', ]
+    list_filter = ['name', 'name_zh', 'title', 'department', ]
 
 
 class DeptAdmin:

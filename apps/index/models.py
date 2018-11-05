@@ -22,6 +22,7 @@ class TeamMate(models.Model):
     desc = models.CharField(max_length=500, null=True, blank=True)
     desc_zh = models.CharField(max_length=500, null=True, blank=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    is_main = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
