@@ -147,8 +147,8 @@
                                     </svg>
                                 </div>
                                 <ul class="dropdown-menu list-unstyled rounded">
-                                    <a href="{% url 'lang' %}?lang=en" class="small">ENG</a>
-                                    <a href="{% url 'lang' %}?lang=zh-hans" class="small">中文</a>
+                                    <a href="{% url 'lang' %}?lang=en" class="small en">ENG</a>
+                                    <a href="{% url 'lang' %}?lang=zh-hans" class="small zh">中文</a>
                                 </ul>
                             </div>
                         </li>
@@ -1604,6 +1604,52 @@
 <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
 
 <script>
+    {#获取本地地址和语言#}
+    var localUrl = window.location.pathname;
+    $.ajax({
+        async: false,
+        method: 'post',
+        dataType: 'json',
+        url: {% url 'lang' %},
+        data: {lang:'en',path:localUrl},
+        success: function(){
+            console.log('success');
+        }
+
+    })
+
+    {#点击英文#}
+    $(".en").click(function(){
+        $.ajax({
+            async: false,
+            method: 'post',
+            dataType: 'json',
+            url: {% url 'lang' %},
+            data: {lang:'en',path:localUrl},
+            success: function(){
+                console.log('success');
+            }
+
+        })
+    });
+
+    {#点击中文#}
+    $(".zh").click(function(){
+        $.ajax({
+            async: false,
+            method: 'post',
+            dataType: 'json',
+            url: {% url 'lang' %},
+            data: {lang:'zh-hans',path:localUrl},
+            success: function(){
+                console.log('success');
+            }
+
+        })
+    })
+    {#获取本地地址和语言#}
+
+
     $(".teamDown").click(function () {
         $('.teamList').css("display", "block");
     })
