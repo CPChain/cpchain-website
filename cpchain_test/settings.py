@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 SECRET_KEY = 'hunoh46%2z52^z1s%gu#b+02ezjv9ba^e!b*4b*txxuijqw^m!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,7 +141,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # for deployment
-# STATIC_ROOT = '/static/'
+# STATIC_ROOT = '/srv/www/cpc_django/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'

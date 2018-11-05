@@ -81,15 +81,10 @@ class AppView(View):
         return render(req, app + '.html')
 
 
+
 def page_not_found(request):
-    from django.shortcuts import render_to_response
-    response = render_to_response('404.html',{})
-    response.status_code = 404
-    return response
+    return render(request, 'errors/page_404.html')
 
 
-def page_error(request):
-    from django.shortcuts import render_to_response
-    response = render_to_response('500.html',{})
-    response.status_code = 500
-    return response
+def server_error(request):
+    return render(request, 'errors/page_500.html')

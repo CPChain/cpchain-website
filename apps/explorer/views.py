@@ -14,7 +14,7 @@ CLIENT = MongoClient(host='127.0.0.1', port=27017)
 
 
 def explorer(request):
-    return render(request, 'explorer.html')
+    return render(request, 'explorer/explorer.html')
 
 
 @accept_websocket
@@ -98,7 +98,7 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
-    return render(req, 'block_list.html', {'blocks': blocks})
+    return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
 def block(req, block_identifier):
@@ -126,7 +126,7 @@ def block(req, block_identifier):
     # blockReward = block_dict['']
     extraData = block_dict['extraData']
 
-    return render(req, 'block_info.html', locals())
+    return render(req, 'explorer/block_info.html', locals())
 
 
 def txs(req):
@@ -141,7 +141,7 @@ def txs(req):
         all_txs = collections.find().sort('_id', DESCENDING)
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
-        return render(req, 'txs_list.html', {'txs': txs})
+        return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
     txs_from_block = list(collections.find({'blockNumber': int(block)}))
     # page
@@ -152,7 +152,7 @@ def txs(req):
     all_txs = txs_from_block
     p = Paginator(all_txs, 25, request=req)
     txs = p.page(page)
-    return render(req, 'txs_from_block.html', {'txs': txs, 'blockNumber': block})
+    return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
 
 
 def tx(req, tx_hash):
@@ -168,7 +168,7 @@ def tx(req, tx_hash):
         tx_dict['status'] = 'Pending'
     else:
         tx_dict['status'] = status
-    return render(req, 'tx_info.html', {'tx_dict': tx_dict})
+    return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
 
 def address(req, address):
@@ -195,12 +195,12 @@ def address(req, address):
     if txs_count > 25:
         txs = txs[:25]
 
-    return render(req, 'address.html', {'txs': txs,
+    return render(req, 'explorer/address.html', {'txs': txs,
                                         'address': raw_address,
                                         'balance': balance,
                                         'txs_count': txs_count
-                                        })
+                                                 })
 
 
 def contract(req, contract):
-    return render(req, 'contract.html')
+    return render(req, 'explorer/contract.html')
