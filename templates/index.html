@@ -147,8 +147,8 @@
                                     </svg>
                                 </div>
                                 <ul class="dropdown-menu list-unstyled rounded">
-                                    <a class="small en">ENG</a>
-                                    <a class="small zh">中文</a>
+                                    <a href="javascript:void(0);" class="small en">ENG</a>
+                                    <a href="javascript:void(0);" class="small zh">中文</a>
                                 </ul>
                             </div>
                         </li>
@@ -1605,6 +1605,9 @@
 
 <script>
     {#获取本地地址和语言#}
+    $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
     var localUrl = window.location.pathname;
     $.ajax({
         async: false,

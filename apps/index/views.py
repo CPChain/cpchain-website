@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.http import FileResponse
@@ -26,9 +26,10 @@ class LangView(View):
     def post(self, req):
         lang = req.POST.get("lang")
         path = req.POST.get('path')
+        print(lang)
         activate(lang)
         print(path)
-        return redirect(reverse('index'))
+        return JsonResponse({'path':path})
 
 
 
