@@ -212,16 +212,17 @@
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
     {#获取本地地址和语言#}
-    $.ajaxSetup({
-    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-    });
     var localUrl = window.location.pathname;
 
 
     {#点击英文#}
     $(".en").click(function(){
+
         if (localUrl.startsWith('/zh-hans')){
             window.location.href = '/en'+window.location.pathname.slice(8,)
+        }
+        else if(!(localUrl.startsWith('/zh-hans')||localUrl.startsWith('/en'))){
+            window.location.href = '/en'+window.location.pathname
         }
 
     });
@@ -230,6 +231,9 @@
     $(".zh").click(function(){
         if (localUrl.startsWith('/en')) {
             window.location.href = '/zh-hans' + window.location.pathname.slice(3,)
+        }
+        else if(!(localUrl.startsWith('/zh-hans')||localUrl.startsWith('/en'))){
+            window.location.href = '/zh-hans'+window.location.pathname
         }
     })
     {#获取本地地址和语言#}
