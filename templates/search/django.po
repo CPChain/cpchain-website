@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 18:57+0800\n"
+"POT-Creation-Date: 2018-11-05 17:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/base.html:73 templates/index.html:100 templates/index.html:429
-#: templates/intelligent-transportation.html:50 templates/security.html:42
-#: templates/smart-medical.html:49
+#: templates/index.html:100 templates/index.html:429
+#: templates/intelligent-transportation.html:49 templates/security.html:41
+#: templates/smart-medical.html:48
 msgid "Application"
 msgstr "应用"
 
-#: templates/base.html:78 templates/index.html:105 templates/index.html:558
+#: templates/index.html:105 templates/index.html:558
 msgid "Roadmap"
 msgstr "路线图"
 
-#: templates/base.html:83 templates/index.html:110 templates/index.html:797
+#: templates/index.html:110 templates/index.html:797
 msgid "Team"
 msgstr "团队"
 
-#: templates/base.html:88 templates/index.html:115
+#: templates/index.html:115
 msgid "News"
 msgstr "新闻"
 
-#: templates/base.html:93 templates/index.html:120 templates/index.html:1064
+#: templates/index.html:120 templates/index.html:1064
 msgid "Partners"
 msgstr "合作伙伴"
-
-#: templates/base.html:103 templates/index.html:130
-msgid "Contact"
-msgstr "联系我们"
-
-#: templates/base.html:110 templates/index.html:137
-msgid "ENG"
-msgstr "中文"
 
 #: templates/index.html:125
 msgid "RNode"
 msgstr "RNode"
+
+#: templates/index.html:130
+msgid "Contact"
+msgstr "联系我们"
+
+#: templates/index.html:137
+msgid "ENG"
+msgstr "中文"
 
 #: templates/index.html:179
 msgid " A new distributed infrastructure for next generation IoT "
@@ -503,46 +503,64 @@ msgid ""
 "                                                                        10MB"
 msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
 
-#: templates/intelligent-transportation.html:53 templates/security.html:52
-#: templates/smart-medical.html:59
+#: templates/intelligent-transportation.html:52 templates/security.html:51
+#: templates/smart-medical.html:58
+#, fuzzy
+#| msgid "Intelligent <br> Transportation"
 msgid "Intelligent Transportation"
 msgstr "智能交通"
 
-#: templates/intelligent-transportation.html:60 templates/security.html:56
-#: templates/smart-medical.html:52
+#: templates/intelligent-transportation.html:59 templates/security.html:55
+#: templates/smart-medical.html:51
+#, fuzzy
+#| msgid "Smart <br> Medical"
 msgid "Smart Medical"
 msgstr "智能医疗"
 
-#: templates/intelligent-transportation.html:64 templates/security.html:45
-#: templates/smart-medical.html:63
+#: templates/intelligent-transportation.html:63 templates/security.html:44
+#: templates/smart-medical.html:62
+#, fuzzy
+#| msgid "Public <br> Security"
 msgid "Public Security"
 msgstr "公共安全"
 
-#: templates/intelligent-transportation.html:82
-msgid "Drive License <br> Training Record"
-msgstr "驾校学员驾驶记录"
+#: templates/intelligent-transportation.html:81
+msgid "Drive License"
+msgstr "驾校学员"
 
-#: templates/intelligent-transportation.html:89
-msgid "Vehicle and driver’s operations<br> data record"
-msgstr "车辆和司机操作数据记录"
+#: templates/intelligent-transportation.html:81
+msgid "Training Record"
+msgstr "驾驶记录"
 
-#: templates/intelligent-transportation.html:96
-msgid "Oil product QR code anti-<br>counterfeiting traceability"
-msgstr "油品二维码防伪溯源"
+#: templates/intelligent-transportation.html:88
+msgid "Vehicle and driver’s operations"
+msgstr "车辆和司机操作"
 
-#: templates/intelligent-transportation.html:103
+#: templates/intelligent-transportation.html:88
+msgid "data record"
+msgstr "数据记录"
+
+#: templates/intelligent-transportation.html:95
+msgid "Oil product QR code anti-"
+msgstr "油品二维码防"
+
+#: templates/intelligent-transportation.html:95
+msgid "counterfeiting traceability"
+msgstr "伪溯源"
+
+#: templates/intelligent-transportation.html:102
 msgid "Garage automatic parking"
 msgstr "车库自动泊车付费"
 
-#: templates/intelligent-transportation.html:119
-#: templates/intelligent-transportation.html:183
-#: templates/intelligent-transportation.html:246
-#: templates/intelligent-transportation.html:310 templates/security.html:96
-#: templates/smart-medical.html:104 templates/smart-medical.html:167
+#: templates/intelligent-transportation.html:118
+#: templates/intelligent-transportation.html:181
+#: templates/intelligent-transportation.html:244
+#: templates/intelligent-transportation.html:308 templates/security.html:95
+#: templates/smart-medical.html:103 templates/smart-medical.html:166
 msgid "Background"
 msgstr "背景"
 
-#: templates/intelligent-transportation.html:124
+#: templates/intelligent-transportation.html:123
 msgid ""
 " There are more than 25 million new drivers increased each year in China. In "
 "2017, there were more than 360 million drivers in total. According to the "
@@ -553,27 +571,20 @@ msgid ""
 "affects the training quality and causes the potential public safety "
 "problems. "
 msgstr ""
-"中国每年新增的机动车驾驶人超过2500万人。2017年，驾驶总人数已经超过3.6亿。 根"
-"据中国交通运输部《机动车驾驶员培训管理规定》，驾校必须保证学员的培训学时达"
-"标。但是近年来，为了速成，屡现驾校伪造培训记录，影响培训质量，造成公共安全隐"
-"患。"
+"中国每年新增的机动车驾驶人超过2500万人。"
+"2017年，驾驶总人数已经超过3.6亿。 根据中国交通运输部《机动车驾驶员培训管理规定》，"
+"驾校必须保证学员的培训学时达标。但是近年来，为了速成，屡现驾校伪造培训记录，影响培训质量，"
+"造成公共安全隐患。"
 
-#: templates/intelligent-transportation.html:125 templates/rnode.html:226
-msgid ""
-"** Please note that according to changes in the market environment, for the "
-"sake of community interest, CPChain keeps the right to amend the numbers "
-"above in the future."
-msgstr "**注：本文中的数据可能会随着时间发生改变，CPChain享有唯一官方解释权。"
-
-#: templates/intelligent-transportation.html:135
-#: templates/intelligent-transportation.html:192
-#: templates/intelligent-transportation.html:261
-#: templates/intelligent-transportation.html:319 templates/security.html:105
-#: templates/smart-medical.html:119 templates/smart-medical.html:176
+#: templates/intelligent-transportation.html:133
+#: templates/intelligent-transportation.html:190
+#: templates/intelligent-transportation.html:259
+#: templates/intelligent-transportation.html:317 templates/security.html:104
+#: templates/smart-medical.html:118 templates/smart-medical.html:175
 msgid "Solutions"
 msgstr "解决方案"
 
-#: templates/intelligent-transportation.html:138
+#: templates/intelligent-transportation.html:136
 msgid ""
 " Through IoT terminal equipment, the cadets image are sampled at random "
 "intervals, and compared with the original registered and verified images to "
@@ -584,26 +595,25 @@ msgid ""
 "and verify. By integrating with blockchain technology, records cannot be "
 "tampered with and thus eliminating false training history. "
 msgstr ""
-"使用物联网终端设备，使用随机间隔的方式，采集驾驶学员的生物特征样本。然后比对"
-"终端和原始采集的图像，一旦发现不匹配的情形，即可及时报警。同时，利用CPChain的"
-"PDash平台，在一定时间内，加密分布式存储驾驶学员的数据样本。文件数据散列存储在"
-"区块链上，可供监管机构抽查验证。数据一旦上链，记录不可篡改，培训机构也无从造"
-"假，公共安全也得到了一定程度上的保护。 "
+"使用物联网终端设备，使用随机间隔的方式，采集驾驶学员的生物特征样本。然后比对终端和原始采集的图像，"
+"一旦发现不匹配的情形，即可及时报警。同时，利用CPChain的PDash平台，在一定时间内，"
+"加密分布式存储驾驶学员的数据样本。文件数据散列存储在区块链上，可供监管机构抽查验证。"
+"数据一旦上链，记录不可篡改，培训机构也无从造假，公共安全也得到了一定程度上的保护。 "
 
-#: templates/intelligent-transportation.html:149
+#: templates/intelligent-transportation.html:147
 msgid "Original Image Sampling"
 msgstr "原始图像采样"
 
-#: templates/intelligent-transportation.html:159
-#: templates/intelligent-transportation.html:216
+#: templates/intelligent-transportation.html:157
+#: templates/intelligent-transportation.html:214
 msgid "PDash Encrypted Storage"
 msgstr "PDash加密存储"
 
-#: templates/intelligent-transportation.html:169
+#: templates/intelligent-transportation.html:167
 msgid "Untampered Data"
 msgstr "记录不可篡改"
 
-#: templates/intelligent-transportation.html:186
+#: templates/intelligent-transportation.html:184
 msgid ""
 " By implementing OBD or other on-board devices to monitoring the driving "
 "behavior, personalized insurance can be realized. When car accident happens, "
@@ -616,13 +626,12 @@ msgid ""
 "as well as concerns about users’ privacy. It also limits the development of "
 "UBI services. "
 msgstr ""
-"OBD等车载设备可以收集测量车辆的行驶过程，以及司机的操作记录。这些数据可以给个"
-"性化保险提供数据支持，更准确地判断出险原因，更精确地计算保险金额和折扣。此"
-"外，行驶数据和操作记录也可以在交易二手车时，更合理地估算车辆的剩余价值。目"
-"前，以UBI保险为例，保险公司利用OBD设备和平台生产商等合作伙伴的数据，计算用户"
-"UBI保险费用。囿于数据的信任问题，和对用户隐私的顾虑，UBI业务发展受限。 "
+"OBD等车载设备可以收集测量车辆的行驶过程，以及司机的操作记录。这些数据可以给个性化保险提供数据支持，"
+"更准确地判断出险原因，更精确地计算保险金额和折扣。此外，行驶数据和操作记录也可以在交易二手车时，"
+"更合理地估算车辆的剩余价值。目前，以UBI保险为例，保险公司利用OBD设备和平台生产商等合作伙伴的数据，"
+"计算用户UBI保险费用。囿于数据的信任问题，和对用户隐私的顾虑，UBI业务发展受限。 "
 
-#: templates/intelligent-transportation.html:195
+#: templates/intelligent-transportation.html:193
 msgid ""
 " CPChain’s PDash platform can encrypt the UBI or other services necessary "
 "for the device to be cached in a certain period of time, and then store it "
@@ -631,23 +640,23 @@ msgid ""
 "recorded on the main chain of CPChain, providing data support for UBI "
 "investigation and calculation, second-hand vehicle valuation and so on. "
 msgstr ""
-"CPChain的PDash平台能够在保证用户隐私的前提下，得到用户授权后，把设备在一定周"
-"期内缓存的必需数据加密，然后存储在云存储或分布式存储上。同时把这部分数据的哈"
-"希值记录到CPChain的主链上，为UBI保险调查和计算，二手车辆估价等提供数据支撑。"
+"CPChain的PDash平台能够在保证用户隐私的前提下，得到用户授权后，把设备在一定周期内缓存的必需数据加密，"
+"然后存储在云存储或分布式存储上。同时把这部分数据的哈希值记录到CPChain的主链上，为UBI保险调查和计算，"
+"二手车辆估价等提供数据支撑。"
 
-#: templates/intelligent-transportation.html:206
+#: templates/intelligent-transportation.html:204
 msgid "User Privacy Protection"
 msgstr "用户隐私保护"
 
-#: templates/intelligent-transportation.html:226
+#: templates/intelligent-transportation.html:224
 msgid "UBI Investigation"
 msgstr "UBI保险调查"
 
-#: templates/intelligent-transportation.html:236
+#: templates/intelligent-transportation.html:234
 msgid "Used car value assessment"
 msgstr "二手车买卖估价"
 
-#: templates/intelligent-transportation.html:251
+#: templates/intelligent-transportation.html:249
 msgid ""
 " In the after-sales segment of the car, the problem of oil counterfeiting is "
 "not uncommon. The existing anti-counterfeiting and recording methods are not "
@@ -655,10 +664,10 @@ msgid ""
 "process of circulation has been repeatedly banned, and counterfeit goods are "
 "difficult to source. "
 msgstr ""
-"在汽车售后环节，油品假冒问题屡见不鲜。现有的防伪、记录方法效果不高，实用性也"
-"不佳。流通过程中的窜货现象屡禁不止，伪劣品很难朔源。"
+"在汽车售后环节，油品假冒问题屡见不鲜。现有的防伪、记录方法效果不高，实用性也不佳。"
+"流通过程中的窜货现象屡禁不止，伪劣品很难朔源。"
 
-#: templates/intelligent-transportation.html:264
+#: templates/intelligent-transportation.html:262
 msgid ""
 " CPChain proposed a two-dimensional code anti-counterfeiting traceability "
 "system based on blockchain. After the manufacturer finished production, the "
@@ -668,33 +677,32 @@ msgid ""
 "the consumer's rights and interests are not damaged, and the oil production, "
 "logistics, warehousing, sales and other aspects are closely linked. "
 msgstr ""
-"CPChain提出基于区块链的二维码防伪溯源系统，让厂家结束生产后，将附有油品生产日"
-"期、原材料批次和产地等溯源相关信息设成二维码，上传区块链。终端消费者可扫描二"
-"维码验证油品，确保消费者权益不受损害，油品的生产、物流、仓储、销售等各个环节"
-"也紧密地联系在一起。 "
+"
+CPChain提出基于区块链的二维码防伪溯源系统，让厂家结束生产后，将附有油品生产日期、"
+"原材料批次和产地等溯源相关信息设成二维码，上传区块链。终端消费者可扫描二维码验证油品，"
+"确保消费者权益不受损害，油品的生产、物流、仓储、销售等各个环节也紧密地联系在一起。 "
 
-#: templates/intelligent-transportation.html:275
+#: templates/intelligent-transportation.html:273
 msgid "QR Code Sanning & Authentication"
 msgstr "二维码扫码防伪"
 
-#: templates/intelligent-transportation.html:285
+#: templates/intelligent-transportation.html:283
 msgid "Record source information on the chain"
 msgstr "溯源信息上链 "
 
-#: templates/intelligent-transportation.html:295
+#: templates/intelligent-transportation.html:293
 msgid "Control the supply chain"
 msgstr "监控窜货问题 "
 
-#: templates/intelligent-transportation.html:313
+#: templates/intelligent-transportation.html:311
 msgid ""
 " With the continuous intelligence of motor vehicles and the large amount of "
 "relevant data, the rational and full utilization of vehicle data has great "
 "practical significance. "
 msgstr ""
-"随着机动车的不断智能化和相关数据的大量产生，车辆数据的合理充分利用就有了很大"
-"的现实意义。"
+"随着机动车的不断智能化和相关数据的大量产生，车辆数据的合理充分利用就有了很大的现实意义。"
 
-#: templates/intelligent-transportation.html:322
+#: templates/intelligent-transportation.html:320
 msgid ""
 " CPChain envisions a vehicle equipped with an embedded wallet device that "
 "encrypts the data and uploads it to the PDash platform. When parking, "
@@ -703,27 +711,27 @@ msgid ""
 "feeling, real-time, and safe. At the same time, data utilization is "
 "realized, and the terminal quickly and automatically trades. "
 msgstr ""
-"CPChain的PDash平台能够在保证用户隐私的前提下，得到用户授权后，把设备在一定周"
-"期内缓存的必需数据加密，然后存储在云存储或分布式存储上。同时把这部分数据的哈"
-"希值记录到CPChain的主链上，为UBI保险调查和计算，二手车辆估价等提供数据支撑。 "
+"CPChain的PDash平台能够在保证用户隐私的前提下，得到用户授权后，"
+"把设备在一定周期内缓存的必需数据加密，然后存储在云存储或分布式存储上。"
+"同时把这部分数据的哈希值记录到CPChain的主链上，为UBI保险调查和计算，二手车辆估价等提供数据支撑。 "
 
-#: templates/intelligent-transportation.html:333
+#: templates/intelligent-transportation.html:331
 msgid "Vehicle-carry Nlockchain Coinpurse"
 msgstr "车载区块链钱包"
 
-#: templates/intelligent-transportation.html:343
+#: templates/intelligent-transportation.html:341
 msgid "Benefit from Uploaded Data"
 msgstr "上传数据获益"
 
-#: templates/intelligent-transportation.html:353
+#: templates/intelligent-transportation.html:351
 msgid "Senseless payment"
 msgstr "机器间无感支付 "
 
-#: templates/rnode.html:29
+#: templates/rnode.html:28
 msgid "CPChain — RNode Ecosystem Structure"
 msgstr "CPChain — RNode Ecosystem Structure"
 
-#: templates/rnode.html:38
+#: templates/rnode.html:37
 msgid ""
 "The origin of Blockchain is distributed ledger technology and "
 "decentralization to develop a fair distribution of digital assets. In the "
@@ -732,72 +740,74 @@ msgid ""
 "from such participation is directly related to the contribution from the "
 "nodes."
 msgstr ""
-"区块链的本质是通过分布式记账，抹除中心节点，实现数字化资产的公平分配。在"
-"CPChain 建立的生态系统里，节点都可参与，收益与信誉度值成正比。"
+"区块链的本质是通过分布式记账，抹除中心节点，实现数字化资产的公平分配。"
+"在CPChain 建立的生态系统里，节点都可参与，收益与信誉度值成正比。"
 
-#: templates/rnode.html:41
+#: templates/rnode.html:40
 msgid "Below you can find the CPChain RNode Ecosystem Structure chart:"
 msgstr "具体流程和运作方式如图： "
 
-#: templates/rnode.html:51
+#: templates/rnode.html:50
 msgid "CPChain RNode Structure working flow"
 msgstr "CPChain RNode 架构流程图"
 
-#: templates/rnode.html:60
+#: templates/rnode.html:59
 msgid "1. CPChain Nodes Roles"
 msgstr "1. CPChain生态节点类型"
 
-#: templates/rnode.html:62
+#: templates/rnode.html:61
 msgid "Economy Node: "
 msgstr "经济节点"
 
-#: templates/rnode.html:62
+#: templates/rnode.html:61
 msgid ""
 "Requires a minimum of 20,000 CPC tokens for participation. Investors who "
 "meet this requirement may participate as an economy node and have the right "
 "to vote in the community."
-msgstr "CPChain生态系统中重要的物联网行业合作伙伴和开发团队。 "
+msgstr ""
+"CPChain生态系统中重要的物联网行业合作伙伴和开发团队。 "
 
-#: templates/rnode.html:65
+#: templates/rnode.html:64
 msgid "Reputation Node: "
 msgstr "计算与存储节点"
 
-#: templates/rnode.html:65
+#: templates/rnode.html:64
 msgid ""
 "Requires a minimum of 200,000 CPC tokens for participation. Investors with "
 "the basic configuration of computing and storing can participate to support "
 "the CPChain Open Transmission Protocol (COTP)."
 msgstr ""
-"拥有基础的软硬件和网络配置（如计算、存储、安全和网络性能配置），支持COTP "
-"(CPChain Open Transfer Protocol)的用户；"
+"拥有基础的软硬件和网络配置（如计算、存储、安全和网络性能配置），"
+"支持COTP (CPChain Open Transfer Protocol)的用户；"
 
-#: templates/rnode.html:68
+#: templates/rnode.html:67
 msgid "Industry Node: "
 msgstr "经济节点"
 
-#: templates/rnode.html:68
+#: templates/rnode.html:67
 msgid ""
 "IoT Industry partners and CPChain ecosystem’s peer developers have the right "
 "to participate as an Industry Node."
 msgstr ""
-"至少2万个CPC的持有者。成为经济节点，并锁定2万个以上CPC，即可与荣誉 节点分享基"
-"础奖励。锁定期为90天。 "
+"至少2万个CPC的持有者。成为经济节点，并锁定2万个以上CPC，"
+"即可与荣誉 节点分享基础奖励。锁定期为90天。 "
 
-#: templates/rnode.html:73
+#: templates/rnode.html:72
 msgid "2. Reputation Nodes"
 msgstr "2. 荣誉节点准入条件"
 
-#: templates/rnode.html:75
+#: templates/rnode.html:74
 msgid ""
 "A node has to meet one of the following requirements to become a Reputation "
 "Node:"
-msgstr "节点满足以下条件后，可成为荣誉节点。 "
+msgstr ""
+"节点满足以下条件后，可成为荣誉节点。 "
 
-#: templates/rnode.html:78
+#: templates/rnode.html:77
 msgid " a. Economy Node + Computing and Storage Node: "
 msgstr "1）经济节点 + 计算与存储节点"
 
-#: templates/rnode.html:79
+#: templates/rnode.html:78
 msgid ""
 "An economy node must lock-up a specific amount of tokens 200,000 minimum and "
 "5,000,000 maximum) for 90 days and must satisfy the software, hardware, and "
@@ -805,15 +815,15 @@ msgid ""
 "correlation with the basic rewards. Reputation nodes will be refunded after "
 "they leave the election."
 msgstr ""
-" 经济节点需锁定相应额度和时长的CPC（最少20万个，最多500万个CPC，锁定期为90"
-"天），并配置基础的软硬件与网络条件，才能申请成为荣誉节点。缴纳的保证金金额与"
-"节点 基础奖励正相关，保证金在节点退出选举后返还至用户原账户。 "
+" 经济节点需锁定相应额度和时长的CPC（最少20万个，最多500万个CPC，锁定期为90天），"
+"并配置基础的软硬件与网络条件，才能申请成为荣誉节点。缴纳的保证金金额与节点 基础奖励正相关，"
+"保证金在节点退出选举后返还至用户原账户。 "
 
-#: templates/rnode.html:82
+#: templates/rnode.html:81
 msgid "b. Industry Node + Computing and Storage Node:"
 msgstr "2）行业节点 + 计算与存储节点 "
 
-#: templates/rnode.html:83
+#: templates/rnode.html:82
 msgid ""
 "An industry node will be upgraded to a reputation node once meeting all the "
 "hardware, software, and network requirements. Industry nodes must be "
@@ -821,28 +831,26 @@ msgid ""
 msgstr ""
 " 经CPChain认定的行业节点具备基础的软硬件与网络条件后，自动成为荣誉节点。 "
 
-#: templates/rnode.html:86
+#: templates/rnode.html:85
 msgid ""
 "Reputation Nodes have the right to be elected as a committee member and to "
 "be granted rewards from the Blockchain. "
 msgstr ""
-"荣誉节点权益： 有权参与委员会选举，被选为委员会的荣誉节点可获得区块生成奖"
-"励。 "
+"荣誉节点权益： 有权参与委员会选举，被选为委员会的荣誉节点可获得区块生成奖励。 "
 
-#: templates/rnode.html:91
+#: templates/rnode.html:90
 msgid "3.DPoR Consensus Overview"
 msgstr "3. 荣誉节点DPoR共识"
 
-#: templates/rnode.html:93
+#: templates/rnode.html:92
 msgid ""
 " The CPChain consensus system adopts the Dynamic Proof of Reputation "
 "Agreement (DPoR) which is developed by Shanghai Jiao Tong University "
 "Distributed and Smart System Lab. "
 msgstr ""
-"CPChain采用上海交通大学分布式智能系统实验室自主研发的DPoR (Dynamic Proof of "
-"Reputation)协议，"
+"CPChain采用上海交通大学分布式智能系统实验室自主研发的DPoR (Dynamic Proof of Reputation)协议，"
 
-#: templates/rnode.html:96
+#: templates/rnode.html:95
 msgid ""
 " The CPChain Ecosystem is divided into three layers as seen below. Users can "
 "be upgraded to reputation nodes after an initial admission test. The "
@@ -850,11 +858,10 @@ msgid ""
 "Layer 2 to conduct the Layer 3 dynamic committee in order to maintain the "
 "blockchain. "
 msgstr ""
-"将整个区块链系统分为三层(见图1)。普通节点通过准入考核后，即可成 为荣誉节点。"
-"系统设计了特定的选举算法，从荣誉节点中（第二层）选举出部分节点组成动态 委员会"
-"（第三层），负责区块链的维护。"
+"将整个区块链系统分为三层(见图1)。普通节点通过准入考核后，即可成 为荣誉节点。系统设计了特定的选举算法，"
+"从荣誉节点中（第二层）选举出部分节点组成动态 委员会（第三层），负责区块链的维护。"
 
-#: templates/rnode.html:99
+#: templates/rnode.html:98
 msgid ""
 " Layer 3 primarily solves the consensus problem of creating, verifying, "
 "broadcasting, and adding blocks onto the chain. Generally speaking, DPor is "
@@ -862,11 +869,11 @@ msgid ""
 "scale network, which are node Reputation Assessment, Node Election and "
 "Byzantine Fault Tolerance (BFT) Consensus within the committee. "
 msgstr ""
-"第三层主要解决了委员会内部对区块的添加、验证、 广播和上链的共识问题。总体而"
-"言，DPoR可应对大规模网络的共识问题的三个子问题，分 别为节点信誉度评估、节点选"
-"举、委员会内部拜占庭容错（Byzantine Fault Tolerance, BFT） 共识。 "
+"第三层主要解决了委员会内部对区块的添加、"
+"验证、 广播和上链的共识问题。总体而言，DPoR可应对大规模网络的共识问题的三个子问题，分 别为节点信誉度评估、节点选举、"
+"委员会内部拜占庭容错（Byzantine Fault Tolerance, BFT） 共识。 "
 
-#: templates/rnode.html:107
+#: templates/rnode.html:106
 #, fuzzy
 #| msgid ""
 #| "Your Email\n"
@@ -876,82 +883,81 @@ msgid ""
 "                                                                Overview"
 msgstr "您的邮箱*"
 
-#: templates/rnode.html:114
+#: templates/rnode.html:113
 msgid "Node Reputation Value Assessment Procedure (RVAP)"
 msgstr "节点信誉度评估"
 
-#: templates/rnode.html:116
+#: templates/rnode.html:115
 msgid ""
 " Based on data from blockchain, CPChain will conduct the node reputation "
 "assessment model to calculate and assess the Reputation Value (RV) of every "
 "node in the system. The reputation model will be divided into five parts: "
 msgstr ""
-"BDPoR使用从区块链中提取的数据，构建节点的信誉度评估模型，从而计算和评估系统中"
-"节点的信誉度值。评估模型有五部分："
+"BDPoR使用从区块链中提取的数据，构建节点的信誉度评估模型，从而计算和评估系统中节点的信誉度值。"
+"评估模型有五部分："
 
-#: templates/rnode.html:119
+#: templates/rnode.html:118
 msgid "Account Balance"
 msgstr "账户余额"
 
-#: templates/rnode.html:120
+#: templates/rnode.html:119
 msgid "Transaction"
 msgstr "交易"
 
-#: templates/rnode.html:121
+#: templates/rnode.html:120
 msgid "Proxy Reputation"
 msgstr "代理人信誉奖励"
 
-#: templates/rnode.html:122
+#: templates/rnode.html:121
 msgid "Data Contribution"
 msgstr "数据贡献"
 
-#: templates/rnode.html:123
+#: templates/rnode.html:122
 msgid "Blockchain Maintenance"
 msgstr "区块链维护"
 
-#: templates/rnode.html:129
+#: templates/rnode.html:128
 msgid "1. Account Balance:"
 msgstr "1. 账户余额: "
 
-#: templates/rnode.html:130
+#: templates/rnode.html:129
 #, python-format
 msgid ""
 " CPC token balance in RNode’s account will have a positive correlation with "
 "the Reputation Value. It will contribute 40%%～50%% in the Reputation Value "
 "Assessment Procedure (RVAP). "
-msgstr "节点账户中的CPC余额与节点信誉度的评估正相关，占总权重的40%%～50%%； "
+msgstr ""
+"节点账户中的CPC余额与节点信誉度的评估正相关，占总权重的40%～50%； "
 
-#: templates/rnode.html:136
+#: templates/rnode.html:135
 msgid "2. Transaction:"
 msgstr "2. 交易: "
 
-#: templates/rnode.html:137
+#: templates/rnode.html:136
 #, python-format
 msgid ""
 " “Transaction” refers to actions in which a RNode uses CPC to buy data in "
 "CPChain’s PDash data marketplace. It will contribute 15%%～20%% in RVAP. "
 msgstr ""
-"这里的“交易”定义为在系统中节点利用通证换取数据产品的交易，占总权重的 15%%～"
-"20%%；"
+"这里的“交易”定义为在系统中节点利用通证换取数据产品的交易，占总权重的 15%～20%；"
 
-#: templates/rnode.html:143
+#: templates/rnode.html:142
 msgid "3. Proxy: "
 msgstr "3. 代理人信誉奖励: "
 
-#: templates/rnode.html:144
+#: templates/rnode.html:143
 #, python-format
 msgid ""
 " Serving as the role of proxy, a RNode will earn reputation by assisting "
 "others in the marketplace. It will contribute 10%%～15%% in RVAP. "
 msgstr ""
-"节点在网络中作为代理（proxy）协助其他节点完成交易，会获得信誉度 奖励，占总权"
-"重的10%%～15%%； "
+"节点在网络中作为代理（proxy）协助其他节点完成交易，会获得信誉度 奖励，占总权重的10%～15%； "
 
-#: templates/rnode.html:150
+#: templates/rnode.html:149
 msgid "4. Data Contribution:"
 msgstr "4. 数据贡献: "
 
-#: templates/rnode.html:151
+#: templates/rnode.html:150
 #, python-format
 msgid ""
 " A node will earn reputation value by uploading data, it will include base "
@@ -959,29 +965,27 @@ msgid ""
 "data and will earn a bonus when a related transaction happens. This part "
 "will contribute 15%%～20%% in RVAP. "
 msgstr ""
-"节点在网络上传数据的行为会得到信誉度奖励，分为基础信誉度奖励和附加信 誉度奖"
-"励。节点上传文件时，获得基础奖励；若这些文件产生交易，则获得附加奖励。数 据贡"
-"献奖励占总权重的15%%～20%%； "
+"节点在网络上传数据的行为会得到信誉度奖励，分为基础信誉度奖励和附加信 誉度奖励。节点上传文件时，"
+"获得基础奖励；若这些文件产生交易，则获得附加奖励。数 据贡献奖励占总权重的15%～20%； "
 
-#: templates/rnode.html:157
+#: templates/rnode.html:156
 msgid "5. Blockchain Maintenance: "
 msgstr "5. 区块链维护: "
 
-#: templates/rnode.html:158
+#: templates/rnode.html:157
 #, python-format
 msgid ""
 " All the committee members will be granted a certain amount of reputation "
 "value after blocks being produced by the committee. This part will "
 "contribute 10%%～15%%. "
 msgstr ""
-"每一轮区块添加成功后，每个委员会成员会得到相应的信誉度奖励，占总权 重的10%%～"
-"15%%。 "
+"每一轮区块添加成功后，每个委员会成员会得到相应的信誉度奖励，占总权 重的10%～15%。 "
 
-#: templates/rnode.html:164
+#: templates/rnode.html:163
 msgid "Characteristics of DPoR:"
 msgstr "评估模型特性描述"
 
-#: templates/rnode.html:165
+#: templates/rnode.html:164
 msgid ""
 " The design of DPoR has three layers of consideration for the RNodes with "
 "regard to value investment, volume contribution, and chain maintenance. It "
@@ -993,18 +997,17 @@ msgid ""
 "be originated from the Blockchain with complete traceability and temper-"
 "resistance. The election result from the model can be verified. "
 msgstr ""
-"DPoR的设计基于三个层面，分别是节点对系统生态的价值投资、流量贡献以及链的维护"
-"管理，避免了传统仅基于通证持有量或运算能力导致的中心化和权益集中等风险。至于"
-"节点对系统生态的贡献，DPoR考虑采用更综合的评价指标，增强系统生态的公平性和多"
-"元化，以构建具备可持续性的去中心化网络环境。此外，信誉度值的计算所需的数据完"
-"全来源于区块链，具有不可篡改和可追溯性，基于该模型特性得到的选举结果具有可验"
-"证性。 "
+"DPoR的设计基于三个层面，分别是节点对系统生态的价值投资、流量贡献以及链的维护管理，"
+"避免了传统仅基于通证持有量或运算能力导致的中心化和权益集中等风险。"
+"至于节点对系统生态的贡献，DPoR考虑采用更综合的评价指标，增强系统生态的公平性和多元化，"
+"以构建具备可持续性的去中心化网络环境。此外，信誉度值的计算所需的数据完全来源于区块链，"
+"具有不可篡改和可追溯性，基于该模型特性得到的选举结果具有可验证性。 "
 
-#: templates/rnode.html:170
+#: templates/rnode.html:169
 msgid "Dynamic Committee Election"
 msgstr "委员会选举"
 
-#: templates/rnode.html:172
+#: templates/rnode.html:171
 msgid ""
 " For every committee round, 30–35 reputation nodes will be elected. The "
 "committee is responsible for the maintenance of existing blocks, and adding, "
@@ -1017,17 +1020,17 @@ msgid ""
 "selected is proportional to its reputation value. Currently, one round is "
 "expected to be 5–10 minutes. "
 msgstr ""
-"每次选举选出30～35个荣誉节点组成委员会，委员会需要维护既有的区块链，同时添"
-"加、 广播及验证新的区块，获得相应的通证奖励。DPoR根据荣誉节点的信誉度值以及随"
-"机数种子（系统自动生成的用于选举的随机数）来选举，选举算法公开，任何节点本地"
-"可自动执 行选举算法，使选举结果可验证，进而保证了整个选举过程的可靠性。选举结"
-"果有一定的 随机性，节点被选中的概率与节点的信誉度值成正比。 "
+"每次选举选出30～35个荣誉节点组成委员会，委员会需要维护既有的区块链，"
+"同时添加、 广播及验证新的区块，获得相应的通证奖励。DPoR根据荣誉节点的信誉度值以及随机数种子"
+"（系统自动生成的用于选举的随机数）来选举，选举算法公开，任何节点本地可自动执 行选举算法，"
+"使选举结果可验证，进而保证了整个选举过程的可靠性。选举结果有一定的 随机性，"
+"节点被选中的概率与节点的信誉度值成正比。 "
 
-#: templates/rnode.html:174
+#: templates/rnode.html:173
 msgid "Characteristics"
 msgstr "特性分析"
 
-#: templates/rnode.html:176
+#: templates/rnode.html:175
 msgid ""
 " The DPOR election is based on nodes’ reputation value and random seeds. "
 "Every candidate node has the opportunity to be elected. The outcome cannot "
@@ -1035,15 +1038,15 @@ msgid ""
 "election process is completely anonymous, therefore, users’ privacy is "
 "protected. "
 msgstr ""
-"DPoR选举过程基于节点信誉度值及随机数种子，所有候选节点均有机会被选中，且选举"
-"结果无法被任何节点提前预测，保证了整个选举过程的公平性和安全性。选举过程完全"
-"匿名 ，节点无需在网络中披露个人信息，保证了用户隐私安全。 "
+"DPoR选举过程基于节点信誉度值及随机数种子，所有候选节点均有机会被选中，"
+"且选举结果无法被任何节点提前预测，保证了整个选举过程的公平性和安全性。"
+"选举过程完全匿名 ，节点无需在网络中披露个人信息，保证了用户隐私安全。 "
 
-#: templates/rnode.html:181
+#: templates/rnode.html:180
 msgid "Within Committee: LBFT"
 msgstr "委员会内部LBFT算法"
 
-#: templates/rnode.html:183
+#: templates/rnode.html:182
 msgid ""
 " DPoR uses Lightweight Byzantine Fault Tolerance (LBFT) to achieve a fast "
 "agreement among the committee members. LBFT has two stages: block "
@@ -1057,19 +1060,19 @@ msgid ""
 "the committee is having downtime or becoming malicious. This mechanism aims "
 "to enhance the stability and robustness. "
 msgstr ""
-"DPoR通过设计轻量级拜占庭容错算法（LBFT, Lightweight Byzantine Fault "
-"Tolerance）实现委员会内部的快速共识。算法包括两个阶段(见图2)，分别为区块发"
-"布、验签（委员会节点收到新区块后，会对区块进行验证以及签名）收集阶段。目前可"
-"实现委员会内部最多1/3节点恶 意行为或宕机的容错，主网上线后可实现优化的监督和"
-"备选机制，最终预计可以容错委员会内部最多1/2节点的宕机行为，以及少于1/2委员会"
-"节点的恶意行为。此外，LBFT设计了针对极端情况下的容错机制，即大部分委员会成员"
-"宕机或者勾结，加强了系统的稳定性和鲁棒性。 "
+"DPoR通过设计轻量级拜占庭容错算法（LBFT, Lightweight Byzantine Fault Tolerance）"
+"实现委员会内部的快速共识。算法包括两个阶段(见图2)，分别为区块发布、"
+"验签（委员会节点收到新区块后，会对区块进行验证以及签名）收集阶段。"
+"目前可实现委员会内部最多1/3节点恶 意行为或宕机的容错，主网上线后可实现优化的监督和备选机制，"
+"最终预计可以容错委员会内部最多1/2节点的宕机行为，以及少于1/2委员会节点的恶意行为。"
+"此外，LBFT设计了针对极端情况下的容错机制，即大部分委员会成员宕机或者勾结，"
+"加强了系统的稳定性和鲁棒性。 "
 
-#: templates/rnode.html:198
+#: templates/rnode.html:197
 msgid "4. Node Entitlements & Rewards"
 msgstr "4. 节点奖励分配"
 
-#: templates/rnode.html:200
+#: templates/rnode.html:199
 msgid ""
 " CPChain’s ecosystem is established by a lot of Internet of Things (IoT) "
 "enterprises, developers and users. It is a long-term process. As a result, "
@@ -1080,23 +1083,26 @@ msgid ""
 "in data sharing and transferring, the reward for RNodes will mainly be "
 "generated by contracts and market transactions."
 msgstr ""
-"CPChain生态的构建需要大量的物联网企业、开发团队和用户参与，不是一蹴而就的过"
-"程。 因此，CPChain分为两个阶段来规划生态激励与运营计划。第一阶段由CPC激励主"
-"导，主要通过CPChain基金会持有的运营基金来构建生态和运营维护区块链；第二阶段由"
-"市场交易主导，随着CPChain生态系统建设的完善和数据共享交易量的增加，荣誉节点的"
-"奖励主要来自智能合约和交易转账的费用。"
+"CPChain生态的构建需要大量的物联网企业、开发团队和用户参与，不是一蹴而就的过程。 "
+"因此，CPChain分为两个阶段来规划生态激励与运营计划。第一阶段由CPC激励主导，"
+"主要通过CPChain基金会持有的运营基金来构建生态和运营维护区块链；第二阶段由市场交易主导，"
+"随着CPChain生态系统建设的完善和数据共享交易量的增加，荣誉节点的奖励主要来自智能合约和交易转账的费用。"
 
-#: templates/rnode.html:202
+#: templates/rnode.html:201
+#, fuzzy
+#| msgid ""
+#| "Consolidated mainnet 2 release <br> (backward\n"
+#| "                                                                compatible)"
 msgid ""
 "In the first stage, reputation nodes’ entitlements will be allocated to two "
 "parts: "
 msgstr "CPC激励主导阶段，节点的通证奖励包括基础奖励与区块生成奖励："
 
-#: templates/rnode.html:204
+#: templates/rnode.html:203
 msgid "Basic Rewards:"
 msgstr "1. 基础奖励："
 
-#: templates/rnode.html:205
+#: templates/rnode.html:204
 msgid ""
 " CPChain will create a reward pool with 5 million CPC annually (1.25 million "
 "CPC quarterly, 13,700 CPC daily). The RNode and the Economy Node receive the "
@@ -1104,14 +1110,14 @@ msgid ""
 "total margin. (Economy Node and RNode will both need a 90-day lock-up "
 "session). "
 msgstr ""
-"预计每年发放500万个CPC注入奖金池（每季度约125万个CPC，每日约1.37万个CPC），荣"
-"誉节点和经济节点根据锁定的保证金占总保证金的比例获得对应的CPC奖励。"
+"预计每年发放500万个CPC注入奖金池（每季度约125万个CPC，每日约1.37万个CPC），"
+"荣誉节点和经济节点根据锁定的保证金占总保证金的比例获得对应的CPC奖励。"
 
-#: templates/rnode.html:208
+#: templates/rnode.html:207
 msgid "Blockchain maintenance rewards:"
 msgstr "2. 区块生成奖励："
 
-#: templates/rnode.html:209
+#: templates/rnode.html:208
 #, python-format
 msgid ""
 " Committee Nodes are entitled to blockchain maintenance rewards. Every block "
@@ -1120,36 +1126,47 @@ msgid ""
 "following with 30 million, 22.5 million, 17 million and 12.75 million for "
 "the rest of four years respectively. "
 msgstr ""
-"入选委员会的荣誉节点可获得额外区块奖励，每个区块中的CPC奖励数 额固定，每经过1"
-"年（约出块300万个），区块奖励减少1/4，预计约5年时间发放完。第一 年发放约4000"
-"万个CPC，第二年约3000万个CPC，第三年约2250万个CPC，第四年约1700万个 CPC，第五"
-"年约1275万个CPC。 "
+"入选委员会的荣誉节点可获得额外区块奖励，每个区块中的CPC奖励数 额固定，每经过1年（约出块300万个），"
+"区块奖励减少1/4，预计约5年时间发放完。第一 年发放约4000万个CPC，第二年约3000万个CPC，"
+"第三年约2250万个CPC，第四年约1700万个 CPC，第五年约1275万个CPC。 "
 
-#: templates/rnode.html:212
+#: templates/rnode.html:211
 msgid ""
 "Any questions about our Rnode Ecosystem can be posted in our upcoming AMA:"
 msgstr "有关本Rnode生态系统的问题可提至AMA："
 
-#: templates/rnode.html:225
+#: templates/rnode.html:224
 msgid "* Around 3,000,000 blocks will be generated annually."
 msgstr "* 每年约有3,000,000个新区块生成。"
 
-#: templates/security.html:74
+#: templates/rnode.html:225
+#, fuzzy
+#| msgid ""
+#| "Please select or drag and\n"
+#| "                                                                        drop "
+#| "the upload file and limit it to within\n"
+#| "                                                                        10MB"
+msgid ""
+"** Please note that according to changes in the market environment, for the "
+"sake of community interest, CPChain keeps the right to amend the numbers "
+"above in the future."
+msgstr "**注：本文中的数据可能会随着时间发生改变，CPChain享有唯一官方解释权。"
+
+#: templates/security.html:73
 msgid "Elevator Operation Data Record"
 msgstr "电梯操作数据记录"
 
-#: templates/security.html:99
+#: templates/security.html:98
 msgid ""
 " Elevator operation data, such as the real-time height of the elevator, up & "
 "down signal, alarm status, and emergency power status, they are all useful "
 "for running status monitoring, fault prediction, fault handling and accident "
 "rescue. "
 msgstr ""
-"安装在电梯和电梯井中的传感器，能够吧电梯维保所需的关键数据收集到平台。这些信"
-"息包括电梯所在楼层的实时数据、开关状态、上下行信号、警报按钮情形、应急电源情"
-"况、门锁状况等等。维修的防伪结果对故障处理和营救等具有专业意义。 "
+"安装在电梯和电梯井中的传感器，能够吧电梯维保所需的关键数据收集到平台。这些信息包括电梯所在楼层的实时数据、"
+"开关状态、上下行信号、警报按钮情形、应急电源情况、门锁状况等等。维修的防伪结果对故障处理和营救等具有专业意义。 "
 
-#: templates/security.html:108
+#: templates/security.html:107
 msgid ""
 " By installing sensors in elevators and elevator hoistway, the key data "
 "needed for maintenance can be collected and uploaded to the CPChain "
@@ -1159,30 +1176,35 @@ msgid ""
 "on the chain, to provide reliable records for ACI, insurance investigation "
 "and quality assessment of maintenance. "
 msgstr ""
-"利用区块链技术，和分布式账本可追溯不可篡改的特性，把电梯运行的数据记录和维保"
-"操作等关键环节拍照存证上链。这就为未来可能出现的事故原因调查、保险调查、维保"
-"质量评价提供了可信的数据。"
+"利用区块链技术，和分布式账本可追溯不可篡改的特性，把电梯运行的数据记录和维保操作等关键环节拍照存证上链。"
+"这就为未来可能出现的事故原因调查、保险调查、维保质量评价提供了可信的数据。"
 
-#: templates/security.html:119 templates/smart-medical.html:133
-#: templates/smart-medical.html:190
+#: templates/security.html:118 templates/smart-medical.html:132
+#: templates/smart-medical.html:189
+#, fuzzy
+#| msgid "Industry <br> Chains"
 msgid "Medical Industry Side Chain"
 msgstr "照片存证上链"
 
-#: templates/security.html:129 templates/security.html:139
-#: templates/smart-medical.html:143 templates/smart-medical.html:153
-#: templates/smart-medical.html:200 templates/smart-medical.html:210
+#: templates/security.html:128 templates/security.html:138
+#: templates/smart-medical.html:142 templates/smart-medical.html:152
+#: templates/smart-medical.html:199 templates/smart-medical.html:209
 msgid "Medicine Quality Trace"
 msgstr "数据不可篡改"
 
-#: templates/smart-medical.html:81
-msgid "Medicine Anti-counterfeiting <br> and Source-tracing"
-msgstr "医药溯源"
+#: templates/smart-medical.html:80
+msgid "Medicine Anti-counterfeiting"
+msgstr "医药"
 
-#: templates/smart-medical.html:88
+#: templates/smart-medical.html:80
+msgid "and Source-tracing"
+msgstr "朔源"
+
+#: templates/smart-medical.html:87
 msgid "AI Support for Public Health Signal Data"
 msgstr "健康信号检测数据的AI支持"
 
-#: templates/smart-medical.html:109
+#: templates/smart-medical.html:108
 msgid ""
 "Medicine Safety is always a public affair. Counterfeit drugs will do more "
 "harm to our health rather than healing people. If pharmaceutical enterprises "
@@ -1190,11 +1212,11 @@ msgid ""
 "can see a lot of negative cases caused by manufacturers tampering with "
 "production records. "
 msgstr ""
-"医药关系到大众健康。假药不仅无法治病，更会令病情恶化。所以假药在时刻威胁着大"
-"众的健康与生命安全。药企的不作为也会引发严重后果。近期监管部门审查出的疫苗安"
-"全事件，根源就在于生产药企篡改生产记录，严重影响了儿童健康。"
+"医药关系到大众健康。假药不仅无法治病，更会令病情恶化。所以假药在时刻威胁着大众的健康与生命安全。"
+"药企的不作为也会引发严重后果。近期监管部门审查出的疫苗安全事件，根源就在于生产药企篡改生产记录，"
+"严重影响了儿童健康。"
 
-#: templates/smart-medical.html:122
+#: templates/smart-medical.html:121
 msgid ""
 "In order to eliminate consumers doubts fundamentally, it is necessary to "
 "perfect the traceability system of drug quality and realize the traceability "
@@ -1207,13 +1229,12 @@ msgid ""
 "production, sales to avoid the problem of data tampering in centralized "
 "system and to improve drug safety."
 msgstr ""
-"只有建立有效的药品质量追溯体系，实现从原材料供应成品销售，整条供应链信息的可"
-"追溯，才有可能重建消费者的信任。此外，药企也亟需建立供应链上下游的有效沟通渠"
-"道，以在出现药物问题时，能够快速高效地查找根源，降低风险，免除其它方的责任。"
-"CPChain的公链，以及后续的医药行业侧链，能全程记录原材料、生产、销售和使用情"
-"况，避免了集中化系统中数据篡改的问题，从而提高药物安全性。 "
+"只有建立有效的药品质量追溯体系，实现从原材料供应成品销售，整条供应链信息的可追溯，"
+"才有可能重建消费者的信任。此外，药企也亟需建立供应链上下游的有效沟通渠道，以在出现药物问题时，"
+"能够快速高效地查找根源，降低风险，免除其它方的责任。CPChain的公链，以及后续的医药行业侧链，"
+"能全程记录原材料、生产、销售和使用情况，避免了集中化系统中数据篡改的问题，从而提高药物安全性。 "
 
-#: templates/smart-medical.html:170
+#: templates/smart-medical.html:169
 msgid ""
 "Medicine Safety is always a public affair. Counterfeit drugs will do more "
 "harm to our health rather than healing people. If pharmaceutical enterprises "
@@ -1222,11 +1243,10 @@ msgid ""
 "production records."
 msgstr ""
 "AI，即人工智能技术，需要大量数据进行算法训练，以保证算法性能良好，服务人类。"
-"然而，由于信息孤岛的存在，和患者隐私保护手段的缺失，现有的医疗或大健康领域的"
-"数据尚未得到充分利用，本来能够产生良好效益的人工智能医疗辅助系统，也没能发展"
-"出大规模的应用。 "
+"然而，由于信息孤岛的存在，和患者隐私保护手段的缺失，现有的医疗或大健康领域的数据尚未得到充分利用，"
+"本来能够产生良好效益的人工智能医疗辅助系统，也没能发展出大规模的应用。 "
 
-#: templates/smart-medical.html:179
+#: templates/smart-medical.html:178
 msgid ""
 "With PDash, the fundamental platform of CPChain, patients who own health "
 "monitoring devices, can upload their health data at their will to "
@@ -1237,8 +1257,8 @@ msgid ""
 "real-name authentication in AI training, CPChain can provide effective "
 "support for application such as AI, with refined security of privacy."
 msgstr ""
-"CPChain的PDash为拥有健康监测设备的患者提供了平台，他们可以选择把检测数据加密"
-"上传到集中式或分布式的存储系统中，同时在商城发布相应的数据描述，并把数据对应"
-"的哈希值记录在CPChain主链上，用来验证数据。系统对用户隐私保护有专门设计，能够"
-"在保证隐私的前提下，实现数据分享。因此，CPChain实现了对上层人工智能等应用的有"
-"效支持。 "
+"
+CPChain的PDash为拥有健康监测设备的患者提供了平台，他们可以选择把检测数据加密上传到集中式或分布式的存储系统中，"
+"同时在商城发布相应的数据描述，并把数据对应的哈希值记录在CPChain主链上，用来验证数据。"
+"系统对用户隐私保护有专门设计，能够在保证隐私的前提下，实现数据分享。因此，"
+"CPChain实现了对上层人工智能等应用的有效支持。 "

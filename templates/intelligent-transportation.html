@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block title %}
     <title>Intelligent Transportation &#8211; CPChain</title>
 {% endblock %}
@@ -78,21 +79,21 @@
                                                 <li class="col-md-3 col-12 pb-2">
                                                     <a class="tablinks tab_drive archivo-font" href="javascript:void(0)"
                                                        onclick="goToApplicationSwiper(0, this);">
-                                                       {% blocktrans %}Drive License{% endblocktrans %} <br> {% blocktrans %}Training Record{% endblocktrans %}
+                                                       {% blocktrans %}Drive License <br> Training Record{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="col-md-3 col-12">
                                                     <a class="tablinks tab_vehicle archivo-font"
                                                        href="javascript:void(0)"
                                                        onclick="goToApplicationSwiper(1, this);">
-                                                       {% blocktrans %}Vehicle and driver’s operations{% endblocktrans %}<br> {% blocktrans %}data record{% endblocktrans %}
+                                                       {% blocktrans %}Vehicle and driver’s operations<br> data record{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="col-md-3 col-12">
                                                     <a class="tablinks tab_vehicle archivo-font"
                                                        href="javascript:void(0)"
                                                        onclick="goToApplicationSwiper(2, this);">
-                                                       {% blocktrans %}Oil product QR code anti-{% endblocktrans %}<br>{% blocktrans %}counterfeiting traceability{% endblocktrans %}
+                                                       {% blocktrans %}Oil product QR code anti-<br>counterfeiting traceability{% endblocktrans %}
                                                     </a>
                                                 </li>
                                                 <li class="col-md-3 col-12">
@@ -120,7 +121,8 @@
                                                 </div> <!-- end of title -->
                                                 <div class="col-sm-7 col-12">
                                                     <p class="font-weight-light archivo-font">
-                                                        {% blocktrans {% blocktrans %} There are more than 25 million new drivers increased each year in China. In 2017, there were more than 360 million drivers in total. According to the regulations of the Ministry of Communications and Transport, the driving school must ensure that the training hours of the cadets meet the requirement. <br><br> However, in recent years, driving schools biased toward profit more than quality. They forges the training record, which affects the training quality and causes the potential public safety problems. {% endblocktrans %}%}** Please note that according to changes in the market environment, for the sake of community interest, CPChain keeps the right to amend the numbers above in the future.{% endblocktrans %}
+                                                        {% blocktrans %} There are more than 25 million new drivers increased each year in China. In 2017, there were more than 360 million drivers in total. According to the regulations of the Ministry of Communications and Transport, the driving school must ensure that the training hours of the cadets meet the requirement. <br><br> However, in recent years, driving schools biased toward profit more than quality. They forges the training record, which affects the training quality and causes the potential public safety problems. {% endblocktrans %}
+                                                        {% blocktrans %}** Please note that according to changes in the market environment, for the sake of community interest, CPChain keeps the right to amend the numbers above in the future.{% endblocktrans %}
                                                     </p>
                                                 </div> <!-- end of desc -->
                                                 <div class="col-sm col-12">

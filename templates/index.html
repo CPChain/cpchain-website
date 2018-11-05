@@ -1629,8 +1629,9 @@
             dataType: 'json',
             url: {% url 'lang' %},
             data: {lang:'en',path:localUrl},
-            success: function(){
-                console.log('success');
+            success: function(data){
+                path = JSON.dump(data)
+                console.log(path);
             }
 
         })
@@ -1644,8 +1645,9 @@
             dataType: 'json',
             url: {% url 'lang' %},
             data: {lang:'zh-hans',path:localUrl},
-            success: function(){
-                console.log('success');
+            success: function(data){
+                path = JSON.dump(data)
+                console.log(path);
             }
 
         })

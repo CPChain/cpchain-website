@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block title %}
     <title>Security &#8211; CPChain</title>
 {% endblock %}
@@ -38,7 +39,7 @@
 
                                         <div class="text-center mt-sm-0 pt-sm-0 pt-0 mt-0">
                                             <h4 class="col-10 col-sm-12 font-weight-light p-0 mx-auto text-white archivo-font">
-                                                <i>{% blocktrans %}Application{% endblocktrans %}</i>
+                                                <i>{% trans 'Application' %}</i>
                                             </h4>
                                             <h1 class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto text-white poppins-font">
                                                 {% blocktrans %}Public Security{% endblocktrans %}
