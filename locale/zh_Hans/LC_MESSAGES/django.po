@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 10:18+0800\n"
+"POT-Creation-Date: 2018-11-05 13:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -394,11 +394,11 @@ msgstr "核心团队"
 
 #: templates/index.html:945
 msgid "R&D"
-msgstr "市场及运营部"
+msgstr "研发部"
 
 #: templates/index.html:951
 msgid "Marketing"
-msgstr "研发部"
+msgstr "市场及运营部"
 
 #: templates/index.html:957
 msgid "Administrative"
