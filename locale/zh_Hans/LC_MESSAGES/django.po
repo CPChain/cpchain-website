@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 18:57+0800\n"
+"POT-Creation-Date: 2018-11-05 20:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,6 +122,10 @@ msgstr "高效性"
 #: templates/index.html:317
 msgid "Introduction"
 msgstr "简介"
+
+#: templates/index.html:328
+msgid "https://www.youtube.com/embed/0dNFgy_aGkM"
+msgstr "https://v.qq.com/iframe/player.html?vid=r0711ah38nr&tiny=0&auto=0"
 
 #: templates/index.html:349
 msgid "Vision"
