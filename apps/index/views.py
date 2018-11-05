@@ -23,7 +23,7 @@ class IndexView(View):
 
 
 class LangView(View):
-    def get(self, req):
+    def post(self, req):
         lang = req.GET.get("lang")
         activate(lang)
         return redirect(reverse('index'))
