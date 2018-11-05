@@ -1,535 +1,1 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block title %}
-    <title>Intelligent Transportation &#8211; CPChain</title>
-{% endblock %}
-{% block content %}
-    <style type="text/css">
-        section.application-pages {
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 60vh;
-            max-height: 550px;
-            overflow: hidden;
-            background-position: bottom;
-        }
-
-        .fixed-width-button {
-            width: 262px !important;
-        }
-
-        .section-two-intelligent li {
-            border-bottom: 2px solid white;
-        }
-
-        .section-two-intelligent li:hover {
-            border-bottom: 2px solid #305278;
-            color: #305278;
-        }
-    </style>
-    <body class="page-template-default page page-id-184 language-en has-header-image page-two-column colors-light">
-    <div id="page" class="site">
-
-        <div class="site-content-contain">
-            <div id="content" class="site-content">
-
-                <div class="wrap">
-                    <div id="primary" class="content-area">
-                        <main id="main" class="site-main" role="main">
-
-
-                            <section
-                                    class="d-flex align-items-center justify-content-center position-relative application-pages transportation"
-                                    style="background-image: url({% static '/img/application/intelligent/intelligent.jpg' %});">
-                                <div class="container h-100">
-                                    <div class="row pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center justify-content-center">
-
-                                        <div class="text-center mt-sm-0 pt-sm-0 pt-0 mt-0">
-                                            <h4 class="col-10 col-sm-12 font-weight-light p-0 mx-auto text-white archivo-font">
-                                                <i>Application</i>
-                                            </h4>
-                                            <h1 class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto text-white poppins-font">
-                                                Intelligent Transportation
-                                            </h1>
-                                        </div>
-
-                                        <div class="pt-lg-5 flex-lg-row flex-column mt-sm-3 mt-3 d-flex main-buttons mx-auto">
-                                            <a href="{% url 'app' 'smart-medical' %}"
-                                               class="btn btn-sm btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font mr-2">
-                                                Smart Medical
-                                            </a>
-                                            <a href="{% url 'app' 'security' %}"
-                                               class="btn btn-sm btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font">
-                                                Public Security
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </section>  <!-- end of application-pages  -->
-
-                            <section
-                                    class="section-two-intelligent d-flex align-items-center justify-content-center position-relative">
-                                <div class="container h-100">
-
-                                    <div class="row mt-5 pt-sm-0 pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center">
-                                        <div class="d-flex col-12 flex-column">
-                                            <ul class="list-unstyled d-flex flex-row my-4 col-lg-12 main scroller-tab">
-                                                <li class="col-md-3 col-12 pb-2">
-                                                    <a class="tablinks tab_drive archivo-font" href="javascript:void(0)"
-                                                       onclick="goToApplicationSwiper(0, this);">
-                                                        Drive License <br> Training Record
-                                                    </a>
-                                                </li>
-                                                <li class="col-md-3 col-12">
-                                                    <a class="tablinks tab_vehicle archivo-font"
-                                                       href="javascript:void(0)"
-                                                       onclick="goToApplicationSwiper(1, this);">
-                                                        Vehicle and driver’s operations<br> data record
-                                                    </a>
-                                                </li>
-                                                <li class="col-md-3 col-12">
-                                                    <a class="tablinks tab_vehicle archivo-font"
-                                                       href="javascript:void(0)"
-                                                       onclick="goToApplicationSwiper(2, this);">
-                                                        Oil product QR code anti-<br>counterfeiting traceability
-                                                    </a>
-                                                </li>
-                                                <li class="col-md-3 col-12">
-                                                    <a class="tablinks tab_vehicle archivo-font"
-                                                       href="javascript:void(0)"
-                                                       onclick="goToApplicationSwiper(3, this);">
-                                                        Garage automatic parking
-                                                    </a>
-                                                </li>
-                                            </ul> <!-- end of header tabs -->
-                                            <hr class="mb-7">
-                                        </div>
-                                    </div> <!-- end of row -->
-
-
-                                    <div class="swiper-container-applications w-100" style="overflow: hidden;">
-                                        <div class="swiper-wrapper">
-
-                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
-
-                                                <div class="col-sm col-12">
-                                                    <h5 class="archivo-font font-italic">
-                                                        Background
-                                                    </h5>
-                                                </div> <!-- end of title -->
-                                                <div class="col-sm-7 col-12">
-                                                    <p class="font-weight-light archivo-font">
-                                                        There are more than 25 million new drivers increased each year
-                                                        in
-                                                        China. In 2017, there were more than 360 million drivers in
-                                                        total.
-                                                        According to the regulations of the Ministry of Communications
-                                                        and
-                                                        Transport, the driving school must ensure that the training
-                                                        hours of
-                                                        the cadets meet the requirement. <br><br> However, in recent
-                                                        years,
-                                                        driving schools biased toward profit more than quality. They
-                                                        forges
-                                                        the training record, which affects the training quality and
-                                                        causes
-                                                        the potential public safety problems.
-                                                    </p>
-                                                </div> <!-- end of desc -->
-                                                <div class="col-sm col-12">
-                                                    <img class="w-100"
-                                                         src="{% static '/img/application/intelligent/slide-1.svg' %}">
-                                                </div> <!-- end of image -->
-
-                                                <div class="col-12 mt-2 py-5">
-                                                    <h5 class="archivo-font font-italic mb-0">
-                                                        Solutions
-                                                    </h5><br>
-                                                    <p class="font-weight-light archivo-font">
-                                                        Through IoT terminal equipment, the cadets image are sampled at
-                                                        random intervals, and compared with the original registered and
-                                                        verified images to make sure it is the cadet himself that are
-                                                        under
-                                                        training. At the same time, with PDash, the fundamental data
-                                                        platform of CPChain, each driving data sample will be encrypted,
-                                                        and
-                                                        the data hash will be stored on the blockchain for sufficient
-                                                        time,
-                                                        which available for the government regulators to check and
-                                                        verify.
-                                                        By integrating with blockchain technology, records cannot be
-                                                        tampered with and thus eliminating false training history.
-                                                    </p>
-                                                </div> <!-- end of solutions -->
-
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Original Image Sampling
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        PDash Encrypted Storage
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Untampered Data
-                                                    </div>
-                                                </div> <!-- end of solution-icons -->
-
-                                            </div> <!-- end of swiper-slide 1 -->
-
-                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
-
-                                                <div class="col-sm-3 col-12 col-12">
-                                                    <img class="w-100"
-                                                         src="{% static '/img/application/intelligent/slide-2.png' %}">
-                                                </div> <!-- end of image -->
-                                                <div class="col-sm col-12 offset-0 offset-sm-1">
-                                                    <h5 class="archivo-font font-italic">
-                                                        Background
-                                                    </h5>
-                                                    <p class="font-weight-light archivo-font">
-                                                        By implementing OBD or other on-board devices to monitoring the
-                                                        driving behavior, personalized insurance can be realized. When
-                                                        car
-                                                        accident happens, with driving and moving data, more precise
-                                                        judgement for accident cause canbe figured out.<br><br> In term
-                                                        of
-                                                        used car trading, through the driving data and operation
-                                                        records, we
-                                                        can determine the value of the vehicle more reasonably. In
-                                                        current
-                                                        Used Based Insurance (UBI), insurance companies usually
-                                                        collaborate
-                                                        with OBD manufacturers of devices and platforms to use these
-                                                        data to
-                                                        calculate UBI premiums, so there is a problem of data trust, as
-                                                        well
-                                                        as concerns about users’ privacy. It also limits the development
-                                                        of
-                                                        UBI services.
-                                                    </p>
-                                                </div> <!-- end of desc -->
-
-                                                <div class="col-12 mt-2 py-5">
-                                                    <h5 class="archivo-font font-italic mb-0">
-                                                        Solutions
-                                                    </h5><br>
-                                                    <p class="font-weight-light archivo-font">
-                                                        CPChain’s PDash platform can encrypt the UBI or other services
-                                                        necessary for the device to be cached in a certain period of
-                                                        time,
-                                                        and then store it in cloud storage or distributed storage, under
-                                                        the
-                                                        premise of ensuring user privacy. At the same time, the hash
-                                                        value
-                                                        of this part of the data is recorded on the main chain of
-                                                        CPChain,
-                                                        providing data support for UBI investigation and calculation,
-                                                        second-hand vehicle valuation and so on.
-                                                    </p>
-                                                </div> <!-- end of solutions -->
-
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-2">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-4.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        User Privacy Protection
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-2">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        PDash Encrypted Storage
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-2">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-5.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        UBI Investigation
-                                                    </div>
-                                                </div> <!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-2">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-6.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Used car value assessment
-                                                    </div>
-                                                </div> <!-- end of solution-icons -->
-
-                                            </div> <!-- end of swiper 2 -->
-
-                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
-
-                                                <div class="col-sm col-12">
-                                                    <h5 class="archivo-font font-italic">
-                                                        Background
-                                                    </h5>
-                                                </div> <!-- end of title -->
-                                                <div class="col-sm-7 col-12">
-                                                    <p class="font-weight-light archivo-font">
-                                                        In the after-sales segment of the car, the problem of oil
-                                                        counterfeiting is not uncommon. The existing anti-counterfeiting
-                                                        and
-                                                        recording methods are not effective and have poor practicality.
-                                                        The
-                                                        phenomenon of stockpiling in the process of circulation has been
-                                                        repeatedly banned, and counterfeit goods are difficult to
-                                                        source.
-                                                    </p>
-                                                </div> <!-- end of desc -->
-                                                <div class="col-sm col-12">
-                                                    <img class="w-100"
-                                                         src="{% static '/img/application/intelligent/qr_code.svg' %}">
-                                                </div> <!-- end of img -->
-
-                                                <div class="col-12 mt-2 py-5">
-                                                    <h5 class="archivo-font font-italic mb-0">
-                                                        Solutions
-                                                    </h5><br>
-                                                    <p class="font-weight-light archivo-font">
-                                                        CPChain proposed a two-dimensional code anti-counterfeiting
-                                                        traceability system based on blockchain. After the manufacturer
-                                                        finished production, the traceability information related to the
-                                                        oil
-                                                        production date, raw material batch and origin was set as a
-                                                        two-dimensional code, and the blockchain was uploaded. End
-                                                        consumers
-                                                        can scan the QR code to verify the oil, ensure that the
-                                                        consumer's
-                                                        rights and interests are not damaged, and the oil production,
-                                                        logistics, warehousing, sales and other aspects are closely
-                                                        linked.
-                                                    </p>
-                                                </div> <!-- end of solutions -->
-
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        QR Code Sanning & Authentication
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Record source information on the chian
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Control the supply chain
-                                                    </div>
-                                                </div> <!-- end of solution-icons -->
-
-                                            </div> <!-- end of swiper-slide 3 -->
-
-                                            <div class="swiper-slide row p-0 m-0 application-slide-content">
-
-                                                <div class="col-sm-3 col-12">
-                                                    <img class="w-100"
-                                                         src="{% static '/img/application/intelligent/garage_automatic_parking.svg' %}">
-                                                </div> <!-- end of img -->
-
-                                                <div class="col-sm-8 col-12">
-                                                    <h5 class="archivo-font font-italic col-sm-11 mx-auto">
-                                                        Background
-                                                    </h5>
-                                                    <p class="font-weight-light archivo-font col-sm-11 mx-auto">
-                                                        With the continuous intelligence of motor vehicles and the large
-                                                        amount of relevant data, the rational and full utilization of
-                                                        vehicle data has great practical significance.
-                                                    </p>
-                                                </div> <!-- end of desc -->
-
-                                                <div class="col-12 mt-2 py-5">
-                                                    <h5 class="archivo-font font-italic mb-0">
-                                                        Solutions
-                                                    </h5><br>
-                                                    <p class="font-weight-light archivo-font">
-                                                        CPChain envisions a vehicle equipped with an embedded wallet
-                                                        device
-                                                        that encrypts the data and uploads it to the PDash platform.
-                                                        When
-                                                        parking, payment of deposits and fee settlements can be done on
-                                                        blockchain-based smart contracts. People do not need to
-                                                        intervene,
-                                                        the whole process is not feeling, real-time, and safe. At the
-                                                        same
-                                                        time, data utilization is realized, and the terminal quickly and
-                                                        automatically trades.
-                                                    </p>
-                                                </div> <!-- end of solutions -->
-
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Vehicle-carry Nlockchain Coinpurse
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Benefit from Uploaded Data
-                                                    </div>
-                                                </div><!-- end of solution-icons -->
-
-                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">
-                                                    <div class="icon pr-4">
-                                                        <img class="w-100"
-                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">
-                                                    </div>
-                                                    <div class="title font-weight-light archivo-font">
-                                                        Senseless payment
-                                                    </div>
-                                                </div> <!-- end of solution-icons -->
-
-                                            </div> <!-- end of swiper-slide 4 -->
-
-
-                                        </div> <!-- swiper-wrapper -->
-                                    </div> <!-- swiper-container -->
-
-
-                                </div>
-                            </section>
-
-                            <section class="container my-5 my-sm-5">
-                                <div class="row">
-                                    <div class="video-section col-12 w-100">
-                                        <iframe width="100%" class="video-class" height="658px"
-                                                src="https://www.youtube.com/embed/WAdHZaea4gY" frameborder="0"
-                                                allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </section>  <!-- end of video -->
-
-
-                        </main><!-- #main -->
-                    </div><!-- #primary -->
-                </div><!-- .wrap -->
-
-
-            </div><!-- #content -->
-
-
-        </div><!-- .site-content-contain -->
-    </div><!-- #page -->
-
-    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
-    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
-
-    <script src="{% static '/js/swiper.min.js' %}"></script>
-    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
-
-    <script>
-
-        let header = document.getElementById('header');
-        window.addEventListener('scroll', function (e) {
-            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
-        });
-
-        //Navigation
-        let anchorlinks = document.querySelectorAll('a[href^="#"]');
-        for (let item of anchorlinks) {
-            item.addEventListener('click', (e) => {
-
-                for (let i of anchorlinks) {
-                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
-                }
-
-                let hashval = item.getAttribute('href');
-                let target = document.querySelector(hashval)
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                history.pushState(null, null, hashval);
-                e.preventDefault();
-                openMenu(0);
-            });
-        }
-
-
-        function openMenu(type) {
-            let menuHolder = document.getElementById('mySidenav');
-            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
-        }
-
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // swiper for application pages
-        var swiperTeam = new Swiper('.swiper-container-applications', {
-            slidesPerView: 1,
-            autoplay: false,
-            grabCursor: false,
-            allowTouchMove: false,
-            autoHeight: true,
-        });
-
-        swiperTeam.on('slideChange', function () {
-            // change active image
-            let currentSlide = this.activeIndex;
-        });
-
-        function goToApplicationSwiper(index, e) {
-            swiperTeam.slideTo(index, 200);
-        }
-
-    </script>
-
-    </body>
-{% endblock %}
+{% extends 'base.html' %}{% load staticfiles %}{% block title %}    <title>Intelligent Transportation &#8211; CPChain</title>{% endblock %}{% block content %}    <style type="text/css">        section.application-pages {            background-repeat: no-repeat;            background-size: cover;            height: 60vh;            max-height: 550px;            overflow: hidden;            background-position: bottom;        }        .fixed-width-button {            width: 262px !important;        }        .section-two-intelligent li {            border-bottom: 2px solid white;        }        .section-two-intelligent li:hover {            border-bottom: 2px solid #305278;            color: #305278;        }    </style>    <body class="page-template-default page page-id-184 language-en has-header-image page-two-column colors-light">    <div id="page" class="site">        <div class="site-content-contain">            <div id="content" class="site-content">                <div class="wrap">                    <div id="primary" class="content-area">                        <main id="main" class="site-main" role="main">                            <section                                    class="d-flex align-items-center justify-content-center position-relative application-pages transportation"                                    style="background-image: url({% static '/img/application/intelligent/intelligent.jpg' %});">                                <div class="container h-100">                                    <div class="row pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center justify-content-center">                                        <div class="text-center mt-sm-0 pt-sm-0 pt-0 mt-0">                                            <h4 class="col-10 col-sm-12 font-weight-light p-0 mx-auto text-white archivo-font">                                                <i>{% blocktrans %}Application{% endblocktrans %}</i>                                            </h4>                                            <h1 class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto text-white poppins-font">                                                {% blocktrans %}Intelligent Transportation{% endblocktrans %}                                            </h1>                                        </div>                                        <div class="pt-lg-5 flex-lg-row flex-column mt-sm-3 mt-3 d-flex main-buttons mx-auto">                                            <a href="{% url 'app' 'smart-medical' %}"                                               class="btn btn-sm btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font mr-2">                                               {% blocktrans %}Smart Medical{% endblocktrans %}                                            </a>                                            <a href="{% url 'app' 'security' %}"                                               class="btn btn-sm btn-light fixed-width-button rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 poppins-font">                                               {% blocktrans %}Public Security{% endblocktrans %}                                            </a>                                        </div>                                    </div>                                </div>                            </section>  <!-- end of application-pages  -->                            <section                                    class="section-two-intelligent d-flex align-items-center justify-content-center position-relative">                                <div class="container h-100">                                    <div class="row mt-5 pt-sm-0 pt-0 position-relative text-center h-100 flex-sm-column flex-column align-items-center justify-content-end justify-content-md-center">                                        <div class="d-flex col-12 flex-column">                                            <ul class="list-unstyled d-flex flex-row my-4 col-lg-12 main scroller-tab">                                                <li class="col-md-3 col-12 pb-2">                                                    <a class="tablinks tab_drive archivo-font" href="javascript:void(0)"                                                       onclick="goToApplicationSwiper(0, this);">                                                       {% blocktrans %}Drive License{% endblocktrans %} <br> {% blocktrans %}Training Record{% endblocktrans %}                                                    </a>                                                </li>                                                <li class="col-md-3 col-12">                                                    <a class="tablinks tab_vehicle archivo-font"                                                       href="javascript:void(0)"                                                       onclick="goToApplicationSwiper(1, this);">                                                       {% blocktrans %}Vehicle and driver’s operations{% endblocktrans %}<br> {% blocktrans %}data record{% endblocktrans %}                                                    </a>                                                </li>                                                <li class="col-md-3 col-12">                                                    <a class="tablinks tab_vehicle archivo-font"                                                       href="javascript:void(0)"                                                       onclick="goToApplicationSwiper(2, this);">                                                       {% blocktrans %}Oil product QR code anti-{% endblocktrans %}<br>{% blocktrans %}counterfeiting traceability{% endblocktrans %}                                                    </a>                                                </li>                                                <li class="col-md-3 col-12">                                                    <a class="tablinks tab_vehicle archivo-font"                                                       href="javascript:void(0)"                                                       onclick="goToApplicationSwiper(3, this);">                                                       {% blocktrans %}Garage automatic parking{% endblocktrans %}                                                    </a>                                                </li>                                            </ul> <!-- end of header tabs -->                                            <hr class="mb-7">                                        </div>                                    </div> <!-- end of row -->                                    <div class="swiper-container-applications w-100" style="overflow: hidden;">                                        <div class="swiper-wrapper">                                            <div class="swiper-slide row p-0 m-0 application-slide-content">                                                <div class="col-sm col-12">                                                    <h5 class="archivo-font font-italic">                                                        {% blocktrans %}Background{% endblocktrans %}                                                    </h5>                                                </div> <!-- end of title -->                                                <div class="col-sm-7 col-12">                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        There are more than 25 million new drivers increased each year                                                        in                                                        China. In 2017, there were more than 360 million drivers in                                                        total.                                                        According to the regulations of the Ministry of Communications                                                        and                                                        Transport, the driving school must ensure that the training                                                        hours of                                                        the cadets meet the requirement. <br><br> However, in recent                                                        years,                                                        driving schools biased toward profit more than quality. They                                                        forges                                                        the training record, which affects the training quality and                                                        causes                                                        the potential public safety problems.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of desc -->                                                <div class="col-sm col-12">                                                    <img class="w-100"                                                         src="{% static '/img/application/intelligent/slide-1.svg' %}">                                                </div> <!-- end of image -->                                                <div class="col-12 mt-2 py-5">                                                    <h5 class="archivo-font font-italic mb-0">                                                        {% blocktrans %}Solutions{% endblocktrans %}                                                    </h5><br>                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        Through IoT terminal equipment, the cadets image are sampled at                                                        random intervals, and compared with the original registered and                                                        verified images to make sure it is the cadet himself that are                                                        under                                                        training. At the same time, with PDash, the fundamental data                                                        platform of CPChain, each driving data sample will be encrypted,                                                        and                                                        the data hash will be stored on the blockchain for sufficient                                                        time,                                                        which available for the government regulators to check and                                                        verify.                                                        By integrating with blockchain technology, records cannot be                                                        tampered with and thus eliminating false training history.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of solutions -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Original Image Sampling{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}PDash Encrypted Storage{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Untampered Data{% endblocktrans %}                                                    </div>                                                </div> <!-- end of solution-icons -->                                            </div> <!-- end of swiper-slide 1 -->                                            <div class="swiper-slide row p-0 m-0 application-slide-content">                                                <div class="col-sm-3 col-12 col-12">                                                    <img class="w-100"                                                         src="{% static '/img/application/intelligent/slide-2.png' %}">                                                </div> <!-- end of image -->                                                <div class="col-sm col-12 offset-0 offset-sm-1">                                                    <h5 class="archivo-font font-italic">                                                        {% blocktrans %}Background{% endblocktrans %}                                                    </h5>                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        By implementing OBD or other on-board devices to monitoring the                                                        driving behavior, personalized insurance can be realized. When                                                        car                                                        accident happens, with driving and moving data, more precise                                                        judgement for accident cause canbe figured out.<br><br> In term                                                        of                                                        used car trading, through the driving data and operation                                                        records, we                                                        can determine the value of the vehicle more reasonably. In                                                        current                                                        Used Based Insurance (UBI), insurance companies usually                                                        collaborate                                                        with OBD manufacturers of devices and platforms to use these                                                        data to                                                        calculate UBI premiums, so there is a problem of data trust, as                                                        well                                                        as concerns about users’ privacy. It also limits the development                                                        of                                                        UBI services.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of desc -->                                                <div class="col-12 mt-2 py-5">                                                    <h5 class="archivo-font font-italic mb-0">                                                        {% blocktrans %}Solutions{% endblocktrans %}                                                    </h5><br>                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        CPChain’s PDash platform can encrypt the UBI or other services                                                        necessary for the device to be cached in a certain period of                                                        time,                                                        and then store it in cloud storage or distributed storage, under                                                        the                                                        premise of ensuring user privacy. At the same time, the hash                                                        value                                                        of this part of the data is recorded on the main chain of                                                        CPChain,                                                        providing data support for UBI investigation and calculation,                                                        second-hand vehicle valuation and so on.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of solutions -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">                                                    <div class="icon pr-2">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-4.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}User Privacy Protection{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">                                                    <div class="icon pr-2">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}PDash Encrypted Storage{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">                                                    <div class="icon pr-2">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-5.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}UBI Investigation{% endblocktrans %}                                                    </div>                                                </div> <!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">                                                    <div class="icon pr-2">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-6.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Used car value assessment{% endblocktrans %}                                                    </div>                                                </div> <!-- end of solution-icons -->                                            </div> <!-- end of swiper 2 -->                                            <div class="swiper-slide row p-0 m-0 application-slide-content">                                                <div class="col-sm col-12">                                                    <h5 class="archivo-font font-italic">                                                        {% blocktrans %}Background{% endblocktrans %}                                                    </h5>                                                </div> <!-- end of title -->                                                <div class="col-sm-7 col-12">                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        In the after-sales segment of the car, the problem of oil                                                        counterfeiting is not uncommon. The existing anti-counterfeiting                                                        and                                                        recording methods are not effective and have poor practicality.                                                        The                                                        phenomenon of stockpiling in the process of circulation has been                                                        repeatedly banned, and counterfeit goods are difficult to                                                        source.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of desc -->                                                <div class="col-sm col-12">                                                    <img class="w-100"                                                         src="{% static '/img/application/intelligent/qr_code.svg' %}">                                                </div> <!-- end of img -->                                                <div class="col-12 mt-2 py-5">                                                    <h5 class="archivo-font font-italic mb-0">                                                        {% blocktrans %}Solutions{% endblocktrans %}                                                    </h5><br>                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        CPChain proposed a two-dimensional code anti-counterfeiting                                                        traceability system based on blockchain. After the manufacturer                                                        finished production, the traceability information related to the                                                        oil                                                        production date, raw material batch and origin was set as a                                                        two-dimensional code, and the blockchain was uploaded. End                                                        consumers                                                        can scan the QR code to verify the oil, ensure that the                                                        consumer's                                                        rights and interests are not damaged, and the oil production,                                                        logistics, warehousing, sales and other aspects are closely                                                        linked.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of solutions -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}QR Code Sanning & Authentication{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Record source information on the chain{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Control the supply chain{% endblocktrans %}                                                    </div>                                                </div> <!-- end of solution-icons -->                                            </div> <!-- end of swiper-slide 3 -->                                            <div class="swiper-slide row p-0 m-0 application-slide-content">                                                <div class="col-sm-3 col-12">                                                    <img class="w-100"                                                         src="{% static '/img/application/intelligent/garage_automatic_parking.svg' %}">                                                </div> <!-- end of img -->                                                <div class="col-sm-8 col-12">                                                    <h5 class="archivo-font font-italic col-sm-11 mx-auto">                                                        {% blocktrans %}Background{% endblocktrans %}                                                    </h5>                                                    <p class="font-weight-light archivo-font col-sm-11 mx-auto">                                                        {% blocktrans %}                                                        With the continuous intelligence of motor vehicles and the large                                                        amount of relevant data, the rational and full utilization of                                                        vehicle data has great practical significance.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of desc -->                                                <div class="col-12 mt-2 py-5">                                                    <h5 class="archivo-font font-italic mb-0">                                                        {% blocktrans %}Solutions{% endblocktrans %}                                                    </h5><br>                                                    <p class="font-weight-light archivo-font">                                                        {% blocktrans %}                                                        CPChain envisions a vehicle equipped with an embedded wallet                                                        device                                                        that encrypts the data and uploads it to the PDash platform.                                                        When                                                        parking, payment of deposits and fee settlements can be done on                                                        blockchain-based smart contracts. People do not need to                                                        intervene,                                                        the whole process is not feeling, real-time, and safe. At the                                                        same                                                        time, data utilization is realized, and the terminal quickly and                                                        automatically trades.                                                        {% endblocktrans %}                                                    </p>                                                </div> <!-- end of solutions -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-start solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-1.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Vehicle-carry Nlockchain Coinpurse{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-center solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-2.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Benefit from Uploaded Data{% endblocktrans %}                                                    </div>                                                </div><!-- end of solution-icons -->                                                <div class="col-sm  my-4  pb-md-5  d-flex align-items-center justify-content-start justify-content-sm-end solution-icons my-4 my-sm-0">                                                    <div class="icon pr-4">                                                        <img class="w-100"                                                             src="{% static '/img/application/intelligent/solution-3.png' %}">                                                    </div>                                                    <div class="title font-weight-light archivo-font">                                                        {% blocktrans %}Senseless payment{% endblocktrans %}                                                    </div>                                                </div> <!-- end of solution-icons -->                                            </div> <!-- end of swiper-slide 4 -->                                        </div> <!-- swiper-wrapper -->                                    </div> <!-- swiper-container -->                                </div>                            </section>                            <section class="container my-5 my-sm-5">                                <div class="row">                                    <div class="video-section col-12 w-100">                                        <iframe width="100%" class="video-class" height="658px"                                                src="https://www.youtube.com/embed/WAdHZaea4gY" frameborder="0"                                                allow="autoplay; encrypted-media" allowfullscreen></iframe>                                    </div>                                </div>                            </section>  <!-- end of video -->                        </main><!-- #main -->                    </div><!-- #primary -->                </div><!-- .wrap -->            </div><!-- #content -->        </div><!-- .site-content-contain -->    </div><!-- #page -->    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>    <script src="{% static '/js/swiper.min.js' %}"></script>    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>    <script>        let header = document.getElementById('header');        window.addEventListener('scroll', function (e) {            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');        });        //Navigation        let anchorlinks = document.querySelectorAll('a[href^="#"]');        for (let item of anchorlinks) {            item.addEventListener('click', (e) => {                for (let i of anchorlinks) {                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');                }                let hashval = item.getAttribute('href');                let target = document.querySelector(hashval)                target.scrollIntoView({                    behavior: 'smooth'                });                history.pushState(null, null, hashval);                e.preventDefault();                openMenu(0);            });        }        function openMenu(type) {            let menuHolder = document.getElementById('mySidenav');            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');        }        function myFunction() {            document.getElementById("myDropdown").classList.toggle("show");        }        // swiper for application pages        var swiperTeam = new Swiper('.swiper-container-applications', {            slidesPerView: 1,            autoplay: false,            grabCursor: false,            allowTouchMove: false,            autoHeight: true,        });        swiperTeam.on('slideChange', function () {            // change active image            let currentSlide = this.activeIndex;        });        function goToApplicationSwiper(index, e) {            swiperTeam.slideTo(index, 200);        }    </script>    </body>{% endblock %}

@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.http import FileResponse
@@ -23,10 +23,14 @@ class IndexView(View):
 
 
 class LangView(View):
-    def get(self, req):
-        lang = req.GET.get("lang")
+    def post(self, req):
+        lang = req.POST.get("lang")
+        path = req.POST.get('path')
+        print(lang)
         activate(lang)
-        return redirect(reverse('index'))
+        print(path)
+        return JsonResponse({'path':path})
+
 
 
 class NewsView(View):
@@ -79,8 +83,6 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
-
-
 
 
 
