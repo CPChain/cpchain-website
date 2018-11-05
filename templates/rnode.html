@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block title %}
     <title>RNodes &#8211; CPChain</title>
 {% endblock %}
@@ -25,10 +26,10 @@
                                                 <div class="upper col-sm-7 col-12 mx-auto">
 
                                                     <h3 class="mt-3 text-left">
-                                                        {% blocktrans %}CPChain — RNode Ecosystem Structure{% endblocktrans %}
+                                                        {%trans 'CPChain — RNode Ecosystem Structure' %}
                                                     </h3>
                                                     <h6 class="font-weight-light first">by CPChain at Aug 31, 2018
-                                                        <h6>
+                                                        </h6>
                                                             <div class="image-holder py-4">
                                                                 <img class="w-100"
                                                                      src="{% static '/img/rnodes/str-release.png' %}">
