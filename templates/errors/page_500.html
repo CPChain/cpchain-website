@@ -1,10 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-500
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    <title>Page not found &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+
+    <body class="error404 language-en hfeed has-header-image has-sidebar colors-light">
+    <div id="page" class="site">
+
+
+        <div class="site-content-contain">
+            <div id="content" class="site-content">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h1 class='text-muted display-1'> 500 </h1>
+                            <p class='decs text-capatalized h4'>
+                                We're sorry, but something went wrong.
+                            </p>
+                            <hr class="middle-hr w-100">
+
+                            <div class='desc text-muted my-5'>
+                                If you are the application owner check the logs for more information.
+                                <div class='action mt-4 mb-5 pb-5'>
+                                    <a href="https://cpchain.io"
+                                       class='btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 text-uppercase'>
+                                        Home
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!-- #content -->
+        </div><!-- .site-content-contain -->
+    </div><!-- #page -->
+
+    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
+    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
+
+    <script src="{% static '/js/swiper.min.js' %}"></script>
+    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
+
+    <script>
+
+        let header = document.getElementById('header');
+        window.addEventListener('scroll', function (e) {
+            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+        });
+
+        //Navigation
+        let anchorlinks = document.querySelectorAll('a[href^="#"]');
+        for (let item of anchorlinks) {
+            item.addEventListener('click', (e) => {
+
+                for (let i of anchorlinks) {
+                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                }
+
+                let hashval = item.getAttribute('href');
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                history.pushState(null, null, hashval);
+                e.preventDefault();
+                openMenu(0);
+            });
+        }
+
+
+        function openMenu(type) {
+            let menuHolder = document.getElementById('mySidenav');
+            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        }
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // swiper for application pages
+        var swiperTeam = new Swiper('.swiper-container-applications', {
+            slidesPerView: 1,
+            autoplay: false,
+            grabCursor: false,
+            allowTouchMove: false,
+            autoHeight: true,
+        });
+
+        swiperTeam.on('slideChange', function () {
+            // change active image
+            let currentSlide = this.activeIndex;
+        });
+
+        function goToApplicationSwiper(index, e) {
+            swiperTeam.slideTo(index, 200);
+        }
+
+    </script>
+
+    </body>
+    </html>
+{% endblock %}
