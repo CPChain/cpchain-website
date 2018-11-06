@@ -89,7 +89,7 @@ HAYSTACK_CONNECTIONS = {
 
 #当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 12
 
 WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 
