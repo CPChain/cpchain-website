@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>explorer</title>
+{% extends 'base.html' %}
+{% block custom_head %}
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="/static/js/default2.js"></script>
+    <script src="/static/js/default.js"></script>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/index.css" content="text/css">
-</head>
+{% endblock custom_head %}
+{% block content %}
 <body>
-<div class="container">
+<div class="container clearfix">
     <div class="header">
-        <div id="toggle">
-            switch
-            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>
-                <input type="checkbox" id="togglesocket" checked>
-                <span class="slider"></span>
-            </label>
-        </div>
+{#        <div id="toggle">#}
+{#            switch#}
+{#            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>#}
+{#                <input type="checkbox" id="togglesocket" checked>#}
+{#                <span class="slider"></span>#}
+{#            </label>#}
+{#        </div>#}
         <div id="info">
             <ul>
                 <li></li>
@@ -27,7 +25,7 @@
             </ul>
         </div>
         <div class="search">
-            <form action="../search">
+            <form action="search">
                 <input type="text" placeholder="address/hash/number" name="q">
                 <button>search</button>
 
@@ -36,7 +34,7 @@
     </div>
     <div class="recent_block">
         <h3>blocks</h3>
-        <span class="recent_"><a href="{% url 'explorer:blocks' %}">view all</a></span>
+        <span class="recent_"><a href="blocks">view all</a></span>
         <ul id="block_0">
             <li><a href="#">number:#<span class="number0"></span></a></li>
             <li><a href="#">produced by:<span class="miner0"></span></a></li>
@@ -106,4 +104,4 @@
     </div>
 </div>
 </body>
-</html>
+{% endblock content %}

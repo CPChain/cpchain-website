@@ -43,6 +43,8 @@
         font-family: 'Poppins', sans-serif !important;
     }
     </style>
+    {% block custom_head %}
+    {% endblock %}
 </head>
 <header class="py-4 mx-auto w-100" id="header">
     <div class="container">
@@ -79,8 +81,13 @@
                         </a>
                     </li>
                     <li>
+                    <li>
                         <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Team' %}
+                        </a>
+                    </li>
+                        <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Explorer' %}
                         </a>
                     </li>
                     <li>

@@ -32,11 +32,11 @@
         }
 
         .flag_out {
-            color: red;
+            color: green;
         }
 
         .flag_in {
-            color: green;
+            color: red;
         }
 
         .flag_self {
@@ -56,7 +56,7 @@
 <body>
 
 <div class="container">
-    <h1><a href="{% url 'explorer:home' %}">index</a></h1>
+    <h1><a href="/">index</a></h1>
     <h2>Address </h2>
     <h2>{{ address }}</h2>
     <h1>overview</h1>
@@ -80,15 +80,15 @@
 
         {% for tx in txs %}
             <ul>
-                <li><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash|slice:":16" }}...</a></li>
-                <li><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></li>
-                <li>{{ tx.date }}</li>
-                <li><a href="{% url 'explorer:address' tx.from %}">{{ tx.from|slice:":16" }}...</a></li>
+                <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
+                <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
+                <li>{{ tx.timestamp }}</li>
+                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
                 <li class="{% if tx.flag == 'in' %}flag_in
                 {% elif tx.flag == 'out' %}flag_out
                 {% else %}flag_self
                 {% endif %}">{{ tx.flag }}</li>
-                <li><a href="{% url 'explorer:address' tx.to %}">{{ tx.to|slice:":16" }}...</a></li>
+                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
                 <li>{{ tx.value }}</li>
                 <li>None</li>
                 <li>{{ tx.txfee }}</li>

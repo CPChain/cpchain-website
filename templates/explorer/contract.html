@@ -81,7 +81,7 @@
             <ul>
                 <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
                 <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
-                <li>{{ tx.date }}</li>
+                <li>{{ tx.timestamp }}</li>
                 <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
                 <li class="{% if tx.flag == 'in' %}flag_in
                 {% elif tx.flag == 'out' %}flag_out
@@ -94,29 +94,10 @@
             </ul>
         {% endfor %}
     </div>
-{#    <div class="pageturn .clear">#}
-{#        <ul class="pagelist fl">#}
-{#            {% if txs.has_previous %}#}
-{#                <li class="long"><a#}
-{#                        href="?{{ txs.previous_page_number.querystring }}">上一页</a></li>#}
-{#            {% endif %}#}
-{#            {% for page in txs.pages %}#}
-{#                {% if page %}#}
-{#                    {% ifequal page txs.number %}#}
-{#                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>#}
-{#                    {% else %}#}
-{#                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>#}
-{#                    {% endifequal %}#}
-{#                {% else %}#}
-{#                    <li><a href="" class="none">...</a></li>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{#            {% if txs.has_next %}#}
-{#                <li class="long"><a href="?{{ txs.next_page_number.querystring }}">下一页</a>#}
-{#                </li>#}
-{#            {% endif %}#}
-{#        </ul>#}
-{#    </div>#}
+    <div>
+        <h3>code</h3>
+        <div style="width: 70%">{{ code }}</div>
+    </div>
 </div>
 <br>
 

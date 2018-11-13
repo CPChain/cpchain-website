@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 SECRET_KEY = 'hunoh46%2z52^z1s%gu#b+02ezjv9ba^e!b*4b*txxuijqw^m!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -151,12 +151,10 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 
-from web3 import Web3
+from fusion.web3 import Web3
 
 # cpchain
-web3 = Web3(Web3.HTTPProvider('http://192.168.0.135:8501'))
-# eth
-# web3 = Web3(Web3.HTTPProvider('http://192.168.0.132:8545'))
+cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,

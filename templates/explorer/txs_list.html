@@ -100,7 +100,7 @@
             <ul>
                 <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
                 <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
-                <li>{{ tx.date }}</li>
+                <li>{{ tx.timestamp }}</li>
                 <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
                 <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
                 <li>{{ tx.value }}</li>
