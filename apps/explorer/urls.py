@@ -9,7 +9,7 @@ urlpatterns = [
     path('txs/', views.txs, name='txs'),
     path('tx/<tx_hash>', views.tx, name='tx'),
     path('address/<address>', views.address, name='address'),
-    path('search/', views.search, name='exp_search'),
+    path('search/', views.search, name='search'),
 ]
 
 
