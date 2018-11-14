@@ -1,5 +1,7 @@
 #! /usr/bin/python3
-
+import sys
+sys.path.append(__file__)
+sys.path.append('./fusion')
 from apps.explorer.db.monitor import main
 
 if __name__ == '__main__':
