@@ -5,7 +5,9 @@ __pycache__/
 .idea/
 # C extensions
 *.so
-
+uwsgi.pid
+uwsgi.log
+output.log
 # Distribution / packaging
 .Python
 build/
