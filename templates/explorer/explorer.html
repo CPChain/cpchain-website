@@ -11,7 +11,8 @@
 {% endblock %}
 {% block content %}
     <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
-    <div id="page" class="site">
+
+    {% comment %} <div id="page" class="site">
         <div class="site-content-contain">
             <div id="content" class="site-content">
 
@@ -125,7 +126,7 @@
                                     <li>time:<span id="time1"></span></li>
                                 </ul>
                                 <ul id="tx_2">
-                                    <li><a href="#">tx# <span id="txhash2"></span></a></li>
+                                    <li><a href="#">tx# <span id="txhash1"></span></a></li>
                                     <li>from: <a href=""><span id="from2"></span></a></li>
                                     <li>to: <a href=""><span id="to2"></span></a></li>
                                     <li>time:<span id="time2"></span></li>
@@ -156,7 +157,46 @@
             </div><!-- #content -->
 
         </div><!-- .site-content-contain -->
-    </div><!-- #page -->
+    </div><!-- #page --> {% endcomment %}
+
+    <div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-0 col-lg-8"></div>
+                <div class="col-12 col-lg-4">
+                    <form class="form-inline d-flex align-items-center justify-content-end"
+                            action="{% url 'explorer:search' %}" method="get">
+                        <input class="form-control d-block w-100" name="q" type="search"
+                                placeholder="address/contract/hash/number" aria-label="Search">
+                    </form>
+                </div>
+            </div>
+            <div class="my-5"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">12345</h1></div>
+                    <div class="text-center"><h3 class="index-font">column 1</h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">12345</h1></div>
+                    <div class="text-center"><h3 class="index-font">column 1</h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">12345</h1></div>
+                    <div class="text-center"><h3 class="index-font">column 1</h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">12345</h1></div>
+                    <div class="text-center"><h3 class="index-font">column 1</h3></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+    </div>
+
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script type='text/javascript'

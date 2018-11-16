@@ -99,7 +99,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cpchain_test',
-        'USER': 'root',
+        'USER': 'peng',
         'PASSWORD': '',
         'HOST': 'localhost',
     }
