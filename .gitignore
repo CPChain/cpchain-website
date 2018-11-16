@@ -7,7 +7,9 @@ __pycache__/
 *.so
 uwsgi.pid
 uwsgi.log
+nohup.out
 output.log
+
 # Distribution / packaging
 .Python
 build/

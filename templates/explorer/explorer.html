@@ -1,107 +1,228 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block custom_head %}
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="/static/js/default.js"></script>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/index.css" content="text/css">
-{% endblock custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+{% endblock %}
+{% block title %}
+    <title>News &#8211; CPChain</title>
+{% endblock %}
 {% block content %}
-<body>
-<div class="container clearfix">
-    <div class="header">
-{#        <div id="toggle">#}
-{#            switch#}
-{#            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>#}
-{#                <input type="checkbox" id="togglesocket" checked>#}
-{#                <span class="slider"></span>#}
-{#            </label>#}
-{#        </div>#}
-        <div id="info">
-            <ul>
-                <li></li>
-                <li></li>
-                <li>rnode</li>
-                <li>committee</li>
-            </ul>
-        </div>
-        <div class="search">
-            <form action="search">
-                <input type="text" placeholder="address/hash/number" name="q">
-                <button>search</button>
+    <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
+    <div id="page" class="site">
+        <div class="site-content-contain">
+            <div id="content" class="site-content">
 
-            </form>
-        </div>
-    </div>
-    <div class="recent_block">
-        <h3>blocks</h3>
-        <span class="recent_"><a href="blocks">view all</a></span>
-        <ul id="block_0">
-            <li><a href="#">number:#<span class="number0"></span></a></li>
-            <li><a href="#">produced by:<span class="miner0"></span></a></li>
-            <li><a href="#">transactions:<span class="txs0"></span></a></li>
-            <li>time:<span class="time0"></span></li>
-        </ul>
-        <ul id="block_1">
-            <li><a href="#">number:#<span class="number1"></span></a></li>
-            <li><a href="#">produced by:<span class="miner1"></span></a></li>
-            <li><a href="#">transactions:<span class="txs1"></span></a></li>
-            <li>time:<span class="time1"></span></li>
-        </ul>
-        <ul id="block_2">
-            <li><a href="#">number:#<span class="number2"></span></a></li>
-            <li><a href="#">produced by:<span class="miner2"></span></a></li>
-            <li><a href="#">transactions:<span class="txs2"></span></a></li>
-            <li>time:<span class="time2"></span></li>
-        </ul>
-        <ul id="block_3">
-            <li><a href="#">number:#<span class="number3"></span></a></li>
-            <li><a href="#">produced by:<span class="miner3"></span></a></li>
-            <li><a href="#">transactions:<span class="txs3"></span></a></li>
-            <li>time:<span class="time3"></span></li>
-        </ul>
-        <ul id="block_4">
-            <li><a href="#">number:#<span class="number4"></span></a></li>
-            <li><a href="#">produced by:<span class="miner4"></span></a></li>
-            <li><a href="#">transactions:<span class="txs4"></span></a></li>
-            <li>time:<span class="time4"></span></li>
-        </ul>
+                <section
+                        class="search-bar h-75 d-flex align-items-center justify-content-center position-relative bg-light">
+                    <div class="container">
+                        <div class="row my-2 py-3">
 
-    </div>
-    <div class="recent_txs">
-        <h3>transactions</h3>
-        <span class="recent_"><a href="txs">view all</a></span>
-        <ul id="tx_0">
-            <li><a href="#">tx# <span id="txhash0"></span></a></li>
-            <li>from: <a href=""><span id="from0"></span></a></li>
-            <li>to: <a href=""><span id="to0"></span></a></li>
-            <li>time:<span id="time0"></span></li>
-        </ul>
-        <ul id="tx_1">
-            <li><a href="#">tx# <span id="txhash1"></span></a></li>
-            <li>from: <a href=""><span id="from1"></span></a></li>
-            <li>to: <a href=""><span id="to1"></span></a></li>
-            <li>time:<span id="time1"></span></li>
-        </ul>
-        <ul id="tx_2">
-            <li><a href="#">tx# <span id="txhash2"></span></a></li>
-            <li>from: <a href=""><span id="from2"></span></a></li>
-            <li>to: <a href=""><span id="to2"></span></a></li>
-            <li>time:<span id="time2"></span></li>
-        </ul>
-        <ul id="tx_3">
-            <li><a href="#">tx# <span id="txhash3"></span></a></li>
-            <li>from: <a href=""><span id="from3"></span></a></li>
-            <li>to:<a href=""><span id="to3"></span></a></li>
-            <li>time: <span id="time3"></span></li>
-        </ul>
-        <ul id="tx_4">
-            <li><a href="#">tx# <span id="txhash4"></span></a></li>
-            <li>from: <a href=""><span id="from4"></span></a></li>
-            <li>to: <a href=""><span id="to4"></span></a></li>
-            <li>time: <span id="time4"></span></li>
-        </ul>
+                            <div class="col-12 px-0">
+                                <div class="navbar navbar-light d-flex flex-column flex-sm-row justify-content-between align-items-center flex-row w-100">
 
-    </div>
-</div>
-</body>
-{% endblock content %}
+                                    <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
+                                          action="{% url 'explorer:search' %}" method="get">
+                                        <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
+                                               placeholder="address/contract/hash/number" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section> <!-- end of search bar -->
+
+                <section class="py-5 my-sm-5 my-0">
+                    <div class="container">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="right-side col-6 text-right">
+                                <a href="{% url 'explorer:blocks' %}" class="text-primary">
+                                    See all
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4 px-0">
+                            <hr class="right-hr">
+                        </div>
+
+                        <div class="row">
+                            {#one section#}
+
+                            {#    explore#}
+                            <div class="sub_header">
+                                {#        <div id="toggle">#}
+                                {#            switch#}
+                                {#            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>#}
+                                {#                <input type="checkbox" id="togglesocket" checked>#}
+                                {#                <span class="slider"></span>#}
+                                {#            </label>#}
+                                {#        </div>#}
+                                <div id="info">
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li>rnode</li>
+                                        <li>committee</li>
+                                    </ul>
+                                </div>
+                                <div class="search">
+                                    <form action="search">
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="recent_block">
+                                <h3>blocks</h3>
+                                <ul id="block_0">
+                                    <li><a href="#">number:#<span class="number0"></span></a></li>
+                                    <li><a href="#">produced by:<span class="miner0"></span></a></li>
+                                    <li><a href="#">transactions:<span class="txs0"></span></a></li>
+                                    <li>time:<span class="time0"></span></li>
+                                </ul>
+                                <ul id="block_1">
+                                    <li><a href="#">number:#<span class="number1"></span></a></li>
+                                    <li><a href="#">produced by:<span class="miner1"></span></a></li>
+                                    <li><a href="#">transactions:<span class="txs1"></span></a></li>
+                                    <li>time:<span class="time1"></span></li>
+                                </ul>
+                                <ul id="block_2">
+                                    <li><a href="#">number:#<span class="number2"></span></a></li>
+                                    <li><a href="#">produced by:<span class="miner2"></span></a></li>
+                                    <li><a href="#">transactions:<span class="txs2"></span></a></li>
+                                    <li>time:<span class="time2"></span></li>
+                                </ul>
+                                <ul id="block_3">
+                                    <li><a href="#">number:#<span class="number3"></span></a></li>
+                                    <li><a href="#">produced by:<span class="miner3"></span></a></li>
+                                    <li><a href="#">transactions:<span class="txs3"></span></a></li>
+                                    <li>time:<span class="time3"></span></li>
+                                </ul>
+                                <ul id="block_4">
+                                    <li><a href="#">number:#<span class="number4"></span></a></li>
+                                    <li><a href="#">produced by:<span class="miner4"></span></a></li>
+                                    <li><a href="#">transactions:<span class="txs4"></span></a></li>
+                                    <li>time:<span class="time4"></span></li>
+                                </ul>
+
+                            </div>
+                            <div class="recent_txs">
+                                <h3>transactions</h3>
+                                <ul id="tx_0">
+                                    <li><a href="#">tx# <span id="txhash0"></span></a></li>
+                                    <li>from: <a href=""><span id="from0"></span></a></li>
+                                    <li>to: <a href=""><span id="to0"></span></a></li>
+                                    <li>time:<span id="time0"></span></li>
+                                </ul>
+                                <ul id="tx_1">
+                                    <li><a href="#">tx# <span id="txhash1"></span></a></li>
+                                    <li>from: <a href=""><span id="from1"></span></a></li>
+                                    <li>to: <a href=""><span id="to1"></span></a></li>
+                                    <li>time:<span id="time1"></span></li>
+                                </ul>
+                                <ul id="tx_2">
+                                    <li><a href="#">tx# <span id="txhash2"></span></a></li>
+                                    <li>from: <a href=""><span id="from2"></span></a></li>
+                                    <li>to: <a href=""><span id="to2"></span></a></li>
+                                    <li>time:<span id="time2"></span></li>
+                                </ul>
+                                <ul id="tx_3">
+                                    <li><a href="#">tx# <span id="txhash3"></span></a></li>
+                                    <li>from: <a href=""><span id="from3"></span></a></li>
+                                    <li>to:<a href=""><span id="to3"></span></a></li>
+                                    <li>time: <span id="time3"></span></li>
+                                </ul>
+                                <ul id="tx_4">
+                                    <li><a href="#">tx# <span id="txhash4"></span></a></li>
+                                    <li>from: <a href=""><span id="from4"></span></a></li>
+                                    <li>to: <a href=""><span id="to4"></span></a></li>
+                                    <li>time: <span id="time4"></span></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        {#explorer#}
+                        {#one section#}
+                    </div>
+
+
+                </section>
+
+
+            </div><!-- #content -->
+
+        </div><!-- .site-content-contain -->
+    </div><!-- #page -->
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type='text/javascript'
+            src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>
+    <script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>
+
+    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/js/swiper.min.js"></script>
+    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/vanilla-tilt/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+
+        let header = document.getElementById('header');
+        window.addEventListener('scroll', function (e) {
+            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+        });
+
+        //Navigation
+        let anchorlinks = document.querySelectorAll('a[href^="#"]');
+        for (let item of anchorlinks) {
+            item.addEventListener('click', (e) => {
+
+                for (let i of anchorlinks) {
+                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                }
+
+                let hashval = item.getAttribute('href');
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                history.pushState(null, null, hashval);
+                e.preventDefault();
+                openMenu(0);
+            });
+        }
+
+
+        function openMenu(type) {
+            let menuHolder = document.getElementById('mySidenav');
+            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        }
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // swiper for application pages
+        var swiperTeam = new Swiper('.swiper-container-applications', {
+            slidesPerView: 1,
+            autoplay: false,
+            grabCursor: false,
+            allowTouchMove: false,
+            autoHeight: true,
+        });
+
+        swiperTeam.on('slideChange', function () {
+            // change active image
+            let currentSlide = this.activeIndex;
+        });
+
+        function goToApplicationSwiper(index, e) {
+            swiperTeam.slideTo(index, 200);
+        }
+
+    </script>
+    </body>
+
+
+{% endblock %}

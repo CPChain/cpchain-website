@@ -278,10 +278,10 @@ def search(req):
         # block number
         if not search.isdigit():
             return HttpResponse('string error!')
-        return redirect('/block/' + search)
+        return redirect('/explorer/block/' + search)
     elif len(search) <= ADD_SIZE:
         # address or contract
-        return redirect('/address/' + search)
+        return redirect('/explorer/address/' + search)
     else:
         # hash
         # get Transaction info
@@ -289,12 +289,12 @@ def search(req):
             search = '0x' + search
         result = txs_collection.find({'hash': search}).count()
         if result:
-            return redirect('/tx/' + search)
+            return redirect('/explorer/tx/' + search)
         else:
             result = block_collection.find({'hash': search}).count()
             if result:
                 # get Block info
-                return redirect('/block/' + search)
+                return redirect('/explorer/block/' + search)
             else:
                 return HttpResponse('sorry,address not found')
 
