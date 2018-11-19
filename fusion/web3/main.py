@@ -89,6 +89,7 @@ from web3.version import (
 
 def get_default_modules():
     return {
+        "cpc": Cpc,
         "eth": Eth,
         "net": Net,
         "personal": Personal,
@@ -98,7 +99,7 @@ def get_default_modules():
         "admin": Admin,
         "parity": Parity,
         "testing": Testing,
-        "cpc": Cpc,
+
     }
 
 

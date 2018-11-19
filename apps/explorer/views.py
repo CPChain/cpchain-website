@@ -17,7 +17,9 @@ txs_collection = CLIENT['test']['txs']
 
 
 def explorer(request):
-    return render(request, 'explorer/explorer.html')
+    rnode = cf.cpc.getRNodes()
+    committee = cf.cpc.getCommittees()
+    return render(request, 'explorer/explorer.html', locals())
 
 
 # @accept_websocket

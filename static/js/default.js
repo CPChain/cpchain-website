@@ -62,7 +62,7 @@ $(function () {
                 $('.miner3').text(msg.b3.miner);
                 $('.txs3').text(msg.b3.txs);
                 $('#block_3 li:nth-child(2) a').attr('href', 'address/' + msg.b3.miner);
-                $('#block_3 li:nth-child(3) a').attr('href', 'txs?block=' + msg.b3.number)
+                $('#block_3 li:nth-child(3) a').attr('href', 'txs?block=' + msg.b3.number);
                 $('.time3').text(msg.b3['time']);
 
                 $('#block_4:first a').attr('href', 'block/' + msg.b4.number);
@@ -70,7 +70,7 @@ $(function () {
                 $('.miner4').text(msg.b4.miner);
                 $('.txs4').text(msg.b4.txs);
                 $('#block_4 li:nth-child(2) a').attr('href', 'address/' + msg.b4.miner);
-                $('#block_4 li:nth-child(3) a').attr('href', 'txs?block=' + msg.b4.number)
+                $('#block_4 li:nth-child(3) a').attr('href', 'txs?block=' + msg.b4.number);
                 $('.time4').text(msg.b4['time']);
 
                 //txs
@@ -86,7 +86,7 @@ $(function () {
                 }
 
             };
-            ws.onerror = function (evt) {
+            ws.onerror = function () {
                 console.log("->socket error");
             }
             ;

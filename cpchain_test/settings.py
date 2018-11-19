@@ -77,7 +77,6 @@ TEMPLATES = [
     },
 ]
 
-
 HAYSTACK_CONNECTIONS = {
     'default': {
         # 使用whoosh引擎
@@ -87,7 +86,7 @@ HAYSTACK_CONNECTIONS = {
     }
 }
 
-#当添加、修改、删除数据时，自动生成索引
+# 当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 12
 
@@ -128,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale/'),)
 
 TIME_ZONE = 'Asia/Shanghai'
@@ -151,10 +149,11 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 
-from fusion.web3 import Web3
+sys.path.insert(0, os.path.join(BASE_DIR, 'fusion'))
+from web3 import Web3, HTTPProvider
 
-# cpchain
-cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
+# cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
+cpc_fusion = Web3(HTTPProvider('http://192.168.0.135:8501'))
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,

@@ -236,6 +236,30 @@ class Eth(Module):
                 )
             )
 
+    def getRNodes(self):
+        return self.web3.manager.request_blocking(
+            "eth_getRNodes",
+            [],
+        )
+
+    def getCurrentEpoch(self):
+        return self.web3.manager.request_blocking(
+            "eth_getCurrentEpoch",
+            [],
+        )
+
+    def getCurrentRound(self):
+        return self.web3.manager.request_blocking(
+            "eth_getCurrentRound",
+            [],
+        )
+
+    def getCommittees(self):
+        return self.web3.manager.request_blocking(
+            "eth_getCommittees",
+            [],
+        )
+
     def getTransactionReceipt(self, transaction_hash):
         return self.web3.manager.request_blocking(
             "eth_getTransactionReceipt",
