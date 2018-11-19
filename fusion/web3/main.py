@@ -40,6 +40,9 @@ from web3.admin import (
 from web3.eth import (
     Eth,
 )
+from web3.cpc import (
+    Cpc,
+)
 from web3.iban import (
     Iban,
 )
@@ -95,6 +98,7 @@ def get_default_modules():
         "admin": Admin,
         "parity": Parity,
         "testing": Testing,
+        "cpc": Cpc,
     }
 
 

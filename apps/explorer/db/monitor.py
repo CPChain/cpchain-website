@@ -28,26 +28,26 @@ def save_blocks_txs(start_block_id=None):
     temp_id = start_block_id
     logger.info('start block :#%d', temp_id)
     # chain restart
-    if web3.eth.blockNumber + 1 < start_block_id:
+    if web3.cpc.blockNumber + 1 < start_block_id:
         b_collection.drop()
         tx_collection.drop()
         temp_id = 0
 
     while True:
-        b_number = web3.eth.blockNumber
+        b_number = web3.cpc.blockNumber
         if b_number >= temp_id:
             # save one block
-            block = dict(web3.eth.getBlock(temp_id))
+            block = dict(web3.cpc.getBlock(temp_id))
             block_ = block_formatter(block)
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
             timestamp = block['timestamp']
-            transaction_cnt = web3.eth.getBlockTransactionCount(temp_id)
+            transaction_cnt = web3.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
             for transaction_id in range(0, transaction_cnt):
-                tx = dict(web3.eth.getTransactionByBlock(temp_id, transaction_id))
+                tx = dict(web3.cpc.getTransactionByBlock(temp_id, transaction_id))
                 tx_ = tx_formatter(tx, timestamp)
                 txs_li.append(tx_)
                 # append 1 block's txs into txs_li
