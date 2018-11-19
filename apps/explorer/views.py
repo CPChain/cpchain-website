@@ -17,8 +17,8 @@ txs_collection = CLIENT['test']['txs']
 
 
 def explorer(request):
-    rnode = cf.cpc.getRNodes()
-    committee = cf.cpc.getCommittees()
+    rnode = len(cf.cpc.getRNodes())
+    committee = len(cf.cpc.getCommittees())
     return render(request, 'explorer/explorer.html', locals())
 
 
