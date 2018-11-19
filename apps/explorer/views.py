@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
-#import uwsgi
+import uwsgi
 from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
