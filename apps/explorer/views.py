@@ -20,7 +20,7 @@ def explorer(request):
     rnode = len(cf.cpc.getRNodes())
     committee = len(cf.cpc.getCommittees())
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(8))
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     return render(request, 'explorer/explorer.html', locals())
 
 
@@ -35,36 +35,37 @@ def wshandler(req):
     temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
-        height = block['number']
-        if height >= temp_height:
+        block_height = block['number']
+        if block_height >= temp_height:
             txs_count = txs_collection.find().count()
             rnode = len(cf.cpc.getRNodes())
             committee = len(cf.cpc.getCommittees())
-            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
+
             # tps = txs_count
             data = {}
             header = {
-                'blockHeight': height,
+                'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': rnode,
                 'tps': 1.3,
-                'committee': committee
+                'committee': committee,
             }
-            block ={
+            temp = block_collection.find({'number':temp_height})[0]
+            block = {
                 'id': temp_height,
                 'reward': 0,
                 'txs': txs_count,
-                'producerID': block['hash'],
-                'timestamp': block['timestamp'],
-                'timeTicker': 0,
+                'producerID': temp['miner'],
+                'timestamp': temp['timestamp'],
+                'hash':temp['hash'],
             }
-
-            data['header']=header
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
+            data['header'] = header
             data['block'] = block
-            data['txs']= t_li
+            data['txs'] = t_li
             data = json.dumps(data)
             uwsgi.websocket_send(data)
-            time.sleep(0.1)
+            time.sleep(1)
             temp_height += 1
 
 
