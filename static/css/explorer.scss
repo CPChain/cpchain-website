@@ -1,0 +1,158 @@
+#chart {
+    width: 100%;
+    height: 45vmin;
+    margin: 70px 0;
+}
+
+#explorer-header {
+    .number-font {
+        color: #305278;
+        font-size: 28px;
+    }
+    
+    .index-font {
+        color: #305278;
+        font-size: 16px;
+    }
+    
+    .sub-font {
+        font-size: 10px;
+    }
+}
+
+.jumbotron-bg {
+  background-color: #f7f9fc;
+}
+
+.table-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+
+    .table-header-main {
+        font-size: 18px;
+    }
+
+    .table-header-sub {
+        font-size: 14px;
+    }
+
+    &.table-header-left::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        content:' ';
+        background: linear-gradient(to left, rgba(27,163,255,1), rgba(27,163,255,0))
+    }
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        content:' ';
+        background: linear-gradient(to right, rgba(27,163,255,1), rgba(27,163,255,0))
+    }
+
+}
+
+.table-content {
+    margin: 40px 0;
+    padding: 0 20px;
+    max-height: 460px;
+    position: relative;
+    overflow: hidden;
+
+    .table-item {
+        margin-bottom: 8px;
+        cursor: pointer;
+        box-shadow: 0 9px 9px rgba(48,82,120,.05);
+
+
+        .table-item-icon {
+            height: 14px;
+        }
+        .table-item-id {
+            font-size: 14px;
+        }
+        .table-item-desc {
+            font-size: 12px;
+        }
+        .table-item-bonus {
+            font-size: 12px;
+        }
+        .table-item-sub {
+            font-size: 12px;
+        }
+        .table-item-time {
+            font-size: 10px;
+        }
+    }
+}
+
+.page-header {
+    position: relative;
+    padding: 54px 0 36px;
+
+    .page-header-main {
+        font-size: 36px;
+    }
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        content: ' ';
+        background: linear-gradient(to right, rgba(27,163,255,0), rgba(27,163,255,.8), rgba(27,163,255,0))
+    }
+}
+
+.info-table {
+    .info-id {
+        margin: 58px 0;
+
+        .info-id-icon {
+            display: inline-block;
+            margin-right: 16px;
+        }
+
+        .info-id-serial {
+
+        }
+    }
+    .info-row {
+        &:first-child {
+
+        }
+
+        .rx-success {
+
+        }
+        .rc-fail {
+
+        }
+    }
+}
+
+.slide-fade-enter-active, .slide-fade-leave-active {
+    transition: all .3s ease;
+}
+.slide-fade-enter
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+}
+.slide-fade-leave-to {
+    transform: translateX(-10px);
+    opacity: 0;
+}
+
+.slide-fade-move {
+    transition: transform .5s;
+}

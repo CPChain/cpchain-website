@@ -13,34 +13,69 @@ echartOption = {
         res += `<br/>${param.seriesName}: ${param.value}`
       })
       return res
-    }
+    },
+    extraCssText: 'box-shadow: 0 3px 21px rgba(0,0,0,.3)'
   },
   calculable: true,
   legend: {
-    data: ['Transaction History', 'Address Growth']
+    data: ['Transaction History', 'Address Growth'],
+    textStyle: {
+      color: '#a9bcd4',
+      fontSize: 16
+    },
+    left: 40,
   },
   xAxis: [
     {
       type: 'category',
       // data: ['9/17', '9/18', '9/19', '9/20', '9/21', '9/22', '9/23', '9/24', '9/25']
-      data: []
+      data: [],
+      boundaryGap: false,
+      onZero: false,
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(169,188,212,.8)'
+        }
+      },
+      axisLabel: {
+        color: '#a9bcd4',
+        fontSize: 12
+      }
     }
   ],
   yAxis: [
     {
       type: 'value',
-      splitNumber: 5,
+      splitNumber: 6,
       axisLabel: {
-        formatter: '{value} '
-      }
+        formatter: '{value}',
+        color: '#a9bcd4',
+        fontSize: 16,
+        padding: [0, 10]
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(169,188,212,.8)',
+          width: 2
+        }
+      },
     },
     {
       type: 'value',
       name: 'Byte',
-      splitNumber: 5,
+      splitNumber: 6,
       axisLabel: {
-        formatter: '{value}'
-      }
+        formatter: '{value}',
+        color: '#a9bcd4',
+        fontSize: 16,
+        padding: [0, 10]
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(169,188,212,.8)',
+          width: 2
+        }
+      },
     }
   ],
   series: [
@@ -51,7 +86,22 @@ echartOption = {
       data: [],
       lineStyle: {
         color: '#191970',
-      }
+      },
+      areaStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [{
+            offset: 0, color: 'rgba(119,136,153,.4)' // 0% 处的颜色
+          }, {
+            offset: 1, color: 'rgba(119,136,153,0.12)' // 100% 处的颜色
+          }],
+          globalCoord: false // 缺省为 false
+        }
+      },
     },
     {
       name: 'Transaction History',

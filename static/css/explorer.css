@@ -1,28 +1,21 @@
-::-webkit-scrollbar-track {
-    color: transparent;
-}
-
-::-webkit-scrollbar-track-piece {
-    color: transparent;
-}
-
 #chart {
-    width: 100%;
-    height: 40vmin;
+  width: 100%;
+  height: 45vmin;
+  margin: 70px 0;
 }
 
-.number-font {
-    color: #305278;
-    font-size: 28px;
+#explorer-header .number-font {
+  color: #305278;
+  font-size: 28px;
 }
 
-.index-font {
-    color: #305278;
-    font-size: 16px;
+#explorer-header .index-font {
+  color: #305278;
+  font-size: 16px;
 }
 
-.sub-font {
-    font-size: 10px;
+#explorer-header .sub-font {
+  font-size: 10px;
 }
 
 .jumbotron-bg {
@@ -30,44 +23,135 @@
 }
 
 .table-header {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px 0;
 }
 
-.table-header-main {
-    font-size: 18px;
+.table-header .table-header-main {
+  font-size: 18px;
 }
 
-.table-header-sub {
-    font-size: 14px;
+.table-header .table-header-sub {
+  font-size: 14px;
+}
+
+.table-header.table-header-left::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: ' ';
+  background: -webkit-gradient(linear, right top, left top, from(#1ba3ff), to(rgba(27, 163, 255, 0)));
+  background: linear-gradient(to left, #1ba3ff, rgba(27, 163, 255, 0));
+}
+
+.table-header::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: ' ';
+  background: -webkit-gradient(linear, left top, right top, from(#1ba3ff), to(rgba(27, 163, 255, 0)));
+  background: linear-gradient(to right, #1ba3ff, rgba(27, 163, 255, 0));
 }
 
 .table-content {
-    margin: 40px 20px;
-    max-height: 460px;
-    overflow-y: scroll;
-}
-.table-item {
-    margin-bottom: 8px;
-}
-
-.table-item-icon {
-    height: 14px;
-}
-.table-item-id {
-    font-size: 14px;
-}
-.table-item-desc {
-    font-size: 12px;
-}
-.table-item-bonus {
-    font-size: 12px;
-}
-.table-item-sub {
-    font-size: 12px;
-}
-.table-item-time {
-    font-size: 10px;
+  margin: 40px 0;
+  padding: 0 20px;
+  max-height: 460px;
+  position: relative;
+  overflow: hidden;
 }
 
+.table-content .table-item {
+  margin-bottom: 8px;
+  cursor: pointer;
+  -webkit-box-shadow: 0 9px 9px rgba(48, 82, 120, 0.05);
+          box-shadow: 0 9px 9px rgba(48, 82, 120, 0.05);
+}
+
+.table-content .table-item .table-item-icon {
+  height: 14px;
+}
+
+.table-content .table-item .table-item-id {
+  font-size: 14px;
+}
+
+.table-content .table-item .table-item-desc {
+  font-size: 12px;
+}
+
+.table-content .table-item .table-item-bonus {
+  font-size: 12px;
+}
+
+.table-content .table-item .table-item-sub {
+  font-size: 12px;
+}
+
+.table-content .table-item .table-item-time {
+  font-size: 10px;
+}
+
+.page-header {
+  position: relative;
+  padding: 54px 0 36px;
+}
+
+.page-header .page-header-main {
+  font-size: 36px;
+}
+
+.page-header::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: ' ';
+  background: -webkit-gradient(linear, left top, right top, from(rgba(27, 163, 255, 0)), color-stop(rgba(27, 163, 255, 0.8)), to(rgba(27, 163, 255, 0)));
+  background: linear-gradient(to right, rgba(27, 163, 255, 0), rgba(27, 163, 255, 0.8), rgba(27, 163, 255, 0));
+}
+
+.info-table .info-id {
+  margin: 58px 0;
+}
+
+.info-table .info-id .info-id-icon {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.slide-fade-enter-active, .slide-fade-leave-active {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.slide-fade-enter {
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  -webkit-transform: translateX(-10px);
+          transform: translateX(-10px);
+  opacity: 0;
+}
+
+.slide-fade-move {
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+/*# sourceMappingURL=explorer.css.map */

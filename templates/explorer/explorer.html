@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="/static/js/default.js"></script>
+    <script src="/static/js/util.js"></script>
     <script src="/static/js/echarts-en.min.js"></script>
     <script src="/static/js/echarts-theme-walden.js"></script>
     <script src="/static/js/echarts-linear-options.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
-    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 {% endblock %}
 {% block title %}
     <title>News &#8211; CPChain</title>
@@ -16,166 +20,10 @@
 {% block content %}
     <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
 
-    {% comment %} <div id="page" class="site">
-        <div class="site-content-contain">
-            <div id="content" class="site-content">
-
-                <section
-                        class="search-bar h-75 d-flex align-items-center justify-content-center position-relative bg-light">
-                    <div class="container">
-                        <div class="row my-2 py-3">
-
-                            <div class="col-12 px-0">
-                                <div class="navbar navbar-light d-flex flex-column flex-sm-row justify-content-between align-items-center flex-row w-100">
-
-                                    <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
-                                          action="{% url 'explorer:search' %}" method="get">
-                                        <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
-                                               placeholder="address/contract/hash/number" aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section> <!-- end of search bar -->
-
-                <section class="py-5 my-sm-5 my-0">
-                    <div class="container">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div class="right-side col-6 text-right">
-                                <a href="{% url 'explorer:blocks' %}" class="text-primary">
-                                    See all
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4 px-0">
-                            <hr class="right-hr">
-                        </div>
-
-                        <div class="row">
-                            {#one section#}
-
-                            {#    explore#}
-                            <div class="sub_header">
-                                {#        <div id="toggle">#}
-                                {#            switch#}
-                                {#            <label class="switch pull-right" id='labelswitch' rel='tooltip' title=''>#}
-                                {#                <input type="checkbox" id="togglesocket" checked>#}
-                                {#                <span class="slider"></span>#}
-                                {#            </label>#}
-                                {#        </div>#}
-                                <div id="info">
-                                    <ul>
-                                        <li></li>
-                                        <li></li>
-                                        <li>rnode:{{ rnode }}</li>
-                                        <li>committee:{{ committee }}</li>
-                                    </ul>
-                                </div>
-                                <div class="search">
-                                    <form action="search">
-
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="recent_block">
-                                <h3>blocks</h3>
-                                <ul id="block_0">
-                                    <li><a href="#">number:#<span class="number0"></span></a></li>
-                                    <li><a href="#">produced by:<span class="miner0"></span></a></li>
-                                    <li><a href="#">transactions:<span class="txs0"></span></a></li>
-                                    <li>time:<span class="time0"></span></li>
-                                </ul>
-                                <ul id="block_1">
-                                    <li><a href="#">number:#<span class="number1"></span></a></li>
-                                    <li><a href="#">produced by:<span class="miner1"></span></a></li>
-                                    <li><a href="#">transactions:<span class="txs1"></span></a></li>
-                                    <li>time:<span class="time1"></span></li>
-                                </ul>
-                                <ul id="block_2">
-                                    <li><a href="#">number:#<span class="number2"></span></a></li>
-                                    <li><a href="#">produced by:<span class="miner2"></span></a></li>
-                                    <li><a href="#">transactions:<span class="txs2"></span></a></li>
-                                    <li>time:<span class="time2"></span></li>
-                                </ul>
-                                <ul id="block_3">
-                                    <li><a href="#">number:#<span class="number3"></span></a></li>
-                                    <li><a href="#">produced by:<span class="miner3"></span></a></li>
-                                    <li><a href="#">transactions:<span class="txs3"></span></a></li>
-                                    <li>time:<span class="time3"></span></li>
-                                </ul>
-                                <ul id="block_4">
-                                    <li><a href="#">number:#<span class="number4"></span></a></li>
-                                    <li><a href="#">produced by:<span class="miner4"></span></a></li>
-                                    <li><a href="#">transactions:<span class="txs4"></span></a></li>
-                                    <li>time:<span class="time4"></span></li>
-                                </ul>
-
-                            </div>
-                            <div class="recent_txs">
-                                <h3>transactions</h3>
-                                <ul id="tx_0">
-                                    <li><a href="#">tx# <span id="txhash0"></span></a></li>
-                                    <li>from: <a href=""><span id="from0"></span></a></li>
-                                    <li>to: <a href=""><span id="to0"></span></a></li>
-                                    <li>time:<span id="time0"></span></li>
-                                </ul>
-                                <ul id="tx_1">
-                                    <li><a href="#">tx# <span id="txhash1"></span></a></li>
-                                    <li>from: <a href=""><span id="from1"></span></a></li>
-                                    <li>to: <a href=""><span id="to1"></span></a></li>
-                                    <li>time:<span id="time1"></span></li>
-                                </ul>
-                                <ul id="tx_2">
-                                    <li><a href="#">tx# <span id="txhash1"></span></a></li>
-                                    <li>from: <a href=""><span id="from2"></span></a></li>
-                                    <li>to: <a href=""><span id="to2"></span></a></li>
-                                    <li>time:<span id="time2"></span></li>
-                                </ul>
-                                <ul id="tx_3">
-                                    <li><a href="#">tx# <span id="txhash3"></span></a></li>
-                                    <li>from: <a href=""><span id="from3"></span></a></li>
-                                    <li>to:<a href=""><span id="to3"></span></a></li>
-                                    <li>time: <span id="time3"></span></li>
-                                </ul>
-                                <ul id="tx_4">
-                                    <li><a href="#">tx# <span id="txhash4"></span></a></li>
-                                    <li>from: <a href=""><span id="from4"></span></a></li>
-                                    <li>to: <a href=""><span id="to4"></span></a></li>
-                                    <li>time: <span id="time4"></span></li>
-                                </ul>
-
-                            </div>
-                        </div>
-                        {#explorer#}
-                        {#one section#}
-                    </div>
-
-
-                </section>
-
-
-            </div><!-- #content -->
-
-        </div><!-- .site-content-contain -->
-    </div><!-- #page --> {% endcomment %}
-
     {% comment %} HEADER {% endcomment %}
+    {% include "explorer/_searchbar.html" %}
     <div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4">
         <div class="container" id="explorer-header">
-            <div class="row">
-                <div class="col-0 col-lg-8"></div>
-                <div class="col-12 col-lg-4">
-                    <form class="form-inline d-flex align-items-center justify-content-end"
-                          action="{% url 'explorer:search' %}" method="get">
-                        <input class="form-control d-block w-100" name="q" type="search"
-                               placeholder="address/contract/hash/number" aria-label="Search">
-                    </form>
-                </div>
-            </div>
             <div class="my-5"></div>
             <div class="row">
                 <div class="col">
@@ -201,8 +49,8 @@
 
     {% comment %} GRAPH {% endcomment %}
     <div class="container">
-        <div class="table-header">
-            <div class="table-header-main">TITLE</div>
+        <div class="table-header table-header-left">
+            <div class="table-header-main">Blockchain Indicator</div>
         </div>
         <div class="container">
             <div id="chart"></div>
@@ -214,74 +62,78 @@
         <div class="row">
             <div class="col-6 col-lg-6">
                 <div class="table-header">
-                    <div class="table-header-main">TITLE</div>
-                    <div class="table-header-sub">MORE</div>
+                    <div class="table-header-main">Blocks</div>
+                    <div class="table-header-sub"><a href="blocks">See all</a></div>
                 </div>
                 <div class="table-content">
-                    <div class="card table-item" v-for="block in blocks">
-                        <div class="card-body table-item-body">
-                            <div class="row">
-                                <div class="col-8 table-item-icon">
-                                    <p class="text-left">icon</p>
+                    <transition-group tag="div" name="slide-fade">
+                        <div class="card table-item" v-for="block in blocks" @click="gotoBlock(block.id)" :key="block.timestamp">
+                            <div class="card-body table-item-body">
+                                <div class="row">
+                                    <div class="col-8 table-item-icon">
+                                        <p class="text-left">icon</p>
+                                    </div>
+                                    <div class="col-4 table-item-sub">
+                                        <p class="text-right">Block Reward: [[block.reward]] TRX</p>
+                                    </div>
                                 </div>
-                                <div class="col-4 table-item-sub">
-                                    <p class="text-right">Block Reward: [[block.reward]] TRX</p>
+                                <div class="row">
+                                    <div class="col-8 table-item-id">
+                                        <p class="text-left">#[[block.id]]</p>
+                                    </div>
+                                    <div class="col-4 table-item-bonus">
+                                        <p class="text-right">[[block.txs]] Transactions</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8 table-item-id">
-                                    <p class="text-left">#[[block.id]]</p>
-                                </div>
-                                <div class="col-4 table-item-bonus">
-                                    <p class="text-right">[[block.txs]] Transactions</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8 table-item-desc">
-                                    <p class="text-left">Produced by [[block.producerID]]</p>
-                                </div>
-                                <div class="col-4 table-item-time">
-                                    <p class="text-right">[[block.timeTicker]] ago</p>
+                                <div class="row">
+                                    <div class="col-8 table-item-desc">
+                                        <p class="text-left">Produced by [[block.producerID]]</p>
+                                    </div>
+                                    <div class="col-4 table-item-time">
+                                        <p class="text-right">[[block.timeTicker]] ago</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </transition-group>
                 </div>
             </div>
             <div class="col-6 col-lg-6">
                 <div class="table-header">
-                    <div class="table-header-main">TITLE</div>
-                    <div class="table-header-sub">MORE</div>
+                    <div class="table-header-main">Transactions</div>
+                    <div class="table-header-sub"><a href="txs">See all</a></div>
                 </div>
                 <div class="table-content">
-                    <div class="card table-item" v-for="tx in txs">
-                        <div class="card-body table-item-body">
-                            <div class="row">
-                                <div class="col-8 table-item-icon">
-                                    <p class="text-left">icon</p>
+                    <transition-group tag="div" name="slide-fade">
+                        <div class="card table-item" v-for="tx in txs" @click="gotoTx(tx.id)" :key="tx.timestamp">
+                            <div class="card-body table-item-body">
+                                <div class="row">
+                                    <div class="col-8 table-item-icon">
+                                        <p class="text-left">icon</p>
+                                    </div>
+                                    <div class="col-4 table-item-sub">
+                                        <p class="text-right">[[tx.amount]]</p>
+                                    </div>
                                 </div>
-                                <div class="col-4 table-item-sub">
-                                    <p class="text-right">[[tx.amount]]</p>
+                                <div class="row">
+                                    <div class="col-8 table-item-id">
+                                        <p class="text-left">[[tx.id]]</p>
+                                    </div>
+                                    <div class="col-4 table-item-bonus">
+                                        <p class="text-right"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8 table-item-id">
-                                    <p class="text-left">[[tx.id]]</p>
-                                </div>
-                                <div class="col-4 table-item-bonus">
-                                    <p class="text-right"></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8 table-item-desc">
-                                    <p class="text-left">From [[tx.sellerID]] To [[tx.buyerID]]</p>
-                                </div>
-                                <div class="col-4 table-item-time">
-                                    <p class="text-right">[[tx.timeTicker]] ago</p>
+                                <div class="row">
+                                    <div class="col-8 table-item-desc">
+                                        <p class="text-left">From [[tx.sellerID]] To [[tx.buyerID]]</p>
+                                    </div>
+                                    <div class="col-4 table-item-time">
+                                        <p class="text-right">[[tx.timeTicker]] ago</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </transition-group>
                 </div>
             </div>
         </div>
@@ -417,71 +269,104 @@
     </script>
 
     <script>
-        var exploreTablesApp = new Vue({
+        var explorerTablesApp = new Vue({
             el: '#explorer-tables',
             delimiters: [`[[`, `]]`],
             data: {
                 blocks: [],
                 txs: []
+            },
+            methods: {
+                gotoBlock: function(id) {
+                    window.location.href = `/block/${id}`
+                },
+                gotoTx: function(id) {
+                    window.location.href = `/tx/${id}`
+                }
             }
         })
 
-        {% comment %} timeticker: live time {% endcomment %}
+        // {% comment %} timeticker: live time {% endcomment %}
         const tableItemLimit = 10
 
         function updateTimeTicker() {
-            exploreTablesApp.blocks.forEach((block, index) => {
+            explorerTablesApp.blocks.forEach((block, index) => {
                 // const tmp = Object.assign(block)
-                const newTimeTicker = Date.now() - block.timestamp
+                const newTimeTicker = formatTS(Date.now() - block.timestamp)
                 // tmp.timeTicker = newTimeTicker
-                // Vue.set(exploreTablesApp, index, tmp)
+                // Vue.set(explorerTablesApp, index, tmp)
                 Vue.set(block, 'timeTicker', newTimeTicker)
             })
-            exploreTablesApp.txs.forEach((tx, index) => {
+            explorerTablesApp.txs.forEach((tx, index) => {
                 // const tmp = Object.assign(tx)
-                const newTimeTicker = Date.now() - tx.timestamp
+                const newTimeTicker = formatTS(Date.now() - tx.timestamp)
                 // tmp.timeTicker = newTimeTicker
                 Vue.set(tx, 'timeTicker', newTimeTicker)
             })
         }
 
         function autoGenerateBlock(block) {
-            const {
-                id, reward, txs, producerID, timestamp, timeTicker = 0
-            } = block
-            exploreTablesApp.blocks.unshift({
-                id,
-                reward,
-                txs,
-                producerID,
-                timestamp,
-                timeTicker
-            })
-            if (exploreTablesApp.blocks.length > tableItemLimit) {
-                exploreTablesApp.blocks.pop()
+            block.timeTicker = '0 second'
+            explorerTablesApp.blocks.unshift(block)
+            if (explorerTablesApp.blocks.length > tableItemLimit) {
+                explorerTablesApp.blocks.pop()
             }
             // setTimeout(autoGenerateBlock, Math.random()*5*1000)
         }
 
         function autoGenerateTx(tx) {
-            const {
-                id, sellerID, buyerID, timestamp, timeTicker = 0, amount
-            } = tx;
-            exploreTablesApp.txs.unshift({
-                id,
-                sellerID,
-                buyerID,
-                timestamp,
-                timeTicker,
-                amount
-            });
-            if (exploreTablesApp.txs.length > tableItemLimit) {
-                exploreTablesApp.txs.pop()
+            tx.timeTicker = '0 second'
+            explorerTablesApp.txs.unshift(tx)
+            if (explorerTablesApp.txs.length > tableItemLimit) {
+                explorerTablesApp.txs.pop()
             }
             // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
 
+        for (let i=0; i<10; i++) {
+            autoGenerateBlock({
+                id: '111',
+                reward: 100,
+                txs: 10,
+                producerID: '111',
+                timestamp: Date.now()
+            })
+            autoGenerateTx({
+                id: '222',
+                sellerID: '111',
+                buyerID: '222',
+                timestamp: Date.now(),
+                amount: 10
+            })
+            for (let j=0; j<100; j++) {}
+        }
+
+        setInterval(function(){
+            autoGenerateBlock({
+                id: '111',
+                reward: 100,
+                txs: 10,
+                producerID: '111',
+                timestamp: Date.now()
+            })
+        }, 5000)
+
+        setInterval(function() {
+            autoGenerateTx({
+                id: '222',
+                sellerID: '111',
+                buyerID: '222',
+                timestamp: Date.now(),
+                amount: 10
+            })
+        }, 4000)
+        
+
         setInterval(updateTimeTicker, 1000)
+    </script>
+
+    <script>
+        var ps = new PerfectScrollbar('.table-content')
     </script>
 
     </body>
