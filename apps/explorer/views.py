@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
-#import uwsgi
+import uwsgi
 from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
@@ -19,6 +19,8 @@ txs_collection = CLIENT['test']['txs']
 def explorer(request):
     rnode = len(cf.cpc.getRNodes())
     committee = len(cf.cpc.getCommittees())
+    height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(8))
     return render(request, 'explorer/explorer.html', locals())
 
 
@@ -30,36 +32,40 @@ def wshandler(req):
     # msg = json.loads(msg)
     # ask = msg['event']
     # f task == 'gs':
+    temp = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     while True:
-        height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-        txs_count = txs_collection.find().count()
-
-        b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(5))
-        t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
-
-        index_info = {
-            'height': height,
-            'txs_count': txs_count,
-            'txs': []
-        }
-
-        for i in range(5):
-            index_info['b' + str(i)] = {
-                'number': b_li[i]['number'],
-                'miner': b_li[i]['miner'],
-                'txs': len(b_li[i]['transactions']),
-                'time': datetime.fromtimestamp(b_li[i]['timestamp']).isoformat()
+        block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
+        height = block['number']
+        if height >= temp:
+            txs_count = txs_collection.find().count()
+            rnode = len(cf.cpc.getRNodes())
+            committee = len(cf.cpc.getCommittees())
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
+            # tps = txs_count
+            data = {}
+            header = {
+                'blockHeight': height,
+                'txs': txs_count,
+                'rnode': rnode,
+                'tps': 1.3,
+                'committee': committee
             }
-        for i in range(len(t_li)):
-            index_info['txs'].append({
-                'txhash': t_li[i]['hash'],
-                'from': t_li[i]['from'],
-                'to': t_li[i]['to'],
-                'time': datetime.fromtimestamp(t_li[i]['timestamp']).isoformat()
-            })
-        data = json.dumps(index_info)
-        uwsgi.websocket_send(data)
-        time.sleep(0.1)
+            block ={
+                'id': height,
+                'reward': 0,
+                'txs': txs_count,
+                'producerID': block[''],
+                'timestamp': 1,
+                'timeTicker': 0,
+            }
+
+            data['header']=header
+            data['block'] = block
+            data['txs']= t_li
+            data = json.dumps(data)
+            uwsgi.websocket_send(data)
+            time.sleep(0.1)
+            temp += 1
 
 
 def search(req):
@@ -201,14 +207,14 @@ def address(req, address):
 
     if code == '0x':
         return render(req, 'explorer/address.html', {'txs': txs,
-                                            'address': raw_address,
-                                            'balance': balance,
-                                            'txs_count': txs_count
-                                            })
+                                                     'address': raw_address,
+                                                     'balance': balance,
+                                                     'txs_count': txs_count
+                                                     })
     else:
         return render(req, 'explorer/contract.html', {'txs': txs,
-                                             'address': raw_address,
-                                             'balance': balance,
-                                             'txs_count': txs_count,
-                                             'code': code,
-                                             })
+                                                      'address': raw_address,
+                                                      'balance': balance,
+                                                      'txs_count': txs_count,
+                                                      'code': code,
+                                                      })
