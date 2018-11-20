@@ -32,6 +32,7 @@ $(function () {
                 updateHeader(header);
                 block = msg.block;
                 txs = msg.txs;
+                console.log(block);
                 autoGenerateBlock(block)
             };
 

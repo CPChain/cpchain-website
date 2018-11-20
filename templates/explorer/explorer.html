@@ -427,48 +427,59 @@
         })
 
         {% comment %} timeticker: live time {% endcomment %}
+        const tableItemLimit = 10
 
         function updateTimeTicker() {
             exploreTablesApp.blocks.forEach((block, index) => {
-                const tmp = Object.assign(block)
-                const newTimeTicker = Date.now() - tmp.timestamp
-                tmp.timeTicker = newTimeTicker
-                Vue.set(exploreTablesApp, index, tmp)
+                // const tmp = Object.assign(block)
+                const newTimeTicker = Date.now() - block.timestamp
+                // tmp.timeTicker = newTimeTicker
+                // Vue.set(exploreTablesApp, index, tmp)
+                Vue.set(block, 'timeTicker', newTimeTicker)
             })
             exploreTablesApp.txs.forEach((tx, index) => {
-                const tmp = Object.assign(tx)
-                const newTimeTicker = Date.now() - tmp.timestamp
-                tmp.timeTicker = newTimeTicker
-                Vue.set(exploreTablesApp, index, tmp)
+                // const tmp = Object.assign(tx)
+                const newTimeTicker = Date.now() - tx.timestamp
+                // tmp.timeTicker = newTimeTicker
+                Vue.set(tx, 'timeTicker', newTimeTicker)
             })
         }
 
-        function autoGenerateBlock() {
+        function autoGenerateBlock(block) {
+            const {
+                id, reward, txs, producerID, timestamp, timeTicker = 0
+            } = block
             exploreTablesApp.blocks.unshift({
-                id: `#222`,
-                reward: Math.floor(Math.random() * 10),
-                txs: Math.floor(Math.random() * 1000),
-                producerID: '#sdsdsd',
-                timestamp: Date.now(),
-                timeTicker: 0
+                id,
+                reward,
+                txs,
+                producerID,
+                timestamp,
+                timeTicker
             })
+            if (exploreTablesApp.blocks.length > tableItemLimit) {
+                exploreTablesApp.blocks.pop()
+            }
             // setTimeout(autoGenerateBlock, Math.random()*5*1000)
         }
 
-        function autoGenerateTx() {
+        function autoGenerateTx(tx) {
+            const {
+                id, sellerID, buyerID, timestamp, timeTicker = 0, amount
+            } = tx;
             exploreTablesApp.txs.unshift({
-                id: `#111`,
-                sellerID: '#seller',
-                buyerID: '#buyer',
-                timestamp: Date.now(),
-                timeTicker: 0,
-                amount: Math.floor(Math.random() * 20)
-            })
+                id,
+                sellerID,
+                buyerID,
+                timestamp,
+                timeTicker,
+                amount
+            });
+            if (exploreTablesApp.txs.length > tableItemLimit) {
+                exploreTablesApp.txs.pop()
+            }
             // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
-
-        autoGenerateBlock()
-        autoGenerateTx()
 
         setInterval(updateTimeTicker, 1000)
     </script>

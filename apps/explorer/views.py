@@ -32,11 +32,11 @@ def wshandler(req):
     # msg = json.loads(msg)
     # ask = msg['event']
     # f task == 'gs':
-    temp = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         height = block['number']
-        if height >= temp:
+        if height >= temp_height:
             txs_count = txs_collection.find().count()
             rnode = len(cf.cpc.getRNodes())
             committee = len(cf.cpc.getCommittees())
@@ -51,11 +51,11 @@ def wshandler(req):
                 'committee': committee
             }
             block ={
-                'id': height,
+                'id': temp_height,
                 'reward': 0,
                 'txs': txs_count,
-                'producerID': block[''],
-                'timestamp': 1,
+                'producerID': block['hash'],
+                'timestamp': block['timestamp'],
                 'timeTicker': 0,
             }
 
@@ -65,7 +65,7 @@ def wshandler(req):
             data = json.dumps(data)
             uwsgi.websocket_send(data)
             time.sleep(0.1)
-            temp += 1
+            temp_height += 1
 
 
 def search(req):
