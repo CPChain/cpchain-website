@@ -1,0 +1,73 @@
+::-webkit-scrollbar-track {
+    color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+    color: transparent;
+}
+
+#chart {
+    width: 100%;
+    height: 40vmin;
+}
+
+.number-font {
+    color: #305278;
+    font-size: 28px;
+}
+
+.index-font {
+    color: #305278;
+    font-size: 16px;
+}
+
+.sub-font {
+    font-size: 10px;
+}
+
+.jumbotron-bg {
+  background-color: #f7f9fc;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.table-header-main {
+    font-size: 18px;
+}
+
+.table-header-sub {
+    font-size: 14px;
+}
+
+.table-content {
+    margin: 40px 20px;
+    max-height: 460px;
+    overflow-y: scroll;
+}
+.table-item {
+    margin-bottom: 8px;
+}
+
+.table-item-icon {
+    height: 14px;
+}
+.table-item-id {
+    font-size: 14px;
+}
+.table-item-desc {
+    font-size: 12px;
+}
+.table-item-bonus {
+    font-size: 12px;
+}
+.table-item-sub {
+    font-size: 12px;
+}
+.table-item-time {
+    font-size: 10px;
+}
+

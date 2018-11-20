@@ -3,6 +3,10 @@
 {% block custom_head %}
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="/static/js/default.js"></script>
+    <script src="/static/js/echarts-en.min.js"></script>
+    <script src="/static/js/echarts-theme-walden.js"></script>
+    <script src="/static/js/echarts-linear-options.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 {% endblock %}
@@ -11,7 +15,8 @@
 {% endblock %}
 {% block content %}
     <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
-    <div id="page" class="site">
+
+    {% comment %} <div id="page" class="site">
         <div class="site-content-contain">
             <div id="content" class="site-content">
 
@@ -125,7 +130,7 @@
                                     <li>time:<span id="time1"></span></li>
                                 </ul>
                                 <ul id="tx_2">
-                                    <li><a href="#">tx# <span id="txhash2"></span></a></li>
+                                    <li><a href="#">tx# <span id="txhash1"></span></a></li>
                                     <li>from: <a href=""><span id="from2"></span></a></li>
                                     <li>to: <a href=""><span id="to2"></span></a></li>
                                     <li>time:<span id="time2"></span></li>
@@ -156,7 +161,131 @@
             </div><!-- #content -->
 
         </div><!-- .site-content-contain -->
-    </div><!-- #page -->
+    </div><!-- #page --> {% endcomment %}
+
+{% comment %} HEADER {% endcomment %}
+    <div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4">
+        <div class="container" id="explorer-header">
+            <div class="row">
+                <div class="col-0 col-lg-8"></div>
+                <div class="col-12 col-lg-4">
+                    <form class="form-inline d-flex align-items-center justify-content-end"
+                            action="{% url 'explorer:search' %}" method="get">
+                        <input class="form-control d-block w-100" name="q" type="search"
+                                placeholder="address/contract/hash/number" aria-label="Search">
+                    </form>
+                </div>
+            </div>
+            <div class="my-5"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">[[blockHeight]]</h1></div>
+                    <div class="text-center"><h3 class="index-font">Block Height</h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">[[txsc]]</h1></div>
+                    <div class="text-center"><h3 class="index-font">Transaction<span class="sub-font">([[tps]] TPS)</span></h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">[[rnode]]</h1></div>
+                    <div class="text-center"><h3 class="index-font">RNode</h3></div>
+                </div>
+                <div class="col">
+                    <div class="text-center"><h1 class="number-font">[[committee]]</h1></div>
+                    <div class="text-center"><h3 class="index-font">Committee</h3></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %} GRAPH {% endcomment %}
+    <div class="container">
+        <div class="table-header">
+            <div class="table-header-main">TITLE</div>
+        </div>
+        <div class="container">
+            <div id="chart"></div>
+        </div>
+    </div>
+
+{% comment %} explore {% endcomment %}
+    <div class="container" id="explorer-tables">
+        <div class="row">
+            <div class="col-6 col-lg-6">
+                <div class="table-header">
+                    <div class="table-header-main">TITLE</div>
+                    <div class="table-header-sub">MORE</div>
+                </div>
+                <div class="table-content">
+                    <div class="card table-item" v-for="block in blocks">
+                        <div class="card-body table-item-body">
+                            <div class="row">
+                                <div class="col-8 table-item-icon">
+                                    <p class="text-left">icon</p>
+                                </div>
+                                <div class="col-4 table-item-sub">
+                                    <p class="text-right">Block Reward: [[block.reward]] TRX</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 table-item-id">
+                                    <p class="text-left">#[[block.id]]</p>
+                                </div>
+                                <div class="col-4 table-item-bonus">
+                                    <p class="text-right">[[block.txs]] Transactions</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 table-item-desc">
+                                    <p class="text-left">Produced by [[block.producerID]]</p>
+                                </div>
+                                <div class="col-4 table-item-time">
+                                    <p class="text-right">[[block.timeTicker]] ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="col-6 col-lg-6">
+                <div class="table-header">
+                    <div class="table-header-main">TITLE</div>
+                    <div class="table-header-sub">MORE</div>
+                </div>
+                <div class="table-content">
+                    <div class="card table-item" v-for="tx in txs">
+                        <div class="card-body table-item-body">
+                            <div class="row">
+                                <div class="col-8 table-item-icon">
+                                    <p class="text-left">icon</p>
+                                </div>
+                                <div class="col-4 table-item-sub">
+                                    <p class="text-right">[[tx.amount]]</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 table-item-id">
+                                    <p class="text-left">[[tx.id]]</p>
+                                </div>
+                                <div class="col-4 table-item-bonus">
+                                    <p class="text-right"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 table-item-desc">
+                                    <p class="text-left">From [[tx.sellerID]] To [[tx.buyerID]]</p>
+                                </div>
+                                <div class="col-4 table-item-time">
+                                    <p class="text-right">[[tx.timeTicker]] ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script type='text/javascript'
@@ -222,7 +351,132 @@
         }
 
     </script>
+
+    <script>
+    (function() {
+        var fetchedData = (function() {
+            var fakeData = []
+            for (let i=0; i<10; i++) {
+                var singleData = {}
+                singleData.time = `9/${10+i}`
+                singleData.tx = Math.random()*4000+2000
+                singleData.bk = Math.random()*10+5
+                fakeData.push(singleData)
+            }
+            return fakeData
+        })()
+        // var fetchedData = [{time, bk, tx}]
+
+        fetchedData.forEach(item => {
+            echartOption.xAxis[0].data.push(item.time)
+            echartOption.series[0].data.push(item.bk)
+            echartOption.series[1].data.push(item.tx)
+        })
+
+        var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
+        mainChart.setOption(echartOption)
+
+        window.onresize = chartResize
+
+        function chartResize() {
+            mainChart.resize()
+        }
+    })()
+    </script>
+
+    <script>
+    (function() {
+        var explorerHeaderApp = new Vue({
+            el: '#explorer-header',
+            delimiters: [`[[`, `]]`],
+            data: {
+                blockHeight: 0,
+                txs: 0,
+                rnode: 0,
+                tps: 0,
+                committee: 0,
+                loaded: false
+            },
+            computed: {
+                txsc: function() {
+                    return this.txs
+                }
+            }
+        })
+
+        function updateHeader(json) {
+            explorerHeaderApp.blockHeight = json.blockHeight
+            explorerHeaderApp.txs = json.txs
+            explorerHeaderApp.rnode = json.rnode
+            explorerHeaderApp.tps = json.tps
+            explorerHeaderApp.committee = json.committee
+            explorerHeaderApp.loaded = true
+        }
+
+        updateHeader({
+            blockHeight: 100,
+            txs: 20,
+            rnode: 10,
+            tps: 1.3,
+            committee: 10
+        })
+    })()
+    </script>
+
+    <script>
+    var exploreTablesApp = new Vue({
+        el: '#explorer-tables',
+        delimiters: [`[[`, `]]`],
+        data: {
+            blocks: [],
+            txs: []
+        }
+    })
+
+    {% comment %} timeticker: live time {% endcomment %}
+    function updateTimeTicker() {
+        exploreTablesApp.blocks.forEach((block, index) => {
+            const tmp = Object.assign(block)
+            const newTimeTicker = Date.now() - tmp.timestamp
+            tmp.timeTicker = newTimeTicker
+            Vue.set(exploreTablesApp, index, tmp)
+        })
+        exploreTablesApp.txs.forEach((tx, index) => {
+            const tmp = Object.assign(tx)
+            const newTimeTicker = Date.now() - tmp.timestamp
+            tmp.timeTicker = newTimeTicker
+            Vue.set(exploreTablesApp, index, tmp)
+        })
+    }
+
+    function autoGenerateBlock() {
+        exploreTablesApp.blocks.unshift({
+            id: `#222`,
+            reward: Math.floor(Math.random() * 10 ),
+            txs: Math.floor(Math.random() * 1000 ),
+            producerID: '#sdsdsd',
+            timestamp: Date.now(),
+            timeTicker: 0
+        })
+        // setTimeout(autoGenerateBlock, Math.random()*5*1000)
+    }
+    function autoGenerateTx() {
+        exploreTablesApp.txs.unshift({
+            id: `#111`,
+            sellerID: '#seller',
+            buyerID: '#buyer',
+            timestamp: Date.now(),
+            timeTicker: 0,
+            amount: Math.floor(Math.random() * 20 )
+        })
+        // setTimeout(autoGenerateTx, Math.random()*5*1000)
+    }
+
+    autoGenerateBlock()
+    autoGenerateTx()
+    
+    setInterval(updateTimeTicker, 1000)
+    </script>
+
     </body>
-
-
 {% endblock %}
