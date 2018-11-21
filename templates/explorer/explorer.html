@@ -206,6 +206,7 @@
     </script>
 
     <script>
+        var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
         /* 
             更新图像数据
             data: Array, [{
@@ -226,7 +227,6 @@
             mainChart.setOption(echartOption)
         }
         
-        var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
         window.onresize = chartResize
 
         function chartResize() {
