@@ -15,7 +15,7 @@
     <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 {% endblock %}
 {% block title %}
-    <title>News &#8211; CPChain</title>
+    <title>Explorer &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
     <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
@@ -254,11 +254,11 @@
         })
 
         function updateHeader(json) {
-            explorerHeaderApp.blockHeight = json.blockHeight
-            explorerHeaderApp.txs = json.txs
-            explorerHeaderApp.rnode = json.rnode
-            explorerHeaderApp.tps = json.tps
-            explorerHeaderApp.committee = json.committee
+            explorerHeaderApp.blockHeight = json.blockHeight;
+            explorerHeaderApp.txs = json.txs;
+            explorerHeaderApp.rnode = json.rnode;
+            explorerHeaderApp.tps = json.tps;
+            explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
 

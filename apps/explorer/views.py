@@ -17,12 +17,10 @@ txs_collection = CLIENT['test']['txs']
 
 
 def explorer(request):
-    # rnode = len(cf.cpc.getRNodes())
-    rnode = 10
-    # committee = len(cf.cpc.getCommittees())
-    committee = 100
-    # height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    # b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(8))
+    rnode = len(cf.cpc.getRNodes())
+    committee = len(cf.cpc.getCommittees())
+    height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     return render(request, 'explorer/explorer.html', locals())
 
 
@@ -34,43 +32,41 @@ def wshandler(req):
     # msg = json.loads(msg)
     # ask = msg['event']
     # f task == 'gs':
-    # temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    # while True:
-    #     block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
-    #     block = []
-    #     height = block['number']
-    #     if height >= temp_height:
-    #         txs_count = txs_collection.find().count()
-    #         # rnode = len(cf.cpc.getRNodes())
-    #         rnode = 10
-    #         # committee = len(cf.cpc.getCommittees())
-    #         committee = 100
-    #         t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
-    #         tps = txs_count
-    #         data = {}
-    #         header = {
-    #             'blockHeight': height,
-    #             'txs': txs_count,
-    #             'rnode': rnode,
-    #             'tps': 1.3,
-    #             'committee': committee
-    #         }
-    #         block ={
-    #             'id': temp_height,
-    #             'reward': 0,
-    #             'txs': txs_count,
-    #             'producerID': block['hash'],
-    #             'timestamp': block['timestamp'],
-    #             'timeTicker': 0,
-    #         }
+    temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    while True:
+        block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
+        block_height = block['number']
+        if block_height >= temp_height:
+            txs_count = txs_collection.find().count()
+            rnode = len(cf.cpc.getRNodes())
+            committee = len(cf.cpc.getCommittees())
 
-    #         data['header']=header
-    #         data['block'] = block
-    #         data['txs']= t_li
-    #         data = json.dumps(data)
-    #         uwsgi.websocket_send(data)
-    #         time.sleep(0.1)
-    #         temp_height += 1
+            # tps = txs_count
+            data = {}
+            header = {
+                'blockHeight': block_height,
+                'txs': txs_count,
+                'rnode': rnode,
+                'tps': 1.3,
+                'committee': committee,
+            }
+            temp = block_collection.find({'number':temp_height})[0]
+            block = {
+                'id': temp_height,
+                'reward': 0,
+                'txs': txs_count,
+                'producerID': temp['miner'],
+                'timestamp': temp['timestamp'],
+                'hash':temp['hash'],
+            }
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
+            data['header'] = header
+            data['block'] = block
+            data['txs'] = t_li
+            data = json.dumps(data)
+            uwsgi.websocket_send(data)
+            time.sleep(1)
+            temp_height += 1
 
 
 def search(req):
@@ -120,31 +116,30 @@ def blocks(req):
 
 
 def block(req, block_identifier):
-    # search block by block_identifier
-    # search = block_identifier.strip().lower()
-    # if len(search) < ADD_SIZE - 2:
-    #     # search by number
-    #     block_dict = block_collection.find({'number': int(search)})[0]
-    # elif len(search) <= ADD_SIZE:
-    #     # search by addr
-    #     block_dict = block_collection.find({"address": search})[0]
-    # else:
-    #     block_dict = block_collection.find({"hash": search})[0]
+    search block by block_identifier
+    search = block_identifier.strip().lower()
+    if len(search) < ADD_SIZE - 2:
+        # search by number
+        block_dict = block_collection.find({'number': int(search)})[0]
+    elif len(search) <= ADD_SIZE:
+        # search by addr
+        block_dict = block_collection.find({"address": search})[0]
+    else:
+        block_dict = block_collection.find({"hash": search})[0]
 
-    # height = block_dict['number']
-    # block_hash = block_dict['hash']
-    # parentHash = block_dict['parentHash']
-    # timestamp = block_dict['timestamp']
-    # txs = len(block_dict['transactions'])
-    # miner = block_dict['miner']
-    # size = block_dict['size']
-    # gasUsed = block_dict['gasUsed']
-    # gasLimit = block_dict['gasLimit']
-    # # blockReward = block_dict['']
-    # extraData = block_dict['proofOfAuthorityData']
+    height = block_dict['number']
+    block_hash = block_dict['hash']
+    parentHash = block_dict['parentHash']
+    timestamp = block_dict['timestamp']
+    txs = len(block_dict['transactions'])
+    miner = block_dict['miner']
+    size = block_dict['size']
+    gasUsed = block_dict['gasUsed']
+    gasLimit = block_dict['gasLimit']
+    # blockReward = block_dict['']
+    extraData = block_dict['proofOfAuthorityData']
 
-    # return render(req, 'explorer/block_info.html', locals())
-    return render(req, 'explorer/block_info.html')
+    return render(req, 'explorer/block_info.html', locals())
 
 
 def txs(req):
@@ -175,17 +170,16 @@ def txs(req):
 def tx(req, tx_hash):
     # tx from hash
 
-    # search = tx_hash.strip().lower()
-    # tx_dict = list(txs_collection.find({"hash": search}))[0]
-    # status = cf.eth.getTransactionReceipt(search).status
-    # if status == 1:
-    #     tx_dict['status'] = 'Success'
-    # elif status == 0:
-    #     tx_dict['status'] = 'Pending'
-    # else:
-    #     tx_dict['status'] = status
-    # return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
-    return render(req, 'explorer/tx_info.html')
+    search = tx_hash.strip().lower()
+    tx_dict = list(txs_collection.find({"hash": search}))[0]
+    status = cf.eth.getTransactionReceipt(search).status
+    if status == 1:
+        tx_dict['status'] = 'Success'
+    elif status == 0:
+        tx_dict['status'] = 'Pending'
+    else:
+        tx_dict['status'] = status
+    return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
 
 def address(req, address):
