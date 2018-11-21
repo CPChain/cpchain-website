@@ -116,7 +116,7 @@ def blocks(req):
 
 
 def block(req, block_identifier):
-    # search block by block_identifier
+    search block by block_identifier
     search = block_identifier.strip().lower()
     if len(search) < ADD_SIZE - 2:
         # search by number

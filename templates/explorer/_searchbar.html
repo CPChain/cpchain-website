@@ -1,0 +1,14 @@
+<div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4 mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-0 col-lg-8"></div>
+            <div class="col-12 col-lg-4">
+                <form class="form-inline d-flex align-items-center justify-content-end"
+                      action="{% url 'explorer:search' %}" method="get">
+                    <input class="form-control d-block w-100" name="q" type="search"
+                           placeholder="address/contract/hash/number" aria-label="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

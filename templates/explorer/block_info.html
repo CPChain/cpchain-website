@@ -1,36 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>block info</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Block Infomation</title>
+{% endblock %}
+{% block content %}
+<body>
+    {% include "explorer/_searchbar.html" %}
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Block Information</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5" id="tx-info">
+            <div class="row info-id">
+                <span class="info-id-icon">ICON</span>
+                <span class="col info-id-serial">[[id]]</span>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Hash:</div>
+                <div class="col">[[hash]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Parent Hash:</div>
+                <div class="col"><a :href="'/explorer/block/'+parentHash">[[parentHash]]</a></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Time:</div>
+                <div class="col">[[timeTicker]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Produced By:</div>
+                <div class="col"><a :href="'/explorer/address/'+producerID">[[producerID]]</a> (Nanopoil) in [[prTimeTicker]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Value:</div>
+                <div class="col">[[amount]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Used By Transaction:</div>
+                <div class="col">[[txUsedGas]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Limit:</div>
+                <div class="col">[[gasLimit]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Actual Tx Cost/Fee:</div>
+                <div class="col">[[actualCost]]</div>
+            </div>
+            <div class="row info-row"></div>
+        </div>
+    </div>
+
     <script>
-        $(function () {
-            $('#parentHash a').attr('href', '/block/' + $('#parentHash span').text())
+        var txInfoApp = new Vue({
+            el: '#tx-info',
+            delimiters: [`[[`, `]]`],
+            data: {
+                id: '#ddd',
+                hash: 'xx',
+                rcStatus: true,
+                timestamp: 0,
+                producerID: '0x0000',
+            },
+            computed: {
+                timeTicker: function() {
+                    return `${formatTS(this.timestamp)} ago`
+                },
+                inputData: function() {
+                    return 'FAKE DATA'
+                }
+            },
+            methods: {
+                toggleDataType: function(type) {
+
+                }
+            }
+        })
+
+        function updateTxInfo(json) {
+            Object.keys(json).forEach(key => {
+                txInfoApp[key] = json[key]
+            })
+        }
+
+        updateTxInfo({
+            hash: '===',
+            rcStatus: false,
+            timestamp: Date.now()
         })
     </script>
-</head>
-<body>
-<h1><a href="/">index</a></h1>
-block info
-<br>
-#{{ height }}
-<br>
-<ul>
-    <li>height: {{ height }}</li>
-    <li>hash: {{ block_hash }}</li>
-    <li id="parentHash"><a href="#">parent hash: <span>{{ parentHash }}</span></a></li>
-    <li>time: {{ timestamp }}</li>
-    <li><a href="/txs/?block={{ height }}">transactions: {{ txs }} transactions</a></li>
-    <li>produced by: <a href="/address/{{ miner }}">{{ miner }}</a></li>
-    <li>size: {{ size }}</li>
-    <li>gas used: {{ gasUsed }}</li>
-    <li>gas limit: {{ gasLimit }}</li>
-    <li>block reward:</li>
-    <li>uncles reward:</li>
-    <li>extra data:</li>
-    <textarea name="" id="" cols="150" rows="20">{{ extraData }}</textarea>
-</ul>
-
 </body>
-</html>
+{% endblock %}

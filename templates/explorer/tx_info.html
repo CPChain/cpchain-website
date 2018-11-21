@@ -1,26 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>tx_info:{{ tx_dict.hash }}</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Transaction Infomation</title>
+{% endblock %}
+{% block content %}
 <body>
-<h1><a href="/">index</a></h1>
-transaction info
-<ul>
-    <li>tx_hash: {{ tx_dict.hash }}</li>
-    <li>TxReceipt Status: {{ tx_dict.status }}</li>
-    <li><a href="/block/{{ tx_dict.blockNumber }}">block height:{{ tx_dict.blockNumber }}</a></li>
-    <li>time:{{ tx_dict.date }} </li>
-    <li><a href="/address/{{ tx_dict.from }}">from: {{ tx_dict.from }}</a></li>
-    <li><a href="/address/{{ tx_dict.to }}">to: {{ tx_dict.to }}</a></li>
-    <li>value: {{ tx_dict.value }}</li>
-    <li>Gas Used By Transaction: {{ tx_dict.gas }}</li>
-    <li>gas limit: </li>
-    <li>gas price: {{ tx_dict.gasPrice }}</li>
-    <li>actual Tx cost/fee :{{ tx_dict.txfee }}</li>
-    <li>input data: </li>
-    <textarea name="" id="" cols="150" rows="20">{{ tx_dict.input }}</textarea>
-</ul>
+    {% include "explorer/_searchbar.html" %}
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Transaction Information</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5" id="tx-info">
+            <div class="row info-id">
+                <span class="info-id-icon">ICON</span>
+                <span class="col info-id-serial">[[hash]]</span>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">TxHash:</div>
+                <div class="col">[[hash]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">TxReceipt Status:</div>
+                <div class="col">
+                    <span :class="[(rcStatus? 'rc-success': 'rc-fail'), 'rc-status']">[[rcStatus?'Success': 'Failed']]</span>
+                </div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Time:</div>
+                <div class="col">[[timeTicker]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">From:</div>
+                <div class="col"><a :href="'/explorer/address/'+sellerID">[[sellerID]]</a></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">To:</div>
+                <div class="col"><a :href="'/explorer/address/'+buyerID">[[buyerID]]</a></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Value:</div>
+                <div class="col">[[amount]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Used By Transaction:</div>
+                <div class="col">[[txUsedGas]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Limit:</div>
+                <div class="col">[[gasLimit]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Actual Tx Cost/Fee:</div>
+                <div class="col">[[actualCost]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Input Data:</div>
+                <div class="col">
+                    <div class="raw-data-container">
+                        <div class="raw-data-content">
+                            [[inputData]]
+                        </div>
+                        <div class="raw-data-type-form">
+                            <div class="form-check-inline form-check" @click="toggleDataType(0)">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                <label class="form-check-label" for="inlineRadio1">Default View</label>
+                            </div>
+                            <div class="form-check-inline form-check" @click="toggleDataType(1)">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Origin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row info-row"></div>
+        </div>
+    </div>
+
+    <script>
+        var txInfoApp = new Vue({
+            el: '#tx-info',
+            delimiters: [`[[`, `]]`],
+            data: {
+                hash: 'xx',
+                rcStatus: true,
+                timestamp: 0,
+            },
+            computed: {
+                timeTicker: function() {
+                    return `${formatTS(this.timestamp)} ago`
+                },
+                inputData: function() {
+                    return 'FAKE DATA'
+                }
+            },
+            methods: {
+                toggleDataType: function(type) {
+
+                }
+            }
+        })
+
+        function updateTxInfo(json) {
+            Object.keys(json).forEach(key => {
+                txInfoApp[key] = json[key]
+            })
+        }
+
+        updateTxInfo({
+            hash: '===',
+            rcStatus: false,
+            timestamp: Date.now()
+        })
+    </script>
 </body>
-</html>
+{% endblock %}
