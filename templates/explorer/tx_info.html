@@ -23,29 +23,70 @@
     </div>
 
     <div class="container">
-        <div class="info-table" id="tx-info">
-            <div class="info-id">
+        <div class="info-table px-md-5" id="tx-info">
+            <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
                 <span class="col info-id-serial">[[hash]]</span>
             </div>
             <div class="row info-row">
-                <div class="col-4">TxHash:</div>
-                <div class="col-8">[[hash]]</div>
+                <div class="col-3">TxHash:</div>
+                <div class="col">[[hash]]</div>
             </div>
             <div class="row info-row">
-                <div class="col-4">TxReceipt Status:</div>
-                <div class="col-8">
-                    <span :class="[rcStatus? 'rc-success': 'rc-fail']">[[rcStatus]]</span>
+                <div class="col-3">TxReceipt Status:</div>
+                <div class="col">
+                    <span :class="[(rcStatus? 'rc-success': 'rc-fail'), 'rc-status']">[[rcStatus?'Success': 'Failed']]</span>
                 </div>
             </div>
             <div class="row info-row">
-                <div class="col-4">Time:</div>
-                <div class="col-8">[[timeTicker]]</div>
+                <div class="col-3">Time:</div>
+                <div class="col">[[timeTicker]]</div>
             </div>
             <div class="row info-row">
-                <div class="col-4">TxHash:</div>
-                <div class="col-8">[[hash]]</div>
+                <div class="col-3">From:</div>
+                <div class="col"><a :href="'/explorer/address/'+sellerID">[[sellerID]]</a></div>
             </div>
+            <div class="row info-row">
+                <div class="col-3">To:</div>
+                <div class="col"><a :href="'/explorer/address/'+buyerID">[[buyerID]]</a></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Value:</div>
+                <div class="col">[[amount]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Used By Transaction:</div>
+                <div class="col">[[txUsedGas]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Limit:</div>
+                <div class="col">[[gasLimit]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Actual Tx Cost/Fee:</div>
+                <div class="col">[[actualCost]]</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Input Data:</div>
+                <div class="col">
+                    <div class="raw-data-container">
+                        <div class="raw-data-content">
+                            [[inputData]]
+                        </div>
+                        <div class="raw-data-type-form">
+                            <div class="form-check-inline form-check" @click="toggleDataType(0)">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                <label class="form-check-label" for="inlineRadio1">Default View</label>
+                            </div>
+                            <div class="form-check-inline form-check" @click="toggleDataType(1)">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Origin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row info-row"></div>
         </div>
     </div>
 
@@ -61,6 +102,14 @@
             computed: {
                 timeTicker: function() {
                     return `${formatTS(this.timestamp)} ago`
+                },
+                inputData: function() {
+                    return 'FAKE DATA'
+                }
+            },
+            methods: {
+                toggleDataType: function(type) {
+
                 }
             }
         })

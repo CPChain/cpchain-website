@@ -69,9 +69,7 @@
 
     .table-item {
         margin-bottom: 8px;
-        cursor: pointer;
         box-shadow: 0 9px 9px rgba(48,82,120,.05);
-
 
         .table-item-icon {
             height: 14px;
@@ -114,12 +112,17 @@
 }
 
 .info-table {
+
+    font-size: 18px;
+    margin-bottom: 120px;
+
     .info-id {
         margin: 58px 0;
 
         .info-id-icon {
             display: inline-block;
             margin-right: 16px;
+            padding-left: 15px;
         }
 
         .info-id-serial {
@@ -127,16 +130,57 @@
         }
     }
     .info-row {
+
+        margin: 20px 0;
+
         &:first-child {
-
+            font-weight: bold;
+            line-height: 26px;
         }
 
-        .rx-success {
-
+        &:last-child {
+            font-weight: lighter;
         }
-        .rc-fail {
 
+        .rc-status {
+            display: inline-block;
+            padding: 0 17px;
+            line-height: 26px;
+            border-radius: 2px;
+
+            &.rx-success {
+                background: #e0f0d0;
+                color: #70b820;
+            }
+            &.rc-fail {
+                background: #fbe7e5;
+                color: #d50101;
+            }
         }
+
+        .raw-data-container {
+            .raw-data-content {
+                height: 222px;
+                padding: 20px 30px;
+                background: #f7f9fc;
+                border-radius: 2px;
+                font-size: 14px;
+
+                p:first-of-type {
+                    margin-bottom: 34px;
+                }
+            }
+
+            .raw-data-type-form {
+                margin: 22px 0;
+                font-size: 14px;
+
+                input[type=radio]:checked + label {
+                    font-weight: bold;
+                }
+            }
+        }
+
     }
 }
 

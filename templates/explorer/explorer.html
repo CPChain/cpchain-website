@@ -67,7 +67,7 @@
                 </div>
                 <div class="table-content">
                     <transition-group tag="div" name="slide-fade">
-                        <div class="card table-item" v-for="block in blocks" @click="gotoBlock(block.id)" :key="block.timestamp">
+                        <div class="card table-item" v-for="block in blocks" :key="block.timestamp">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
@@ -79,15 +79,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left">#[[block.id]]</p>
+                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right">[[block.txs]] Transactions</p>
+                                        <p class="text-right"><a :href="'/explorer/txs/'+block.id">[[block.txs]] Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">Produced by [[block.producerID]]</p>
+                                        <p class="text-left">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[block.timeTicker]] ago</p>
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left">[[tx.id]]</p>
+                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.id">[[tx.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right"></p>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">From [[tx.sellerID]] To [[tx.buyerID]]</p>
+                                        <p class="text-left">From <a :href="'/explorer/address/'+tx.sellerID">[[tx.sellerID]]</a> To <a :href="'/explorer/address/'+tx.buyerID">[[tx.buyerID]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[tx.timeTicker]] ago</p>
@@ -323,22 +323,13 @@
             // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
 
-        for (let i=0; i<10; i++) {
-            autoGenerateBlock({
-                id: '111',
-                reward: 100,
-                txs: 10,
-                producerID: '111',
-                timestamp: Date.now()
+        function initTables(blocks, txs) {
+            blocks.forEach((block) => {
+                autoGenerateBlock(block)
             })
-            autoGenerateTx({
-                id: '222',
-                sellerID: '111',
-                buyerID: '222',
-                timestamp: Date.now(),
-                amount: 10
+            txs.forEach(tx => {
+                autoGenerateTx(tx)
             })
-            for (let j=0; j<100; j++) {}
         }
 
         setInterval(function(){

@@ -121,29 +121,30 @@ def blocks(req):
 
 def block(req, block_identifier):
     # search block by block_identifier
-    search = block_identifier.strip().lower()
-    if len(search) < ADD_SIZE - 2:
-        # search by number
-        block_dict = block_collection.find({'number': int(search)})[0]
-    elif len(search) <= ADD_SIZE:
-        # search by addr
-        block_dict = block_collection.find({"address": search})[0]
-    else:
-        block_dict = block_collection.find({"hash": search})[0]
+    # search = block_identifier.strip().lower()
+    # if len(search) < ADD_SIZE - 2:
+    #     # search by number
+    #     block_dict = block_collection.find({'number': int(search)})[0]
+    # elif len(search) <= ADD_SIZE:
+    #     # search by addr
+    #     block_dict = block_collection.find({"address": search})[0]
+    # else:
+    #     block_dict = block_collection.find({"hash": search})[0]
 
-    height = block_dict['number']
-    block_hash = block_dict['hash']
-    parentHash = block_dict['parentHash']
-    timestamp = block_dict['timestamp']
-    txs = len(block_dict['transactions'])
-    miner = block_dict['miner']
-    size = block_dict['size']
-    gasUsed = block_dict['gasUsed']
-    gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['']
-    extraData = block_dict['proofOfAuthorityData']
+    # height = block_dict['number']
+    # block_hash = block_dict['hash']
+    # parentHash = block_dict['parentHash']
+    # timestamp = block_dict['timestamp']
+    # txs = len(block_dict['transactions'])
+    # miner = block_dict['miner']
+    # size = block_dict['size']
+    # gasUsed = block_dict['gasUsed']
+    # gasLimit = block_dict['gasLimit']
+    # # blockReward = block_dict['']
+    # extraData = block_dict['proofOfAuthorityData']
 
-    return render(req, 'explorer/block_info.html', locals())
+    # return render(req, 'explorer/block_info.html', locals())
+    return render(req, 'explorer/block_info.html')
 
 
 def txs(req):
