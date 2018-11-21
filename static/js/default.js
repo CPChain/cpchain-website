@@ -29,10 +29,9 @@ $(function () {
                 msg = JSON.parse(msg);
                 //info
                 header = msg.header;
-                updateHeader(header);
                 block = msg.block;
                 txs = msg.txs;
-                console.log(block);
+                updateHeader(header);
                 autoGenerateBlock(block)
             };
 

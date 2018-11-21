@@ -323,36 +323,23 @@
             // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
 
+
+
         function initTables(blocks, txs) {
-            blocks.forEach((block) => {
-                autoGenerateBlock(block)
-            })
-            txs.forEach(tx => {
-                autoGenerateTx(tx)
-            })
+           blocks.forEach((block) => {
+               autoGenerateBlock(block)
+           })
+           txs.forEach(tx => {
+               autoGenerateTx(tx)
+           })
         }
+        var blocks = {{ blocks|safe }};
+        var txs = {{ txs|safe }}
+        initTables(blocks,txs);
 
-        setInterval(function(){
-            autoGenerateBlock({
-                id: '111',
-                reward: 100,
-                txs: 10,
-                producerID: '111',
-                timestamp: Date.now()
-            })
-        }, 5000)
-
-        setInterval(function() {
-            autoGenerateTx({
-                id: '222',
-                sellerID: '111',
-                buyerID: '222',
-                timestamp: Date.now(),
-                amount: 10
-            })
-        }, 4000)
-        
-
+        {#var header = {{ header|safe }};#}
+        {#alert(header)#}
+        {#updateHeader(header);#}
         setInterval(updateTimeTicker, 1000)
     </script>
 
