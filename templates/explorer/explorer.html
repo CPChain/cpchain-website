@@ -287,17 +287,13 @@
         const tableItemLimit = 10
 
         function updateTimeTicker() {
+            var cts = parseInt(Date.now() / 1000)
             explorerTablesApp.blocks.forEach((block, index) => {
-                // const tmp = Object.assign(block)
-                const newTimeTicker = formatTS(Date.now() - block.timestamp)
-                // tmp.timeTicker = newTimeTicker
-                // Vue.set(explorerTablesApp, index, tmp)
+                const newTimeTicker = formatTS(cts - block.timestamp)
                 Vue.set(block, 'timeTicker', newTimeTicker)
             })
             explorerTablesApp.txs.forEach((tx, index) => {
-                // const tmp = Object.assign(tx)
-                const newTimeTicker = formatTS(Date.now() - tx.timestamp)
-                // tmp.timeTicker = newTimeTicker
+                const newTimeTicker = formatTS(cts - tx.timestamp)
                 Vue.set(tx, 'timeTicker', newTimeTicker)
             })
         }
@@ -308,7 +304,6 @@
             if (explorerTablesApp.blocks.length > tableItemLimit) {
                 explorerTablesApp.blocks.pop()
             }
-            // setTimeout(autoGenerateBlock, Math.random()*5*1000)
         }
 
         function autoGenerateTx(tx) {
@@ -317,7 +312,6 @@
             if (explorerTablesApp.txs.length > tableItemLimit) {
                 explorerTablesApp.txs.pop()
             }
-            // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
 
         function initTables(blocks, txs) {
