@@ -206,35 +206,32 @@
     </script>
 
     <script>
-        (function () {
-            var fetchedData = (function () {
-                var fakeData = []
-                for (let i = 0; i < 10; i++) {
-                    var singleData = {}
-                    singleData.time = `9/${10 + i}`
-                    singleData.tx = Math.random() * 4000 + 2000
-                    singleData.bk = Math.random() * 10 + 5
-                    fakeData.push(singleData)
-                }
-                return fakeData
-            })()
-            // var fetchedData = [{time, bk, tx}]
-
+        /* 
+            更新图像数据
+            data: Array, [{
+            time: 数据日期,
+            bk: 当天区块数,
+            tx: 当天交易数
+            }, {}, ...]
+        */
+        function updateChartData(data) {
+            var fetchedData = data;
+    
             fetchedData.forEach(item => {
                 echartOption.xAxis[0].data.push(item.time)
                 echartOption.series[0].data.push(item.bk)
                 echartOption.series[1].data.push(item.tx)
             })
 
-            var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
             mainChart.setOption(echartOption)
+        }
+        
+        var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
+        window.onresize = chartResize
 
-            window.onresize = chartResize
-
-            function chartResize() {
-                mainChart.resize()
-            }
-        })()
+        function chartResize() {
+            mainChart.resize()
+        }
     </script>
 
     <script>
@@ -290,17 +287,13 @@
         const tableItemLimit = 10
 
         function updateTimeTicker() {
+            var cts = parseInt(Date.now() / 1000)
             explorerTablesApp.blocks.forEach((block, index) => {
-                // const tmp = Object.assign(block)
-                const newTimeTicker = formatTS(Date.now() - block.timestamp)
-                // tmp.timeTicker = newTimeTicker
-                // Vue.set(explorerTablesApp, index, tmp)
+                const newTimeTicker = formatTS(cts - block.timestamp)
                 Vue.set(block, 'timeTicker', newTimeTicker)
             })
             explorerTablesApp.txs.forEach((tx, index) => {
-                // const tmp = Object.assign(tx)
-                const newTimeTicker = formatTS(Date.now() - tx.timestamp)
-                // tmp.timeTicker = newTimeTicker
+                const newTimeTicker = formatTS(cts - tx.timestamp)
                 Vue.set(tx, 'timeTicker', newTimeTicker)
             })
         }
@@ -311,7 +304,6 @@
             if (explorerTablesApp.blocks.length > tableItemLimit) {
                 explorerTablesApp.blocks.pop()
             }
-            // setTimeout(autoGenerateBlock, Math.random()*5*1000)
         }
 
         function autoGenerateTx(tx) {
@@ -320,7 +312,6 @@
             if (explorerTablesApp.txs.length > tableItemLimit) {
                 explorerTablesApp.txs.pop()
             }
-            // setTimeout(autoGenerateTx, Math.random()*5*1000)
         }
 
 
