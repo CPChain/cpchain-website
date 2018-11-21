@@ -21,7 +21,29 @@ def explorer(request):
     committee = len(cf.cpc.getCommittees())
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    return render(request, 'explorer/explorer.html', locals())
+    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+    txs_count = txs_collection.find().count()
+    blocks = []
+    for b in b_li:
+        block = {
+            'id': b['number'],
+            'reward': 0,
+            'txs': 0,
+            'producerID': b['miner'],
+            'timestamp': b['timestamp'],
+            'hash': b['hash'],
+        }
+        blocks.append(block)
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': rnode,
+        'tps': 1.3,
+        'committee': committee,
+    }
+
+    return render(request, 'explorer/explorer.html', {'blocks':blocks,'header':json.dumps(header)
+                                                      ,'txs':json.dumps(t_li)})
 
 
 # @accept_websocket
@@ -51,15 +73,16 @@ def wshandler(req):
                 'committee': committee,
             }
             temp = block_collection.find({'number':temp_height})[0]
+            b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
                 'reward': 0,
-                'txs': txs_count,
+                'txs': b_txs_count,
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
                 'hash':temp['hash'],
             }
-            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(5))
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
             data['header'] = header
             data['block'] = block
             data['txs'] = t_li
@@ -116,7 +139,7 @@ def blocks(req):
 
 
 def block(req, block_identifier):
-    search block by block_identifier
+    # search block by block_identifier
     search = block_identifier.strip().lower()
     if len(search) < ADD_SIZE - 2:
         # search by number
