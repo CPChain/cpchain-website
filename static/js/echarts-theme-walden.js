@@ -1,3 +1,4 @@
+                      
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -41,7 +42,7 @@
         "line": {
             "itemStyle": {
                 "normal": {
-                    "borderWidth": "1"
+                    "borderWidth": "2"
                 }
             },
             "lineStyle": {
@@ -49,14 +50,14 @@
                     "width": "3"
                 }
             },
-            "symbolSize": "6",
+            "symbolSize": "8",
             "symbol": "emptyCircle",
             "smooth": false
         },
         "radar": {
             "itemStyle": {
                 "normal": {
-                    "borderWidth": "1"
+                    "borderWidth": "2"
                 }
             },
             "lineStyle": {
@@ -64,7 +65,7 @@
                     "width": "3"
                 }
             },
-            "symbolSize": "6",
+            "symbolSize": "8",
             "symbol": "emptyCircle",
             "smooth": false
         },
@@ -188,7 +189,7 @@
                     "color": "#cccccc"
                 }
             },
-            "symbolSize": "6",
+            "symbolSize": "8",
             "symbol": "emptyCircle",
             "smooth": false,
             "color": [
@@ -263,7 +264,7 @@
             "axisLine": {
                 "show": true,
                 "lineStyle": {
-                    "color": "#cccccc"
+                    "color": "#a9bcd4"
                 }
             },
             "axisTick": {
@@ -287,7 +288,7 @@
                 }
             },
             "splitArea": {
-                "show": true,
+                "show": false,
                 "areaStyle": {
                     "color": [
                         "rgba(250,250,250,0.05)",
@@ -300,7 +301,7 @@
             "axisLine": {
                 "show": true,
                 "lineStyle": {
-                    "color": "#cccccc"
+                    "color": "#a9bcd4"
                 }
             },
             "axisTick": {
@@ -324,7 +325,7 @@
                 }
             },
             "splitArea": {
-                "show": true,
+                "show": false,
                 "areaStyle": {
                     "color": [
                         "rgba(250,250,250,0.05)",
@@ -337,7 +338,7 @@
             "axisLine": {
                 "show": true,
                 "lineStyle": {
-                    "color": "#cccccc"
+                    "color": "#a9bcd4"
                 }
             },
             "axisTick": {
@@ -361,7 +362,7 @@
                 }
             },
             "splitArea": {
-                "show": true,
+                "show": false,
                 "areaStyle": {
                     "color": [
                         "rgba(250,250,250,0.05)",
@@ -374,7 +375,7 @@
             "axisLine": {
                 "show": true,
                 "lineStyle": {
-                    "color": "#cccccc"
+                    "color": "#a9bcd4"
                 }
             },
             "axisTick": {
@@ -398,7 +399,7 @@
                 }
             },
             "splitArea": {
-                "show": true,
+                "show": false,
                 "areaStyle": {
                     "color": [
                         "rgba(250,250,250,0.05)",
@@ -509,3 +510,5 @@
         }
     });
 }));
+
+                    
