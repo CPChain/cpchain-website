@@ -33,7 +33,7 @@
                 <div class="col">
                     <div class="text-center"><h1 class="number-font">[[txsc]]</h1></div>
                     <div class="text-center"><h3 class="index-font">Transaction<span
-                            class="sub-font">({{ tps }} TPS)</span></h3></div>
+                            class="sub-font">( [[tps]] TPS)</span></h3></div>
                 </div>
                 <div class="col">
                     <div class="text-center"><h1 class="number-font">[[rnode]]</h1></div>
@@ -267,7 +267,7 @@
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-        header = {{ header }}
+        header = {{ header|safe }}
         updateHeader(header)
     </script>
 

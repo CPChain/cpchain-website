@@ -68,7 +68,7 @@ def explorer(request):
     }
 
     return render(request, 'explorer/explorer.html', {'blocks': blocks, 'header': json.dumps(header)
-        , 'txs': json.dumps(txs),'tps':tps})
+        , 'txs': json.dumps(txs)})
 
 
 def wshandler(req):
