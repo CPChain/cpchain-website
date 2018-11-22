@@ -59,7 +59,7 @@ def explorer(request):
         now_ts = now - i * DAY_SECENDS
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
-        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}})
+        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
         chart.append({'time': dt, 'tx': txs_day, 'bk': 0})
 
     # blocks
