@@ -61,7 +61,7 @@ def explorer(request):
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
         chart.append({'time': dt, 'tx': txs_day, 'bk': 0})
-
+    print(chart)
     # blocks
     blocks = []
     for b in b_li:
