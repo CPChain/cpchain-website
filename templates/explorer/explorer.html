@@ -232,7 +232,7 @@
 
         }
 
-        data = []
+        data = {{ chart|safe }}
         updateChartData(data)
         window.onresize = chartResize
 

@@ -24,22 +24,35 @@ def explorer(request):
     committee = len(cf.cpc.getCommittees())
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
+    txs_count = txs_collection.find().count()
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
 
-    txs = []
-    for t in t_li:
-        tx = {
-            'hash': t['hash'],
-            'sellerID': t['from'],
-            'buyerID': t['to'],
-            'timestamp': t['timestamp'],
-            'amount': t['txfee']
-        }
-        txs.append(tx)
+    ## header
+    # tps
+    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    current_timestamp = int(time.time())
+    spend_time = current_timestamp - start_timestamp
+    tps = txs_count / spend_time
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': rnode,
+        'tps': tps,
+        'committee': committee,
+    }
 
-    txs_count = txs_collection.find().count()
+    # chart
+    chart =[{
+            'time': '11/22',
+            'bk': 123,
+            'tx': 321
+            }]
+
+
+
+    # blocks
     blocks = []
     for b in b_li:
         block = {
@@ -52,23 +65,20 @@ def explorer(request):
         }
         blocks.append(block)
 
-    # tps
-    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    current_timestamp = int(time.time())
-    spend_time = current_timestamp - start_timestamp
-    tps = txs_count / spend_time
-
-    # header
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': rnode,
-        'tps': tps,
-        'committee': committee,
-    }
+    # txs
+    txs = []
+    for t in t_li:
+        tx = {
+            'hash': t['hash'],
+            'sellerID': t['from'],
+            'buyerID': t['to'],
+            'timestamp': t['timestamp'],
+            'amount': t['txfee']
+        }
+        txs.append(tx)
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs)})
+                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs),'chart':chart})
 
 
 def wshandler(req):
