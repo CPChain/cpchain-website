@@ -79,18 +79,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a>
-                                        </p>
+                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
-                                            Transactions</a></p>
+                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">Produced by <a
-                                                :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
+                                        <p class="text-left">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
@@ -329,7 +326,7 @@
             blocks.forEach((block) => {
                 autoGenerateBlock(block)
             })
-            txs.forEach((tx) => {
+            txs.forEach(tx => {
                 autoGenerateTx(tx)
             })
         }
