@@ -263,11 +263,12 @@
             explorerHeaderApp.blockHeight = json.blockHeight;
             explorerHeaderApp.txs = json.txs;
             explorerHeaderApp.rnode = json.rnode;
-            {#explorerHeaderApp.tps = json.tps;#}
+            explorerHeaderApp.tps = json.tps;
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-
+        header = {{ header }}
+        updateHeader(header)
     </script>
 
     <script>

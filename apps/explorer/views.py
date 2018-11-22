@@ -84,10 +84,17 @@ def wshandler(req):
             committee = len(cf.cpc.getCommittees())
 
             data = {}
+            #tps
+            start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+            current_timestamp = int(time.time())
+            spend_time = current_timestamp - start_timestamp
+            tps = round(txs_count / spend_time, 3)
+
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': rnode,
+                'tps': tps,
                 'committee': committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
