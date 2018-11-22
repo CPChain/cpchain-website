@@ -24,6 +24,7 @@ def explorer(request):
     committee = len(cf.cpc.getCommittees())
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
+    b_li.reverse()
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
 
     txs = []
@@ -98,6 +99,7 @@ def wshandler(req):
                 'hash': temp['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+            t_li.reverse()
             txs = []
             for t in t_li:
                 tx = {
