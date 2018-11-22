@@ -82,7 +82,7 @@
                                         <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right"><a :href="'/explorer/txs/'+block.id">[[block.txs]] Transactions</a></p>
+                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -215,6 +215,7 @@
             tx: 当天交易数
             }, {}, ...]
         */
+
         function updateChartData(data) {
             var fetchedData = data;
     
@@ -225,8 +226,11 @@
             })
 
             mainChart.setOption(echartOption)
+
         }
-        
+
+        data =[{'time':'11/22','bk':992,'tx':333},{'time':'11/21','bk':949,'tx':333},{'time':'11/22','bk':9999,'tx':3333}]
+        updateChartData(data)
         window.onresize = chartResize
 
         function chartResize() {
@@ -327,10 +331,6 @@
         var blocks = {{ blocks|safe }};
         var txs = {{ txs|safe }}
         initTables(blocks,txs);
-
-        {#var header = {{ header|safe }};#}
-        {#alert(header)#}
-        {#updateHeader(header);#}
         setInterval(updateTimeTicker, 1000)
     </script>
 

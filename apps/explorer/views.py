@@ -88,7 +88,7 @@ def wshandler(req):
             data['txs'] = t_li
             data = json.dumps(data)
             uwsgi.websocket_send(data)
-            time.sleep(1)
+            time.sleep(0.3)
             temp_height += 1
 
 
