@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
+
 try:
     import uwsgi
 except:
@@ -24,6 +25,18 @@ def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+
+    txs = []
+    for t in t_li:
+        tx = {
+            'hash': t['hash'],
+            'sellerID': t['from'],
+            'buyerID':t['to'],
+            'timestamp': t['timestamp'],
+            'amount':t['txfee']
+        }
+        txs.append(tx)
+
     txs_count = txs_collection.find().count()
     blocks = []
     for b in b_li:
@@ -44,8 +57,8 @@ def explorer(request):
         'committee': committee,
     }
 
-    return render(request, 'explorer/explorer.html', {'blocks':blocks,'header':json.dumps(header)
-                                                      ,'txs':json.dumps(t_li)})
+    return render(request, 'explorer/explorer.html', {'blocks': blocks, 'header': json.dumps(header)
+        , 'txs': json.dumps(txs)})
 
 
 # @accept_websocket
@@ -74,7 +87,7 @@ def wshandler(req):
                 'tps': 1.3,
                 'committee': committee,
             }
-            temp = block_collection.find({'number':temp_height})[0]
+            temp = block_collection.find({'number': temp_height})[0]
             b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
@@ -82,7 +95,7 @@ def wshandler(req):
                 'txs': b_txs_count,
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
-                'hash':temp['hash'],
+                'hash': temp['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
             data['header'] = header
