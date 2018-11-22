@@ -56,7 +56,7 @@ def explorer(request):
     start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
     current_timestamp = int(time.time())
     spend_time = current_timestamp - start_timestamp
-    tps = round(txs_count / spend_time, 3)
+    tps = txs_count / spend_time
 
     # header
     header = {
