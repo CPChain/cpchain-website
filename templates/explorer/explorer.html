@@ -79,15 +79,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
+                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a>
+                                        </p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
+                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
+                                            Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a></p>
+                                        <p class="text-left">Produced by <a
+                                                :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
+                                        </p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[block.timeTicker]] ago</p>
@@ -125,7 +129,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">From <a :href="'/explorer/address/'+tx.sellerID">[[tx.sellerID]]</a> To <a :href="'/explorer/address/'+tx.buyerID">[[tx.buyerID]]</a></p>
+                                        <p class="text-left">From <a :href="'/explorer/address/'+tx.sellerID">[[tx.sellerID]]</a>
+                                            To <a :href="'/explorer/address/'+tx.buyerID">[[tx.buyerID]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[tx.timeTicker]] ago</p>
@@ -207,7 +212,8 @@
 
     <script>
         var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
-        /* 
+
+        /*
             更新图像数据
             data: Array, [{
             time: 数据日期,
@@ -218,7 +224,7 @@
 
         function updateChartData(data) {
             var fetchedData = data;
-    
+
             fetchedData.forEach(item => {
                 echartOption.xAxis[0].data.push(item.time)
                 echartOption.series[0].data.push(item.bk)
@@ -229,7 +235,7 @@
 
         }
 
-        data =[{'time':'11/22','bk':992,'tx':333},{'time':'11/22','bk':992,'tx':333},{'time':'11/22','bk':992,'tx':333},{'time':'11/22','bk':992,'tx':333},{'time':'11/22','bk':992,'tx':333},{'time':'11/22','bk':992,'tx':333},{'time':'11/21','bk':949,'tx':333},{'time':'11/22','bk':9999,'tx':3333}]
+        data = []
         updateChartData(data)
         window.onresize = chartResize
 
@@ -278,10 +284,10 @@
                 txs: []
             },
             methods: {
-                gotoBlock: function(id) {
+                gotoBlock: function (id) {
                     window.location.href = `/block/${id}`
                 },
-                gotoTx: function(id) {
+                gotoTx: function (id) {
                     window.location.href = `/tx/${id}`
                 }
             }
@@ -319,18 +325,18 @@
         }
 
 
-
         function initTables(blocks, txs) {
-           blocks.forEach((block) => {
-               autoGenerateBlock(block)
-           })
-           txs.forEach(tx => {
-               autoGenerateTx(tx)
-           })
+            blocks.forEach((block) => {
+                autoGenerateBlock(block)
+            })
+            txs.forEach(tx => {
+                autoGenerateTx(tx)
+            })
         }
+
         var blocks = {{ blocks|safe }};
-        var txs = {{ txs|safe }}
-        initTables(blocks,txs);
+        var txs = {{ txs|safe }};
+        initTables(blocks, txs);
         setInterval(updateTimeTicker, 1000)
     </script>
 

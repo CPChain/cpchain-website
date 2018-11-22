@@ -51,6 +51,8 @@ def explorer(request):
             'hash': b['hash'],
         }
         blocks.append(block)
+
+
     header = {
         'blockHeight': height,
         'txs': txs_count,
@@ -63,7 +65,6 @@ def explorer(request):
         , 'txs': json.dumps(txs)})
 
 
-# @accept_websocket
 def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
