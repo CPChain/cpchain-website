@@ -1,5 +1,3 @@
-#! /usr/bin/python3
-
 from apps.explorer.db.monitor import main
 
 if __name__ == '__main__':
