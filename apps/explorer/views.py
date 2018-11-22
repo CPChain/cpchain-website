@@ -60,8 +60,11 @@ def explorer(request):
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        chart.append({'time': dt, 'tx': txs_day, 'bk': 0})
-    print(chart)
+        bk_day = block_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        chart.append({'time': dt, 'tx': txs_day, 'bk': bk_day})
+    chart.reverse()
+
+
     # blocks
     blocks = []
     for b in b_li:
