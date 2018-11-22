@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
 
-web3 = Web3(Web3.HTTPProvider('http://54.87.26.24:8501'))
+web3 = Web3(Web3.HTTPProvider('http://54.87.26.24:8503'))
 #web3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
 web3.middleware_stack.inject(geth_poa_middleware, layer=0)
 client = MongoClient(host='127.0.0.1', port=27017)
