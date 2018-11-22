@@ -25,7 +25,7 @@ def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     b_li.reverse()
-    b_li=b_li[:9]
+    b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
 
     txs = []
@@ -33,9 +33,9 @@ def explorer(request):
         tx = {
             'hash': t['hash'],
             'sellerID': t['from'],
-            'buyerID':t['to'],
+            'buyerID': t['to'],
             'timestamp': t['timestamp'],
-            'amount':t['txfee']
+            'amount': t['txfee']
         }
         txs.append(tx)
 
@@ -52,12 +52,18 @@ def explorer(request):
         }
         blocks.append(block)
 
+    # tps
+    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    current_timestamp = int(time.time())
+    spend_time = current_timestamp - start_timestamp
+    txs = round(txs_count / spend_time, 3)
 
+    # header
     header = {
         'blockHeight': height,
         'txs': txs_count,
         'rnode': rnode,
-        'tps': 1.3,
+        'tps': txs,
         'committee': committee,
     }
 
