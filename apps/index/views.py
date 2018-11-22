@@ -75,9 +75,9 @@ class AppView(View):
 
 
 
-def page_not_found(request, exception, template_name='errors/page_404.html'):
+def page_not_found(request, exception=None, template_name='errors/page_404.html'):
     return render(request, template_name)
 
 
-def server_error(request, exception, template_name='errors/page_500.html'):
+def server_error(request, exception=None, template_name='errors/page_500.html'):
     return render(request, template_name)
