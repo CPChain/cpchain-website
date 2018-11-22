@@ -98,9 +98,19 @@ def wshandler(req):
                 'hash': temp['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+            txs = []
+            for t in t_li:
+                tx = {
+                    'hash': t['hash'],
+                    'sellerID': t['from'],
+                    'buyerID': t['to'],
+                    'timestamp': t['timestamp'],
+                    'amount': t['txfee']
+                }
+                txs.append(tx)
             data['header'] = header
             data['block'] = block
-            data['txs'] = t_li
+            data['txs'] = txs
             data = json.dumps(data)
             uwsgi.websocket_send(data)
             time.sleep(0.3)
