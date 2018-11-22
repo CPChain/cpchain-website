@@ -5,9 +5,9 @@ var ws;
 var socketurl;
 var lastprice;
 if (location.protocol === 'https:') {
-    socketurl = "wss://" + window.location.hostname + ":8000/explorer/wshandler/";
+    socketurl = "wss://" + window.location.hostname + "/explorer/wshandler/";
 } else {
-    socketurl = "ws://" + window.location.hostname + ":8000/explorer/wshandler/";
+    socketurl = "ws://" + window.location.hostname + "/explorer/wshandler/";
 }
 
 $(function () {
