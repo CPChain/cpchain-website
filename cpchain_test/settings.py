@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 SECRET_KEY = 'hunoh46%2z52^z1s%gu#b+02ezjv9ba^e!b*4b*txxuijqw^m!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -97,9 +97,9 @@ WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cpchain_test',
+        'NAME': 'cpchain_django',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'MyPassword',
         'HOST': 'localhost',
     }
 }
@@ -139,7 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # for deployment
-# STATIC_ROOT = '/srv/www/cpc_django/static/'
+STATIC_ROOT = '/srv/www/cpc_django/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
@@ -153,7 +153,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'fusion'))
 from web3 import Web3, HTTPProvider
 
 # cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
-cpc_fusion = Web3(HTTPProvider('http://192.168.0.135:8501'))
+cpc_fusion = Web3(HTTPProvider('http://54.87.26.24:8503'))
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
