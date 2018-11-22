@@ -17,6 +17,7 @@ ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
 block_collection = CLIENT['test']['blocks']
 txs_collection = CLIENT['test']['txs']
+DAY_SECENDS = 60 * 60 * 24
 
 
 def explorer(request):
@@ -43,14 +44,23 @@ def explorer(request):
         'committee': committee,
     }
 
-    # chart
-    chart =[{
-            'time': '11/22',
-            'bk': 123,
-            'tx': 321
-            }]
-
-
+    ## chart
+    # chart = [{
+    #     'time': '11/22',
+    #     'bk': 123,
+    #     'tx': 321
+    # }]
+    now = int(time.time())
+    day_zero = now - now % DAY_SECENDS
+    chart = []
+    for i in range(12):
+        gt_time = day_zero - (i + 1) * DAY_SECENDS
+        lt_time = day_zero - i * DAY_SECENDS
+        now_ts = now - i * DAY_SECENDS
+        time_local = time.localtime(now_ts)
+        dt = time.strftime('%m/%d', time_local)
+        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}})
+        chart.append({'time': dt, 'tx': txs_day, 'bk': 0})
 
     # blocks
     blocks = []
@@ -78,7 +88,7 @@ def explorer(request):
         txs.append(tx)
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs),'chart':chart})
+                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
 
 
 def wshandler(req):
