@@ -91,7 +91,7 @@
                                 <div class="card blog border-0 col-sm-4  my-4">
 
 
-                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                    <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ n.banner }}"
@@ -104,19 +104,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}"
+                                            <a href="{% url 'community' %}?title={{ n.title|urlencode }}"
                                                class="text-primary small">
                                                 {{ category }} </a>
                                         </h6>
                                         <h5 class="card-title">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                                 {{ n.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
                                             {{ n.content|slice:":200"|safe }}...</p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -125,7 +125,7 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news' %}?title={{ n.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ n.update_time }} </p>
                                             </div>

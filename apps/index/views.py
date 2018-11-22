@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponseRedirect
 
 from pure_pagination import Paginator, PageNotAnInteger
 
@@ -19,7 +19,7 @@ class IndexView(View):
         return render(req, 'index.html', locals())
 
 
-class NewsView(View):
+class CommunityView(View):
     def get(self, req):
         title = req.GET.get('title', '')
         if title:
@@ -36,6 +36,9 @@ class NewsView(View):
             return render(req, 'news.html',
                           {'CU_news': community_update_news, 'ama_news': ama_news, 'media_news': media_reports_news})
 
+class DeveloperView(View):
+    def get(self,req):
+        return HttpResponseRedirect('http://docs.cpchain.io')
 
 
 class NewsListView(View):

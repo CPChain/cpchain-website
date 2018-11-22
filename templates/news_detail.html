@@ -115,7 +115,7 @@
                                     <div class="row">
                                         {% for news in latest %}
                                             <div class="card blog border-0 col-sm-4  my-4">
-                                                <a href="{% url 'news' %}?title={{ news.title|urlencode }}">
+                                                <a href="{% url 'community' %}?title={{ news.title|urlencode }}">
                                                     <div class="image-holder position-relative">
                                                         <img width="800" height="400"
                                                              src="{{ MEDIA_URL }}{{ news.banner }}"
@@ -132,7 +132,7 @@
                                                         </a>
                                                     </h6>
                                                     <h5 class="card-title">
-                                                        <a href="{% url 'news' %}?title={{ news.title|urlencode }}">
+                                                        <a href="{% url 'community' %}?title={{ news.title|urlencode }}">
                                                             {{ news.title }}
                                                         </a>
                                                     </h5>
@@ -142,7 +142,7 @@
                                                 </div>
 
                                                 <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                                    <a href="{% url 'news' %}?title={{ news.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ news.title|urlencode }}">
                                                         <div class="image-smaller-holder">
                                                             <img class="card-img-top bottom-cards disable-select h-100"
                                                                  src="{% static '/img/logo.svg' %}"
@@ -151,7 +151,7 @@
                                                     </a>
                                                     <div class="card-body py-0 d-flex align-items-center">
                                                         <p class="card-text card-bottom-text">
-                                                            <a href="{% url 'news' %}?title={{ news.title|urlencode }}">
+                                                            <a href="{% url 'community' %}?title={{ news.title|urlencode }}">
                                                                 CPChain </a><br> {{ news.update_time }}
                                                         </p>
                                                     </div>

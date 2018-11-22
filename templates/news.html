@@ -52,7 +52,7 @@
                             {#one section#}
                             {% for CU_new in CU_news %}
                                 <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{% url 'news' %}?title={{ CU_new.title|urlencode }}">
+                                    <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ CU_new.banner }}"
@@ -65,19 +65,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news poppins-font ">
-                                            <a href="{% url 'news' %}?title={{ CU_new.title|urlencode }}"
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}"
                                                class="text-primary small font-weight-bold">
                                                 Community Updates </a>
                                         </h6>
                                         <h5 class="card-title poppins-font">
-                                            <a href="{% url 'news' %}?title={{ CU_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
                                                 {{ CU_new.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
                                             {{ CU_new.content|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news' %}?title={{ CU_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -86,7 +86,7 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news' %}?title={{ CU_new.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ CU_new.update_time }} </p>
                                             </div>
@@ -124,7 +124,7 @@
                         <div class="row">
                             {% for ama_new in ama_news %}
                                 <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{% url 'news' ama_new.title|urlencode %}">
+                                    <a href="{% url 'community' ama_new.title|urlencode %}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ ama_new.banner }}"
@@ -137,19 +137,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news poppins-font ">
-                                            <a href="{% url 'news' %}?title={{ ama_new.title|urlencode }}"
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}"
                                                class="text-primary small font-weight-bold">
                                                 Community Updates </a>
                                         </h6>
                                         <h5 class="card-title poppins-font">
-                                            <a href="{% url 'news' %}?title={{ ama_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
                                                 {{ ama_new.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
                                             {{ ama_new.content|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news' %}?title={{ ama_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -158,7 +158,7 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news' %}?title={{ ama_new.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ ama_new.update_time }} </p>
                                             </div>
@@ -194,7 +194,7 @@
                         <div class="row">
                             {% for media_new in media_news %}
                                 <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{% url 'news' %}?title={{ media_new.title|urlencode }}">
+                                    <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ media_new.banner }}"
@@ -207,19 +207,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news poppins-font ">
-                                            <a href="{% url 'news' %}?title={{ media_new.title|urlencode }}"
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}"
                                                class="text-primary small font-weight-bold">
                                                 d </a>
                                         </h6>
                                         <h5 class="card-title poppins-font">
-                                            <a href="{% url 'news' %}?title={{ media_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
                                                 {{ media_new.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
                                             {{ media_new.content|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'news' %}?title={{ media_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -228,7 +228,7 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'news' %}?title={{ media_new.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ media_new.update_time }} </p>
                                             </div>
