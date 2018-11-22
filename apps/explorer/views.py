@@ -68,7 +68,7 @@ def explorer(request):
     }
 
     return render(request, 'explorer/explorer.html', {'blocks': blocks, 'header': json.dumps(header)
-        , 'txs': json.dumps(txs)})
+        , 'txs': json.dumps(txs),'tps':tps})
 
 
 def wshandler(req):
@@ -83,13 +83,11 @@ def wshandler(req):
             rnode = len(cf.cpc.getRNodes())
             committee = len(cf.cpc.getCommittees())
 
-            # tps = txs_count
             data = {}
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': rnode,
-                'tps': 1.3,
                 'committee': committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
