@@ -67,8 +67,8 @@ def explorer(request):
         'committee': committee,
     }
 
-    return render(request, 'explorer/explorer.html', {'blocks': blocks, 'header': json.dumps(header)
-        , 'txs': json.dumps(txs)})
+    return render(request, 'explorer/explorer.html',
+                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs)})
 
 
 def wshandler(req):
@@ -84,11 +84,11 @@ def wshandler(req):
             committee = len(cf.cpc.getCommittees())
 
             data = {}
-            #tps
+            # tps
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
             current_timestamp = int(time.time())
             spend_time = current_timestamp - start_timestamp
-            tps = round(txs_count / spend_time, 3)
+            tps = txs_count / spend_time
 
             header = {
                 'blockHeight': block_height,
