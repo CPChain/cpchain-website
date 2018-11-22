@@ -25,7 +25,7 @@ def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     b_li.reverse()
-    b_li=b_li[1:]
+    b_li=b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
 
     txs = []
@@ -184,7 +184,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = block_dict['txfee']
+    # blockReward = block_dict['txfee']
     extraData = block_dict['proofOfAuthorityData']
 
     return render(req, 'explorer/block_info.html', locals())
