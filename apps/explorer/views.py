@@ -66,10 +66,6 @@ def explorer(request):
 def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
-    # msg = uwsgi.websocket_recv()
-    # msg = json.loads(msg)
-    # ask = msg['event']
-    # f task == 'gs':
     temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
@@ -115,8 +111,9 @@ def wshandler(req):
             data['txs'] = txs
             data = json.dumps(data)
             uwsgi.websocket_send(data)
-            time.sleep(0.3)
             temp_height += 1
+        else:
+            time.sleep(0.3)
 
 
 def search(req):
