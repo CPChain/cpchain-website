@@ -78,18 +78,7 @@
                                         <div class="col text-truncate">TxType</div>
                                         <div class="col text-truncate">TxFee</div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col text-truncate">text-truncatetext-truncatetext-truncatetext-truncatetext-truncatetext-truncate</div>
-                                        <div class="col text-truncate">Block</div>
-                                        <div class="col text-truncate">Age</div>
-                                        <div class="col text-truncate">From</div>
-                                        <div class="col-1 text-truncate flag-out"><span>out</span></div>
-                                        <div class="col text-truncate">To</div>
-                                        <div class="col text-truncate">Value</div>
-                                        <div class="col text-truncate">TxType</div>
-                                        <div class="col text-truncate">TxFee</div>
-                                    </div>
-                                    {% for tx in txs %}
+                                    {% for tx in txs.object_list %}
                                     <div class="row">
                                         <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                         <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
