@@ -302,4 +302,3 @@ def address(req, address):
                                                       'txs_count': txs_count,
                                                       'code': code,
                                                       })
-    return render(req, 'explorer/address.html')
