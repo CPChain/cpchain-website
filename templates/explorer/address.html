@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
@@ -12,7 +11,6 @@
 {% endblock %}
 {% block content %}
 
-{% endblock %}
 <body>
     {% include "explorer/_searchbar.html" %}
 
@@ -39,63 +37,66 @@
                 <div class="col-3">Transactions:</div>
                 <div class="col">{{transactions}}</div>
             </div>
-            <div class="info-table-subtitle">Transactions</div>
+            <div class="info-table-subtitle info-table-subtitle-list">Transactions</div>
             <div class="info-table-list">
-                <div class="info-table-list-title"></div>
+                <div class="info-table-list-title">
+                    Latest 25 txs from a total of <a href>{{ '' }} transactions</a>
+                </div>
                 <div class="info-table-list-content">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">TxHash</th>
-                                <th scope="col">Block</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">From</th>
-                                <th scope="col">&nbsp;</th>
-                                <th scope="col">To</th>
-                                <th scope="col">Value</th>
-                                <th scope="col">TxType</th>
-                                <th scope="col">TxFee</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for tx in txs %}
-                            <tr >
-                                <th><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></th>
-                                <th><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></th>
-                                <th>{{ tx.timestamp }}</th>
-                                <th><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</th>
-                                <th>{{ tx.flag }}</th>
-                                <th><a href="/address/{{ tx.to }}">{{ tx.to }}</th>
-                                <th>{{ tx.value }}</th>
-                                <th>None</th>
-                                <th>{{ tx.txfee }}</th>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">TxHash</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col-1 text-truncate">&nbsp;</div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-truncate">text-truncatetext-truncatetext-truncatetext-truncatetext-truncatetext-truncate</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col-1 text-truncate flag-in"><span>in</span></div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-truncate">text-truncatetext-truncatetext-truncatetext-truncatetext-truncatetext-truncate</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col-1 text-truncate flag-out"><span>out</span></div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        {% for tx in txs %}
+                        <div class="row">
+                            <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                            <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                            <div class="col text-truncate">{{ tx.timestamp }}</div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</div>
+                            <div class="col-1 text-truncate flag-{{tx.flag}}"><span>{{ tx.flag }}</span></div>
+                            <div class="col text-truncate"><a :href="'/explorer/address/'+{{ tx.to }}">{{ tx.to }}</div>
+                            <div class="col text-truncate">{{ tx.value }}</div>
+                            <div class="col text-truncate">None</div>
+                            <div class="col text-truncate">{{ tx.txfee }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script>
-        var addressApp = new Vue({
-            el: '#address',
-            data: {
-                txs: [{
-                    hash: 222,
-                    blockNumber: 111,
-                    timestamp: Date.now(),
-                    from: 'fromaddress',
-                    flag: 'flagfalg',
-                    to: 'toaddress',
-                    value: Math.random()*20+5,
-                    txfee: Math.random()*20+5
-                }]
-            }
-        })
-    </script>
-
 </body>
-</html>
+
+{% endblock %}

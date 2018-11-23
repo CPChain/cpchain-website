@@ -187,67 +187,70 @@ def search(req):
 
 def blocks(req):
     # blocks
-    all_blocks = list(block_collection.find().sort('number', DESCENDING))
+    # all_blocks = list(block_collection.find().sort('number', DESCENDING))
 
-    try:
-        page = req.GET.get('page', 1)
-    except PageNotAnInteger:
-        page = 1
-    p = Paginator(all_blocks, 25, request=req)
-    blocks = p.page(page)
-    return render(req, 'explorer/block_list.html', {'blocks': blocks})
+    # try:
+    #     page = req.GET.get('page', 1)
+    # except PageNotAnInteger:
+    #     page = 1
+    # p = Paginator(all_blocks, 25, request=req)
+    # blocks = p.page(page)
+    # return render(req, 'explorer/block_list.html', {'blocks': blocks})
+    return render(req, 'explorer/block_list.html')
 
 
 def block(req, block_identifier):
     # search block by block_identifier
-    search = block_identifier.strip().lower()
-    if len(search) < ADD_SIZE - 2:
-        # search by number
-        block_dict = block_collection.find({'number': int(search)})[0]
-    elif len(search) <= ADD_SIZE:
-        # search by addr
-        block_dict = block_collection.find({"address": search})[0]
-    else:
-        block_dict = block_collection.find({"hash": search})[0]
+    # search = block_identifier.strip().lower()
+    # if len(search) < ADD_SIZE - 2:
+    #     # search by number
+    #     block_dict = block_collection.find({'number': int(search)})[0]
+    # elif len(search) <= ADD_SIZE:
+    #     # search by addr
+    #     block_dict = block_collection.find({"address": search})[0]
+    # else:
+    #     block_dict = block_collection.find({"hash": search})[0]
 
-    height = block_dict['number']
-    block_hash = block_dict['hash']
-    parentHash = block_dict['parentHash']
-    timestamp = block_dict['timestamp']
-    txs = len(block_dict['transactions'])
-    miner = block_dict['miner']
-    size = block_dict['size']
-    gasUsed = block_dict['gasUsed']
-    gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['txfee']
-    extraData = block_dict['proofOfAuthorityData']
+    # height = block_dict['number']
+    # block_hash = block_dict['hash']
+    # parentHash = block_dict['parentHash']
+    # timestamp = block_dict['timestamp']
+    # txs = len(block_dict['transactions'])
+    # miner = block_dict['miner']
+    # size = block_dict['size']
+    # gasUsed = block_dict['gasUsed']
+    # gasLimit = block_dict['gasLimit']
+    # # blockReward = block_dict['txfee']
+    # extraData = block_dict['proofOfAuthorityData']
 
-    return render(req, 'explorer/block_info.html', locals())
+    # return render(req, 'explorer/block_info.html', locals())
+    return render(req, 'explorer/block_info.html')
 
 
 def txs(req):
     # txs
-    block = req.GET.get('block')
-    if block == None:
-        try:
-            page = req.GET.get('page', 1)
-        except PageNotAnInteger:
-            page = 1
-        all_txs = txs_collection.find().sort('_id', DESCENDING)
-        p = Paginator(all_txs, 25, request=req)
-        txs = p.page(page)
-        return render(req, 'explorer/txs_list.html', {'txs': txs})
-    # block's type is string
-    txs_from_block = list(txs_collection.find({'blockNumber': int(block)}))
-    # page
-    try:
-        page = req.GET.get('page', 1)
-    except PageNotAnInteger:
-        page = 1
-    all_txs = txs_from_block
-    p = Paginator(all_txs, 25, request=req)
-    txs = p.page(page)
-    return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
+    # block = req.GET.get('block')
+    # if block == None:
+    #     try:
+    #         page = req.GET.get('page', 1)
+    #     except PageNotAnInteger:
+    #         page = 1
+    #     all_txs = txs_collection.find().sort('_id', DESCENDING)
+    #     p = Paginator(all_txs, 25, request=req)
+    #     txs = p.page(page)
+    #     return render(req, 'explorer/txs_list.html', {'txs': txs})
+    # # block's type is string
+    # txs_from_block = list(txs_collection.find({'blockNumber': int(block)}))
+    # # page
+    # try:
+    #     page = req.GET.get('page', 1)
+    # except PageNotAnInteger:
+    #     page = 1
+    # all_txs = txs_from_block
+    # p = Paginator(all_txs, 25, request=req)
+    # txs = p.page(page)
+    # return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
+    return render(req, 'explorer/txs_list.html')
 
 
 def tx(req, tx_hash):
@@ -266,39 +269,41 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
-    raw_address = cf.toChecksumAddress(address.strip())
-    address = raw_address.lower()
-    code = cf.eth.getCode(raw_address)
-    code = cf.toHex(code)
-    # address info
-    txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
-    # set in/out
-    for d in txs:
-        if d['from'] == d['to']:
-            d['flag'] = 'self'
-        elif d['from'] == address:
-            d['flag'] = 'out'
-        else:
-            d['flag'] = 'in'
+    # raw_address = cf.toChecksumAddress(address.strip())
+    # address = raw_address.lower()
+    # code = cf.eth.getCode(raw_address)
+    # code = cf.toHex(code)
+    # # address info
+    # txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
+    # # set in/out
+    # for d in txs:
+    #     if d['from'] == d['to']:
+    #         d['flag'] = 'self'
+    #     elif d['from'] == address:
+    #         d['flag'] = 'out'
+    #     else:
+    #         d['flag'] = 'in'
 
-    txs.sort(key=lambda x: x['timestamp'], reverse=True)
-    balance = cf.eth.getBalance(raw_address)
-    txs_count = len(txs)
+    # txs.sort(key=lambda x: x['timestamp'], reverse=True)
+    # balance = cf.eth.getBalance(raw_address)
+    # txs_count = len(txs)
 
-    # latest 25 txs
-    if txs_count > 25:
-        txs = txs[:25]
+    # # latest 25 txs
+    # if txs_count > 25:
+    #     txs = txs[:25]
 
-    if code == '0x':
-        return render(req, 'explorer/address.html', {'txs': txs,
-                                                     'address': raw_address,
-                                                     'balance': balance,
-                                                     'txs_count': txs_count
-                                                     })
-    else:
-        return render(req, 'explorer/contract.html', {'txs': txs,
-                                                      'address': raw_address,
-                                                      'balance': balance,
-                                                      'txs_count': txs_count,
-                                                      'code': code,
-                                                      })
+    # if code == '0x':
+    #     return render(req, 'explorer/address.html', {'txs': txs,
+    #                                                  'address': raw_address,
+    #                                                  'balance': balance,
+    #                                                  'txs_count': txs_count
+    #                                                  })
+    # else:
+    #     return render(req, 'explorer/contract.html', {'txs': txs,
+    #                                                   'address': raw_address,
+    #                                                   'balance': balance,
+    #                                                   'txs_count': txs_count,
+    #                                                   'code': code,
+    #                                                   })
+    # return render(req, 'explorer/address.html')
+    return render(req, 'explorer/contract.html')

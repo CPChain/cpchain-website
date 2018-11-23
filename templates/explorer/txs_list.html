@@ -1,3 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Transaction Infomation</title>
+{% endblock %}
+{% block content %}
+<body>
+    {% include "explorer/_searchbar.html" %}
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Transactions</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px md-5">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">TxHash</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-truncate">text-truncatetext-truncatetext-truncatetext-truncatetext-truncatetext-truncate</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        {% for tx in txs %}
+                        <div class="row">
+                            <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                            <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                            <div class="col text-truncate">{{ tx.timestamp }}</div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</div>
+                            <div class="col text-truncate"><a :href="'/explorer/address/'+{{ tx.to }}">{{ tx.to }}</div>
+                            <div class="col text-truncate">{{ tx.value }}</div>
+                            <div class="col text-truncate">None</div>
+                            <div class="col text-truncate">{{ tx.txfee }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
