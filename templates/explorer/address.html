@@ -55,7 +55,7 @@
                             <div class="col text-truncate">TxType</div>
                             <div class="col text-truncate">TxFee</div>
                         </div>
-                        {% for tx in txs.object_list %}
+                        {% for tx in txs %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                             <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
