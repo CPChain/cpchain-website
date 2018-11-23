@@ -56,7 +56,7 @@ def explorer(request):
     for i in range(12):
         gt_time = day_zero - (i + 1) * DAY_SECENDS
         lt_time = day_zero - i * DAY_SECENDS
-        now_ts = now - i * DAY_SECENDS
+        now_ts = now - (i+1) * DAY_SECENDS
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
