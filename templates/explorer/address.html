@@ -1,128 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>address</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <style>
-        a:hover {
-            color: black;
-        }
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
-        h2 {
-            margin: 20px;
-        }
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Address</title>
+{% endblock %}
+{% block content %}
 
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        .txs ul {
-            height: 20px;
-            width: 100%;
-            margin: 10px;
-        }
-
-        .txs li {
-            float: left;
-            margin-right: 20px;
-            width: 100px;
-        }
-
-        .flag_out {
-            color: green;
-        }
-
-        .flag_in {
-            color: red;
-        }
-
-        .flag_self {
-            color: grey;
-        }
-
-        .pagelist li {
-            float: left;
-            margin-right: 10px;
-        }
-
-        .active a {
-            color: #000;
-        }
-    </style>
-</head>
+{% endblock %}
 <body>
+    {% include "explorer/_searchbar.html" %}
 
-<div class="container">
-    <h1><a href="/">index</a></h1>
-    <h2>Address </h2>
-    <h2>{{ address }}</h2>
-    <h1>overview</h1>
-    <h3>Balance: {{ balance }}</h3>
-
-
-    <div class="txs">
-        <h3>transactions:{{ txs_count }}</h3>
-        latest 25 txs from a total of {{ txs_count }} txs:
-        <ul class="header">
-            <li>TxHash</li>
-            <li>Block</li>
-            <li>Age</li>
-            <li>From</li>
-            <li>&nbsp;</li>
-            <li>To</li>
-            <li>Value</li>
-            <li>TxType</li>
-            <li>TxFee</li>
-        </ul>
-
-        {% for tx in txs %}
-            <ul>
-                <li><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash|slice:":16" }}...</a></li>
-                <li><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></li>
-                <li>{{ tx.timestamp }}</li>
-                <li><a href="{% url 'explorer:address' tx.from %}">{{ tx.from|slice:":16" }}...</a></li>
-                <li class="{% if tx.flag == 'in' %}flag_in
-                {% elif tx.flag == 'out' %}flag_out
-                {% else %}flag_self
-                {% endif %}">{{ tx.flag }}</li>
-                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
-                <li>{{ tx.value }}</li>
-                <li>None</li>
-                <li>{{ tx.txfee }}</li>
-            </ul>
-        {% endfor %}
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Address</p>
+            </div>
+        </div>
     </div>
 
+    <div class="container" id="address">
+        <div class="info-table px-md-5">
+            <div class="row info-id">
+                <span class="info-id-icon">ICON</span>
+                <span class="col info-id-serial">{{address}}</span>
+            </div>
+            <div class="info-table-subtitle">Overview</div>
+            <div class="row info-row">
+                <div class="col-3">Balance:</div>
+                <div class="col">{{balance}}</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Transactions:</div>
+                <div class="col">{{transactions}}</div>
+            </div>
+            <div class="info-table-subtitle">Transactions</div>
+            <div class="info-table-list">
+                <div class="info-table-list-title"></div>
+                <div class="info-table-list-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">TxHash</th>
+                                <th scope="col">Block</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">From</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">TxType</th>
+                                <th scope="col">TxFee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tx in txs %}
+                            <tr >
+                                <th><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></th>
+                                <th><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></th>
+                                <th>{{ tx.timestamp }}</th>
+                                <th><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</th>
+                                <th>{{ tx.flag }}</th>
+                                <th><a href="/address/{{ tx.to }}">{{ tx.to }}</th>
+                                <th>{{ tx.value }}</th>
+                                <th>None</th>
+                                <th>{{ tx.txfee }}</th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    {#    <div class="pageturn .clear">#}
-    {#        <ul class="pagelist fl">#}
-    {#            {% if txs.has_previous %}#}
-    {#                <li class="long"><a#}
-    {#                        href="?{{ txs.previous_page_number.querystring }}">上一页</a></li>#}
-    {#            {% endif %}#}
-    {#            {% for page in txs.pages %}#}
-    {#                {% if page %}#}
-    {#                    {% ifequal page txs.number %}#}
-    {#                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>#}
-    {#                    {% else %}#}
-    {#                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>#}
-    {#                    {% endifequal %}#}
-    {#                {% else %}#}
-    {#                    <li><a href="" class="none">...</a></li>#}
-    {#                {% endif %}#}
-    {#            {% endfor %}#}
-    {#            {% if txs.has_next %}#}
-    {#                <li class="long"><a href="?{{ txs.next_page_number.querystring }}">下一页</a>#}
-    {#                </li>#}
-    {#            {% endif %}#}
-    {#        </ul>#}
-    {#    </div>#}
-</div>
-<br>
+        </div>
+    </div>
 
+    <script>
+        var addressApp = new Vue({
+            el: '#address',
+            data: {
+                txs: [{
+                    hash: 222,
+                    blockNumber: 111,
+                    timestamp: Date.now(),
+                    from: 'fromaddress',
+                    flag: 'flagfalg',
+                    to: 'toaddress',
+                    value: Math.random()*20+5,
+                    txfee: Math.random()*20+5
+                }]
+            }
+        })
+    </script>
 
 </body>
 </html>

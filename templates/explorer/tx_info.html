@@ -26,11 +26,11 @@
         <div class="info-table px-md-5" id="tx-info">
             <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
-                <span class="col info-id-serial">[[hash]]</span>
+                <span class="col info-id-serial">{{tx_dict.hash}}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxHash:</div>
-                <div class="col">[[hash]]</div>
+                <div class="col">{{tx_dict.hash}}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxReceipt Status:</div>
@@ -39,32 +39,40 @@
                 </div>
             </div>
             <div class="row info-row">
+                <div class="col-3">Block Height:</div>
+                <div class="col">{{tx_dict.blockNumber}}</div>
+            </div>
+            <div class="row info-row">
                 <div class="col-3">Time:</div>
                 <div class="col">[[timeTicker]]</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
-                <div class="col"><a :href="'/explorer/address/'+sellerID">[[sellerID]]</a></div>
+                <div class="col"><a href="/block/{{ tx_dict.from }}">{{tx_dict.from}}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">To:</div>
-                <div class="col"><a :href="'/explorer/address/'+buyerID">[[buyerID]]</a></div>
+                <div class="col"><a href="/address/{{ tx_dict.to }}">{{ tx_dict.to }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Value:</div>
-                <div class="col">[[amount]]</div>
+                <div class="col">{{ tx_dict.value }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Used By Transaction:</div>
-                <div class="col">[[txUsedGas]]</div>
+                <div class="col">{{ tx_dict.gas }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Limit:</div>
-                <div class="col">[[gasLimit]]</div>
+                <div class="col"></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Gas Price:</div>
+                <div class="col">{{tx_dict.gasPrice}}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Actual Tx Cost/Fee:</div>
-                <div class="col">[[actualCost]]</div>
+                <div class="col">{{tx_dict.txfee}}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Input Data:</div>
@@ -94,17 +102,12 @@
         var txInfoApp = new Vue({
             el: '#tx-info',
             delimiters: [`[[`, `]]`],
-            data: {
-                hash: 'xx',
-                rcStatus: true,
-                timestamp: 0,
-            },
             computed: {
                 timeTicker: function() {
-                    return `${formatTS(this.timestamp)} ago`
+                    return `${convertDate({{tx_dict.date | safe}})} ago`
                 },
                 inputData: function() {
-                    return 'FAKE DATA'
+                    return {{tx_dict.input | safe}}
                 }
             },
             methods: {
@@ -114,17 +117,6 @@
             }
         })
 
-        function updateTxInfo(json) {
-            Object.keys(json).forEach(key => {
-                txInfoApp[key] = json[key]
-            })
-        }
-
-        updateTxInfo({
-            hash: '===',
-            rcStatus: false,
-            timestamp: Date.now()
-        })
     </script>
 </body>
 {% endblock %}
