@@ -4,8 +4,8 @@ import time
 import hexbytes
 from pymongo import DESCENDING, MongoClient
 
-from fusion.web3 import Web3
-from fusion.web3.middleware import geth_poa_middleware
+from cpc_fusion import Web3
+from cpc_fusion.middleware import geth_poa_middleware
 
 logging.basicConfig(level=logging.INFO,
                     filename='output.log',
