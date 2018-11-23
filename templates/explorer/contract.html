@@ -94,9 +94,9 @@
                                         <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                         <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
                                         <div class="col text-truncate">{{ tx.timestamp }}</div>
-                                        <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</div>
+                                        <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                                         <div class="col-1 text-truncate flag-{{tx.flag}}"><span>{{ tx.flag }}</span></div>
-                                        <div class="col text-truncate"><a :href="'/explorer/address/'+{{ tx.to }}">{{ tx.to }}</div>
+                                        <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
                                         <div class="col text-truncate">{{ tx.value }}</div>
                                         <div class="col text-truncate">None</div>
                                         <div class="col text-truncate">{{ tx.txfee }}</div>

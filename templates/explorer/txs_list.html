@@ -64,12 +64,7 @@
             </div>
             <div class="pageturn">
                 <ul class="pagelist">
-                    <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>
-                    <li class="none"><a href="">...</a></li>
-                    <li class="active"><a href="?{{ page.querystring }}">1</a></li>
-                    <li class="none"><a href="">...</a></li>
-                    <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a></li>
-        
+
                     {% if txs.has_previous %}
                         <li class="long"><a href="?{{ txs.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>
                     {% endif %}
