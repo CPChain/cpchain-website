@@ -60,7 +60,7 @@
     {% comment %} explore {% endcomment %}
     <div class="container" id="explorer-tables">
         <div class="row">
-            <div class="col-6 col-lg-6">
+            <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Blocks</div>
                     <div class="table-header-sub"><a href="blocks">See all</a></div>
@@ -74,24 +74,24 @@
                                         <p class="text-left">icon</p>
                                     </div>
                                     <div class="col-4 table-item-sub">
-                                        <p class="text-right">Block Reward: [[block.reward]] TRX</p>
+                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] TRX</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
+                                        <p class="text-left text-truncate"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
+                                        <p class="text-right text-truncate"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
+                                        <p class="text-left text-truncate">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
-                                        <p class="text-right">[[block.timeTicker]] ago</p>
+                                        <p class="text-right text-truncate">[[block.timeTicker]] ago</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                     </transition-group>
                 </div>
             </div>
-            <div class="col-6 col-lg-6">
+            <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Transactions</div>
                     <div class="table-header-sub"><a href="txs">See all</a></div>

@@ -1,4 +1,137 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Block Infomation</title>
+{% endblock %}
+
+{% block content %}
+<body>
+    {% include "explorer/_searchbar.html" %}
+
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Contract</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5" id="contract-info">
+            <div class="row info-id">
+                <span class="info-id-icon">ICON</span>
+                <span class="col info-id-serial">{{address}}</span>
+            </div> 
+            <div class="info-table-subtitle">Overview</div>
+            <div class="row info-row">
+                <div class="col-3"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Balance:</div>
+                <div class="col">{{balance}}</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Transactions:</div>
+                <div class="col">{{txs_count}}</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Contract Creator:</div>
+                <div class="col">{{height}}</div>
+            </div>
+            <div class="row tab-row info-row">
+                <div class="tab-header">
+                    <button class="tab-header-item active" onclick="tabtab(event, 'code')">Code</button>
+                    <button class="tab-header-item" onclick="tabtab(event, 'txs')">Transactions</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-content-item active" id='code'>
+                        <div class="info-table-subtitle">Contract Source Code</div>
+                        <div class="raw-data-container">
+                            <div class="raw-data-content">
+                                <p>coooooooode</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-item" id="txs">
+                        <div class="info-table-list">
+                            <div class="info-table-list-title">
+                                Latest 25 txs from a total of <a href>{{ '' }} transactions</a>
+                            </div>
+                            <div class="info-table-list-content">
+                                <div class="table">
+                                    <div class="row list-header">
+                                        <div class="col text-truncate">TxHash</div>
+                                        <div class="col text-truncate">Block</div>
+                                        <div class="col text-truncate">Age</div>
+                                        <div class="col text-truncate">From</div>
+                                        <div class="col-1 text-truncate">&nbsp;</div>
+                                        <div class="col text-truncate">To</div>
+                                        <div class="col text-truncate">Value</div>
+                                        <div class="col text-truncate">TxType</div>
+                                        <div class="col text-truncate">TxFee</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-truncate">text-truncatetext-truncatetext-truncatetext-truncatetext-truncatetext-truncate</div>
+                                        <div class="col text-truncate">Block</div>
+                                        <div class="col text-truncate">Age</div>
+                                        <div class="col text-truncate">From</div>
+                                        <div class="col-1 text-truncate flag-out"><span>out</span></div>
+                                        <div class="col text-truncate">To</div>
+                                        <div class="col text-truncate">Value</div>
+                                        <div class="col text-truncate">TxType</div>
+                                        <div class="col text-truncate">TxFee</div>
+                                    </div>
+                                    {% for tx in txs %}
+                                    <div class="row">
+                                        <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                                        <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                                        <div class="col text-truncate">{{ tx.timestamp }}</div>
+                                        <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</div>
+                                        <div class="col-1 text-truncate flag-{{tx.flag}}"><span>{{ tx.flag }}</span></div>
+                                        <div class="col text-truncate"><a :href="'/explorer/address/'+{{ tx.to }}">{{ tx.to }}</div>
+                                        <div class="col text-truncate">{{ tx.value }}</div>
+                                        <div class="col text-truncate">None</div>
+                                        <div class="col text-truncate">{{ tx.txfee }}</div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function tabtab(evt, tabid) {
+            console.log(evt, tabid)
+            var i, tabcontents, tablinks;
+            tabcontents = document.getElementsByClassName('tab-content-item')
+            for (i=0; i<tabcontents.length; i++) {
+                tabcontents[i].classList.remove('active')
+            }
+            tablinks = document.getElementsByClassName('tab-header-item')
+            for (i=0; i<tablinks.length; i++) {
+                tablinks[i].classList.remove('active')
+            }
+            document.getElementById(tabid).classList.add('active')
+            evt.currentTarget.classList.add('active')
+        }
+    </script>
+
+</body>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -103,4 +236,4 @@
 
 
 </body>
-</html>
+</html> -->

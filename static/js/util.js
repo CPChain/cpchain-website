@@ -14,5 +14,13 @@ function formatTS(mss) {
 }
 
 function convertDate(mss) {
-	
+	const longmss = mss*1000
+	const date = new Date(longmss)
+	const month = date.getMonth() + 1
+	const day = date.getDate()
+	const year = date.getFullYear()
+	const hr = date.getHours()
+	const mn = date.getMinutes()
+
+	return `${month}/${day}/${year} ${hr}:${mn}`
 }
