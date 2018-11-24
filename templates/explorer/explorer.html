@@ -67,7 +67,7 @@
                 </div>
                 <div class="table-content">
                     <transition-group tag="div" name="slide-fade">
-                        <div class="card table-item" v-for="block in blocks" :key="block.timestamp">
+                        <div class="card table-item" v-for="block in blocks" :key="block.id">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="table-content">
                     <transition-group tag="div" name="slide-fade">
-                        <div class="card table-item" v-for="tx in txs" @click="gotoTx(tx.id)" :key="tx.timestamp">
+                        <div class="card table-item" v-for="tx in txs" :key="tx.hash">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
@@ -126,8 +126,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">From <a :href="'/explorer/address/'+tx.sellerID">[[tx.sellerID]]</a>
-                                            To <a :href="'/explorer/address/'+tx.buyerID">[[tx.buyerID]]</a></p>
+                                        <p class="text-left row mx-0">
+                                            <span class="d-flex">From&nbsp;</span>
+                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0">[[tx.sellerID]]</a>
+                                            <span class="d-flex">&nbsp;To&nbsp;</span>
+                                            <a :href="'/explorer/address/'+tx.buyerID" class="text-truncate col px-0">[[tx.buyerID]]</a>
+                                        </p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[tx.timeTicker]] ago</p>
@@ -232,8 +236,9 @@
 
         }
 
-        data = {{ chart|safe }}
-        updateChartData(data)
+        var explorerChartData = {{ chart|safe }}
+        // var explorerChartData = []
+        updateChartData(explorerChartData)
         window.onresize = chartResize
 
         function chartResize() {
@@ -250,7 +255,8 @@
                 txs: 0,
                 rnode: 0,
                 committee: 0,
-                loaded: false
+                loaded: false,
+                tps: 0,
             },
             computed: {
                 txsc: function () {
@@ -267,8 +273,9 @@
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-        header = {{ header|safe }}
-        updateHeader(header)
+        var explorerHeader = {{ header|safe }}
+        // var explorerHeader = {}
+        updateHeader(explorerHeader)
     </script>
 
     <script>
@@ -332,6 +339,16 @@
 
         var blocks = {{ blocks|safe }};
         var txs = {{ txs|safe }};
+        // var blocks = [{
+        //     id: 111,
+        //     timestamp: Date().now,
+        // }]
+        // var txs = [{
+        //     hash: 'xx',
+        //     buyerID: '0x2f0176cc3a8617b6ddea6a501028fa4c6fc25ca1',
+        //     sellerID: '0x2f0176cc3a8617b6ddea6a501028fa4c6fc25ca1',
+        //     timestamp: Date().now,
+        // }]
         initTables(blocks, txs);
         setInterval(updateTimeTicker, 1000)
     </script>
