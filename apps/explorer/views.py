@@ -188,7 +188,9 @@ def search(req):
 def blocks(req):
     # blocks
     all_blocks = list(block_collection.find().sort('number', DESCENDING))
-
+    timenow = int(time.time())
+    for b in all_blocks:
+        b['timesince'] = timenow- b['timestamp']
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
