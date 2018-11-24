@@ -23,26 +23,29 @@
     {% comment %} HEADER {% endcomment %}
     {% include "explorer/_searchbar.html" %}
     <div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4">
-        <div class="container" id="explorer-header">
+        <div class="container" id="explorer-header" class="explorer-header">
             <div class="my-5"></div>
             <div class="row">
-                <div class="col">
+                <a class="col" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font">[[blockHeight]]</h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
-                </div>
-                <div class="col">
+                </a>
+                <a class="col" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font">[[txsc]]</h1></div>
-                    <div class="text-center"><h3 class="index-font">Transaction<span
-                            class="sub-font">( [[tps]] TPS)</span></h3></div>
-                </div>
-                <div class="col">
+                    <div class="text-center">
+                        <h3 class="index-font">
+                            Transaction<span class="sub-font">( [[tps]] TPS)</span>
+                        </h3>
+                    </div>
+                </a>
+                <a class="col" href="">
                     <div class="text-center"><h1 class="number-font">[[rnode]]</h1></div>
                     <div class="text-center"><h3 class="index-font">RNode</h3></div>
-                </div>
-                <div class="col">
+                </a>
+                <a class="col" href="">
                     <div class="text-center"><h1 class="number-font">[[committee]]</h1></div>
                     <div class="text-center"><h3 class="index-font">Committee</h3></div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -337,8 +340,8 @@
             })
         }
 
-        var blocks = {{ blocks|safe }};
-        var txs = {{ txs|safe }};
+        var explorerBlocks = {{ blocks|safe }};
+        var explorerTxs = {{ txs|safe }};
         // var blocks = [{
         //     id: 111,
         //     timestamp: Date().now,
@@ -349,7 +352,7 @@
         //     sellerID: '0x2f0176cc3a8617b6ddea6a501028fa4c6fc25ca1',
         //     timestamp: Date().now,
         // }]
-        initTables(blocks, txs);
+        initTables(explorerBlocks, explorerTxs);
         setInterval(updateTimeTicker, 1000)
     </script>
 
