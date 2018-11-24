@@ -23,10 +23,20 @@
     </div>
 
     <div class="container">
-        <div class="info-table px md-5">
+        <div class="info-table px-md-5">
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">TxHash</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
                         {% for tx in txs.object_list %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>

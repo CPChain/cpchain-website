@@ -27,6 +27,15 @@
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">Height</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">txn</div>
+                            <div class="col text-truncate">Producer</div>
+                            <div class="col text-truncate">GasUsed</div>
+                            <div class="col text-truncate">GasLimit</div>
+                            <div class="col text-truncate">Reward</div>
+                        </div>
                         {% for b in blocks.object_list %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
