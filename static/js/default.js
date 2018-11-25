@@ -35,10 +35,10 @@ $(function () {
                 autoGenerateBlock(block)
             };
 
-            ws.onerror = function () {
+            ws.onerror = function (evt) {
                 console.log("->socket error");
-            }
-            ;
+                console.log(evt)
+            };
             ws.onclose = function () {
                 console.log("->disconnected..");
             };
