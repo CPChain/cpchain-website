@@ -1,10 +1,13 @@
 function formatTS(mss) {
+	var days = parseInt((mss / (1 * 60 * 60 * 24)))
 	var hours = parseInt((mss % (1 * 60 * 60 * 24)) / (1 * 60 * 60));
 	var minutes = parseInt((mss % (1 * 60 * 60)) / (1 * 60));
 	var seconds = parseInt((mss % (1 * 60)) / 1);
 	var res = ''
-	if (hours > 0) {
-		res = `${hours} hr${hours>1? 's': ''} ${minutes} min${minutes>1? 's': ''} ${seconds} sec${seconds>1? 's': ''}`
+	if (days > 0) {
+		res = `${days} days`
+	} else if (hours > 0) {
+		res = `${hours} hr${hours>1? 's': ''} ${minutes} min${minutes>1? 's': ''}`
 	} else if (minutes > 0) {
 		res = ` ${minutes} min${minutes>1? 's': ''} ${seconds} sec${seconds>1? 's': ''}`
 	} else {
