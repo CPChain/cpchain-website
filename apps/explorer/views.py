@@ -10,7 +10,8 @@ from pymongo import DESCENDING, MongoClient
 try:
     import uwsgi
 except:
-    pass
+    print('uwsgi import error')
+
 from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
@@ -93,7 +94,7 @@ def explorer(request):
                   {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
 
 
-def wshandler():
+def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
     temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
