@@ -38,7 +38,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">[[producedTime]]</div>
+                <div class="col">{{ timesince }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
@@ -50,7 +50,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Produced By:</div>
-                <div class="col"><a href="/explorer/address/{{miner}}">{{miner}}</a> (Nanopoil) in {{ timesince }}</div>
+                <div class="col"><a href="/explorer/address/{{miner}}">{{miner}}</a> (Nanopoil) in {{ timeproduce }}s</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Size:</div>

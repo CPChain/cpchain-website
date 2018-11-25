@@ -217,6 +217,7 @@ def block(req, block_identifier):
     parentHash = block_dict['parentHash']
     timestamp = block_dict['timestamp']
     timesince = int(time.time())-timestamp
+
     txs = len(block_dict['transactions'])
     miner = block_dict['miner']
     size = block_dict['size']
@@ -224,6 +225,12 @@ def block(req, block_identifier):
     gasLimit = block_dict['gasLimit']
     # blockReward = block_dict['txfee']
     extraData = block_dict['proofOfAuthorityData']
+    ##produce time
+    if height>1:
+        last_block = block_collection.find({'number': height-1})[0]
+        timeproduce = timestamp-last_block['timestamp']
+    else:
+        timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
 
