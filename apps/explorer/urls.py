@@ -10,6 +10,8 @@ urlpatterns = [
     path('tx/<tx_hash>', views.tx, name='tx'),
     path('address/<address>', views.address, name='address'),
     path('search/', views.search, name='search'),
+    path('rnode/', views.rnodes, name='rnode'),
+    path('committee/',views.committes,name='committee')
 ]
 
 
