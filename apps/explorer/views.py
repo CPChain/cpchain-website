@@ -318,4 +318,4 @@ def rnode(req):
 
 
 def committee(req):
-    return render(req, 'explorer/committee')
+    return render(req, 'explorer/committee.html')
