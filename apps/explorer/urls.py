@@ -11,7 +11,7 @@ urlpatterns = [
     path('address/<address>', views.address, name='address'),
     path('search/', views.search, name='search'),
     path('rnode/', views.rnodes, name='rnode'),
-    path('committee/',views.committes,name='committee')
+    path('committee/',views.committee,name='committee')
 ]
 
 
