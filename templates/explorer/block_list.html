@@ -36,15 +36,6 @@
                             <div class="col text-truncate">GasLimit</div>
                             <div class="col text-truncate">Reward</div>
                         </div>
-                        <div class="row">
-                            <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
-                            <div class="col text-truncate">[[ convertTime(Date().now) ]]</div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions }}</a></div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
-                            <div class="col text-truncate">{{ b.gasUsed }}</div>
-                            <div class="col text-truncate">{{ b.gasLimit }}</div>
-                            <div class="col text-truncate">{{ b.reward }}</div>
-                        </div>
                         {% for b in blocks.object_list %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
@@ -88,7 +79,7 @@
 
     <script>
         var blockListApp = new Vue({
-            el: '#block-list',
+            el: '#blocks-list',
             delimiters: [`[[`, `]]`],
             methods: {
                 convertTime: function(tss) {
