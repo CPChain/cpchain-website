@@ -23,7 +23,7 @@
     </div>
 
     <div class="container">
-        <div class="info-table px-md-5" id="blocks-info">
+        <div class="info-table px-md-5" id="blocks-list">
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
@@ -36,15 +36,24 @@
                             <div class="col text-truncate">GasLimit</div>
                             <div class="col text-truncate">Reward</div>
                         </div>
-                        {% for b in blocks.object_list %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
-                            <div class="col text-truncate">{{ b.timesince }}</div>
+                            <div class="col text-truncate">[[ convertTime(Date().now) ]]</div>
                             <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions }}</a></div>
                             <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
                             <div class="col text-truncate">{{ b.gasUsed }}</div>
                             <div class="col text-truncate">{{ b.gasLimit }}</div>
-                            <div class="col text-truncate">Reward</div>
+                            <div class="col text-truncate">{{ b.reward }}</div>
+                        </div>
+                        {% for b in blocks.object_list %}
+                        <div class="row">
+                            <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
+                            <div class="col text-truncate">[[ convertTime({{ b.timesince }}) ]]</div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions }}</a></div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
+                            <div class="col text-truncate">{{ b.gasUsed }}</div>
+                            <div class="col text-truncate">{{ b.gasLimit }}</div>
+                            <div class="col text-truncate">{{ b.reward }}</div>
                         </div>
                         {% endfor %}
                     </div>
@@ -77,8 +86,17 @@
         </div>
     </div>
 
-    <div class="container">
-    </div>
+    <script>
+        var blockListApp = new Vue({
+            el: '#block-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function(tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
 
 </body>
 
