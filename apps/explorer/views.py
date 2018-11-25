@@ -313,9 +313,9 @@ def address(req, address):
                                                       })
 
 
-def rnodes(req):
-    return render(req, 'explorer/rnodes.html')
+def rnode(req):
+    return render(req, 'explorer/rnode.html')
 
 
-def committees(req):
-    return render(req, 'explorer/committees')
+def committee(req):
+    return render(req, 'explorer/committee')
