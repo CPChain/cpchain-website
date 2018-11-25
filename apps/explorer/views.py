@@ -56,14 +56,13 @@ def explorer(request):
     for i in range(12):
         gt_time = day_zero - (i + 1) * DAY_SECENDS
         lt_time = day_zero - i * DAY_SECENDS
-        now_ts = now - (i+1) * DAY_SECENDS
+        now_ts = now - (i + 1) * DAY_SECENDS
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
         bk_day = block_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
         chart.append({'time': dt, 'tx': txs_day, 'bk': bk_day})
     chart.reverse()
-
 
     # blocks
     blocks = []
@@ -94,7 +93,7 @@ def explorer(request):
                   {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
 
 
-def wshandler(req):
+def wshandler():
     # index websocket handler
     uwsgi.websocket_handshake()
     temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
@@ -163,7 +162,7 @@ def search(req):
     if len(search) < ADD_SIZE - 2:
         # block number
         if not search.isdigit():
-            return HttpResponse('string error!')
+            return render(req, 'explorer/search404.html')
         return redirect('/explorer/block/' + search)
     elif len(search) <= ADD_SIZE:
         # address or contract
@@ -182,7 +181,7 @@ def search(req):
                 # get Block info
                 return redirect('/explorer/block/' + search)
             else:
-                return HttpResponse('sorry,address not found')
+                return render(req, 'explorer/search404.html')
 
 
 def blocks(req):
@@ -190,7 +189,7 @@ def blocks(req):
     all_blocks = list(block_collection.find().sort('number', DESCENDING))
     timenow = int(time.time())
     for b in all_blocks:
-        b['timesince'] = timenow- b['timestamp']
+        b['timesince'] = timenow - b['timestamp']
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -216,6 +215,8 @@ def block(req, block_identifier):
     block_hash = block_dict['hash']
     parentHash = block_dict['parentHash']
     timestamp = block_dict['timestamp']
+    timesince = int(time.time()) - timestamp
+
     txs = len(block_dict['transactions'])
     miner = block_dict['miner']
     size = block_dict['size']
@@ -223,6 +224,12 @@ def block(req, block_identifier):
     gasLimit = block_dict['gasLimit']
     # blockReward = block_dict['txfee']
     extraData = block_dict['proofOfAuthorityData']
+    ##produce time
+    if height > 1:
+        last_block = block_collection.find({'number': height - 1})[0]
+        timeproduce = timestamp - last_block['timestamp']
+    else:
+        timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
 
@@ -304,3 +311,11 @@ def address(req, address):
                                                       'txs_count': txs_count,
                                                       'code': code,
                                                       })
+
+
+def rnodes(req):
+    return render(req, 'explorer/rnodes.html')
+
+
+def committees(req):
+    return render(req, 'explorer/committees')

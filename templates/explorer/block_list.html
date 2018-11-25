@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
                             <div class="col text-truncate">[[ convertTime({{ b.timesince }}) ]]</div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions }}</a></div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a></div>
                             <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
                             <div class="col text-truncate">{{ b.gasUsed }}</div>
                             <div class="col text-truncate">{{ b.gasLimit }}</div>
