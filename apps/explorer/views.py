@@ -216,6 +216,7 @@ def block(req, block_identifier):
     block_hash = block_dict['hash']
     parentHash = block_dict['parentHash']
     timestamp = block_dict['timestamp']
+    timesince = int(time.time())-timestamp
     txs = len(block_dict['transactions'])
     miner = block_dict['miner']
     size = block_dict['size']
