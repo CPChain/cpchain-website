@@ -46,7 +46,7 @@
                             <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
                             <div class="col text-truncate">{{ tx.value }}</div>
                             <div class="col text-truncate">None</div>
-                            <div class="col text-truncate">{{ tx.txfee|floatformat:-3 }}</div>
+                            <div class="col text-truncate">{{ tx.txfee}}</div>
                         </div>
                         {% endfor %}
                     </div>
