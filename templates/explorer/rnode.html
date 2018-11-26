@@ -5,6 +5,12 @@
     <title>Rnodes</title>
 </head>
 <body>
-
+<ul>
+    <li>currentEpoch:{{ epoch }}</li>
+    <li>rnodes:{{ rnodes|length }}</li>
+</ul>
+{% for r in rnodes %}
+    r
+{% endfor %}
 </body>
 </html>

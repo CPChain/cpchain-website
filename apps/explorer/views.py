@@ -329,7 +329,10 @@ def address(req, address):
 
 
 def rnode(req):
-    return render(req, 'explorer/rnode.html')
+    epoch = cf.cpc.getCurrentEpoch()
+    rnodes = cf.cpc.getRNodes()
+    return render(req, 'explorer/rnode.html', {'epoch': epoch,
+                                               'rnodes': rnodes})
 
 
 def committee(req):
