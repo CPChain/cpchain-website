@@ -219,6 +219,42 @@
 
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
+
+    let header = document.getElementById('header');
+    window.addEventListener('scroll', function (e) {
+        (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+    });
+
+    //Navigation
+    let anchorlinks = document.querySelectorAll('a[href^="#"]');
+    for (let item of anchorlinks) {
+        item.addEventListener('click', (e) => {
+
+            for (let i of anchorlinks) {
+                (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+            }
+
+            let hashval = item.getAttribute('href');
+            let target = document.querySelector(hashval)
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+            history.pushState(null, null, hashval);
+            e.preventDefault();
+            openMenu(0);
+        });
+    }
+
+
+    function openMenu(type) {
+        let menuHolder = document.getElementById('mySidenav');
+        (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+    }
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
     {#获取本地地址和语言#}
     var localUrl = window.location.pathname;
 

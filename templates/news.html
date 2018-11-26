@@ -124,7 +124,7 @@
                         <div class="row">
                             {% for ama_new in ama_news %}
                                 <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{% url 'community' ama_new.title|urlencode %}">
+                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
                                                  src="{{ MEDIA_URL }}{{ ama_new.banner }}"

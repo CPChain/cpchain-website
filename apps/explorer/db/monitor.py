@@ -4,8 +4,8 @@ import time
 import hexbytes
 from pymongo import DESCENDING, MongoClient
 
-from fusion.web3 import Web3
-from fusion.web3.middleware import geth_poa_middleware
+from cpc_fusion import Web3
+from cpc_fusion.middleware import geth_poa_middleware
 
 logging.basicConfig(level=logging.INFO,
                     filename='output.log',
@@ -13,9 +13,9 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
 
-web3 = Web3(Web3.HTTPProvider('http://54.87.26.24:8503'))
-#web3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
-web3.middleware_stack.inject(geth_poa_middleware, layer=0)
+
+cf = Web3(Web3.HTTPProvider('http://54.87.26.24:8503'))
+cf.middleware_stack.inject(geth_poa_middleware, layer=0)
 client = MongoClient(host='127.0.0.1', port=27017)
 # blocks
 b_collection = client['test']['blocks']
@@ -28,26 +28,26 @@ def save_blocks_txs(start_block_id=None):
     temp_id = start_block_id
     logger.info('start block :#%d', temp_id)
     # chain restart
-    if web3.cpc.blockNumber + 1 < start_block_id:
+    if cf.cpc.blockNumber + 1 < start_block_id:
         b_collection.drop()
         tx_collection.drop()
         temp_id = 0
 
     while True:
-        b_number = web3.cpc.blockNumber
+        b_number = cf.cpc.blockNumber
         if b_number >= temp_id:
             # save one block
-            block = dict(web3.cpc.getBlock(temp_id))
+            block = dict(cf.cpc.getBlock(temp_id))
             block_ = block_formatter(block)
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
             timestamp = block['timestamp']
-            transaction_cnt = web3.cpc.getBlockTransactionCount(temp_id)
+            transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
             for transaction_id in range(0, transaction_cnt):
-                tx = dict(web3.cpc.getTransactionByBlock(temp_id, transaction_id))
+                tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
                 tx_ = tx_formatter(tx, timestamp)
                 txs_li.append(tx_)
                 # append 1 block's txs into txs_li

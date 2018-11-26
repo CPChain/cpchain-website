@@ -11,7 +11,7 @@
     <title>Block Infomation</title>
 {% endblock %}
 {% block content %}
-<body>
+    <body>
     {% include "explorer/_searchbar.html" %}
 
     <div class="container">
@@ -23,84 +23,71 @@
     </div>
 
     <div class="container">
-        <div class="info-table px-md-5" id="tx-info">
+        <div class="info-table px-md-5" id="block-info">
             <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
-                <span class="col info-id-serial">[[id]]</span>
+                <span class="col info-id-serial">#{{ height }}</span>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Height:</div>
+                <div class="col">{{ height }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Hash:</div>
-                <div class="col">[[hash]]</div>
-            </div>
-            <div class="row info-row">
-                <div class="col-3">Parent Hash:</div>
-                <div class="col"><a :href="'/explorer/block/'+parentHash">[[parentHash]]</a></div>
+                <div class="col">{{ block_hash }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">[[timeTicker]]</div>
+                <div class="col">{{ timesince }}</div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Transactions:</div>
+                <div class="col"><a href="/explorer/txs/?block={{ height }}">{{ txs }} Transactions</a></div>
+            </div>
+            <div class="row info-row">
+                <div class="col-3">Parent Hash:</div>
+                <div class="col"><a href="/explorer/block/{{ parentHash }}">{{ parentHash }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Produced By:</div>
-                <div class="col"><a :href="'/explorer/address/'+producerID">[[producerID]]</a> (Nanopoil) in [[prTimeTicker]]</div>
+                <div class="col"><a href="/explorer/address/{{ miner }}">{{ miner }}</a> (Nanopoil) in {{ timeproduce }}s
+                </div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Value:</div>
-                <div class="col">[[amount]]</div>
+                <div class="col-3">Size:</div>
+                <div class="col">{{ size }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Used By Transaction:</div>
-                <div class="col">[[txUsedGas]]</div>
+                <div class="col">{{ gasUsed }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Limit:</div>
-                <div class="col">[[gasLimit]]</div>
+                <div class="col">{{ gasLimit }}</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Actual Tx Cost/Fee:</div>
-                <div class="col">[[actualCost]]</div>
+                <div class="col-3">Block Reward:</div>
+                <div class="col">{{ blockReward }}</div>
             </div>
+            <div class="row info-row">
+                <div class="col-3">Extra Data:</div>
+                <div class="col">{{ extraData }}</div>
+            </div>
+
             <div class="row info-row"></div>
         </div>
     </div>
 
     <script>
-        var txInfoApp = new Vue({
-            el: '#tx-info',
+        var blockInfoApp = new Vue({
+            el: '#block-info',
             delimiters: [`[[`, `]]`],
-            data: {
-                id: '#ddd',
-                hash: 'xx',
-                rcStatus: true,
-                timestamp: 0,
-                producerID: '0x0000',
-            },
             computed: {
-                timeTicker: function() {
-                    return `${formatTS(this.timestamp)} ago`
+                timeTicker: function () {
+                    return `${convertDate({{ timestamp }})} ago`
                 },
-                inputData: function() {
-                    return 'FAKE DATA'
-                }
             },
-            methods: {
-                toggleDataType: function(type) {
-
-                }
-            }
-        })
-
-        function updateTxInfo(json) {
-            Object.keys(json).forEach(key => {
-                txInfoApp[key] = json[key]
-            })
-        }
-
-        updateTxInfo({
-            hash: '===',
-            rcStatus: false,
-            timestamp: Date.now()
         })
     </script>
-</body>
+    </body>
 {% endblock %}

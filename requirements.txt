@@ -1,6 +1,7 @@
 attrdict==2.0.0
 certifi==2018.8.24
 chardet==3.0.4
+cpc-fusion==0.0.2
 cytoolz==0.9.0.1
 diff-match-patch==20121119
 Django==2.1.2
@@ -36,7 +37,6 @@ Pillow==5.3.0
 pycryptodome==3.6.6
 pymongo==3.7.1
 pytz==2018.5
-PyYAML==3.13
 requests==2.19.1
 rlp==1.0.3
 six==1.11.0

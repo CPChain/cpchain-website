@@ -123,21 +123,24 @@
 
 .info-table {
   font-size: 18px;
-  margin-bottom: 120px;
+  margin: 0 15px 120px;
 }
 
 .info-table .info-id {
-  margin: 58px 0;
+  margin: 58px 0px;
 }
 
 .info-table .info-id .info-id-icon {
   display: inline-block;
   margin-right: 16px;
-  padding-left: 15px;
 }
 
 .info-table .info-row {
   margin: 20px 0;
+}
+
+.info-table .info-row > div {
+  padding: 0;
 }
 
 .info-table .info-row:first-child {
@@ -185,6 +188,174 @@
 
 .info-table .info-row .raw-data-container .raw-data-type-form input[type=radio]:checked + label {
   font-weight: bold;
+}
+
+.info-table .info-table-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 54px 0px 26px;
+}
+
+.info-table .info-table-subtitle.info-table-subtitle-list {
+  padding: 0 0 8px;
+  position: relative;
+  margin: 36px 0px 15px;
+}
+
+.info-table .info-table-subtitle.info-table-subtitle-list::after {
+  position: absolute;
+  content: ' ';
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  max-width: 186px;
+  background: #305278;
+}
+
+.info-table .info-table-list .info-table-list-title {
+  font-size: 12px;
+  margin: 0 0 24px;
+}
+
+.info-table .info-table-list .info-table-list-content {
+  font-size: 12px;
+}
+
+.info-table .info-table-list .info-table-list-content .table .list-header {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.info-table .info-table-list .info-table-list-content .table .row {
+  border-radius: 2px;
+  -webkit-box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.05);
+          box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.05);
+  margin: 8px 0;
+  height: 50px;
+  line-height: 50px;
+}
+
+.info-table .info-table-list .info-table-list-content .table .row:hover {
+  background: rgba(48, 82, 120, 0.05);
+  -webkit-box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);
+          box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);
+}
+
+.info-table .info-table-list .info-table-list-content .table .row .col, .info-table .info-table-list .info-table-list-content .table .row .col-1 {
+  padding: 0 15px 0 0;
+}
+
+.info-table .info-table-list .info-table-list-content .table .row .col-1 {
+  width: 0.0416666666666667%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.info-table .info-table-list .info-table-list-content .table .row .col-1.flag-in span {
+  display: block;
+  line-height: 26px;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  border-radius: 4px;
+  background: #d9f7be;
+  color: #5b8c00;
+}
+
+.info-table .info-table-list .info-table-list-content .table .row .col-1.flag-out span {
+  display: block;
+  line-height: 26px;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  border-radius: 4px;
+  background: #ffeecf;
+  color: #e77e1b;
+}
+
+.info-table .tab-row {
+  margin: 20px 0;
+  display: block;
+}
+
+.info-table .tab-row .tab-header {
+  margin: 36px 0 15px;
+}
+
+.info-table .tab-row .tab-header .tab-header-item {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 0;
+  min-width: 186px;
+  text-align: left;
+  margin: 0 28px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #305278;
+}
+
+.info-table .tab-row .tab-header .tab-header-item.active {
+  border-bottom: solid 2px #305278;
+}
+
+.info-table .tab-row .tab-content .tab-content-item {
+  display: none;
+}
+
+.info-table .tab-row .tab-content .tab-content-item.active {
+  display: block;
+}
+
+.pageturn {
+  margin: 30px 0;
+}
+
+.pageturn ul.pagelist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pageturn ul.pagelist li {
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.pageturn ul.pagelist li a {
+  display: block;
+  height: 38px;
+  width: 38px;
+  line-height: 38px;
+  color: #305278;
+  font-size: 14px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 6px rgba(27, 163, 255, 0.05);
+          box-shadow: 2px 2px 6px rgba(27, 163, 255, 0.05);
+}
+
+.pageturn ul.pagelist li:hover {
+  -webkit-box-shadow: 2px 2px 6px rgba(27, 163, 255, 0.15);
+          box-shadow: 2px 2px 6px rgba(27, 163, 255, 0.15);
+}
+
+.pageturn ul.pagelist li.active {
+  background: #1ba3ff;
+}
+
+.pageturn ul.pagelist li.active a {
+  color: #fff;
 }
 
 .slide-fade-enter-active, .slide-fade-leave-active {

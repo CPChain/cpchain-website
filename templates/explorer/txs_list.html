@@ -1,3 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Transaction Infomation</title>
+{% endblock %}
+{% block content %}
+<body>
+    {% include "explorer/_searchbar.html" %}
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Transactions</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">TxHash</div>
+                            <div class="col text-truncate">Block</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">From</div>
+                            <div class="col text-truncate">To</div>
+                            <div class="col text-truncate">Value</div>
+                            <div class="col text-truncate">TxType</div>
+                            <div class="col text-truncate">TxFee</div>
+                        </div>
+                        {% for tx in txs.object_list %}
+                        <div class="row">
+                            <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                            <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                            <div class="col text-truncate">{{ tx.timestamp }}</div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
+                            <div class="col text-truncate">{{ tx.value }}</div>
+                            <div class="col text-truncate">None</div>
+                            <div class="col text-truncate">{{ tx.txfee|floatformat:-3 }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="pageturn">
+                <ul class="pagelist">
+
+                    {% if txs.has_previous %}
+                        <li class="long"><a href="?{{ txs.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+                    {% for page in txs.pages %}
+                        {% if page %}
+                            {% ifequal page txs.number %}
+                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                            {% endifequal %}
+                        {% else %}
+                            <li><a href="" class="none">...</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if txs.has_next %}
+                        <li class="long"><a href="?{{ txs.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a>
+                        </li>
+                    {% endif %}
+        
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

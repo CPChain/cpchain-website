@@ -23,26 +23,29 @@
     {% comment %} HEADER {% endcomment %}
     {% include "explorer/_searchbar.html" %}
     <div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4">
-        <div class="container" id="explorer-header">
+        <div class="container" id="explorer-header" class="explorer-header">
             <div class="my-5"></div>
             <div class="row">
-                <div class="col">
+                <a class="col" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font">[[blockHeight]]</h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
-                </div>
-                <div class="col">
+                </a>
+                <a class="col" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font">[[txsc]]</h1></div>
-                    <div class="text-center"><h3 class="index-font">Transaction<span
-                            class="sub-font">([[tps]] TPS)</span></h3></div>
-                </div>
-                <div class="col">
+                    <div class="text-center">
+                        <h3 class="index-font">
+                            Transaction<span class="sub-font">( [[tps]] TPS)</span>
+                        </h3>
+                    </div>
+                </a>
+                <a class="col" href="{% url 'explorer:rnode' %}">
                     <div class="text-center"><h1 class="number-font">[[rnode]]</h1></div>
                     <div class="text-center"><h3 class="index-font">RNode</h3></div>
-                </div>
-                <div class="col">
+                </a>
+                <a class="col" href="{% url 'explorer:committee' %}">
                     <div class="text-center"><h1 class="number-font">[[committee]]</h1></div>
                     <div class="text-center"><h3 class="index-font">Committee</h3></div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -60,37 +63,38 @@
     {% comment %} explore {% endcomment %}
     <div class="container" id="explorer-tables">
         <div class="row">
-            <div class="col-6 col-lg-6">
+            <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Blocks</div>
                     <div class="table-header-sub"><a href="blocks">See all</a></div>
                 </div>
                 <div class="table-content">
                     <transition-group tag="div" name="slide-fade">
-                        <div class="card table-item" v-for="block in blocks" :key="block.timestamp">
+                        <div class="card table-item" v-for="block in blocks" :key="block.id">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
                                         <p class="text-left">icon</p>
                                     </div>
                                     <div class="col-4 table-item-sub">
-                                        <p class="text-right">Block Reward: [[block.reward]] TRX</p>
+                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] TRX</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
+                                        <p class="text-left text-truncate"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
+                                        <p class="text-right text-truncate"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a></p>
+                                        <p class="text-left text-truncate">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
+                                        </p>
                                     </div>
                                     <div class="col-4 table-item-time">
-                                        <p class="text-right">[[block.timeTicker]] ago</p>
+                                        <p class="text-right text-truncate">[[block.timeTicker]] ago</p>
                                     </div>
                                 </div>
                             </div>
@@ -98,14 +102,14 @@
                     </transition-group>
                 </div>
             </div>
-            <div class="col-6 col-lg-6">
+            <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Transactions</div>
                     <div class="table-header-sub"><a href="txs">See all</a></div>
                 </div>
                 <div class="table-content">
                     <transition-group tag="div" name="slide-fade">
-                        <div class="card table-item" v-for="tx in txs" @click="gotoTx(tx.id)" :key="tx.timestamp">
+                        <div class="card table-item" v-for="tx in txs" :key="tx.hash">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
@@ -117,7 +121,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.id">[[tx.id]]</a></p>
+                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right"></p>
@@ -125,7 +129,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left">From <a :href="'/explorer/address/'+tx.sellerID">[[tx.sellerID]]</a> To <a :href="'/explorer/address/'+tx.buyerID">[[tx.buyerID]]</a></p>
+                                        <p class="text-left row mx-0">
+                                            <span class="d-flex">From&nbsp;</span>
+                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0">[[tx.sellerID]]</a>
+                                            <span class="d-flex">&nbsp;To&nbsp;</span>
+                                            <a :href="'/explorer/address/'+tx.buyerID" class="text-truncate col px-0">[[tx.buyerID]]</a>
+                                        </p>
                                     </div>
                                     <div class="col-4 table-item-time">
                                         <p class="text-right">[[tx.timeTicker]] ago</p>
@@ -150,41 +159,6 @@
 
     <script>
 
-        let header = document.getElementById('header');
-        window.addEventListener('scroll', function (e) {
-            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
-        });
-
-        //Navigation
-        let anchorlinks = document.querySelectorAll('a[href^="#"]');
-        for (let item of anchorlinks) {
-            item.addEventListener('click', (e) => {
-
-                for (let i of anchorlinks) {
-                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
-                }
-
-                let hashval = item.getAttribute('href');
-                let target = document.querySelector(hashval)
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                history.pushState(null, null, hashval);
-                e.preventDefault();
-                openMenu(0);
-            });
-        }
-
-
-        function openMenu(type) {
-            let menuHolder = document.getElementById('mySidenav');
-            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
-        }
-
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
         // swiper for application pages
         var swiperTeam = new Swiper('.swiper-container-applications', {
             slidesPerView: 1,
@@ -207,7 +181,8 @@
 
     <script>
         var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
-        /* 
+
+        /*
             更新图像数据
             data: Array, [{
             time: 数据日期,
@@ -218,7 +193,7 @@
 
         function updateChartData(data) {
             var fetchedData = data;
-    
+
             fetchedData.forEach(item => {
                 echartOption.xAxis[0].data.push(item.time)
                 echartOption.series[0].data.push(item.bk)
@@ -229,8 +204,9 @@
 
         }
 
-        data =[{'time':'11/22','bk':992,'tx':333},{'time':'11/21','bk':949,'tx':333},{'time':'11/22','bk':9999,'tx':3333}]
-        updateChartData(data)
+        var explorerChartData = {{ chart|safe }}
+        // var explorerChartData = []
+        updateChartData(explorerChartData)
         window.onresize = chartResize
 
         function chartResize() {
@@ -246,9 +222,9 @@
                 blockHeight: 0,
                 txs: 0,
                 rnode: 0,
-                tps: 0,
                 committee: 0,
-                loaded: false
+                loaded: false,
+                tps: 0,
             },
             computed: {
                 txsc: function () {
@@ -265,8 +241,9 @@
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-
-
+        var explorerHeader = {{ header|safe }}
+        // var explorerHeader = {}
+        updateHeader(explorerHeader)
     </script>
 
     <script>
@@ -278,10 +255,10 @@
                 txs: []
             },
             methods: {
-                gotoBlock: function(id) {
+                gotoBlock: function (id) {
                     window.location.href = `/block/${id}`
                 },
-                gotoTx: function(id) {
+                gotoTx: function (id) {
                     window.location.href = `/tx/${id}`
                 }
             }
@@ -319,18 +296,28 @@
         }
 
 
-
         function initTables(blocks, txs) {
-           blocks.forEach((block) => {
-               autoGenerateBlock(block)
-           })
-           txs.forEach(tx => {
-               autoGenerateTx(tx)
-           })
+            blocks.forEach((block) => {
+                autoGenerateBlock(block)
+            })
+            txs.forEach(tx => {
+                autoGenerateTx(tx)
+            })
         }
-        var blocks = {{ blocks|safe }};
-        var txs = {{ txs|safe }}
-        initTables(blocks,txs);
+
+        var explorerBlocks = {{ blocks|safe }};
+        var explorerTxs = {{ txs|safe }};
+        // var blocks = [{
+        //     id: 111,
+        //     timestamp: Date().now,
+        // }]
+        // var txs = [{
+        //     hash: 'xx',
+        //     buyerID: '0x2f0176cc3a8617b6ddea6a501028fa4c6fc25ca1',
+        //     sellerID: '0x2f0176cc3a8617b6ddea6a501028fa4c6fc25ca1',
+        //     timestamp: Date().now,
+        // }]
+        initTables(explorerBlocks, explorerTxs);
         setInterval(updateTimeTicker, 1000)
     </script>
 

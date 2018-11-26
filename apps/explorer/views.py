@@ -6,16 +6,19 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
+
 try:
     import uwsgi
 except:
-    pass
+    print('uwsgi import error')
+
 from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
 block_collection = CLIENT['test']['blocks']
 txs_collection = CLIENT['test']['txs']
+DAY_SECENDS = 60 * 60 * 24
 
 
 def explorer(request):
@@ -23,8 +26,46 @@ def explorer(request):
     committee = len(cf.cpc.getCommittees())
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
     txs_count = txs_collection.find().count()
+    b_li.reverse()
+    b_li = b_li[:9]
+    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+
+    ## header
+    # tps
+    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    current_timestamp = int(time.time())
+    spend_time = current_timestamp - start_timestamp
+    tps = txs_count / spend_time
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': rnode,
+        'tps': tps,
+        'committee': committee,
+    }
+
+    ## chart
+    # chart = [{
+    #     'time': '11/22',
+    #     'bk': 123,
+    #     'tx': 321
+    # }]
+    now = int(time.time())
+    day_zero = now - now % DAY_SECENDS
+    chart = []
+    for i in range(12):
+        gt_time = day_zero - (i + 1) * DAY_SECENDS
+        lt_time = day_zero - i * DAY_SECENDS
+        now_ts = now - (i + 1) * DAY_SECENDS
+        time_local = time.localtime(now_ts)
+        dt = time.strftime('%m/%d', time_local)
+        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        bk_day = block_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        chart.append({'time': dt, 'tx': txs_day, 'bk': bk_day})
+    chart.reverse()
+
+    # blocks
     blocks = []
     for b in b_li:
         block = {
@@ -36,26 +77,26 @@ def explorer(request):
             'hash': b['hash'],
         }
         blocks.append(block)
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': rnode,
-        'tps': 1.3,
-        'committee': committee,
-    }
 
-    return render(request, 'explorer/explorer.html', {'blocks':blocks,'header':json.dumps(header)
-                                                      ,'txs':json.dumps(t_li)})
+    # txs
+    txs = []
+    for t in t_li:
+        tx = {
+            'hash': t['hash'],
+            'sellerID': t['from'],
+            'buyerID': t['to'],
+            'timestamp': t['timestamp'],
+            'amount': t['txfee']
+        }
+        txs.append(tx)
+
+    return render(request, 'explorer/explorer.html',
+                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
 
 
-# @accept_websocket
 def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
-    # msg = uwsgi.websocket_recv()
-    # msg = json.loads(msg)
-    # ask = msg['event']
-    # f task == 'gs':
     temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
@@ -65,16 +106,21 @@ def wshandler(req):
             rnode = len(cf.cpc.getRNodes())
             committee = len(cf.cpc.getCommittees())
 
-            # tps = txs_count
             data = {}
+            # tps
+            start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+            current_timestamp = int(time.time())
+            spend_time = current_timestamp - start_timestamp
+            tps = txs_count / spend_time
+
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': rnode,
-                'tps': 1.3,
+                'tps': tps,
                 'committee': committee,
             }
-            temp = block_collection.find({'number':temp_height})[0]
+            temp = block_collection.find({'number': temp_height})[0]
             b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
@@ -82,16 +128,28 @@ def wshandler(req):
                 'txs': b_txs_count,
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
-                'hash':temp['hash'],
+                'hash': temp['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+            t_li.reverse()
+            txs = []
+            for t in t_li:
+                tx = {
+                    'hash': t['hash'],
+                    'sellerID': t['from'],
+                    'buyerID': t['to'],
+                    'timestamp': t['timestamp'],
+                    'amount': t['txfee']
+                }
+                txs.append(tx)
             data['header'] = header
             data['block'] = block
-            data['txs'] = t_li
+            data['txs'] = txs
             data = json.dumps(data)
             uwsgi.websocket_send(data)
-            time.sleep(0.3)
             temp_height += 1
+        else:
+            time.sleep(0.3)
 
 
 def search(req):
@@ -105,7 +163,7 @@ def search(req):
     if len(search) < ADD_SIZE - 2:
         # block number
         if not search.isdigit():
-            return HttpResponse('string error!')
+            return render(req, 'explorer/search404.html')
         return redirect('/explorer/block/' + search)
     elif len(search) <= ADD_SIZE:
         # address or contract
@@ -124,13 +182,15 @@ def search(req):
                 # get Block info
                 return redirect('/explorer/block/' + search)
             else:
-                return HttpResponse('sorry,address not found')
+                return render(req, 'explorer/search404.html')
 
 
 def blocks(req):
     # blocks
     all_blocks = list(block_collection.find().sort('number', DESCENDING))
-
+    timenow = int(time.time())
+    for b in all_blocks:
+        b['timesince'] = timenow - b['timestamp']
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -156,13 +216,21 @@ def block(req, block_identifier):
     block_hash = block_dict['hash']
     parentHash = block_dict['parentHash']
     timestamp = block_dict['timestamp']
+    timesince = int(time.time()) - timestamp
+
     txs = len(block_dict['transactions'])
     miner = block_dict['miner']
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['']
+    # blockReward = block_dict['txfee']
     extraData = block_dict['proofOfAuthorityData']
+    ##produce time
+    if height > 1:
+        last_block = block_collection.find({'number': height - 1})[0]
+        timeproduce = timestamp - last_block['timestamp']
+    else:
+        timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
 
@@ -244,3 +312,11 @@ def address(req, address):
                                                       'txs_count': txs_count,
                                                       'code': code,
                                                       })
+
+
+def rnode(req):
+    return render(req, 'explorer/rnode.html')
+
+
+def committee(req):
+    return render(req, 'explorer/committee.html')

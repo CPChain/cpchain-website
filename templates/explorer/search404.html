@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Block Infomation</title>
+{% endblock %}
+
+{% block content %}
+<body>
+    {% include "explorer/_searchbar.html" %}
+    
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">404</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5" id="contract-info">
+            <div class="info-table-subtitle">Seems nothing's found. Try another keyword again. </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}

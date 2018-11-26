@@ -1,147 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>blocks</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <style>
-        a:hover {
-            color: black;
-        }
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        #miner {
-            width: 230px;
-        }
-
-        .blocks ul {
-            height: 20px;
-            width: 100%;
-            margin: 10px;
-        }
-
-        .blocks li {
-            float: left;
-            margin-right: 20px;
-            width: 85px;
-        }
-
-        .pageturn {
-            clear: both;
-            height: 30px;
-            margin: 50px auto;
-            display: table;
-            text-align: center;
-        }
-
-        .pageturn .pagelist {
-            display: table-cell;
-            vertical-align: middle;
-            overflow: hidden;
-        }
-
-        .pageturn li {
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            margin-left: 10px;
-            float: left;
-            text-align: center;
-        }
-
-        .pageturn li:first-child {
-            margin-left: 0;
-        }
-
-        .pageturn li:hover a, .pageturn .active a {
-            background: #717171;
-            color: #fff;
-            border-color: #eaeaea;
-        }
-
-        .pageturn a {
-            border: 1px solid #eaeaea;
-            display: block;
-            height: 28px;
-            color: #6c6c6c;
-        }
-
-        .pageturn .long {
-            width: 100px;
-        }
-
-        .pageturn .none a {
-            border: 0;
-        }
-
-        .active a {
-            color: #000;
-        }
-    </style>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Block Infomation</title>
+{% endblock %}
+{% block content %}
 <body>
+    {% include "explorer/_searchbar.html" %}
 
-<div class="container">
-    <h1><a href="/">index</a></h1>
-    <div class="blocks">
-        <ul class="header">
-            <li>Height</li>
-            <li>Age</li>
-            <li>Txn</li>
-            <li id="miner">Producer</li>
-            <li>GasUsed</li>
-            <li>GasLimit</li>
-            <li>Reward</li>
-        </ul>
-
-        {% for b in blocks.object_list %}
-            <ul>
-                <li><a href="/block/{{ b.number }}">{{ b.number }}</a></li>
-                <li style="width: 140px">{{ b.timestamp }}</li>
-                <li>{% ifnotequal b.transactions|length 0 %}
-                    <a href="/txs?block={{ b.number }}">{{ b.transactions|length }}</a>
-                {% else %}
-                    {{ b.transactions|length }}
-                {% endifnotequal %}</li>
-                <li id="miner"><a href="/address/{{ b.miner }}">{{ b.miner|slice:":16" }}...</a></li>
-                <li>{{ b.gasUsed }}</li>
-                <li>{{ b.gasLimit }}</li>
-                <li>0</li>
-            </ul>
-        {% endfor %}
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center">Blocks</p>
+            </div>
+        </div>
     </div>
-    <div class="pageturn">
-        <ul class="pagelist">
 
-            {% if blocks.has_previous %}
-                <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}">上一页</a></li>
-            {% endif %}
+    <div class="container">
+        <div class="info-table px-md-5" id="blocks-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">Height</div>
+                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate">txn</div>
+                            <div class="col text-truncate">Producer</div>
+                            <div class="col text-truncate">GasUsed</div>
+                            <div class="col text-truncate">GasLimit</div>
+                            <div class="col text-truncate">Reward</div>
+                        </div>
+                        {% for b in blocks.object_list %}
+                        <div class="row">
+                            <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
+                            <div class="col text-truncate">[[ convertTime({{ b.timesince }}) ]]</div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a></div>
+                            <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
+                            <div class="col text-truncate">{{ b.gasUsed }}</div>
+                            <div class="col text-truncate">{{ b.gasLimit }}</div>
+                            <div class="col text-truncate">{{ b.reward }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="pageturn">
+                <ul class="pagelist">
 
-            {% for page in blocks.pages %}
-                {% if page %}
-                    {% ifequal page blocks.number %}
-                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                    {% endifequal %}
-                {% else %}
-                    <li class="none"><a href="">...</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if blocks.has_next %}
-                <li class="long"><a href="?{{ blocks.next_page_number.querystring }}">下一页</a></li>
-            {% endif %}
-
-        </ul>
+                    {% if blocks.has_previous %}
+                        <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+        
+                    {% for page in blocks.pages %}
+                        {% if page %}
+                            {% ifequal page blocks.number %}
+                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                            {% endifequal %}
+                        {% else %}
+                            <li class="none"><a href="">...</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if blocks.has_next %}
+                        <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+        
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
-<br>
 
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function(tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
 
 </body>
-</html>
+
+{% endblock %}
