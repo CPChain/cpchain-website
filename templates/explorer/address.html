@@ -11,7 +11,7 @@
 {% endblock %}
 {% block content %}
 
-<body>
+    <body>
     {% include "explorer/_searchbar.html" %}
 
     <div class="container">
@@ -26,21 +26,21 @@
         <div class="info-table px-md-5">
             <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
-                <span class="col info-id-serial">{{address}}</span>
+                <span class="col info-id-serial">{{ address }}</span>
             </div>
             <div class="info-table-subtitle">Overview</div>
             <div class="row info-row">
                 <div class="col-3">Balance:</div>
-                <div class="col">{{balance}}</div>
+                <div class="col">{{ balance }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
-                <div class="col">{{transactions}}</div>
+                <div class="col">{{ transactions }}</div>
             </div>
             <div class="info-table-subtitle info-table-subtitle-list">Transactions</div>
             <div class="info-table-list">
                 <div class="info-table-list-title">
-                    Latest 25 txs from a total of <a href>{{ '' }} transactions</a>
+                    Latest 25 txs from a total of <a href>{{ txs_count }} transactions</a>
                 </div>
                 <div class="info-table-list-content">
                     <div class="table">
@@ -56,17 +56,21 @@
                             <div class="col text-truncate">TxFee</div>
                         </div>
                         {% for tx in txs %}
-                        <div class="row">
-                            <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
-                            <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                            <div class="col text-truncate">{{ tx.timestamp }}</div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
-                            <div class="col-1 text-truncate flag-{{tx.flag}}"><span>{{ tx.flag }}</span></div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
-                            <div class="col text-truncate">{{ tx.value }}</div>
-                            <div class="col text-truncate">None</div>
-                            <div class="col text-truncate">{{ tx.txfee }}</div>
-                        </div>
+                            <div class="row">
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                                <div class="col text-truncate">{{ tx.timestamp }}</div>
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
+                                <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
+                                <div class="col text-truncate">{{ tx.value }}</div>
+                                <div class="col text-truncate">None</div>
+                                <div class="col text-truncate">{{ tx.txfee }}</div>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -75,6 +79,6 @@
         </div>
     </div>
 
-</body>
+    </body>
 
 {% endblock %}
