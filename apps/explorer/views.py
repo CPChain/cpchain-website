@@ -278,6 +278,10 @@ def tx(req, tx_hash):
         tx_dict['status'] = 'Pending'
     else:
         tx_dict['status'] = status
+    timenow = int(time.time())
+    for t in tx_dict:
+        t['timesince'] = timenow - t['timestamp']
+
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
 
