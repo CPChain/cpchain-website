@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                             <div class="col text-truncate"><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                            <div class="col text-truncate">{{ tx.timestamp }}</div>
+                            <div class="col text-truncate">{{ tx.timesince }}</div>
                             <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                             <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
                             <div class="col text-truncate">{{ tx.value }}</div>

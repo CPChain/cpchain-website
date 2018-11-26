@@ -297,6 +297,11 @@ def address(req, address):
         else:
             d['flag'] = 'in'
 
+    # timesince calc
+    timenow = int(time.time())
+    for t in txs:
+        t['timesince'] = timenow - t['timestamp']
+
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
     balance = cf.eth.getBalance(raw_address)
     txs_count = len(txs)
