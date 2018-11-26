@@ -149,10 +149,7 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 
-sys.path.insert(0, os.path.join(BASE_DIR, 'fusion'))
 from cpc_fusion import Web3, HTTPProvider
-
-# cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
 cpc_fusion = Web3(HTTPProvider('http://54.87.26.24:8503'))
 
 PAGINATION_SETTINGS = {
