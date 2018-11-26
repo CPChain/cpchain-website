@@ -9,8 +9,11 @@
     <li>currentEpoch:{{ epoch }}</li>
     <li>rnodes:{{ rnodes|length }}</li>
 </ul>
-{% for r in rnodes %}
-    r
-{% endfor %}
+<ul>
+    {% for r in rnodes %}
+        <li>{{ r }}</li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>
