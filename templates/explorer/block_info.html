@@ -11,7 +11,7 @@
     <title>Block Infomation</title>
 {% endblock %}
 {% block content %}
-<body>
+    <body>
     {% include "explorer/_searchbar.html" %}
 
     <div class="container">
@@ -26,11 +26,11 @@
         <div class="info-table px-md-5" id="block-info">
             <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
-                <span class="col info-id-serial">#{{height}}</span>
+                <span class="col info-id-serial">#{{ height }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">Height:</div>
-                <div class="col">{{height}}</div>
+                <div class="col">{{ height }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Hash:</div>
@@ -42,35 +42,36 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
-                <div class="col"><a href="/txs/?block={{ height }}">{{ txs }} Transactions</a></div>
+                <div class="col"><a href="/explorer/txs/?block={{ height }}">{{ txs }} Transactions</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Parent Hash:</div>
-                <div class="col"><a href="/explorer/block/{{ parentHash }}">{{parentHash}}</a></div>
+                <div class="col"><a href="/explorer/block/{{ parentHash }}">{{ parentHash }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Produced By:</div>
-                <div class="col"><a href="/explorer/address/{{miner}}">{{miner}}</a> (Nanopoil) in {{ timeproduce }}s</div>
+                <div class="col"><a href="/explorer/address/{{ miner }}">{{ miner }}</a> (Nanopoil) in {{ timeproduce }}s
+                </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Size:</div>
-                <div class="col">{{size}}</div>
+                <div class="col">{{ size }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Used By Transaction:</div>
-                <div class="col">{{gasUsed}}</div>
+                <div class="col">{{ gasUsed }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Limit:</div>
-                <div class="col">{{gasLimit}}</div>
+                <div class="col">{{ gasLimit }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Block Reward:</div>
-                <div class="col">{{blockReward}}</div>
+                <div class="col">{{ blockReward }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Extra Data:</div>
-                <div class="col">{{extraData}}</div>
+                <div class="col">{{ extraData }}</div>
             </div>
 
             <div class="row info-row"></div>
@@ -82,11 +83,11 @@
             el: '#block-info',
             delimiters: [`[[`, `]]`],
             computed: {
-                timeTicker: function() {
+                timeTicker: function () {
                     return `${convertDate({{ timestamp }})} ago`
                 },
             },
         })
     </script>
-</body>
+    </body>
 {% endblock %}
