@@ -44,7 +44,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">{{ tx_dict.timesince }}</div>
+                <div class="col">[[ timeTicker ]]</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
@@ -104,7 +104,7 @@
             delimiters: [`[[`, `]]`],
             computed: {
                 timeTicker: function() {
-                    return `${convertDate({{tx_dict.date | safe}})} ago`
+                    return `${convertDate({{tx_dict.timesince | safe}})} ago`
                 },
                 inputData: function() {
                     return {{tx_dict.input | safe}}
