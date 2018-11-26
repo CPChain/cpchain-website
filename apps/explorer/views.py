@@ -244,6 +244,9 @@ def txs(req):
         except PageNotAnInteger:
             page = 1
         all_txs = txs_collection.find().sort('_id', DESCENDING)
+        timenow = int(time.time())
+        for t in all_txs:
+            t['timesince'] = timenow - t['timestamp']
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         return render(req, 'explorer/txs_list.html', {'txs': txs})
@@ -255,6 +258,9 @@ def txs(req):
     except PageNotAnInteger:
         page = 1
     all_txs = txs_from_block
+    timenow = int(time.time())
+    for t in all_txs:
+        t['timesince'] = timenow - t['timestamp']
     p = Paginator(all_txs, 25, request=req)
     txs = p.page(page)
     return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
