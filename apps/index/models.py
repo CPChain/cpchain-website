@@ -31,7 +31,7 @@ class TeamMate(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='img/Partners')
-    link = models.CharField(max_length=100)
+    link = models.CharField(max_length=200)
     type = models.CharField(choices=PARTNERS, max_length=20)
 
     def __str__(self):
@@ -40,7 +40,7 @@ class Partner(models.Model):
 
 class New(models.Model):
     category = models.CharField(choices=NEWS_CATEGORY, max_length=50)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
     content = RichTextUploadingField(default='')

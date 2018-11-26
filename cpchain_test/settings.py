@@ -148,7 +148,6 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
-
 from cpc_fusion import Web3, HTTPProvider
 cpc_fusion = Web3(HTTPProvider('http://54.87.26.24:8503'))
 
