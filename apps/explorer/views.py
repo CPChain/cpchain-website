@@ -243,7 +243,7 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = txs_collection.find().sort('_id', DESCENDING)
+        all_txs = list(txs_collection.find().sort('_id', DESCENDING))
         timenow = int(time.time())
         for t in all_txs:
             t['timesince'] = timenow - t['timestamp']
