@@ -30,6 +30,7 @@ def explorer(request):
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+    t_li.reverse()
 
     ## header
     # tps
