@@ -43,7 +43,9 @@ class New(models.Model):
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
-    content = RichTextUploadingField(default='')
+    content = RichTextUploadingField(default='',external_plugin_resources=[('youtube',
+                                                                            '/static/youtube/',
+                                                                            'plugin.js')])
 
     def __str__(self):
         return self.title

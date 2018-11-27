@@ -9,6 +9,14 @@ uwsgi.pid
 uwsgi.log
 nohup.out
 output.log
+#custom
+apps/index/migrations/
+!apps/index/migrations/__init__.py
+docker/mysql/data
+docker/mongo/data
+whoosh_index/
+
+
 
 # Distribution / packaging
 .Python
