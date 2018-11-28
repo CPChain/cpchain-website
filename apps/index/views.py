@@ -29,12 +29,18 @@ class CommunityView(View):
             latest_news = New.objects.filter(category=news.category).exclude(title=title).order_by('-update_time')[:3]
             return render(req, 'news_detail.html', {'news': news, 'latest': latest_news})
         else:
-            # index
-            community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
-            ama_news = New.objects.filter(category='AMA Sessions').order_by('-update_time')[:3]
-            media_reports_news = New.objects.filter(category='Media Reports').order_by('-update_time')[:3]
-            return render(req, 'news.html',
-                          {'CU_news': community_update_news, 'ama_news': ama_news, 'media_news': media_reports_news})
+            # eng version
+            if 1:
+                community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
+                ama_news = New.objects.filter(category='AMA Sessions').order_by('-update_time')[:3]
+                media_reports_news = New.objects.filter(category='Media Reports').order_by('-update_time')[:3]
+                return render(req, 'news.html',
+                              {'CU_news': community_update_news, 'ama_news': ama_news, 'media_news': media_reports_news})
+            else:
+                progress_news = New.objects.filter(category='项目进展').order_by('-update_time')[:3]
+                release_news = New.objects.filter(category='重大发布').order_by('-update_time')[:3]
+                media_news = New.objects.filter(category='媒体报道').order_by('-update_time')[:3]
+                return render(req,'news.html',{})
 
 class DeveloperView(View):
     def get(self,req):
