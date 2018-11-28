@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-28 15:39+0800\n"
+"POT-Creation-Date: 2018-11-28 15:51+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,15 +98,6 @@ msgid "Features"
 msgstr "特征"
 
 #: templates/index.html:284
-#, fuzzy
-#| msgid ""
-#| "The core feature of the CPChain is to realize the transmission of the "
-#| "valueof cyber-physical systems. The main technology contribution is to "
-#| "propose a systematic scheme to address the scalability and real-time "
-#| "problems of blockchain technology in IoTs from the perspective of data "
-#| "storage and computation, and consensus protocols, including parallel "
-#| "distributed architecture, two-layer hybrid consensus mechanism and "
-#| "lightweight side chain consensus protocol."
 msgid ""
 "The core feature of the CPChain is to realize the transmission of the value "
 "of cyber-physical systems. The main technology contribution is to propose a "
@@ -167,12 +158,6 @@ msgid ""
 msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据的价值"
 
 #: templates/index.html:442
-#, fuzzy
-#| msgid ""
-#| "CPChain is a trusted basis platform for data sharing and transaction of "
-#| "large-scale distributed IoT systems. It is widely applied in industries "
-#| "such as intelligent transportation, smart medical and intelligent "
-#| "manufacturing, etc."
 msgid ""
 "CPChain is a trusted basis platform for data sharing and transaction of "
 "large-scale distributed IoT systems. It is widely applied to industries such "
@@ -272,8 +257,6 @@ msgid "Q2 / 2019"
 msgstr "2019年第二季度"
 
 #: templates/index.html:638
-#, fuzzy
-#| msgid "PDash 3 release featuring <br> de-centralized market"
 msgid "PDash 3 release featuring <br> Decentralized  market"
 msgstr "发布以去中心化市场为特色的PDash 3"
 
@@ -360,12 +343,6 @@ msgid "DApp tutorials and examples"
 msgstr "DApp（去中心化应用托管）学习指南和示例"
 
 #: templates/index.html:806
-#, fuzzy
-#| msgid ""
-#| "The CPChain R&D team is an international, knowledge-structured, energetic "
-#| "team. The founding team members include top talent from universities, "
-#| "Internet of Things industry, financial security companies and business "
-#| "operations."
 msgid ""
 "The CPChain R&D team is an international, knowledge-structured, energetic "
 "team. The founding team members include top talents from universities, "
@@ -413,11 +390,6 @@ msgid "CPChain Co-Founder, COO"
 msgstr "CPChain联合创始人兼首席运营官"
 
 #: templates/index.html:883
-#, fuzzy
-#| msgid ""
-#| "Mr Shi is an early participant in the blockchain and digital currency. "
-#| "Founder of the shared finance and HPB, participated in the preparation "
-#| "and investment of many projects."
 msgid ""
 "Mr Shi is an early participant in the blockchain and digital currency. "
 "Founder of Shared Finance, participated in the preparation and investment of "
@@ -594,7 +566,7 @@ msgstr ""
 "标。但是近年来，为了速成，屡现驾校伪造培训记录，影响培训质量，造成公共安全隐"
 "患。"
 
-#: templates/intelligent-transportation.html:125 templates/rnode.html:226
+#: templates/intelligent-transportation.html:125 templates/rnode.html:225
 msgid ""
 "** Please note that according to changes in the market environment, for the "
 "sake of community interest, CPChain keeps the right to amend the numbers "
@@ -903,20 +875,14 @@ msgstr ""
 "举、委员会内部拜占庭容错（Byzantine Fault Tolerance, BFT） 共识。 "
 
 #: templates/rnode.html:107
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"DPor Consensus Protocol\n"
-"                                                                Overview"
-msgstr "您的邮箱*"
+msgid "DPor Consensus Protocol Overview"
+msgstr "荣誉节点DPoR共识"
 
-#: templates/rnode.html:114
+#: templates/rnode.html:113
 msgid "Node Reputation Value Assessment Procedure (RVAP)"
 msgstr "节点信誉度评估"
 
-#: templates/rnode.html:116
+#: templates/rnode.html:115
 msgid ""
 " Based on data from blockchain, CPChain will conduct the node reputation "
 "assessment model to calculate and assess the Reputation Value (RV) of every "
@@ -925,31 +891,31 @@ msgstr ""
 "BDPoR使用从区块链中提取的数据，构建节点的信誉度评估模型，从而计算和评估系统中"
 "节点的信誉度值。评估模型有五部分："
 
-#: templates/rnode.html:119
+#: templates/rnode.html:118
 msgid "Account Balance"
 msgstr "账户余额"
 
-#: templates/rnode.html:120
+#: templates/rnode.html:119
 msgid "Transaction"
 msgstr "交易"
 
-#: templates/rnode.html:121
+#: templates/rnode.html:120
 msgid "Proxy Reputation"
 msgstr "代理人信誉奖励"
 
-#: templates/rnode.html:122
+#: templates/rnode.html:121
 msgid "Data Contribution"
 msgstr "数据贡献"
 
-#: templates/rnode.html:123
+#: templates/rnode.html:122
 msgid "Blockchain Maintenance"
 msgstr "区块链维护"
 
-#: templates/rnode.html:129
+#: templates/rnode.html:128
 msgid "1. Account Balance:"
 msgstr "1. 账户余额: "
 
-#: templates/rnode.html:130
+#: templates/rnode.html:129
 #, python-format
 msgid ""
 " CPC token balance in RNode’s account will have a positive correlation with "
@@ -957,11 +923,11 @@ msgid ""
 "Assessment Procedure (RVAP). "
 msgstr "节点账户中的CPC余额与节点信誉度的评估正相关，占总权重的40%%～50%%； "
 
-#: templates/rnode.html:136
+#: templates/rnode.html:135
 msgid "2. Transaction:"
 msgstr "2. 交易: "
 
-#: templates/rnode.html:137
+#: templates/rnode.html:136
 #, python-format
 msgid ""
 " “Transaction” refers to actions in which a RNode uses CPC to buy data in "
@@ -970,11 +936,11 @@ msgstr ""
 "这里的“交易”定义为在系统中节点利用通证换取数据产品的交易，占总权重的 15%%～"
 "20%%；"
 
-#: templates/rnode.html:143
+#: templates/rnode.html:142
 msgid "3. Proxy: "
 msgstr "3. 代理人信誉奖励: "
 
-#: templates/rnode.html:144
+#: templates/rnode.html:143
 #, python-format
 msgid ""
 " Serving as the role of proxy, a RNode will earn reputation by assisting "
@@ -983,11 +949,11 @@ msgstr ""
 "节点在网络中作为代理（proxy）协助其他节点完成交易，会获得信誉度 奖励，占总权"
 "重的10%%～15%%； "
 
-#: templates/rnode.html:150
+#: templates/rnode.html:149
 msgid "4. Data Contribution:"
 msgstr "4. 数据贡献: "
 
-#: templates/rnode.html:151
+#: templates/rnode.html:150
 #, python-format
 msgid ""
 " A node will earn reputation value by uploading data, it will include base "
@@ -999,11 +965,11 @@ msgstr ""
 "励。节点上传文件时，获得基础奖励；若这些文件产生交易，则获得附加奖励。数 据贡"
 "献奖励占总权重的15%%～20%%； "
 
-#: templates/rnode.html:157
+#: templates/rnode.html:156
 msgid "5. Blockchain Maintenance: "
 msgstr "5. 区块链维护: "
 
-#: templates/rnode.html:158
+#: templates/rnode.html:157
 #, python-format
 msgid ""
 " All the committee members will be granted a certain amount of reputation "
@@ -1013,11 +979,11 @@ msgstr ""
 "每一轮区块添加成功后，每个委员会成员会得到相应的信誉度奖励，占总权 重的10%%～"
 "15%%。 "
 
-#: templates/rnode.html:164
+#: templates/rnode.html:163
 msgid "Characteristics of DPoR:"
 msgstr "评估模型特性描述"
 
-#: templates/rnode.html:165
+#: templates/rnode.html:164
 msgid ""
 " The design of DPoR has three layers of consideration for the RNodes with "
 "regard to value investment, volume contribution, and chain maintenance. It "
@@ -1036,11 +1002,11 @@ msgstr ""
 "全来源于区块链，具有不可篡改和可追溯性，基于该模型特性得到的选举结果具有可验"
 "证性。 "
 
-#: templates/rnode.html:170
+#: templates/rnode.html:169
 msgid "Dynamic Committee Election"
 msgstr "委员会选举"
 
-#: templates/rnode.html:172
+#: templates/rnode.html:171
 msgid ""
 " For every committee round, 30–35 reputation nodes will be elected. The "
 "committee is responsible for the maintenance of existing blocks, and adding, "
@@ -1059,11 +1025,11 @@ msgstr ""
 "可自动执 行选举算法，使选举结果可验证，进而保证了整个选举过程的可靠性。选举结"
 "果有一定的 随机性，节点被选中的概率与节点的信誉度值成正比。 "
 
-#: templates/rnode.html:174
+#: templates/rnode.html:173
 msgid "Characteristics"
 msgstr "特性分析"
 
-#: templates/rnode.html:176
+#: templates/rnode.html:175
 msgid ""
 " The DPOR election is based on nodes’ reputation value and random seeds. "
 "Every candidate node has the opportunity to be elected. The outcome cannot "
@@ -1075,11 +1041,11 @@ msgstr ""
 "结果无法被任何节点提前预测，保证了整个选举过程的公平性和安全性。选举过程完全"
 "匿名 ，节点无需在网络中披露个人信息，保证了用户隐私安全。 "
 
-#: templates/rnode.html:181
+#: templates/rnode.html:180
 msgid "Within Committee: LBFT"
 msgstr "委员会内部LBFT算法"
 
-#: templates/rnode.html:183
+#: templates/rnode.html:182
 msgid ""
 " DPoR uses Lightweight Byzantine Fault Tolerance (LBFT) to achieve a fast "
 "agreement among the committee members. LBFT has two stages: block "
@@ -1101,11 +1067,11 @@ msgstr ""
 "节点的恶意行为。此外，LBFT设计了针对极端情况下的容错机制，即大部分委员会成员"
 "宕机或者勾结，加强了系统的稳定性和鲁棒性。 "
 
-#: templates/rnode.html:198
+#: templates/rnode.html:197
 msgid "4. Node Entitlements & Rewards"
 msgstr "4. 节点奖励分配"
 
-#: templates/rnode.html:200
+#: templates/rnode.html:199
 msgid ""
 " CPChain’s ecosystem is established by a lot of Internet of Things (IoT) "
 "enterprises, developers and users. It is a long-term process. As a result, "
@@ -1122,17 +1088,17 @@ msgstr ""
 "市场交易主导，随着CPChain生态系统建设的完善和数据共享交易量的增加，荣誉节点的"
 "奖励主要来自智能合约和交易转账的费用。"
 
-#: templates/rnode.html:202
+#: templates/rnode.html:201
 msgid ""
 "In the first stage, reputation nodes’ entitlements will be allocated to two "
 "parts: "
 msgstr "CPC激励主导阶段，节点的通证奖励包括基础奖励与区块生成奖励："
 
-#: templates/rnode.html:204
+#: templates/rnode.html:203
 msgid "Basic Rewards:"
 msgstr "1. 基础奖励："
 
-#: templates/rnode.html:205
+#: templates/rnode.html:204
 msgid ""
 " CPChain will create a reward pool with 5 million CPC annually (1.25 million "
 "CPC quarterly, 13,700 CPC daily). The RNode and the Economy Node receive the "
@@ -1143,11 +1109,11 @@ msgstr ""
 "预计每年发放500万个CPC注入奖金池（每季度约125万个CPC，每日约1.37万个CPC），荣"
 "誉节点和经济节点根据锁定的保证金占总保证金的比例获得对应的CPC奖励。"
 
-#: templates/rnode.html:208
+#: templates/rnode.html:207
 msgid "Blockchain maintenance rewards:"
 msgstr "2. 区块生成奖励："
 
-#: templates/rnode.html:209
+#: templates/rnode.html:208
 #, python-format
 msgid ""
 " Committee Nodes are entitled to blockchain maintenance rewards. Every block "
@@ -1161,12 +1127,12 @@ msgstr ""
 "万个CPC，第二年约3000万个CPC，第三年约2250万个CPC，第四年约1700万个 CPC，第五"
 "年约1275万个CPC。 "
 
-#: templates/rnode.html:212
+#: templates/rnode.html:211
 msgid ""
 "Any questions about our Rnode Ecosystem can be posted in our upcoming AMA:"
 msgstr "有关本Rnode生态系统的问题可提至AMA："
 
-#: templates/rnode.html:225
+#: templates/rnode.html:224
 msgid "* Around 3,000,000 blocks will be generated annually."
 msgstr "* 每年约有3,000,000个新区块生成。"
 
