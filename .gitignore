@@ -18,6 +18,12 @@ whoosh_index/
 
 
 
+#custom
+whoosh_index/
+docker/mysql/data
+docker/mongo/data
+
+
 # Distribution / packaging
 .Python
 build/
