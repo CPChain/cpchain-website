@@ -164,7 +164,7 @@ WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cpchain_test',
+        'NAME': 'cpchain_django',
         'USER': 'root',
         'PASSWORD': 'MyPassword',
         'HOST': 'localhost',

@@ -3,9 +3,10 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'))
 NEWS_CATEGORY = (
-    ('Community Updates', 'Community Updates'), ('AMA Sessions', 'AMA Sessions'), ('Media Reports', 'Media Reports'),
-    ('项目进展', '项目进展'), ('重大发布', '重大发布'),
-    ('媒体报道', '媒体报道'),)
+    ('Community Updates', 'Community Updates'), ('AMA Sessions', 'AMA Sessions'),
+    ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
+Media_CATEGORY = (('Media Reports', 'Media Reports'),
+                  ('媒体报道', '媒体报道'))
 
 
 class Department(models.Model):
@@ -45,13 +46,20 @@ class New(models.Model):
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
-    link = models.CharField(blank=True, null=True, max_length=500)
-    media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
-    media_name = models.CharField(default='', max_length=100)
-    summary = models.CharField(max_length=500, default='')
-    content = RichTextUploadingField(default='', external_plugin_resources=[('youtube',
-                                                                             '/static/youtube/',
-                                                                             'plugin.js')])
+    content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
+                                                                                                    '/static/youtube/',
+                                                                                                    'plugin.js')])
 
     def __str__(self):
         return self.title
+
+
+class Media(models.Model):
+    category = models.CharField(choices=Media_CATEGORY, max_length=50)
+    title = models.CharField(max_length=200)
+    banner = models.ImageField(upload_to='img/News', null=True, blank=True)
+    update_time = models.DateField()
+    link = models.CharField(blank=True, null=True, max_length=500)
+    media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
+    media_name = models.CharField(blank=True, null=True, max_length=100)
+    summary = models.CharField(max_length=500, default='')
