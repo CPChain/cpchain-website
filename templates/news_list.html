@@ -55,7 +55,7 @@
                                     <a class="navbar-brand col-sm-6 col-12 mb-4 mb-sm-0">
                                         <h6 class="m-0">Official CPChain Media</h6>
                                     </a>
-                                     <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
+                                    <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
                                           action="{% url 'haystack_search' %}" method="get">
                                         <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
                                                placeholder="Search" aria-label="Search">
@@ -74,7 +74,7 @@
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 mx-auto">
                                 <h3 class="text-center w-100 my-3">
 
-                                        Category: {{ category }}
+                                    Category: {{ category }}
 
                                 </h3>
                             </div>
@@ -128,6 +128,51 @@
                                                     <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                                         CPChain </a>
                                                     <br> {{ n.update_time }} </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% for media_new in media_news.object_list %}
+                                <div class="card blog border-0 col-sm-4  my-4">
+                                    <a href="{{ media_new.link }}">
+                                        <div class="image-holder position-relative">
+                                            <img width="800" height="400"
+                                                 src="{{ MEDIA_URL }}{{ media_new.banner }}"
+                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                 alt=""
+                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
+                                        </div>
+                                    </a>
+
+                                    <div class="card-body px-0 pb-0">
+
+                                        <h6 class="card-title text-primary news poppins-font ">
+                                            <a href="{{ media_new.link }}"
+                                               class="text-primary small font-weight-bold">
+                                                Media Reports </a>
+                                        </h6>
+                                        <h5 class="card-title poppins-font">
+                                            <a href="{{ media_new.link }}">
+                                                {{ media_new.title }} </a>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            {{ media_new.summary|slice:":200"|safe }}... </p>
+                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                            <a href="{{ media_new.link }}">
+                                                <div class="image-smaller-holder">
+                                                    <img class="card-img-top bottom-cards disable-select h-100"
+                                                         src="{{ MEDIA_URL }}{{ media_new.media_logo }}"
+                                                         alt="Card image cap">
+                                                </div>
+                                            </a>
+                                            <div class="card-body py-0 d-flex align-items-center">
+                                                <p class="card-text card-bottom-text">
+                                                    <a href="{{ media_new.link }}">
+                                                        {{ media_new.media_name }} </a>
+                                                    <br> {{ media_new.update_time }} </p>
                                             </div>
                                         </div>
 

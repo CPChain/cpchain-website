@@ -72,8 +72,8 @@ class NewsListView(View):
                 page = 1
             all_news = media_category
             p = Paginator(all_news, 12, request=req)
-            news = p.page(page)
-            return render(req, 'media_list.html', {'category': category, 'news': news})
+            media_news = p.page(page)
+            return render(req, 'news_list.html', {'category': category, 'media_news': media_news})
 
 class RnodeView(View):
     def get(self, req):
