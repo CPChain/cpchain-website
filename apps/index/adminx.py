@@ -32,9 +32,12 @@ class PartnerAdmin:
 
 
 class NewsAdmin:
-    list_display = ['title','update_time','category']
+    list_display = ['title', 'update_time', 'category']
+    list_filter = ['update_time', 'category']
 
-
+class MediaAdmin:
+    list_display = ['title', 'update_time', 'category']
+    list_filter = ['update_time', 'category']
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
@@ -43,4 +46,5 @@ xadmin.site.register(views.CommAdminView, GlobalSettings)
 xadmin.site.register(TeamMate, TeamMatesAdmin)
 xadmin.site.register(Department, DeptAdmin)
 xadmin.site.register(Partner, PartnerAdmin)
-xadmin.site.register(New,NewsAdmin)
+xadmin.site.register(New, NewsAdmin)
+xadmin.site.register(Media, MediaAdmin)
