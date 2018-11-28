@@ -33,7 +33,7 @@ class CommunityView(View):
             if not req.path.startswith('/zh-hans'):
                 community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
                 ama_news = New.objects.filter(category='AMA Sessions').order_by('-update_time')[:3]
-                media_reports_news = New.objects.filter(category='Media Reports').order_by('-update_time')[:3]
+                media_reports_news = Media.objects.filter(category='Media Reports').order_by('-update_time')[:3]
                 return render(req, 'news.html',
                               {'CU_news': community_update_news, 'ama_news': ama_news,
                                'media_news': media_reports_news})
