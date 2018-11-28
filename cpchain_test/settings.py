@@ -85,25 +85,7 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     }
 }
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'skin': 'moono',
-#         'toolbar': 'Custom',
-#         'height': 400,
-#         'filebrowserWindowHeight': 725,
-#         'filebrowserWindowWidth': 940,
-#         # 'toolbarCanCollapse': True,
-#         'toolbar_Custom':[
-#             ['Styles','Format','Youtube'],
-#         ],
-#         'tabSpaces': 4,
-#         'extraPlugins': ','.join([
-#             'uploadimage', # the upload image feature
-#             # your extra plugins here
-#             'youtube'
-#         ]),
-#     }
-# }
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
