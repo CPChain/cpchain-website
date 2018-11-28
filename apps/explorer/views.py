@@ -30,6 +30,7 @@ def explorer(request):
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
+    t_li.reverse()
 
     ## header
     # tps
@@ -243,7 +244,10 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = txs_collection.find().sort('_id', DESCENDING)
+        all_txs = list(txs_collection.find().sort('_id', DESCENDING))
+        timenow = int(time.time())
+        for t in all_txs:
+            t['timesince'] = timenow - t['timestamp']
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         return render(req, 'explorer/txs_list.html', {'txs': txs})
@@ -255,6 +259,9 @@ def txs(req):
     except PageNotAnInteger:
         page = 1
     all_txs = txs_from_block
+    timenow = int(time.time())
+    for t in all_txs:
+        t['timesince'] = timenow - t['timestamp']
     p = Paginator(all_txs, 25, request=req)
     txs = p.page(page)
     return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
@@ -272,6 +279,8 @@ def tx(req, tx_hash):
         tx_dict['status'] = 'Pending'
     else:
         tx_dict['status'] = status
+    # tx_dict['timesince'] = int(time.time()) - tx_dict['timestamp']
+
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
 
@@ -290,6 +299,11 @@ def address(req, address):
             d['flag'] = 'out'
         else:
             d['flag'] = 'in'
+
+    # timesince calc
+    timenow = int(time.time())
+    for t in txs:
+        t['timesince'] = timenow - t['timestamp']
 
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
     balance = cf.eth.getBalance(raw_address)
@@ -315,7 +329,10 @@ def address(req, address):
 
 
 def rnode(req):
-    return render(req, 'explorer/rnode.html')
+    epoch = cf.cpc.getCurrentEpoch()
+    rnodes = cf.cpc.getRNodes()
+    return render(req, 'explorer/rnode.html', {'epoch': epoch,
+                                               'rnodes': rnodes})
 
 
 def committee(req):

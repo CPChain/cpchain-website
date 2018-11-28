@@ -85,6 +85,91 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     }
 }
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'skin': 'moono',
+#         'toolbar': 'Custom',
+#         'height': 400,
+#         'filebrowserWindowHeight': 725,
+#         'filebrowserWindowWidth': 940,
+#         # 'toolbarCanCollapse': True,
+#         'toolbar_Custom':[
+#             ['Styles','Format','Youtube'],
+#         ],
+#         'tabSpaces': 4,
+#         'extraPlugins': ','.join([
+#             'uploadimage', # the upload image feature
+#             # your extra plugins here
+#             'youtube'
+#         ]),
+#     }
+# }
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'yourcustomtools', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
+                'Youtube'
+
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        # 'height': 291,
+        # 'width': '100%',
+        # 'filebrowserWindowHeight': 725,
+        # 'filebrowserWindowWidth': 940,
+        # 'toolbarCanCollapse': True,
+        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath',
+            'youtube'
+        ]),
+    }
+}
 
 # 当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
@@ -97,7 +182,7 @@ WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cpchain_django',
+        'NAME': 'cpchain_test',
         'USER': 'root',
         'PASSWORD': 'MyPassword',
         'HOST': 'localhost',
@@ -148,11 +233,7 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
-
-sys.path.insert(0, os.path.join(BASE_DIR, 'fusion'))
 from cpc_fusion import Web3, HTTPProvider
-
-# cpc_fusion = Web3(Web3.HTTPProvider('http://127.0.0.1:8501'))
 cpc_fusion = Web3(HTTPProvider('http://54.87.26.24:8503'))
 
 PAGINATION_SETTINGS = {
@@ -160,3 +241,4 @@ PAGINATION_SETTINGS = {
     'MARGIN_PAGES_DISPLAYED': 2,
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
+

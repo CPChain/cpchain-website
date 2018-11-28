@@ -44,15 +44,15 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">[[timeTicker]]</div>
+                <div class="col">[[ timeTicker ]]</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
-                <div class="col"><a href="/block/{{ tx_dict.from }}">{{tx_dict.from}}</a></div>
+                <div class="col"><a href="{% url 'explorer:address' tx_dict.from %}">{{tx_dict.from}}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">To:</div>
-                <div class="col"><a href="/address/{{ tx_dict.to }}">{{ tx_dict.to }}</a></div>
+                <div class="col"><a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Value:</div>
@@ -104,7 +104,7 @@
             delimiters: [`[[`, `]]`],
             computed: {
                 timeTicker: function() {
-                    return `${convertDate({{tx_dict.date | safe}})} ago`
+                    return `${convertDate({{tx_dict.timestamp | safe}})} ago`
                 },
                 inputData: function() {
                     return {{tx_dict.input | safe}}
