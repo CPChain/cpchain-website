@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-28 15:51+0800\n"
+"POT-Creation-Date: 2018-11-28 15:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,13 +48,17 @@ msgstr "浏览器"
 msgid "Partners"
 msgstr "合作伙伴"
 
-#: templates/base.html:111 templates/index.html:136
+#: templates/base.html:111
 msgid "Contact"
 msgstr "联系我们"
 
 #: templates/base.html:118 templates/index.html:143
 msgid "ENG"
 msgstr "中文"
+
+#: templates/index.html:136
+msgid "Contact Us"
+msgstr "联系我们"
 
 #: templates/index.html:185
 msgid " A new distributed infrastructure for next generation IoT "
