@@ -54,16 +54,26 @@ class DeveloperView(View):
 class NewsListView(View):
     def get(self, req, category):
         category = unquote(category)
-        news_with_category = New.objects.filter(category=category)
-        try:
-            page = req.GET.get('page', 1)
-        except PageNotAnInteger:
-            page = 1
-        all_news = news_with_category
-        p = Paginator(all_news, 12, request=req)
-        news = p.page(page)
-        return render(req, 'news_list.html', {'category': category, 'news': news})
-
+        if not category in ['Media Reports','媒体报道']:
+            news_with_category = New.objects.filter(category=category)
+            try:
+                page = req.GET.get('page', 1)
+            except PageNotAnInteger:
+                page = 1
+            all_news = news_with_category
+            p = Paginator(all_news, 12, request=req)
+            news = p.page(page)
+            return render(req, 'news_list.html', {'category': category, 'news': news})
+        else:
+            media_category = Media.objects.filter(category=category)
+            try:
+                page = req.GET.get('page', 1)
+            except PageNotAnInteger:
+                page = 1
+            all_news = media_category
+            p = Paginator(all_news, 12, request=req)
+            news = p.page(page)
+            return render(req, 'media_list.html', {'category': category, 'news': news})
 
 class RnodeView(View):
     def get(self, req):
