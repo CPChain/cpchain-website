@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>News &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+    <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
+    <div id="page" class="site">
+        <div class="site-content-contain">
+            <div id="content" class="site-content">
+
+                <section
+                        class="search-bar h-75 d-flex align-items-center justify-content-center position-relative bg-light">
+                    <div class="container">
+                        <div class="row my-2 py-3">
+
+                            <div class="col-12 px-0">
+                                <div class="navbar navbar-light d-flex flex-column flex-sm-row justify-content-between align-items-center flex-row w-100">
+                                    <a class="navbar-brand col-sm-6 col-12 mb-4 mb-sm-0">
+                                        <h6 class="m-0 poppins-font">Official CPChain Media</h6>
+                                    </a>
+                                    <form class="form-inline col-sm-6 col-12 d-flex align-items-center justify-content-end"
+                                          action="{% url 'haystack_search' %}" method="get">
+                                        <input class="form-control col-sm-10 col-12 mr-sm-2" name="q" type="search"
+                                               placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section> <!-- end of search bar -->
+
+                <section class="py-5 my-sm-5 my-0">
+                    <div class="container">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="left-side col-6 text-left">
+                                <h6 class="mb-0">Community Updates</h6>
+                            </div>
+                            <div class="right-side col-6 text-right">
+                                <a href="{% url 'news_list' 'Community Updates'|urlencode %}" class="text-primary">
+                                    See all
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4 px-0">
+                            <hr class="right-hr">
+                        </div>
+
+                        <div class="row">
+                            one section
+                            {% for CU_new in CU_news %}
+                                <div class="card blog border-0 col-sm-4  my-4">
+                                    <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
+                                        <div class="image-holder position-relative">
+                                            <img width="800" height="400"
+                                                 src="{{ MEDIA_URL }}{{ CU_new.banner }}"
+                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                 alt=""
+                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
+                                        </div>
+                                    </a>
+
+                                    <div class="card-body px-0 pb-0">
+
+                                        <h6 class="card-title text-primary news poppins-font ">
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}"
+                                               class="text-primary small font-weight-bold">
+                                                Community Updates </a>
+                                        </h6>
+                                        <h5 class="card-title poppins-font">
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
+                                                {{ CU_new.title }} </a>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            {{ CU_new.content|slice:":200"|safe }}... </p>
+                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                            <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
+                                                <div class="image-smaller-holder">
+                                                    <img class="card-img-top bottom-cards disable-select h-100"
+                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         alt="Card image cap">
+                                                </div>
+                                            </a>
+                                            <div class="card-body py-0 d-flex align-items-center">
+                                                <p class="card-text card-bottom-text">
+                                                    <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
+                                                        CPChain </a>
+                                                    <br> {{ CU_new.update_time }} </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            one section
+                        </div>
+
+
+                    </div>
+                </section>
+
+
+                <section class="py-5 my-sm-5 my-0">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="left-side col-6 text-left">
+                                <h6 class="mb-0">AMA Sessions</h6>
+                            </div>
+                            <div class="right-side col-6 text-right">
+                                <a href="{% url 'news_list' 'AMA Sessions'|urlencode %}" class="text-primary">
+                                    See all
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4 px-0">
+                            <hr class="right-hr">
+                        </div>
+
+                        <div class="row">
+                            {% for ama_new in ama_news %}
+                                <div class="card blog border-0 col-sm-4  my-4">
+                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                        <div class="image-holder position-relative">
+                                            <img width="800" height="400"
+                                                 src="{{ MEDIA_URL }}{{ ama_new.banner }}"
+                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                 alt=""
+                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
+                                        </div>
+                                    </a>
+
+                                    <div class="card-body px-0 pb-0">
+
+                                        <h6 class="card-title text-primary news poppins-font ">
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}"
+                                               class="text-primary small font-weight-bold">
+                                                AMA Sessions </a>
+                                        </h6>
+                                        <h5 class="card-title poppins-font">
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                                {{ ama_new.title }} </a>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            {{ ama_new.content|slice:":200"|safe }}... </p>
+                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                                <div class="image-smaller-holder">
+                                                    <img class="card-img-top bottom-cards disable-select h-100"
+                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         alt="Card image cap">
+                                                </div>
+                                            </a>
+                                            <div class="card-body py-0 d-flex align-items-center">
+                                                <p class="card-text card-bottom-text">
+                                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                                        CPChain </a>
+                                                    <br> {{ ama_new.update_time }} </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <section class="py-5 my-sm-5 my-0">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="left-side col-6 text-left">
+                                <h6 class="mb-0">Media Reports</h6>
+                            </div>
+                            <div class="right-side col-6 text-right">
+                                <a href="{% url 'news_list' 'Media Reports'|urlencode %}" class="text-primary">
+                                    See all
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-4 px-0">
+                            <hr class="right-hr">
+                        </div>
+
+                        <div class="row">
+                            {% for media_new in media_news %}
+                                <div class="card blog border-0 col-sm-4  my-4">
+                                    <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
+                                        <div class="image-holder position-relative">
+                                            <img width="800" height="400"
+                                                 src="{{ MEDIA_URL }}{{ media_new.banner }}"
+                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
+                                                 alt=""
+                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
+                                        </div>
+                                    </a>
+
+                                    <div class="card-body px-0 pb-0">
+
+                                        <h6 class="card-title text-primary news poppins-font ">
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}"
+                                               class="text-primary small font-weight-bold">
+                                                Media Reports </a>
+                                        </h6>
+                                        <h5 class="card-title poppins-font">
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
+                                                {{ media_new.title }} </a>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            {{ media_new.content|slice:":200"|safe }}... </p>
+                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
+                                            <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
+                                                <div class="image-smaller-holder">
+                                                    <img class="card-img-top bottom-cards disable-select h-100"
+                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         alt="Card image cap">
+                                                </div>
+                                            </a>
+                                            <div class="card-body py-0 d-flex align-items-center">
+                                                <p class="card-text card-bottom-text">
+                                                    <a href="{% url 'community' %}?title={{ media_new.title|urlencode }}">
+                                                        CPChain </a>
+                                                    <br> {{ media_new.update_time }} </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
+                </section> <!-- end of Technical Documentations -->
+
+
+            </div><!-- #content -->
+
+        </div><!-- .site-content-contain -->
+    </div><!-- #page -->
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type='text/javascript'
+            src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>
+    <script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>
+
+    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/js/swiper.min.js"></script>
+    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/vanilla-tilt/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+
+        let header = document.getElementById('header');
+        window.addEventListener('scroll', function (e) {
+            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+        });
+
+        //Navigation
+        let anchorlinks = document.querySelectorAll('a[href^="#"]');
+        for (let item of anchorlinks) {
+            item.addEventListener('click', (e) => {
+
+                for (let i of anchorlinks) {
+                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                }
+
+                let hashval = item.getAttribute('href');
+                let target = document.querySelector(hashval)
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                history.pushState(null, null, hashval);
+                e.preventDefault();
+                openMenu(0);
+            });
+        }
+
+
+        function openMenu(type) {
+            let menuHolder = document.getElementById('mySidenav');
+            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        }
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // swiper for application pages
+        var swiperTeam = new Swiper('.swiper-container-applications', {
+            slidesPerView: 1,
+            autoplay: false,
+            grabCursor: false,
+            allowTouchMove: false,
+            autoHeight: true,
+        });
+
+        swiperTeam.on('slideChange', function () {
+            // change active image
+            let currentSlide = this.activeIndex;
+        });
+
+        function goToApplicationSwiper(index, e) {
+            swiperTeam.slideTo(index, 200);
+        }
+
+    </script>
+    </body>
+
+
+{% endblock %}

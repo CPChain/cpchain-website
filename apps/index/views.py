@@ -30,7 +30,7 @@ class CommunityView(View):
             return render(req, 'news_detail.html', {'news': news, 'latest': latest_news})
         else:
             # eng version
-            if 1:
+            if not req.path.startswith('/zh-hans'):
                 community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
                 ama_news = New.objects.filter(category='AMA Sessions').order_by('-update_time')[:3]
                 media_reports_news = New.objects.filter(category='Media Reports').order_by('-update_time')[:3]
