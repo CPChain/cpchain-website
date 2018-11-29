@@ -5,10 +5,10 @@ __pycache__/
 .idea/
 # C extensions
 *.so
+# Custom
 uwsgi.pid
 uwsgi.log
 nohup.out
-#custom
 apps/index/migrations/
 !apps/index/migrations/__init__.py
 docker/mysql/data
