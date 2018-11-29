@@ -109,10 +109,10 @@
                         <div class="d-flex justify-content-between align-items-center">
 
                             <div class="left-side col-6 text-left">
-                                <h6 class="mb-0">AMA Sessions</h6>
+                                <h6 class="mb-0">Community Events</h6>
                             </div>
                             <div class="right-side col-6 text-right">
-                                <a href="{% url 'news_list' 'AMA Sessions'|urlencode %}" class="text-primary">
+                                <a href="{% url 'news_list' 'Community Events'|urlencode %}" class="text-primary">
                                     See all
                                 </a>
                             </div>
@@ -122,12 +122,12 @@
                         </div>
 
                         <div class="row">
-                            {% for ama_new in ama_news %}
+                            {% for community_events_new in community_events_news %}
                                 <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                    <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
                                         <div class="image-holder position-relative">
                                             <img width="800" height="400"
-                                                 src="{{ MEDIA_URL }}{{ ama_new.banner }}"
+                                                 src="{{ MEDIA_URL }}{{ community_events_new.banner }}"
                                                  class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
                                                  alt=""
                                                  sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
@@ -137,19 +137,19 @@
                                     <div class="card-body px-0 pb-0">
 
                                         <h6 class="card-title text-primary news poppins-font ">
-                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}"
+                                            <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}"
                                                class="text-primary small font-weight-bold">
-                                                AMA Sessions </a>
+                                                Community Events </a>
                                         </h6>
                                         <h5 class="card-title poppins-font">
-                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
-                                                {{ ama_new.title }} </a>
+                                            <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
+                                                {{ community_events_new.title }} </a>
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ ama_new.content|slice:":200"|safe }}... </p>
+                                            {{ community_events_new.content|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                            <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
                                                          src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
@@ -158,9 +158,9 @@
                                             </a>
                                             <div class="card-body py-0 d-flex align-items-center">
                                                 <p class="card-text card-bottom-text">
-                                                    <a href="{% url 'community' %}?title={{ ama_new.title|urlencode }}">
+                                                    <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
                                                         CPChain </a>
-                                                    <br> {{ ama_new.update_time }} </p>
+                                                    <br> {{ community_events_new.update_time }} </p>
                                             </div>
                                         </div>
 
