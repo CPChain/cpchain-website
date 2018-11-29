@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<ul>
+    <li>currentEpoch:{{ epoch }}</li>
+    <li>current Round:{{ round }}</li>
+    <li>committes:{{ committees|length }}</li>
+
+</ul>
+<ul>
+    {% for com in committees %}
+        <li>{{ com }}</li>
+    {% endfor %}
+</ul>
 
 </body>
 </html>
