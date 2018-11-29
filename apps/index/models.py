@@ -3,7 +3,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'))
 NEWS_CATEGORY = (
-    ('Community Updates', 'Community Updates'), ('AMA Sessions', 'AMA Sessions'),
+    ('Community Updates', 'Community Updates'), ('AMA Sessions', 'AMA Sessions'),('Community Events','Community Events'),
     ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
 Media_CATEGORY = (('Media Reports', 'Media Reports'),
                   ('媒体报道', '媒体报道'))
