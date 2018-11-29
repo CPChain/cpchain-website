@@ -74,7 +74,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ progress_new.content|slice:":200"|safe }}... </p>
+                                            {{ progress_new.summary|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ progress_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
@@ -145,7 +145,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ release_new.content|slice:":200"|safe }}... </p>
+                                            {{ release_new.summary|slice:":200"|safe }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ release_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
