@@ -114,7 +114,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ n.content|slice:":200"|safe }}...</p>
+                                            {{ n.summary }}...</p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ n.title|urlencode }}">
                                                 <div class="image-smaller-holder">

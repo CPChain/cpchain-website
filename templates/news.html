@@ -74,8 +74,10 @@
                                                 {{ CU_new.title }} </a>
                                         </h5>
 
+{#                                        <p class="card-text">#}
+{#                                            {{ CU_new.content|slice:":200"|safe }}... </p>#}
                                         <p class="card-text">
-                                            {{ CU_new.content|slice:":200"|safe }}... </p>
+                                            {{ CU_new.summary }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ CU_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
@@ -146,8 +148,10 @@
                                                 {{ community_events_new.title }} </a>
                                         </h5>
 
+{#                                        <p class="card-text">#}
+{#                                            {{ community_events_new.content|slice:":200"|safe }}... </p>#}
                                         <p class="card-text">
-                                            {{ community_events_new.content|slice:":200"|safe }}... </p>
+                                            {{ community_events_new.summary }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
