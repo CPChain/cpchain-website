@@ -329,15 +329,15 @@ def address(req, address):
 
 
 def rnode(req):
-    epoch = cf.cpc.getCurrentTerm()
-    rnodes = cf.cpc.getRNodes()
+    epoch = cf.cpc.getCurrentTerm
+    rnodes = cf.cpc.getRNodes
     return render(req, 'explorer/rnode.html', {'epoch': epoch,
                                                'rnodes': rnodes})
 
 
 def committee(req):
-    epoch = cf.cpc.getCurrentTerm()
-    round = cf.cpc.getCurrentView()
-    committees = cf.cpc.getCommittees()
+    epoch = cf.cpc.getCurrentTerm
+    round = cf.cpc.getCurrentView
+    committees = cf.cpc.getCommittees
 
     return render(req, 'explorer/committee.html',locals())
