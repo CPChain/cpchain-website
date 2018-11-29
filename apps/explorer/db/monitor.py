@@ -9,6 +9,7 @@ from cpc_fusion import Web3
 from cpc_fusion.middleware import geth_poa_middleware
 
 logging.basicConfig(level=logging.INFO,
+                    filename='./log/chain.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
