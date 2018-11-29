@@ -22,8 +22,8 @@ DAY_SECENDS = 60 * 60 * 24
 
 
 def explorer(request):
-    rnode = len(cf.cpc.getRNodes())
-    committee = len(cf.cpc.getCommittees())
+    rnode = len(cf.cpc.getRNodes)
+    committee = len(cf.cpc.getCommittees)
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     txs_count = txs_collection.find().count()
@@ -104,8 +104,8 @@ def wshandler(req):
         block_height = block['number']
         if block_height >= temp_height:
             txs_count = txs_collection.find().count()
-            rnode = len(cf.cpc.getRNodes())
-            committee = len(cf.cpc.getCommittees())
+            rnode = len(cf.cpc.getRNodes)
+            committee = len(cf.cpc.getCommittees)
 
             data = {}
             # tps
