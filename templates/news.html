@@ -109,10 +109,10 @@
                         <div class="d-flex justify-content-between align-items-center">
 
                             <div class="left-side col-6 text-left">
-                                <h6 class="mb-0">AMA Sessions</h6>
+                                <h6 class="mb-0">Community Events</h6>
                             </div>
                             <div class="right-side col-6 text-right">
-                                <a href="{% url 'news_list' 'AMA Sessions'|urlencode %}" class="text-primary">
+                                <a href="{% url 'news_list' 'Community Events'|urlencode %}" class="text-primary">
                                     See all
                                 </a>
                             </div>
@@ -139,7 +139,7 @@
                                         <h6 class="card-title text-primary news poppins-font ">
                                             <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}"
                                                class="text-primary small font-weight-bold">
-                                                AMA Sessions </a>
+                                                Community Events </a>
                                         </h6>
                                         <h5 class="card-title poppins-font">
                                             <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
