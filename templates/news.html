@@ -148,6 +148,8 @@
 
                                         <p class="card-text">
                                             {{ community_events_new.content|slice:":200"|safe }}... </p>
+                                        <p class="card-text">
+                                            {{ community_events_new.summary }}... </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ community_events_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
