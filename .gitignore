@@ -14,7 +14,7 @@ apps/index/migrations/
 docker/mysql/data
 docker/mongo/data
 whoosh_index/
-/log
+log/
 
 # Distribution / packaging
 .Python
