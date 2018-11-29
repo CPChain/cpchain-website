@@ -60,7 +60,7 @@ class Media(models.Model):
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
-    link = models.CharField(max_length=500)
+    link = models.CharField(max_length=500,default='http://')
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
     media_name = models.CharField(max_length=200)
     summary = models.CharField(max_length=500,blank=True,null=True)
