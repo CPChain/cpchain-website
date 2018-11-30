@@ -1,9 +1,5 @@
-var blnIsFirstTime = true;
-var intCounterColor = 0;
-var maxloop = 200;
 var ws;
 var socketurl;
-var lastprice;
 if (location.protocol === 'https:') {
     socketurl = "wss://" + window.location.hostname + "/explorer/wshandler/";
 } else {
@@ -13,7 +9,6 @@ if (location.protocol === 'https:') {
 $(function () {
 
         function connectsocket(stype) {
-            var intcounter = 0;
             ws = new WebSocket(socketurl);
             ws.onopen = function () {
                 console.log("->Connected..");
