@@ -40,7 +40,7 @@
                             </div>
                             <div class="right-side col-6 text-right">
                                 <a href="{% url 'news_list' '项目进展'|urlencode %}" class="text-primary">
-                                    See all
+                                    查看全部内容
                                 </a>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ progress_new.summary|slice:":200"|safe }}... </p>
+                                            {{ progress_new.summary|default_if_none:"" }} </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ progress_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
@@ -111,7 +111,7 @@
                             </div>
                             <div class="right-side col-6 text-right">
                                 <a href="{% url 'news_list' '重大发布'|urlencode %}" class="text-primary">
-                                    See all
+                                    查看全部内容
                                 </a>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ release_new.summary|slice:":200"|safe }}... </p>
+                                            {{ release_new.summary|default_if_none:"" }} </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{% url 'community' %}?title={{ release_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
@@ -180,7 +180,7 @@
                             </div>
                             <div class="right-side col-6 text-right">
                                 <a href="{% url 'news_list' '媒体报道'|urlencode %}" class="text-primary">
-                                    See all
+                                    查看全部内容
                                 </a>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
                                         </h5>
 
                                         <p class="card-text">
-                                            {{ media_new.summary|slice:":200"|safe }}... </p>
+                                            {{ media_new.summary|default_if_none:"" }} </p>
                                         <div class="card border-0 d-flex flex-row ml-0 w-100">
                                             <a href="{{ media_new.link }}">
                                                 <div class="image-smaller-holder">

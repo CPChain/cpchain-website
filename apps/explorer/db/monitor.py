@@ -1,4 +1,5 @@
 import logging
+import logging.handlers
 import time
 
 import hexbytes
@@ -8,13 +9,15 @@ from cpc_fusion import Web3
 from cpc_fusion.middleware import geth_poa_middleware
 
 logging.basicConfig(level=logging.INFO,
-                    filename='output.log',
+                    filename='./log/chain.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
-
+rf_handler = logging.handlers.TimedRotatingFileHandler(filename="./log/chain.log", when='midnight', backupCount=10)
+logger.addHandler(rf_handler)
 
 cf = Web3(Web3.HTTPProvider('http://54.87.26.24:8503'))
+
 cf.middleware_stack.inject(geth_poa_middleware, layer=0)
 client = MongoClient(host='127.0.0.1', port=27017)
 # blocks

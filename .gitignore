@@ -5,17 +5,16 @@ __pycache__/
 .idea/
 # C extensions
 *.so
+# Custom
 uwsgi.pid
 uwsgi.log
 nohup.out
-output.log
-#custom
 apps/index/migrations/
 !apps/index/migrations/__init__.py
 docker/mysql/data
 docker/mongo/data
 whoosh_index/
-
+log/
 
 # Distribution / packaging
 .Python
