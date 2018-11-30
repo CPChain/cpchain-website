@@ -22,8 +22,10 @@ DAY_SECENDS = 60 * 60 * 24
 
 
 def explorer(request):
-    rnode = len(cf.cpc.getRNodes)
-    committee = len(cf.cpc.getCommittees)
+
+    rnode = len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
+    committee = len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     txs_count = txs_collection.find().count()
