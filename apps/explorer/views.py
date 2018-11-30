@@ -2,11 +2,13 @@ import json
 import time
 import threading
 from datetime import datetime
+import urllib3
 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
+import requests
 
 try:
     import uwsgi
@@ -21,17 +23,21 @@ block_collection = CLIENT['test']['blocks']
 txs_collection = CLIENT['test']['txs']
 DAY_SECENDS = 60 * 60 * 24
 
+
 class RNode:
-    rnode = 0 #len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
-    committee = 0#len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+    rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
+    committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
 
     @staticmethod
     def update():
         def _update():
             RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
             RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
-        threading.Thread(target=_update).start()
 
+        try:
+            threading.Thread(target=_update).start()
+        except requests.exceptions.ReadTimeout or urllib3.exceptions.ReadTimeoutError:
+            print('readtime out')
 
 
 def explorer(request):
@@ -351,4 +357,4 @@ def committee(req):
     round = cf.cpc.getCurrentView
     committees = cf.cpc.getCommittees
 
-    return render(req, 'explorer/committee.html',locals())
+    return render(req, 'explorer/committee.html', locals())
