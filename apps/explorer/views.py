@@ -31,13 +31,14 @@ class RNode:
     @staticmethod
     def update():
         def _update():
-            RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
-            RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+            try:
+                RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
+                RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+            except requests.exceptions.ReadTimeout or urllib3.exceptions.ReadTimeoutError:
+                print('readtime out')
 
-        try:
             threading.Thread(target=_update).start()
-        except requests.exceptions.ReadTimeout or urllib3.exceptions.ReadTimeoutError:
-            print('readtime out')
+
 
 
 def explorer(request):
