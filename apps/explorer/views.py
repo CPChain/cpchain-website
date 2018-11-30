@@ -1,5 +1,6 @@
 import json
 import time
+import threading
 from datetime import datetime
 
 from django.http import HttpResponse
@@ -20,12 +21,21 @@ block_collection = CLIENT['test']['blocks']
 txs_collection = CLIENT['test']['txs']
 DAY_SECENDS = 60 * 60 * 24
 
+class RNode:
+    rnode = 0 #len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
+    committee = 0#len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+
+    @staticmethod
+    def update():
+        def _update():
+            RNode.rnode = len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
+            RNode.committee = len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+        threading.Thread(target=_update).run()
+
+
 
 def explorer(request):
-
-    rnode = len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
-    committee = len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
-
+    RNode.update()
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     txs_count = txs_collection.find().count()
@@ -43,9 +53,9 @@ def explorer(request):
     header = {
         'blockHeight': height,
         'txs': txs_count,
-        'rnode': rnode,
+        'rnode': RNode.rnode,
         'tps': tps,
-        'committee': committee,
+        'committee': RNode.committee,
     }
 
     ## chart
@@ -105,9 +115,8 @@ def wshandler(req):
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
         if block_height >= temp_height:
+            RNode.update()
             txs_count = txs_collection.find().count()
-            rnode = len(cf.cpc.getRNodes)
-            committee = len(cf.cpc.getCommittees)
 
             data = {}
             # tps
@@ -119,9 +128,9 @@ def wshandler(req):
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
-                'rnode': rnode,
+                'rnode': RNode.rnode,
                 'tps': tps,
-                'committee': committee,
+                'committee': RNode.committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
             b_txs_count = len(temp['transactions'])
