@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-30 10:42+0800\n"
+"POT-Creation-Date: 2018-11-30 10:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,10 +163,11 @@ msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据
 
 #: templates/index.html:442
 msgid ""
-"CPChain is a trusted basis platform for data sharing and transaction of "
-"large-scale distributed IoT systems. It is widely applied to industries such "
-"as intelligent transportation, smart medical and intelligent manufacturing, "
-"etc."
+"CPChain's distributed infrastructure will provide a full process solution "
+"for data acquisition, storage, sharing and transacting for large-scale "
+"distributed IoT systems. Our technology has the potential to revolutionize "
+"multiple industries including intelligent transportation, smart medical, "
+"public security, and intelligent manufacturing, etc."
 msgstr ""
 "CPChain是大型分布式物联网系统数据共享与处理的可信基础平台，广泛应用于智能交"
 "通、智能医疗以及公共安全等行业。"
@@ -1132,6 +1133,13 @@ msgstr "有关本Rnode生态系统的问题可提至AMA："
 #: templates/rnode.html:224
 msgid "* Around 3,000,000 blocks will be generated annually."
 msgstr "* 每年约有3,000,000个新区块生成。"
+
+#: templates/rnode.html:225
+msgid ""
+"** Please note that according to changes in the market environment, for the "
+"sake of community interest, CPChain keeps the right to amend the numbers "
+"above in the future."
+msgstr ""
 
 #: templates/security.html:74
 msgid "Elevator Operation Data Record"
