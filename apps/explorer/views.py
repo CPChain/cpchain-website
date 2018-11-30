@@ -28,9 +28,9 @@ class RNode:
     @staticmethod
     def update():
         def _update():
-            RNode.rnode = len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
-            RNode.committee = len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
-        threading.Thread(target=_update).run()
+            RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
+            RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+        threading.Thread(target=_update).start()
 
 
 
