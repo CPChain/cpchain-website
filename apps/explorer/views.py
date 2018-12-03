@@ -83,7 +83,7 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 5e+18,
+            'reward': 5e-18,
             'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
@@ -135,7 +135,7 @@ def wshandler(req):
             temp = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
-                'reward': 5e+18,
+                'reward': 5e-18,
                 'txs': len(temp['transactions']),
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
@@ -234,7 +234,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = 5e+18
+    blockReward = 5e-18
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
