@@ -234,7 +234,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['txfee']
+    blockReward = 5e+18
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -283,6 +283,7 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
+    tx_dict['gasLimit'] = block_collection.find({'number':tx_dict['blockNumber']})[0]['gasLimit']
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
