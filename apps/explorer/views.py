@@ -68,7 +68,7 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 5e-18,
+            'reward': 5,
             'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
@@ -219,7 +219,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = 5e-18
+    blockReward = 5
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -270,8 +270,7 @@ def tx(req, tx_hash):
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
-    print(tx_dict['txfee'])
-    tx_dict['txfee'] = format(tx_dict['txfee'] * 10 ** -18, '.20f')
+    tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
