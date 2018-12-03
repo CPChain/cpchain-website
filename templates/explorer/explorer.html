@@ -4,15 +4,6 @@
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
     <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
-
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/static/js/default.js"></script>
-    <script src="/static/js/util.js"></script>
-{#    <script src="/static/js/echarts-en.min.js"></script>#}
-    <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts-en.min.js"></script>
-    <script src="/static/js/echarts-theme-walden.js"></script>
-    <script src="/static/js/echarts-linear-options.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 {% endblock %}
 {% block title %}
     <title>Explorer &#8211; CPChain</title>
@@ -27,23 +18,23 @@
             <div class="my-5"></div>
             <div class="row">
                 <a class="col" href="{% url 'explorer:blocks' %}">
-                    <div class="text-center"><h1 class="number-font">[[blockHeight]]</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="blockHeight">0</h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
                 </a>
                 <a class="col" href="{% url 'explorer:txs' %}">
-                    <div class="text-center"><h1 class="number-font">[[txsc]]</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="txsc">0</h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
-                            Transaction<span class="sub-font">( [[tps]] TPS)</span>
+                            Transaction<span class="sub-font">( <span v-text="tps">0</span> TPS)</span>
                         </h3>
                     </div>
                 </a>
                 <a class="col" href="{% url 'explorer:rnode' %}">
-                    <div class="text-center"><h1 class="number-font">[[rnode]]</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="rnode"></h1></div>
                     <div class="text-center"><h3 class="index-font">RNode</h3></div>
                 </a>
                 <a class="col" href="{% url 'explorer:committee' %}">
-                    <div class="text-center"><h1 class="number-font">[[committee]]</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="committee"></h1></div>
                     <div class="text-center"><h3 class="index-font">Committee</h3></div>
                 </a>
             </div>
@@ -148,6 +139,14 @@
         </div>
     </div>
 
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/static/js/default.js"></script>
+    <script src="/static/js/util.js"></script>
+{#    <script src="/static/js/echarts-en.min.js"></script>#}
+    <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts-en.min.js"></script>
+    <script src="/static/js/echarts-theme-walden.js"></script>
+    <script src="/static/js/echarts-linear-options.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 {#    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>#}
     <script type='text/javascript'

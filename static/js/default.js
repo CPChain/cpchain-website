@@ -1,9 +1,9 @@
 var ws;
 var socketurl;
 if (location.protocol === 'https:') {
-    socketurl = "wss://" + window.location.hostname + "/explorer/wshandler/";
+    socketurl = "wss://" + window.location.host + "/explorer/wshandler/";
 } else {
-    socketurl = "ws://" + window.location.hostname + "/explorer/wshandler/";
+    socketurl = "ws://" + window.location.host + "/explorer/wshandler/";
 }
 
 $(function () {
