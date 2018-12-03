@@ -1,14 +1,10 @@
 import json
 import time
 import threading
-from datetime import datetime
-import urllib3
 
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
-import requests
 
 try:
     import uwsgi
@@ -87,8 +83,8 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 0,
-            'txs': 0,
+            'reward': 5e+18,
+            'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
             'hash': b['hash'],
@@ -137,11 +133,10 @@ def wshandler(req):
                 'committee': RNode.committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
-            b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
-                'reward': 0,
-                'txs': b_txs_count,
+                'reward': 5e+18,
+                'txs': len(temp['transactions']),
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
                 'hash': temp['hash'],
