@@ -120,7 +120,7 @@ def wshandler(req):
             temp = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
-                'reward': 5e-18,
+                'reward': 5,
                 'txs': len(temp['transactions']),
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
