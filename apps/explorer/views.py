@@ -34,10 +34,10 @@ class RNode:
 
 
 def explorer(request):
-    RNode.update()
-    height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    # RNode.update()
+    # height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    txs_count = txs_collection.find().count()
+    # txs_count = txs_collection.find().count()
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
@@ -45,17 +45,17 @@ def explorer(request):
 
     ## header
     # tps
-    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    current_timestamp = int(time.time())
-    spend_time = current_timestamp - start_timestamp
-    tps = round(txs_count / spend_time, 3)
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': RNode.rnode,
-        'tps': tps,
-        'committee': RNode.committee,
-    }
+    # start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    # current_timestamp = int(time.time())
+    # spend_time = current_timestamp - start_timestamp
+    # tps = round(txs_count / spend_time, 3)
+    # header = {
+    #     'blockHeight': height,
+    #     'txs': txs_count,
+    #     'rnode': RNode.rnode,
+    #     'tps': tps,
+    #     'committee': RNode.committee,
+    # }
 
     ## chart
     # chart = [{
@@ -103,7 +103,7 @@ def explorer(request):
         txs.append(tx)
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
+                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart})
 
 
 def wshandler(req):
@@ -122,7 +122,7 @@ def wshandler(req):
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
             current_timestamp = int(time.time())
             spend_time = current_timestamp - start_timestamp
-            tps = txs_count / spend_time
+            tps = round(txs_count / spend_time, 3)
 
             header = {
                 'blockHeight': block_height,
