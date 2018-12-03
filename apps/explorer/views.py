@@ -1,8 +1,6 @@
 import json
 import time
 import threading
-import numpy as np
-np.set_printoptions(suppress=True)
 
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
@@ -271,7 +269,8 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
-    tx_dict['gasPrice'] = tx_dict['gasPrice']*10**-18
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
+    tx_dict['txfee'] = format(tx_dict['txfee'] * 10 ** -18, '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
