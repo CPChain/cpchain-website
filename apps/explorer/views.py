@@ -1,6 +1,8 @@
 import json
 import time
 import threading
+import numpy as np
+np.set_printoptions(suppress=True)
 
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
