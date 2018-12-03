@@ -34,28 +34,14 @@ class RNode:
 
 
 def explorer(request):
-    # RNode.update()
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    # txs_count = txs_collection.find().count()
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
     t_li.reverse()
 
-    ## header
-    # tps
-    # start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    # current_timestamp = int(time.time())
-    # spend_time = current_timestamp - start_timestamp
-    # tps = round(txs_count / spend_time, 3)
-    # header = {
-    #     'blockHeight': height,
-    #     'txs': txs_count,
-    #     'rnode': RNode.rnode,
-    #     'tps': tps,
-    #     'committee': RNode.committee,
-    # }
+
 
     ## chart
     # chart = [{
@@ -283,6 +269,7 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
+    tx_dict['gasPrice'] = tx_dict['gasPrice']*10**-18
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
