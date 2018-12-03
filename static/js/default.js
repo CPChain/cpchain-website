@@ -35,6 +35,7 @@ $(function () {
             };
             ws.onclose = function () {
                 console.log("->disconnected..");
+                connectsocket('gs');
             };
         }
 

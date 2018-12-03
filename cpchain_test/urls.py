@@ -32,6 +32,9 @@ indexpatterns = [
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
     path('app/<app>', AppView.as_view(), name='app'),
     path('search/', include('haystack.urls')),
+    path('faucet/', FaucetView.as_view(), name='faucet'),
+    path('receipt/', ReceiptView.as_view(), name='receipt'),
+
     # functions
     # 配置富文本media地址
     path('ckeditor/', include('ckeditor_uploader.urls')),

@@ -1,11 +1,18 @@
-from django.shortcuts import render, redirect
-from django.views.generic.base import View
-from django.http import FileResponse, HttpResponseRedirect
+import threading
+from urllib.parse import unquote
 
-from pure_pagination import Paginator, PageNotAnInteger
+from django.http import FileResponse, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.views.generic.base import View
+from pure_pagination import PageNotAnInteger, Paginator
+
+from cpchain_test.settings import cpc_fusion as cf
 
 from .models import *
-from urllib.parse import unquote
+
+EVERYDAY = 100
+COINS = 100
+FAUCET_VALUE = 50
 
 
 # Create your views here.
@@ -34,7 +41,7 @@ class CommunityView(View):
                 community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
                 community_events_news = New.objects.filter(category='Community Events').order_by('-update_time')[:3]
                 media_reports_news = Media.objects.filter(category='Media Reports').order_by('-update_time')[:3]
-                return render(req, 'news.html',
+                return render(req, 'community.html',
                               {'CU_news': community_update_news, 'community_events_news': community_events_news,
                                'media_news': media_reports_news})
 
@@ -42,7 +49,7 @@ class CommunityView(View):
                 progress_news = New.objects.filter(category='项目进展').order_by('-update_time')[:3]
                 release_news = New.objects.filter(category='重大发布').order_by('-update_time')[:3]
                 media_news = Media.objects.filter(category='媒体报道').order_by('-update_time')[:3]
-                return render(req, 'news_zh.html',
+                return render(req, 'community_zh.html',
                               {'progress_news': progress_news, 'release_news': release_news, 'media_news': media_news})
 
 
@@ -54,8 +61,8 @@ class DeveloperView(View):
 class NewsListView(View):
     def get(self, req, category):
         category = unquote(category)
-        if not category in ['Media Reports','媒体报道']:
-            news_with_category = New.objects.filter(category=category)
+        if not category in ['Media Reports', '媒体报道']:
+            news_with_category = New.objects.filter(category=category).order_by('-update_time')
             try:
                 page = req.GET.get('page', 1)
             except PageNotAnInteger:
@@ -65,7 +72,7 @@ class NewsListView(View):
             news = p.page(page)
             return render(req, 'news_list.html', {'category': category, 'news': news})
         else:
-            media_category = Media.objects.filter(category=category)
+            media_category = Media.objects.filter(category=category).order_by('-update_time')
             try:
                 page = req.GET.get('page', 1)
             except PageNotAnInteger:
@@ -74,6 +81,7 @@ class NewsListView(View):
             p = Paginator(all_news, 12, request=req)
             media_news = p.page(page)
             return render(req, 'news_list.html', {'category': category, 'media_news': media_news})
+
 
 class RnodeView(View):
     def get(self, req):
@@ -92,6 +100,54 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
+
+
+class FaucetView(View):
+    def get(self, req):
+        return render(req, 'faucet.html')
+
+    def post(self, req):
+        address = req.POST.get('address', '')
+        address = address.strip()
+        if cf.isAddress(address):
+            if Faucet.valid():
+                Faucet.send(address)
+                return redirect('receipt')
+            else:
+                return render(req, 'faucet.html', {'msg': 'Today’s coin is finished.'})
+        else:
+            return render(req, 'faucet.html', {'msg': 'Please enter a valid address'})
+
+
+class Faucet:
+    @staticmethod
+    def send(addr):
+        def _send(addr):
+            global COINS
+            account = cf.toChecksumAddress(addr)
+            print('cf.cpc.blockNumber:' + str(cf.cpc.blockNumber))
+
+            print('\nsend tx:')
+            cf.personal.sendTransaction({'to': account, 'from': cf.cpc.coinbase, 'value': FAUCET_VALUE},
+                                        'password')
+            COINS -= FAUCET_VALUE
+
+        threading.Thread(target=_send, args=(addr,)).start()
+
+    @staticmethod
+    def valid():
+        # TODO  address limit
+        return True if COINS > 0 else False
+
+    @staticmethod
+    def update():
+        global COINS
+        COINS = EVERYDAY
+
+
+class ReceiptView(View):
+    def get(self, req):
+        return render(req, 'faucet-receipt.html')
 
 
 def page_not_found(request, exception=None, template_name='errors/page_404.html'):

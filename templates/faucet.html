@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+
+{% endblock %}
+{% block title %}
+    <title>Faucet &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+    <div style="width: 800px;margin: 20px auto">
+        <div style="margin:40px auto">
+            <form action="{% url 'faucet' %}" method="post">
+                <input class="form-control" type="text" name="address"
+                       placeholder="Enter your address to claim from our faucet.">
+                <p>{{ msg }}</p>
+                <div style="width: 400px; margin:20px auto">
+                    <button type="submit" value="Submit"
+                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-md-4">Claim
+                    </button>
+                    <button type="reset" value="Reset"
+                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-md-4"
+                            style="margin-left: 50px; ">Reset
+                    </button>
+
+                </div>
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
