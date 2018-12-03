@@ -35,7 +35,7 @@ class RNode:
 
 def explorer(request):
     # RNode.update()
-    # height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
     # txs_count = txs_collection.find().count()
     b_li.reverse()
