@@ -241,9 +241,9 @@
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-        var explorerHeader = {{ header|safe }}
-        // var explorerHeader = {}
-        updateHeader(explorerHeader)
+        {#var explorerHeader = {{ header|safe }}#}
+        {#// var explorerHeader = {}#}
+        {#updateHeader(explorerHeader)#}
     </script>
 
     <script>

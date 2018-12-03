@@ -1,14 +1,10 @@
 import json
 import time
 import threading
-from datetime import datetime
-import urllib3
 
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
-import requests
 
 try:
     import uwsgi
@@ -37,12 +33,11 @@ class RNode:
         threading.Thread(target=_update).start()
 
 
-
 def explorer(request):
-    RNode.update()
+    # RNode.update()
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    txs_count = txs_collection.find().count()
+    # txs_count = txs_collection.find().count()
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
@@ -50,17 +45,17 @@ def explorer(request):
 
     ## header
     # tps
-    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    current_timestamp = int(time.time())
-    spend_time = current_timestamp - start_timestamp
-    tps = txs_count / spend_time
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': RNode.rnode,
-        'tps': tps,
-        'committee': RNode.committee,
-    }
+    # start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    # current_timestamp = int(time.time())
+    # spend_time = current_timestamp - start_timestamp
+    # tps = round(txs_count / spend_time, 3)
+    # header = {
+    #     'blockHeight': height,
+    #     'txs': txs_count,
+    #     'rnode': RNode.rnode,
+    #     'tps': tps,
+    #     'committee': RNode.committee,
+    # }
 
     ## chart
     # chart = [{
@@ -87,8 +82,8 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 0,
-            'txs': 0,
+            'reward': 5e-18,
+            'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
             'hash': b['hash'],
@@ -108,7 +103,7 @@ def explorer(request):
         txs.append(tx)
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
+                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart})
 
 
 def wshandler(req):
@@ -127,7 +122,7 @@ def wshandler(req):
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
             current_timestamp = int(time.time())
             spend_time = current_timestamp - start_timestamp
-            tps = txs_count / spend_time
+            tps = round(txs_count / spend_time, 3)
 
             header = {
                 'blockHeight': block_height,
@@ -137,11 +132,10 @@ def wshandler(req):
                 'committee': RNode.committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
-            b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
-                'reward': 0,
-                'txs': b_txs_count,
+                'reward': 5e-18,
+                'txs': len(temp['transactions']),
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
                 'hash': temp['hash'],
@@ -239,7 +233,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['txfee']
+    blockReward = 5e-18
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -288,6 +282,7 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
+    tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
