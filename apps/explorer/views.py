@@ -270,6 +270,7 @@ def tx(req, tx_hash):
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
+    print(tx_dict['txfee'])
     tx_dict['txfee'] = format(tx_dict['txfee'] * 10 ** -18, '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
