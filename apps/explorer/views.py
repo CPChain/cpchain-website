@@ -33,7 +33,6 @@ class RNode:
         threading.Thread(target=_update).start()
 
 
-
 def explorer(request):
     RNode.update()
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
@@ -49,7 +48,7 @@ def explorer(request):
     start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
     current_timestamp = int(time.time())
     spend_time = current_timestamp - start_timestamp
-    tps = txs_count / spend_time
+    tps = round(txs_count / spend_time, 3)
     header = {
         'blockHeight': height,
         'txs': txs_count,
@@ -283,7 +282,7 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
-    tx_dict['gasLimit'] = block_collection.find({'number':tx_dict['blockNumber']})[0]['gasLimit']
+    tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     if status == 1:
         tx_dict['status'] = 'Success'
     elif status == 0:
