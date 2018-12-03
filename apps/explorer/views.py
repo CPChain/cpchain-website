@@ -273,8 +273,8 @@ def tx(req, tx_hash):
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
-    elif status == 0:
-        tx_dict['status'] = 'Pending'
+    # elif status == 0:
+    #     tx_dict['status'] = 'Pending'
     else:
         tx_dict['status'] = status
     # tx_dict['timesince'] = int(time.time()) - tx_dict['timestamp']
