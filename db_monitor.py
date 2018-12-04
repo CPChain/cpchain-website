@@ -51,7 +51,6 @@ def save_blocks_txs(start_block_id=None):
             timestamp = block['timestamp']
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
-            add_li = []
             for transaction_id in range(0, transaction_cnt):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
                 tx_ = tx_formatter(tx, timestamp)

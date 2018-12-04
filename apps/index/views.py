@@ -1,4 +1,3 @@
-import threading
 from urllib.parse import unquote
 
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
@@ -7,12 +6,8 @@ from django.views.generic.base import View
 from pure_pagination import PageNotAnInteger, Paginator
 
 from cpchain_test.settings import cpc_fusion as cf
-
+from .faucet import Faucet
 from .models import *
-
-EVERYDAY = 100
-COINS = 100
-FAUCET_VALUE = 50
 
 
 # Create your views here.
@@ -111,38 +106,16 @@ class FaucetView(View):
         address = address.strip()
         if cf.isAddress(address):
             if Faucet.valid():
-                Faucet.send(address)
-                return redirect('receipt')
+                if Faucet.limit(address):
+                    Faucet.send(address)
+                    Faucet.update(address)
+                    return redirect('receipt')
+                else:
+                    return render(req, 'faucet.html', {'msg': "you have already received today's faucet"})
             else:
                 return render(req, 'faucet.html', {'msg': 'Today’s coin is finished.'})
         else:
             return render(req, 'faucet.html', {'msg': 'Please enter a valid address'})
-
-
-class Faucet:
-    @staticmethod
-    def send(addr):
-        def _send(addr):
-            global COINS
-            account = cf.toChecksumAddress(addr)
-            print('cf.cpc.blockNumber:' + str(cf.cpc.blockNumber))
-
-            print('\nsend tx:')
-            cf.personal.sendTransaction({'to': account, 'from': cf.cpc.coinbase, 'value': FAUCET_VALUE},
-                                        'password')
-            COINS -= FAUCET_VALUE
-
-        threading.Thread(target=_send, args=(addr,)).start()
-
-    @staticmethod
-    def valid():
-        # TODO  address limit
-        return True if COINS > 0 else False
-
-    @staticmethod
-    def update():
-        global COINS
-        COINS = EVERYDAY
 
 
 class ReceiptView(View):
