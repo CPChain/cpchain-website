@@ -15,7 +15,6 @@ docker/mysql/data
 docker/mongo/data
 whoosh_index/
 log/
-isort.sh
 .vscode
 
 # Distribution / packaging

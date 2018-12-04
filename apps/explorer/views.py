@@ -15,8 +15,10 @@ from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
-block_collection = CLIENT['test']['blocks']
-txs_collection = CLIENT['test']['txs']
+block_collection = CLIENT['cpchain']['blocks']
+txs_collection = CLIENT['cpchain']['txs']
+address_collection = CLIENT['cpchain']['address']
+
 DAY_SECENDS = 60 * 60 * 24
 
 
@@ -59,8 +61,8 @@ def explorer(request):
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        bk_day = block_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        chart.append({'time': dt, 'tx': txs_day, 'bk': bk_day})
+        add_day = address_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
     chart.reverse()
 
     # blocks
