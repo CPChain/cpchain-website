@@ -47,6 +47,7 @@ def save_blocks_txs(start_block_id=None):
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
             timestamp = block['timestamp']
+            print(temp_id, time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp)))
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
             for transaction_id in range(0, transaction_cnt):

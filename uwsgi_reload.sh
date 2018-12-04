@@ -29,4 +29,5 @@ if [ $mode == "socket" ]; then
 else
     uwsgi --ini uwsgi.ini --http-websockets --http $http
 fi
+echo "Now You can access http://127.0.0.1:8000/"
 

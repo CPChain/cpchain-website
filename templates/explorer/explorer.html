@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash]]</a></p>
+                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash && (tx.hash.substr(0, 32) + "...")]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right"></p>
@@ -264,7 +264,7 @@
         const tableItemLimit = 10
 
         function updateTimeTicker() {
-            var cts = parseInt(Date.now() / 1000)
+            var cts = parseInt((Date.now() + 500) / 1000)
             explorerTablesApp.blocks.forEach((block, index) => {
                 const newTimeTicker = formatTS(cts - block.timestamp)
                 Vue.set(block, 'timeTicker', newTimeTicker)
