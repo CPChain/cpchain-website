@@ -13,6 +13,7 @@ except:
 
 from cpchain_test.settings import cpc_fusion as cf
 
+REFRESH_INTERVAL = 0.5
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
 block_collection = CLIENT['cpchain']['blocks']
@@ -25,25 +26,27 @@ DAY_SECENDS = 60 * 60 * 24
 class RNode:
     rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
     committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+    updating = False
 
     @staticmethod
     def update():
         def _update():
+            RNode.updating = True
             RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
             RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+            RNode.updating = False
 
-        threading.Thread(target=_update).start()
+        if RNode.updating:
+            print('updating thread is already running, waiting for the result')
+            return
+        else:
+            threading.Thread(target=_update).start()
 
 
 def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    b_li.reverse()
-    b_li = b_li[:9]
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
-    t_li.reverse()
-
-
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))[::-1]
+    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))[::-1]
 
     ## chart
     # chart = [{
@@ -101,10 +104,9 @@ def wshandler(req):
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
+        RNode.update()
         if block_height >= temp_height:
-            RNode.update()
             txs_count = txs_collection.find().count()
-
             data = {}
             # tps
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
@@ -119,14 +121,15 @@ def wshandler(req):
                 'tps': tps,
                 'committee': RNode.committee,
             }
-            temp = block_collection.find({'number': temp_height})[0]
+
+            temp_block = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
                 'reward': 5,
-                'txs': len(temp['transactions']),
-                'producerID': temp['miner'],
-                'timestamp': temp['timestamp'],
-                'hash': temp['hash'],
+                'txs': len(temp_block['transactions']),
+                'producerID': temp_block['miner'],
+                'timestamp': temp_block['timestamp'],
+                'hash': temp_block['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
             t_li.reverse()
@@ -147,7 +150,7 @@ def wshandler(req):
             uwsgi.websocket_send(data)
             temp_height += 1
         else:
-            time.sleep(0.3)
+            time.sleep(REFRESH_INTERVAL)
 
 
 def search(req):
@@ -271,7 +274,7 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
-    tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice']/1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'

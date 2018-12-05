@@ -1,21 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<ul>
-    <li>currentEpoch:{{ epoch }}</li>
-    <li>current Round:{{ round }}</li>
-    <li>committes:{{ committees|length }}</li>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
-</ul>
-<ul>
-    {% for com in committees %}
-        <li>{{ com }}</li>
-    {% endfor %}
-</ul>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Committees</title>
+{% endblock %}
+{% block content %}
+    <body>
+    {% include "explorer/_searchbar.html" %}
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <div class="row text" style="margin-bottom: 97px">
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Current Epoch</h1></div>
+                    </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ round }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Current Round</h1></div>
+                    </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ committees|length }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Committee</h1></div>
+                    </a>
+                </div>
+                <h1 class="text-left">Committee</h1>
+            </div>
+        </div>
+        <div class="info-table px-md-5" id="blocks-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col-2 text-truncate">View</div>
+                            <div class="col-2 text-truncate">Term</div>
+                            <div class="col-6 text-truncate">Producer</div>
+                            <div class="col-2 text-truncate">Block</div>
+                        </div>
+                        {% for committee in committees %}
+                            <div class="row">
+                                <div class="col-2 text-truncate">{{ committee.View }}</div>
+                                <div class="col-2 text-truncate">{{ committee.Term }}</div>
+                                <div class="col-6 text-truncate"><a
+                                        href="{% url 'explorer:address' committee.Producer %}">{{ committee.Producer }}</a>
+                                </div>
+                                <div class="col-2 text-truncate"><a
+                                        href="{% url 'explorer:block' committee.Block %}">{{ committee.Block }}</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
+
+    </body>
+
+{% endblock %}

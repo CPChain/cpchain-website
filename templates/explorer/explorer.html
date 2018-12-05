@@ -4,16 +4,6 @@
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
     <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
-
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/static/js/default.js"></script>
-    <script src="/static/js/util.js"></script>
-{#    <script src="/static/js/echarts-en.min.js"></script>#}
-    <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts-en.min.js"></script>
-    <script src="/static/js/echarts-theme-walden.js"></script>
-    <script src="/static/js/echarts-linear-options.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 {% endblock %}
 {% block title %}
     <title>Explorer &#8211; CPChain</title>
@@ -83,15 +73,18 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left text-truncate"><a :href="'/explorer/block/'+block.id">#[[block.id]]</a></p>
+                                        <p class="text-left text-truncate"><a :href="'/explorer/block/'+block.id"
+                                                                              id="block_id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right text-truncate"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]] Transactions</a></p>
+                                        <p class="text-right text-truncate"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
+                                            Transactions</a></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left text-truncate">Produced by <a :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
+                                        <p class="text-left text-truncate">Produced by <a
+                                                :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
@@ -122,7 +115,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash && (tx.hash.substr(0, 32) + "...")]]</a></p>
+                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash &&
+                                            (tx.hash.substr(0, 32) + "...")]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right"></p>
@@ -134,7 +128,10 @@
                                             <span class="d-flex">From&nbsp;</span>
                                             <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0">[[tx.sellerID]]</a>
                                             <span class="d-flex">&nbsp;To&nbsp;</span>
-                                            <a :href="'/explorer/address/'+tx.buyerID" class="text-truncate col px-0">[[tx.buyerID]]</a>
+                                            <a :href="'/explorer/address/'+tx.buyerID" v-if="tx.buyerID"
+                                               class="text-truncate col px-0">[[tx.buyerID || ""]]</a>
+                                            <span v-if="!tx.buyerID" class="text-truncate col px-0">None</span>
+
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
@@ -152,19 +149,20 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/static/js/default.js"></script>
     <script src="/static/js/util.js"></script>
-{#    <script src="/static/js/echarts-en.min.js"></script>#}
+    {#    <script src="/static/js/echarts-en.min.js"></script>#}
     <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts-en.min.js"></script>
     <script src="/static/js/echarts-theme-walden.js"></script>
     <script src="/static/js/echarts-linear-options.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-{#    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>#}
+    {#    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>#}
     <script type='text/javascript'
             src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>
     <script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>
 
     <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/js/swiper.min.js"></script>
     <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/vanilla-tilt/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 
     <script>
 
@@ -214,8 +212,8 @@
         }
 
         var explorerChartData = {{ chart|safe }}
-        // var explorerChartData = []
-        updateChartData(explorerChartData)
+            // var explorerChartData = []
+            updateChartData(explorerChartData)
         window.onresize = chartResize
 
         function chartResize() {
@@ -312,7 +310,6 @@
         }
 
         var explorerBlocks = {{ blocks|safe }};
-        console.log(explorerBlocks)
         var explorerTxs = {{ txs|safe }};
         // var blocks = [{
         //     id: 111,

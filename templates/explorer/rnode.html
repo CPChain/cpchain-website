@@ -1,19 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rnodes</title>
-</head>
-<body>
-<ul>
-    <li>currentEpoch:{{ epoch }}</li>
-    <li>rnodes:{{ rnodes|length }}</li>
-</ul>
-<ul>
-    {% for r in rnodes %}
-        <li>{{ r }}</li>
-    {% endfor %}
-</ul>
 
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Committees</title>
+{% endblock %}
+{% block content %}
+    <body>
+    {% include "explorer/_searchbar.html" %}
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <div class="row text" style="margin-bottom: 97px">
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Current Epoch</h1></div>
+                    </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ rnodes|length }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">RNodes</h1></div>
+                    </a>
+                </div>
+                <h1 class="text-left">RNodes</h1>
+            </div>
+        </div>
+        <div class="info-table px-md-5" id="blocks-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col-2 text-truncate">Rank</div>
+                            <div class="col-2 text-truncate">RNodes</div>
+                            <div class="col-6 text-truncate">Reputation</div>
+                            <div class="col-2 text-truncate">Status</div>
+                        </div>
+                        {% for rnode in rnodes %}
+                            <div class="row">
+                                <div class="col-2 text-truncate">{{ forloop.counter }}</div>
+                                <div class="col-2 text-truncate">{{ rnode.Address }}</div>
+                                <div class="col-6 text-truncate">{{ rnode.Rpt }}</div>
+                                <div class="col-2 text-truncate">{{ rnode.Status }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
+
+    </body>
+
+{% endblock %}
