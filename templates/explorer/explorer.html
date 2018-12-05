@@ -13,6 +13,7 @@
     <script src="/static/js/echarts-theme-walden.js"></script>
     <script src="/static/js/echarts-linear-options.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 {% endblock %}
 {% block title %}
     <title>Explorer &#8211; CPChain</title>
@@ -68,7 +69,7 @@
                     <div class="table-header-main">Blocks</div>
                     <div class="table-header-sub"><a href="blocks">See all</a></div>
                 </div>
-                <div class="table-content">
+                <div class="table-content table-blocks">
                     <transition-group tag="div" name="slide-fade">
                         <div class="card table-item" v-for="block in blocks" :key="block.id">
                             <div class="card-body table-item-body">
@@ -107,7 +108,7 @@
                     <div class="table-header-main">Transactions</div>
                     <div class="table-header-sub"><a href="txs">See all</a></div>
                 </div>
-                <div class="table-content">
+                <div class="table-content table-transactions">
                     <transition-group tag="div" name="slide-fade">
                         <div class="card table-item" v-for="tx in txs" :key="tx.hash">
                             <div class="card-body table-item-body">
@@ -328,7 +329,9 @@
     </script>
 
     <script>
-        var ps = new PerfectScrollbar('.table-content')
+        {#var ps = new PerfectScrollbar('.table-content')#}
+        var ps1 = new PerfectScrollbar('.table-blocks')
+        var ps2 = new PerfectScrollbar('.table-transactions')
     </script>
 
     </body>
