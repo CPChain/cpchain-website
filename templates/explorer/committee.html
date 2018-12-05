@@ -13,67 +13,51 @@
 {% block content %}
     <body>
     {% include "explorer/_searchbar.html" %}
-
     <div class="container">
         <div class="page-header">
             <div class="page-header-main">
-                <ul class="text-left">
-                    <li>currentEpoch:{{ epoch }}</li>
-                    <li>current Round:{{ round }}</li>
-                    <li>committes:{{ committees|length }}</li>
-                </ul>
+                <div class="row text" style="margin-bottom: 97px">
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Current Epoch</h1></div>
+                    </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ round }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Current Round</h1></div>
+                    </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ committees|length }}</h1></div>
+                        <div class="text-left"><h1 class="index-font">Committee</h1></div>
+                    </a>
+                </div>
+                <h1 class="text-left">Committee</h1>
             </div>
         </div>
-    </div>
-
-    <div class="container">
         <div class="info-table px-md-5" id="blocks-list">
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
                         <div class="row list-header">
-                            <div class="col text-truncate">View</div>
-                            <div class="col text-truncate">Term</div>
-                            <div class="col text-truncate">Producer</div>
-                            <div class="col text-truncate">Block</div>
+                            <div class="col-2 text-truncate">View</div>
+                            <div class="col-2 text-truncate">Term</div>
+                            <div class="col-6 text-truncate">Producer</div>
+                            <div class="col-2 text-truncate">Block</div>
                         </div>
                         {% for committee in committees %}
                             <div class="row">
-                                <div class="col text-truncate">{{ committee.View }}</div>
-                                <div class="col text-truncate">{{ committee.View }}</div>
-                                <div class="col text-truncate"><a
-                                        href="{% url 'explorer:address' committee.Producer %}">{{ committee.Producer }}</a></div>
-                                <div class="col text-truncate"><a
-                                        href="{% url 'explorer:block' committee.Block %}">{{ committee.Block }}</a></div>
+                                <div class="col-2 text-truncate">{{ committee.View }}</div>
+                                <div class="col-2 text-truncate">{{ committee.Term }}</div>
+                                <div class="col-6 text-truncate"><a
+                                        href="{% url 'explorer:address' committee.Producer %}">{{ committee.Producer }}</a>
+                                </div>
+                                <div class="col-2 text-truncate"><a
+                                        href="{% url 'explorer:block' committee.Block %}">{{ committee.Block }}</a>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            {#            <div class="pageturn">#}
-            {#                <ul class="pagelist">#}
-            {##}
-            {#                    {% if blocks.has_previous %}#}
-            {#                        <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>#}
-            {#                    {% endif %}#}
-            {#        #}
-            {#                    {% for page in blocks.pages %}#}
-            {#                        {% if page %}#}
-            {#                            {% ifequal page blocks.number %}#}
-            {#                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>#}
-            {#                            {% else %}#}
-            {#                                <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>#}
-            {#                            {% endifequal %}#}
-            {#                        {% else %}#}
-            {#                            <li class="none"><a href="">...</a></li>#}
-            {#                        {% endif %}#}
-            {#                    {% endfor %}#}
-            {#                    {% if blocks.has_next %}#}
-            {#                        <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a></li>#}
-            {#                    {% endif %}#}
-            {#        #}
-            {#                </ul>#}
-            {#            </div>#}
         </div>
     </div>
 
