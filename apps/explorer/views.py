@@ -26,17 +26,20 @@ DAY_SECENDS = 60 * 60 * 24
 class RNode:
     rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
     committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
-    flag = True
+    updating = False
 
     @staticmethod
     def update():
         def _update():
-            RNode.flag = False
+            RNode.updating = True
             RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
             RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
-            RNode.flag = True
+            RNode.updating = False
 
-        if RNode.flag:
+        if RNode.updating:
+            print('updating thread is already running, waiting for the result')
+            return
+        else:
             threading.Thread(target=_update).start()
 
 
