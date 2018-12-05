@@ -1,21 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<ul>
-    <li>currentEpoch:{{ epoch }}</li>
-    <li>current Round:{{ round }}</li>
-    <li>committes:{{ committees|length }}</li>
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
-</ul>
-<ul>
-    {% for com in committees %}
-        <li>{{ com }}</li>
-    {% endfor %}
-</ul>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Committees</title>
+{% endblock %}
+{% block content %}
+    <body>
+    {% include "explorer/_searchbar.html" %}
 
-</body>
-</html>
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <ul class="text-left">
+                    <li>currentEpoch:{{ epoch }}</li>
+                    <li>current Round:{{ round }}</li>
+                    <li>committes:{{ committees|length }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-table px-md-5" id="blocks-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate">View</div>
+                            <div class="col text-truncate">Term</div>
+                            <div class="col text-truncate">Producer</div>
+                            <div class="col text-truncate">Block</div>
+                        </div>
+                        {% for committee in committees %}
+                            <div class="row">
+                                <div class="col text-truncate">{{ committee.View }}</div>
+                                <div class="col text-truncate">{{ committee.View }}</div>
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:address' committee.Producer %}">{{ committee.Producer }}</a></div>
+                                <div class="col text-truncate"><a
+                                        href="{% url 'explorer:block' committee.Block %}">{{ committee.Block }}</a></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {#            <div class="pageturn">#}
+            {#                <ul class="pagelist">#}
+            {##}
+            {#                    {% if blocks.has_previous %}#}
+            {#                        <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>#}
+            {#                    {% endif %}#}
+            {#        #}
+            {#                    {% for page in blocks.pages %}#}
+            {#                        {% if page %}#}
+            {#                            {% ifequal page blocks.number %}#}
+            {#                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>#}
+            {#                            {% else %}#}
+            {#                                <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>#}
+            {#                            {% endifequal %}#}
+            {#                        {% else %}#}
+            {#                            <li class="none"><a href="">...</a></li>#}
+            {#                        {% endif %}#}
+            {#                    {% endfor %}#}
+            {#                    {% if blocks.has_next %}#}
+            {#                        <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a></li>#}
+            {#                    {% endif %}#}
+            {#        #}
+            {#                </ul>#}
+            {#            </div>#}
+        </div>
+    </div>
+
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
+
+    </body>
+
+{% endblock %}
