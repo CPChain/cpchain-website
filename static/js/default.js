@@ -26,8 +26,15 @@ $(function () {
                 header = msg.header;
                 block = msg.block;
                 txs = msg.txs;
+                // update header
                 updateHeader(header);
-                autoGenerateBlock(block)
+                // update block
+                height = block.id;
+                current_height = $('#block_id').text().slice(1,);
+                if (height > current_height) {
+
+                    autoGenerateBlock(block)
+                }
             };
 
             ws.onerror = function () {

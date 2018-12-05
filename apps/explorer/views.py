@@ -37,13 +37,8 @@ class RNode:
 
 def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    b_li.reverse()
-    b_li = b_li[:9]
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
-    t_li.reverse()
-
-
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))[::-1]
+    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))[::-1]
 
     ## chart
     # chart = [{
@@ -101,10 +96,9 @@ def wshandler(req):
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
+        RNode.update()
         if block_height >= temp_height:
-            RNode.update()
             txs_count = txs_collection.find().count()
-
             data = {}
             # tps
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
@@ -119,14 +113,15 @@ def wshandler(req):
                 'tps': tps,
                 'committee': RNode.committee,
             }
-            temp = block_collection.find({'number': temp_height})[0]
+
+            temp_block = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
                 'reward': 5,
-                'txs': len(temp['transactions']),
-                'producerID': temp['miner'],
-                'timestamp': temp['timestamp'],
-                'hash': temp['hash'],
+                'txs': len(temp_block['transactions']),
+                'producerID': temp_block['miner'],
+                'timestamp': temp_block['timestamp'],
+                'hash': temp_block['hash'],
             }
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
             t_li.reverse()
@@ -147,7 +142,7 @@ def wshandler(req):
             uwsgi.websocket_send(data)
             temp_height += 1
         else:
-            time.sleep(0.3)
+            time.sleep(0.5)
 
 
 def search(req):
@@ -271,7 +266,7 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
-    tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice'] * 10 ** -18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
