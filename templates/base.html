@@ -33,10 +33,10 @@
 
     @font-face {
         font-family: "poppins";
-        src: url("../static/css/Font/Poppins-Light.otf");
-        src: url("../static/css/Font/Poppins-ExtraLight.otf");
-        src: url("../static/css/Font/Poppins-Bold.otf");
-        src: url("../static/css/Font/Poppins-Regular.otf");
+        src: url("{% static '/css/Font/Poppins-Light.otf' %}");
+        src: url("{% static '/css/Font/Poppins-ExtraLight.otf' %}");
+        src: url("{% static '/css/Font/Poppins-Bold.otf' %}");
+        src: url("{% static '/css/Font/Poppins-Regular.otf'%}");
     }
 
     .poppins-font {
@@ -217,7 +217,7 @@
 </footer>
 
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
     $(function () {
         var localUrl = window.location.pathname;
@@ -248,9 +248,10 @@
     })
 
 </script>
-<script
+<script>
 
     let header = document.getElementById('header');
+
     window.addEventListener('scroll', function (e) {
         (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
     });

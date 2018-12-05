@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
     <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/static/js/default.js"></script>
     <script src="/static/js/util.js"></script>
-    <script src="/static/js/echarts-en.min.js"></script>
+{#    <script src="/static/js/echarts-en.min.js"></script>#}
+    <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts-en.min.js"></script>
     <script src="/static/js/echarts-theme-walden.js"></script>
     <script src="/static/js/echarts-linear-options.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 {% endblock %}
 {% block title %}
     <title>Explorer &#8211; CPChain</title>
@@ -77,7 +77,7 @@
                                         <p class="text-left">icon</p>
                                     </div>
                                     <div class="col-4 table-item-sub">
-                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>
+                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] Wei</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -149,7 +149,7 @@
     </div>
 
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+{#    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>#}
     <script type='text/javascript'
             src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>
     <script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>
@@ -241,9 +241,6 @@
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
-        var explorerHeader = {{ header|safe }}
-        // var explorerHeader = {}
-        updateHeader(explorerHeader)
     </script>
 
     <script>

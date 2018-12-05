@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'pure_pagination',
     'haystack',
+    'utils',
 ]
 
 MIDDLEWARE = [

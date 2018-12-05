@@ -1,8 +1,7 @@
 import json
 import time
-from datetime import datetime
+import threading
 
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
@@ -16,35 +15,35 @@ from cpchain_test.settings import cpc_fusion as cf
 
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
-block_collection = CLIENT['test']['blocks']
-txs_collection = CLIENT['test']['txs']
+block_collection = CLIENT['cpchain']['blocks']
+txs_collection = CLIENT['cpchain']['txs']
+address_collection = CLIENT['cpchain']['address']
+
 DAY_SECENDS = 60 * 60 * 24
 
 
+class RNode:
+    rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
+    committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+
+    @staticmethod
+    def update():
+        def _update():
+            RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
+            RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+
+        threading.Thread(target=_update).start()
+
+
 def explorer(request):
-    rnode = len(cf.cpc.getRNodes)
-    committee = len(cf.cpc.getCommittees)
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))
-    txs_count = txs_collection.find().count()
     b_li.reverse()
     b_li = b_li[:9]
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
     t_li.reverse()
 
-    ## header
-    # tps
-    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    current_timestamp = int(time.time())
-    spend_time = current_timestamp - start_timestamp
-    tps = txs_count / spend_time
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': rnode,
-        'tps': tps,
-        'committee': committee,
-    }
+
 
     ## chart
     # chart = [{
@@ -62,8 +61,8 @@ def explorer(request):
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        bk_day = block_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        chart.append({'time': dt, 'tx': txs_day, 'bk': bk_day})
+        add_day = address_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
     chart.reverse()
 
     # blocks
@@ -71,8 +70,8 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 0,
-            'txs': 0,
+            'reward': 5,
+            'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
             'hash': b['hash'],
@@ -92,7 +91,7 @@ def explorer(request):
         txs.append(tx)
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'header': json.dumps(header), 'txs': json.dumps(txs), 'chart': chart})
+                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart})
 
 
 def wshandler(req):
@@ -103,30 +102,28 @@ def wshandler(req):
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
         if block_height >= temp_height:
+            RNode.update()
             txs_count = txs_collection.find().count()
-            rnode = len(cf.cpc.getRNodes)
-            committee = len(cf.cpc.getCommittees)
 
             data = {}
             # tps
             start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
             current_timestamp = int(time.time())
             spend_time = current_timestamp - start_timestamp
-            tps = txs_count / spend_time
+            tps = round(txs_count / spend_time, 3)
 
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
-                'rnode': rnode,
+                'rnode': RNode.rnode,
                 'tps': tps,
-                'committee': committee,
+                'committee': RNode.committee,
             }
             temp = block_collection.find({'number': temp_height})[0]
-            b_txs_count = len(temp['transactions'])
             block = {
                 'id': temp_height,
-                'reward': 0,
-                'txs': b_txs_count,
+                'reward': 5,
+                'txs': len(temp['transactions']),
                 'producerID': temp['miner'],
                 'timestamp': temp['timestamp'],
                 'hash': temp['hash'],
@@ -224,7 +221,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    # blockReward = block_dict['txfee']
+    blockReward = 5
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -273,10 +270,13 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
+    tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice']*10**-18,'.20f')
+    tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
-    elif status == 0:
-        tx_dict['status'] = 'Pending'
+    # elif status == 0:
+    #     tx_dict['status'] = 'Pending'
     else:
         tx_dict['status'] = status
     # tx_dict['timesince'] = int(time.time()) - tx_dict['timestamp']
@@ -340,4 +340,4 @@ def committee(req):
     round = cf.cpc.getCurrentView
     committees = cf.cpc.getCommittees
 
-    return render(req, 'explorer/committee.html',locals())
+    return render(req, 'explorer/committee.html', locals())
