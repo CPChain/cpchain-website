@@ -13,6 +13,7 @@ except:
 
 from cpchain_test.settings import cpc_fusion as cf
 
+REFRESH_INTERVAL = 0.5
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
 block_collection = CLIENT['cpchain']['blocks']
@@ -25,14 +26,18 @@ DAY_SECENDS = 60 * 60 * 24
 class RNode:
     rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
     committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+    flag = True
 
     @staticmethod
     def update():
         def _update():
+            RNode.flag = False
             RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
             RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+            RNode.flag = True
 
-        threading.Thread(target=_update).start()
+        if RNode.flag:
+            threading.Thread(target=_update).start()
 
 
 def explorer(request):
@@ -142,7 +147,7 @@ def wshandler(req):
             uwsgi.websocket_send(data)
             temp_height += 1
         else:
-            time.sleep(0.5)
+            time.sleep(REFRESH_INTERVAL)
 
 
 def search(req):
@@ -266,7 +271,7 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
-    tx_dict['gasPrice'] = format(tx_dict['gasPrice'] * 10 ** -18, '.20f')
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice']/1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     if status == 1:
         tx_dict['status'] = 'Success'
