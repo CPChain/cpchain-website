@@ -11,7 +11,7 @@
     <title>Transaction Infomation</title>
 {% endblock %}
 {% block content %}
-<body>
+    <body>
     {% include "explorer/_searchbar.html" %}
 
     <div class="container">
@@ -26,21 +26,25 @@
         <div class="info-table px-md-5" id="tx-info">
             <div class="row info-id">
                 <span class="info-id-icon">ICON</span>
-                <span class="col info-id-serial">{{tx_dict.hash}}</span>
+                <span class="col info-id-serial">{{ tx_dict.hash }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxHash:</div>
-                <div class="col">{{tx_dict.hash}}</div>
+                <div class="col">{{ tx_dict.hash }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxReceipt Status:</div>
                 <div class="col">
-                    <span :class="[(tx_dict.status? 'rc-success': 'rc-fail'), 'rc-status']">[[tx_dict.status?'Success': 'Failed']]</span>
+                    {% ifequal tx_dict.status 1 %}
+                        <span class="rx-success">Success</span>
+                    {% else %}
+                        <span class="rc-fail'">Failed</span>
+                    {% endifequal %}
                 </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Block Height:</div>
-                <div class="col">{{tx_dict.blockNumber}}</div>
+                <div class="col">{{ tx_dict.blockNumber }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
@@ -48,7 +52,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
-                <div class="col"><a href="{% url 'explorer:address' tx_dict.from %}">{{tx_dict.from}}</a></div>
+                <div class="col"><a href="{% url 'explorer:address' tx_dict.from %}">{{ tx_dict.from }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">To:</div>
@@ -68,11 +72,11 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Price:</div>
-                <div class="col">{{tx_dict.gasPrice}} CPC</div>
+                <div class="col">{{ tx_dict.gasPrice }} CPC</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Actual Tx Cost/Fee:</div>
-                <div class="col">{{tx_dict.txfee}} CPC</div>
+                <div class="col">{{ tx_dict.txfee }} CPC</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Input Data:</div>
@@ -83,11 +87,13 @@
                         </div>
                         <div class="raw-data-type-form">
                             <div class="form-check-inline form-check" @click="toggleDataType(0)">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                       value="option1" checked>
                                 <label class="form-check-label" for="inlineRadio1">Default View</label>
                             </div>
                             <div class="form-check-inline form-check" @click="toggleDataType(1)">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                       value="option1">
                                 <label class="form-check-label" for="inlineRadio1">Origin</label>
                             </div>
                         </div>
@@ -103,20 +109,21 @@
             el: '#tx-info',
             delimiters: [`[[`, `]]`],
             computed: {
-                timeTicker: function() {
-                    return `${convertDate({{tx_dict.timestamp | safe}})} ago`
+                timeTicker: function () {
+                    return `${convertDate({{tx_dict.timestamp | safe}})}`
                 },
-                inputData: function() {
-                    return {{tx_dict.input | safe}}
+                inputData: function () {
+                    return
+                    {{tx_dict.input | safe}}
                 }
             },
             methods: {
-                toggleDataType: function(type) {
+                toggleDataType: function (type) {
 
                 }
             }
         })
 
     </script>
-</body>
+    </body>
 {% endblock %}

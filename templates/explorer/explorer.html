@@ -18,14 +18,14 @@
             <div class="my-5"></div>
             <div class="row">
                 <a class="col" href="{% url 'explorer:blocks' %}">
-                    <div class="text-center"><h1 class="number-font" v-text="blockHeight">0</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
                 </a>
                 <a class="col" href="{% url 'explorer:txs' %}">
-                    <div class="text-center"><h1 class="number-font" v-text="txsc">0</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
-                            Transaction<span class="sub-font">( <span v-text="tps">0</span> TPS)</span>
+                            Transaction<span class="sub-font">( <span v-text="tps"></span> TPS)</span>
                         </h3>
                     </div>
                 </a>
@@ -68,7 +68,7 @@
                                         <p class="text-left">icon</p>
                                     </div>
                                     <div class="col-4 table-item-sub">
-                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] Wei</p>
+                                        <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -226,12 +226,12 @@
             el: '#explorer-header',
             delimiters: [`[[`, `]]`],
             data: {
-                blockHeight: 0,
-                txs: 0,
-                rnode: 0,
-                committee: 0,
+                blockHeight: {{ header.blockHeight }},
+                txs: {{ header.txs }},
+                rnode: {{ header.rnode }},
+                committee: {{ header.committee }},
                 loaded: false,
-                tps: 0,
+                tps: {{ header.tps }},
             },
             computed: {
                 txsc: function () {

@@ -3,10 +3,11 @@ import logging.handlers
 import time
 
 import hexbytes
-from pymongo import DESCENDING, MongoClient
-
 from cpc_fusion import Web3
 from cpc_fusion.middleware import geth_poa_middleware
+from pymongo import DESCENDING, MongoClient
+
+REFRESH_INTERVAL = 3
 
 logging.basicConfig(level=logging.INFO,
                     filename='./log/chain.log',
@@ -65,7 +66,7 @@ def save_blocks_txs(start_block_id=None):
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
             temp_id += 1
         else:
-            time.sleep(0.2)
+            time.sleep(REFRESH_INTERVAL)
 
 
 def block_formatter(block):

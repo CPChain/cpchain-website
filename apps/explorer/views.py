@@ -37,7 +37,6 @@ class RNode:
             RNode.updating = False
 
         if RNode.updating:
-            print('updating thread is already running, waiting for the result')
             return
         else:
             threading.Thread(target=_update).start()
@@ -92,9 +91,17 @@ def explorer(request):
             'amount': t['txfee']
         }
         txs.append(tx)
+    txs_count = txs_collection.find().count()
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': RNode.rnode,
+        'tps': get_tps(txs_count),
+        'committee': RNode.committee,
+    }
 
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart})
+                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
 
 def wshandler(req):
@@ -108,12 +115,7 @@ def wshandler(req):
         if block_height >= temp_height:
             txs_count = txs_collection.find().count()
             data = {}
-            # tps
-            start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-            current_timestamp = int(time.time())
-            spend_time = current_timestamp - start_timestamp
-            tps = round(txs_count / spend_time, 3)
-
+            tps = get_tps(txs_count)
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
@@ -151,6 +153,13 @@ def wshandler(req):
             temp_height += 1
         else:
             time.sleep(REFRESH_INTERVAL)
+
+
+def get_tps(txs_count):
+    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+    current_timestamp = int(time.time())
+    spend_time = current_timestamp - start_timestamp
+    return round(txs_count / spend_time, 3)
 
 
 def search(req):
@@ -274,14 +283,9 @@ def tx(req, tx_hash):
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.eth.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
-    tx_dict['gasPrice'] = format(tx_dict['gasPrice']/1e18, '.20f')
+    tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
-    if status == 1:
-        tx_dict['status'] = 'Success'
-    # elif status == 0:
-    #     tx_dict['status'] = 'Pending'
-    else:
-        tx_dict['status'] = status
+    tx_dict['status'] = status
     # tx_dict['timesince'] = int(time.time()) - tx_dict['timestamp']
 
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
