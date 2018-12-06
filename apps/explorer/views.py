@@ -109,7 +109,7 @@ def explorer(request):
             'sellerID': t['from'],
             'buyerID': t['to'],
             'timestamp': t['timestamp'],
-            'amount': t['txfee']
+            'amount': format(t['txfee'] , '.10f')
         }
         txs.append(tx)
     txs_count = txs_collection.find().count()
@@ -163,7 +163,7 @@ def wshandler(req):
                     'sellerID': t['from'],
                     'buyerID': t['to'],
                     'timestamp': t['timestamp'],
-                    'amount': t['txfee']
+                    'amount': format(t['txfee'] , '.10f')
                 }
                 txs.append(tx)
             data['header'] = header
@@ -347,11 +347,13 @@ def address(req, address):
                                                      'txs_count': txs_count
                                                      })
     else:
+        creator = txs[-1]['from']
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,
                                                       'txs_count': txs_count,
                                                       'code': code,
+                                                      'creator':creator
                                                       })
 
 
