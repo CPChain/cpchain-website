@@ -5,6 +5,7 @@ import threading
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
+from django.views.decorators.cache import cache_page
 
 try:
     import uwsgi
@@ -24,19 +25,39 @@ DAY_SECENDS = 60 * 60 * 24
 
 
 class RNode:
-    rnode = 0  # len(cf.cpc.getRNodes) if not cf.cpc.getRNodes else 0
-    committee = 0  # len(cf.cpc.getCommittees) if not cf.cpc.getCommittees else 0
+    rnode = None
+    rnode_length = 0
     updating = False
 
     @staticmethod
     def update():
         def _update():
             RNode.updating = True
-            RNode.rnode = len(cf.cpc.getRNodes) if cf.cpc.getRNodes else 0
-            RNode.committee = len(cf.cpc.getCommittees) if cf.cpc.getCommittees else 0
+            RNode.rnode = cf.cpc.getRNodes
+            RNode.rnode_length = len(RNode.rnode) if RNode.rnode else 0
             RNode.updating = False
 
         if RNode.updating:
+            return
+        else:
+            threading.Thread(target=_update).start()
+
+
+class Committee:
+
+    committee = cf.cpc.getCommittees
+    committee_length = len(committee) if committee else 0
+    updating = False
+
+    @staticmethod
+    def update():
+        def _update():
+            Committee.updating = True
+            Committee.committee = cf.cpc.getCommittees
+            Committee.committee_length = len(committee) if committee else 0
+            Committee.updating = False
+
+        if Committee.updating:
             return
         else:
             threading.Thread(target=_update).start()
@@ -95,9 +116,9 @@ def explorer(request):
     header = {
         'blockHeight': height,
         'txs': txs_count,
-        'rnode': RNode.rnode,
+        'rnode': RNode.rnode_length,
         'tps': get_tps(txs_count),
-        'committee': RNode.committee,
+        'committee': Committee.committee_length,
     }
 
     return render(request, 'explorer/explorer.html',
@@ -112,6 +133,7 @@ def wshandler(req):
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
         RNode.update()
+        Committee.update()
         if block_height >= temp_height:
             txs_count = txs_collection.find().count()
             data = {}
@@ -119,9 +141,9 @@ def wshandler(req):
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
-                'rnode': RNode.rnode,
+                'rnode': RNode.rnode_length,
                 'tps': tps,
-                'committee': RNode.committee,
+                'committee': Committee.committee_length,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
@@ -133,8 +155,7 @@ def wshandler(req):
                 'timestamp': temp_block['timestamp'],
                 'hash': temp_block['hash'],
             }
-            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))
-            t_li.reverse()
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))[::-1]
             txs = []
             for t in t_li:
                 tx = {
@@ -275,13 +296,12 @@ def txs(req):
     txs = p.page(page)
     return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
 
-
+@cache_page(24*3600)
 def tx(req, tx_hash):
     # tx from hash
-
     search = tx_hash.strip().lower()
     tx_dict = list(txs_collection.find({"hash": search}))[0]
-    status = cf.eth.getTransactionReceipt(search).status
+    status = cf.cpc.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
@@ -337,7 +357,7 @@ def address(req, address):
 
 def rnode(req):
     epoch = cf.cpc.getCurrentTerm
-    rnodes = cf.cpc.getRNodes
+    rnodes = RNode.rnode
     return render(req, 'explorer/rnode.html', {'epoch': epoch,
                                                'rnodes': rnodes})
 
@@ -345,6 +365,6 @@ def rnode(req):
 def committee(req):
     epoch = cf.cpc.getCurrentTerm
     round = cf.cpc.getCurrentView
-    committees = cf.cpc.getCommittees
+    committees = Committee.committee
 
     return render(req, 'explorer/committee.html', locals())

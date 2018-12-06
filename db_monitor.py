@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 rf_handler = logging.handlers.TimedRotatingFileHandler(filename="./log/chain.log", when='midnight', backupCount=10)
 logger.addHandler(rf_handler)
 
-cf = Web3(Web3.HTTPProvider('http://54.87.26.24:8503'))
+cf = Web3(Web3.HTTPProvider('http://54.179.178.142:8503'))
 
 cf.middleware_stack.inject(geth_poa_middleware, layer=0)
 client = MongoClient(host='127.0.0.1', port=27017)
@@ -53,7 +53,7 @@ def save_blocks_txs(start_block_id=None):
             timestamp = block['timestamp']
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
-            for transaction_id in range(0, transaction_cnt):
+            for transaction_id in range(transaction_cnt):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
                 tx_ = tx_formatter(tx, timestamp)
                 txs_li.append(tx_)
