@@ -52,7 +52,6 @@
                             <div class="col-1 text-truncate">&nbsp;</div>
                             <div class="col text-truncate">To</div>
                             <div class="col text-truncate">Value</div>
-{#                            <div class="col text-truncate">TxType</div>#}
                             <div class="col text-truncate">TxFee</div>
                         </div>
                         {% for tx in txs %}
@@ -68,8 +67,7 @@
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
                                 <div class="col text-truncate">{{ tx.value }}</div>
-{#                                <div class="col text-truncate">None</div>#}
-                                <div class="col text-truncate">{{ tx.txfee }}</div>
+                                <div class="col text-truncate">{{ tx.txfee|floatformat:10 }}</div>
                             </div>
                         {% endfor %}
                     </div>

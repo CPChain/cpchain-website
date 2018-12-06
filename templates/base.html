@@ -108,7 +108,7 @@
                     </li>
                     <li>
                         <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Contact' %}
+                            {% trans 'Contact Us' %}
                         </a>
                     </li>
                     <li class="line"></li>
@@ -163,8 +163,8 @@
 
                 <div class="col-sm-4 middle-col col-6 text-sm-right text-center d-flex align-items-center justify-content-end justify-content-sm-center">
                     <h6 class="mb-0 pr-sm-0"><a
-                            href="/cdn-cgi/l/email-protection#f49d9a929bb49784979c959d9ada9d9b" class=""><span
-                            class="__cf_email__" data-cfemail="a0c9cec6cfe0c3d0c3c8c1c9ce8ec9cf">info@cpchain.io</span></a>
+                            href="mailto:info@cpchain.io" class=""><span
+                            class="__cf_email__">info@cpchain.io</span></a>
                     </h6>
                 </div>
                 <div class="col-sm-4 col-12 last-col d-flex flex-row align-items-xl-center justify-content-xl-end  align-items-lg-center justify-content-lg-end  align-items-md-center justify-content-md-end  align-items-sm-center justify-content-sm-end justify-content-center list-unstyled mt-5 mt-sm-0">
@@ -250,11 +250,11 @@
 </script>
 <script>
 
-    let header = document.getElementById('header');
-
-    window.addEventListener('scroll', function (e) {
-        (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
-    });
+  //  let header = document.getElementById('header');
+//
+  //  window.addEventListener('scroll', function (e) {
+  //      (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+  //  });
 
     //Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
