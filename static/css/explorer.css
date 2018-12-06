@@ -1,6 +1,6 @@
 #chart {
   width: 100%;
-  height: 45vmin;
+  height: 380px;
   margin: 70px 0;
 }
 
@@ -68,7 +68,7 @@
   padding: 0 20px;
   max-height: 460px;
   position: relative;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .table-content .table-item {

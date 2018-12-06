@@ -225,3 +225,8 @@ PAGINATION_SETTINGS = {
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
 
+# override settings
+try:
+    from .local import *
+except Exception as e:
+    pass

@@ -15,6 +15,7 @@ docker/mysql/data
 docker/mongo/data
 whoosh_index/
 log/
+.vscode
 
 # Distribution / packaging
 .Python

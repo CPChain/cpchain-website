@@ -35,7 +35,7 @@
             <div class="row info-row">
                 <div class="col-3">TxReceipt Status:</div>
                 <div class="col">
-                    <span :class="[(rcStatus? 'rc-success': 'rc-fail'), 'rc-status']">[[rcStatus?'Success': 'Failed']]</span>
+                    <span :class="[(tx_dict.status? 'rc-success': 'rc-fail'), 'rc-status']">[[tx_dict.status?'Success': 'Failed']]</span>
                 </div>
             </div>
             <div class="row info-row">
