@@ -1,11 +1,4 @@
 @font-face {
-    font-family: "poppins";
-    src: url("Font/Poppins-Light.otf");
-    src: url("Font/Poppins-ExtraLight.otf");
-    src: url("Font/Poppins-Bold.otf");
-    src: url("Font/Poppins-Regular.otf");
-}
-@font-face {
     font-family: "archivo";
     src: url("Font/Archivo-Regular.ttf");
 }
@@ -13,7 +6,6 @@
     font-family: "pingfang";
     src: url("Font/PingFang Regular.ttf");
     src: url("Font/PingFang Medium.ttf");
-    src: url("Font/PingFang-Bold.ttf");
 }
 @import "scss/bootstrap/bootstrap.scss";
 @import "scss/core/core.scss";

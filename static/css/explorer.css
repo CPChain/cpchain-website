@@ -1,10 +1,3 @@
-@font-face {
-    font-family: "poppins";
-    src: url("/static/css/Font/Poppins-Light.otf");
-    src: url("/static/css/Font/Poppins-ExtraLight.otf");
-    src: url("/static/css/Font/Poppins-Bold.otf");
-    src: url("/static/css/Font/Poppins-Regular.otf");
-}
 
 @font-face {
     font-family: "poppins-italic";
@@ -27,7 +20,7 @@
 }
 
 .poppins-font {
-    font-family: 'poppins', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .poppins-light {
@@ -50,7 +43,7 @@
 #explorer-header .index-font {
     color: #305278;
     font-size: 16px;
-    font-family: poppins;
+    font-family: Poppins;
 }
 
 
