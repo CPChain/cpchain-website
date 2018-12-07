@@ -135,9 +135,9 @@ def wshandler(req):
     while True:
         block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
         block_height = block['number']
-        RNode.update()
-        Committee.update()
         if block_height >= temp_height:
+            RNode.update()
+            Committee.update()
             txs_count = txs_collection.find().count()
             data = {}
             tps = get_tps(txs_count)
