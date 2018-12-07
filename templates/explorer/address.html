@@ -3,6 +3,7 @@
 {% block custom_head %}
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script src="/static/js/util.js"></script>
 {% endblock %}
@@ -17,13 +18,13 @@
     <div class="container">
         <div class="page-header">
             <div class="page-header-main">
-                <p class="text-center">Address</p>
+                <p class="text-center poppins-font">Address</p>
             </div>
         </div>
     </div>
 
     <div class="container" id="address">
-        <div class="info-table px-md-5">
+        <div class="info-table px-md-5" id="blocks-list">
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
                 <span class="col info-id-serial">{{ address }}</span>
@@ -43,7 +44,7 @@
                     Latest 25 txs from a total of <a href>{{ txs_count }} transactions</a>
                 </div>
                 <div class="info-table-list-content">
-                    <div class="table">
+                    <div class="table" >
                         <div class="row list-header">
                             <div class="col text-truncate">TxHash</div>
                             <div class="col text-truncate">Block</div>
@@ -55,12 +56,12 @@
                             <div class="col text-truncate">TxFee</div>
                         </div>
                         {% for tx in txs %}
-                            <div class="row">
+                            <div class="row row-content">
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate">{{ tx.timesince }}</div>
+                                <div class="col text-truncate">>[[ convertTime({{ tx.timesince }}) ]] ago</div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                                 <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
@@ -76,7 +77,17 @@
 
         </div>
     </div>
-
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
     </body>
 
 {% endblock %}

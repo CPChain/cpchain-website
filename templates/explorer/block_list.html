@@ -17,7 +17,7 @@
     <div class="container">
         <div class="page-header">
             <div class="page-header-main">
-                <p class="text-center">Blocks</p>
+                <p class="text-center poppins-font">Blocks</p>
             </div>
         </div>
     </div>
@@ -29,20 +29,20 @@
                     <div class="table">
                         <div class="row list-header">
                             <div class="col text-truncate">Height</div>
-                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate" style="margin-left: -40px;">Age</div>
                             <div class="col text-truncate">txn</div>
-                            <div class="col text-truncate">Producer</div>
-                            <div class="col text-truncate">GasUsed</div>
+                            <div class="col text-truncate" style="margin-left: -70px;">Producer</div>
+                            <div class="col text-truncate" style="margin-left: 80px">GasUsed</div>
                             <div class="col text-truncate">GasLimit</div>
                             <div class="col text-truncate">Reward</div>
                         </div>
                         {% for b in blocks.object_list %}
-                        <div class="row">
-                            <div class="col text-truncate"><a href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
-                            <div class="col text-truncate">[[ convertTime({{ b.timesince }}) ]]</div>
+                        <div class="row row-content">
+                            <div class="col text-truncate"><a  style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a></div>
+                            <div class="col text-truncate" style="margin-left: -40px;"  v-cloak>>[[ convertTime({{ b.timesince }}) ]] ago</div>
                             <div class="col text-truncate"><a href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a></div>
-                            <div class="col text-truncate"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
-                            <div class="col text-truncate">{{ b.gasUsed }}</div>
+                            <div class="col text-truncate" style="margin-left: -70px;"><a href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
+                            <div class="col text-truncate" style="margin-left: 80px">{{ b.gasUsed }}</div>
                             <div class="col text-truncate">{{ b.gasLimit }}</div>
                             <div class="col text-truncate">5 CPC</div>
                         </div>
@@ -56,7 +56,7 @@
                     {% if blocks.has_previous %}
                         <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a></li>
                     {% endif %}
-        
+
                     {% for page in blocks.pages %}
                         {% if page %}
                             {% ifequal page blocks.number %}
@@ -71,7 +71,7 @@
                     {% if blocks.has_next %}
                         <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a></li>
                     {% endif %}
-        
+
                 </ul>
             </div>
         </div>

@@ -78,7 +78,7 @@
                                         <div class="col text-truncate">TxFee</div>
                                     </div>
                                     {% for tx in txs %}
-                                        <div class="row">
+                                        <div class="row row-content">
                                             <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                             <div class="col text-truncate"><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
                                             <div class="col text-truncate">{{ tx.timestamp }}</div>

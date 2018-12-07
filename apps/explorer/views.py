@@ -33,7 +33,10 @@ class RNode:
     def update():
         def _update():
             RNode.updating = True
-            RNode.rnode = cf.cpc.getRNodes
+            try:
+                RNode.rnode = cf.cpc.getRNodes
+            except Exception as e:
+                print('rnode time out >>>>',e)
             RNode.rnode_length = len(RNode.rnode) if RNode.rnode else 0
             RNode.updating = False
 
@@ -65,8 +68,8 @@ class Committee:
 
 def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(10))[::-1]
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))[::-1]
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
 
     ## chart
     # chart = [{
@@ -155,7 +158,7 @@ def wshandler(req):
                 'timestamp': temp_block['timestamp'],
                 'hash': temp_block['hash'],
             }
-            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(10))[::-1]
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
             txs = []
             for t in t_li:
                 tx = {
