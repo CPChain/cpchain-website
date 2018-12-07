@@ -32,36 +32,25 @@
 
     @font-face {
         font-family: "poppins";
-        src: url("{% static '/css/Font/Poppins-Light.otf' %}");
-        src: url("{% static '/css/Font/Poppins-ExtraLight.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Bold.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Regular.otf'%}");
+        src: url("/static/css/Font/Poppins-Light.otf");
+        src: url("/static/css/Font/Poppins-ExtraLight.otf");
+        src: url("/static/css/Font/Poppins-Bold.otf");
+        src: url("/static/css/Font/Poppins-Regular.otf");
     }
 
     .poppins-font {
-        font-family: 'Poppins', sans-serif !important;
+        font-family: 'poppins', sans-serif !important;
     }
     </style>
 </head>
 <style>
-    @font-face {
-        font-family: "poppins";
-        src: url("{% static '/css/Font/Poppins-Light.otf' %}");
-        src: url("{% static '/css/Font/Poppins-ExtraLight.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Bold.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Regular.otf'%}");
-    }
-
-    .poppins-font {
-        font-family: 'Poppins', sans-serif !important;
-    }
 
     body {
-        font-family: "Archivo";
+        font-family: "poppins";
     }
 
     header {
-        font-family: "Archivo", sans-serif !important;
+        font-family: "poppins", sans-serif !important;
     }
 
     .exchangesImg {
@@ -180,8 +169,8 @@
                                     <h1 class="col-10 col-sm-12 font-weight-light poppins-font p-0 mx-auto text-uppercase">
                                         Cyber Physical Chain
                                     </h1>
-                                    <p class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto"
-                                       style="font-family: 'Archivo' !important;">
+                                    <p class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto poppins-font"
+                                       style="font-family: 'poppins' !important;">
                                         {% blocktrans %} A new distributed infrastructure for next generation IoT {% endblocktrans %}
                                     </p>
                                 </div>
@@ -189,24 +178,24 @@
                                     <a href="/download/CPChain_Whitepaper_English.pdf"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 "
                                        target="_blank"
-                                       style="font-family: 'Poppins', sans-serif !important;">
+                                       style="font-family: 'poppins', sans-serif !important;">
                                         {% trans 'WHITE PAPER' %}
                                     </a>
                                     <a href="/download/CPChain_lightpaper_English.pdf"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
                                        target="_blank"
-                                       style="font-family: 'Poppins', sans-serif !important;">
+                                       style="font-family: 'poppins', sans-serif !important;">
                                         {% trans 'LIGHT PAPER' %}
                                     </a>
                                     <a href="https://github.com/CPChain" target="_blank"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
-                                       style="font-family: 'Poppins', sans-serif !important;">
+                                       style="font-family: 'poppins', sans-serif !important;">
                                         <i class="fab fa-github glyphicon pr-2"></i>
                                         GITHUB
                                     </a>
                                     <a href="{% url 'rnode' %}"
                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 ml-sm-2 poppins-font"
-                                       style="font-family: 'Poppins', sans-serif !important;">
+                                       style="font-family: 'poppins', sans-serif !important;">
                                         RNode
                                     </a>
                                 </div>
@@ -242,18 +231,18 @@
                             <div class="row align-items-center justify-content-center">
 
                                 <div class="first col-sm-12 col-md-6 py-5 py-sm-0">
-                                    <div class="col-12 col-sm-10 px-0">
+                                    <div class="col-12 col-sm-10 px-0 poppins-font">
                                         <h6 class="font-weight-bold text-warning mb-0"
-                                            style="font-family: 'Poppins', sans-serif !important;">WHAT IS
+                                            style="font-family: 'poppins', sans-serif !important;">WHAT IS
                                             CPCHAIN?</h6>
 
                                         <h2 class="display-5 poppins-font"> {% blocktrans %}Integration <br> of IoT & <br> Blockchain{% endblocktrans %}
                                         </h2>
                                         <hr class="right-hr w-100 mb-5">
-                                        <p style="color: #305278">
+                                        <p style="color: #305278;font-family: 'poppins', sans-serif !important;">
                                             {% blocktrans %}CPChain is a new distributed infrastructure for next generation IoT. CPChain intends to build a fundamental data platform for IoT systems in combination with distributed storage, encryption computation and blockchain technologies, providing the whole process solution from data acquisition, storage, sharing to application.{% endblocktrans %}
                                         </p>
-                                        <p style="color: #305278;">
+                                        <p style="color: #305278;font-family: 'poppins', sans-serif !important;">
                                             {% blocktrans %}CPChain is a promising solution to a series of challenges of the current "chimney architecture" of IoT systems, reducing connectivity cost of devices, protecting data privacy and maximizing the value of IoT data.{% endblocktrans %}
                                         </p>
 
@@ -453,7 +442,7 @@
                                                          alt="Intelligent Manufacturing - CPChain">
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
-                                                       style="font-family: 'Archivo', sans-serif !important;">
+                                                       style="font-family: 'poppins', sans-serif !important;">
                                                         {% trans 'Public <br> Security' %}</p>
                                                 </a>
                                             </div>
@@ -466,7 +455,7 @@
                                                          alt="Intelligent Transportation - CPChain">
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
-                                                       style="font-family: 'Archivo', sans-serif !important;">
+                                                       style="font-family: 'poppins', sans-serif !important;">
                                                         {% trans 'Intelligent <br> Transportation' %}</p>
                                                 </a>
                                             </div>
@@ -479,7 +468,7 @@
                                                          alt="Smart Medical - CPChain">
                                                     <div class="overlay-image w-100 h-100"></div>
                                                     <p class="position-absolute w-100 text-right text-white pr-4"
-                                                       style="font-family: 'Archivo', sans-serif !important;">
+                                                       style="font-family: 'poppins', sans-serif !important;">
                                                         {% trans 'Smart <br> Medical' %}</p>
                                                 </a>
                                             </div>
@@ -500,7 +489,7 @@
                                         <h1 class="text-warning display-1">3</h1>
                                         <h2 class="poppins-font">{% blocktrans %}Three major <br> adoption scenarios{% endblocktrans %}</h2>
                                         <hr class="right-hr w-100 ml-0">
-                                        <p style="color: #305278;font-family: 'Archivo';">
+                                        <p style="color: #305278;font-family: 'poppins';">
                                             {% blocktrans %}The value of CPChain comes from the improvement of the physical industry’s efficiency and the innovation of business models, which results from data aggregation and mobility.{% endblocktrans %}
                                         </p>
                                     </div>
@@ -517,7 +506,7 @@
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
                                                 <h6 class="poppins-font">{% blocktrans %}Multi-party data transaction{% endblocktrans %}</h6>
-                                                <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
+                                                <p class="mb-0" style="color: #305278;font-family: 'poppins';">
                                                     {% blocktrans %}multi-party trust created by CPChain{% endblocktrans %}</p>
                                             </div>
                                         </div>
@@ -531,7 +520,7 @@
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
                                                 <h6 class="poppins-font">{% blocktrans %}Artificial intelligence decisions based on IoT big data{% endblocktrans %}</h6>
-                                                <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
+                                                <p class="mb-0" style="color: #305278;font-family: 'poppins';">
                                                     {% blocktrans %}Interoperability of heterogeneous data, forming big data aggregation{% endblocktrans %}</p>
                                             </div>
                                         </div>
@@ -545,7 +534,7 @@
                                             </div>
                                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
                                                 <h6 class="poppins-font">{% blocktrans %}Interaction and application of data assets in cross-chain, which lead to new business models{% endblocktrans %}</h6>
-                                                <p class="mb-0" style="color: #305278;font-family: 'Archivo';">
+                                                <p class="mb-0" style="color: #305278;font-family: 'poppins';">
                                                     {% blocktrans %}cross-chain relay and collaboration{% endblocktrans %}</p>
                                             </div>
                                         </div>
@@ -611,12 +600,12 @@
                                                         <div class="first text-left pt-5 pb-5 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-left  pt-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -625,17 +614,17 @@
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr now-quarter pulse w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash release{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="fourth d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 3 release featuring <br> decentralized  market{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash 3 release featuring <br> decentralized  market{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="five d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
@@ -645,7 +634,7 @@
                                                         <div class="third text-right py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}PDash 5 release featuring <br> open ecosystem{% endblocktrans %}
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}PDash 5 release featuring <br> open ecosystem{% endblocktrans %}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -665,13 +654,13 @@
                                                         <div class="second text-left py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-left py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
                                                         </div>
                                                     </div>
@@ -681,24 +670,24 @@
                                                         <div class="first text-right pt-sm-5 pb-sm-5 py-0 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}Hybrid consensus protocol specification{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}Hybrid consensus protocol specification{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right d-block d-sm-none d-md-none d-lg-none d-xl-none py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}Sidechain release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5 d-block d-sm-none d-md-none d-lg-none d-xl-none">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}Consolidated mainnet 2 release <br> (backward
                                                                 compatible){% endblocktrans %}</p>
                                                         </div>
@@ -719,19 +708,19 @@
                                                         <div class="second text-left  py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-left py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-left py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -740,41 +729,41 @@
                                                         <div class="first text-right pt-0 pb-0 py-sm-5 mb-0 mb-sm-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}IoT-chain specifications <br> and patent{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right d-block d-sm-none py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}Token model for chains{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}Token model for chains{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">
+                                                            <p style="color: #305278;font-family: 'poppins';">
                                                                 {% blocktrans %}Iot-chain for specialized industries <br> SDK release{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="third text-right py-sm-5 py-0 my-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
-                                                            <p style="color: #305278;font-family: 'Archivo';">{% blocktrans %}DApp tutorials and examples{% endblocktrans %}</p>
+                                                            <p style="color: #305278;font-family: 'poppins';">{% blocktrans %}DApp tutorials and examples{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -802,7 +791,7 @@
                                     <div class="col-xl-8 col-lg-8 col-md-8 px-0 col-sm-12">
                                         <h2 class="poppins-font">{% trans 'Team' %}</h2>
                                         <hr class="right-hr ml-0 mb-4">
-                                        <p style="color: #305278;font-family: 'Archivo';font-weight: 500;">
+                                        <p style="color: #305278;font-family: 'poppins';font-weight: 500;">
                                             {% blocktrans %}CPChain’s R&D team is comprised of intelligent, talented, and energetic members with years of experience in related industries. The founding team members include top talent from universities, the Internet of Things industry, FinTech, and financial security companies.{% endblocktrans %}
                                         </p>
                                         <!-- <a href="javascript:void(0);" class="btn mt-4 btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3" target="_blank">
@@ -853,7 +842,7 @@
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
                                                             {% blocktrans %}Founder, CEO, Professor, Principal Scientist{% endblocktrans %}</h6>
                                                         <p class="mt-4"
-                                                           style="color: #305278;font-family: 'Archivo';font-weight: 500;">
+                                                           style="color: #305278;font-family: 'poppins';font-weight: 500;">
                                                             {% blocktrans %}Dr. Long is a university professor with many years of experience in the fields of cyber physical system security, Internet of Things, distributed intelligent systems and blockchain technology. He has published more than 80 papers in internationally renowned journals, and has more than 10 patents for invention.{% endblocktrans %}
                                                         </p>
                                                     </div>
@@ -866,7 +855,7 @@
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
                                                             {% blocktrans %}CPChain Co-Founder, CTO{% endblocktrans %}</h6>
                                                         <p class="mt-4"
-                                                           style="color: #305278;font-family: 'Archivo';font-weight: 500;">
+                                                           style="color: #305278;font-family: 'poppins';font-weight: 500;">
                                                             {% blocktrans %}Dr. Zhao has more than 12 years research and development experience in the fields of communication, Internet of Things and FinTech, with extended experience in R&D team management. He has 3 patents for inventions in the field of IoT technology. {% endblocktrans %}
                                                         </p>
                                                     </div>
@@ -879,7 +868,7 @@
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
                                                             {% blocktrans %}CPChain Co-Founder, COO{% endblocktrans %}</h6>
                                                         <p class="mt-4"
-                                                           style="color: #305278;font-family: 'Archivo';font-weight: 500;">
+                                                           style="color: #305278;font-family: 'poppins';font-weight: 500;">
                                                             {% blocktrans %}Mr. Shi is an early participant in blockchain technology and digital currency. Founder of Shared Finance, and participant in the investment and development of many successful projects. {% endblocktrans %}
                                                         </p>
                                                     </div>
@@ -1173,7 +1162,7 @@
                                             <div class="left-side col-6 pr-sm-3 pr-3 swiper-contact-button-prev swiper-button-disabled">
                                                 <h5 class="text-right">
                                                     <a href="javascript:void(0)" class="font-weight-normal"
-                                                       style="font-family: 'Archivo';">
+                                                       style="font-family: 'poppins';">
                                                         {% blocktrans %}I have a question{% endblocktrans %}
                                                     </a>
                                                 </h5>
@@ -1182,7 +1171,7 @@
                                             <div class="right-side col-6 pl-sm-3 pl-1 pr-2 swiper-contact-button-next">
                                                 <h5>
                                                     <a href="javascript:void(0)" class="font-weight-normal"
-                                                       style="font-family: 'Archivo';">
+                                                       style="font-family: 'poppins';">
                                                         {% blocktrans %}Business/Partnership{% endblocktrans %}
                                                     </a>
                                                 </h5>

@@ -31,17 +31,15 @@
         margin: 0 !important;
     }
 
-    @font-face {
-        font-family: "poppins";
-        src: url("{% static '/css/Font/Poppins-Light.otf' %}");
-        src: url("{% static '/css/Font/Poppins-ExtraLight.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Bold.otf' %}");
-        src: url("{% static '/css/Font/Poppins-Regular.otf'%}");
+    .poppins-font {
+        font-family: 'poppins', sans-serif !important;
     }
 
-    .poppins-font {
-        font-family: 'Poppins', sans-serif !important;
+
+    header {
+        font-family: "poppins", sans-serif !important;
     }
+
     </style>
     {% block custom_head %}
     {% endblock %}

@@ -14,7 +14,7 @@ except:
 
 from cpchain_test.settings import cpc_fusion as cf
 
-REFRESH_INTERVAL = 0.5
+REFRESH_INTERVAL = 1
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
 block_collection = CLIENT['cpchain']['blocks']

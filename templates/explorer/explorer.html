@@ -17,11 +17,11 @@
         <div class="container" id="explorer-header" class="explorer-header">
             <div class="my-5"></div>
             <div class="row">
-                <a class="col" href="{% url 'explorer:blocks' %}">
+                <a class="col sep" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
                 </a>
-                <a class="col" href="{% url 'explorer:txs' %}">
+                <a class="col sep" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
@@ -29,22 +29,23 @@
                         </h3>
                     </div>
                 </a>
-                <a class="col" href="{% url 'explorer:rnode' %}">
+                <a class="col sep" href="{% url 'explorer:rnode' %}">
                     <div class="text-center"><h1 class="number-font" v-text="rnode"></h1></div>
                     <div class="text-center"><h3 class="index-font">RNode</h3></div>
                 </a>
                 <a class="col" href="{% url 'explorer:committee' %}">
                     <div class="text-center"><h1 class="number-font" v-text="committee"></h1></div>
                     <div class="text-center"><h3 class="index-font">Committee</h3></div>
+
                 </a>
             </div>
         </div>
     </div>
 
     {% comment %} GRAPH {% endcomment %}
-    <div class="container">
+    <div class="container" style="margin-top: 85px">
         <div class="table-header table-header-left">
-            <div class="table-header-main">Blockchain Indicator</div>
+            <div class="table-header-main ">Blockchain Indicator</div>
         </div>
         <div class="container">
             <div id="chart"></div>
@@ -57,15 +58,15 @@
             <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Blocks</div>
-                    <div class="table-header-sub"><a href="blocks">See all</a></div>
+                    <div class="table-header-sub card-link"><a href="blocks">See all</a></div>
                 </div>
-                <div class="table-content table-blocks">
+                <div class="table-content table-blocks"  >
                     <transition-group tag="div" name="slide-fade">
                         <div class="card table-item" v-for="block in blocks" :key="block.id">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
-                                        <p class="text-left">icon</p>
+                                        <p class="text-left"><img src="{% static 'img/explorer/list：block.png' %}" alt=""></p>
                                     </div>
                                     <div class="col-4 table-item-sub">
                                         <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>
@@ -73,22 +74,22 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id">
-                                        <p class="text-left text-truncate"><a :href="'/explorer/block/'+block.id"
+                                        <p class="text-left text-truncate2"><a :href="'/explorer/block/'+block.id"
                                                                               id="block_id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right text-truncate"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
-                                            Transactions</a></p>
+                                        <p class="text-right text-truncate card-link"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
+                                            Transactions</a><img src="{% static 'img/explorer/txn.png' %}" alt=""></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left text-truncate">Produced by <a
+                                        <p class="text-left text-truncate card-link">Produced by <a
                                                 :href="'/explorer/address/'+block.producerID">[[block.producerID]]</a>
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
-                                        <p class="text-right text-truncate">[[block.timeTicker]] ago</p>
+                                        <p class="text-right text-truncate card-grey">[[block.timeTicker]] ago</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +100,7 @@
             <div class="col-12 col-lg-6">
                 <div class="table-header">
                     <div class="table-header-main">Transactions</div>
-                    <div class="table-header-sub"><a href="txs">See all</a></div>
+                    <div class="table-header-sub card-link"><a href="txs">See all</a></div>
                 </div>
                 <div class="table-content table-transactions">
                     <transition-group tag="div" name="slide-fade">
@@ -107,15 +108,15 @@
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
-                                        <p class="text-left">icon</p>
+                                        <p class="text-left"><img src="{% static 'img/explorer/transfer list.png' %}" alt=""></p>
                                     </div>
                                     <div class="col-4 table-item-sub">
-                                        <p class="text-right">[[tx.amount]]</p>
+                                        <p class="text-right text-truncate">[[tx.amount]]</p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8 table-item-id">
-                                        <p class="text-left"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash &&
+                                    <div class="col-8 table-item-id ">
+                                        <p class="text-left text-truncate2"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash &&
                                             (tx.hash.substr(0, 32) + "...")]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
@@ -124,18 +125,18 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc">
-                                        <p class="text-left row mx-0">
-                                            <span class="d-flex">From&nbsp;</span>
-                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0">[[tx.sellerID]]</a>
-                                            <span class="d-flex">&nbsp;To&nbsp;</span>
+                                        <p class="text-left row mx-0 card-link text-truncate">
+                                            <span class="d-flex " style="color: #a9bcd4;">From&nbsp;</span>
+                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0 ">[[tx.sellerID]]</a>
+                                            <span class="d-flex" style="color: #a9bcd4;">&nbsp;To&nbsp;</span>
                                             <a :href="'/explorer/address/'+tx.buyerID" v-if="tx.buyerID"
                                                class="text-truncate col px-0">[[tx.buyerID || ""]]</a>
-                                            <span v-if="!tx.buyerID" class="text-truncate col px-0">None</span>
+                                            <span v-if="!tx.buyerID" class="text-truncate col px-0">Contract Creation</span>
 
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
-                                        <p class="text-right">[[tx.timeTicker]] ago</p>
+                                        <p class="text-right card-grey">[[tx.timeTicker]] ago</p>
                                     </div>
                                 </div>
                             </div>
