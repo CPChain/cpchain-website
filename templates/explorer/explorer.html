@@ -291,7 +291,8 @@
         }
 
         function autoGenerateBlock(block) {
-            block.timeTicker = '0 second'
+            var cts = parseInt((Date.now() + 500) / 1000)
+            block.timeTicker = formatTS(cts - block.timestamp)
             explorerTablesApp.blocks.unshift(block)
             if (explorerTablesApp.blocks.length > tableItemLimit) {
                 explorerTablesApp.blocks.pop()
@@ -299,7 +300,8 @@
         }
 
         function autoGenerateTx(tx) {
-            tx.timeTicker = '0 second'
+            var cts = parseInt((Date.now() + 500) / 1000)
+            tx.timeTicker = formatTS(cts - tx.timestamp)
             explorerTablesApp.txs.unshift(tx)
             if (explorerTablesApp.txs.length > tableItemLimit) {
                 explorerTablesApp.txs.pop()
