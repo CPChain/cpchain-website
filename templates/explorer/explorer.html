@@ -61,13 +61,14 @@
                     <div class="table-header-main">Blocks</div>
                     <div class="table-header-sub card-link"><a href="blocks">See all</a></div>
                 </div>
-                <div class="table-content table-blocks"  >
+                <div class="table-content table-blocks">
                     <transition-group tag="div" name="slide-fade">
                         <div class="card table-item" v-for="block in blocks" :key="block.id">
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
-                                        <p class="text-left"><img src="{% static 'img/explorer/list：block.png' %}" alt=""></p>
+                                        <p class="text-left"><img src="{% static 'img/explorer/list：block.png' %}"
+                                                                  alt=""></p>
                                     </div>
                                     <div class="col-4 table-item-sub">
                                         <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>
@@ -76,10 +77,11 @@
                                 <div class="row">
                                     <div class="col-8 table-item-id">
                                         <p class="text-left text-truncate2"><a :href="'/explorer/block/'+block.id"
-                                                                              id="block_id">#[[block.id]]</a></p>
+                                                                               id="block_id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
-                                        <p class="text-right text-truncate card-link"><a :href="'/explorer/txs/?block='+block.id">[[block.txs]]
+                                        <p class="text-right text-truncate card-link"><a
+                                                :href="'/explorer/txs/?block='+block.id">[[block.txs]]
                                             Transactions</a><img src="{% static 'img/explorer/txn.png' %}" alt=""></p>
                                     </div>
                                 </div>
@@ -109,7 +111,8 @@
                             <div class="card-body table-item-body">
                                 <div class="row">
                                     <div class="col-8 table-item-icon">
-                                        <p class="text-left"><img src="{% static 'img/explorer/transfer list.png' %}" alt=""></p>
+                                        <p class="text-left"><img src="{% static 'img/explorer/transfer list.png' %}"
+                                                                  alt=""></p>
                                     </div>
                                     <div class="col-4 table-item-sub">
                                         <p class="text-right text-truncate">[[tx.amount]]</p>
@@ -117,7 +120,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id ">
-                                        <p class="text-left text-truncate2"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash &&
+                                        <p class="text-left text-truncate2"><a :href="'/explorer/tx/'+tx.hash">[[tx.hash
+                                            &&
                                             (tx.hash.substr(0, 32) + "...")]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
@@ -132,7 +136,8 @@
                                             <span class="d-flex" style="color: #a9bcd4;">&nbsp;To&nbsp;</span>
                                             <a :href="'/explorer/address/'+tx.buyerID" v-if="tx.buyerID"
                                                class="text-truncate col px-0">[[tx.buyerID || ""]]</a>
-                                            <span v-if="!tx.buyerID" class="text-truncate col px-0">Contract Creation</span>
+                                            <span v-if="!tx.buyerID"
+                                                  class="text-truncate col px-0">Contract Creation</span>
 
                                         </p>
                                     </div>
@@ -332,6 +337,13 @@
         var ps1 = new PerfectScrollbar('.table-blocks')
         var ps2 = new PerfectScrollbar('.table-transactions')
     </script>
-
+    <script>
+        if (window.name != "bencalie") {
+            location.reload();
+            window.name = "bencalie";
+        } else {
+            window.name = "";
+        }
+    </script>
     </body>
 {% endblock %}

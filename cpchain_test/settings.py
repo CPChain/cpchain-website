@@ -209,7 +209,7 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 from cpc_fusion import Web3, HTTPProvider
-cpc_fusion = Web3(HTTPProvider('http://54.179.178.142:8503'))
+cpc_fusion = Web3(HTTPProvider('http://18.136.195.148:8503'))
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,

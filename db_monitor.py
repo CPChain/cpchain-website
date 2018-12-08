@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 rf_handler = logging.handlers.TimedRotatingFileHandler(filename="./log/chain.log", when='midnight', backupCount=10)
 logger.addHandler(rf_handler)
 
-cf = Web3(Web3.HTTPProvider('http://54.179.178.142:8503'))
+cf = Web3(Web3.HTTPProvider('http://18.136.195.148:8503'))
 
 cf.middleware_stack.inject(geth_poa_middleware, layer=0)
 client = MongoClient(host='127.0.0.1', port=27017)
