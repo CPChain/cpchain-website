@@ -24,7 +24,7 @@
     </div>
 
     <div class="container">
-        <div class="info-table px md-5">
+        <div class="info-table px md-5"  id="blocks-list">
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
@@ -35,14 +35,14 @@
                             <div class="col text-truncate">From</div>
                             <div class="col text-truncate">To</div>
                             <div class="col text-truncate">Value</div>
-{#                            <div class="col text-truncate">TxType</div>#}
                             <div class="col text-truncate">TxFee</div>
                         </div>
                         {% for tx in txs.object_list %}
                         <div class="row">
                             <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                             <div class="col text-truncate">><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                            <div class="col text-truncate">{{ tx.timestamp }}</div>
+                            <div class="col text-truncate">>[[
+                                    convertTime({{ tx.timestamp }}) ]] ago</div>
                             <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</div>
                             <div class="col text-truncate"><a :href="'/explorer/address/'+{{ tx.to }}">{{ tx.to }}</div>
                             <div class="col text-truncate">{{ tx.value }}</div>
@@ -80,104 +80,16 @@
         </div>
     </div>
 </body>
+        <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    var cts = parseInt((Date.now() + 500) / 1000)
+                    return formatTS(cts - tss)
+                }
+            }
+        })
+    </script>
 {% endblock %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>txs</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <style>
-        a:hover {
-            color: black;
-        }
-
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-
-        .txs ul {
-            height: 20px;
-            width: 100%;
-            margin: 10px;
-        }
-
-        .txs li {
-            float: left;
-            margin-right: 20px;
-            width: 120px;
-        }
-
-        .pagelist li {
-            float: left;
-            margin-right: 10px;
-        }
-
-        .active a {
-            color: #000;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1><a href="/">index</a></h1>
-<h3>transactions for block #{{ blockNumber }}</h3>
-    <div class="txs">
-        <ul class="header">
-            <li>TxHash</li>
-            <li>Block</li>
-            <li>Age</li>
-            <li>From</li>
-            <li>To</li>
-            <li>Value</li>
-            <li>TxType</li>
-            <li>TxFee</li>
-        </ul>
-
-        {% for tx in txs.object_list %}
-            <ul>
-                <li><a href="/tx/{{ tx.hash}}">{{ tx.hash|slice:":16"}}...</a></li>
-                <li>{{ tx.blockNumber }}</li>
-                <li>{{ tx.date }}</li>
-                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16"}}...</a></li>
-                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16"}}...</a></li>
-                <li>{{ tx.value }}</li>
-                <li>None</li>
-            <li>{{ tx.txfee }}</li>
-            </ul>
-        {% endfor %}
-    </div>
-    <div class="pageturn .clear">
-        <ul class="pagelist fl">
-            {% if txs.has_previous %}
-                <li class="long"><a
-                        href="?{{ txs.previous_page_number.querystring }}">上一页</a></li>
-            {% endif %}
-            {% for page in txs.pages %}
-                {% if page %}
-                    {% ifequal page txs.number %}
-                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                    {% endifequal %}
-                {% else %}
-                    <li><a href="" class="none">...</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if txs.has_next %}
-                <li class="long"><a href="?{{ txs.next_page_number.querystring }}">下一页</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</div>
-<br>
-
-
-</body>
-</html>

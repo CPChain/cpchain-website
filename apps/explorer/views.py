@@ -222,9 +222,6 @@ def search(req):
 def blocks(req):
     # blocks
     all_blocks = list(block_collection.find().sort('number', DESCENDING))
-    timenow = int(time.time())
-    for b in all_blocks:
-        b['timesince'] = timenow - b['timestamp']
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -278,9 +275,6 @@ def txs(req):
         except PageNotAnInteger:
             page = 1
         all_txs = list(txs_collection.find().sort('_id', DESCENDING))
-        timenow = int(time.time())
-        for t in all_txs:
-            t['timesince'] = timenow - t['timestamp']
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         return render(req, 'explorer/txs_list.html', {'txs': txs})
@@ -292,9 +286,7 @@ def txs(req):
     except PageNotAnInteger:
         page = 1
     all_txs = txs_from_block
-    timenow = int(time.time())
-    for t in all_txs:
-        t['timesince'] = timenow - t['timestamp']
+
     p = Paginator(all_txs, 25, request=req)
     txs = p.page(page)
     return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
