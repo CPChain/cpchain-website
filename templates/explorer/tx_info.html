@@ -3,9 +3,11 @@
 {% block custom_head %}
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/static/js/util.js"></script>
+
 {% endblock %}
 {% block title %}
     <title>Transaction Infomation</title>
@@ -64,7 +66,7 @@
                     {% if tx_dict.to %}
                         <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
                     {% else %}
-                        <span class="text-truncate col px-0">Contract Creation</span>
+                        <a href="#">Contract Creation</a>
                     {% endif %}
                 </div>
             </div>
@@ -92,7 +94,7 @@
                 <div class="col-3">Input Data:</div>
                 <div class="col-9">
                     <div class="raw-data-container">
-                        <div class="raw-data-content" style="word-wrap:break-word;">
+                        <div class="raw-data-content">
                             {{ tx_dict.input }}
                         </div>
                         {#                        <div class="raw-data-type-form">#}
@@ -113,6 +115,7 @@
             <div class="row info-row"></div>
         </div>
     </div>
+    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 
     <script>
         var txInfoApp = new Vue({
@@ -129,6 +132,9 @@
 //
             //              }
             //        }
+        })
+        $(function () {
+            $('.raw-data-content').perfectScrollbar();
         })
 
     </script>
