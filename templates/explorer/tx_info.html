@@ -27,11 +27,11 @@
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/transaction info icon.png' %}"
                                                 alt=""></span>
-                <span class="col info-id-serial"  style="top: 4px;">{{ tx_dict.hash }}</span>
+                <span class="col info-id-serial" style="top: 4px;">{{ tx_dict.hash }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxHash:</div>
-                <div class="col">{{ tx_dict.hash }}</div>
+                <div class="col poppins-light">{{ tx_dict.hash }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxReceipt Status:</div>
@@ -45,40 +45,48 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Block Height:</div>
-                <div class="col"><a href="{% url 'explorer:block' tx_dict.blockNumber %}">{{ tx_dict.blockNumber }}</a>
+                <div class="col poppins-light"><a
+                        href="{% url 'explorer:block' tx_dict.blockNumber %}">{{ tx_dict.blockNumber }}</a>
                 </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">[[ timeTicker ]] ago</div>
+                <div class="col poppins-light">[[ timeTicker ]] ago</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
-                <div class="col"><a href="{% url 'explorer:address' tx_dict.from %}">{{ tx_dict.from }}</a></div>
+                <div class="col poppins-light"><a
+                        href="{% url 'explorer:address' tx_dict.from %}">{{ tx_dict.from }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-3">To:</div>
-                <div class="col"><a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a></div>
+                <div class="col poppins-light">
+                    {% if tx_dict.to %}
+                        <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
+                    {% else %}
+                        <span class="text-truncate col px-0">Contract Creation</span>
+                    {% endif %}
+                </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Value:</div>
-                <div class="col">{{ tx_dict.value }}</div>
+                <div class="col poppins-light">{{ tx_dict.value }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Used By Transaction:</div>
-                <div class="col">{{ tx_dict.gas }}</div>
+                <div class="col poppins-light">{{ tx_dict.gas }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Limit:</div>
-                <div class="col">{{ tx_dict.gasLimit }}</div>
+                <div class="col poppins-light">{{ tx_dict.gasLimit }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Gas Price:</div>
-                <div class="col">{{ tx_dict.gasPrice }} CPC</div>
+                <div class="col poppins-light">{{ tx_dict.gasPrice }} CPC</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Actual Tx Cost/Fee:</div>
-                <div class="col">{{ tx_dict.txfee }} CPC</div>
+                <div class="col poppins-light">{{ tx_dict.txfee }} CPC</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Input Data:</div>
