@@ -230,8 +230,8 @@
     background: #f7f9fc;
     border-radius: 2px;
     font-size: 14px;
-    position:relative;
     word-wrap:break-word;
+    position: relative;
     overflow: scroll;
 }
 
