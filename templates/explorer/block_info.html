@@ -22,11 +22,11 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container poppins-font">
         <div class="info-table px-md-5" id="block-info">
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/block info block.png' %}" alt=""></span>
-                <span class="col info-id-serial">#{{ height }}</span>
+                <span class="col info-id-serial" style="top: 4px">#{{ height }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">Height:</div>
@@ -38,7 +38,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">{{ timesince }}</div>
+                <div class="col">[[ timeTicker ]]</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
@@ -50,7 +50,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Produced By:</div>
-                <div class="col"><a href="/explorer/address/{{ miner }}">{{ miner }}</a> in {{ timeproduce }}s
+                <div class="col"><a href="/explorer/address/{{ miner }}">{{ miner }}</a> in {{ timeproduce }} secs
                 </div>
             </div>
             <div class="row info-row">
@@ -84,7 +84,7 @@
             delimiters: [`[[`, `]]`],
             computed: {
                 timeTicker: function () {
-                    return `${convertDate({{ timestamp }})} ago`
+                    return `${convertDate({{timestamp}})}   ${formatTS({{ timesince }})} ago`
                 },
             },
         })

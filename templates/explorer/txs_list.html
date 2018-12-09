@@ -3,7 +3,6 @@
 {% block custom_head %}
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/static/js/util.js"></script>
 {% endblock %}
@@ -19,6 +18,13 @@
             <div class="page-header-main">
                 <p class="text-center poppins-font">Transactions</p>
             </div>
+            {% if blockNumber %}
+                <div class="page-header-main text-center">
+                    <p class="text-truncate poppins-font card-link">Transactions for <a
+                            href="{% url 'explorer:block' blockNumber %}"> Block #{{ blockNumber }}</a>. &nbsp;A
+                        Total Of {{ txs|length }} transactions found</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 
@@ -47,8 +53,14 @@
                                 </div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
-                                <div class="col text-truncate"><a
-                                        href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
+                                <div class="col text-truncate">
+                                    {% if tx.to %}
+                                        <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
+                                    {% else %}
+                                        <span class="text-truncate col px-0">Contract Creation</span>
+                                    {% endif %}
+
+                                </div>
                                 <div class="col text-truncate">{{ tx.value }}</div>
                                 <div class="col text-truncate">{{ tx.txfee |floatformat:10 }}</div>
                             </div>

@@ -22,11 +22,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container poppins-font">
         <div class="info-table px-md-5" id="tx-info">
             <div class="row info-id">
-                <span class="info-id-icon"><img src="{% static 'img/explorer/transaction info icon.png' %}" alt=""></span>
-                <span class="col info-id-serial">{{ tx_dict.hash }}</span>
+                <span class="info-id-icon"><img src="{% static 'img/explorer/transaction info icon.png' %}"
+                                                alt=""></span>
+                <span class="col info-id-serial"  style="top: 4px;">{{ tx_dict.hash }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-3">TxHash:</div>
@@ -34,21 +35,22 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">TxReceipt Status:</div>
-                <div class="col">
+                <div class="col rc-status">
                     {% ifequal tx_dict.status 1 %}
-                        <span class="rx-success">Success</span>
+                        <span class="rc-success">Success</span>
                     {% else %}
-                        <span class="rc-fail'">Failed</span>
+                        <span class="rc-fail'">Fail</span>
                     {% endifequal %}
                 </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Block Height:</div>
-                <div class="col">{{ tx_dict.blockNumber }}</div>
+                <div class="col"><a href="{% url 'explorer:block' tx_dict.blockNumber %}">{{ tx_dict.blockNumber }}</a>
+                </div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Time:</div>
-                <div class="col">[[ timeTicker ]]</div>
+                <div class="col">[[ timeTicker ]] ago</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">From:</div>
@@ -80,23 +82,23 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Input Data:</div>
-                <div class="col">
+                <div class="col-9">
                     <div class="raw-data-container">
-                        <div class="raw-data-content">
-                            [[inputData]]
+                        <div class="raw-data-content" style="word-wrap:break-word;">
+                            {{ tx_dict.input }}
                         </div>
-                        <div class="raw-data-type-form">
-                            <div class="form-check-inline form-check" @click="toggleDataType(0)">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                       value="option1" checked>
-                                <label class="form-check-label" for="inlineRadio1">Default View</label>
-                            </div>
-                            <div class="form-check-inline form-check" @click="toggleDataType(1)">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                       value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Origin</label>
-                            </div>
-                        </div>
+                        {#                        <div class="raw-data-type-form">#}
+                        {#                            <div class="form-check-inline form-check" @click="toggleDataType(0)">#}
+                        {#                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"#}
+                        {#                                       value="option1" checked>#}
+                        {#                                <label class="form-check-label" for="inlineRadio1">Default View</label>#}
+                        {#                            </div>#}
+                        {#                            <div class="form-check-inline form-check" @click="toggleDataType(1)">#}
+                        {#                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"#}
+                        {#                                       value="option1">#}
+                        {#                                <label class="form-check-label" for="inlineRadio1">Origin</label>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                     </div>
                 </div>
             </div>
@@ -110,18 +112,15 @@
             delimiters: [`[[`, `]]`],
             computed: {
                 timeTicker: function () {
-                    return `${convertDate({{tx_dict.timestamp | safe}})}`
+                    var cts = parseInt((Date.now() + 500) / 1000)
+                    return `${convertDate({{tx_dict.timestamp | safe}})}` + ' ' + formatTS(cts -{{ tx_dict.timestamp}})
                 },
-                inputData: function () {
-                    return
-                    {{tx_dict.input | safe}}
-                }
             },
-            methods: {
-                toggleDataType: function (type) {
-
-                }
-            }
+            // methods: {
+            //     toggleDataType: function (type) {
+//
+            //              }
+            //        }
         })
 
     </script>

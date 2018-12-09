@@ -23,11 +23,11 @@
         </div>
     </div>
 
-    <div class="container" id="address">
+    <div class="container poppins-font" id="address">
         <div class="info-table px-md-5" id="blocks-list">
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
-                <span class="col info-id-serial">{{ address }}</span>
+                <span class="col info-id-serial"  style="top: 4px">{{ address }}</span>
             </div>
             <div class="info-table-subtitle">Overview</div>
             <div class="row info-row">
@@ -48,7 +48,7 @@
                         <div class="row list-header">
                             <div class="col text-truncate">TxHash</div>
                             <div class="col text-truncate">Block</div>
-                            <div class="col text-truncate">Age</div>
+                            <div class="col text-truncate" style="margin-left: -40px">Age</div>
                             <div class="col text-truncate">From</div>
                             <div class="col-1 text-truncate">&nbsp;</div>
                             <div class="col text-truncate">To</div>
@@ -61,12 +61,18 @@
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate">>[[ convertTime({{ tx.timesince }}) ]] ago</div>
+                                <div class="col text-truncate" style="margin-left: -40px">>[[ convertTime({{ tx.timesince }}) ]] ago</div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                                 <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
-                                <div class="col text-truncate"><a
-                                        href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
+                                <div class="col text-truncate">
+                                    {% if tx.to %}
+                                        <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
+                                    {% else %}
+                                        <span class="text-truncate col px-0">Contract Creation</span>
+                                    {% endif %}
+
+                                </div>
                                 <div class="col text-truncate">{{ tx.value }}</div>
                                 <div class="col text-truncate">{{ tx.txfee|floatformat:10 }}</div>
                             </div>
