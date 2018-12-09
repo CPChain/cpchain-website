@@ -3,6 +3,7 @@
 {% block custom_head %}
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
 
     <script src="/static/js/util.js"></script>
 {% endblock %}
@@ -11,9 +12,8 @@
 {% endblock %}
 
 {% block content %}
-<body>
+    <body>
     {% include "explorer/_searchbar.html" %}
-
 
     <div class="container">
         <div class="page-header">
@@ -27,8 +27,8 @@
         <div class="info-table px-md-5" id="contract-info">
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
-                <span class="col info-id-serial"  style="top: 4px;">{{address}}</span>
-            </div> 
+                <span class="col info-id-serial" style="top: 4px;">{{ address }}</span>
+            </div>
             <div class="info-table-subtitle">Overview</div>
             <div class="row info-row">
                 <div class="col-3"></div>
@@ -36,15 +36,15 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Balance:</div>
-                <div class="col poppins-light">{{balance}}</div>
+                <div class="col poppins-light">{{ balance }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
-                <div class="col poppins-light">{{txs_count}}</div>
+                <div class="col poppins-light">{{ txs_count }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-3">Contract Creator:</div>
-                <div class="col poppins-light">{{creator}}</div>
+                <div class="col poppins-light">{{ creator }}</div>
             </div>
             <div class="row tab-row info-row">
                 <div class="tab-header">
@@ -56,7 +56,7 @@
                         <div class="info-table-subtitle">Contract Source Code</div>
                         <div class="raw-data-container">
                             <div class="raw-data-content">
-                                <p style="width: 924px; word-wrap:break-word;">{{ code }}</p>
+                                {{ code }}
                             </div>
                         </div>
                     </div>
@@ -79,12 +79,18 @@
                                     </div>
                                     {% for tx in txs %}
                                         <div class="row row-content">
-                                            <div class="col text-truncate"><a href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
-                                            <div class="col text-truncate"><a href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+                                            <div class="col text-truncate"><a
+                                                    href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+                                            <div class="col text-truncate"><a
+                                                    href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a>
+                                            </div>
                                             <div class="col text-truncate">{{ tx.timestamp }}</div>
-                                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
-                                            <div class="col-1 text-truncate flag-{{tx.flag}}"><span>{{ tx.flag }}</span></div>
-                                            <div class="col text-truncate"><a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
+                                            <div class="col text-truncate"><a
+                                                    href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
+                                            <div class="col-1 text-truncate flag-{{ tx.flag }}">
+                                                <span>{{ tx.flag }}</span></div>
+                                            <div class="col text-truncate"><a
+                                                    href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a></div>
                                             <div class="col text-truncate">{{ tx.value }}</div>
                                             <div class="col text-truncate">{{ tx.txfee|floatformat:10 }}</div>
                                         </div>
@@ -98,129 +104,28 @@
         </div>
     </div>
 
+    <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
+
     <script>
         function tabtab(evt, tabid) {
             console.log(evt, tabid)
             var i, tabcontents, tablinks;
             tabcontents = document.getElementsByClassName('tab-content-item')
-            for (i=0; i<tabcontents.length; i++) {
+            for (i = 0; i < tabcontents.length; i++) {
                 tabcontents[i].classList.remove('active')
             }
             tablinks = document.getElementsByClassName('tab-header-item')
-            for (i=0; i<tablinks.length; i++) {
+            for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove('active')
             }
             document.getElementById(tabid).classList.add('active')
             evt.currentTarget.classList.add('active')
         }
+
+    </script>
+    <script>
+        var ps = new PerfectScrollbar('.raw-data-container')
     </script>
 
-</body>
+    </body>
 {% endblock %}
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>contract</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <style>
-        a:hover {
-            color: black;
-        }
-
-        h2 {
-            margin: 20px;
-        }
-
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        .txs ul {
-            height: 20px;
-            width: 100%;
-            margin: 10px;
-        }
-
-        .txs li {
-            float: left;
-            margin-right: 20px;
-            width: 100px;
-        }
-
-        .flag_out {
-            color: green;
-        }
-
-        .flag_in {
-            color: red;
-        }
-
-        .flag_self {
-            color: grey;
-        }
-
-        .pagelist li {
-            float: left;
-            margin-right: 10px;
-        }
-
-        .active a {
-            color: #000;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1><a href="/">index</a></h1>
-    <h2>Contract {{ address }}</h2>
-    <span>overview</span>
-    <h3>Balance: {{ balance }}</h3>
-
-
-    <div class="txs">
-        <h3>transactions:{{ txs_count }}</h3>
-
-        <ul class="header">
-            <li>TxHash</li>
-            <li>Block</li>
-            <li>Age</li>
-            <li>From</li>
-            <li>&nbsp;</li>
-            <li>To</li>
-            <li>Value</li>
-            <li>TxType</li>
-            <li>TxFee</li>
-        </ul>
-
-        {% for tx in txs %}
-            <ul>
-                <li><a href="/tx/{{ tx.hash }}">{{ tx.hash|slice:":16" }}...</a></li>
-                <li><a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a></li>
-                <li>{{ tx.timestamp }}</li>
-                <li><a href="/address/{{ tx.from }}">{{ tx.from|slice:":16" }}...</a></li>
-                <li class="{% if tx.flag == 'in' %}flag_in
-                {% elif tx.flag == 'out' %}flag_out
-                {% else %}flag_self
-                {% endif %}">{{ tx.flag }}</li>
-                <li><a href="/address/{{ tx.to }}">{{ tx.to|slice:":16" }}...</a></li>
-                <li>{{ tx.value }}</li>
-                <li>None</li>
-                <li>{{ tx.txfee }}</li>
-            </ul>
-        {% endfor %}
-    </div>
-    <div>
-        <h3>code</h3>
-        <div style="width: 70%">{{ code }}</div>
-    </div>
-</div>
-<br>
-
-
-</body>
-</html> -->

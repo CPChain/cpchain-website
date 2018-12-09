@@ -230,9 +230,9 @@
     background: #f7f9fc;
     border-radius: 2px;
     font-size: 14px;
-    position:relative;
     word-wrap:break-word;
-    overflow: scroll;
+    position: relative;
+    overflow: hidden;
 }
 
 .info-table .info-row .raw-data-container .raw-data-content p:first-of-type {
