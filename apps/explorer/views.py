@@ -289,7 +289,7 @@ def txs(req):
 
     p = Paginator(all_txs, 25, request=req)
     txs = p.page(page)
-    return render(req, 'explorer/txs_from_block.html', {'txs': txs, 'blockNumber': block})
+    return render(req, 'explorer/txs_list.html', {'txs': txs, 'blockNumber': block})
 
 @cache_page(24*3600)
 def tx(req, tx_hash):

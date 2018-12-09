@@ -133,7 +133,7 @@
 
 .card-link a {
     color: #1ba3ff;
-    font-family: 'poppins';
+    font-family: 'Poppins';
 }
 
 .card-grey {
@@ -205,29 +205,34 @@
     font-weight: lighter;
 }
 
-.info-table .info-row .rc-status {
+.info-table .info-row .rc-status span{
     display: inline-block;
     padding: 0 17px;
     line-height: 26px;
     border-radius: 2px;
 }
 
-.info-table .info-row .rc-status.rx-success {
+.info-table .info-row .rc-status .rc-success {
     background: #e0f0d0;
     color: #70b820;
 }
 
-.info-table .info-row .rc-status.rc-fail {
+.info-table .info-row .rc-status .rc-fail {
     background: #fbe7e5;
     color: #d50101;
 }
-
+.info-table .info-row a{
+    color:#1BA3FF;
+}
 .info-table .info-row .raw-data-container .raw-data-content {
     height: 222px;
     padding: 20px 30px;
     background: #f7f9fc;
     border-radius: 2px;
     font-size: 14px;
+    position:relative;
+    word-wrap:break-word;
+    overflow: scroll;
 }
 
 .info-table .info-row .raw-data-container .raw-data-content p:first-of-type {
@@ -295,9 +300,14 @@
 
 }
 
-.info-table .info-table-list .info-table-list-content .table .row-content .col,.info-table .info-table-list .info-table-list-content .table .row-content .col a {
+.info-table .info-table-list .info-table-list-content .table .row-content .col{
     color: #7493b5;
     font-family: 'poppins-light';
+}
+
+.info-table .info-table-list .info-table-list-content .table .row-content .col a {
+    color: #1BA3FF;
+
 }
 
 .info-table .info-table-list .info-table-list-content .table .row-content:hover {
