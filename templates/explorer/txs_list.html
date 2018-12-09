@@ -22,7 +22,7 @@
                 <div class="page-header-main text-center">
                     <p class="text-truncate poppins-font card-link">Transactions for <a
                             href="{% url 'explorer:block' blockNumber %}"> Block #{{ blockNumber }}</a>. &nbsp;A
-                        Total Of {{ txs|length }} transactions found</p>
+                        Total Of {{ txs.object_list|length }} transactions found</p>
                 </div>
             {% endif %}
         </div>
