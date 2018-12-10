@@ -110,13 +110,24 @@ def explorer(request):
     # txs
     txs = []
     for t in t_li:
-        tx = {
-            'hash': t['hash'],
-            'sellerID': t['from'],
-            'buyerID': t['to'],
-            'timestamp': t['timestamp'],
-            'amount': format(t['txfee'] , '.10f')
-        }
+        if t['to']:
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'] , '.10f')
+            }
+        else:
+            contract = contract_collection.find({'creator':t['from']})[0]['address']
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'contract': contract,
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'], '.10f')
+            }
         txs.append(tx)
     txs_count = txs_collection.find().count()
     header = {
@@ -164,13 +175,24 @@ def wshandler(req):
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
             txs = []
             for t in t_li:
-                tx = {
-                    'hash': t['hash'],
-                    'sellerID': t['from'],
-                    'buyerID': t['to'],
-                    'timestamp': t['timestamp'],
-                    'amount': format(t['txfee'] , '.10f')
-                }
+                if t['to']:
+                    tx = {
+                        'hash': t['hash'],
+                        'sellerID': t['from'],
+                        'buyerID': t['to'],
+                        'timestamp': t['timestamp'],
+                        'amount': format(t['txfee'], '.10f')
+                    }
+                else:
+                    contract = contract_collection.find({'creator': t['from']})[0]['address']
+                    tx = {
+                        'hash': t['hash'],
+                        'sellerID': t['from'],
+                        'buyerID': t['to'],
+                        'contract': contract,
+                        'timestamp': t['timestamp'],
+                        'amount': format(t['txfee'], '.10f')
+                    }
                 txs.append(tx)
             data['header'] = header
             data['block'] = block
