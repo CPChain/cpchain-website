@@ -26,7 +26,8 @@ b_collection = client['cpchain']['blocks']
 # txs
 tx_collection = client['cpchain']['txs']
 # address
-address_collestion = client['cpchain']['address']
+address_collection = client['cpchain']['address']
+contract_collection = client['cpchain']['contract']
 
 
 def save_blocks_txs(start_block_id=None):
@@ -55,11 +56,21 @@ def save_blocks_txs(start_block_id=None):
             txs_li = []
             for transaction_id in range(transaction_cnt):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
+                # save one tx
                 tx_ = tx_formatter(tx, timestamp)
+                # scan contract
+                if not tx_['to']:
+                    contract = cf.cpc.getTransactionReceipt(tx_['hash']).contractAddress
+                    creator = cf.cpc.getTransactionReceipt(tx_['hash'])['from']
+                    contract_dict = {'txhash':tx_['hash'],
+                                'address':contract,
+                                'creator':creator}
+                    contract_collection.insert_one(contract_dict)
                 txs_li.append(tx_)
+                # address growth
                 for add in [tx['from'], tx['to']]:
-                    if add and address_collestion.find({'address': add}).count() == 0:
-                        address_collestion.insert_one({'address': add, 'timestamp': timestamp})
+                    if add and address_collection.find({'address': add}).count() == 0:
+                        address_collection.insert_one({'address': add, 'timestamp': timestamp})
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)

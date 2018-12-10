@@ -17,9 +17,12 @@ from cpchain_test.settings import cpc_fusion as cf
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
 CLIENT = MongoClient(host='127.0.0.1', port=27017)
+
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
+contract_collection = CLIENT['cpchain']['contract']
+
 
 DAY_SECENDS = 60 * 60 * 24
 
@@ -341,7 +344,7 @@ def address(req, address):
                                                      'txs_count': txs_count
                                                      })
     else:
-        creator = txs[-1]['from']
+        creator = contract_collection.find({'address':address})[0]['creator']
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,
