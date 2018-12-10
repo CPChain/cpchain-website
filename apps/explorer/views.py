@@ -344,7 +344,7 @@ def address(req, address):
                                                      'txs_count': txs_count
                                                      })
     else:
-        creator = contract_collection.find({'address':address})[0]['creator']
+        creator = contract_collection.find({'address':raw_address})[0]['creator']
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,

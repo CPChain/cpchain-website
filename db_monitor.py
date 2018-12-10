@@ -38,6 +38,7 @@ def save_blocks_txs(start_block_id=None):
     if cf.cpc.blockNumber + 1 < start_block_id:
         b_collection.drop()
         tx_collection.drop()
+        contract_collection.drop()
         b_collection.create_index('number')
         temp_id = 0
 
