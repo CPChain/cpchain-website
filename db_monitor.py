@@ -57,8 +57,11 @@ def save_blocks_txs(start_block_id=None):
             txs_li = []
             for transaction_id in range(transaction_cnt):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
+
                 # save one tx
                 tx_ = tx_formatter(tx, timestamp)
+                txs_li.append(tx_)
+
                 # scan contract
                 if not tx_['to']:
                     contract = cf.cpc.getTransactionReceipt(tx_['hash']).contractAddress
@@ -67,7 +70,7 @@ def save_blocks_txs(start_block_id=None):
                                 'address':contract,
                                 'creator':creator}
                     contract_collection.insert_one(contract_dict)
-                txs_li.append(tx_)
+
                 # address growth
                 for add in [tx['from'], tx['to']]:
                     if add and address_collection.find({'address': add}).count() == 0:
