@@ -302,9 +302,13 @@ def txs(req):
         all_txs = list(txs_collection.find().sort('_id', DESCENDING))
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
-        return render(req, 'explorer/txs_list.html', {'txs': txs})
+        for tx in txs.object_list:
+            if not tx['to']:
+                tx['contract'] = contract_collection.find({'creator': tx['from']})[0]['address']
+        return render(req, 'explorer/txs_list.html', {'txs': txs,'test':txs.object_list})
     # block's type is string
-    txs_from_block = list(txs_collection.find({'blockNumber': int(block)}))
+    txs_from_block = list(txs_collection.find({'blockNumber': int(block)
+                                               }))
     # page
     try:
         page = req.GET.get('page', 1)
@@ -314,7 +318,13 @@ def txs(req):
 
     p = Paginator(txs_from_block, 25, request=req)
     txs = p.page(page)
-    return render(req, 'explorer/txs_list.html', {'txs': txs, 'blockNumber': block,'txs_count':txs_count})
+    for tx in txs.object_list:
+        if not tx['to']:
+            tx['contract'] = contract_collection.find({'creator':tx['from']})[0]['address']
+    return render(req, 'explorer/txs_list.html', {'txs': txs,
+                                                  'blockNumber': block,
+                                                  'txs_count':txs_count
+                                                  })
 
 def tx(req, tx_hash):
     # tx from hash

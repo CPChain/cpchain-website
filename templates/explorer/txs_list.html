@@ -57,7 +57,7 @@
                                     {% if tx.to %}
                                         <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
                                     {% else %}
-                                        <span class="text-truncate col px-0">Contract Creation</span>
+                                        <a href="{% url 'explorer:address' tx.contract %}">Contract Creation</a>
                                     {% endif %}
 
                                 </div>
