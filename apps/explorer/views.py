@@ -285,11 +285,11 @@ def txs(req):
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    all_txs = txs_from_block
+    txs_count = len(txs_from_block)
 
-    p = Paginator(all_txs, 25, request=req)
+    p = Paginator(txs_from_block, 25, request=req)
     txs = p.page(page)
-    return render(req, 'explorer/txs_list.html', {'txs': txs, 'blockNumber': block})
+    return render(req, 'explorer/txs_list.html', {'txs': txs, 'blockNumber': block,'txs_count':txs_count})
 
 @cache_page(24*3600)
 def tx(req, tx_hash):

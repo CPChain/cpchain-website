@@ -28,6 +28,11 @@ $(function () {
                 txs = msg.txs;
                 // update header
                 updateHeader(header);
+                //update txs
+                explorerTablesApp.txs=[];
+                txs.forEach(tx => {
+                    autoGenerateTx(tx)
+                })
                 // update block
                 height = block.id;
                 current_height = $('#block_id').text().slice(1,);
