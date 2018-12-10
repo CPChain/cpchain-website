@@ -134,7 +134,7 @@ def explorer(request):
         'blockHeight': height,
         'txs': txs_count,
         'rnode': RNode.rnode_length,
-        'tps': get_tps(txs_count),
+        # 'tps': get_tps(txs_count),
         'committee': Committee.committee_length,
     }
 
@@ -154,12 +154,12 @@ def wshandler(req):
             Committee.update()
             txs_count = txs_collection.find().count()
             data = {}
-            tps = get_tps(txs_count)
+            # tps = get_tps(txs_count)
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': RNode.rnode_length,
-                'tps': tps,
+                # 'tps': tps,
                 'committee': Committee.committee_length,
             }
 
