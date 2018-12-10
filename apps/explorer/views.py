@@ -291,10 +291,10 @@ def txs(req):
     txs = p.page(page)
     return render(req, 'explorer/txs_list.html', {'txs': txs, 'blockNumber': block,'txs_count':txs_count})
 
-@cache_page(24*3600)
 def tx(req, tx_hash):
     # tx from hash
     search = tx_hash.strip().lower()
+
     tx_dict = list(txs_collection.find({"hash": search}))[0]
     status = cf.cpc.getTransactionReceipt(search).status
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
