@@ -134,7 +134,7 @@ def explorer(request):
         'blockHeight': height,
         'txs': txs_count,
         'rnode': RNode.rnode_length,
-        'tps': get_tps(txs_count),
+        # 'tps': get_tps(txs_count),
         'committee': Committee.committee_length,
     }
 
@@ -154,12 +154,12 @@ def wshandler(req):
             Committee.update()
             txs_count = txs_collection.find().count()
             data = {}
-            tps = get_tps(txs_count)
+            # tps = get_tps(txs_count)
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': RNode.rnode_length,
-                'tps': tps,
+                # 'tps': tps,
                 'committee': Committee.committee_length,
             }
 
@@ -246,7 +246,7 @@ def search(req):
 
 def blocks(req):
     # blocks
-    all_blocks = list(block_collection.find().sort('number', DESCENDING))
+    all_blocks = block_collection.find().sort('number', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -299,22 +299,23 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = list(txs_collection.find().sort('_id', DESCENDING))
+        all_txs = txs_collection.find().sort('_id', DESCENDING)
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
+        txs.object_list = list(txs.object_list)
         for tx in txs.object_list:
             if not tx['to']:
                 tx['contract'] = contract_collection.find({'creator': tx['from']})[0]['address']
-        return render(req, 'explorer/txs_list.html', {'txs': txs,'test':txs.object_list})
+        return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
-    txs_from_block = list(txs_collection.find({'blockNumber': int(block)
-                                               }))
+    txs_from_block = txs_collection.find({'blockNumber': int(block)
+                                               })
     # page
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    txs_count = len(txs_from_block)
+    txs_count = txs_from_block.count()
 
     p = Paginator(txs_from_block, 25, request=req)
     txs = p.page(page)
