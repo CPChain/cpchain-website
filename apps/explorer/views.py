@@ -50,16 +50,23 @@ class RNode:
 
 
 class Committee:
-
-    committee = cf.cpc.getCommittees
-    committee_length = len(committee) if committee else 0
+    committee = None
+    committee_length = 0
     updating = False
+    try:
+        committee = cf.cpc.getCommittees
+    except:
+        print('cf connection error')
+    committee_length = len(committee) if committee else 0
 
     @staticmethod
     def update():
         def _update():
             Committee.updating = True
-            Committee.committee = cf.cpc.getCommittees
+            try:
+                Committee.committee = cf.cpc.getCommittees
+            except:
+                print('cf connection error')
             Committee.committee_length = len(committee) if committee else 0
             Committee.updating = False
 
@@ -332,7 +339,10 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
 
     tx_dict = list(txs_collection.find({"hash": search}))[0]
-    status = cf.cpc.getTransactionReceipt(search).status
+    try:
+        status = cf.cpc.getTransactionReceipt(search).status
+    except:
+        print('cf connection error')
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
@@ -342,10 +352,13 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
-    raw_address = cf.toChecksumAddress(address.strip())
-    address = raw_address.lower()
-    code = cf.eth.getCode(raw_address)
-    code = cf.toHex(code)
+    try:
+        raw_address = cf.toChecksumAddress(address.strip())
+        address = raw_address.lower()
+        code = cf.eth.getCode(raw_address)
+        code = cf.toHex(code)
+    except:
+        print('cf connection error')
     # address info
     txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
     # set in/out
@@ -363,7 +376,10 @@ def address(req, address):
         t['timesince'] = timenow - t['timestamp']
 
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
-    balance = cf.eth.getBalance(raw_address)
+    try:
+        balance = cf.eth.getBalance(raw_address)
+    except:
+        print('cf connection error')
     txs_count = len(txs)
 
     # latest 25 txs
