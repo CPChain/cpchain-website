@@ -7,19 +7,26 @@
     <title>Faucet &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
-    <div style="width: 800px;margin: 20px auto">
-        <div style="margin:40px auto">
+    <div class="container">
+
+        <div class="col-8" style="margin:40px auto">
+            <div class="right-side text-right">
+                <span class="text-primar ">Faucet</span>
+            </div>
+            <div class="col-12 mb-4 px-0">
+                <hr class="right-hr">
+            </div>
             <form action="{% url 'faucet' %}" method="post">
                 <input class="form-control" type="text" name="address"
                        placeholder="Enter your address to claim from our faucet.">
-                <p>{{ msg }}</p>
-                <div style="width: 400px; margin:20px auto">
+                <p style="margin-top: 17px">{{ msg }}</p>
+                <div style="margin:50px auto;padding-left: 386px">
                     <button type="submit" value="Submit"
-                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-md-4">Claim
+                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white" style="width: 135px;height: 50px;">Claim
                     </button>
                     <button type="reset" value="Reset"
-                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-md-4"
-                            style="margin-left: 50px; ">Reset
+                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
+                            style="margin-left: 50px;width: 135px;height: 50px;">Reset
                     </button>
 
                 </div>
