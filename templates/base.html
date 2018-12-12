@@ -90,15 +90,26 @@
                             {% trans 'Community' %}
                         </a>
                     </li>
-                                        <li>
-                        <a href="{% url 'developer' %}" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Developer' %}
-                        </a>
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold" onclick="openMenu(0)">
+                                 {% trans 'Developer' %}
+                            </a>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'faucet' %}" class="small">Faucet</a>
+                                <a href="{% url 'developer' %}" class="small">Docs</a>
+                            </ul>
+                        </div>
                     </li>
-                    <li>
-                        <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Explorer' %}
-                        </a>
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Explorer' %}
+                            </a>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'explorer:explorer' %}" class="small">TEST NET</a>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
@@ -223,37 +234,35 @@
 
 
         {#点击英文#}
-        $(".en").click(function(){
+        $(".en").click(function () {
 
-            if (localUrl.startsWith('/zh-hans')){
-                window.location.href = '/en'+window.location.pathname.slice(8,)
-            }
-            else if(!(localUrl.startsWith('/zh-hans')||localUrl.startsWith('/en'))){
-                window.location.href = '/en'+window.location.pathname
+            if (localUrl.startsWith('/zh-hans')) {
+                window.location.href = '/en' + window.location.pathname.slice(8,)
+            } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
+                window.location.href = '/en' + window.location.pathname
             }
 
         });
 
         {#点击中文#}
-        $(".zh").click(function(){
+        $(".zh").click(function () {
             if (localUrl.startsWith('/en')) {
                 window.location.href = '/zh-hans' + window.location.pathname.slice(3,)
-            }
-            else if(!(localUrl.startsWith('/zh-hans')||localUrl.startsWith('/en'))){
-                window.location.href = '/zh-hans'+window.location.pathname
+            } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
+                window.location.href = '/zh-hans' + window.location.pathname
             }
         })
-    {#获取本地地址和语言#}
+        {#获取本地地址和语言#}
     })
 
 </script>
 <script>
 
-  //  let header = document.getElementById('header');
-//
-  //  window.addEventListener('scroll', function (e) {
-  //      (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
-  //  });
+    //  let header = document.getElementById('header');
+    //
+    //  window.addEventListener('scroll', function (e) {
+    //      (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+    //  });
 
     //Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
