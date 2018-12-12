@@ -9,25 +9,25 @@
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
-    <title>Committees</title>
+    <title>RNode &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
     <body>
     {% include "explorer/_searchbar.html" %}
     <div class="container">
         <div class="page-header">
-            <div class="page-header-main">
+            <div class="page-header-main"  id="explorer-header" >
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
-                        <div class="text-left"><h1 class="index-font">Current Epoch</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Epoch</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ rnodes|length }}</h1></div>
-                        <div class="text-left"><h1 class="index-font">RNodes</h1></div>
+                        <div class="text-left"><h3 class="index-font">RNodes</h3></div>
                     </a>
                 </div>
-                <h1 class="text-left">RNodes</h1>
+                <h1 class="text-left">Rank</h1>
             </div>
         </div>
         <div class="info-table px-md-5" id="blocks-list">
@@ -43,9 +43,9 @@
                         {% for rnode in rnodes %}
                             <div class="row row-content">
                                 <div class="col-2 text-truncate">{{ forloop.counter }}</div>
-                                <div class="col-6 text-truncate">{{ rnode.Address }}</div>
-                                <div class="col-2 text-truncate">{{ rnode.Rpt }}</div>
-                                <div class="col-2 text-truncate">{% ifequal rnode.Status 0 %}
+                                <div class="col-6 text-truncate"><a href="{% url 'explorer:address' rnode.Address %}"  style="color:#1BA3FF;" >{{ rnode.Address }}</a></div>
+                                <div class="col-2 text-truncate card-grey">{{ rnode.Rpt }}</div>
+                                <div class="col-2 text-truncate card-grey">{% ifequal rnode.Status 0 %}
                                     Committee
                                 {% else %}
                                     Candidate

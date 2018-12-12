@@ -8,26 +8,26 @@
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
-    <title>Committees</title>
+    <title>Committees &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
     <body>
     {% include "explorer/_searchbar.html" %}
     <div class="container">
         <div class="page-header">
-            <div class="page-header-main">
+            <div class="page-header-main"  id="explorer-header">
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
-                        <div class="text-left"><h1 class="index-font">Current Epoch</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Epoch</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ round }}</h1></div>
-                        <div class="text-left"><h1 class="index-font">Current Round</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Round</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ committees|length }}</h1></div>
-                        <div class="text-left"><h1 class="index-font">Current Proposers</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Proposers</h3></div>
                     </a>
                 </div>
                 <h1 class="text-left">Current Proposers</h1>
@@ -48,10 +48,10 @@
                                 <div class="col-2 text-truncate">{{ committee.View }}</div>
                                 <div class="col-2 text-truncate">{{ committee.Term }}</div>
                                 <div class="col-6 text-truncate"><a
-                                        href="{% url 'explorer:address' committee.Producer %}">{{ committee.Producer }}</a>
+                                        href="{% url 'explorer:address' committee.Producer %}"  style="color:#1BA3FF;" >{{ committee.Producer }}</a>
                                 </div>
                                 <div class="col-2 text-truncate"><a
-                                        href="{% url 'explorer:block' committee.Block %}">{{ committee.Block }}</a>
+                                        href="{% url 'explorer:block' committee.Block %}"  style="color:#1BA3FF;" >{{ committee.Block }}</a>
                                 </div>
                             </div>
                         {% endfor %}

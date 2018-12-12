@@ -6,6 +6,22 @@
 }
 
 @font-face {
+    font-family: "poppins-light";
+    src: url("/static/css/Font/Poppins-Light.otf");
+}
+
+@font-face {
+    font-family: "poppins-italic";
+    src: url("/static/css/Font/Poppins-Italic.otf");
+}
+
+
+@font-face {
+    font-family: "poppins-light-italic";
+    src: url("/static/css/Font/Poppins-LightItalic.otf");
+}
+
+@font-face {
     font-family: "archivo";
     src: url("/static/css/Font/Archivo-Regular.ttf");
 }
@@ -15,6 +31,24 @@
     src: url("/static/css/Font/PingFang Regular.ttf");
     src: url("/static/css/Font/PingFang Medium.ttf");
 }
+
+.poppins-font {
+    font-family: 'Poppins', sans-serif !important;
+}
+.poppins-medium{
+    font-family: 'poppins-medium', sans-serif !important;
+}
+.poppins-light {
+    font-family: 'poppins-light', sans-serif !important;
+}
+
+.poppins-light-italic {
+    font-family: 'poppins-light-italic', sans-serif !important;
+}
+.poppins-italic {
+    font-family: 'poppins-italic', sans-serif !important;
+}
+
 input::-ms-input-placeholder{text-align: center; color: #a9bcd4;}
 input::-webkit-input-placeholder{text-align: center; color: #a9bcd4;}
 /*!
@@ -8563,7 +8597,7 @@ section.external-media {
 section.section-one {
     height: 80vh;
     overflow: hidden;
-    font-family: "Poppins" !important;
+    font-family: "poppins-light-italic" !important;
 }
 
 section.section-one .container {
@@ -8857,7 +8891,6 @@ section.section-twelve h2, section.section-media h2 {
 
 .section-seven p {
     color: #656899;
-    font-family: "Archivo" !important;
 }
 
 .section-seven h2, .section-seven h6 {

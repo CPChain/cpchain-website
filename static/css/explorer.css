@@ -4,10 +4,6 @@
     src: url("/static/css/Font/Poppins-Italic.otf");
 }
 
-@font-face {
-    font-family: "poppins-medium";
-    src: url("/static/css/Font/Poppins-Medium.otf");
-}
 
 @font-face {
     font-family: "poppins-light";
@@ -25,6 +21,16 @@
 
 .poppins-light {
     font-family: 'poppins-light', sans-serif !important;
+}
+
+.poppins-light-italic {
+    font-family: 'poppins-light-italic', sans-serif !important;
+}
+.poppins-italic {
+    font-family: 'poppins-italic', sans-serif !important;
+}
+#header {
+    box-shadow: 0 10px 2px;
 }
 
 
