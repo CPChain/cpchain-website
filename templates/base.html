@@ -59,7 +59,7 @@
             {#logo#}
 
             <div class="menu col-8 d-flex align-items-center justify-content-end">
-                <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
+                    <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
                     id="mySidenav">
                     <li class="d-sm-none d-block w-100">
                         <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
@@ -96,8 +96,8 @@
                                  {% trans 'Developer' %}
                             </a>
                             <ul class="dropdown-menu list-unstyled rounded">
-                                <a href="{% url 'faucet' %}" class="small">Faucet</a>
-                                <a href="{% url 'developer' %}" class="small">Docs</a>
+                                <a href="{% url 'faucet' %}" class="small">{% trans 'Faucet' %}</a>
+                                <a href="{% url 'developer' %}" class="small">{% trans 'Docs' %}</a>
                             </ul>
                         </div>
                     </li>
@@ -107,7 +107,7 @@
                                 {% trans 'Explorer' %}
                             </a>
                             <ul class="dropdown-menu list-unstyled rounded">
-                                <a href="{% url 'explorer:explorer' %}" class="small">TEST NET</a>
+                                <a href="{% url 'explorer:explorer' %}" class="small">{% trans 'TEST NET' %}</a>
                             </ul>
                         </div>
                     </li>

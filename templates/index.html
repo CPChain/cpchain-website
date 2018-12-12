@@ -75,79 +75,90 @@
 
                 <div class="menu col-8 d-flex align-items-center justify-content-end">
                     <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
-                        id="mySidenav">
-                        <li class="d-sm-none d-block w-100">
-                            <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                                          fill="#fff"/>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}#application" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Application' %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}#roadmap" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Roadmap' %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Team' %}
-                            </a>
-                        </li>
+                    id="mySidenav">
+                    <li class="d-sm-none d-block w-100">
+                        <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                      fill="#fff"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}#application" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Application' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}#roadmap" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Roadmap' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Team' %}
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Community' %}
+                    <li>
+                        <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Community' %}
+                        </a>
+                    </li>
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold" onclick="openMenu(0)">
+                                 {% trans 'Developer' %}
                             </a>
-                        </li>
-                                            <li>
-                            <a href="{% url 'developer' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Developer' %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'faucet' %}" class="small">{% trans 'Faucet' %}</a>
+                                <a href="{% url 'developer' %}" class="small">{% trans 'Docs' %}</a>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold" onclick="openMenu(0)">
                                 {% trans 'Explorer' %}
                             </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Partners' %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Contact Us' %}
-                            </a>
-                        </li>
-                        <li class="line"></li>
-                        <li class="dropdown bg-transparent">
-                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
-                                    {% trans 'ENG' %} </a>
-                                <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-sm-block"
-                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
-                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24">
-                                        <g opacity="0.4">
-                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>
-                                            <path d="M0,0H24V24H0Z" fill="none"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <ul class="dropdown-menu list-unstyled rounded">
-                                    <a href="javascript:void(0);" class="small en">ENG</a>
-                                    <a href="javascript:void(0);" class="small zh">中文</a>
-                                </ul>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'explorer:explorer' %}" class="small">{% trans 'TEST NET' %}</a>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Partners' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Contact Us' %}
+                        </a>
+                    </li>
+                    <li class="line"></li>
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
+                                {% trans 'ENG' %} </a>
+                            <div class="image-holder d-flex align-items-center justify-content-center">
+                                <svg height="24px" class="d-none d-sm-block"
+                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24">
+                                    <g opacity="0.4">
+                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                        <path d="M0,0H24V24H0Z" fill="none"/>
+                                    </g>
+                                </svg>
                             </div>
-                        </li>
-                    </ul>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="javascript:void(0);" class="small en">ENG</a>
+                                <a href="javascript:void(0);" class="small zh">中文</a>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
                 </div>
                 <div class="col-8 menuopen position-absolute d-flex justify-content-end align-items-center">
                     <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-sm-none"></i></a>
