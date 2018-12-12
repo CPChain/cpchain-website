@@ -28,9 +28,13 @@ DAY_SECENDS = 60 * 60 * 24
 
 
 class RNode:
-    rnode = None
-    rnode_length = 0
+
     updating = False
+    try:
+        rnode = cf.cpc.getRNodes
+    except:
+        print('cf connection error')
+        rnode = None
 
     @staticmethod
     def update():
@@ -40,7 +44,6 @@ class RNode:
                 RNode.rnode = cf.cpc.getRNodes
             except Exception as e:
                 print('rnode time out >>>>',e)
-            RNode.rnode_length = len(RNode.rnode) if RNode.rnode else 0
             RNode.updating = False
 
         if RNode.updating:
@@ -50,14 +53,13 @@ class RNode:
 
 
 class Committee:
-    committee = None
-    committee_length = 0
+
     updating = False
     try:
         committee = cf.cpc.getCommittees
     except:
         print('cf connection error')
-    committee_length = len(committee) if committee else 0
+        committee = None
 
     @staticmethod
     def update():
@@ -67,7 +69,6 @@ class Committee:
                 Committee.committee = cf.cpc.getCommittees
             except:
                 print('cf connection error')
-            Committee.committee_length = len(committee) if committee else 0
             Committee.updating = False
 
         if Committee.updating:
@@ -140,9 +141,9 @@ def explorer(request):
     header = {
         'blockHeight': height,
         'txs': txs_count,
-        'rnode': RNode.rnode_length,
+        'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': Committee.committee_length,
+        'committee': len(Committee.committee) if Committee.committee else 0,
     }
 
     return render(request, 'explorer/explorer.html',
@@ -165,9 +166,9 @@ def wshandler(req):
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
-                'rnode': RNode.rnode_length,
+                'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': Committee.committee_length,
+                'committee': len(Committee.committee) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
@@ -404,12 +405,12 @@ def address(req, address):
 
 
 def rnode(req):
+    epoch = cf.cpc.getCurrentTerm
+    rnodes = RNode.rnode
     try:
-        epoch = cf.cpc.getCurrentTerm
-        rnodes = RNode.rnode.sort(key=lambda d:d['Rpt'],reverse=True)
-    except:
-        epoch = 0
-        rnodes = []
+        rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
+    except Exception:
+        pass
     return render(req, 'explorer/rnode.html', {'epoch': epoch,
                                                'rnodes': rnodes})
 
