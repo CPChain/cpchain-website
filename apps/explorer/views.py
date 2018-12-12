@@ -404,8 +404,12 @@ def address(req, address):
 
 
 def rnode(req):
-    epoch = cf.cpc.getCurrentTerm
-    rnodes = RNode.rnode
+    try:
+        epoch = cf.cpc.getCurrentTerm
+        rnodes = RNode.rnode.sort(key=lambda d:d['Rpt'],reverse=True)
+    except:
+        epoch = 0
+        rnodes = []
     return render(req, 'explorer/rnode.html', {'epoch': epoch,
                                                'rnodes': rnodes})
 
