@@ -4045,6 +4045,8 @@ input[type="button"].btn-block {
 
 .card-title {
     margin-bottom: 0.75rem;
+    line-height: 33px;
+
 }
 
 .card-subtitle {
@@ -9437,14 +9439,19 @@ section.section-thirteen form .checking .checkmark:after {
 }
 
 .card.blog .card-text {
-    color: #656899;
-    font-family: "Archivo" !important;
+    font-family: poppins-light;
+    color: #a9bcd4;
+    font-size: 16px;
+    line-height: 26px;
+
 }
 
 .card.blog .card-bottom-text {
     font-size: 14px !important;
 }
-
+.card.blog .card-bottom-text a{
+    color: #a9bcd4;
+}
 .card.blog .bottom-cards {
     width: 36px;
 }
