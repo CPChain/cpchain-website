@@ -137,7 +137,7 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         txs.append(tx)
-    txs_count = txs_collection.find().count()
+    txs_count = txs_collection.count_documents({})
     header = {
         'blockHeight': height,
         'txs': txs_count,
@@ -160,7 +160,7 @@ def wshandler(req):
         if block_height >= temp_height:
             RNode.update()
             Committee.update()
-            txs_count = txs_collection.find().count()
+            txs_count = txs_collection.count_documents({})
             data = {}
             # tps = get_tps(txs_count)
             header = {
