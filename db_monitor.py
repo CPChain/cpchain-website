@@ -31,10 +31,15 @@ contract_collection = client['cpchain']['contract']
 
 
 def save_blocks_txs(start_block_id=None):
-    # save blocks and it's txs to mongo
+    '''
+    save blocks and it's txs to mongo
+    :param start_block_id:  start_block_id
+    :return:
+    '''
     temp_id = start_block_id
-    logger.info('start block :#%d', temp_id)
-    # chain restart
+    logger.info('start block id : #%d', temp_id)
+
+    # chain judge the newest block
     if cf.cpc.blockNumber + 1 < start_block_id:
         b_collection.drop()
         tx_collection.drop()
@@ -66,9 +71,9 @@ def save_blocks_txs(start_block_id=None):
                 if not tx_['to']:
                     contract = cf.cpc.getTransactionReceipt(tx_['hash']).contractAddress
                     creator = cf.cpc.getTransactionReceipt(tx_['hash'])['from']
-                    contract_dict = {'txhash':tx_['hash'],
-                                'address':contract,
-                                'creator':creator}
+                    contract_dict = {'txhash': tx_['hash'],
+                                     'address': contract,
+                                     'creator': creator}
                     contract_collection.insert_one(contract_dict)
 
                 # address growth
@@ -122,7 +127,7 @@ def main():
             start_block_id = b_collection.find().sort('number', DESCENDING).limit(1)[0]['number'] + 1
         except IndexError:
             start_block_id = 0
-            logger.warning('start from 0')
+            logger.warning('initial cpchain  ... !!!')
 
         try:
             save_blocks_txs(start_block_id)

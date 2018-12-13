@@ -1681,7 +1681,6 @@
         rnode.classList.add('closed');
         let countdown = document.getElementById('countdown');
         countdown.classList.add('show-here');
-        console.log(countdown);
         // add cookie
         setCookie('banner', 'false', 5);
 
@@ -1702,7 +1701,6 @@
 
     //Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
-    console.log(anchorlinks)
     for (let item of anchorlinks) {
         item.addEventListener('click', (e) => {
 
