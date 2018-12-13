@@ -122,9 +122,11 @@ def start_block(start_block_id_from_db):
         # check db_block's hash
         if check_block_hash(start_block_id_from_db):
             return start_block_id_from_db
+            logger.info('return block id from db:', start_block_id_from_db)
         else:
             return find_block(start_block_id_from_db)
     else:
+        logger.warning('block_id_from_chain is less than db !!! start to find...')
         return find_block(block_id_from_chain)
 
 
@@ -132,6 +134,7 @@ def find_block(block_id):
     start_id = block_id
     while not check_block_hash(start_id) and start_id > 0:
         start_id -= 1
+    logger.warning('find the latest valid block:', start_id)
     return start_id
 
 
@@ -146,6 +149,7 @@ def check_block_hash(block_id):
 
 
 def remove_data_from_db(start_block_id):
+    logger.warning('start remove data from block:', start_block_id)
     b_collection.delete_many({'number': {'$gte': start_block_id}})
     tx_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
     contract_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
