@@ -55,7 +55,7 @@
         <div class="container">
             <div class="row">
                 {#logo#}
-                <div class="col-4 d-flex flex-row align-items-center">
+                <div class="col-3 d-flex flex-row align-items-center">
                     <a href="{% url 'index' %}" class="logo-hov">
                         <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
                             <img src="{% static '/img/logo_new.svg' %}" class="disable-select">
@@ -64,7 +64,7 @@
                 </div>
                 {#logo#}
 
-                <div class="menu col-8 d-flex align-items-center justify-content-end">
+                <div class="menu col-9 d-flex align-items-center justify-content-end">
                     <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
                     id="mySidenav">
                     <li class="d-sm-none d-block w-100">
@@ -76,17 +76,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'index' %}#application" class="font-weight-bold" onclick="openMenu(0)">
+                        <a href="#application" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Application' %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'index' %}#roadmap" class="font-weight-bold" onclick="openMenu(0)">
+                        <a href="#roadmap" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Roadmap' %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
+                        <a href="#team" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Team' %}
                         </a>
                     </li>
@@ -140,20 +140,20 @@
                         </div>
                     </li>
                     <li>
-                        <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
+                        <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Partners' %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Contact Us' %}
+                        <a href="#contact" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Contact' %}
                         </a>
                     </li>
                     <li class="line"></li>
                     <li class="dropdown bg-transparent">
                         <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
                             <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
-                                {% trans 'ENG' %} </a>
+                                {% trans 'EN' %} </a>
                             <div class="image-holder d-flex align-items-center justify-content-center">
                                 <svg height="24px" class="d-none d-sm-block"
                                      id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
@@ -166,7 +166,7 @@
                                 </svg>
                             </div>
                             <ul class="dropdown-menu list-unstyled rounded">
-                                <a href="javascript:void(0);" class="small en">ENG</a>
+                                <a href="javascript:void(0);" class="small en">EN</a>
                                 <a href="javascript:void(0);" class="small zh">中文</a>
                             </ul>
                         </div>
@@ -440,11 +440,11 @@
                     </section> <!-- section-five -->
 
                     <section class="section-six py-sm-5 py-0" id="application">
-                        <div class="container py-0 py-sm-5">
+                        <div class="container py-1 py-sm-5">
                             <div class="row">
 
                                 <div class="upper col-12 col-sm-4 mx-0">
-                                    <h2 class="text-left poppins-font" style="font-weight: bold">{% trans 'Application' %}</h2>
+                                    <h2 class="text-left poppins-font" style="font-weight: bold;padding-top: 150px">{% trans 'Application' %}</h2>
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
                                 <div class="middle d-flex flex-row mb-sm-5 mb-2">
@@ -1613,7 +1613,6 @@
 </body>
 
 
-{#<script data-cfasync="false" src="{% static 'css/email-decode.min.js' %}"></script>#}
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
 <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
@@ -1703,6 +1702,7 @@
 
     //Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
+    console.log(anchorlinks)
     for (let item of anchorlinks) {
         item.addEventListener('click', (e) => {
 
@@ -2019,6 +2019,7 @@
 
 
 </script>
-
+<script>
+</script>
 </html>
 

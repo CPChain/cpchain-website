@@ -45,7 +45,7 @@
     <div class="container">
         <div class="row">
             {#logo#}
-            <div class="col-4 d-flex flex-row align-items-center">
+            <div class="col-3 d-flex flex-row align-items-center">
                 <a href="{% url 'index' %}" class="logo-hov">
                     <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
                         <img src="{% static '/img/logo_new.svg' %}" class="disable-select">
@@ -54,7 +54,7 @@
             </div>
             {#logo#}
 
-            <div class="menu col-8 d-flex align-items-center justify-content-end">
+            <div class="menu col-9 d-flex align-items-center justify-content-end">
                     <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
                     id="mySidenav">
                     <li class="d-sm-none d-block w-100">
@@ -86,7 +86,7 @@
                             {% trans 'Community' %}
                         </a>
                     </li>
-                    <li class="dropdown bg-transparent">
+                    <li class="dropdown bg-transparent" style="">
                         <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
                             <a class="font-weight-bold" onclick="openMenu(0)">
                                  {% trans 'Developer' %}
@@ -137,14 +137,14 @@
                     </li>
                     <li>
                         <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Contact Us' %}
+                            {% trans 'Contact' %}
                         </a>
                     </li>
                     <li class="line"></li>
                     <li class="dropdown bg-transparent">
                         <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
                             <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
-                                {% trans 'ENG' %} </a>
+                                {% trans 'EN' %} </a>
                             <div class="image-holder d-flex align-items-center justify-content-center">
                                 <svg height="24px" class="d-none d-sm-block"
                                      id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
@@ -157,7 +157,7 @@
                                 </svg>
                             </div>
                             <ul class="dropdown-menu list-unstyled rounded">
-                                <a href="javascript:void(0);" class="small en">ENG</a>
+                                <a href="javascript:void(0);" class="small en">EN</a>
                                 <a href="javascript:void(0);" class="small zh">中文</a>
                             </ul>
                         </div>
