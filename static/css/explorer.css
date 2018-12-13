@@ -39,7 +39,9 @@
     height: 380px;
     margin: 70px 0;
 }
-
+.explorer-header h3{
+    letter-spacing: 2px;
+}
 #explorer-header .number-font {
     color: #305278;
     font-size: 28px;
@@ -111,7 +113,7 @@
 .table-content {
     margin: 40px 0;
     padding: 0 40px 0 10px;
-    max-height: 513px;
+    max-height: 460px;
     position: relative;
     overflow: scroll;
 
