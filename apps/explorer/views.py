@@ -23,12 +23,10 @@ txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 
-
 DAY_SECENDS = 60 * 60 * 24
 
 
 class RNode:
-
     updating = False
     try:
         rnode = cf.cpc.getRNodes
@@ -43,7 +41,7 @@ class RNode:
             try:
                 RNode.rnode = cf.cpc.getRNodes
             except Exception as e:
-                print('rnode time out >>>>',e)
+                print('rnode time out >>>>', e)
             RNode.updating = False
 
         if RNode.updating:
@@ -53,7 +51,6 @@ class RNode:
 
 
 class Committee:
-
     updating = False
     try:
         committee = cf.cpc.getCommittees
@@ -124,10 +121,10 @@ def explorer(request):
                 'sellerID': t['from'],
                 'buyerID': t['to'],
                 'timestamp': t['timestamp'],
-                'amount': format(t['txfee'] , '.10f')
+                'amount': format(t['txfee'], '.10f')
             }
         else:
-            contract = contract_collection.find({'creator':t['from']})[0]['address']
+            contract = contract_collection.find({'creator': t['from']})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -316,8 +313,7 @@ def txs(req):
                 tx['contract'] = contract_collection.find({'creator': tx['from']})[0]['address']
         return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
-    txs_from_block = txs_collection.find({'blockNumber': int(block)
-                                               })
+    txs_from_block = txs_collection.find({'blockNumber': int(block)})
     # page
     try:
         page = req.GET.get('page', 1)
@@ -327,13 +323,15 @@ def txs(req):
 
     p = Paginator(txs_from_block, 25, request=req)
     txs = p.page(page)
+    txs.object_list = list(txs.object_list)
     for tx in txs.object_list:
         if not tx['to']:
-            tx['contract'] = contract_collection.find({'creator':tx['from']})[0]['address']
+            tx['contract'] = contract_collection.find({'creator': tx['from']})[0]['address']
     return render(req, 'explorer/txs_list.html', {'txs': txs,
                                                   'blockNumber': block,
-                                                  'txs_count':txs_count
+                                                  'txs_count': txs_count
                                                   })
+
 
 def tx(req, tx_hash):
     # tx from hash
@@ -394,13 +392,13 @@ def address(req, address):
                                                      'txs_count': txs_count
                                                      })
     else:
-        creator = contract_collection.find({'address':raw_address})[0]['creator']
+        creator = contract_collection.find({'address': raw_address})[0]['creator']
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,
                                                       'txs_count': txs_count,
                                                       'code': code,
-                                                      'creator':creator
+                                                      'creator': creator
                                                       })
 
 
