@@ -17,6 +17,7 @@ from cpchain_test.settings import cpc_fusion as cf
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
 CLIENT = MongoClient(host='13.229.202.202', port=27017)
+BLOCK_REWARD = 500
 
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
@@ -96,7 +97,7 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 5,
+            'reward': BLOCK_REWARD,
             'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
@@ -162,7 +163,7 @@ def wshandler(req):
             temp_block = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
-                'reward': 5,
+                'reward': BLOCK_REWARD,
                 'txs': len(temp_block['transactions']),
                 'producerID': temp_block['miner'],
                 'timestamp': temp_block['timestamp'],
@@ -275,7 +276,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = 5
+    blockReward = BLOCK_REWARD
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
