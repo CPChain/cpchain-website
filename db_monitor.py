@@ -166,7 +166,8 @@ def main():
         try:
             last_valid_block_id = start_block(last_block_id_from_db)
         except Exception as e:
-            print(e)
+            logger.info(e)
+            time.sleep(10)
             continue
         start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
         logger.info('start block id =%d',start_block_id)
