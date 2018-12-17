@@ -243,7 +243,7 @@ def search(req):
 
 def blocks(req):
     # blocks
-    all_blocks = block_collection.find().sort('number', DESCENDING)
+    all_blocks = block_collection.find().sort('_id', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
