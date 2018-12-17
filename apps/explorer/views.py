@@ -53,7 +53,7 @@ class RNode:
 class Committee:
     updating = False
     try:
-        committee = cf.cpc.getCommittees
+        committee = cf.cpc.getBlockGenerationInfo
     except:
         print('cf connection error')
         committee = None
@@ -140,7 +140,7 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': len(Committee.committee) if Committee.committee else 0,
+        'committee': str(len(Committee.committee))+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
 
     return render(request, 'explorer/explorer.html',
