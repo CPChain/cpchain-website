@@ -43,7 +43,7 @@
                     <div class="text-center"><h3 class="index-font">RNode</h3></div>
                 </a>
                 <a class="col" href="{% url 'explorer:committee' %}">
-                    <div class="text-center"><h1 class="number-font" v-text="committee">0</h1></div>
+                    <div class="text-center"><h1 class="number-font" v-text="committee"></h1></div>
                     <div class="text-center"><h3 class="index-font">Current Proposers</h3></div>
 
                 </a>
@@ -243,7 +243,7 @@
                 blockHeight: {{ header.blockHeight }},
                 txs: {{ header.txs }},
                 rnode: {{ header.rnode }},
-                committee: String({{ header.committee }}),
+                committee: '{{ header.committee }}',
                 loaded: false,
             },
             computed: {
