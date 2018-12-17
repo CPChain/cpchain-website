@@ -26,8 +26,8 @@
                         <div class="text-left"><h3 class="index-font">Current Round</h3></div>
                     </a>
                     <a class="col-2" href="#">
-                        <div class="text-left"><h1 class="number-font">{{ committees|length }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current Proposers</h3></div>
+                        <div class="text-left"><h1 class="number-font">{{ round }}/{{ TermLen }}</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Proposer</h3></div>
                     </a>
                 </div>
                 <h1 class="text-left">Current Proposers</h1>
@@ -48,10 +48,10 @@
                                 <div class="col-2 text-truncate">{{ committee.View }}</div>
                                 <div class="col-2 text-truncate">{{ committee.Term }}</div>
                                 <div class="col-6 text-truncate"><a
-                                        href="{% url 'explorer:address' committee.Producer %}"  style="color:#1BA3FF;" >{{ committee.Producer }}</a>
+                                        href="{% url 'explorer:address' committee.Proposer %}"  style="color:#1BA3FF;" >{{ committee.Proposer }}</a>
                                 </div>
                                 <div class="col-2 text-truncate"><a
-                                        href="{% url 'explorer:block' committee.Block %}"  style="color:#1BA3FF;" >{{ committee.Block }}</a>
+                                        href="{% url 'explorer:block' committee.BlockNumber %}"  style="color:#1BA3FF;" >{{ committee.BlockNumber }}</a>
                                 </div>
                             </div>
                         {% endfor %}

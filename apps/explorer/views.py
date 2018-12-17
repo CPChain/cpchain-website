@@ -16,7 +16,7 @@ from cpchain_test.settings import cpc_fusion as cf
 
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
-CLIENT = MongoClient(host='127.0.0.1', port=27017)
+CLIENT = MongoClient(host='13.229.202.202', port=27017)
 
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
@@ -28,11 +28,7 @@ DAY_SECENDS = 60 * 60 * 24
 
 class RNode:
     updating = False
-    try:
-        rnode = cf.cpc.getRNodes
-    except:
-        print('cf connection error')
-        rnode = None
+    rnode = None
 
     @staticmethod
     def update():
@@ -52,20 +48,16 @@ class RNode:
 
 class Committee:
     updating = False
-    try:
-        committee = cf.cpc.getCommittees
-    except:
-        print('cf connection error')
-        committee = None
+    committee = None
 
     @staticmethod
     def update():
         def _update():
             Committee.updating = True
             try:
-                Committee.committee = cf.cpc.getCommittees
+                Committee.committee = cf.cpc.getBlockGenerationInfo
             except:
-                print('cf connection error')
+                print('committee connection error')
             Committee.updating = False
 
         if Committee.updating:
@@ -95,7 +87,7 @@ def explorer(request):
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        add_day = address_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        add_day = address_collection.find({'timestamp': {'$lt': lt_time}}).count()
         chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
     chart.reverse()
 
@@ -140,9 +132,8 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': len(Committee.committee) if Committee.committee else 0,
+        'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
-
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
@@ -165,7 +156,7 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': len(Committee.committee) if Committee.committee else 0,
+                'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
@@ -251,7 +242,7 @@ def search(req):
 
 def blocks(req):
     # blocks
-    all_blocks = block_collection.find().sort('number', DESCENDING)
+    all_blocks = block_collection.find().sort('_id', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -417,5 +408,6 @@ def committee(req):
     epoch = cf.cpc.getCurrentTerm
     round = cf.cpc.getCurrentView
     committees = Committee.committee
+    TermLen = committees[0]['TermLen'] if committees else 0
 
     return render(req, 'explorer/committee.html', locals())
