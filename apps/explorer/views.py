@@ -16,7 +16,7 @@ from cpchain_test.settings import cpc_fusion as cf
 
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
-CLIENT = MongoClient(host='127.0.0.1', port=27017)
+CLIENT = MongoClient(host='13.229.202.202', port=27017)
 
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
@@ -28,11 +28,7 @@ DAY_SECENDS = 60 * 60 * 24
 
 class RNode:
     updating = False
-    try:
-        rnode = cf.cpc.getRNodes
-    except:
-        print('cf connection error')
-        rnode = None
+    rnode = None
 
     @staticmethod
     def update():
@@ -52,11 +48,7 @@ class RNode:
 
 class Committee:
     updating = False
-    try:
-        committee = cf.cpc.getBlockGenerationInfo
-    except:
-        print('cf connection error')
-        committee = None
+    committee = None
 
     @staticmethod
     def update():
