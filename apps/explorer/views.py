@@ -17,6 +17,7 @@ from cpchain_test.settings import cpc_fusion as cf
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
 CLIENT = MongoClient(host='13.229.202.202', port=27017)
+BLOCK_REWARD = 500
 
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
@@ -96,7 +97,7 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': 5,
+            'reward': BLOCK_REWARD,
             'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
@@ -132,9 +133,8 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': str(len(Committee.committee))+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
-    print(header)
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
@@ -157,13 +157,13 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': str(len(Committee.committee))+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+                'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
-                'reward': 5,
+                'reward': BLOCK_REWARD,
                 'txs': len(temp_block['transactions']),
                 'producerID': temp_block['miner'],
                 'timestamp': temp_block['timestamp'],
@@ -276,7 +276,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = 5
+    blockReward = BLOCK_REWARD
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -408,7 +408,7 @@ def rnode(req):
 def committee(req):
     epoch = cf.cpc.getCurrentTerm
     round = cf.cpc.getCurrentView
-    TermLen = Committee.committee[0]['TermLen']
     committees = Committee.committee
+    TermLen = committees[0]['TermLen'] if committees else 0
 
     return render(req, 'explorer/committee.html', locals())
