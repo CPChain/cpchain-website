@@ -57,7 +57,7 @@ class Committee:
             try:
                 Committee.committee = cf.cpc.getBlockGenerationInfo
             except:
-                print('cf connection error')
+                print('committee connection error')
             Committee.updating = False
 
         if Committee.updating:
@@ -157,7 +157,7 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': len(Committee.committee) if Committee.committee else 0,
+                'committee': str(len(Committee.committee))+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
@@ -408,6 +408,7 @@ def rnode(req):
 def committee(req):
     epoch = cf.cpc.getCurrentTerm
     round = cf.cpc.getCurrentView
+    TermLen = Committee.committee[0]['TermLen']
     committees = Committee.committee
 
     return render(req, 'explorer/committee.html', locals())
