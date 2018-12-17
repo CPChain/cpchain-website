@@ -34,7 +34,7 @@
                     <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
-{#                            Transaction<span class="sub-font">( <span <<v-t></v-t></v-t>ext="tps"></span> TPS)</span>#}
+                            {#                            Transaction<span class="sub-font">( <span <<v-t></v-t></v-t>ext="tps"></span> TPS)</span>#}
                             Transaction
                         </h3>
                     </div>
@@ -86,7 +86,7 @@
                                 <div class="row">
                                     <div class="col-8 table-item-id">
                                         <p class="text-left text-truncate2"><a :href="'/explorer/block/'+block.id"
-                                                                               id="block_id" >#[[block.id]]</a></p>
+                                                                               id="block_id">#[[block.id]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right text-truncate card-link"><a
@@ -96,8 +96,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-desc ">
-                                        <p class="text-left text-truncate card-link " style="color: #1ba3ff"><span style="color: #305278;">Produced by</span> <a
-                                                :href="'/explorer/address/'+block.producerID" :title="block.producerID" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">[[block.producerID]]</a>
+                                        <p class="text-left text-truncate card-link " style="color: #1ba3ff"><span
+                                                style="color: #305278;">Produced by</span> <a
+                                                :href="'/explorer/address/'+block.producerID" :title="block.producerID"
+                                                style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">[[block.producerID]]</a>
                                         </p>
                                     </div>
                                     <div class="col-4 table-item-time">
@@ -129,7 +131,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 table-item-id ">
-                                        <p class="text-left text-truncate2"><a :href="'/explorer/tx/'+tx.hash" :title="tx.hash">[[tx.hash && (tx.hash.substr(0, 32) + "...")]]</a></p>
+                                        <p class="text-left text-truncate2"><a :href="'/explorer/tx/'+tx.hash"
+                                                                               :title="tx.hash">[[tx.hash &&
+                                            (tx.hash.substr(0, 32) + "...")]]</a></p>
                                     </div>
                                     <div class="col-4 table-item-bonus">
                                         <p class="text-right"></p>
@@ -139,10 +143,12 @@
                                     <div class="col-8 table-item-desc">
                                         <p class="text-left row mx-0 card-link text-truncate">
                                             <span class="d-flex " style="color: #a9bcd4;">From&nbsp;</span>
-                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0 " :title="tx.sellerID">[[tx.sellerID]]</a>
+                                            <a :href="'/explorer/address/'+tx.sellerID" class="text-truncate col px-0 "
+                                               :title="tx.sellerID">[[tx.sellerID]]</a>
                                             <span class="d-flex" style="color: #a9bcd4;">&nbsp;To&nbsp;</span>
                                             <a :href="'/explorer/address/'+tx.buyerID" v-if="tx.buyerID"
-                                               class="text-truncate col px-0" :title="tx.buyerID">[[tx.buyerID || ""]]</a>
+                                               class="text-truncate col px-0" :title="tx.buyerID">[[tx.buyerID ||
+                                                ""]]</a>
                                             <a :href="'/explorer/address/'+tx.contract" v-if="!tx.buyerID"
                                                class="text-truncate col px-0" :title="tx.contract">Contract Creation</a>
 
@@ -256,7 +262,7 @@
             explorerHeaderApp.blockHeight = json.blockHeight;
             explorerHeaderApp.txs = json.txs;
             explorerHeaderApp.rnode = json.rnode;
-           // explorerHeaderApp.tps = json.tps;
+            // explorerHeaderApp.tps = json.tps;
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.loaded = true
         }
