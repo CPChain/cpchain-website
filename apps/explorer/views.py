@@ -63,7 +63,7 @@ class Committee:
         def _update():
             Committee.updating = True
             try:
-                Committee.committee = cf.cpc.getCommittees
+                Committee.committee = cf.cpc.getBlockGenerationInfo
             except:
                 print('cf connection error')
             Committee.updating = False
