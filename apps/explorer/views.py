@@ -87,7 +87,7 @@ def explorer(request):
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
         txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        add_day = address_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        add_day = address_collection.find({'timestamp': {'$lt': lt_time}}).count()
         chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
     chart.reverse()
 
@@ -134,7 +134,7 @@ def explorer(request):
         # 'tps': get_tps(txs_count),
         'committee': str(len(Committee.committee))+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
-
+    print(header)
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
