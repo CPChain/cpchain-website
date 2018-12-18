@@ -6,14 +6,14 @@ from pymongo import MongoClient
 from cpchain_test.settings import cf
 from cpchain_test.config import cfg
 
-EVERYDAY = 1000
-FAUCET_VALUE = 1
-LIMIT_COIN = 10
+FAUCET_VALUE = 100 * 1e+18
+LIMIT_COIN = 100 * 1e+18
 DAY_SECENDS = 60 * 60 * 24
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017)
 faucet_collection = CLIENT['cpchain']['faucet']
+SEND_ACCOUNT = cf.cpc.coinbase
 
 
 class Faucet:
@@ -25,7 +25,7 @@ class Faucet:
             print('cf.cpc.blockNumber:' + str(cf.cpc.blockNumber))
 
             print('\nsend tx:')
-            cf.personal.sendTransaction({'to': account, 'from': cf.cpc.coinbase, 'value': FAUCET_VALUE},
+            cf.personal.sendTransaction({'to': account, 'from': SEND_ACCOUNT, 'value': FAUCET_VALUE},
                                         'password')
 
         threading.Thread(target=_send, args=(addr,)).start()

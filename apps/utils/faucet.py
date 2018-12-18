@@ -5,10 +5,7 @@ from pymongo import MongoClient
 
 from cpchain_test.config import cfg
 
-EVERYDAY = 1000
-FAUCET_VALUE = 1
-LIMIT_COIN = 10
-DAY_SECENDS = 60 * 60 * 24
+EVERYDAY = 1000000
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017)
