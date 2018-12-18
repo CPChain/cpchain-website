@@ -13,7 +13,10 @@ DAY_SECENDS = 60 * 60 * 24
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017)
 faucet_collection = CLIENT['cpchain']['faucet']
-SEND_ACCOUNT = cf.cpc.coinbase
+try:
+    SEND_ACCOUNT = cf.cpc.coinbase
+except:
+    print('send account error,timeout')
 
 
 class Faucet:
