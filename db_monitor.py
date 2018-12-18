@@ -35,7 +35,7 @@ address_collection = client['cpchain']['address']
 contract_collection = client['cpchain']['contract']
 
 
-def save_blocks_txs(start_block_id=None):
+def save_blocks_txs(start_block_id):
     '''
     save blocks and it's txs to mongo
     :param start_block_id:  start_block_id
@@ -45,12 +45,6 @@ def save_blocks_txs(start_block_id=None):
     logger.info('start block id : #%d', temp_id)
 
     # chain judge the newest block
-    if cf.cpc.blockNumber + 1 < start_block_id:
-        b_collection.drop()
-        tx_collection.drop()
-        contract_collection.drop()
-        b_collection.create_index('number')
-        temp_id = 0
 
     while True:
         b_number = cf.cpc.blockNumber
@@ -78,7 +72,8 @@ def save_blocks_txs(start_block_id=None):
                     creator = cf.cpc.getTransactionReceipt(tx_['hash'])['from']
                     contract_dict = {'txhash': tx_['hash'],
                                      'address': contract,
-                                     'creator': creator}
+                                     'creator': creator,
+                                     'blockNumber': temp_id}
                     contract_collection.insert_one(contract_dict)
 
                 # address growth
@@ -125,14 +120,64 @@ def tx_formatter(tx, timestamp):
     return tx_
 
 
+def start_block(start_block_id_from_db):
+    block_id_from_chain = cf.cpc.blockNumber
+
+    if block_id_from_chain >= start_block_id_from_db:
+        # check db_block's hash
+        if check_block_hash(start_block_id_from_db):
+            return start_block_id_from_db
+            logger.info('return block id from db:%d', start_block_id_from_db)
+        else:
+            return find_block(start_block_id_from_db)
+    else:
+        logger.warning('block_id_from_chain is less than db !!! start to find...')
+        return find_block(block_id_from_chain)
+
+
+def find_block(block_id):
+    start_id = block_id
+    while not check_block_hash(start_id) and start_id > 0:
+        start_id -= 1
+    logger.warning('find the latest valid block:%d', start_id)
+    return start_id
+
+
+def get_block_from_db(b_id):
+    return b_collection.find({'number': b_id})[0]
+
+
+def check_block_hash(block_id):
+    block_hash_db = get_block_from_db(block_id)['hash']
+    block_hash_chain = cf.toHex(cf.cpc.getBlock(block_id).hash)
+    return True if block_hash_chain == block_hash_db else False
+
+
+def remove_data_from_db(start_block_id):
+    logger.warning('start remove data from block:%d', start_block_id)
+    b_collection.delete_many({'number': {'$gte': start_block_id}})
+    tx_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
+    contract_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
+
+
 def main():
     while True:
         # get the latest block id from db
         try:
-            start_block_id = b_collection.find().sort('number', DESCENDING).limit(1)[0]['number'] + 1
+            last_block_id_from_db = b_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
         except IndexError:
-            start_block_id = 0
+            last_block_id_from_db = 0
             logger.warning('initial cpchain  ... !!!')
+        try:
+            last_valid_block_id = start_block(last_block_id_from_db)
+        except Exception as e:
+            logger.info(e)
+            time.sleep(10)
+            continue
+        start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
+        logger.info('start block id =%d',start_block_id)
+        # remove invalid data from db
+        remove_data_from_db(start_block_id)
 
         try:
             save_blocks_txs(start_block_id)
