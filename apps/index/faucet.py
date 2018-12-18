@@ -3,18 +3,18 @@ import time
 
 from pymongo import MongoClient
 
-
+from cpchain_test.settings import cf
+from cpchain_test.config import cfg
 
 EVERYDAY = 1000
 FAUCET_VALUE = 1
 LIMIT_COIN = 10
 DAY_SECENDS = 60 * 60 * 24
 
-CLIENT = MongoClient(host='127.0.0.1', port=27017)
+mongo = cfg['db']['ip']
+CLIENT = MongoClient(host=mongo, port=27017)
 faucet_collection = CLIENT['cpchain']['faucet']
 
-
-from cpchain_test.settings import cpc_fusion as cf
 
 class Faucet:
 

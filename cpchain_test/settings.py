@@ -10,8 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import configparser
 import os
 import sys
+
+from .config import cfg
+from cpc_fusion import Web3
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -159,7 +164,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cpchain_django',
         'USER': 'root',
-        'PASSWORD': 'MyPassword',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
     }
 }
@@ -208,8 +213,10 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
-from cpc_fusion import Web3, HTTPProvider
-cpc_fusion = Web3(HTTPProvider('http://18.136.195.148:8503'))
+
+
+chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
+cf = Web3(Web3.HTTPProvider(chain))
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
