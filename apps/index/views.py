@@ -5,7 +5,8 @@ from django.shortcuts import redirect, render
 from django.views.generic.base import View
 from pure_pagination import PageNotAnInteger, Paginator
 
-from cpchain_test.settings import cpc_fusion as cf
+from cpchain_test.settings import cf
+
 from .faucet import Faucet
 from .models import *
 

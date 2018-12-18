@@ -7,8 +7,11 @@ from cpc_fusion import Web3
 from cpc_fusion.middleware import geth_poa_middleware
 from pymongo import DESCENDING, MongoClient
 
+from cpchain_test.config import cfg
+
 REFRESH_INTERVAL = 3
 
+# log
 logging.basicConfig(level=logging.INFO,
                     filename='./log/chain.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
@@ -17,15 +20,17 @@ logger = logging.getLogger(__name__)
 rf_handler = logging.handlers.TimedRotatingFileHandler(filename="./log/chain.log", when='midnight', backupCount=10)
 logger.addHandler(rf_handler)
 
-cf = Web3(Web3.HTTPProvider('http://18.136.195.148:8503'))
+# chain
 
+chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
+cf = Web3(Web3.HTTPProvider(chain))
 cf.middleware_stack.inject(geth_poa_middleware, layer=0)
-client = MongoClient(host='127.0.0.1', port=27017)
-# blocks
+
+# mongodb
+mongoHost = cfg['db']['ip']
+client = MongoClient(host=mongoHost, port=27017)
 b_collection = client['cpchain']['blocks']
-# txs
 tx_collection = client['cpchain']['txs']
-# address
 address_collection = client['cpchain']['address']
 contract_collection = client['cpchain']['contract']
 

@@ -1,30 +1,32 @@
 import json
-import time
 import threading
+import time
 
 from django.shortcuts import redirect, render
+from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
-from django.views.decorators.cache import cache_page
+from cpchain_test.config import cfg
+from cpchain_test.settings import cf
 
 try:
     import uwsgi
 except:
     print('uwsgi import error')
 
-from cpchain_test.settings import cpc_fusion as cf
-
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
-CLIENT = MongoClient(host='13.229.202.202', port=27017)
-BLOCK_REWARD = 500
 
+#config.ini
+mongo = cfg['db']['ip']
+CLIENT = MongoClient(host=mongo, port=27017)
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 
 DAY_SECENDS = 60 * 60 * 24
+BLOCK_REWARD = 500
 
 
 class RNode:
@@ -73,11 +75,6 @@ def explorer(request):
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
 
     ## chart
-    # chart = [{
-    #     'time': '11/22',
-    #     'bk': 123,
-    #     'tx': 321
-    # }]
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
     chart = []
@@ -133,7 +130,8 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': str(cf.cpc.getCurrentView) + '/' + str(
+            Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
@@ -157,7 +155,8 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': str(cf.cpc.getCurrentView)+'/'+str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+                'committee': str(cf.cpc.getCurrentView) + '/' + str(
+                    Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
