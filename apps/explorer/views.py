@@ -24,49 +24,50 @@ block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
+rnode_collection = CLIENT['cpchain']['rnode']
+proposer_collection = CLIENT['cpchain']['proposer']
 
 DAY_SECENDS = 60 * 60 * 24
 BLOCK_REWARD = 500
 
 
 class RNode:
-    updating = False
-    rnode = None
+    try:
+        rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
+    except:
+        rnode = None
+    try:
+        view = rnode_collection.find({'view':{'$exists':True}})[0]['view']
+    except:
+        view = 0
+    try:
+        term = rnode_collection.find({'term':{'$exists':True}})[0]['term']
+    except:
+        term = 0
 
     @staticmethod
     def update():
-        def _update():
-            RNode.updating = True
-            try:
-                RNode.rnode = cf.cpc.getRNodes
-            except Exception as e:
-                print('rnode time out >>>>', e)
-            RNode.updating = False
-
-        if RNode.updating:
-            return
-        else:
-            threading.Thread(target=_update).start()
+        try:
+            RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
+            RNode.view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+            RNode.term = rnode_collection.find({'term':{'$exists':True}})[0]['term']
+        except Exception as e:
+            print('rnode >>>>', e)
 
 
 class Committee:
-    updating = False
-    committee = None
+    try:
+        committee = list(proposer_collection.find())
+    except:
+        committee = None
 
     @staticmethod
     def update():
-        def _update():
-            Committee.updating = True
-            try:
-                Committee.committee = cf.cpc.getBlockGenerationInfo
-            except:
-                print('committee connection error')
-            Committee.updating = False
+        try:
+            Committee.committee = list(proposer_collection.find())
+        except:
+            print('committee connection error')
 
-        if Committee.updating:
-            return
-        else:
-            threading.Thread(target=_update).start()
 
 
 def explorer(request):
@@ -130,7 +131,7 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': str(cf.cpc.getCurrentView) + '/' + str(
+        'committee': str(RNode.view) + '/' + str(
             Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
     return render(request, 'explorer/explorer.html',
@@ -155,7 +156,7 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': str(cf.cpc.getCurrentView) + '/' + str(
+                'committee': str(RNode.view) + '/' + str(
                     Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
@@ -329,14 +330,9 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
 
     tx_dict = list(txs_collection.find({"hash": search}))[0]
-    try:
-        status = cf.cpc.getTransactionReceipt(search).status
-    except:
-        print('cf connection error')
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
-    tx_dict['status'] = status
 
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
@@ -345,10 +341,10 @@ def address(req, address):
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
-        code = cf.cpc.getCode(raw_address)
+        code = contract_collection.find({'address':raw_address})[0]['code']
         code = cf.toHex(code)
-    except:
-        print('cf connection error')
+    except Exception as e:
+        code = '0x'
     # address info
     txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
     # set in/out
@@ -374,6 +370,7 @@ def address(req, address):
         balance = cf.cpc.getBalance(raw_address)
     except:
         print('cf connection error')
+        balance = 0
     txs_count = len(txs)
 
     # latest 25 txs
@@ -399,7 +396,7 @@ def address(req, address):
 
 
 def rnode(req):
-    epoch = cf.cpc.getCurrentTerm
+    epoch = RNode.term
     rnodes = RNode.rnode
     try:
         rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
@@ -410,8 +407,8 @@ def rnode(req):
 
 
 def committee(req):
-    epoch = cf.cpc.getCurrentTerm
-    round = cf.cpc.getCurrentView
+    epoch = RNode.term
+    round = RNode.view
     committees = Committee.committee
     TermLen = committees[0]['TermLen'] if committees else 0
 

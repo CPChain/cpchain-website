@@ -63,17 +63,21 @@ def save_blocks_txs(start_block_id):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
 
                 # save one tx
-                tx_ = tx_formatter(tx, timestamp)
+                status = cf.cpc.getTransactionReceipt(tx['hash']).status
+                tx_ = tx_formatter(tx, timestamp, status)
                 txs_li.append(tx_)
 
                 # scan contract
                 if not tx_['to']:
                     contract = cf.cpc.getTransactionReceipt(tx_['hash']).contractAddress
                     creator = cf.cpc.getTransactionReceipt(tx_['hash'])['from']
+                    code = cf.cpc.getCode(cf.toChecksumAddress(contract))
                     contract_dict = {'txhash': tx_['hash'],
                                      'address': contract,
                                      'creator': creator,
-                                     'blockNumber': temp_id}
+                                     'blockNumber': temp_id,
+                                     'code': code,
+                                     }
                     contract_collection.insert_one(contract_dict)
 
                 # address growth
@@ -102,7 +106,7 @@ def block_formatter(block):
     return block_
 
 
-def tx_formatter(tx, timestamp):
+def tx_formatter(tx, timestamp, status):
     tx_ = {}
     # hex_to_int = ['blockNumber', 'gas', 'gasPrice', 'transactionIndex']
     for k, v in tx.items():
@@ -116,6 +120,7 @@ def tx_formatter(tx, timestamp):
         else:
             tx_[k] = v
     tx_['timestamp'] = timestamp
+    tx_['status'] = status
     tx_['txfee'] = tx_['gas'] / tx_['gasPrice']
     return tx_
 
@@ -127,7 +132,6 @@ def start_block(start_block_id_from_db):
         # check db_block's hash
         if check_block_hash(start_block_id_from_db):
             return start_block_id_from_db
-            logger.info('return block id from db:%d', start_block_id_from_db)
         else:
             return find_block(start_block_id_from_db)
     else:
@@ -179,7 +183,7 @@ def main():
         else:
             last_valid_block_id = 0
         start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
-        logger.info('start block id =%d',start_block_id)
+        logger.info('start block id =%d', start_block_id)
         # remove invalid data from db
         remove_data_from_db(start_block_id)
 
