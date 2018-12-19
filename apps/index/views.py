@@ -112,7 +112,7 @@ class FaucetView(View):
                     Faucet.update(address)
                     return redirect('receipt')
                 else:
-                    return render(req, 'faucet.html', {'msg': "you have already received today's faucet"})
+                    return render(req, 'faucet.html', {'msg': "You have already received today's faucet"})
             else:
                 return render(req, 'faucet.html', {'msg': 'Today’s coin is finished.'})
         else:

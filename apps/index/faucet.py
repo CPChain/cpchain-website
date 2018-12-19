@@ -25,9 +25,6 @@ class Faucet:
     def send(addr):
         def _send(addr):
             account = cf.toChecksumAddress(addr)
-            print('cf.cpc.blockNumber:' + str(cf.cpc.blockNumber))
-
-            print('\nsend tx:')
             cf.personal.sendTransaction({'to': account, 'from': SEND_ACCOUNT, 'value': FAUCET_VALUE},
                                         'password')
 
