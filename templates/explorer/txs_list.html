@@ -69,6 +69,7 @@
                 </div>
             </div>
             <div class="pageturn">
+            {% ifnotequal txs.pages|length 1 %}
                 <ul class="pagelist">
 
                     {% if txs.has_previous %}
@@ -93,6 +94,7 @@
                     {% endif %}
 
                 </ul>
+            {% endifnotequal %}
             </div>
         </div>
     </div>

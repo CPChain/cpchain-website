@@ -17,7 +17,7 @@ except:
 REFRESH_INTERVAL = 1
 ADD_SIZE = 42
 
-#config.ini
+# config.ini
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017)
 block_collection = CLIENT['cpchain']['blocks']
@@ -345,7 +345,7 @@ def address(req, address):
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
-        code = cf.eth.getCode(raw_address)
+        code = cf.cpc.getCode(raw_address)
         code = cf.toHex(code)
     except:
         print('cf connection error')
@@ -353,12 +353,16 @@ def address(req, address):
     txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
     # set in/out
     for d in txs:
+
         if d['from'] == d['to']:
             d['flag'] = 'self'
         elif d['from'] == address:
             d['flag'] = 'out'
         else:
             d['flag'] = 'in'
+        # add contract address
+        if not d['to']:
+            d['contract'] = contract_collection.find({'creator': d['from']})[0]['address']
 
     # timesince calc
     timenow = int(time.time())
@@ -367,7 +371,7 @@ def address(req, address):
 
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
     try:
-        balance = cf.eth.getBalance(raw_address)
+        balance = cf.cpc.getBalance(raw_address)
     except:
         print('cf connection error')
     txs_count = len(txs)
@@ -384,12 +388,13 @@ def address(req, address):
                                                      })
     else:
         creator = contract_collection.find({'address': raw_address})[0]['creator']
+
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,
                                                       'txs_count': txs_count,
                                                       'code': code,
-                                                      'creator': creator
+                                                      'creator': creator,
                                                       })
 
 

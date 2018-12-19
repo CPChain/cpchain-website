@@ -26,7 +26,8 @@ class Faucet:
         def _send(addr):
             account = cf.toChecksumAddress(addr)
             print(cf.personal.sendTransaction({'to': account, 'from': SEND_ACCOUNT, 'value': FAUCET_VALUE},
-                                        'password'))
+                                              'password'))
+
         threading.Thread(target=_send, args=(addr,)).start()
 
     @staticmethod

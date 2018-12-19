@@ -27,7 +27,7 @@
         <div class="info-table px-md-5" id="blocks-list">
             <div class="row info-id">
                 <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
-                <span class="col info-id-serial"  style="top: 4px">{{ address }}</span>
+                <span class="col info-id-serial" style="top: 4px">{{ address }}</span>
             </div>
             <div class="info-table-subtitle">Overview</div>
             <div class="row info-row">
@@ -36,15 +36,16 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
-                <div class="col poppins-light">{{ txs_count }}</div>
+                <div class="col poppins-light">{{ txs_count }} Txs</div>
             </div>
             <div class="info-table-subtitle info-table-subtitle-list">Transactions</div>
             <div class="info-table-list">
                 <div class="info-table-list-title">
-                    Latest 25 txs from a total of <a href>{{ txs_count }} transactions</a>
+                    Latest {% if txs_count < 25 %}{{ txs_count }}
+                {% else %}25{% endif %} txs from a total of <a href>{{ txs_count }} transactions</a>
                 </div>
                 <div class="info-table-list-content">
-                    <div class="table" >
+                    <div class="table">
                         <div class="row list-header">
                             <div class="col text-truncate">TxHash</div>
                             <div class="col text-truncate">Block</div>
@@ -61,7 +62,9 @@
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate" style="margin-left: -50px">>[[ convertTime({{ tx.timesince }}) ]] ago</div>
+                                <div class="col text-truncate" style="margin-left: -50px">>[[
+                                    convertTime({{ tx.timesince }}) ]] ago
+                                </div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                                 <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
@@ -69,7 +72,8 @@
                                     {% if tx.to %}
                                         <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
                                     {% else %}
-                                        <span class="text-truncate col px-0">Contract Creation</span>
+                                        <a href="{% url 'explorer:address' tx.contract %}"
+                                           class="text-truncate col px-0" title="{{ tx.contract }}">Contract Creation</a>
                                     {% endif %}
 
                                 </div>

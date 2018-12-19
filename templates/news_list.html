@@ -188,28 +188,30 @@
 
                         {#分页器#}
                         <div class="pageturn .clear">
-                            <div class="pagelist">
+                            {% ifnotequal news.pages|length 1 %}
+                                <div class="pagelist">
 
-                                {% if news.has_previous %}
-                                    <li><a href=" ">Previous page</a></li>
-                                {% endif %}
-                                {% for page in news.pages %}
-                                    {% if page %}
-                                        {% ifequal page news.number %}
-                                            <li><a style="color: #305278;"
-                                                   href="?{{ page.querystring }}">Page{{ page }}</a></li>
-                                        {% else %}
-                                            <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
-                                        {% endifequal %}
-                                    {% else %}
-                                        <li><a href="">...</a></li>
+                                    {% if news.has_previous %}
+                                        <li><a href=" ">Previous page</a></li>
                                     {% endif %}
-                                {% endfor %}
-                                {% if news.has_next %}
-                                    <li><a href="?{{ news.next_page_number.querystring }}">Next page</a>
-                                    </li>
-                                {% endif %}
-                            </div>
+                                    {% for page in news.pages %}
+                                        {% if page %}
+                                            {% ifequal page news.number %}
+                                                <li><a style="color: #305278;"
+                                                       href="?{{ page.querystring }}">Page{{ page }}</a></li>
+                                            {% else %}
+                                                <li><a href="?{{ page.querystring }}">Page{{ page }}</a></li>
+                                            {% endifequal %}
+                                        {% else %}
+                                            <li><a href="">...</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if news.has_next %}
+                                        <li><a href="?{{ news.next_page_number.querystring }}">Next page</a>
+                                        </li>
+                                    {% endif %}
+                                </div>
+                            {% endifnotequal %}
                         </div>
                         {#分页器#}
 
