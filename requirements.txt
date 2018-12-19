@@ -37,7 +37,7 @@ pycryptodome==3.6.6
 pymongo==3.7.1
 pytz==2018.5
 PyYAML==3.13
-requests==2.19.1
+requests==2.21.0
 rlp==1.0.3
 schedule==0.5.0
 six==1.11.0
