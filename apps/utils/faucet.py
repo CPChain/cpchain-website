@@ -1,8 +1,9 @@
 import time
+import sys,os
 
 import schedule
 from pymongo import MongoClient
-
+sys.path.insert(0,os.getcwd())
 from cpchain_test.config import cfg
 
 EVERYDAY = 1000000*1e+18

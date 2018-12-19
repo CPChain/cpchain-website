@@ -10,7 +10,7 @@
 {% block content %}
     <div class="container faucet">
 
-        <div class="col-8" style="margin:40px auto">
+        <div class="col-8" style="margin:40px auto 120px">
             <div class="right-side text-right">
                 <span class="text-primar ">Faucet</span>
             </div>
@@ -24,7 +24,7 @@
             <form action="{% url 'faucet' %}" method="post">
                 <span>{% trans 'Your address *' %}</span>
                 <input class="form-control" type="text" name="address"
-                       placeholder="Enter your address to claim from our faucet.">
+                       placeholder="Enter your address to claim from our faucet." style="margin-top: 10px">
                 <p style="margin-top: 17px">{{ msg }}</p>
                 <div style="margin:50px auto;padding-left: 386px">
                     <button type="submit" value="Submit"

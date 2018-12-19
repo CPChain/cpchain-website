@@ -1,109 +1,28 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
+{% load i18n %}
+{% block custom_head %}
+
+{% endblock %}
 {% block title %}
     <title>Faucet &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
+    <div class="container faucet">
 
-    <body class="error404 language-en hfeed has-header-image has-sidebar colors-light">
-    <div id="page" class="site">
+        <div class="col-8" style="margin:40px auto 120px">
+            <div class="right-side text-right">
+                <span class="text-primar ">Faucet</span>
+            </div>
+            <div class="col-12 mb-4 px-0" style="margin-bottom: 64px">
+                <hr class="right-hr">
+            </div>
+            <p>{% trans 'Cpchain faucet is an application to collect CPC test coins for free. Cpchain testnet is published,  and you can install and try it now.' %}</p>
+            <p>{% trans 'The rules of collecting free samples from CPC faucet are as follows:' %}</p>
+            <div class="rules">{% trans '1. CPC address can only apply for test coins once a day, and the one succeeds can receive 100 CPC each time. The total amount of free samples is limited to 10,000 for each Cpchain address.' %}</div>
+            <div class="rules">{% trans '2. The total amount of free samples issued by Cpchain faucet is up to 100,000 CPC each day. Cpchain faucet is about to stop providing test coins once it reaches this limit. It is available to apply for test coins the next day.' %}</div>
+            <div class="faucet_success">{% trans 'Success！You have gotten your free CPC.' %} </div>
 
-
-        <div class="site-content-contain">
-            <div id="content" class="site-content">
-
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-12 text-center">
-                            <p class='decs text-capatalized h4'>
-                                You have gotten  your free cpc.
-                            </p>
-                            <hr class="middle-hr w-100">
-
-                            <div class='desc text-muted my-5'>
-                                <div class='action mt-4 mb-5 pb-5'>
-                                    <a href="{% url 'index' %}"
-                                       class='btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 text-uppercase'>
-                                        Home
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div><!-- #content -->
-        </div><!-- .site-content-contain -->
-    </div><!-- #page -->
-
-    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
-    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
-
-    <script src="{% static '/js/swiper.min.js' %}"></script>
-    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
-
-    <script>
-
-        let header = document.getElementById('header');
-        window.addEventListener('scroll', function (e) {
-            (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
-        });
-
-        //Navigation
-        let anchorlinks = document.querySelectorAll('a[href^="#"]');
-        for (let item of anchorlinks) {
-            item.addEventListener('click', (e) => {
-
-                for (let i of anchorlinks) {
-                    (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
-                }
-
-                let hashval = item.getAttribute('href');
-                let target = document.querySelector(hashval)
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                history.pushState(null, null, hashval);
-                e.preventDefault();
-                openMenu(0);
-            });
-        }
-
-
-        function openMenu(type) {
-            let menuHolder = document.getElementById('mySidenav');
-            (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
-        }
-
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // swiper for application pages
-        var swiperTeam = new Swiper('.swiper-container-applications', {
-            slidesPerView: 1,
-            autoplay: false,
-            grabCursor: false,
-            allowTouchMove: false,
-            autoHeight: true,
-        });
-
-        swiperTeam.on('slideChange', function () {
-            // change active image
-            let currentSlide = this.activeIndex;
-        });
-
-        function goToApplicationSwiper(index, e) {
-            swiperTeam.slideTo(index, 200);
-        }
-
-    </script>
-
-    </body>
-    </html>
+        </div>
+    </div>
 {% endblock %}

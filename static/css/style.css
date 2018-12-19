@@ -9657,5 +9657,17 @@ section.rnodes > .row {
     line-height: 19px;
     color: rgba(48, 82, 120, 1);
     opacity: 1;
-    color:#305278;
+    color: #305278;
+}
+
+.faucet_success {
+    margin-top: 64px;
+    width: 375px;
+    height: 25px;
+    font-size: 18px;
+    font-family: poppins-light-italic;!important;
+    font-weight: 300;
+    line-height: 27px;
+    color: rgba(112, 184, 32, 1);!important;
+    opacity: 1;
 }
