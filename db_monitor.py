@@ -56,7 +56,7 @@ def save_blocks_txs(start_block_id):
             logger.info('saving block: #%s', str(temp_id))
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
-            timestamp = block['timestamp']/1000
+            timestamp = block_['timestamp']
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
             for transaction_id in range(transaction_cnt):
@@ -99,6 +99,8 @@ def block_formatter(block):
     for k, v in block.items():
         if k == 'miner':
             block_[k] = v.lower()
+        elif k == 'timestamp':
+            block_[k] = v/1000
         elif type(v) == hexbytes.HexBytes:
             block_[k] = v.hex()
         else:
