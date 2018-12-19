@@ -1,14 +1,18 @@
 from urllib.parse import unquote
 
+from cpc_fusion import Web3
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views.generic.base import View
 from pure_pagination import PageNotAnInteger, Paginator
 
-from cpchain_test.settings import cf
+from cpchain_test.config import cfg
 
 from .faucet import Faucet
 from .models import *
+
+chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
+cf = Web3(Web3.HTTPProvider(chain))
 
 
 # Create your views here.

@@ -2,9 +2,11 @@ import threading
 import time
 
 from pymongo import MongoClient
-
-from cpchain_test.settings import cf
+from cpc_fusion import Web3
 from cpchain_test.config import cfg
+
+chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
+cf = Web3(Web3.HTTPProvider(chain))
 
 FAUCET_VALUE = 100 * 1e+18
 LIMIT_COIN = 100 * 1e+18
