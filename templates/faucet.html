@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block custom_head %}
 
 {% endblock %}
@@ -16,23 +17,23 @@
             <div class="col-12 mb-4 px-0" style="margin-bottom: 64px">
                 <hr class="right-hr">
             </div>
-            <p>Cpchain faucet is an application to collect CPC test coins for free. Cpchain testnet is published,  and you can install and try it now.</p>
-            <p>The rules of collecting free samples from CPC faucet are as follows:</p>
-            <div class="rules">1. CPC address can only apply for test coins once a day, and the one succeeds can receive 100 CPC each time. The total amount of free samples is limited to 10,000 for each Cpchain address.</div>
-            <div class="rules">2. The total amount of free samples issued by Cpchain faucet is up to 100,000 CPC each day. Cpchain faucet is about to stop providing test coins once it reaches this limit. It is available to apply for test coins the next day.</div>
+            <p>{% trans 'Cpchain faucet is an application to collect CPC test coins for free. Cpchain testnet is published,  and you can install and try it now.' %}</p>
+            <p>{% trans 'The rules of collecting free samples from CPC faucet are as follows:' %}</p>
+            <div class="rules">{% trans '1. CPC address can only apply for test coins once a day, and the one succeeds can receive 100 CPC each time. The total amount of free samples is limited to 10,000 for each Cpchain address.' %}</div>
+            <div class="rules">{% trans '2. The total amount of free samples issued by Cpchain faucet is up to 100,000 CPC each day. Cpchain faucet is about to stop providing test coins once it reaches this limit. It is available to apply for test coins the next day.' %}</div>
             <form action="{% url 'faucet' %}" method="post">
-                <span>Your address *</span>
+                <span>{% trans 'Your address *' %}</span>
                 <input class="form-control" type="text" name="address"
                        placeholder="Enter your address to claim from our faucet.">
                 <p style="margin-top: 17px">{{ msg }}</p>
                 <div style="margin:50px auto;padding-left: 386px">
                     <button type="submit" value="Submit"
                             class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
-                            style="width: 135px;height: 50px;">Claim
+                            style="width: 135px;height: 50px;">{% trans 'Claim' %}
                     </button>
                     <button type="reset" value="Reset"
                             class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
-                            style="margin-left: 50px;width: 135px;height: 50px;">Reset
+                            style="margin-left: 50px;width: 135px;height: 50px;">{% trans 'Reset' %}
                     </button>
 
                 </div>

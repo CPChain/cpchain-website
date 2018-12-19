@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-13 16:06+0800\n"
+"POT-Creation-Date: 2018-12-18 22:03+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,45 @@ msgstr "联系我们"
 #: templates/base.html:147 templates/index.html:156
 msgid "EN"
 msgstr "中文"
+
+#: templates/faucet.html:20
+msgid ""
+"Cpchain faucet is an application to collect CPC test coins for free. Cpchain "
+"testnet is published,  and you can install and try it now."
+msgstr "cpchain faucet是CPC测试币免费领取的渠道，cpchain testnet已上线，欢迎大家安"
+"装使用。"
+
+#: templates/faucet.html:21
+msgid "The rules of collecting free samples from CPC faucet are as follows:"
+msgstr "CPC测试币领取规则如下："
+
+#: templates/faucet.html:22
+msgid ""
+"1. CPC address can only apply for test coins once a day, and the one "
+"succeeds can receive 100 CPC each time. The total amount of free samples is "
+"limited to 10,000 for each Cpchain address."
+msgstr "1. 每个cpchain地址每天限领取一次，每次领取100 CPC，每个地址总共可领取10000 CPC；"
+
+#: templates/faucet.html:23
+msgid ""
+"2. The total amount of free samples issued by Cpchain faucet is up to "
+"100,000 CPC each day. Cpchain faucet is about to stop providing test coins "
+"once it reaches this limit. It is available to apply for test coins the next "
+"day."
+msgstr "2. cpchain faucet每天发放上限为100，000 CPC，超过上限则当天停止发放，用户"
+"可以第二天继续申请；"
+
+#: templates/faucet.html:25
+msgid "Your address *"
+msgstr "您的邮箱*"
+
+#: templates/faucet.html:32
+msgid "Claim"
+msgstr "申领"
+
+#: templates/faucet.html:36
+msgid "Reset"
+msgstr "重置"
 
 #: templates/index.html:197
 msgid " A new distributed infrastructure for next generation IoT "
@@ -270,7 +309,7 @@ msgid "Q2 / 2019"
 msgstr "2019年第二季度"
 
 #: templates/index.html:650
-msgid "PDash 3 release featuring <br> decentralized  market"
+msgid "PDash 3 release featuring<br> decentralized  market"
 msgstr "发布以去中心化市场为特色的PDash 3"
 
 #: templates/index.html:658 templates/index.html:787
@@ -278,7 +317,7 @@ msgid "Q2 / 2020"
 msgstr "2020年第二季度"
 
 #: templates/index.html:660
-msgid "PDash 5 release featuring <br> open ecosystem"
+msgid "PDash 5 release featuring<br> open ecosystem"
 msgstr "发布以开放式生态系统为特色的PDash 5"
 
 #: templates/index.html:668 templates/index.html:722 templates/index.html:796
@@ -340,7 +379,7 @@ msgid "User and developer <br> community building"
 msgstr "用户和开发者社区建设"
 
 #: templates/index.html:756
-msgid "IoT-chain specifications <br> and patent"
+msgid "IoT-chain specifications<br> and patent"
 msgstr "物联网-链规范和专利"
 
 #: templates/index.html:767
@@ -348,7 +387,7 @@ msgid "Token model for chains"
 msgstr "发布物联网-链和钱包"
 
 #: templates/index.html:779
-msgid "Iot-chain for specialized industries <br> SDK release"
+msgid "Iot-chain for specialized industries<br> SDK release"
 msgstr "发布特色产业SDK的物联网-链"
 
 #: templates/index.html:789
