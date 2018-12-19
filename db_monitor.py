@@ -56,7 +56,7 @@ def save_blocks_txs(start_block_id):
             logger.info('saving block: #%s', str(temp_id))
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
-            timestamp = block['timestamp']
+            timestamp = block['timestamp']/1000
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
             for transaction_id in range(transaction_cnt):
