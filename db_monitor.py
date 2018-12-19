@@ -100,7 +100,7 @@ def block_formatter(block):
         if k == 'miner':
             block_[k] = v.lower()
         elif k == 'timestamp':
-            block_[k] = v/1000000000
+            block_[k] = v/1000
         elif type(v) == hexbytes.HexBytes:
             block_[k] = v.hex()
         else:
