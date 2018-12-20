@@ -18,9 +18,8 @@ def coin_update():
     faucet_collection.update({'coins_daily': {'$exists': True}}, {"$set": {"coins_daily": EVERYDAY}}, True)
 
 
-# schedule.every().day.do(coin_update)
+schedule.every().day.do(coin_update)
 
-schedule.every(1).minutes.do(coin_update)
 
 if __name__ == '__main__':
 
