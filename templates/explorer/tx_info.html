@@ -66,7 +66,7 @@
                     {% if tx_dict.to %}
                         <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
                     {% else %}
-                        <a href="#">Contract Creation</a>
+                        <a href="{% url 'explorer:address' contract %}">Contract Creation</a>
                     {% endif %}
                 </div>
             </div>
