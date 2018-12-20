@@ -114,8 +114,7 @@ def tx_formatter(tx, timestamp, status):
     for k, v in tx.items():
         if type(v) == hexbytes.HexBytes:
             tx_[k] = v.hex()
-        if k == 'value':
-            tx_[k] = float(v)
+
         elif k == 'from' or k == 'to':
             if v:
                 tx_[k] = v.lower()
@@ -123,6 +122,8 @@ def tx_formatter(tx, timestamp, status):
                 tx_[k] = v
         else:
             tx_[k] = v
+        if k == 'value':
+            tx_[k] = float(v)
     tx_['timestamp'] = timestamp
     tx_['status'] = status
     tx_['txfee'] = tx_['gas'] / tx_['gasPrice']
