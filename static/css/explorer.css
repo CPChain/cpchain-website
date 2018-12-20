@@ -299,8 +299,8 @@
 
 .info-table .info-table-list .info-table-list-content .table .row-content {
     border-radius: 2px;
-    -webkit-box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.05);
-    box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.05);
+    -webkit-box-shadow: 0 0 9px 3px rgba(48, 82, 120, 0.05);
+    box-shadow: 0 0 9px 3px rgba(48, 82, 120, 0.05);
     margin: 8px 0;
     padding-left: 16px;
     height: 50px;
@@ -318,11 +318,11 @@
 
 }
 
-.info-table .info-table-list .info-table-list-content .table .row-content:hover {
-    background: rgba(48, 82, 120, 0.05);
-    -webkit-box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);
-    box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);
-}
+/*.info-table .info-table-list .info-table-list-content .table .row-content:hover {*/
+    /*background: rgba(48, 82, 120, 0.05);*/
+    /*-webkit-box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);*/
+    /*box-shadow: 2px 2px 9px rgba(48, 82, 120, 0.15);*/
+/*}*/
 
 .info-table .info-table-list .info-table-list-content .table .row .col, .info-table .info-table-list .info-table-list-content .table .row .col-1 {
     padding: 0 15px 0 0;

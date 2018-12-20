@@ -41,8 +41,7 @@
                                 <div class="col text-truncate"><a style="color: #1BA3FF"
                                                                   href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
                                 </div>
-                                <div class="col text-truncate" style="margin-left: -40px;" v-cloak>>[[
-                                    convertTime({{ b.timestamp }}) ]] ago
+                                <div class="col text-truncate" style="margin-left: -40px;" v-cloak>>[[ convertTime({{ b.timestamp }}) ]] ago
                                 </div>
                                 <div class="col text-truncate"><a
                                         href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a>
