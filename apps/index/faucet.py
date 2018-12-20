@@ -8,8 +8,8 @@ from cpchain_test.config import cfg
 faucet_chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
 cf = Web3(Web3.HTTPProvider(faucet_chain))
 
-FAUCET_VALUE = 100 * 1e+18
-LIMIT_COIN = 100 * 1e+18
+FAUCET_VALUE = int(100 * 1e+18)
+LIMIT_COIN = int(100 * 1e+18)
 DAY_SECENDS = 60 * 60 * 24
 
 mongo = cfg['db']['ip']
