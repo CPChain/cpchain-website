@@ -79,7 +79,7 @@
                                             <a href="{% url 'community' %}?title={{ progress_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
-                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         src="{% static 'img/logo.svg' %}"
                                                          alt="Card image cap">
                                                 </div>
                                             </a>
@@ -150,7 +150,7 @@
                                             <a href="{% url 'community' %}?title={{ release_new.title|urlencode }}">
                                                 <div class="image-smaller-holder">
                                                     <img class="card-img-top bottom-cards disable-select h-100"
-                                                         src="https://cpchain.io/wp-content/themes/cpchain/assets/img/logo.svg"
+                                                         src="{% static 'img/logo.svg' %}"
                                                          alt="Card image cap">
                                                 </div>
                                             </a>
