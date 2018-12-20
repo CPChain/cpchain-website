@@ -39,7 +39,7 @@ class Faucet:
     @staticmethod
     def update(addr):
         coins = faucet_collection.find({})[0]['coins_daily']
-        faucet_collection.update({}, {"$set": {"coins_daily": coins - FAUCET_VALUE}})
+        faucet_collection.update({'coins_daily': {'$exists': True}}, {"$set": {"coins_daily": coins - FAUCET_VALUE}})
         faucet_collection.insert_one(
             {'address': addr, 'value': float(FAUCET_VALUE), 'time': time.time()})
 
