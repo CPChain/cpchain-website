@@ -37,11 +37,11 @@ class RNode:
     except:
         rnode = None
     try:
-        view = rnode_collection.find({'view':{'$exists':True}})[0]['view']
+        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
     except:
         view = 0
     try:
-        term = rnode_collection.find({'term':{'$exists':True}})[0]['term']
+        term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
     except:
         term = 0
 
@@ -50,7 +50,7 @@ class RNode:
         try:
             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
             RNode.view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
-            RNode.term = rnode_collection.find({'term':{'$exists':True}})[0]['term']
+            RNode.term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
         except Exception as e:
             print('rnode >>>>', e)
 
@@ -67,7 +67,6 @@ class Committee:
             Committee.committee = list(proposer_collection.find())
         except:
             print('committee connection error')
-
 
 
 def explorer(request):
@@ -250,7 +249,7 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
-    return render(req, 'explorer/block_list.html', {'blocks': blocks})
+    return render(req, 'explorer/block_list.html', {'blocks': blocks, 'reward': BLOCK_REWARD})
 
 
 def block(req, block_identifier):
@@ -341,7 +340,7 @@ def address(req, address):
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
-        code = contract_collection.find({'address':raw_address})[0]['code']
+        code = contract_collection.find({'address': raw_address})[0]['code']
         code = cf.toHex(code)
     except Exception as e:
         code = '0x'

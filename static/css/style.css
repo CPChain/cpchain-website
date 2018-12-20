@@ -51,13 +51,11 @@
 }
 
 input::-ms-input-placeholder {
-    text-align: center;
-    color: #a9bcd4;
+    color: red;
 }
 
 input::-webkit-input-placeholder {
-    text-align: center;
-    color: #a9bcd4;
+    color: red;
 }
 
 /*!

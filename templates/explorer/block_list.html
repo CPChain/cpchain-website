@@ -11,7 +11,7 @@
     <title>Block Infomation &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
-    <body>
+    <body class="page-template-news">
     {% include "explorer/_searchbar.html" %}
 
     <div class="container">
@@ -51,7 +51,7 @@
                                         href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
                                 <div class="col text-truncate" style="margin-left: 80px">{{ b.gasUsed }}</div>
                                 <div class="col text-truncate">{{ b.gasLimit }}</div>
-                                <div class="col text-truncate">5 CPC</div>
+                                <div class="col text-truncate">{{ reward }} CPC</div>
                             </div>
                         {% endfor %}
                     </div>
