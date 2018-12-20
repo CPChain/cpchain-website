@@ -10,6 +10,7 @@ from cpchain_test.config import cfg
 
 from .faucet import Faucet
 from .models import *
+from .tasks import faucet
 
 chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
@@ -24,6 +25,7 @@ class IndexView(View):
         main_teams = TeamMate.objects.filter(is_main=True)
         global_teams = TeamMate.objects.filter(is_main=False)
         return render(req, 'index.html', locals())
+
 
 
 class CommunityView(View):
@@ -102,6 +104,7 @@ class AppView(View):
         return render(req, app + '.html')
 
 
+
 class FaucetView(View):
     def get(self, req):
         return render(req, 'faucet.html')
@@ -112,8 +115,7 @@ class FaucetView(View):
         if cf.isAddress(address):
             if Faucet.valid():
                 if Faucet.limit(address):
-                    Faucet.send(address)
-                    Faucet.update(address)
+                    faucet.delay(address)
                     return redirect('receipt')
                 else:
                     return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
