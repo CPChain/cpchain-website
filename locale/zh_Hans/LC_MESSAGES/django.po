@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-18 22:03+0800\n"
+"POT-Creation-Date: 2018-12-20 11:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,30 +68,38 @@ msgstr "联系我们"
 msgid "EN"
 msgstr "中文"
 
-#: templates/faucet.html:20
+#: templates/faucet-receipt.html:19 templates/faucet.html:20
 msgid ""
-"Cpchain faucet is an application to collect CPC test coins for free. Cpchain "
-"testnet is published,  and you can install and try it now."
-msgstr "CPChain Faucet用于申请领取免费的CPC测试币，CPChain测试网已发布，快来安装试用吧！"
+"In CPChain faucet, you can apply for free CPC test coins and get more "
+"involving experience in the newly-published CPChain Alpha Mainnet. Feel free "
+"to download and test it! "
+msgstr ""
+"CPChain Faucet用于申请领取免费的CPC测试币，CPChain测试网已发布，快来安装试用吧！"
 
-#: templates/faucet.html:21
-msgid "The rules of collecting free samples from CPC faucet are as follows:"
+#: templates/faucet-receipt.html:20 templates/faucet.html:21
+msgid "The rules of collecting free CPC test coins are as follows:"
 msgstr "CPC测试币领取规则如下："
 
-#: templates/faucet.html:22
+#: templates/faucet-receipt.html:21 templates/faucet.html:22
 msgid ""
-"1. CPC address can only apply for test coins once a day, and the one "
-"succeeds can receive 100 CPC each time. The total amount of free samples is "
-"limited to 10,000 for each Cpchain address."
-msgstr "1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为10,000 CPC；"
+"1. Each CPC address can only obtain test coins once a day. The daily limit "
+"is 100 CPC and an address can apply for 10.000 CPC test coins at most."
+msgstr ""
+"1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为"
+"10,000 CPC；"
 
-#: templates/faucet.html:23
+#: templates/faucet-receipt.html:22 templates/faucet.html:23
 msgid ""
-"2. The total amount of free samples issued by Cpchain faucet is up to "
-"100,000 CPC each day. Cpchain faucet is about to stop providing test coins "
-"once it reaches this limit. It is available to apply for test coins the next "
-"day."
-msgstr "2. CPChain Faucet每天发放上限为100,000 CPC，当天超过上限则停止发放，用户可第二天继续申请；"
+"2. The total daily limitation of CPC test coins issued by CPChain Faucet is "
+"up to 100,000. The Faucet will stop releasing test coins once the limitation "
+"has been reached. Users can apply the next day. "
+msgstr ""
+"2. CPChain Faucet每天发放上限为100,000 CPC，当天超过上限则停止发放，用户可第"
+"二天继续申请；"
+
+#: templates/faucet-receipt.html:23
+msgid "Success！You have gotten your free CPC."
+msgstr "恭喜你，领取成功！"
 
 #: templates/faucet.html:25
 msgid "Your address *"

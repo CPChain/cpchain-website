@@ -36,9 +36,11 @@
             </div>
             <div class="row info-row">
                 <div class="col-3">Transactions:</div>
-                <div class="col poppins-light">{{ txs_count }} Txs</div>
+                <div class="col poppins-light">{{ txs_count }} txs</div>
             </div>
-            <div class="info-table-subtitle info-table-subtitle-list">Transactions</div>
+            <div class="info-table-subtitle info-table-subtitle-list"
+                 style="border-bottom: solid 2px #305278;width: 186px;">Transactions
+            </div>
             <div class="info-table-list">
                 <div class="info-table-list-title">
                     Latest {% if txs_count < 25 %}{{ txs_count }}
@@ -72,7 +74,8 @@
                                         <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
                                     {% else %}
                                         <a href="{% url 'explorer:address' tx.contract %}"
-                                           class="text-truncate col px-0" title="{{ tx.contract }}">Contract Creation</a>
+                                           class="text-truncate col px-0" title="{{ tx.contract }}">Contract
+                                            Creation</a>
                                     {% endif %}
 
                                 </div>
