@@ -346,9 +346,8 @@ def address(req, address):
         code = '0x'
     # address info
     txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
-    # set in/out
+    # set flag
     for d in txs:
-
         if d['from'] == d['to']:
             d['flag'] = 'self'
         elif d['from'] == address:

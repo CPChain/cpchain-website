@@ -352,6 +352,17 @@
     color: #5b8c00;
 }
 
+.flag-self span {
+    display: block;
+    line-height: 26px;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    border-radius: 4px;
+    background: #7493b5;
+    color: #305278;
+}
+
 .info-table .info-table-list .info-table-list-content .table .row .col-1.flag-out span {
     display: block;
     line-height: 26px;
