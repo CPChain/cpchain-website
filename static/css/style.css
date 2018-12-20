@@ -4561,6 +4561,9 @@ button.bg-dark:focus {
 .border-white {
     border-color: #fff !important;
 }
+.rhea{
+    width:135px;!important;
+}
 
 .rounded {
     border-radius: 0.25rem !important;
