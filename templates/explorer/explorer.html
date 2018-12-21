@@ -170,47 +170,10 @@
     <script src="/static/js/echarts-linear-options.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-{#    <script type='text/javascript'#}
-{#            src='https://cpchain.io/wp-content/themes/cpchain/assets/js/skip-link-focus-fix.js?ver=1.0'></script>#}
-{#    <script type='text/javascript' src='https://cpchain.io/wp-includes/js/wp-embed.min.js?ver=4.9.7'></script>#}
-
-{#    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/swiper/dist/js/swiper.min.js"></script>#}
-{#    <script src="https://cpchain.io/wp-content/themes/cpchain/assets/node_modules/vanilla-tilt/dist/vanilla-tilt.min.js"></script>#}
     <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 
     <script>
-
-        // swiper for application pages
-        var swiperTeam = new Swiper('.swiper-container-applications', {
-            slidesPerView: 1,
-            autoplay: false,
-            grabCursor: false,
-            allowTouchMove: false,
-            autoHeight: true,
-        });
-
-        swiperTeam.on('slideChange', function () {
-            // change active image
-            let currentSlide = this.activeIndex;
-        });
-
-        function goToApplicationSwiper(index, e) {
-            swiperTeam.slideTo(index, 200);
-        }
-
-    </script>
-
-    <script>
         var mainChart = echarts.init(document.getElementById('chart'), 'echarts-theme-walden')
-
-        /*
-            更新图像数据
-            data: Array, [{
-            time: 数据日期,
-            bk: 当天区块数,
-            tx: 当天交易数
-            }, {}, ...]
-        */
 
         function updateChartData(data) {
             var fetchedData = data;
