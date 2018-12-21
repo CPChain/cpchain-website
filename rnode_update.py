@@ -26,14 +26,19 @@ def save_rnode_proposer():
         if rnodes:
             rnode_collection.remove({})
             rnode_collection.insert_many(rnodes)
+
         proposer = cf.cpc.getBlockGenerationInfo
         if proposer:
             proposer_collection.remove({})
             proposer_collection.insert_many(proposer)
+
         currentTerm = cf.cpc.getCurrentTerm
+        if currentTerm:
+            rnode_collection.update({'term':{'$exists':True}}, {'term': currentTerm}, True)
+
         currentView = cf.cpc.getCurrentView
-        rnode_collection.update({'term':{'$exists':True}}, {'term': currentTerm}, True)
-        rnode_collection.update({'view':{'$exists':True}}, {'view': currentView}, True)
+        if currentView:
+            rnode_collection.update({'view':{'$exists':True}}, {'view': currentView}, True)
 
         time.sleep(REFRESH_INTERVAL)
 

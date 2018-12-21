@@ -49,10 +49,10 @@ class RNode:
     def update():
         try:
             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-            RNode.view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
-            RNode.term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
+            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
+            RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
         except Exception as e:
-            print('rnode >>>>', e)
+            print('rnode update error>>>>>', e)
 
 
 class Committee:
@@ -65,8 +65,8 @@ class Committee:
     def update():
         try:
             Committee.committee = list(proposer_collection.find())
-        except:
-            print('committee connection error')
+        except Exception as e:
+            print('committee update error>>>>>', e)
 
 
 def explorer(request):
