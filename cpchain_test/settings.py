@@ -25,10 +25,9 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hunoh46%2z52^z1s%gu#b+02ezjv9ba^e!b*4b*txxuijqw^m!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

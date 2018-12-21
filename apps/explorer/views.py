@@ -5,21 +5,13 @@ import time
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
-from pymongo import DESCENDING, MongoClient
-from cpchain_test.config import cfg
 from cpchain_test.settings import cf
 
-try:
-    import uwsgi
-except:
-    print('uwsgi import error')
+from pymongo import DESCENDING, MongoClient
+from cpchain_test.config import cfg
 
-REFRESH_INTERVAL = 1
-ADD_SIZE = 42
-
-# config.ini
 mongo = cfg['db']['ip']
-CLIENT = MongoClient(host=mongo, port=27017)
+CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
@@ -27,11 +19,53 @@ contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
 
+
+try:
+    import uwsgi
+except:
+    print('running local, uwsgi not work..')
+
+REFRESH_INTERVAL = 1
+ADD_SIZE = 42
+
+# config.ini
+
 DAY_SECENDS = 60 * 60 * 24
 BLOCK_REWARD = 500
 
 
+from contextlib import contextmanager
+import time
+
+@contextmanager
+def timer(name):
+    start = time.time()
+    yield
+    print(f'[{name}] done in {time.time() - start:.2f} s')
+
+
+
+def get_chart():
+    ## chart
+    now = int(time.time())
+    day_zero = now - now % DAY_SECENDS
+    chart = []
+    for i in range(12):
+        gt_time = day_zero - (i + 1) * DAY_SECENDS
+        lt_time = day_zero - i * DAY_SECENDS
+        now_ts = now - (i + 1) * DAY_SECENDS
+        time_local = time.localtime(now_ts)
+        dt = time.strftime('%m/%d', time_local)
+        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
+        add_day = address_collection.find({'timestamp': {'$lt': lt_time}}).count()
+        chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
+    chart.reverse()
+    return chart
+
+chart = get_chart()
+
 class RNode:
+
     try:
         rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
     except:
@@ -52,7 +86,7 @@ class RNode:
             RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
         except Exception as e:
-            print('rnode update error>>>>>', e)
+            pass
 
 
 class Committee:
@@ -72,23 +106,7 @@ class Committee:
 def explorer(request):
     height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
-
-    ## chart
-    now = int(time.time())
-    day_zero = now - now % DAY_SECENDS
-    chart = []
-    for i in range(12):
-        gt_time = day_zero - (i + 1) * DAY_SECENDS
-        lt_time = day_zero - i * DAY_SECENDS
-        now_ts = now - (i + 1) * DAY_SECENDS
-        time_local = time.localtime(now_ts)
-        dt = time.strftime('%m/%d', time_local)
-        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        add_day = address_collection.find({'timestamp': {'$lt': lt_time}}).count()
-        chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
-    chart.reverse()
-
+    t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
     for b in b_li:
@@ -124,6 +142,7 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         txs.append(tx)
+
     txs_count = txs_collection.count_documents({})
     header = {
         'blockHeight': height,
@@ -196,15 +215,16 @@ def wshandler(req):
             data = json.dumps(data)
             uwsgi.websocket_send(data)
             temp_height += 1
+            time.sleep(0.5)
         else:
             time.sleep(REFRESH_INTERVAL)
-
-
-def get_tps(txs_count):
-    start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-    current_timestamp = int(time.time())
-    spend_time = current_timestamp - start_timestamp
-    return round(txs_count / spend_time, 3)
+#
+#
+# def get_tps(txs_count):
+#     start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
+#     current_timestamp = int(time.time())
+#     spend_time = current_timestamp - start_timestamp
+#     return round(txs_count / spend_time, 3)
 
 
 def search(req):
@@ -339,6 +359,7 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
+
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
