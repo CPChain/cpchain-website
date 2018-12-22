@@ -20,7 +20,7 @@ http="0.0.0.0:8000"
 
 if [ -f uwsgi.pid ]; then
     uwsgi --stop uwsgi.pid
-    sleep 2
+    sleep 3
 fi
 
 echo "[Mode]$mode"

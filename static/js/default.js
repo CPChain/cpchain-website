@@ -7,16 +7,13 @@ if (location.protocol === 'https:') {
 }
 
 $(function () {
-
-        function connectsocket(stype) {
+        function connectsocket() {
             ws = new WebSocket(socketurl);
             ws.onopen = function () {
-                console.log("->Connected..");
                 if (ws.readyState == WebSocket.OPEN) {
-                    ws.send('{"event": "' + stype + '"}');
+                    console.log("->Connected..");
                 } else {
-                    console.log("->Connection is closed");
-                    toggleSwitchDisplay(false);
+                    console.log("->Connection open failed");
                 }
             };
             ws.onmessage = function (evt) {
@@ -37,41 +34,30 @@ $(function () {
                 height = block.id;
                 current_height = $('#block_id').text().slice(1,);
                 if (height > current_height) {
-
                     autoGenerateBlock(block)
                 }
             };
 
             ws.onerror = function () {
-                console.log("->socket error");
+                console.log("->websocket error");
             };
             ws.onclose = function () {
                 console.log("->disconnected..");
-                connectsocket('gs');
+                reconnect();
             };
         }
 
-        connectsocket('gs');
+        connectsocket();
 
-        function toggleSwitchDisplay(blnStatus) {
-            if (blnStatus == false) {
-                $("#togglesocket").prop("checked", false);
-            } else {
-                $("#togglesocket").prop("checked", true);
-            }
+        function reconnect() {
+            setTimeout(function () {
+                connectsocket();
+            }, 2000);
         }
 
-        $('#togglesocket').change(function () {
-            if ($(this).is(":checked")) {
-                connectsocket("gs");
-            } else {
-                ws.close();
-                console.log('->Connection is closed')
-            }
-        });
-
-
+        window.onbeforeunload = function() {
+            ws.close()
+        }
     }
 )
 ;
-
