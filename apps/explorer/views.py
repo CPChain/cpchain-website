@@ -19,7 +19,6 @@ contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
 
-
 try:
     import uwsgi
 except:
@@ -33,16 +32,15 @@ ADD_SIZE = 42
 DAY_SECENDS = 60 * 60 * 24
 BLOCK_REWARD = 500
 
-
 from contextlib import contextmanager
 import time
+
 
 @contextmanager
 def timer(name):
     start = time.time()
     yield
     print(f'[{name}] done in {time.time() - start:.2f} s')
-
 
 
 def get_chart():
@@ -62,10 +60,11 @@ def get_chart():
     chart.reverse()
     return chart
 
+
 chart = get_chart()
 
-class RNode:
 
+class RNode:
     try:
         rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
     except:
@@ -218,6 +217,8 @@ def wshandler(req):
             time.sleep(0.5)
         else:
             time.sleep(REFRESH_INTERVAL)
+
+
 #
 #
 # def get_tps(txs_count):
@@ -359,7 +360,6 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
-
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
