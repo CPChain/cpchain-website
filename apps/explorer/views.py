@@ -70,7 +70,7 @@ class RNode:
     except:
         rnode = None
     try:
-        view = rnode_collection.find({'view': {'$exists': True}})[0]['view'] + 1
+        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
     except:
         view = 1
     try:
