@@ -44,10 +44,7 @@
         font-family: "Poppins", sans-serif !important;
     }
 
-    .exchangesImg {
-        width: 270px;
-        height: 100px;
-    }
+
 </style>
 <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
 <div id="page" class="site">
@@ -98,7 +95,7 @@
                     </li>
                     <li class="dropdown bg-transparent">
                         <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                            <a class="font-weight-bold dropbtn-links p-0 small d-none d-sm-block" onclick="openMenu(0)">
+                            <a class="font-weight-bold dropbtn-links p-0 small d-none d-sm-block">
                                  {% trans 'Developer' %}
                             </a>
                             <div class="image-holder d-flex align-items-center justify-content-center">
@@ -112,15 +109,15 @@
                                     </g>
                                 </svg>
                             </div>
-                            <ul class="dropdown-menu list-unstyled rounded">
-                                <a href="{% url 'developer' %}" class="small">{% trans 'Docs' %}</a>
-                                <a href="{% url 'faucet' %}" class="small">{% trans 'Faucet' %}</a>
+                            <ul class="dropdown-menu rounded">
+                                <a href="{% url 'developer' %}" class="small ">{% trans 'Docs' %}</a>
+                                <a href="{% url 'faucet' %}" class="small ">{% trans 'Faucet' %}</a>
                             </ul>
                         </div>
                     </li>
                     <li class="dropdown bg-transparent">
                         <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                            <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block" onclick="openMenu(0)">
+                            <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
                                 {% trans 'Explorer' %}
                             </a>
                             <div class="image-holder d-flex align-items-center justify-content-center">
@@ -134,7 +131,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <ul class="dropdown-menu list-unstyled rounded rhea">
+                            <ul class="dropdown-menu rounded rhea">
                                 <a href="{% url 'explorer:explorer' %}" class="small">{% trans 'Alpha Mainnet (Rhea)' %}</a>
                             </ul>
                         </div>
@@ -371,7 +368,7 @@
                                     <div class="left-side left-side col-lg-6 col-xl-6 col-md-6 col-sm-12">
                                         <div class="box">
                                             <div class="left-side d-flex align-items-center justify-content-start mb-sm-5 mb-5">
-                                                <div class="image-holder pr-4">
+                                                <div class="image-holder pr-4 hidden-md hidden-xs">
                                                     <svg id="14e9cb86-cfd0-4b63-b1f9-de49dc49d49e"
                                                          data-name="Layer 1"
                                                          xmlns="http://www.w3.org/2000/svg" width="50.03"
@@ -381,11 +378,11 @@
                                                               transform="translate(0.04)" fill="#305278"/>
                                                     </svg>
                                                 </div>
-                                                <p class="mb-0 font-weight-normal" style="width: 396px;">
+                                                <p class="mb-0 font-weight-normal" >
                                                     {% blocktrans %}To build a new world of Internet of Things where data from IoT devices are highly integrated and valuable{% endblocktrans %}</p>
                                             </div>
                                             <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
-                                                <div class="image-holder pr-4">
+                                                <div class="image-holder pr-4 hidden-md hidden-xs">
                                                     <svg id="974a1696-eac6-4ce1-b171-c84431b86c53"
                                                          data-name="Layer 1"
                                                          xmlns="http://www.w3.org/2000/svg" width="50.5"
@@ -404,7 +401,7 @@
                                     </div>
                                     <div class="right-side left-side col-lg-6 col-xl-6 col-md-6 col-sm-12">
                                         <div class="left-side d-flex align-items-center justify-content-start mb-sm-5 mb-5">
-                                            <div class="image-holder pr-4">
+                                            <div class="image-holder pr-4 hidden-xs hidden-md ">
                                                 <svg id="78a95932-5b80-4acf-a102-741d23da1924" data-name="Layer 1"
                                                      xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                                      viewBox="0 0 50 50"><title>3</title>
@@ -416,7 +413,7 @@
                                                 {% blocktrans %}To fully develop and optimize CPChain's core technology and seek cooperation with partners to fulfill industrial landing{% endblocktrans %}</p>
                                         </div>
                                         <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
-                                            <div class="image-holder pr-4">
+                                            <div class="image-holder pr-4 hidden-md hidden-xs">
                                                 <svg id="59aa2a35-6d45-479d-acf0-05a7addacd94" data-name="Layer 1"
                                                      xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                                      viewBox="0 0 50 50"><title>4</title>
@@ -447,13 +444,11 @@
                                     <h2 class="text-left poppins-font" style="font-weight: bold;padding-top: 150px">{% trans 'Application' %}</h2>
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
-                                <div class="middle d-flex flex-row w-100 mb-sm-5 mb-2">
-                                    <div class="col-6 d-sm-block d-none" style="margin-right: -120px"></div>
-                                    <div>
+                                <div class="middle d-flex flex-row w-100 col-xl-10 col-md-10 mb-sm-5 mb-2">
+                                    <div class="col-6 d-sm-block d-none" ></div>
                                         <p style="line-height: 1.6">
                                             {% blocktrans %}CPChain's distributed infrastructure will provide a full process solution for data acquisition, storage, sharing and transacting for large-scale distributed IoT systems. Our technology has the potential to revolutionize multiple industries including intelligent transportation, smart medical, public security, and intelligent manufacturing, etc.{% endblocktrans %}
                                         </p>
-                                    </div>
                                 </div>
                                 <div class="bottom col-12">
                                     <div class="box-holder">
@@ -1100,10 +1095,10 @@
                                         <div class="swiper-slide">
 
                                             <div class="bottom partners d-flex align-items-center justify-content-center">
-                                                <div class="row-first mb-4">
+                                                <div class="row-first">
                                                     {% for p in partners %}
 
-                                                        <div class="image-holder exchangesImg">
+                                                        <div class="image-holder mb-4">
                                                             <a href="{{ p.link }}" target="_blank">
                                                                 <img class="h-100 disable-select img-fluid d-block"
                                                                      src="{{ MEDIA_URL }}{{ p.image }}">
@@ -1117,10 +1112,10 @@
 
                                         <div class="swiper-slide">
                                             <div class="bottom investor d-flex align-items-center justify-content-center">
-                                                <div class="row-first mb-4">
+                                                <div class="row-first">
                                                     {% for i in investors %}
 
-                                                        <div class="image-holder exchangesImg">
+                                                        <div class="image-holder mb-4">
                                                             <a href="{{ i.link }}" target="_blank">
                                                                 <img class="h-100 disable-select img-fluid d-block"
                                                                      src="{{ MEDIA_URL }}{{ i.image }}">
@@ -1149,7 +1144,7 @@
                                 </div>
                                 <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
                                     {% for e in exchanges %}
-                                        <div class="image-holder exchangesImg">
+                                        <div class="image-holder col-sm-12">
                                             <a href="{{ e.link }}" target="_blank">
                                                 <img class="h-100 disable-select img-fluid d-block"
                                                      src="{{ MEDIA_URL }}{{ e.image }}">
@@ -1181,10 +1176,10 @@
 
                                     <div class="right-side-holder">
                                         <div class="swiper-contact-navigation col-12 d-flex flex-row pt-3 pb-1 py-sm-0 px-0">
-                                            <div class="left-side col-6 pr-sm-3 pr-3 swiper-contact-button-prev swiper-button-disabled">
+                                            <div class="left-side col-6 pr-sm-2 pr-2 swiper-contact-button-prev swiper-button-disabled">
                                                 <h5 class="text-right">
                                                     <a href="javascript:void(0)" class="font-weight-normal"
-                                                       style="font-family: 'Poppins'; font-size: 18px;">
+                                                       style="font-family: 'Poppins';">
                                                         {% blocktrans %}I have a question{% endblocktrans %}
                                                     </a>
                                                 </h5>
@@ -1193,7 +1188,7 @@
                                             <div class="right-side col-6 pl-sm-3 pl-1 pr-2 swiper-contact-button-next">
                                                 <h5>
                                                     <a href="javascript:void(0)" class="font-weight-normal"
-                                                       style="font-family: 'Poppins'; font-size: 18px;">
+                                                       style="font-family: 'Poppins';">
                                                         {% blocktrans %}Business/Partnership{% endblocktrans %}
                                                     </a>
                                                 </h5>
