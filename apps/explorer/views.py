@@ -82,7 +82,7 @@ class RNode:
     def update():
         try:
             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']+1
+            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
         except Exception as e:
             pass
