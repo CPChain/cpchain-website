@@ -73,7 +73,7 @@ echartOption = {
         },
         {
             type: 'value',
-            name: 'Byte',
+            //name: 'Byte',
             axisLabel: {
                 formatter: '{value}',
                 color: '#a9bcd4',
@@ -94,7 +94,6 @@ echartOption = {
         {
             name: 'Address Growth',
             type: 'line',
-            // data: [5, 8, 7, 12, 10, 29, 18, 22, 25],
             data: [],
             lineStyle: {
                 color: '#191970',
