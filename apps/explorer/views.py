@@ -372,6 +372,7 @@ def address(req, address):
         code = '0x'
     # address info
     txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
+    timenow = int(time.time())
     # set flag
     for d in txs:
         if d['from'] == d['to']:
@@ -384,15 +385,12 @@ def address(req, address):
         if not d['to']:
             d['contract'] = contract_collection.find({'creator': d['from']})[0]['address']
         d['value'] = cf.fromWei(d['value'],'ether')
-
+        d['timesince'] = timenow - d['timestamp']
     # timesince calc
-    timenow = int(time.time())
-    for t in txs:
-        t['timesince'] = timenow - t['timestamp']
 
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
     try:
-        balance = cf.cpc.getBalance(raw_address)
+        balance = cf.fromWei(cf.cpc.getBalance(raw_address),'ether')
     except:
         print('cf connection error')
         balance = 0
