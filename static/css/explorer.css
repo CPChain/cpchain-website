@@ -56,9 +56,12 @@
 
 
 #explorer-header .sub-font {
-    font-size: 10px;
+    font-size: 18px;
 }
-
+#explorer-header .proposer{
+    margin: 2px 4px 4px 4px;
+    display: inline-block;
+}
 #explorer-header .sep {
     border-right: 2px #d5dce4 solid;
 }

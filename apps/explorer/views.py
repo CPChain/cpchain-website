@@ -70,9 +70,9 @@ class RNode:
     except:
         rnode = None
     try:
-        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+        view = rnode_collection.find({'view': {'$exists': True}})[0]['view'] + 1
     except:
-        view = 0
+        view = 1
     try:
         term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
     except:
@@ -82,7 +82,7 @@ class RNode:
     def update():
         try:
             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
+            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']+1
             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
         except Exception as e:
             pass
@@ -148,11 +148,17 @@ def explorer(request):
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
         # 'tps': get_tps(txs_count),
-        'committee': str(RNode.view) + '/' + str(
-            Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': proposerFomatter(RNode.view),
+        'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
+    print(header)
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
+
+
+import math
+def proposerFomatter(num):
+    return "%d%s" % (num, "tsnrhtdd"[(math.floor(num / 10) % 10 != 1) * (num % 10 < 4) * num % 10::4])
 
 
 def wshandler(req):
@@ -173,8 +179,8 @@ def wshandler(req):
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
                 # 'tps': tps,
-                'committee': str(RNode.view) + '/' + str(
-                    Committee.committee[0]['TermLen']) if Committee.committee else 0,
+                'committee': proposerFomatter(RNode.view),
+                'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
 
             temp_block = block_collection.find({'number': temp_height})[0]
@@ -323,7 +329,7 @@ def txs(req):
         for tx in txs.object_list:
             if not tx['to']:
                 tx['contract'] = contract_collection.find({'txhash': tx['hash']})[0]['address']
-            tx['value'] = cf.fromWei(tx['value'],'ether')
+            tx['value'] = cf.fromWei(tx['value'], 'ether')
         return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
     txs_from_block = txs_collection.find({'blockNumber': int(block)})
@@ -384,13 +390,13 @@ def address(req, address):
         # add contract address
         if not d['to']:
             d['contract'] = contract_collection.find({'creator': d['from']})[0]['address']
-        d['value'] = cf.fromWei(d['value'],'ether')
+        d['value'] = cf.fromWei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
     # timesince calc
 
     txs.sort(key=lambda x: x['timestamp'], reverse=True)
     try:
-        balance = cf.fromWei(cf.cpc.getBalance(raw_address),'ether')
+        balance = cf.fromWei(cf.cpc.getBalance(raw_address), 'ether')
     except:
         print('cf connection error')
         balance = 0
@@ -430,9 +436,9 @@ def rnode(req):
 
 
 def committee(req):
-    epoch = RNode.term
-    round = RNode.view
+    term = RNode.term
+    view = RNode.view
     committees = Committee.committee
-    TermLen = committees[0]['TermLen'] if committees else 0
+    TermLen = committees[0]['TermLen'] if committees else 1
 
     return render(req, 'explorer/committee.html', locals())
