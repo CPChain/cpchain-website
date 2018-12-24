@@ -30,6 +30,8 @@ def save_rnode_proposer():
         proposer = cf.cpc.getBlockGenerationInfo
         if proposer:
             proposer_collection.remove({})
+            for p in proposer:
+                p['View'] += 1
             proposer_collection.insert_many(proposer)
 
         currentTerm = cf.cpc.getCurrentTerm
