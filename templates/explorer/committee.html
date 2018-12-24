@@ -11,24 +11,24 @@
     <title>Committees &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
-        <body class="page-template-news">
+    <body class="page-template-news">
 
     {% include "explorer/_searchbar.html" %}
     <div class="container">
         <div class="page-header">
-            <div class="page-header-main"  id="explorer-header">
+            <div class="page-header-main" id="explorer-header">
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
-                        <div class="text-left"><h1 class="number-font">{{ epoch }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current Epoch</h3></div>
+                        <div class="text-left"><h1 class="number-font">{{ term }}</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current Term</h3></div>
                     </a>
                     <a class="col-2" href="#">
-                        <div class="text-left"><h1 class="number-font">{{ round }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current Round</h3></div>
+                        <div class="text-left"><h1 class="number-font">{{ view }}</h1></div>
+                        <div class="text-left"><h3 class="index-font">Current View</h3></div>
                     </a>
                     <a class="col-2" href="#">
-                        <div class="text-left"><h1 class="number-font">{{ round }}/{{ TermLen }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current Proposer</h3></div>
+                        <div class="text-left"><h1 class="number-font">{{ TermLen }}</h1></div>
+                        <div class="text-left"><h3 class="index-font">Proposers</h3></div>
                     </a>
                 </div>
                 <h1 class="text-left">Current Proposers</h1>
@@ -49,10 +49,12 @@
                                 <div class="col-2 text-truncate">{{ committee.View }}</div>
                                 <div class="col-2 text-truncate">{{ committee.Term }}</div>
                                 <div class="col-6 text-truncate"><a
-                                        href="{% url 'explorer:address' committee.Proposer %}"  style="color:#1BA3FF;" >{{ committee.Proposer }}</a>
+                                        href="{% url 'explorer:address' committee.Proposer %}"
+                                        style="color:#1BA3FF;">{{ committee.Proposer }}</a>
                                 </div>
                                 <div class="col-2 text-truncate"><a
-                                        href="{% url 'explorer:block' committee.BlockNumber %}"  style="color:#1BA3FF;" >{{ committee.BlockNumber }}</a>
+                                        href="{% url 'explorer:block' committee.BlockNumber %}"
+                                        style="color:#1BA3FF;">{{ committee.BlockNumber }}</a>
                                 </div>
                             </div>
                         {% endfor %}

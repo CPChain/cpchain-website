@@ -42,9 +42,11 @@
                     <div class="text-center"><h1 class="number-font" v-text="rnode"></h1></div>
                     <div class="text-center"><h3 class="index-font">RNodes</h3></div>
                 </a>
-                <a class="col" href="{% url 'explorer:committee' %}">
-                    <div class="text-center"><h1 class="number-font" v-text="committee"></h1></div>
-                    <div class="text-center"><h3 class="index-font">Current Proposer</h3></div>
+                <a class="col text-center" href="{% url 'explorer:committee' %}">
+                    <div class="number-font proposer" v-text="committee"></div>
+                    <div class="number-font proposer sub-font">of</div>
+                    <div class="number-font proposer" v-text="proposer"></div>
+                    <div class="text-center"><h3 class="index-font">Proposers</h3></div>
 
                 </a>
             </div>
@@ -207,6 +209,7 @@
                 txs: {{ header.txs }},
                 rnode: {{ header.rnode }},
                 committee: '{{ header.committee }}',
+                proposer: '{{ header.proposer }}',
                 loaded: false,
             },
             computed: {
@@ -222,6 +225,7 @@
             explorerHeaderApp.rnode = json.rnode;
             // explorerHeaderApp.tps = json.tps;
             explorerHeaderApp.committee = json.committee;
+            explorerHeaderApp.proposer = json.proposer;
             explorerHeaderApp.loaded = true
         }
     </script>
