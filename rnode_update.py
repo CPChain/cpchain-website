@@ -38,7 +38,7 @@ def save_rnode_proposer():
 
         currentView = cf.cpc.getCurrentView
         if currentView:
-            rnode_collection.update({'view':{'$exists':True}}, {'view': currentView}, True)
+            rnode_collection.update({'view':{'$exists':True}}, {'view': currentView+1}, True)
 
         time.sleep(REFRESH_INTERVAL)
 
