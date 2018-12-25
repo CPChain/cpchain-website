@@ -165,69 +165,69 @@
                     </div>
                 </section>
 
-                <section class="py-5 my-sm-5 my-0">
-                    <div class="container">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="left-side col-6 text-left">
-                                 <h6 class="mb-0 poppins-medium" style="font-size: 18px;">Media Reports</h6>
-                            </div>
-                            <div class="right-side col-6 text-right">
-                                <a href="{% url 'news_list' 'Media Reports'|urlencode %}" class="text-primary">
-                                    See all
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-12 mb-4 px-0">
-                            <hr class="right-hr">
-                        </div>
-
-                        <div class="row">
-                            {% for media_new in media_news %}
-                                <div class="card blog border-0 col-sm-4  my-4">
-                                    <a href="{{ media_new.link }}">
-                                        <div class="image-holder position-relative">
-                                            <img width="800" height="400"
-                                                 src="{{ MEDIA_URL }}{{ media_new.banner }}"
-                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
-                                                 alt=""
-                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>
-                                        </div>
-                                    </a>
-
-                                    <div class="card-body px-0 pb-0">
-
-                                        <h5 class="card-title poppins-medium" style="font-size: 22px">
-                                            <a href="{{ media_new.link }}">
-                                                {{ media_new.title }} </a>
-                                        </h5>
-
-                                        <p class="card-text">
-                                            {{ media_new.summary|default_if_none:"" }} </p>
-                                        <div class="card border-0 d-flex flex-row ml-0 w-100">
-                                            <a href="{{ media_new.link }}">
-                                                <div class="image-smaller-holder">
-                                                    <img class="card-img-top bottom-cards disable-select h-100"
-                                                         src="{{ MEDIA_URL }}{{ media_new.media_logo }}"
-                                                         alt="Card image cap">
-                                                </div>
-                                            </a>
-                                            <div class="card-body py-0 d-flex align-items-center">
-                                                <p class="card-text card-bottom-text">
-                                                    <a href="{{ media_new.link }}">
-                                                        {{ media_new.media_name }} </a>
-                                                    <br> {{ media_new.update_time }} </p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-
-                    </div>
-                </section> <!-- end of Technical Documentations -->
+{#                <section class="py-5 my-sm-5 my-0">#}
+{#                    <div class="container">#}
+{#                        <div class="d-flex justify-content-between align-items-center">#}
+{#                            <div class="left-side col-6 text-left">#}
+{#                                 <h6 class="mb-0 poppins-medium" style="font-size: 18px;">Media Reports</h6>#}
+{#                            </div>#}
+{#                            <div class="right-side col-6 text-right">#}
+{#                                <a href="{% url 'news_list' 'Media Reports'|urlencode %}" class="text-primary">#}
+{#                                    See all#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-12 mb-4 px-0">#}
+{#                            <hr class="right-hr">#}
+{#                        </div>#}
+{##}
+{#                        <div class="row">#}
+{#                            {% for media_new in media_news %}#}
+{#                                <div class="card blog border-0 col-sm-4  my-4">#}
+{#                                    <a href="{{ media_new.link }}">#}
+{#                                        <div class="image-holder position-relative">#}
+{#                                            <img width="800" height="400"#}
+{#                                                 src="{{ MEDIA_URL }}{{ media_new.banner }}"#}
+{#                                                 class="d-block w-100 h-100 img-fluid disable-select wp-post-image"#}
+{#                                                 alt=""#}
+{#                                                 sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px"/>#}
+{#                                        </div>#}
+{#                                    </a>#}
+{##}
+{#                                    <div class="card-body px-0 pb-0">#}
+{##}
+{#                                        <h5 class="card-title poppins-medium" style="font-size: 22px">#}
+{#                                            <a href="{{ media_new.link }}">#}
+{#                                                {{ media_new.title }} </a>#}
+{#                                        </h5>#}
+{##}
+{#                                        <p class="card-text">#}
+{#                                            {{ media_new.summary|default_if_none:"" }} </p>#}
+{#                                        <div class="card border-0 d-flex flex-row ml-0 w-100">#}
+{#                                            <a href="{{ media_new.link }}">#}
+{#                                                <div class="image-smaller-holder">#}
+{#                                                    <img class="card-img-top bottom-cards disable-select h-100"#}
+{#                                                         src="{{ MEDIA_URL }}{{ media_new.media_logo }}"#}
+{#                                                         alt="Card image cap">#}
+{#                                                </div>#}
+{#                                            </a>#}
+{#                                            <div class="card-body py-0 d-flex align-items-center">#}
+{#                                                <p class="card-text card-bottom-text">#}
+{#                                                    <a href="{{ media_new.link }}">#}
+{#                                                        {{ media_new.media_name }} </a>#}
+{#                                                    <br> {{ media_new.update_time }} </p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+{#                </section> <!-- end of Technical Documentations -->#}
 
 
             </div><!-- #content -->

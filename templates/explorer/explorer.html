@@ -25,11 +25,11 @@
         <div class="container explorer-header" id="explorer-header">
             <div class="my-5"></div>
             <div class="row">
-                <a class="col sep" href="{% url 'explorer:blocks' %}">
+                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
                     <div class="text-center"><h3 class="index-font">Block Height</h3></div>
                 </a>
-                <a class="col sep" href="{% url 'explorer:txs' %}">
+                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
@@ -38,11 +38,11 @@
                         </h3>
                     </div>
                 </a>
-                <a class="col sep" href="{% url 'explorer:rnode' %}">
+                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:rnode' %}">
                     <div class="text-center"><h1 class="number-font" v-text="rnode"></h1></div>
                     <div class="text-center"><h3 class="index-font">RNodes</h3></div>
                 </a>
-                <a class="col text-center" href="{% url 'explorer:committee' %}">
+                <a class="col-md-3 col-sm-6 text-center" href="{% url 'explorer:committee' %}">
                     <div class="number-font proposer" v-text="committee"></div>
                     <div class="number-font proposer sub-font">of</div>
                     <div class="number-font proposer" v-text="proposer"></div>
