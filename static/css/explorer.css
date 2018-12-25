@@ -64,6 +64,7 @@
 }
 #explorer-header .sep {
     border-right: 2px #d5dce4 solid;
+    padding-right: -2px;
 }
 
 .jumbotron-bg {

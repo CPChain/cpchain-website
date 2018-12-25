@@ -8274,7 +8274,7 @@ footer.footer .banner.rnodes .above a {
 
     header .sidenav a:not(:first-child) {
         margin-top: 1rem;
-        font-size: 16px !important;
+        /*font-size: 16px !important;*/
     }
 
     header .sidenav a:hover {
@@ -8315,14 +8315,12 @@ footer.footer .banner.rnodes .above a {
         display: block !important;
         border: 0 !important;
         background-color: transparent !important;
+        position: relative;!important;
     }
 
     header .dropdown-menu a {
-        color: #6c757d !important;
-    }
-
-    header .dropdown-menu a:first-child {
         color: white !important;
+        padding: 8px 8px 8px 25px !important;
     }
 
     header .dropdown-menu a:hover {
