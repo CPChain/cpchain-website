@@ -1923,22 +1923,22 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
-    color: #6c757d;
+    color: #a9bcd4;
     opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-    color: #6c757d;
+    color: #a9bcd4;
     opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-    color: #6c757d;
+    color: #a9bcd4;
     opacity: 1;
 }
 
 .form-control::placeholder {
-    color: #6c757d;
+    color: #a9bcd4;
     opacity: 1;
 }
 
@@ -2339,6 +2339,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 }
 
 @media (min-width: 576px) {
+
     .form-inline label {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -4561,8 +4562,11 @@ button.bg-dark:focus {
 .border-white {
     border-color: #fff !important;
 }
-.rhea{
-    width:190px;!important;.
+
+.rhea {
+    width: 190px;
+!important;
+.
 }
 
 .rounded {
@@ -8222,6 +8226,27 @@ footer.footer .banner.rnodes .above a {
         * Core
         * Widgets
     */
+    .form-control::-webkit-input-placeholder {
+    font-size:12px !important;
+    color: #a9bcd4;
+    opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+    font-size:12px !important;
+    color: #a9bcd4;
+    opacity: 1;
+}
+.form-control::-ms-input-placeholder {
+    font-size:12px !important;
+    color: #a9bcd4;
+    opacity: 1;
+}
+.form-control::placeholder {
+    font-size:12px !important;
+    color: #a9bcd4;
+    opacity: 1;
+}
+
     header img {
         height: 40px !important;
     }
@@ -8315,7 +8340,8 @@ footer.footer .banner.rnodes .above a {
         display: block !important;
         border: 0 !important;
         background-color: transparent !important;
-        position: relative;!important;
+        position: relative;
+    !important;
     }
 
     header .dropdown-menu a {
@@ -9663,9 +9689,11 @@ section.rnodes > .row {
     margin-top: 64px;
     height: 25px;
     font-size: 18px;
-    font-family: poppins-light-italic;!important;
+    font-family: poppins-light-italic;
+!important;
     font-weight: 300;
     line-height: 27px;
-    color: rgba(112, 184, 32, 1);!important;
+    color: rgba(112, 184, 32, 1);
+!important;
     opacity: 1;
 }

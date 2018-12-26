@@ -8,41 +8,45 @@
     <title>Faucet &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
-    <div class="container faucet">
-
-        <div class="col-8" style="margin:40px auto 120px">
-            <div class="right-side text-right">
-                <span class="text-primar ">{% trans 'Faucet' %}</span>
-            </div>
-            <div class="col-12 mb-4 px-0" style="margin-bottom: 64px">
-                <hr class="right-hr">
-            </div>
-            <p>{% trans 'In CPChain faucet, you can apply for free CPC test coins and get more involving experience in the newly-published CPChain Alpha Mainnet. Feel free to download and test it! ' %}</p>
-            <p>{% trans 'The rules of collecting free CPC test coins are as follows:' %}</p>
-            <div class="rules">{% trans '1. Each CPC address can only obtain test coins once a day. The daily limit is 100 CPC and an address can apply for 10,000 CPC test coins at most.' %}</div>
-            <div class="rules">{% trans '2. The total daily limitation of CPC test coins issued by CPChain Faucet is up to 100,000. The Faucet will stop releasing test coins once the limitation has been reached. Users can apply the next day. ' %}</div>
-            <form action="{% url 'faucet' %}" method="post">
-                <span>{% trans 'Your address *' %}</span>
-                <input class="form-control" type="text" name="address"
-                       placeholder="{% trans 'Enter your address to claim from our faucet.' %}" style="margin-top: 10px">
-                {% if msg %}
-                    <div class="rules" style="margin-top: 17px "><img src="{% static 'img/explorer/error.png' %}"
-                                                                      alt="" style="margin:3px 5px">{{ msg }}</div>
-
-                {% endif %}
-                <div style="margin:50px auto;padding-left: 386px">
-                    <button type="submit" value="Submit"
-                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
-                            style="width: 135px;height: 50px;">{% trans 'Claim' %}
-                    </button>
-                    <button type="reset" value="Reset"
-                            class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
-                            style="margin-left: 50px;width: 135px;height: 50px;">{% trans 'Reset' %}
-                    </button>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 faucet">
+                <div class="right-side text-right">
+                    <span class="text-primar ">{% trans 'Faucet' %}</span>
                 </div>
-                {% csrf_token %}
-            </form>
+                <div class="col-12 mb-4 px-0" style="margin-bottom: 64px">
+                    <hr class="right-hr">
+                </div>
+                <p>{% trans 'In CPChain faucet, you can apply for free CPC test coins and get more involving experience in the newly-published CPChain Alpha Mainnet. Feel free to download and test it! ' %}</p>
+                <p>{% trans 'The rules of collecting free CPC test coins are as follows:' %}</p>
+                <div class="rules">{% trans '1. Each CPC address can only obtain test coins once a day. The daily limit is 100 CPC and an address can apply for 10,000 CPC test coins at most.' %}</div>
+                <div class="rules">{% trans '2. The total daily limitation of CPC test coins issued by CPChain Faucet is up to 100,000. The Faucet will stop releasing test coins once the limitation has been reached. Users can apply the next day. ' %}</div>
+                <form action="{% url 'faucet' %}" method="post" style="margin-bottom: 200px">
+                    <span>{% trans 'Your address *' %}</span>
+                    <input class="form-control faucet" type="text" name="address"
+                           placeholder="{% trans 'Enter your address to claim from our faucet.' %}"
+                           style="margin-top: 10px">
+                    {% if msg %}
+                        <div class="rules" style="margin-top: 17px "><img src="{% static 'img/explorer/error.png' %}"
+                                                                          alt="" style="margin:3px 5px">{{ msg }}</div>
+
+                    {% endif %}
+                    <div class="col-md-6 offset-md-6 mt-5">
+                        <div class="row">
+                            <button type="submit" value="Submit"
+                                    class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-5"
+                                    style="height: 50px;">{% trans 'Claim' %}
+                            </button>
+                            <button type="reset" value="Reset"
+                                    class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white col-5 offset-2 hidden-xs"
+                                    style="height: 50px;">{% trans 'Reset' %}
+                            </button>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                </form>
+
+            </div>
 
         </div>
     </div>
