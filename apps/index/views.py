@@ -110,6 +110,7 @@ class FaucetView(View):
         return render(req, 'faucet.html')
 
     def post(self, req):
+        # locale
         address = req.POST.get('address', '')
         address = address.strip()
         if cf.isAddress(address):
@@ -118,11 +119,17 @@ class FaucetView(View):
                     faucet.delay(address)
                     return redirect('receipt')
                 else:
-                    return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
+                    if not req.path.startswith('/zh-hans'):
+                        return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
+                    return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
             else:
-                return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
+                if not req.path.startswith('/zh-hans'):
+                    return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
+                return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
         else:
-            return render(req, 'faucet.html', {'msg': 'Please enter a valid address.'})
+            if not req.path.startswith('/zh-hans'):
+                return render(req, 'faucet.html', {'msg': 'Please enter a valid address.'})
+            return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
 
 
 class ReceiptView(View):
