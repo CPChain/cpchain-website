@@ -12,14 +12,14 @@
 
         <div class="col-8" style="margin:40px auto 120px">
             <div class="right-side text-right">
-                <span class="text-primar ">Faucet</span>
+                <span class="text-primar ">{% trans 'Faucet' %}</span>
             </div>
             <div class="col-12 mb-4 px-0" style="margin-bottom: 64px">
                 <hr class="right-hr">
             </div>
             <p>{% trans 'In CPChain faucet, you can apply for free CPC test coins and get more involving experience in the newly-published CPChain Alpha Mainnet. Feel free to download and test it! ' %}</p>
             <p>{% trans 'The rules of collecting free CPC test coins are as follows:' %}</p>
-            <div class="rules">{% trans '1. Each CPC address can only obtain test coins once a day. The daily limit is 100 CPC and an address can apply for 10.000 CPC test coins at most.' %}</div>
+            <div class="rules">{% trans '1. Each CPC address can only obtain test coins once a day. The daily limit is 100 CPC and an address can apply for 10,000 CPC test coins at most.' %}</div>
             <div class="rules">{% trans '2. The total daily limitation of CPC test coins issued by CPChain Faucet is up to 100,000. The Faucet will stop releasing test coins once the limitation has been reached. Users can apply the next day. ' %}</div>
             <form action="{% url 'faucet' %}" method="post">
                 <span>{% trans 'Your address *' %}</span>
