@@ -9481,9 +9481,16 @@ section.section-thirteen form .checking .checkmark:after {
     color: #a9bcd4;
     font-size: 16px;
     line-height: 26px;
+    overflow:hidden;
 
+    text-overflow:ellipsis;
+
+    display:-webkit-box;
+
+    -webkit-box-orient:vertical;
+
+    -webkit-line-clamp:3;
 }
-
 .card.blog .card-bottom-text {
     font-size: 14px !important;
 }
@@ -9497,6 +9504,7 @@ section.section-thirteen form .checking .checkmark:after {
 }
 
 .card.blog .image-smaller-holder {
+    margin-top: 6px;
     height: 36px;
     width: 36px;
 }
