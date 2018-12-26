@@ -128,7 +128,7 @@ class FaucetView(View):
                 return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
         else:
             if not req.path.startswith('/zh-hans'):
-                return render(req, 'faucet.html', {'msg': 'Please enter a valid address.'})
+                return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
             return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
 
 
