@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-26 13:51+0800\n"
+"POT-Creation-Date: 2018-12-26 18:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,8 @@ msgstr "开发者"
 msgid "Docs"
 msgstr "文档"
 
-#: templates/base.html:107 templates/faucet.html:15 templates/index.html:114
+#: templates/base.html:107 templates/faucet-receipt.html:14
+#: templates/faucet.html:15 templates/index.html:114
 msgid "Faucet"
 msgstr "领币"
 
@@ -100,7 +101,7 @@ msgstr ""
 
 #: templates/faucet-receipt.html:23
 msgid "Congratulations！You have successfully obtained your CPC test coins."
-msgstr "恭喜您!您已经成功申领到今天的测试币!"
+msgstr "恭喜您! 您已经成功申领到今天的测试币!"
 
 #: templates/faucet.html:22
 msgid ""
@@ -114,11 +115,15 @@ msgstr ""
 msgid "Your address *"
 msgstr "您的地址 *"
 
-#: templates/faucet.html:36
+#: templates/faucet.html:27
+msgid "Enter your address to claim from our faucet."
+msgstr "请输入你的钱包地址来申领今天的测试币"
+
+#: templates/faucet.html:38
 msgid "Claim"
 msgstr "申领"
 
-#: templates/faucet.html:40
+#: templates/faucet.html:42
 msgid "Reset"
 msgstr "重置"
 
@@ -431,7 +436,7 @@ msgid ""
 "papers in internationally renowned journals, and has more than 10 patents "
 "for invention."
 msgstr ""
-"教授、博士生导师；教育部新世纪人才，上海市浦江人才；IEEE Blockchain "
+"教育部新世纪人才，上海市浦江人才；IEEE Blockchain "
 "Newsletter Editor，中国自动化学会工业系统信息安全专委会委员，中国创造学会智能"
 "制造与服务分会常务理事；在信息物理系统安全、物联网、基于区块链的分布式智能系"
 "统等领域有多年从业经验，国际知名期刊和会议上发表论文80多篇，拥有发明专利10余"
@@ -776,7 +781,7 @@ msgstr ""
 "希值记录到CPChain的主链上，为UBI保险调查和计算，二手车辆估价等提供数据支撑。 "
 
 #: templates/intelligent-transportation.html:332
-msgid "Vehicle-carry Nlockchain Coinpurse"
+msgid "Vehicle-carry Blockchain Coinpurse"
 msgstr "车载区块链钱包"
 
 #: templates/intelligent-transportation.html:342

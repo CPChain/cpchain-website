@@ -7,26 +7,35 @@
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
-    <title>Block Infomation</title>
+    <title>Search &#8211; CPChain</title>
 {% endblock %}
 
 {% block content %}
     <body class="page-template-news">
     {% include "explorer/_searchbar.html" %}
-    
+
     <div class="container">
         <div class="page-header">
             <div class="page-header-main">
-                <p class="text-center">404</p>
+                <p class="text-center oops">Oops!</p>
             </div>
         </div>
     </div>
 
     <div class="container">
         <div class="info-table px-md-5" id="contract-info">
-            <div class="info-table-subtitle">Seems nothing's found. Try another keyword again. </div>
+            <div class="text-center info-table-subtitle poppins-font">Seems nothing's found. Try another keyword
+                again.
+            </div>
+        </div>
+
+        <div class='action text-center' style="padding-top: -120px; margin-bottom: 300px">
+            <a href="{% url 'index' %}"
+               class='btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 text-uppercase'>
+                Home
+            </a>
         </div>
     </div>
 
-</body>
+    </body>
 {% endblock %}

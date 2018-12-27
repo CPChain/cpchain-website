@@ -151,7 +151,6 @@ def explorer(request):
         'committee': proposerFomatter(RNode.view),
         'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
-    print(header)
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
