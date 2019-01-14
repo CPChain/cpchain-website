@@ -103,7 +103,7 @@ class Committee:
 
 
 def explorer(request):
-    height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
     t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
@@ -163,9 +163,9 @@ def proposerFomatter(num):
 def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
-    temp_height = block_collection.find().sort('_id', DESCENDING).limit(1)[0]['number']
+    temp_height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     while True:
-        block = block_collection.find().sort('_id', DESCENDING).limit(1)[0]
+        block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
         block_height = block['number']
         if block_height >= temp_height:
             RNode.update()
@@ -268,7 +268,7 @@ def search(req):
 
 def blocks(req):
     # blocks
-    all_blocks = block_collection.find().sort('_id', DESCENDING)
+    all_blocks = block_collection.find().sort('number', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
