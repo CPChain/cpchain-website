@@ -321,7 +321,7 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = txs_collection.find().sort('number')
+        all_txs = txs_collection.find().sort('_id',DESCENDING)
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)
