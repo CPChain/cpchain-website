@@ -24,7 +24,7 @@ try:
 except:
     print('running local, uwsgi not work..')
 
-REFRESH_INTERVAL = 1
+REFRESH_INTERVAL = 3
 ADD_SIZE = 42
 
 # config.ini
@@ -321,7 +321,7 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = txs_collection.find().sort('_id', DESCENDING)
+        all_txs = txs_collection.find().sort('number', DESCENDING)
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)
