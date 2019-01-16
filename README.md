@@ -70,7 +70,7 @@ You can then deploy smart contracts on your network and interact with them via C
 ## Documentation 
 
 The website uses a third-party package cpc-fusion. For more detailed information, please see here:
-<a href='http://docs.cpchain.io/api/cpc_fusion.cpc.html'>cpc-fusion</a>
+[cpc-fusion](https://docs.cpchain.io/api/cpc_fusion.html)
 
 ---
 
