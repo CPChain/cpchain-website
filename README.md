@@ -1,4 +1,4 @@
-<a href="http://cpchain.io"><img src="https://cpchain.io/static/img/logo_new.svg" title="cpchain.io" alt="cpchain.io"></a>
+![](https://cpchain.io/static/img/logo_new.svg)
 
 
 
@@ -79,5 +79,5 @@ The website uses a third-party package cpc-fusion. For more detailed information
 
 ## License
 
-- Copyright 2018 © <a href="https://cpchain.io" target="_blank">cpchain.io</a>.
+- Copyright 2018 © [cpchain.io](https://cpchain.io).
 
