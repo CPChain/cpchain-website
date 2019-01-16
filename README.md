@@ -1,4 +1,4 @@
-<a href="http://cpchain.io"><img src="http://54.251.145.14/static/img/logo_new.svg" title="cpchain.io" alt="cpchain.io"></a>
+<a href="http://cpchain.io"><img src="https://cpchain.io/static/img/logo_new.svg" title="cpchain.io" alt="cpchain.io"></a>
 
 
 
