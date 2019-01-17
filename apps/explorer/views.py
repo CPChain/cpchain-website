@@ -156,6 +156,8 @@ def explorer(request):
 
 
 import math
+
+
 def proposerFomatter(num):
     return "%d%s" % (num, "tsnrhtdd"[(math.floor(num / 10) % 10 != 1) * (num % 10 < 4) * num % 10::4])
 
@@ -275,6 +277,9 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
+    blocks.object_list = list(blocks.object_list)
+    for b in blocks.object_list:
+        b['number'] = format(b['number'], ',')
     return render(req, 'explorer/block_list.html', {'blocks': blocks, 'reward': BLOCK_REWARD})
 
 
@@ -306,8 +311,10 @@ def block(req, block_identifier):
     ##produce time
     if height > 1:
         last_block = block_collection.find({'number': height - 1})[0]
+        height = format(block_dict['number'], ',')
         timeproduce = timestamp - last_block['timestamp']
     else:
+        height = format(block_dict['number'], ',')
         timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
@@ -321,7 +328,7 @@ def txs(req):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        all_txs = txs_collection.find().sort('_id',DESCENDING)
+        all_txs = txs_collection.find().sort('_id', DESCENDING)
         p = Paginator(all_txs, 25, request=req)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)

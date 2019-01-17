@@ -22,9 +22,9 @@
                 <div class="rules">{% trans '1. Each CPChain address can apply for 100 free test coins per day and 10,000 in total.' %}</div>
                 <div class="rules">{% trans '2. Faucet issues a total of 100,000 free test coins per day. You still can apply for free test coins on the following day.' %}</div>
                 <form action="{% url 'faucet' %}" method="post" style="margin-bottom: 200px">
-                    <span>{% trans 'Your address *' %}</span>
+                    <span>{% trans 'Your wallet address *' %}</span>
                     <input class="form-control faucet" type="text" name="address"
-                           placeholder="{% trans 'Enter your address to claim from our faucet.' %}"
+                           placeholder="{% trans 'Enter wallet your address to claim from our faucet.' %}"
                            style="margin-top: 10px">
                     {% if msg %}
                         <div class="rules" style="margin-top: 17px "><img src="{% static 'img/explorer/error.png' %}"
