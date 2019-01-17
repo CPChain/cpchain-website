@@ -277,9 +277,6 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
-    blocks.object_list = list(blocks.object_list)
-    for b in blocks.object_list:
-        b['number'] = format(b['number'], ',')
     return render(req, 'explorer/block_list.html', {'blocks': blocks, 'reward': BLOCK_REWARD})
 
 
