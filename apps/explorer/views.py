@@ -308,10 +308,8 @@ def block(req, block_identifier):
     ##produce time
     if height > 1:
         last_block = block_collection.find({'number': height - 1})[0]
-        height = format(block_dict['number'], ',')
         timeproduce = timestamp - last_block['timestamp']
     else:
-        height = format(block_dict['number'], ',')
         timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
