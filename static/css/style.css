@@ -8914,6 +8914,7 @@ section.section-twelve .bottom, section.section-media .bottom {
 section.section-twelve .image-holder, section.section-media .image-holder {
     -ms-grid-column-align: center !important;
     justify-self: center !important;
+    vertical-align: center;
 }
 
 section.section-twelve h2, section.section-media h2 {
