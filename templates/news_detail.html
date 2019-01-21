@@ -3,6 +3,13 @@
 {% block title %}
     <title>{{ news.title }}&#8211; CPChain</title>
 {% endblock %}
+{% block custom_head %}
+    <meta name="twitter:title" content="@CPChain.Title"/>
+    <meta name="twitter:description" content="@CPChain.Description"/>
+    <meta name="twitter:image" content="@CPChain.ShareImg"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" content="当前分享的链接--可要可不要"/>
+{% endblock %}
 {% block content %}
 
 
@@ -52,6 +59,11 @@
 
                                                 {{ news.content|safe }}
 
+                                                <div>
+                                                    <a href="javascript:window.open('http://twitter.com/home?status='+'My Item  '+encodeURIComponent(document.location.href)+' '+encodeURIComponent(document.title),'_blank','toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=450,top=100,left=350');void(0)">
+                                                        <p>share</p>
+                                                    </a>
+                                                </div>
 
                                                 {#文章内容#}
                                                 <p><strong class="markup--strong markup--p-strong">Learn more about
