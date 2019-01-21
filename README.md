@@ -1,4 +1,4 @@
-<a href="http://cpchain.io"><img src="http://54.251.145.14/static/img/logo_new.svg" title="cpchain.io" alt="cpchain.io"></a>
+![](https://cpchain.io/static/img/logo_new.svg)
 
 
 
@@ -70,7 +70,7 @@ You can then deploy smart contracts on your network and interact with them via C
 ## Documentation 
 
 The website uses a third-party package cpc-fusion. For more detailed information, please see here:
-<a href='http://docs.cpchain.io/api/cpc_fusion.cpc.html'>cpc-fusion</a>
+[cpc-fusion](https://docs.cpchain.io/api/cpc_fusion.html)
 
 ---
 
@@ -79,5 +79,5 @@ The website uses a third-party package cpc-fusion. For more detailed information
 
 ## License
 
-- Copyright 2018 © <a href="https://cpchain.io" target="_blank">cpchain.io</a>.
+- Copyright 2018 © [cpchain.io](https://cpchain.io).
 

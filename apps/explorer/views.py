@@ -24,7 +24,7 @@ try:
 except:
     print('running local, uwsgi not work..')
 
-REFRESH_INTERVAL = 1
+REFRESH_INTERVAL = 3
 ADD_SIZE = 42
 
 # config.ini
@@ -156,6 +156,8 @@ def explorer(request):
 
 
 import math
+
+
 def proposerFomatter(num):
     return "%d%s" % (num, "tsnrhtdd"[(math.floor(num / 10) % 10 != 1) * (num % 10 < 4) * num % 10::4])
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 14:55+0800\n"
+"POT-Creation-Date: 2019-01-17 10:29+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,26 +85,28 @@ msgstr "CPC测试币领取规则如下："
 msgid ""
 "1. Each CPChain address can apply for 100 free test coins per day and 10,000 "
 "in total."
-msgstr "1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为"
+msgstr ""
+"1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为"
 "10,000 CPC；"
 
 #: templates/faucet-receipt.html:22 templates/faucet.html:23
 msgid ""
 "2. Faucet issues a total of 100,000 free test coins per day. You still can "
 "apply for free test coins on the following day."
-msgstr "2. CPChain Faucet每天发放上限为100,000 CPC，当天超过上限则停止发放，用户可"
-"第二天继续申请；"
+msgstr ""
+"2. CPChain Faucet每天发放上限为100,000 CPC，当天超过上限则停止发放，用户可第"
+"二天继续申请；"
 
 #: templates/faucet-receipt.html:23
 msgid "Congratulations！You have successfully obtained your CPC test coins."
 msgstr "恭喜您! 您已经成功申领到今天的测试币!"
 
 #: templates/faucet.html:25
-msgid "Your address *"
+msgid "Your wallet address *"
 msgstr "您的地址 *"
 
 #: templates/faucet.html:27
-msgid "Enter your address to claim from our faucet."
+msgid "Enter wallet your address to claim from our faucet."
 msgstr "请输入你的钱包地址来申领今天的测试币"
 
 #: templates/faucet.html:38
@@ -1202,7 +1204,7 @@ msgstr "电梯操作数据记录"
 #: templates/security.html:99
 msgid ""
 " Elevator operation data, such as the real-time height of the elevator, up & "
-"down signal, alarm status, and emergency power status,are all useful for "
+"down signal, alarm status, and emergency power status, are all useful for "
 "running status monitoring, fault prediction, fault handling and accident "
 "rescue. "
 msgstr ""
@@ -1303,7 +1305,6 @@ msgstr ""
 "的哈希值记录在CPChain主链上，用来验证数据。系统对用户隐私保护有专门设计，能够"
 "在保证隐私的前提下，实现数据分享。因此，CPChain实现了对上层人工智能等应用的有"
 "效支持。 "
-
 
 #~ msgid ""
 #~ "1. Each CPC address can only obtain test coins once a day. The daily "
