@@ -7,8 +7,10 @@
     <meta name="twitter:title" content="{{ news.title }}"/>
     <meta name="twitter:description" content="{{ news.summary|default_if_none:"" }}"/>
     <meta name="twitter:image" content="https://cpchain.io{{ MEDIA_URL }}{{ news.banner }}"/>
+    <meta name="twitter:site" content="@cpchain.io">
+    <meta name="twitter:creator" content="@CPChain">
     <meta name="twitter:card" content="summary_large_image"/>
-{#    <meta name="twitter:url" content="当前分享的链接--可要可不要"/>#}
+    {#    <meta name="twitter:url" content="当前分享的链接--可要可不要"/>#}
 {% endblock %}
 {% block content %}
 
@@ -60,9 +62,10 @@
                                                 {{ news.content|safe }}
 
                                                 <div>
-                                                    <a href="javascript:window.open('http://twitter.com/home?status='+encodeURIComponent(document.title),'_blank','toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=450,top=100,left=350');void(0)">
-                                                        <p>share</p>
-                                                    </a>
+                                                    <a href="javascript:window.open('http://twitter.com/home?status='+encodeURIComponent(document.location.href)+' '+encodeURIComponent(document.title),'_blank','toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=450,top=100,left=350');void(0)">
+                                                        <i class="fa fa-twitter" aria-hidden="true"></i> Share </a>
+
+
                                                 </div>
 
                                                 {#文章内容#}
