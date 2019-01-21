@@ -95,7 +95,7 @@ def save_blocks_txs(start_block_id):
 
 def block_formatter(block):
     block_ = {}
-    # hex_to_int = ['difficulty', 'gasLimit', 'gasUsed', 'number', 'size', 'timestamp', 'totalDifficulty']
+    # hex_to_int = ['difficulty', 'gasLimit', 'gasUsed', 'number', 'size', 'timestamp']
     for k, v in block.items():
         if k == 'miner':
             block_[k] = v.lower()
