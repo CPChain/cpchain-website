@@ -9645,6 +9645,9 @@ section.rnodes > .row {
     font-weight: 700 !important;
     font-size: 13px !important;
 }
+.site-content img{
+    margin-bottom: 15px ;
+}
 
 .archivo-font {
     font-family: 'Archivo', sans-serif !important;
