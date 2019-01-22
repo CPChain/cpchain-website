@@ -28,10 +28,6 @@
                                         <div class="blog-view-holder" style="width: 100%;">
                                             {#大图片和头部之间的内容#}
                                             <div class="upper col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-auto">
-                                                {#                                                <a href="{% url 'news_list' news.category|urlencode %}"#}
-                                                {#                                                   class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white text-primary mr-0 mr-sm-2 mb-sm-0 mb-3">#}
-                                                {#                                                    {{ news.category }}#}
-                                                {#                                                </a>#}
                                                 {#标题#}
                                                 <h4 class="my-3">
                                                     <a href="javascript:void(0)">
@@ -42,7 +38,7 @@
                                             </div>
                                             {#大图片和头部之间的内容#}
                                             {#文章内容#}
-                                            <div class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column">
+                                            <div class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column ">
                                                 <div class="image-holder-main">
                                                     <img src="{{ MEDIA_URL }}{{ news.banner }}"
                                                          class="d-block w-100 h-100 img-fluid disable-select wp-post-image"
@@ -59,53 +55,62 @@
                                                 </div>
 
                                                 {#文章内容#}
-                                                <p><strong class="markup--strong markup--p-strong"
-                                                           style="font-size: 20px">Learn more about CPChain:<br/>
-                                                </strong><a class="markup--anchor markup--p-anchor"
-                                                            href="https://twitter.com/cpchain_io" target="_blank"
+                                                <div class="media-share">
+                                                    <p><strong class="markup--strong markup--p-strong"
+                                                               style="font-size: 20px;line-height: 46px">Learn more
+                                                        about CPChain:<br/>
+                                                    </strong><a class="markup--anchor markup--p-anchor link"
+                                                                href="https://twitter.com/cpchain_io" target="_blank"
+                                                                rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                                data-href="https://twitter.com/cpchain_io"><strong
+                                                            class="markup--strong markup--p-strong">Twitter</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor"
+                                                            href="https://t.me/CPChain" target="_blank"
                                                             rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                            data-href="https://twitter.com/cpchain_io"><strong
-                                                        class="markup--strong markup--p-strong">Twitter</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | </strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://t.me/CPChain" target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://t.me/CPChain"><strong
-                                                        class="markup--strong markup--p-strong">Telegram</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | </strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://reddit.com/r/CPChain_Official" target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://reddit.com/r/CPChain_Official"><strong
-                                                        class="markup--strong markup--p-strong">Reddit</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | </strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://discord.gg/X8WxPst" target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://discord.gg/X8WxPst"><strong
-                                                        class="markup--strong markup--p-strong">Discord</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | <a
-                                                        href="https://medium.com/@cpchain">Medium</a> |</strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://github.com/cpchain" target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://github.com/cpchain"><strong
-                                                        class="markup--strong markup--p-strong">GitHub</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | </strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"
-                                                        target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"><strong
-                                                        class="markup--strong markup--p-strong">Youtube</strong></a><strong
-                                                        class="markup--strong markup--p-strong"> | </strong><a
-                                                        class="markup--anchor markup--p-anchor"
-                                                        href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect"
-                                                        target="_blank"
-                                                        rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
-                                                        data-href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect"><strong
-                                                        class="markup--strong markup--p-strong">WeChat</strong></a></p>
-
+                                                            data-href="https://t.me/CPChain"><strong
+                                                            class="markup--strong markup--p-strong link">Telegram</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://reddit.com/r/CPChain_Official" target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://reddit.com/r/CPChain_Official"><strong
+                                                            class="markup--strong markup--p-strong link">Reddit</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://discord.gg/X8WxPst" target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://discord.gg/X8WxPst"><strong
+                                                            class="markup--strong markup--p-strong link">Discord</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://medium.com/@cpchain"
+                                                            target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"><strong
+                                                            class="markup--strong markup--p-strong link">Medium</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://github.com/cpchain" target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://github.com/cpchain"><strong
+                                                            class="markup--strong markup--p-strong link">GitHub</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"
+                                                            target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://www.youtube.com/channel/UC3y901Z6TUYi3ciW2tDiAtg"><strong
+                                                            class="markup--strong markup--p-strong link">Youtube</strong></a><strong
+                                                            class="markup--strong markup--p-strong link"> | </strong><a
+                                                            class="markup--anchor markup--p-anchor link"
+                                                            href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect"
+                                                            target="_blank"
+                                                            rel="nofollow noopener nofollow nofollow noopener nofollow nofollow nofollow noopener"
+                                                            data-href="https://mp.weixin.qq.com/mp/profile_ext?action=home&#038;__biz=MzUwOTg2MjA5Ng==&#038;scene=124#wechat_redirect"><strong
+                                                            class="markup--strong markup--p-strong link">WeChat</strong></a>
+                                                    </p>
+                                                </div>
                                             </div>
 
                                             {#分割线#}
