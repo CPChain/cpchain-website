@@ -2,10 +2,7 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
 PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'))
-NEWS_CATEGORY = (
-    ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
-    ('Official Announcement', 'Official Announcement'),
-    ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
+
 Media_CATEGORY = (('Media Reports', 'Media Reports'),
                   ('媒体报道', '媒体报道'))
 
@@ -43,6 +40,10 @@ class Partner(models.Model):
 
 
 class New(models.Model):
+    NEWS_CATEGORY = (
+    ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
+    ('Official Announcement', 'Official Announcement'),
+    ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
     category = models.CharField(choices=NEWS_CATEGORY, max_length=50)
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
