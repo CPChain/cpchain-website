@@ -378,7 +378,9 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     # address info
-    txs = list(txs_collection.find({'$or': [{'from': address}, {'to': address}]}))
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp',-1)
+    txs_count = txs.count()
+    txs = list(txs[:25])
     timenow = int(time.time())
     # set flag
     for d in txs:
@@ -393,19 +395,19 @@ def address(req, address):
             d['contract'] = contract_collection.find({'creator': d['from']})[0]['address']
         d['value'] = cf.fromWei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
-    # timesince calc
 
-    txs.sort(key=lambda x: x['timestamp'], reverse=True)
+    # txs.sort(key=lambda x: x['timestamp'], reverse=True)
+
     try:
         balance = cf.fromWei(cf.cpc.getBalance(raw_address), 'ether')
     except:
         print('cf connection error')
         balance = 0
-    txs_count = len(txs)
+
+
 
     # latest 25 txs
-    if txs_count > 25:
-        txs = txs[:25]
+
 
     if code == '0x':
         return render(req, 'explorer/address.html', {'txs': txs,
