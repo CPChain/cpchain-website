@@ -3,7 +3,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'))
 NEWS_CATEGORY = (
-    ('Community Updates', 'Community Updates'), ('AMA Sessions', 'AMA Sessions'),('Community Events','Community Events'),
+    ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
+    ('Official Announcement', 'Official Announcement'),
     ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
 Media_CATEGORY = (('Media Reports', 'Media Reports'),
                   ('媒体报道', '媒体报道'))
@@ -46,7 +47,7 @@ class New(models.Model):
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
-    summary = models.CharField(max_length=500,blank=True,null=True,default='')
+    summary = models.CharField(max_length=500, blank=True, null=True, default='')
     content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                     '/static/youtube/',
                                                                                                     'plugin.js')])
@@ -60,7 +61,7 @@ class Media(models.Model):
     title = models.CharField(max_length=200)
     banner = models.ImageField(upload_to='img/News', null=True, blank=True)
     update_time = models.DateField()
-    link = models.CharField(max_length=500,default='http://')
+    link = models.CharField(max_length=500, default='http://')
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
-    media_name = models.CharField(max_length=200,default='')
-    summary = models.CharField(max_length=500,blank=True,null=True,default='')
+    media_name = models.CharField(max_length=200, default='')
+    summary = models.CharField(max_length=500, blank=True, null=True, default='')
