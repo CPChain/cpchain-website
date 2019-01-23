@@ -4,6 +4,8 @@ import time
 
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
+
 from pure_pagination import PageNotAnInteger, Paginator
 from cpchain_test.settings import cf
 
@@ -18,6 +20,7 @@ address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
+event_collection = CLIENT['cpchain']['event']
 
 try:
     import uwsgi
@@ -443,3 +446,8 @@ def committee(req):
     TermLen = committees[0]['TermLen'] if committees else 1
 
     return render(req, 'explorer/committee.html', locals())
+
+def event(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
+    return JsonResponse({"status": 1, "message": 'success', "data": events})

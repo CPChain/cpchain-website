@@ -11,7 +11,6 @@ urlpatterns = [
     path('address/<address>', views.address, name='address'),
     path('search/', views.search, name='search'),
     path('rnode/', views.rnode, name='rnode'),
-    path('committee/',views.committee,name='committee')
+    path('committee/',views.committee,name='committee'),
+    path('event/<address>',views.event,name='event'),
 ]
-
-
