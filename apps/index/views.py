@@ -40,14 +40,16 @@ class CommunityView(View):
         else:
             # eng version
             if not req.path.startswith('/zh-hans'):
+                official_announcement_news = New.objects.filter(category='Official Announcement').order_by('-update_time')[:3]
                 community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
                 community_events_news = New.objects.filter(category='Community Events').order_by('-update_time')[:3]
                 media_reports_news = Media.objects.filter(category='Media Reports').order_by('-update_time')[:3]
                 return render(req, 'community.html',
-                              {'CU_news': community_update_news, 'community_events_news': community_events_news,
+                              {'OA_news':official_announcement_news,'CU_news': community_update_news, 'community_events_news': community_events_news,
                                'media_news': media_reports_news})
 
             else:
+                # zh version
                 progress_news = New.objects.filter(category='项目进展').order_by('-update_time')[:3]
                 release_news = New.objects.filter(category='重大发布').order_by('-update_time')[:3]
                 media_news = Media.objects.filter(category='媒体报道').order_by('-update_time')[:3]
