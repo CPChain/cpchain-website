@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 from explorer import views
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('rnode/', views.rnode, name='rnode'),
     path('committee/',views.committee,name='committee'),
     path('event/<address>',views.event,name='event'),
+    path('abi/<address>',csrf_exempt(views.abi),name='abi'),
 ]

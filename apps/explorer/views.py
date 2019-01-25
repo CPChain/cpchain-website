@@ -21,6 +21,7 @@ contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
 event_collection = CLIENT['cpchain']['event']
+abi_collection = CLIENT['cpchain']['abi']
 
 try:
     import uwsgi
@@ -451,3 +452,28 @@ def event(req, address):
     address = cf.toChecksumAddress(address.strip())
     events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
     return JsonResponse({"status": 1, "message": 'success', "data": events})
+
+def abi(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    if req.method == 'GET':
+        queryset = abi_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        if queryset.count() == 0:
+            return JsonResponse({"status": 0, "message": 'no abi found'})
+        abi = list(queryset)
+        return JsonResponse({"status": 1, "message": 'success', "data": abi})
+    elif req.method == 'POST':
+        abi = req.POST.get('abi')
+        try:
+            abi = json.loads(abi)
+        except:
+            return JsonResponse({"status": 0, "message": 'wrong abi'})
+
+        if abi_collection.find({'contract_address': address}).count() != 0:
+            return JsonResponse({"status": 0, "message": 'duplicated request'})
+
+        abi_collection.insert_one(
+            {
+                'contract_address': address,
+                'abi': abi,
+            })
+        return JsonResponse({"status": 1, "message": 'success'})
