@@ -22,6 +22,7 @@ rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
 event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
+source_collection = CLIENT['cpchain']['source']
 
 try:
     import uwsgi
@@ -475,5 +476,28 @@ def abi(req, address):
             {
                 'contract_address': address,
                 'abi': abi,
+            })
+        return JsonResponse({"status": 1, "message": 'success'})
+
+def source(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    if req.method == 'GET':
+        queryset = source_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        if queryset.count() == 0:
+            return JsonResponse({"status": 0, "message": 'no source found'})
+        source = list(queryset)
+        return JsonResponse({"status": 1, "message": 'success', "data": source})
+    elif req.method == 'POST':
+        source = req.POST.get('source')
+
+        # TODO: source verification
+
+        if source_collection.find({'contract_address': address}).count() != 0:
+            return JsonResponse({"status": 0, "message": 'duplicated request'})
+
+        source_collection.insert_one(
+            {
+                'contract_address': address,
+                'source': source,
             })
         return JsonResponse({"status": 1, "message": 'success'})

@@ -15,4 +15,5 @@ urlpatterns = [
     path('committee/',views.committee,name='committee'),
     path('event/<address>',views.event,name='event'),
     path('abi/<address>',csrf_exempt(views.abi),name='abi'),
+    path('source/<address>',csrf_exempt(views.source),name='source'),
 ]
