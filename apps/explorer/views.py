@@ -454,6 +454,22 @@ def event(req, address):
     events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
     return JsonResponse({"status": 1, "message": 'success', "data": events})
 
+def parse_event_abi(contract_abi):
+    event_abi = {}
+    for f in contract_abi:
+        if f['type'] == 'event':
+            event_name = f['name']
+            topic = f['signature']
+            arg_types = [i['type'] for i in f['inputs']]
+            arg_names = [i['name'] for i in f['inputs']]
+
+            event_abi[topic] = {
+                'event_name': event_name,
+                'arg_types': arg_types,
+                'arg_names': arg_names,
+            }
+    return event_abi
+
 def abi(req, address):
     address = cf.toChecksumAddress(address.strip())
     if req.method == 'GET':
@@ -472,11 +488,14 @@ def abi(req, address):
         if abi_collection.find({'contract_address': address}).count() != 0:
             return JsonResponse({"status": 0, "message": 'duplicated request'})
 
+        event_abi = parse_event_abi(abi)
         abi_collection.insert_one(
             {
                 'contract_address': address,
                 'abi': abi,
+                'event_abi': event_abi,
             })
+
         return JsonResponse({"status": 1, "message": 'success'})
 
 def source(req, address):
