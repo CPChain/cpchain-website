@@ -33,6 +33,7 @@ b_collection = client['cpchain']['blocks']
 tx_collection = client['cpchain']['txs']
 address_collection = client['cpchain']['address']
 contract_collection = client['cpchain']['contract']
+event_collection = client['cpchain']['event']
 
 
 def save_blocks_txs(start_block_id):
@@ -63,7 +64,8 @@ def save_blocks_txs(start_block_id):
                 tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
 
                 # save one tx
-                status = cf.cpc.getTransactionReceipt(tx['hash']).status
+                tx_receipt = cf.cpc.getTransactionReceipt(tx['hash'])
+                status = tx_receipt.status
                 tx_ = tx_formatter(tx, timestamp, status)
                 txs_li.append(tx_)
 
@@ -84,6 +86,29 @@ def save_blocks_txs(start_block_id):
                 for add in [tx['from'], tx['to']]:
                     if add and address_collection.find({'address': add}).count() == 0:
                         address_collection.insert_one({'address': add, 'timestamp': timestamp})
+
+                if len(tx_['input']) >= 10:
+                    method = tx_['input'][:10]
+                else:
+                    method = tx_['input']
+
+                for log in tx_receipt.logs:
+                    topics = []
+                    for topic in log.topics:
+                        topics.append(topic.hex())
+
+                    event_collection.insert_one(
+                        {
+                            'contract_address': log.address,
+                            'txhash': log.transactionHash.hex(),
+                            'block': log.blockNumber,
+                            'timestamp': timestamp,# block timestamp
+                            'method': method,
+                            'topics': topics,
+                            'data': log.data,
+                        }
+                    )
+
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)

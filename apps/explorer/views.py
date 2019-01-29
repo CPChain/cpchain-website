@@ -4,6 +4,10 @@ import time
 
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
+
+import eth_abi
+
 from pure_pagination import PageNotAnInteger, Paginator
 from cpchain_test.settings import cf
 
@@ -18,6 +22,9 @@ address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
+event_collection = CLIENT['cpchain']['event']
+abi_collection = CLIENT['cpchain']['abi']
+source_collection = CLIENT['cpchain']['source']
 
 try:
     import uwsgi
@@ -445,3 +452,98 @@ def committee(req):
     TermLen = committees[0]['TermLen'] if committees else 1
 
     return render(req, 'explorer/committee.html', locals())
+
+def event(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
+    queryset = abi_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+    if queryset.count() > 0:
+        event_abi = queryset[0]['event_abi']
+        events = decode_event(event_abi, events)
+
+    return JsonResponse({"status": 1, "message": 'success', "data": events})
+
+def decode_event(event_abi, event_list):
+    events = []
+    for e in event_list:
+        topics = e['topics']
+        data = e['data']
+        event = event_abi[topics[0]]
+        values = eth_abi.decode_abi(event['arg_types'], cf.toBytes(hexstr=data))
+        event_name = event['event_name']
+        events.append({
+            'topics': topics,
+            'data': data,
+            'name': event_name,
+            'arg_types': event['arg_types'],
+            'arg_values': values
+        })
+
+    return events
+
+def parse_event_abi(contract_abi):
+    event_abi = {}
+    for f in contract_abi:
+        if f['type'] == 'event':
+            event_name = f['name']
+            topic = f['signature']
+            arg_types = [i['type'] for i in f['inputs']]
+            arg_names = [i['name'] for i in f['inputs']]
+
+            event_abi[topic] = {
+                'event_name': event_name,
+                'arg_types': arg_types,
+                'arg_names': arg_names,
+            }
+    return event_abi
+
+def abi(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    if req.method == 'GET':
+        queryset = abi_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        if queryset.count() == 0:
+            return JsonResponse({"status": 0, "message": 'no abi found'})
+        abi = list(queryset)
+        return JsonResponse({"status": 1, "message": 'success', "data": abi})
+    elif req.method == 'POST':
+        abi = req.POST.get('abi')
+        try:
+            abi = json.loads(abi)
+        except:
+            return JsonResponse({"status": 0, "message": 'wrong abi'})
+
+        if abi_collection.find({'contract_address': address}).count() != 0:
+            return JsonResponse({"status": 0, "message": 'duplicated request'})
+
+        event_abi = parse_event_abi(abi)
+        abi_collection.insert_one(
+            {
+                'contract_address': address,
+                'abi': abi,
+                'event_abi': event_abi,
+            })
+
+        return JsonResponse({"status": 1, "message": 'success'})
+
+def source(req, address):
+    address = cf.toChecksumAddress(address.strip())
+    if req.method == 'GET':
+        queryset = source_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        if queryset.count() == 0:
+            return JsonResponse({"status": 0, "message": 'no source found'})
+        source = list(queryset)
+        return JsonResponse({"status": 1, "message": 'success', "data": source})
+    elif req.method == 'POST':
+        source = req.POST.get('source')
+
+        # TODO: source verification
+
+        if source_collection.find({'contract_address': address}).count() != 0:
+            return JsonResponse({"status": 0, "message": 'duplicated request'})
+
+        source_collection.insert_one(
+            {
+                'contract_address': address,
+                'source': source,
+            })
+        return JsonResponse({"status": 1, "message": 'success'})
