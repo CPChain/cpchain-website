@@ -8,7 +8,7 @@ Media_CATEGORY = (('Media Reports', 'Media Reports'),
 NEWS_CATEGORY = (
     ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
     ('Official Announcement', 'Official Announcement'),
-    ('项目进展', '项目进展'), ('重大发布', '重大发布'),)
+    ('项目进展', '项目进展'), ('重大发布', '重大发布'),('draft','draft'))
 
 
 class Department(models.Model):
