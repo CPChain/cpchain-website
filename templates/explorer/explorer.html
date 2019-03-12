@@ -27,7 +27,8 @@
             <div class="row">
                 <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
-                    <div class="text-center"><h3 class="index-font">Block Height</h3> <span class="sub-font">( <span v-text="bps"></span> Block Rate)</span>
+                    <div class="text-center"><h3 class="index-font">Block Height</h3> <span class="sub-font">( <span
+                            v-text="bps"></span> Block Rate)</span>
 
                     </div>
                 </a>
@@ -79,7 +80,8 @@
                                 <div class="row">
                                     <div class="col-7 table-item-icon">
                                         <p class="text-left"><img src="{% static 'img/explorer/list：block.png' %}"
-                                                                  alt=""></p>
+                                                                  alt=""><span v-if="block.impeach"
+                                                style="background: #fbe7e5;color: #d50101;padding: 4px;margin-left: 4px">Impeach</span></p>
                                     </div>
                                     <div class="col-5 table-item-sub">
                                         <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>

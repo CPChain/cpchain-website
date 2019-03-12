@@ -196,6 +196,8 @@ def wshandler(req):
                 'timestamp': temp_block['timestamp'],
                 'hash': temp_block['hash'],
             }
+            if temp_block['miner'].endswith('000000'):
+                block['impeach'] = True
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
             txs = []
             for t in t_li:
