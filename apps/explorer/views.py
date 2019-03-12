@@ -2,6 +2,7 @@ import json
 import math
 import time
 from contextlib import contextmanager
+from pprint import pprint
 
 import eth_abi
 from django.http import JsonResponse
@@ -120,6 +121,9 @@ def explorer(request):
             'timestamp': b['timestamp'],
             'hash': b['hash'],
         }
+
+        if b['miner'].endswith('000000'):
+            block['impeach'] = True
         blocks.append(block)
 
     # txs
@@ -156,7 +160,7 @@ def explorer(request):
         'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
     return render(request, 'explorer/explorer.html',
-                  {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
+                  {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': chart, 'header': header})
 
 
 def proposerFomatter(num):

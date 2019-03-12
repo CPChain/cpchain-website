@@ -25,26 +25,32 @@
         <div class="container explorer-header" id="explorer-header">
             <div class="my-5"></div>
             <div class="row">
-                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:blocks' %}">
+                <a class="col-md-2 col-sm-6 sep" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
-                    <div class="text-center"><h3 class="index-font">Block Height</h3> <span class="sub-font">( <span
-                            v-text="bps"></span> Block Rate)</span>
-
+                    <div class="text-center"><h3 class="index-font">Block Height</h3>
                     </div>
                 </a>
-                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:txs' %}">
+                <a class="col-md-2 col-sm-6 sep" href="{% url 'explorer:rnode' %}">
+                    <div class="text-center"><h1 class="number-font" v-text="bps"></h1></div>
+                    <div class="text-center"><h3 class="index-font">Blocks/ second</h3></div>
+                </a>
+                <a class="col-md-2 col-sm-6 sep" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
-                            Transaction<span class="sub-font">( <span v-text="tps"></span> TPS)</span>
+                            Transaction
                         </h3>
                     </div>
                 </a>
-                <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:rnode' %}">
+                <a class="col-md-2 col-sm-6 sep" href="{% url 'explorer:rnode' %}">
+                    <div class="text-center"><h1 class="number-font" v-text="tps"></h1></div>
+                    <div class="text-center"><h3 class="index-font">Transaction/ second</h3></div>
+                </a>
+                <a class="col-md-2 col-sm-6 sep" href="{% url 'explorer:rnode' %}">
                     <div class="text-center"><h1 class="number-font" v-text="rnode"></h1></div>
                     <div class="text-center"><h3 class="index-font">RNodes</h3></div>
                 </a>
-                <a class="col-md-3 col-sm-6 text-center" href="{% url 'explorer:committee' %}">
+                <a class="col-md-2 col-sm-6 text-center" href="{% url 'explorer:committee' %}">
                     <div class="number-font proposer" v-text="committee"></div>
                     <div class="number-font proposer sub-font">of</div>
                     <div class="number-font proposer" v-text="proposer"></div>
@@ -81,7 +87,8 @@
                                     <div class="col-7 table-item-icon">
                                         <p class="text-left"><img src="{% static 'img/explorer/list：block.png' %}"
                                                                   alt=""><span v-if="block.impeach"
-                                                style="background: #fbe7e5;color: #d50101;padding: 4px;margin-left: 4px">Impeach</span></p>
+                                                                               style="background: #fbe7e5;color: #d50101;padding: 4px;margin-left: 4px">Impeach</span>
+                                        </p>
                                     </div>
                                     <div class="col-5 table-item-sub">
                                         <p class="text-right text-truncate">Block Reward: [[block.reward]] CPC</p>
