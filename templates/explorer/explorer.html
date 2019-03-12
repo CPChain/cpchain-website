@@ -27,14 +27,15 @@
             <div class="row">
                 <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:blocks' %}">
                     <div class="text-center"><h1 class="number-font" v-text="blockHeight"></h1></div>
-                    <div class="text-center"><h3 class="index-font">Block Height</h3></div>
+                    <div class="text-center"><h3 class="index-font">Block Height</h3> <span class="sub-font">( <span v-text="bps"></span> Block Rate)</span>
+
+                    </div>
                 </a>
                 <a class="col-md-3 col-sm-6 sep" href="{% url 'explorer:txs' %}">
                     <div class="text-center"><h1 class="number-font" v-text="txsc"></h1></div>
                     <div class="text-center">
                         <h3 class="index-font">
-                            {#                            Transaction<span class="sub-font">( <span <<v-t></v-t></v-t>ext="tps"></span> TPS)</span>#}
-                            Transactions
+                            Transaction<span class="sub-font">( <span v-text="tps"></span> TPS)</span>
                         </h3>
                     </div>
                 </a>
@@ -214,6 +215,8 @@
                 blockHeight: {{ header.blockHeight }},
                 txs: {{ header.txs }},
                 rnode: {{ header.rnode }},
+                bps:{{ header.bps }},
+                tps:{{ header.tps }},
                 committee: '{{ header.committee }}',
                 proposer: '{{ header.proposer }}',
                 loaded: false,
@@ -229,7 +232,8 @@
             explorerHeaderApp.blockHeight = json.blockHeight;
             explorerHeaderApp.txs = json.txs;
             explorerHeaderApp.rnode = json.rnode;
-            // explorerHeaderApp.tps = json.tps;
+            explorerHeaderApp.bps = json.bps;
+            explorerHeaderApp.tps = json.tps;
             explorerHeaderApp.committee = json.committee;
             explorerHeaderApp.proposer = json.proposer;
             explorerHeaderApp.loaded = true

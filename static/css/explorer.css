@@ -59,7 +59,8 @@
 
 
 #explorer-header .sub-font {
-    font-size: 18px;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 #explorer-header .proposer {

@@ -1,18 +1,17 @@
 import json
-import threading
+import math
 import time
-
-from django.shortcuts import redirect, render
-from django.views.decorators.cache import cache_page
-from django.http import JsonResponse
+from contextlib import contextmanager
 
 import eth_abi
-
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
-from cpchain_test.settings import cf
-
 from pymongo import DESCENDING, MongoClient
+
 from cpchain_test.config import cfg
+from cpchain_test.settings import cf
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
@@ -38,9 +37,6 @@ ADD_SIZE = 42
 
 DAY_SECENDS = 60 * 60 * 24
 BLOCK_REWARD = 500
-
-from contextlib import contextmanager
-import time
 
 
 @contextmanager
@@ -154,15 +150,13 @@ def explorer(request):
         'blockHeight': height,
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
-        # 'tps': get_tps(txs_count),
+        'bps': get_rate('bps'),
+        'tps': get_rate('tps'),
         'committee': proposerFomatter(RNode.view),
         'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
     return render(request, 'explorer/explorer.html',
                   {'blocks': blocks, 'txs': json.dumps(txs), 'chart': chart, 'header': header})
-
-
-import math
 
 
 def proposerFomatter(num):
@@ -181,12 +175,14 @@ def wshandler(req):
             Committee.update()
             txs_count = txs_collection.count_documents({})
             data = {}
-            # tps = get_tps(txs_count)
+            tps = get_rate('tps')
+            bps = get_rate('bps')
             header = {
                 'blockHeight': block_height,
                 'txs': txs_count,
                 'rnode': len(RNode.rnode) if RNode.rnode else 0,
-                # 'tps': tps,
+                'bps': bps,
+                'tps': tps,
                 'committee': proposerFomatter(RNode.view),
                 'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
             }
@@ -233,13 +229,15 @@ def wshandler(req):
             time.sleep(REFRESH_INTERVAL)
 
 
-#
-#
-# def get_tps(txs_count):
-#     start_timestamp = block_collection.find({'number': 1})[0]['timestamp']
-#     current_timestamp = int(time.time())
-#     spend_time = current_timestamp - start_timestamp
-#     return round(txs_count / spend_time, 3)
+def get_rate(bORt):
+    spend_time = 60 * 10
+    start_timestamp = int(time.time()) - spend_time
+    if bORt == 'tps':
+        txs_count = txs_collection.find({'timestamp': {'$gte': start_timestamp}}).count()
+        return round(txs_count / spend_time, 2)
+    elif bORt == 'bps':
+        block_count = block_collection.find({'timestamp': {'$gte': start_timestamp}}).count()
+        return round(block_count / spend_time, 2)
 
 
 def search(req):
@@ -385,7 +383,7 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     # address info
-    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp',-1)
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', -1)
     txs_count = txs.count()
     txs = list(txs[:25])
     timenow = int(time.time())
@@ -411,10 +409,7 @@ def address(req, address):
         print('cf connection error')
         balance = 0
 
-
-
     # latest 25 txs
-
 
     if code == '0x':
         return render(req, 'explorer/address.html', {'txs': txs,
@@ -453,6 +448,7 @@ def committee(req):
 
     return render(req, 'explorer/committee.html', locals())
 
+
 def event(req, address):
     address = cf.toChecksumAddress(address.strip())
     events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
@@ -462,6 +458,7 @@ def event(req, address):
         events = decode_event(event_abi, events)
 
     return JsonResponse({"status": 1, "message": 'success', "data": events})
+
 
 def decode_event(event_abi, event_list):
     events = []
@@ -481,6 +478,7 @@ def decode_event(event_abi, event_list):
 
     return events
 
+
 def parse_event_abi(contract_abi):
     event_abi = {}
     for f in contract_abi:
@@ -496,6 +494,7 @@ def parse_event_abi(contract_abi):
                 'arg_names': arg_names,
             }
     return event_abi
+
 
 def abi(req, address):
     address = cf.toChecksumAddress(address.strip())
@@ -524,6 +523,7 @@ def abi(req, address):
             })
 
         return JsonResponse({"status": 1, "message": 'success'})
+
 
 def source(req, address):
     address = cf.toChecksumAddress(address.strip())
