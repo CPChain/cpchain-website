@@ -449,7 +449,8 @@ def rnode(req):
 def committee(req):
     term = RNode.term
     view = RNode.view
-    committees = Committee.committee
+    committees = list(proposer_collection.find())
+    committees = sorted(committees, key=lambda k: k['BlockNumber'], reverse=True)
     TermLen = committees[0]['TermLen'] if committees else 1
 
     return render(req, 'explorer/committee.html', locals())

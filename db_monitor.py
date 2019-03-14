@@ -102,7 +102,7 @@ def save_blocks_txs(start_block_id):
                             'contract_address': log.address,
                             'txhash': log.transactionHash.hex(),
                             'block': log.blockNumber,
-                            'timestamp': timestamp,# block timestamp
+                            'timestamp': timestamp,  # block timestamp
                             'method': method,
                             'topics': topics,
                             'data': log.data,
@@ -125,7 +125,7 @@ def block_formatter(block):
         if k == 'miner':
             block_[k] = v.lower()
         elif k == 'timestamp':
-            block_[k] = v/1000
+            block_[k] = v / 1000
         elif type(v) == hexbytes.HexBytes:
             block_[k] = v.hex()
         else:
@@ -151,7 +151,7 @@ def tx_formatter(tx, timestamp, status):
             tx_[k] = float(v)
     tx_['timestamp'] = timestamp
     tx_['status'] = status
-    tx_['txfee'] = tx_['gas'] / tx_['gasPrice']
+    tx_['txfee'] = tx_['gas'] * tx_['gasPrice'] / 10 ** 18
     return tx_
 
 
