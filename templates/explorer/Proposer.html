@@ -33,22 +33,16 @@
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ BlockNumber }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">BlockNumber</h3></div>
+                        <div class="text-left"><h3 class="index-font">Block Number</h3></div>
                     </a>
                 </div>
                 <h1 class="text-left">Proposers</h1>
             </div>
         </div>
-        <div class="info-table px-md-5" id="blocks-list">
-            <div class="info-table-list">
+        <div class="info-table" id="blocks-list">
+            <div class="info-table-list" >
                 <div class="info-table-list-content">
-                    <div class="table">
-                        {#                        <div class="row list-header">#}
-                        {#                            <div class="col-2 text-truncate">View</div>#}
-                        {#                            <div class="col-2 text-truncate">Term</div>#}
-                        {#                            <div class="col-6 text-truncate">Producer</div>#}
-                        {#                            <div class="col-2 text-truncate">Block</div>#}
-                        {#                        </div>#}
+                    <div class="table" style="padding-top: 47px">
                         {% for proposer in proposers %}
                             <div class="row row-content">
                                 <div class="col-2 text-truncate">{% ifequal proposer currentProposer %}
