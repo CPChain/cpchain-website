@@ -29,18 +29,17 @@ def save_rnode_proposer():
 
         proposer = cf.cpc.getBlockGenerationInfo
         if proposer:
+            proposer = dict(proposer)
             proposer_collection.remove({})
-            for p in proposer:
-                p['View'] += 1
-            proposer_collection.insert_many(proposer)
+            proposer_collection.insert(proposer)
 
         currentTerm = cf.cpc.getCurrentTerm
         if currentTerm:
-            rnode_collection.update({'term':{'$exists':True}}, {'term': currentTerm}, True)
+            rnode_collection.update({'term': {'$exists': True}}, {'term': currentTerm}, True)
 
         currentView = cf.cpc.getCurrentView
         if currentView:
-            rnode_collection.update({'view':{'$exists':True}}, {'view': currentView+1}, True)
+            rnode_collection.update({'view': {'$exists': True}}, {'view': currentView + 1}, True)
 
         time.sleep(REFRESH_INTERVAL)
 
@@ -50,7 +49,7 @@ def main():
         try:
             save_rnode_proposer()
         except Exception as e:
-            print('rnode timeout>>>',e)
+            print('rnode timeout>>>', e)
         time.sleep(10)
 
 

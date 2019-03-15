@@ -8,7 +8,8 @@
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
-    <title>Committees &#8211; CPChain</title>
+    <title>Proposers &#8211; CPChain</title>
+    <META HTTP-EQUIV="Refresh" content="5">
 {% endblock %}
 {% block content %}
     <body class="page-template-news">
@@ -30,31 +31,32 @@
                         <div class="text-left"><h1 class="number-font">{{ TermLen }}</h1></div>
                         <div class="text-left"><h3 class="index-font">Proposers</h3></div>
                     </a>
+                    <a class="col-2" href="#">
+                        <div class="text-left"><h1 class="number-font">{{ BlockNumber }}</h1></div>
+                        <div class="text-left"><h3 class="index-font">BlockNumber</h3></div>
+                    </a>
                 </div>
-                <h1 class="text-left">Current Proposers</h1>
+                <h1 class="text-left">Proposers</h1>
             </div>
         </div>
         <div class="info-table px-md-5" id="blocks-list">
             <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table">
-                        <div class="row list-header">
-                            <div class="col-2 text-truncate">View</div>
-                            <div class="col-2 text-truncate">Term</div>
-                            <div class="col-6 text-truncate">Producer</div>
-                            <div class="col-2 text-truncate">Block</div>
-                        </div>
-                        {% for committee in committees %}
+                        {#                        <div class="row list-header">#}
+                        {#                            <div class="col-2 text-truncate">View</div>#}
+                        {#                            <div class="col-2 text-truncate">Term</div>#}
+                        {#                            <div class="col-6 text-truncate">Producer</div>#}
+                        {#                            <div class="col-2 text-truncate">Block</div>#}
+                        {#                        </div>#}
+                        {% for proposer in proposers %}
                             <div class="row row-content">
-                                <div class="col-2 text-truncate">{{ committee.View }}</div>
-                                <div class="col-2 text-truncate">{{ committee.Term }}</div>
+                                <div class="col-2 text-truncate">{% ifequal proposer currentProposer %}
+                                    <img src="{% static 'img/explorer/currentProposer.png' %}">
+                                {% endifequal %}</div>
                                 <div class="col-6 text-truncate"><a
-                                        href="{% url 'explorer:address' committee.Proposer %}"
-                                        style="color:#1BA3FF;">{{ committee.Proposer }}</a>
-                                </div>
-                                <div class="col-2 text-truncate"><a
-                                        href="{% url 'explorer:block' committee.BlockNumber %}"
-                                        style="color:#1BA3FF;">{{ committee.BlockNumber }}</a>
+                                        href="{% url 'explorer:address' proposer %}"
+                                        style="color:#1BA3FF;">{{ proposer }}</a>
                                 </div>
                             </div>
                         {% endfor %}

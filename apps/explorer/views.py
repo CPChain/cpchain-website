@@ -447,13 +447,14 @@ def rnode(req):
 
 
 def committee(req):
-    term = RNode.term
-    view = RNode.view
-    committees = list(proposer_collection.find())
-    committees = sorted(committees, key=lambda k: k['BlockNumber'], reverse=True)
-    TermLen = committees[0]['TermLen'] if committees else 1
-
-    return render(req, 'explorer/committee.html', locals())
+    proposerlist = list(proposer_collection.find())[0]
+    term = proposerlist.get('Term')
+    view = proposerlist.get('View')
+    TermLen = proposerlist['TermLen'] if proposerlist else 1
+    BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
+    proposers = proposerlist.get('Proposers')
+    currentProposer = proposerlist.get('Proposer')
+    return render(req, 'explorer/Proposer.html', locals())
 
 
 def event(req, address):
