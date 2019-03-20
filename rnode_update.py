@@ -31,6 +31,8 @@ def save_rnode_proposer():
         if proposer:
             proposer = dict(proposer)
             proposer_collection.remove({})
+            if proposer['Proposer'].endswith('000000'):
+                proposer['Proposer'] = cf.cpc.getProposerByBlock(proposer['BlockNumber'])
             proposer_collection.insert(proposer)
 
         currentTerm = cf.cpc.getCurrentTerm

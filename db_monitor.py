@@ -124,6 +124,8 @@ def block_formatter(block):
     for k, v in block.items():
         if k == 'miner':
             block_[k] = v.lower()
+            if block_[k].endswith('00000000'):
+                block_['impeachProposer'] = cf.cpc.getProposerByBlock(block['number'])
         elif k == 'timestamp':
             block_[k] = v / 1000
         elif type(v) == hexbytes.HexBytes:

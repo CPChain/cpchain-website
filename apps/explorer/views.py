@@ -124,6 +124,8 @@ def explorer(request):
 
         if b['miner'].endswith('000000'):
             block['impeach'] = True
+            block['impeachProposer'] = b['impeachProposer']
+
         blocks.append(block)
 
     # txs
@@ -202,6 +204,7 @@ def wshandler(req):
             }
             if temp_block['miner'].endswith('000000'):
                 block['impeach'] = True
+                block['impeachProposer'] = temp_block['impeachProposer']
             t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
             txs = []
             for t in t_li:
@@ -448,12 +451,13 @@ def rnode(req):
 
 def committee(req):
     proposerlist = list(proposer_collection.find())[0]
-    term = proposerlist.get('Term')
-    view = proposerlist.get('View')
+    term = proposerlist.get('Term',[])
+    view = proposerlist.get('View',[])
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
-    proposers = proposerlist.get('Proposers')
-    currentProposer = proposerlist.get('Proposer')
+    proposers = proposerlist.get('Proposers',[])
+    currentProposer = proposerlist.get('Proposer',[])
+
     return render(req, 'explorer/Proposer.html', locals())
 
 

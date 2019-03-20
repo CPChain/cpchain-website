@@ -112,7 +112,11 @@
                                     <div class="col-8 table-item-desc ">
                                         <p class="text-left text-truncate card-link " style="color: #1ba3ff">
                                             <span style="color: #305278;">Produced by</span>
-                                            <a :href="'/explorer/address/'+block.producerID" :title="block.producerID"
+                                            <a v-if="block.impeach" :href="'/explorer/address/'+block.impeachProposer"
+                                               :title="block.impeachProposer"
+                                               style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color: red;">[[block.impeachProposer]]</a>
+                                            <a v-else :href="'/explorer/address/'+block.producerID"
+                                               :title="block.producerID"
                                                style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">[[block.producerID]]</a>
                                         </p>
                                     </div>
