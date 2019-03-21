@@ -19,11 +19,10 @@ def restart():
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'start':
-        db_monitor_start()
-    elif sys.argv[1] == 'stop':
-        db_monitor_stop()
-    elif sys.argv[1] == 'restart':
-        restart()
+    if len(sys.argv) == 2:
+        if sys.argv[1] == 'start':
+            db_monitor_start()
+        elif sys.argv[1] == 'stop':
+            db_monitor_stop()
     else:
-        pass
+        restart()

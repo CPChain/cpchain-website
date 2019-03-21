@@ -132,7 +132,12 @@ def block_formatter(block):
             block_[k] = v.hex()
         else:
             block_[k] = v
+        block_['reward'] = get_block_reward(block['number'])
     return block_
+
+
+def get_block_reward(number):
+    pass
 
 
 def tx_formatter(tx, timestamp, status):
