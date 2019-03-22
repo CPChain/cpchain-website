@@ -2,7 +2,6 @@ import json
 import math
 import time
 from contextlib import contextmanager
-from pprint import pprint
 
 import eth_abi
 from django.http import JsonResponse
@@ -37,7 +36,6 @@ ADD_SIZE = 42
 # config.ini
 
 DAY_SECENDS = 60 * 60 * 24
-BLOCK_REWARD = 500
 
 
 @contextmanager
@@ -112,7 +110,6 @@ def explorer(request):
     t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
-    pprint(b_li)
     for b in b_li:
         block = {
             'id': b['number'],
