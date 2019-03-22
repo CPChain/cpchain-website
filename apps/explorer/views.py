@@ -315,7 +315,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = BLOCK_REWARD
+    blockReward = block_dict['reward']
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
