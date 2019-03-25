@@ -5,6 +5,7 @@ import time
 import hexbytes
 from cpc_fusion import Web3
 from cpc_fusion.middleware import geth_poa_middleware
+from decorator import contextmanager
 from pymongo import DESCENDING, MongoClient
 
 from cpchain_test.config import cfg
@@ -53,8 +54,6 @@ def save_blocks_txs(start_block_id):
             # save one block
             block = dict(cf.cpc.getBlock(temp_id))
             block_ = block_formatter(block)
-            b_collection.save(block_)
-            logger.info('saving block: #%s', str(temp_id))
             # save txs in this block
             logger.info('scaning txs from block: #%s', str(temp_id))
             timestamp = block_['timestamp']
@@ -113,9 +112,21 @@ def save_blocks_txs(start_block_id):
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
+            reward = update_reward(temp_id)
+            block_['reward'] = reward
+            b_collection.save(block_)
+            logger.info('saving block: #%s', str(temp_id))
+
             temp_id += 1
         else:
             time.sleep(REFRESH_INTERVAL)
+
+
+def update_reward(id):
+    reward = get_block_reward(id)
+    logger.info('reward')
+    logger.info(reward)
+    return reward
 
 
 def block_formatter(block):
@@ -132,12 +143,43 @@ def block_formatter(block):
             block_[k] = v.hex()
         else:
             block_[k] = v
-        block_['reward'] = get_block_reward(block['number'])
     return block_
 
 
+@contextmanager
+def timer(name):
+    start = time.time()
+    yield
+    logger.info(f'[{name}] done in {time.time() - start:.2f} s')
+
+
+def get_block_value(p, number):
+    p = p.lower()
+    logger.info('proposer:%s' % p)
+    logger.info('number:%s' % number)
+    in_txs = list(tx_collection.find({'blockNumber': number, 'to': p}))
+    in_v = 0
+    out_v = 0
+    for tx in in_txs:
+        in_v += tx['value']
+    # logger.info('in_value')
+    # logger.info(in_v)
+    out_txs = list(tx_collection.find({'blockNumber': number, 'from': p}))
+    for tx in out_txs:
+        out_v += tx['value']
+    # logger.info('out_value')
+    # logger.info(out_v)
+    return in_v - out_v
+
+
 def get_block_reward(number):
-    pass
+    p = cf.cpc.getProposerByBlock(number)
+    p = cf.toChecksumAddress(p)
+    current_balance = cf.cpc.getBalance(p, number)
+    last_balance = cf.cpc.getBalance(p, number - 1)
+    value_in_block = get_block_value(p, number)
+    reward = current_balance - last_balance - value_in_block
+    return str(cf.fromWei(reward, 'ether'))
 
 
 def tx_formatter(tx, timestamp, status):

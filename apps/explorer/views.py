@@ -2,7 +2,6 @@ import json
 import math
 import time
 from contextlib import contextmanager
-from pprint import pprint
 
 import eth_abi
 from django.http import JsonResponse
@@ -37,7 +36,6 @@ ADD_SIZE = 42
 # config.ini
 
 DAY_SECENDS = 60 * 60 * 24
-BLOCK_REWARD = 500
 
 
 @contextmanager
@@ -115,7 +113,7 @@ def explorer(request):
     for b in b_li:
         block = {
             'id': b['number'],
-            'reward': BLOCK_REWARD,
+            'reward': b['reward'],
             'txs': len(b['transactions']),
             'producerID': b['miner'],
             'timestamp': b['timestamp'],
@@ -196,7 +194,7 @@ def wshandler(req):
             temp_block = block_collection.find({'number': temp_height})[0]
             block = {
                 'id': temp_height,
-                'reward': BLOCK_REWARD,
+                'reward': temp_block['reward'],
                 'txs': len(temp_block['transactions']),
                 'producerID': temp_block['miner'],
                 'timestamp': temp_block['timestamp'],
@@ -291,7 +289,7 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
-    return render(req, 'explorer/block_list.html', {'blocks': blocks, 'reward': BLOCK_REWARD})
+    return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
 def block(req, block_identifier):
@@ -317,7 +315,7 @@ def block(req, block_identifier):
     size = block_dict['size']
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
-    blockReward = BLOCK_REWARD
+    blockReward = block_dict['reward']
     extraData = block_dict['proofOfAuthorityData']
     ##produce time
     if height > 1:
@@ -451,12 +449,12 @@ def rnode(req):
 
 def committee(req):
     proposerlist = list(proposer_collection.find())[0]
-    term = proposerlist.get('Term',[])
-    view = proposerlist.get('View',[])
+    term = proposerlist.get('Term', [])
+    view = proposerlist.get('View', [])
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
-    proposers = proposerlist.get('Proposers',[])
-    currentProposer = proposerlist.get('Proposer',[])
+    proposers = proposerlist.get('Proposers', [])
+    currentProposer = proposerlist.get('Proposer', [])
 
     return render(req, 'explorer/Proposer.html', locals())
 
