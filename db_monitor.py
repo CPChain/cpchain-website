@@ -154,6 +154,8 @@ def timer(name):
 
 
 def get_block_value(p, number):
+    if number == 0:
+        return 0
     p = p.lower()
     logger.info('proposer:%s' % p)
     logger.info('number:%s' % number)
@@ -173,6 +175,8 @@ def get_block_value(p, number):
 
 
 def get_block_reward(number):
+    if number == 0:
+        return 0
     p = cf.cpc.getProposerByBlock(number)
     p = cf.toChecksumAddress(p)
     current_balance = cf.cpc.getBalance(p, number)
@@ -212,10 +216,10 @@ def start_block(start_block_id_from_db):
         if check_block_hash(start_block_id_from_db):
             return start_block_id_from_db
         else:
-            return find_block(start_block_id_from_db)
+            return remove_data_from_db()
     else:
-        logger.warning('block_id_from_chain is less than db !!! start to find...')
-        return find_block(block_id_from_chain)
+        logger.warning('block_id_from_chain is less than db !!! empty db...')
+        return remove_data_from_db()
 
 
 def find_block(block_id):
@@ -236,11 +240,11 @@ def check_block_hash(block_id):
     return True if block_hash_chain == block_hash_db else False
 
 
-def remove_data_from_db(start_block_id):
-    logger.warning('start remove data from block:%d', start_block_id)
-    b_collection.delete_many({'number': {'$gte': start_block_id}})
-    tx_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
-    contract_collection.delete_many({'blockNumber': {'$gte': start_block_id}})
+def remove_data_from_db():
+    logger.warning('start remove data from block:%d')
+    b_collection.delete_many({'number': {'$gte': 0}})
+    tx_collection.delete_many({'blockNumber': {'$gte': 0}})
+    contract_collection.delete_many({'blockNumber': {'$gte': 0}})
 
 
 def main():
@@ -264,7 +268,7 @@ def main():
         start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
         logger.info('start block id =%d', start_block_id)
         # remove invalid data from db
-        remove_data_from_db(start_block_id)
+        remove_data_from_db()
 
         try:
             save_blocks_txs(start_block_id)
