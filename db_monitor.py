@@ -216,18 +216,19 @@ def start_block(start_block_id_from_db):
         if check_block_hash(start_block_id_from_db):
             return start_block_id_from_db
         else:
-            return remove_data_from_db()
+            return 0
     else:
         logger.warning('block_id_from_chain is less than db !!! empty db...')
-        return remove_data_from_db()
+        return 0
 
 
-def find_block(block_id):
-    start_id = block_id
-    while not check_block_hash(start_id) and start_id > 0:
-        start_id -= 1
-    logger.warning('find the latest valid block:%d', start_id)
-    return start_id
+#
+# def find_block(block_id):
+#     start_id = block_id
+#     while not check_block_hash(start_id) and start_id > 0:
+#         start_id -= 1
+#     logger.warning('find the latest valid block:%d', start_id)
+#     return start_id
 
 
 def get_block_from_db(b_id):
@@ -268,12 +269,13 @@ def main():
         start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
         logger.info('start block id =%d', start_block_id)
         # remove invalid data from db
-        remove_data_from_db()
+        if start_block_id == 0:
+            remove_data_from_db()
 
         try:
             save_blocks_txs(start_block_id)
         except Exception as e:
-            logger.exception('main loop')
+            logger.exception('save_blocks_txs error: ', e)
         time.sleep(10)
 
 
