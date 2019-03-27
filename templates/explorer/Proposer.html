@@ -45,7 +45,7 @@
                     <div class="table" style="padding-top: 47px">
                         {% for proposer in proposers %}
                             <div class="row row-content">
-                                <div class="col-2 text-truncate">{% ifequal proposer currentProposer %}
+                                <div class="col-2 text-truncate">{% ifequal forloop.counter0 view %}
                                     <img src="{% static 'img/explorer/currentProposer.png' %}">
                                 {% endifequal %}</div>
                                 <div class="col-6 text-truncate"><a
