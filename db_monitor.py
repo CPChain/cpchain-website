@@ -65,7 +65,7 @@ def save_blocks_txs(start_block_id):
                 # save one tx
                 tx_receipt = cf.cpc.getTransactionReceipt(tx['hash'])
                 status = tx_receipt.status
-                tx_ = tx_formatter(tx, timestamp, status)
+                tx_ = tx_formatter(tx, timestamp, status, tx_receipt)
                 txs_li.append(tx_)
 
                 # scan contract
@@ -186,13 +186,12 @@ def get_block_reward(number):
     return str(cf.fromWei(reward, 'ether'))
 
 
-def tx_formatter(tx, timestamp, status):
+def tx_formatter(tx, timestamp, status, receipt):
     tx_ = {}
     # hex_to_int = ['blockNumber', 'gas', 'gasPrice', 'transactionIndex']
     for k, v in tx.items():
         if type(v) == hexbytes.HexBytes:
             tx_[k] = v.hex()
-
         elif k == 'from' or k == 'to':
             if v:
                 tx_[k] = v.lower()
@@ -202,9 +201,10 @@ def tx_formatter(tx, timestamp, status):
             tx_[k] = v
         if k == 'value':
             tx_[k] = float(v)
+    tx_['gasUsed']=receipt['gasUsed']
     tx_['timestamp'] = timestamp
     tx_['status'] = status
-    tx_['txfee'] = tx_['gas'] * tx_['gasPrice'] / 10 ** 18
+    tx_['txfee'] = tx_['gasUsed'] * tx_['gasPrice'] / 10 ** 18
     return tx_
 
 
