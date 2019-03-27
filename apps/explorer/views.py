@@ -454,7 +454,6 @@ def committee(req):
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
     proposers = proposerlist.get('Proposers', [])
-    currentProposer = proposerlist.get('Proposer', [])
 
     return render(req, 'explorer/Proposer.html', locals())
 
