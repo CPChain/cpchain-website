@@ -33,7 +33,7 @@ def save_rnode_proposer():
             proposer_collection.remove({})
             # if proposer['Proposer'].endswith('000000'):
             #     proposer['Proposer'] = cf.cpc.getProposerByBlock(proposer['BlockNumber'])
-            proposer_collection.update_one({}, proposer, upsert=True)
+            proposer_collection.update_one({}, {"$set":proposer}, upsert=True)
 
         currentTerm = cf.cpc.getCurrentTerm
         if currentTerm:
