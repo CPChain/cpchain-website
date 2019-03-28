@@ -136,7 +136,11 @@ def block_formatter(block):
         if k == 'miner':
             block_[k] = v.lower()
             if block_[k].endswith('00000000'):
-                block_['impeachProposer'] = cf.cpc.getProposerByBlock(block['number'])
+                try:
+                    block_['impeachProposer'] = cf.cpc.getProposerByBlock(block['number'])
+                except Exception as e:
+                    logger.info('getProposerByBlock error:', e)
+                    block_['impeachProposer'] = '0x'
         elif k == 'timestamp':
             block_[k] = v / 1000
         elif type(v) == hexbytes.HexBytes:
@@ -177,7 +181,11 @@ def get_block_value(p, number):
 def get_block_reward(number):
     if number == 0:
         return 0
-    p = cf.cpc.getProposerByBlock(number)
+    try:
+        p = cf.cpc.getProposerByBlock(number)
+    except Exception as e:
+        logger.info('getProposerByBlock error:', e)
+        return 0
     p = cf.toChecksumAddress(p)
     current_balance = cf.cpc.getBalance(p, number)
     last_balance = cf.cpc.getBalance(p, number - 1)
@@ -201,7 +209,7 @@ def tx_formatter(tx, timestamp, status, receipt):
             tx_[k] = v
         if k == 'value':
             tx_[k] = float(v)
-    tx_['gasUsed']=receipt['gasUsed']
+    tx_['gasUsed'] = receipt['gasUsed']
     tx_['timestamp'] = timestamp
     tx_['status'] = status
     tx_['txfee'] = tx_['gasUsed'] * tx_['gasPrice'] / 10 ** 18
