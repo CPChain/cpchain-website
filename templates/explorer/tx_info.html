@@ -31,39 +31,39 @@
                         src="{% static 'img/explorer/transaction info icon.png' %}"
                         alt=""></span>
                 <span class="col info-id-serial d-inline-block "
-                      style="word-wrap: break-word;">{{ tx_dict.hash }}</span>
+                      style="word-wrap: break-word;margin-top: 5px">{{ tx_dict.hash }}</span>
             </div>
             <div class="row info-row">
-                <div class="col-3 col-xs-3">TxHash:</div>
-                <div class="col poppins-light" style="word-wrap: break-word">{{ tx_dict.hash }}</div>
+                <div class="col-md-3 col-xs-3">TxHash:</div>
+                <div class="col poppins-light" style="word-wrap: break-word;margin-top: 5px">{{ tx_dict.hash }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-md-3 col-xs-3 ">TxReceipt Status:</div>
                 <div class="col rc-status">
                     {% ifequal tx_dict.status 1 %}
-                        <span class="rc-success">Success</span>
+                        <span class="rc-success" style="margin-top: 5px">Success</span>
                     {% else %}
-                        <span class="rc-fail">Fail</span>
+                        <span class="rc-fail" style="margin-top: 5px">Fail</span>
                     {% endifequal %}
                 </div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Block Height:</div>
+                <div class="col-md-3">Block Height:</div>
                 <div class="col poppins-light"><a
                         href="{% url 'explorer:block' tx_dict.blockNumber %}">{{ tx_dict.blockNumber }}</a>
                 </div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Time:</div>
+                <div class="col-md-3">Time:</div>
                 <div class="col poppins-light">[[ timeTicker ]] ago</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">From:</div>
+                <div class="col-md-3">From:</div>
                 <div class="col poppins-light" style="word-wrap: break-word"><a
                         href="{% url 'explorer:address' tx_dict.from %}">{{ tx_dict.from }}</a></div>
             </div>
             <div class="row info-row">
-                <div class="col-3">To:</div>
+                <div class="col-md-3">To:</div>
                 <div class="col poppins-light" style="word-wrap: break-word">
                     {% if tx_dict.to %}
                         <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
@@ -73,27 +73,27 @@
                 </div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Value:</div>
+                <div class="col-md-3">Value:</div>
                 <div class="col poppins-light">{{ tx_dict.value }} CPC</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Gas Used By Transaction:</div>
+                <div class="col-md-3 col-xs-12">Gas Used By Transaction:</div>
                 <div class="col poppins-light">{{ tx_dict.gasUsed }}</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Gas Limit:</div>
+                <div class="col-md-3">Gas Limit:</div>
                 <div class="col poppins-light">{{ tx_dict.gasLimit }}</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Gas Price:</div>
+                <div class="col-md-3">Gas Price:</div>
                 <div class="col poppins-light">{{ tx_dict.gasPrice }} CPC</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Actual Tx Cost/Fee:</div>
+                <div class="col-md-3">Actual Tx Cost/Fee:</div>
                 <div class="col poppins-light">{{ tx_dict.txfee }} CPC</div>
             </div>
             <div class="row info-row">
-                <div class="col-3">Input Data:</div>
+                <div class="col-md-3">Input Data:</div>
                 <div class="col-9">
                     <div class="raw-data-container">
                         <div class="raw-data-content">
