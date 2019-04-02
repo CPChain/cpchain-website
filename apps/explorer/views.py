@@ -231,7 +231,7 @@ def wshandler(req):
             data = json.dumps(data)
             uwsgi.websocket_send(data)
             temp_height += 1
-            time.sleep(0.5)
+            time.sleep(0.2)
         else:
             time.sleep(REFRESH_INTERVAL)
 
