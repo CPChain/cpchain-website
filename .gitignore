@@ -16,6 +16,7 @@ docker/mongo/data
 whoosh_index/
 log/
 .vscode
+#DEBUG
 
 # Distribution / packaging
 .Python
@@ -187,7 +188,7 @@ target/
 
 # pyenv
 .python-version
-
+zhangk@cpchain.io
 # celery beat schedule file
 celerybeat-schedule
 

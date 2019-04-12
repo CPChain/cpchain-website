@@ -63,9 +63,9 @@
                 {#logo#}
 
                 <div class="menu col-9 d-flex align-items-center justify-content-end">
-                    <ul class="list-unstyled mainul flex-column flex-sm-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-sm-center justify-content-sm-between align-items-start justify-content-start w-100 mb-0"
+                    <ul class="list-unstyled mainul flex-column flex-md-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-md-center justify-content-md-between align-items-start justify-content-start w-100 mb-0"
                         id="mySidenav">
-                        <li class="d-sm-none d-block w-100">
+                        <li class="d-md-none d-block w-100">
                             <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
@@ -96,11 +96,11 @@
                         </li>
                         <li class="dropdown bg-transparent">
                             <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                                <a class="font-weight-bold dropbtn-links p-0 small d-none d-sm-block">
+                                <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">
                                     {% trans 'Developer' %}
                                 </a>
                                 <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-sm-block"
+                                    <svg height="24px" class="d-none d-md-block"
                                          id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                          viewBox="0 0 24 24">
@@ -112,17 +112,17 @@
                                 </div>
                                 <ul class="dropdown-menu rounded">
                                     <a href="{% url 'developer' %}" class="small ">{% trans 'Docs' %}</a>
-                                    {#                                <a href="{% url 'faucet' %}" class="small ">{% trans 'Faucet' %}</a>#}
+                                    <a href="{% url 'password' %}" class="small ">{% trans 'Faucet' %}</a>
                                 </ul>
                             </div>
                         </li>
                         <li class="dropdown bg-transparent">
                             <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
+                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
                                     {% trans 'Explorer' %}
                                 </a>
                                 <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-sm-block"
+                                    <svg height="24px" class="d-none d-md-block"
                                          id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                          viewBox="0 0 24 24">
@@ -151,10 +151,10 @@
                         <li class="line"></li>
                         <li class="dropdown bg-transparent">
                             <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-sm-block">
+                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
                                     {% trans 'EN' %} </a>
                                 <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-sm-block"
+                                    <svg height="24px" class="d-none d-md-block"
                                          id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                          viewBox="0 0 24 24">
@@ -173,7 +173,7 @@
                     </ul>
                 </div>
                 <div class="col-8 menuopen position-absolute d-flex justify-content-end align-items-center">
-                    <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-sm-none"></i></a>
+                    <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-md-none"></i></a>
                 </div>
             </div>
         </div>
@@ -468,7 +468,7 @@
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
                                 <div class="middle d-flex flex-row w-100 col-xl-10 col-md-10 mb-sm-5 mb-2">
-                                    <div class="col-6 d-sm-block d-none"></div>
+                                    <div class="col-6 d-md-block d-none"></div>
                                     <p style="line-height: 1.6">
                                         {% blocktrans %}CPChain's distributed infrastructure will provide a full process
                                             solution for data acquisition, storage, sharing and transacting for
@@ -658,7 +658,7 @@
                                         <div class="swiper-slide">
                                             <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
-                                                    <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="first text-left pt-5 pb-5 mb-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 /
                                                                 2018{% endblocktrans %}</h6>
@@ -732,7 +732,7 @@
                                         <div class="swiper-slide">
                                             <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
-                                                    <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="second text-left py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q4 /
                                                                 2018{% endblocktrans %}</h6>
@@ -799,7 +799,7 @@
                                         <div class="swiper-slide">
                                             <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
-                                                    <div class="left-side-holder d-none d-sm-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="second text-left  py-5">
                                                             <h6 class="text-primary">{% blocktrans %}Q1 /
                                                                 2019{% endblocktrans %}</h6>
