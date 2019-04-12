@@ -51,7 +51,7 @@
                         <div class="row list-header">
                             <div class="col text-truncate">TxHash</div>
                             <div class="col text-truncate">Block</div>
-                            <div class="col text-truncate" style="margin-left: -50px">Age</div>
+                            <div class="col text-truncate marginfix"  >Age</div>
                             <div class="col text-truncate">From</div>
                             <div class="col-1 text-truncate">&nbsp;</div>
                             <div class="col text-truncate">To</div>
@@ -60,16 +60,16 @@
                         </div>
                         {% for tx in txs %}
                             <div class="row row-content">
-                                <div class="col text-truncate"><a
+                                <div class="col text-truncate"><span>TxHash:</span><a
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
-                                <div class="col text-truncate"><a
+                                <div class="col text-truncate"><span>Block:</span><a
                                         href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate" style="margin-left: -50px">>[[ convertTime({{ tx.timesince }}) ]] ago
+                                <div class="col text-truncate marginfix"  ><span>Age:</span>>[[ convertTime({{ tx.timesince }}) ]] ago
                                 </div>
-                                <div class="col text-truncate"><a
+                                <div class="col text-truncate"><span>From:</span><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
                                 <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
-                                <div class="col text-truncate">
+                                <div class="col text-truncate"><span>To:</span>
                                     {% if tx.to %}
                                         <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
                                     {% else %}
@@ -79,8 +79,8 @@
                                     {% endif %}
 
                                 </div>
-                                <div class="col text-truncate">{{ tx.value }} CPC</div>
-                                <div class="col text-truncate">{{ tx.txfee|floatformat:10 }}</div>
+                                <div class="col text-truncate"><span>Value:</span>{{ tx.value }} CPC</div>
+                                <div class="col text-truncate"><span>TxFee:</span>{{ tx.txfee|floatformat:10 }}</div>
                             </div>
                         {% endfor %}
                     </div>

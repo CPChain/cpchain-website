@@ -105,13 +105,44 @@ class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
 
-
-
+class PasswordView(View):
+    def get(self, req):
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']:
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie == 'login':
+                return redirect('faucet')
+        return render(req, 'password.html')
+    
+    def post(self, req):
+        password = req.POST.get('password', '') 
+        if not password:
+            if not req.path.startswith('/zh-hans'):
+                return render(req, 'password.html', {'msg': "Please input a password."})
+            return render(req, 'password.html', {'msg': "请输入密码"})
+        else:
+            if password == 'cpchain2019': 
+                # return redirect('faucet')
+                response = HttpResponseRedirect('/faucet')
+                response.set_signed_cookie('faucet','login',salt="cpc",max_age=60*30,httponly=True)
+                return response
+            else:
+                if not req.path.startswith('/zh-hans'):
+                    return render(req, 'password.html', {'msg': "Incorrect password."})
+                return render(req, 'password.html', {'msg': "密码错误"})
+    
 class FaucetView(View):
     def get(self, req):
+        if 'faucet' in req.COOKIES  and ':' in req.COOKIES['faucet']: 
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie != 'login':
+                return redirect('password')
         return render(req, 'faucet.html')
 
     def post(self, req):
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']: 
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie != 'login':
+                return redirect('password')
         # locale
         address = req.POST.get('address', '')
         address = address.strip()

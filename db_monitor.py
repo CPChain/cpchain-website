@@ -59,21 +59,20 @@ def save_blocks_txs(start_block_id):
             timestamp = block_['timestamp']
             transaction_cnt = cf.cpc.getBlockTransactionCount(temp_id)
             txs_li = []
-            for transaction_id in range(transaction_cnt):
-                tx = dict(cf.cpc.getTransactionByBlock(temp_id, transaction_id))
 
+            all_txs = cf.cpc.getAllTransactionsByBlock(temp_id)
+            for tx in all_txs:
                 # save one tx
-                tx_receipt = cf.cpc.getTransactionReceipt(tx['hash'])
-                status = tx_receipt.status
-                tx_ = tx_formatter(tx, timestamp, status, tx_receipt)
-                txs_li.append(tx_)
+                status = tx.get('status')
+                _tx = tx_formatter(tx, timestamp, status)
+                txs_li.append(_tx)
 
                 # scan contract
-                if not tx_['to']:
-                    contract = cf.cpc.getTransactionReceipt(tx_['hash']).contractAddress
-                    creator = cf.cpc.getTransactionReceipt(tx_['hash'])['from']
-                    code = cf.cpc.getCode(cf.toChecksumAddress(contract))
-                    contract_dict = {'txhash': tx_['hash'],
+                if tx['isContract']:
+                    contract = _tx.get('contractAddress')
+                    creator = _tx.get('creator')
+                    code = _tx.get('code')
+                    contract_dict = {'txhash': _tx['hash'],
                                      'address': contract,
                                      'creator': creator,
                                      'blockNumber': temp_id,
@@ -82,31 +81,31 @@ def save_blocks_txs(start_block_id):
                     contract_collection.insert_one(contract_dict)
 
                 # address growth
-                for add in [tx['from'], tx['to']]:
+                for add in [_tx['from'], _tx['to']]:
                     if add and address_collection.find({'address': add}).count() == 0:
                         address_collection.insert_one({'address': add, 'timestamp': timestamp})
-
-                if len(tx_['input']) >= 10:
-                    method = tx_['input'][:10]
-                else:
-                    method = tx_['input']
-
-                for log in tx_receipt.logs:
-                    topics = []
-                    for topic in log.topics:
-                        topics.append(topic.hex())
-
-                    event_collection.insert_one(
-                        {
-                            'contract_address': log.address,
-                            'txhash': log.transactionHash.hex(),
-                            'block': log.blockNumber,
-                            'timestamp': timestamp,  # block timestamp
-                            'method': method,
-                            'topics': topics,
-                            'data': log.data,
-                        }
-                    )
+                # jianhua's code
+                # if len(_tx['input']) >= 10:
+                #     method = _tx['input'][:10]
+                # else:
+                #     method = _tx['input']
+                #
+                # for log in tx_receipt.logs:
+                #     topics = []
+                #     for topic in log.topics:
+                #         topics.append(topic.hex())
+                #
+                #     event_collection.insert_one(
+                #         {
+                #             'contract_address': log.address,
+                #             'txhash': log.transactionHash.hex(),
+                #             'block': log.blockNumber,
+                #             'timestamp': timestamp,  # block timestamp
+                #             'method': method,
+                #             'topics': topics,
+                #             'data': log.data,
+                #         }
+                #     )
 
             # append 1 block's txs into txs_li
             if txs_li:
@@ -194,7 +193,7 @@ def get_block_reward(number):
     return str(cf.fromWei(reward, 'ether'))
 
 
-def tx_formatter(tx, timestamp, status, receipt):
+def tx_formatter(tx, timestamp, status):
     tx_ = {}
     # hex_to_int = ['blockNumber', 'gas', 'gasPrice', 'transactionIndex']
     for k, v in tx.items():
@@ -209,7 +208,8 @@ def tx_formatter(tx, timestamp, status, receipt):
             tx_[k] = v
         if k == 'value':
             tx_[k] = float(v)
-    tx_['gasUsed'] = receipt['gasUsed']
+    # TODO need gasused from receipt
+    tx_['gasUsed'] = tx['gasUsed']
     tx_['timestamp'] = timestamp
     tx_['status'] = status
     tx_['txfee'] = tx_['gasUsed'] * tx_['gasPrice'] / 10 ** 18
