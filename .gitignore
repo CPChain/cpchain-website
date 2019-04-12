@@ -17,7 +17,6 @@ whoosh_index/
 log/
 .vscode
 #DEBUG
-cpchain_test/settings.py
 
 # Distribution / packaging
 .Python
@@ -217,4 +216,3 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-cpchain_test/settings.py
