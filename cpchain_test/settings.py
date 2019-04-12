@@ -220,7 +220,6 @@ PAGINATION_SETTINGS = {
     'MARGIN_PAGES_DISPLAYED': 2,
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
-# SECRET_KEY = '123123'
 # override settings
 try:
     from .local import *
