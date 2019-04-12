@@ -9,8 +9,8 @@ def db_monitor_start():
 
 
 def db_monitor_stop():
-    subprocess.run('pkill -f -9 db_monitor', shell=True)
-    subprocess.run('pkill -f -9 rnode_update', shell=True)
+    subprocess.run('pkill -9 -f db_monitor', shell=True)
+    subprocess.run('pkill -9 -f rnode_update', shell=True)
 
 
 def restart():

@@ -150,7 +150,7 @@ def explorer(request):
         txs.append(tx)
 
     txs_count = txs_collection.count_documents({})
-    header = {
+    header =
         'blockHeight': height,
         'txs': txs_count,
         'rnode': len(RNode.rnode) if RNode.rnode else 0,
