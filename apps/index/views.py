@@ -134,36 +134,34 @@ class FaucetView(View):
     def get(self, req):
         if 'faucet' in req.COOKIES  and ':' in req.COOKIES['faucet']: 
             cookie = req.get_signed_cookie('faucet',salt="cpc") 
-            if cookie != 'login':
-                return redirect('password')
-        return render(req, 'faucet.html')
+            if cookie == 'login':
+                return render(req, 'faucet.html')
+        return redirect('password')
 
     def post(self, req):
         if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']: 
             cookie = req.get_signed_cookie('faucet',salt="cpc") 
-            if cookie != 'login':
-                return redirect('password')
-        # locale
-        address = req.POST.get('address', '')
-        address = address.strip()
-        if cf.isAddress(address):
-            if Faucet.valid():
-                if Faucet.limit(address):
-                    faucet.delay(address)
-                    return redirect('receipt')
+            if cookie == 'login':
+                address = req.POST.get('address', '')
+                address = address.strip()
+                if cf.isAddress(address):
+                    if Faucet.valid():
+                        if Faucet.limit(address):
+                            faucet.delay(address)
+                            return redirect('receipt')
+                        else:
+                            if not req.path.startswith('/zh-hans'):
+                                return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
+                            return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
+                    else:
+                        if not req.path.startswith('/zh-hans'):
+                            return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
+                        return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
                 else:
                     if not req.path.startswith('/zh-hans'):
-                        return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
-                    return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
-            else:
-                if not req.path.startswith('/zh-hans'):
-                    return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
-                return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
-        else:
-            if not req.path.startswith('/zh-hans'):
-                return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
-            return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
-
+                        return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
+                    return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
+        return redirect('password')
 
 class ReceiptView(View):
     def get(self, req):
