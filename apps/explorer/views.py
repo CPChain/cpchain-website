@@ -138,7 +138,8 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         else:
-            contract = contract_collection.find({'creator': t['from']})[0]['address']
+            creator = cf.toChecksumAddress(t['from'])
+            contract = contract_collection.find({'creator': creator})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -215,7 +216,8 @@ def wshandler(req):
                         'amount': format(t['txfee'], '.10f')
                     }
                 else:
-                    contract = contract_collection.find({'creator': t['from']})[0]['address']
+                    creator = cf.toChecksumAddress(t['from'])
+                    contract = contract_collection.find({'creator': creator})[0]['address']
                     tx = {
                         'hash': t['hash'],
                         'sellerID': t['from'],
@@ -404,7 +406,8 @@ def address(req, address):
             d['flag'] = 'in'
         # add contract address
         if not d['to']:
-            d['contract'] = contract_collection.find({'creator': d['from']})[0]['address']
+            creator = cf.toChecksumAddress(d['from'])
+            d['contract'] = contract_collection.find({'creator': creator})[0]['address']
         d['value'] = cf.fromWei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
 

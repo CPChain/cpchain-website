@@ -4,8 +4,8 @@ import sys
 
 
 def db_monitor_start():
-    subprocess.run("nohup python db_monitor.py &", shell=True)
-    subprocess.run("nohup python rnode_update.py &", shell=True)
+    subprocess.run("nohup python3 db_monitor.py &", shell=True)
+    subprocess.run("nohup python3 rnode_update.py &", shell=True)
 
 
 def db_monitor_stop():
