@@ -4564,9 +4564,7 @@ button.bg-dark:focus {
 }
 
 .rhea {
-    width: 210px;
-!important;
-.
+    width: 210px!important;
 }
 
 .rounded {
@@ -8266,7 +8264,7 @@ footer.footer .banner.rnodes .above a {
         position: fixed;
         z-index: 11;
         top: 0;
-        right: -25rem;
+        right: -50rem;
         background-color: #383C43;
         overflow-x: hidden;
         -webkit-transition: 0.5s;
@@ -8340,8 +8338,7 @@ footer.footer .banner.rnodes .above a {
         display: block !important;
         border: 0 !important;
         background-color: transparent !important;
-        position: relative;
-    !important;
+        position: relative !important;
     }
 
     header .dropdown-menu a {
@@ -8509,7 +8506,7 @@ footer.footer .banner.rnodes .above a {
 
     section.section-twelve .bottom, section.section-media .bottom {
         grid-gap: 0px;
-        -ms-grid-columns: (auto) [ 2 ] !important;
+        -ms-grid-columns: (auto) [2] !important;
         grid-template-columns: repeat(2, auto) !important;
     }
 
@@ -8633,7 +8630,25 @@ section.external-media {
     width: 100%;
     height: 100%;
 }
+.news-view-holder  {
+    color: #171a1d;
+}
+.news-view-holder h1, .news-view-holder h2, .news-view-holder h3, .news-view-holder h4, .news-view-holder h5 {
+    margin-top: 0.5rem;
+    margin-bottom: .5rem;
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
 
+.news-view-holder .btn {
+    width: 190px !important;
+}
+
+.news-view-holder img {
+    width: 100%;
+    height: 100%;
+}
 section.section-one {
     height: 80vh;
     overflow: hidden;
@@ -9701,11 +9716,9 @@ section.rnodes > .row {
     margin-top: 64px;
     height: 25px;
     font-size: 18px;
-    font-family: poppins-light-italic;
-!important;
+    font-family: poppins-light-italic!important;
     font-weight: 300;
     line-height: 27px;
-    color: rgba(112, 184, 32, 1);
-!important;
+    color: rgba(112, 184, 32, 1)!important;
     opacity: 1;
 }

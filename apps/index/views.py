@@ -105,34 +105,63 @@ class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
 
-
-
-class FaucetView(View):
+class PasswordView(View):
     def get(self, req):
-        return render(req, 'faucet.html')
-
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']:
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie == 'login':
+                return redirect('faucet')
+        return render(req, 'password.html')
+    
     def post(self, req):
-        # locale
-        address = req.POST.get('address', '')
-        address = address.strip()
-        if cf.isAddress(address):
-            if Faucet.valid():
-                if Faucet.limit(address):
-                    faucet.delay(address)
-                    return redirect('receipt')
-                else:
-                    if not req.path.startswith('/zh-hans'):
-                        return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
-                    return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
+        password = req.POST.get('password', '') 
+        if not password:
+            if not req.path.startswith('/zh-hans'):
+                return render(req, 'password.html', {'msg': "Please input a password."})
+            return render(req, 'password.html', {'msg': "请输入密码"})
+        else:
+            if password == 'cpchain2019': 
+                # return redirect('faucet')
+                response = HttpResponseRedirect('/faucet')
+                response.set_signed_cookie('faucet','login',salt="cpc",max_age=60*30,httponly=True)
+                return response
             else:
                 if not req.path.startswith('/zh-hans'):
-                    return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
-                return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
-        else:
-            if not req.path.startswith('/zh-hans'):
-                return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
-            return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
+                    return render(req, 'password.html', {'msg': "Incorrect password."})
+                return render(req, 'password.html', {'msg': "密码错误"})
+    
+class FaucetView(View):
+    def get(self, req):
+        if 'faucet' in req.COOKIES  and ':' in req.COOKIES['faucet']: 
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie == 'login':
+                return render(req, 'faucet.html')
+        return redirect('password')
 
+    def post(self, req):
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']: 
+            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            if cookie == 'login':
+                address = req.POST.get('address', '')
+                address = address.strip()
+                if cf.isAddress(address):
+                    if Faucet.valid():
+                        if Faucet.limit(address):
+                            faucet.delay(address)
+                            return redirect('receipt')
+                        else:
+                            if not req.path.startswith('/zh-hans'):
+                                return render(req, 'faucet.html', {'msg': "You have already claimed today's faucet."})
+                            return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
+                    else:
+                        if not req.path.startswith('/zh-hans'):
+                            return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
+                        return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
+                else:
+                    if not req.path.startswith('/zh-hans'):
+                        return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
+                    return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
+        return redirect('password')
 
 class ReceiptView(View):
     def get(self, req):

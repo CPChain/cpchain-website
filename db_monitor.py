@@ -4,7 +4,6 @@ import time
 
 import hexbytes
 from cpc_fusion import Web3
-from cpc_fusion.middleware import geth_poa_middleware
 from decorator import contextmanager
 from pymongo import DESCENDING, MongoClient
 
@@ -25,7 +24,6 @@ logger.addHandler(rf_handler)
 
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
-cf.middleware_stack.inject(geth_poa_middleware, layer=0)
 
 # mongodb
 mongoHost = cfg['db']['ip']
