@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-03 13:41+0800\n"
+"POT-Creation-Date: 2019-04-15 16:43+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/base.html:70 templates/index.html:78 templates/index.html:467
+#: templates/base.html:70 templates/index.html:78 templates/index.html:448
 #: templates/intelligent-transportation.html:50 templates/security.html:42
 #: templates/smart-medical.html:49
 msgid "Application"
 msgstr "应用"
 
-#: templates/base.html:75 templates/index.html:83 templates/index.html:615
+#: templates/base.html:75 templates/index.html:83 templates/index.html:582
 msgid "Roadmap"
 msgstr "路线图"
 
-#: templates/base.html:80 templates/index.html:88 templates/index.html:913
+#: templates/base.html:80 templates/index.html:88 templates/index.html:833
 msgid "Team"
 msgstr "团队"
 
@@ -44,17 +44,20 @@ msgstr "开发者"
 msgid "Docs"
 msgstr "文档"
 
+#: templates/base.html:107 templates/faucet-receipt.html:14
+#: templates/faucet.html:15 templates/index.html:115 templates/password.html:15
+msgid "Faucet"
+msgstr "领币"
+
 #: templates/base.html:114 templates/index.html:122
 msgid "Explorer"
 msgstr "浏览器"
 
 #: templates/base.html:128 templates/index.html:137
-#, fuzzy
-#| msgid "Alpha Mainnet (Rhea)"
 msgid "Beta Mainnet (Wayne)"
-msgstr "测试网 (Rhea)"
+msgstr "测试网 (Wayne)"
 
-#: templates/base.html:134 templates/index.html:143 templates/index.html:1202
+#: templates/base.html:134 templates/index.html:143 templates/index.html:1097
 msgid "Partners"
 msgstr "合作伙伴"
 
@@ -65,10 +68,6 @@ msgstr "联系我们"
 #: templates/base.html:146 templates/index.html:155
 msgid "EN"
 msgstr "中文"
-
-#: templates/faucet-receipt.html:14 templates/faucet.html:15
-msgid "Faucet"
-msgstr "领币"
 
 #: templates/faucet-receipt.html:19 templates/faucet.html:20
 msgid ""
@@ -114,37 +113,31 @@ msgstr "请输入你的钱包地址来申领今天的测试币"
 msgid "Claim"
 msgstr "申领"
 
-#: templates/faucet.html:42
+#: templates/faucet.html:42 templates/password.html:38
 msgid "Reset"
 msgstr "重置"
 
 #: templates/index.html:196
-#, fuzzy
-#| msgid " A new distributed infrastructure for next generation IoT "
-msgid ""
-" A new distributed infrastructure for next generation\n"
-"                                            IoT "
+msgid " A new distributed infrastructure for next generation IoT "
 msgstr "新一代物联网分布式基础架构"
 
-#: templates/index.html:205
+#: templates/index.html:200
+msgid "CPChain_Whitepaper_English.pdf"
+msgstr "CPChain_Whitepaper_CN.pdf"
+
+#: templates/index.html:204
 msgid "WHITE PAPER"
 msgstr "白皮书"
 
-#: templates/index.html:211
+#: templates/index.html:210
 msgid "LIGHT PAPER"
 msgstr "项目简介"
 
-#: templates/index.html:262
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Integration <br> of IoT\n"
-"                                            & Blockchain"
-msgstr "您的邮箱*"
+#: templates/index.html:260
+msgid "Integration <br> of IoT & Blockchain"
+msgstr "物联网与区块链的整合"
 
-#: templates/index.html:267
+#: templates/index.html:264
 msgid ""
 "CPChain is a new distributed infrastructure for next generation IoT. CPChain "
 "intends to build a fundamental data platform for IoT systems in combination "
@@ -156,831 +149,439 @@ msgstr ""
 "术，为物联网系统构建基础数据平台，提供从数据采集、存储、共享到应用的全流程解"
 "决方案。"
 
-#: templates/index.html:270
-#, fuzzy
-#| msgid ""
-#| "CPChain is a promising solution to a series of challenges of the current "
-#| "\"chimney architecture\" of IoT systems, reducing connectivity cost of "
-#| "devices, protecting data privacy and maximizing the value of IoT data."
+#: templates/index.html:267
 msgid ""
-"CPChain is a promising solution to a series of challenges of\n"
-"                                                the current \"chimney "
-"architecture\" of IoT systems, reducing connectivity\n"
-"                                                cost of devices, protecting "
-"data privacy and maximizing the value of IoT\n"
-"                                                data."
+"CPChain is a promising solution to a series of challenges of the current "
+"\"chimney architecture\" of IoT systems, reducing connectivity cost of "
+"devices, protecting data privacy and maximizing the value of IoT data."
 msgstr ""
 "物信链是应对物联网系统当前“烟囱架构 ”一系列挑战的解决方案，能够降低物联网设备"
 "的连接成本，保护用户数据隐私，同时最大化物联网数据价值。"
 
-#: templates/index.html:297
+#: templates/index.html:291
 msgid "Features"
 msgstr "特征"
 
-#: templates/index.html:301
-#, fuzzy
-#| msgid ""
-#| "The core feature of the CPChain is to realize the transmission of the "
-#| "value of cyber-physical systems. CPChain’s main technological innovation "
-#| "is to propose a systematic scheme to address the scalability and real-"
-#| "time problems of blockchain technology in IoTs from the perspective of "
-#| "data storage and computation, and consensus protocols, including parallel "
-#| "distributed architecture, two-layer hybrid consensus mechanism and "
-#| "lightweight side chain consensus protocol."
+#: templates/index.html:295
 msgid ""
-"The core feature of the CPChain is to realize the transmission\n"
-"                                            of the value of cyber-physical "
-"systems. CPChain’s main technological\n"
-"                                            innovation is to propose a "
-"systematic scheme to address the scalability and\n"
-"                                            real-time problems of blockchain "
-"technology in IoTs from the perspective of\n"
-"                                            data storage and computation, "
-"and consensus protocols, including parallel\n"
-"                                            distributed architecture, two-"
-"layer hybrid consensus mechanism and\n"
-"                                            lightweight side chain consensus "
-"protocol."
+"The core feature of the CPChain is to realize the transmission of the value "
+"of cyber-physical systems. CPChain’s main technological innovation is to "
+"propose a systematic scheme to address the scalability and real-time "
+"problems of blockchain technology in IoTs from the perspective of data "
+"storage and computation, and consensus protocols, including parallel "
+"distributed architecture, two-layer hybrid consensus mechanism and "
+"lightweight side chain consensus protocol."
 msgstr ""
 "物信链的核心特征是实现物信系统价值的传递。主要的技术贡献是从数据存储计算以及"
 "共识协议（包括平行分布式架构、双层混合共识机制以及轻量级侧链共识协议）的角"
 "度，提出一种系统方案，解决物联网中区块链技术的可扩展性和实时行问题。"
 
-#: templates/index.html:316
+#: templates/index.html:304
 msgid "Scalability"
 msgstr "可扩展性"
 
-#: templates/index.html:323
+#: templates/index.html:311
 msgid "Security"
 msgstr "安全性"
 
-#: templates/index.html:331
+#: templates/index.html:319
 msgid "Rapidity"
 msgstr "高效性"
 
-#: templates/index.html:347
+#: templates/index.html:335
 msgid "Introduction"
 msgstr "简介"
 
-#: templates/index.html:358
+#: templates/index.html:346
 msgid "https://www.youtube.com/embed/0dNFgy_aGkM"
 msgstr "https://v.qq.com/iframe/player.html?vid=r0711ah38nr&tiny=0&auto=0"
 
-#: templates/index.html:379
+#: templates/index.html:367
 msgid "Vision"
 msgstr "愿景"
 
-#: templates/index.html:397
-#, fuzzy
-#| msgid ""
-#| "Please select or drag and\n"
-#| "                                                                        drop "
-#| "the upload file and limit it to within\n"
-#| "                                                                        10MB"
+#: templates/index.html:385
 msgid ""
-"To build a new world of Internet of Things where\n"
-"                                                        data from IoT "
-"devices are highly integrated and\n"
-"                                                        valuable"
-msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+"To build a new world of Internet of Things where data from IoT devices are "
+"highly integrated and valuable"
+msgstr "构建能够使物联网装置的数据高度集成且有价值的物联网新世界"
 
-#: templates/index.html:415
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"To share data for business and research\n"
-"                                                        purposes"
-msgstr "您的邮箱*"
+#: templates/index.html:401
+msgid "To share data for business and research purposes"
+msgstr "全面开发和优化物信链的核心技术，寻求与合作伙伴的合作，以实现产业落地"
 
-#: templates/index.html:431
-#, fuzzy
-#| msgid ""
-#| "To fully develop and optimize CPChain's core technology and seek "
-#| "cooperation with partners to fulfill industrial landing"
+#: templates/index.html:416
 msgid ""
-"To fully develop and optimize CPChain's core technology\n"
-"                                                    and seek cooperation "
-"with partners to fulfill industrial\n"
-"                                                    landing"
+"To fully develop and optimize CPChain's core technology and seek cooperation "
+"with partners to fulfill industrial landing"
 msgstr "打造为业务和研究服务的共享型数据"
 
-#: templates/index.html:450
-#, fuzzy
-#| msgid ""
-#| "To seek thorough business landing domestically and internationally to "
-#| "maximize the value of IoT data"
+#: templates/index.html:433
 msgid ""
-"To seek thorough business landing domestically and\n"
-"                                                    internationally to "
-"maximize the value of IoT\n"
-"                                                    data"
+"To seek thorough business landing domestically and internationally to "
+"maximize the value of IoT data"
 msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据的价值"
 
-#: templates/index.html:473
-#, fuzzy
-#| msgid ""
-#| "CPChain's distributed infrastructure will provide a full process solution "
-#| "for data acquisition, storage, sharing and transacting for large-scale "
-#| "distributed IoT systems. Our technology has the potential to "
-#| "revolutionize multiple industries including intelligent transportation, "
-#| "smart medical, public security, and intelligent manufacturing, etc."
+#: templates/index.html:454
 msgid ""
-"CPChain's distributed infrastructure will provide a full process\n"
-"                                            solution for data acquisition, "
-"storage, sharing and transacting for\n"
-"                                            large-scale distributed IoT "
-"systems. Our technology has the potential to\n"
-"                                            revolutionize multiple "
-"industries including intelligent transportation,\n"
-"                                            smart medical, public security, "
-"and intelligent manufacturing,\n"
-"                                            etc."
+"CPChain's distributed infrastructure will provide a full process solution "
+"for data acquisition, storage, sharing and transacting for large-scale "
+"distributed IoT systems. Our technology has the potential to revolutionize "
+"multiple industries including intelligent transportation, smart medical, "
+"public security, and intelligent manufacturing, etc."
 msgstr ""
 "CPChain是大型分布式物联网系统数据共享与处理的可信基础平台，广泛应用于智能交"
 "通、智能医疗以及公共安全等行业。"
 
-#: templates/index.html:492
+#: templates/index.html:468
 msgid "Public <br> Security"
 msgstr "公共安全"
 
-#: templates/index.html:505
+#: templates/index.html:481
 msgid "Intelligent <br> Transportation"
 msgstr "智能交通"
 
-#: templates/index.html:518
+#: templates/index.html:494
 msgid "Smart <br> Medical"
 msgstr "智能医疗"
 
-#: templates/index.html:536
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Three major <br> adoption\n"
-"                                            scenarios"
-msgstr "您的邮箱*"
+#: templates/index.html:512
+msgid "Three major <br> adoption scenarios"
+msgstr "三大应用落地场景"
 
-#: templates/index.html:540
-#, fuzzy
-#| msgid ""
-#| "The value of CPChain comes from the improvement of the physical "
-#| "industry’s efficiency and the innovation of business models, which "
-#| "results from data aggregation and mobility."
+#: templates/index.html:515
 msgid ""
-"The value of CPChain comes from the improvement of the\n"
-"                                                physical industry’s "
-"efficiency and the innovation of business models,\n"
-"                                                which results from data "
+"The value of CPChain comes from the improvement of the physical industry’s "
+"efficiency and the innovation of business models, which results from data "
 "aggregation and mobility."
 msgstr ""
 "CPChain的价值来自物理行业效率的提高和商业模式的创新，这是数据聚合及其可流动性"
 "的结果。"
 
-#: templates/index.html:558
+#: templates/index.html:531
 msgid "Multi-party data transaction"
 msgstr "多方数据处理"
 
-#: templates/index.html:561
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Multi-party trust created by\n"
-"                                                        CPChain"
-msgstr "您的邮箱*"
+#: templates/index.html:534
+msgid "Multi-party trust created by CPChain"
+msgstr "CPChain创建的多方信任"
 
-#: templates/index.html:575
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Artificial intelligence decisions based on IoT big\n"
-"                                                        data"
-msgstr "您的邮箱*"
+#: templates/index.html:547
+msgid "Artificial intelligence decisions based on IoT big data"
+msgstr "人工智能决策——CPChain以物联网大数据的人工智能决策为基础"
 
-#: templates/index.html:579
-#, fuzzy
-#| msgid "Interoperability of heterogeneous data, forming big data aggregation"
-msgid ""
-"Interoperability of heterogeneous data, forming big\n"
-"                                                        data aggregation"
+#: templates/index.html:550
+msgid "Interoperability of heterogeneous data, forming big data aggregation"
 msgstr "异构数据的互操作性，可形成大数据聚合"
 
-#: templates/index.html:593
-#, fuzzy
-#| msgid ""
-#| "Please select or drag and\n"
-#| "                                                                        drop "
-#| "the upload file and limit it to within\n"
-#| "                                                                        10MB"
+#: templates/index.html:563
 msgid ""
-"Interaction and application of data assets in\n"
-"                                                        cross-chain, which "
-"lead to new business\n"
-"                                                        models"
-msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
+"Interaction and application of data assets in cross-chain, which lead to new "
+"business models"
+msgstr "跨链中数据资产的对接与应用，从而产生新商业模式"
 
-#: templates/index.html:598
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Cross-chain relay and\n"
-"                                                        collaboration"
-msgstr "您的邮箱*"
+#: templates/index.html:566
+msgid "Cross-chain relay and collaboration"
+msgstr "跨链中继和协作"
 
-#: templates/index.html:637
+#: templates/index.html:604
 msgid "Mainnet"
 msgstr "主网"
 
-#: templates/index.html:647
+#: templates/index.html:614
 msgid "Industry <br> Chains"
 msgstr "产业链"
 
-#: templates/index.html:663 templates/index.html:690 templates/index.html:737
-#: templates/index.html:765
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q4 /\n"
-"                                                                2018"
-msgstr "您的邮箱*"
+#: templates/index.html:630 templates/index.html:652 templates/index.html:691
+#: templates/index.html:713
+msgid "Q4 / 2018"
+msgstr "2018年第四季度"
 
-#: templates/index.html:667 templates/index.html:694
-#, fuzzy
-#| msgid ""
-#| "Consolidated mainnet 2 release <br> (backward\n"
-#| "                                                                compatible)"
+#: templates/index.html:633
+msgid "PDash 2 release featuring <br> trusted data relay"
+msgstr "发布以可信数据中继为特色的PDash 2"
+
+#: templates/index.html:636 templates/index.html:665 templates/index.html:697
+#: templates/index.html:725 templates/index.html:791
+msgid "Q4 / 2019"
+msgstr "2019年第四季度"
+
+#: templates/index.html:639 templates/index.html:667
+msgid "PDash 4 release featuring <br> incentivized economic model"
+msgstr "发布以激励式经济模式为特色的PDash 4"
+
+#: templates/index.html:646
+msgid "Q2 / 2018"
+msgstr "2018年第二季度"
+
+#: templates/index.html:649
+msgid "PDash release"
+msgstr "发布PDash"
+
+#: templates/index.html:655
 msgid ""
 "PDash 2 release featuring <br> trusted\n"
 "                                                                    data "
 "relay"
 msgstr "发布合并主网2（向后兼容）"
 
-#: templates/index.html:671 templates/index.html:706 templates/index.html:745
-#: templates/index.html:780 templates/index.html:864
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q4 /\n"
-"                                                                2019"
-msgstr "您的邮箱*"
+#: templates/index.html:659 templates/index.html:719 templates/index.html:779
+msgid "Q2 / 2019"
+msgstr "2019年第二季度"
 
-#: templates/index.html:675
-#, fuzzy
-#| msgid ""
-#| "Consolidated mainnet 2 release <br> (backward\n"
-#| "                                                                compatible)"
-msgid ""
-"PDash 4 release featuring <br>\n"
-"                                                                    incentivized "
-"economic model"
-msgstr "发布合并主网2（向后兼容）"
+#: templates/index.html:662
+msgid "PDash 3 release featuring<br> decentralized  market"
+msgstr "发布以去中心化市场为特色的PDash 3"
 
-#: templates/index.html:683
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q2 /\n"
-"                                                                2018"
-msgstr "您的邮箱*"
+#: templates/index.html:670 templates/index.html:803
+msgid "Q2 / 2020"
+msgstr "2020年第二季度"
 
-#: templates/index.html:687
-msgid "PDash release"
-msgstr "发布PDash"
+#: templates/index.html:673
+msgid "PDash 5 release featuring<br> open ecosystem"
+msgstr "发布以开放式生态系统为特色的PDash 5"
 
-#: templates/index.html:698 templates/index.html:773 templates/index.html:848
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q2 /\n"
-"                                                                2019"
-msgstr "您的邮箱*"
-
-#: templates/index.html:702
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"PDash 3 release featuring<br>\n"
-"                                                                    decentralized  "
-"market"
-msgstr "您的邮箱*"
-
-#: templates/index.html:709
-#, fuzzy
-#| msgid ""
-#| "Consolidated mainnet 2 release <br> (backward\n"
-#| "                                                                compatible)"
-msgid ""
-"PDash 4 release featuring <br>\n"
-"                                                                incentivized "
-"economic model"
-msgstr "发布合并主网2（向后兼容）"
-
-#: templates/index.html:713 templates/index.html:880
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q2 /\n"
-"                                                                2020"
-msgstr "您的邮箱*"
-
-#: templates/index.html:717
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"PDash 5 release featuring<br> open\n"
-"                                                                    ecosystem"
-msgstr "您的邮箱*"
-
-#: templates/index.html:726 templates/index.html:793 templates/index.html:892
+#: templates/index.html:681 templates/index.html:735 templates/index.html:813
 msgid "Q3 / 2020"
 msgstr "2020年第三季度"
 
-#: templates/index.html:727 templates/index.html:794 templates/index.html:893
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"\n"
-"                                                    Consolidated IoT-"
-"blockchain system"
-msgstr "您的邮箱*"
+#: templates/index.html:682 templates/index.html:736 templates/index.html:814
+msgid " Consolidated IoT-blockchain system"
+msgstr "合并物联网-区块链系统"
 
-#: templates/index.html:741
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"CPChain mainnet (alpha version)\n"
-"                                                                    release"
-msgstr "您的邮箱*"
+#: templates/index.html:694
+msgid "CPChain mainnet (alpha version) release"
+msgstr "发布CPChain主网"
 
-#: templates/index.html:749
-#, fuzzy
-#| msgid ""
-#| "Consolidated mainnet 2 release <br> (backward\n"
-#| "                                                                compatible)"
-msgid ""
-"Consolidated mainnet 2 release <br>\n"
-"                                                                    (backward "
-"compatible)"
+#: templates/index.html:700 templates/index.html:728
+msgid "Consolidated mainnet 2 release <br> (backward compatible)"
 msgstr "发布合并主网2（向后兼容）"
 
-#: templates/index.html:757 templates/index.html:832
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q3 /\n"
-"                                                                2018"
-msgstr "您的邮箱*"
+#: templates/index.html:707 templates/index.html:767
+msgid "Q3 / 2018"
+msgstr "2018年第三季度"
 
-#: templates/index.html:761
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Hybrid consensus protocol\n"
-"                                                                    specification"
-msgstr "您的邮箱*"
+#: templates/index.html:710
+msgid "Hybrid consensus protocol specification"
+msgstr "混合共识协议规范"
 
-#: templates/index.html:769
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"CPChain mainnet\n"
-"                                                                    release"
-msgstr "您的邮箱*"
+#: templates/index.html:716
+msgid "CPChain mainnet release"
+msgstr "发布CPChain主网"
 
-#: templates/index.html:777
+#: templates/index.html:722
 msgid "Sidechain release"
 msgstr "发布侧链"
 
-#: templates/index.html:784
-#, fuzzy
-#| msgid ""
-#| "Consolidated mainnet 2 release <br> (backward\n"
-#| "                                                                compatible)"
-msgid ""
-"Consolidated mainnet 2 release <br>\n"
-"                                                                    (backward\n"
-"                                                                    compatible)"
-msgstr "发布合并主网2（向后兼容）"
+#: templates/index.html:745 templates/index.html:773
+msgid "Q1 / 2019"
+msgstr "2019年第一季度"
 
-#: templates/index.html:804 templates/index.html:840
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q1 /\n"
-"                                                                2019"
-msgstr "您的邮箱*"
+#: templates/index.html:748 templates/index.html:776
+msgid "IoT-chain prototype"
+msgstr "物联网-链原型"
 
-#: templates/index.html:808 templates/index.html:844
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"IoT-chain\n"
-"                                                                    prototype"
-msgstr "您的邮箱*"
+#: templates/index.html:751 templates/index.html:785
+msgid "Q3 / 2019"
+msgstr "2019年第三季度"
 
-#: templates/index.html:812 templates/index.html:856
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q3 /\n"
-"                                                                2019"
-msgstr "您的邮箱*"
+#: templates/index.html:754 templates/index.html:788
+msgid "IoT-chain release <br> Wallet release"
+msgstr "发布物联网-链和钱包"
 
-#: templates/index.html:816 templates/index.html:860
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"IoT-chain release <br> Wallet\n"
-"                                                                    release"
-msgstr "您的邮箱*"
+#: templates/index.html:757 templates/index.html:797
+msgid "Q1 / 2020"
+msgstr "2020年第一季度"
 
-#: templates/index.html:820 templates/index.html:872
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Q1 /\n"
-"                                                                2020"
-msgstr "您的邮箱*"
+#: templates/index.html:760 templates/index.html:800
+msgid "User and developer <br> community building"
+msgstr "用户和开发者社区建设"
 
-#: templates/index.html:824 templates/index.html:876
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"User and developer <br> community\n"
-"                                                                    building"
-msgstr "您的邮箱*"
+#: templates/index.html:770
+msgid "IoT-chain specifications<br> and patent"
+msgstr "物联网-链规范和专利"
+
+#: templates/index.html:782
+msgid "Token model for chains"
+msgstr "发布物联网-链和钱包"
+
+#: templates/index.html:794
+msgid "Iot-chain for specialized industries<br> SDK release"
+msgstr "发布特色产业SDK的物联网-链"
+
+#: templates/index.html:806
+msgid "DApp tutorials and examples"
+msgstr "DApp（去中心化应用托管）学习指南和示例"
 
 #: templates/index.html:836
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
 msgid ""
-"IoT-chain specifications<br> and\n"
-"                                                                    patent"
-msgstr "您的邮箱*"
-
-#: templates/index.html:852
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Token model for\n"
-"                                                                    chains"
-msgstr "您的邮箱*"
-
-#: templates/index.html:868
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Iot-chain for specialized industries<br>\n"
-"                                                                    SDK "
-"release"
-msgstr "您的邮箱*"
-
-#: templates/index.html:884
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"DApp tutorials and\n"
-"                                                                    examples"
-msgstr "您的邮箱*"
-
-#: templates/index.html:916
-#, fuzzy
-#| msgid ""
-#| "CPChain’s R&D team is comprised of intelligent, talented, and energetic "
-#| "members with years of experience in related industries. The founding team "
-#| "members include top talent from universities, the Internet of Things "
-#| "industry, FinTech, and financial security companies."
-msgid ""
-"CPChain’s team is comprised of intelligent, talented, and\n"
-"                                                energetic members with years "
-"of experience in related industries. The\n"
-"                                                founding team members "
-"include top talent from universities, the Internet\n"
-"                                                of Things industry, FinTech, "
-"and financial security\n"
-"                                                companies."
+"CPChain’s team is comprised of intelligent, talented, and energetic members "
+"with years of experience in related industries. The founding team members "
+"include top talent from universities, the Internet of Things industry, "
+"FinTech, and financial security companies."
 msgstr ""
 "CPChain研发团队是一支国际化、知识结构复合化、年轻化的团队。创始成员包括来自高"
 "校、物联网、金融证券以及商业运营的顶级人才。"
 
-#: templates/index.html:968
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Founder, CEO, Professor, Principal\n"
-"                                                                Scientist"
-msgstr "您的邮箱*"
+#: templates/index.html:881
+msgid "Dr. Chengnian Long"
+msgstr "龙承念 博士"
 
-#: templates/index.html:972
-#, fuzzy
-#| msgid ""
-#| "Dr. Long is a university professor with many years of experience in the "
-#| "fields of cyber physical system security, Internet of Things, distributed "
-#| "intelligent systems and blockchain technology. He has published more than "
-#| "80 papers in internationally renowned journals, and has more than 10 "
-#| "patents for invention."
+#: templates/index.html:883
+msgid "Founder, CEO, Professor, Principal Scientist"
+msgstr "创始人、首席执行官、教授及首席科学家"
+
+#: templates/index.html:886
 msgid ""
-"Dr. Long is a university professor with many\n"
-"                                                                years of "
-"experience in the fields of cyber physical\n"
-"                                                                system "
-"security, Internet of Things, distributed\n"
-"                                                                intelligent "
-"systems and blockchain technology. He has\n"
-"                                                                published "
-"more than 80 papers in internationally\n"
-"                                                                renowned "
-"journals, and has more than 10 patents for\n"
-"                                                                invention."
+"Dr. Long is a university professor with many years of experience in the "
+"fields of cyber physical system security, Internet of Things, distributed "
+"intelligent systems and blockchain technology. He has published more than 80 "
+"papers in internationally renowned journals, and has more than 10 patents "
+"for invention."
 msgstr ""
 "教育部新世纪人才，上海市浦江人才；IEEE Blockchain Newsletter Editor，中国自动"
 "化学会工业系统信息安全专委会委员，中国创造学会智能制造与服务分会常务理事；在"
 "信息物理系统安全、物联网、基于区块链的分布式智能系统等领域有多年从业经验，国"
 "际知名期刊和会议上发表论文80多篇，拥有发明专利10余项。"
 
-#: templates/index.html:988
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"CPChain Co-Founder,\n"
-"                                                                CTO"
-msgstr "您的邮箱*"
+#: templates/index.html:892
+msgid "Dr. Bin Zhao"
+msgstr "赵滨 博士"
 
-#: templates/index.html:992
-#, fuzzy
-#| msgid ""
-#| "Dr. Long is a university professor with many years of experience in the "
-#| "fields of cyber physical system security, Internet of Things, distributed "
-#| "intelligent systems and blockchain technology. He has published more than "
-#| "80 papers in internationally renowned journals, and has more than 10 "
-#| "patents for invention."
+#: templates/index.html:894
+msgid "CPChain Co-Founder, CTO"
+msgstr "CPChain联合创始人兼首席技术官"
+
+#: templates/index.html:897
 msgid ""
-"Dr. Zhao has more than 12 years research and\n"
-"                                                                development "
-"experience in the fields of communication,\n"
-"                                                                Internet of "
-"Things and FinTech, with extended experience\n"
-"                                                                in R&D team "
-"management. He has 3 patents for inventions\n"
-"                                                                in the field "
-"of IoT technology. "
+"Dr. Zhao has more than 12 years research and development experience in the "
+"fields of communication, Internet of Things and FinTech, with extended "
+"experience in R&D team management. He has 3 patents for inventions in the "
+"field of IoT technology. "
 msgstr ""
-"教育部新世纪人才，上海市浦江人才；IEEE Blockchain Newsletter Editor，中国自动"
-"化学会工业系统信息安全专委会委员，中国创造学会智能制造与服务分会常务理事；在"
-"信息物理系统安全、物联网、基于区块链的分布式智能系统等领域有多年从业经验，国"
-"际知名期刊和会议上发表论文80多篇，拥有发明专利10余项。"
+" 赵滨博士在通信、物联网和互联网金融行业知名企业拥有十余年研发和管理经验，具有"
+"深厚的行业背景。拥有多项物联网领域发明专利，参与制定多项国内、国际物联网标"
+"准。"
 
-#: templates/index.html:1006
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"CPChain Co-Founder,\n"
-"                                                                COO"
-msgstr "您的邮箱*"
+#: templates/index.html:904
+msgid "Qingwei Shi"
+msgstr "史青伟"
 
-#: templates/index.html:1010
+#: templates/index.html:906
+msgid "CPChain Co-Founder, COO"
+msgstr "CPChain联合创始人兼首席运营官"
+
+#: templates/index.html:909
 msgid ""
-"Mr. Shi is an early participant in\n"
-"                                                                blockchain "
-"technology and digital currency. Founder of\n"
-"                                                                Shared "
-"Finance, and participant in the investment and\n"
-"                                                                development "
-"of many successful\n"
-"                                                                projects. "
+"Mr. Shi is an early participant in blockchain technology and digital "
+"currency. Founder of Shared Finance, and participant in the investment and "
+"development of many successful projects. "
 msgstr ""
+"区块链和数字货币早期投资人，行业媒体共享财经的创始人，参与过多个项目筹备和投"
+"资。拥有丰富的行业投资、区块链社区运营和市场营销经验。"
 
-#: templates/index.html:1068 templates/index.html:1077
+#: templates/index.html:963 templates/index.html:972
 msgid "CPChain Team"
 msgstr "核心团队"
 
-#: templates/index.html:1082
+#: templates/index.html:977
 msgid "R&D"
 msgstr "研发部"
 
-#: templates/index.html:1088
+#: templates/index.html:983
 msgid "Marketing"
 msgstr "市场及运营部"
 
-#: templates/index.html:1094
+#: templates/index.html:989
 msgid "Administrative"
 msgstr "行政部"
 
-#: templates/index.html:1138 templates/index.html:1148
+#: templates/index.html:1033 templates/index.html:1043
 msgid "CPChain Global Team"
 msgstr "全球团队"
 
-#: templates/index.html:1154
+#: templates/index.html:1049
 msgid "Global Ambassador"
 msgstr "全球大使"
 
-#: templates/index.html:1160
+#: templates/index.html:1055
 msgid "Global Community Advisors"
 msgstr "全球社区顾问"
 
-#: templates/index.html:1211
+#: templates/index.html:1106
 msgid "Investors"
 msgstr "投资者"
 
-#: templates/index.html:1268
+#: templates/index.html:1163
 msgid "Exchanges"
 msgstr "交易所"
 
-#: templates/index.html:1292
+#: templates/index.html:1187
 msgid "CONTACT"
 msgstr "联系方式"
 
-#: templates/index.html:1293
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Your <br>\n"
-"                                            opinion is important."
-msgstr "您的邮箱*"
+#: templates/index.html:1188
+msgid "Your <br> opinion is important."
+msgstr "联系我们"
 
-#: templates/index.html:1297
-#, fuzzy
-#| msgid ""
-#| "If you have any suggestion or idea of enterprise cooperation, please feel "
-#| "free to contact us."
+#: templates/index.html:1191
 msgid ""
-"If you have any suggestion or idea of enterprise\n"
-"                                                cooperation, please feel "
+"If you have any suggestion or idea of enterprise cooperation, please feel "
 "free to contact us."
 msgstr "如果您对企业合作有任何建议或想法，请随时与我们联系。"
 
-#: templates/index.html:1311
+#: templates/index.html:1204
 msgid "I have a question"
 msgstr "个人咨询"
 
-#: templates/index.html:1320
+#: templates/index.html:1213
 msgid "Business/Partnership"
 msgstr "业务/合伙企业"
 
-#: templates/index.html:1335
-#, fuzzy
-#| msgid ""
-#| "Please select or drag and\n"
-#| "                                                                        drop "
-#| "the upload file and limit it to within\n"
-#| "                                                                        10MB"
-msgid ""
-"\n"
-"                                                                Your Email\n"
-"                                                                *"
-msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
-
-#: templates/index.html:1348 templates/index.html:1592
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"You are\n"
-"                                                                        presenting"
+#: templates/index.html:1228
+msgid "Your Email *"
 msgstr "您的邮箱*"
 
-#: templates/index.html:1356 templates/index.html:1600
+#: templates/index.html:1239 templates/index.html:1477
+msgid "You are presenting"
+msgstr "您是:"
+
+#: templates/index.html:1246 templates/index.html:1484
 msgid "individual"
 msgstr "个人"
 
-#: templates/index.html:1363 templates/index.html:1607
+#: templates/index.html:1253 templates/index.html:1491
 msgid "enterprise"
 msgstr "企业"
 
-#: templates/index.html:1370 templates/index.html:1614
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"\n"
-"                                                                Your Purpose "
-"for CPChain*"
-msgstr "您的邮箱*"
+#: templates/index.html:1260 templates/index.html:1498
+msgid " Your Purpose for CPChain*"
+msgstr "您对于CPChain的建议:"
 
-#: templates/index.html:1379 templates/index.html:1622
+#: templates/index.html:1268 templates/index.html:1505
 msgid "Attachment"
 msgstr "附件"
 
-#: templates/index.html:1386
-#, fuzzy
-#| msgid ""
-#| "Please select or drag and\n"
-#| "                                                                        drop "
-#| "the upload file and limit it to within\n"
-#| "                                                                        10MB"
+#: templates/index.html:1275 templates/index.html:1511
 msgid ""
-"Please select or drag and drop\n"
-"                                                                            the "
-"upload file and limit it to within\n"
-"                                                                            10MB"
+"Please select or drag and drop the upload file and limit it to within 10MB"
 msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
 
-#: templates/index.html:1409 templates/index.html:1638
+#: templates/index.html:1296 templates/index.html:1518
 msgid "You want to"
 msgstr "您希望"
 
-#: templates/index.html:1413 templates/index.html:1642
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"Receive\n"
-"                                                                Newsletter "
-"from CPChain"
-msgstr "您的邮箱*"
+#: templates/index.html:1300 templates/index.html:1522
+msgid "Receive Newsletter from CPChain"
+msgstr "收到来自CPChain的最新消息"
 
-#: templates/index.html:1422 templates/index.html:1651
+#: templates/index.html:1308 templates/index.html:1530
 msgid "SEND"
 msgstr "发送"
 
-#: templates/index.html:1581
-#, fuzzy
-#| msgid ""
-#| "Your Email\n"
-#| "                                                                *"
-msgid ""
-"\n"
-"                                                                Your Email *"
+#: templates/index.html:1467
+msgid " Your Email *"
 msgstr "您的邮箱*"
-
-#: templates/index.html:1628
-#, fuzzy
-#| msgid ""
-#| "Please select or drag and\n"
-#| "                                                                        drop "
-#| "the upload file and limit it to within\n"
-#| "                                                                        10MB"
-msgid ""
-"Please select\n"
-"                                                                        or "
-"drag and\n"
-"                                                                        drop "
-"the upload file and limit it to within\n"
-"                                                                        10MB"
-msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
 
 #: templates/intelligent-transportation.html:53 templates/security.html:52
 #: templates/smart-medical.html:59
@@ -1190,6 +791,18 @@ msgstr "上传数据获益"
 #: templates/intelligent-transportation.html:352
 msgid "Senseless payment"
 msgstr "机器间无感支付 "
+
+#: templates/password.html:21
+msgid "Password *"
+msgstr "请输入密码"
+
+#: templates/password.html:23
+msgid "Enter your password."
+msgstr "请输入密码"
+
+#: templates/password.html:34
+msgid "Login"
+msgstr "登录"
 
 #: templates/rnode.html:29
 msgid "CPChain — RNode Ecosystem Structure"
@@ -1715,174 +1328,3 @@ msgstr ""
 "的哈希值记录在CPChain主链上，用来验证数据。系统对用户隐私保护有专门设计，能够"
 "在保证隐私的前提下，实现数据分享。因此，CPChain实现了对上层人工智能等应用的有"
 "效支持。 "
-
-#~ msgid ""
-#~ "Dr. Zhao has more than 12 years research and development experience in "
-#~ "the fields of communication, Internet of Things and FinTech, with "
-#~ "extended experience in R&D team management. He has 3 patents for "
-#~ "inventions in the field of IoT technology. "
-#~ msgstr ""
-#~ " 赵滨博士在通信、物联网和互联网金融行业知名企业拥有十余年研发和管理经验，"
-#~ "具有深厚的行业背景。拥有多项物联网领域发明专利，参与制定多项国内、国际物联"
-#~ "网标准。"
-
-#~ msgid "Integration <br> of IoT & Blockchain"
-#~ msgstr "物联网与区块链的整合"
-
-#~ msgid ""
-#~ "To build a new world of Internet of Things where data from IoT devices "
-#~ "are highly integrated and valuable"
-#~ msgstr "构建能够使物联网装置的数据高度集成且有价值的物联网新世界"
-
-#~ msgid "To share data for business and research purposes"
-#~ msgstr ""
-#~ "全面开发和优化物信链的核心技术，寻求与合作伙伴的合作，以实现产业落地"
-
-#~ msgid "Three major <br> adoption scenarios"
-#~ msgstr "三大应用落地场景"
-
-#~ msgid "multi-party trust created by CPChain"
-#~ msgstr "CPChain创建的多方信任"
-
-#~ msgid "Artificial intelligence decisions based on IoT big data"
-#~ msgstr "人工智能决策——CPChain以物联网大数据的人工智能决策为基础"
-
-#~ msgid ""
-#~ "Interaction and application of data assets in cross-chain, which lead to "
-#~ "new business models"
-#~ msgstr "跨链中数据资产的对接与应用，从而产生新商业模式"
-
-#~ msgid "cross-chain relay and collaboration"
-#~ msgstr "跨链中继和协作"
-
-#~ msgid "Q4 / 2018"
-#~ msgstr "2018年第四季度"
-
-#~ msgid "PDash 2 release featuring <br> trusted data relay"
-#~ msgstr "发布以可信数据中继为特色的PDash 2"
-
-#~ msgid "Q4 / 2019"
-#~ msgstr "2019年第四季度"
-
-#~ msgid "PDash 4 release featuring <br> incentivized economic model"
-#~ msgstr "发布以激励式经济模式为特色的PDash 4"
-
-#~ msgid "Q2 / 2018"
-#~ msgstr "2018年第二季度"
-
-#~ msgid "Q2 / 2019"
-#~ msgstr "2019年第二季度"
-
-#~ msgid "PDash 3 release featuring<br> decentralized  market"
-#~ msgstr "发布以去中心化市场为特色的PDash 3"
-
-#~ msgid "Q2 / 2020"
-#~ msgstr "2020年第二季度"
-
-#~ msgid "PDash 5 release featuring<br> open ecosystem"
-#~ msgstr "发布以开放式生态系统为特色的PDash 5"
-
-#~ msgid "Consolidated IoT-blockchain system"
-#~ msgstr "合并物联网-区块链系统"
-
-#~ msgid "CPChain mainnet release"
-#~ msgstr "发布CPChain主网"
-
-#~ msgid "Consolidated mainnet 2 release <br> (backward compatible)"
-#~ msgstr "发布合并主网2（向后兼容）"
-
-#~ msgid "Q3 / 2018"
-#~ msgstr "2018年第三季度"
-
-#~ msgid "Hybrid consensus protocol specification"
-#~ msgstr "混合共识协议规范"
-
-#~ msgid "Q1 / 2019"
-#~ msgstr "2019年第一季度"
-
-#~ msgid "IoT-chain prototype"
-#~ msgstr "物联网-链原型"
-
-#~ msgid "Q3 / 2019"
-#~ msgstr "2019年第三季度"
-
-#~ msgid "IoT-chain release <br> Wallet release"
-#~ msgstr "发布物联网-链和钱包"
-
-#~ msgid "Q1 / 2020"
-#~ msgstr "2020年第一季度"
-
-#~ msgid "User and developer <br> community building"
-#~ msgstr "用户和开发者社区建设"
-
-#~ msgid "IoT-chain specifications<br> and patent"
-#~ msgstr "物联网-链规范和专利"
-
-#~ msgid "Token model for chains"
-#~ msgstr "发布物联网-链和钱包"
-
-#~ msgid "Iot-chain for specialized industries<br> SDK release"
-#~ msgstr "发布特色产业SDK的物联网-链"
-
-#~ msgid "DApp tutorials and examples"
-#~ msgstr "DApp（去中心化应用托管）学习指南和示例"
-
-#~ msgid "Founder, CEO, Professor, Principal Scientist"
-#~ msgstr "创始人、首席执行官、教授及首席科学家"
-
-#~ msgid "CPChain Co-Founder, CTO"
-#~ msgstr "CPChain联合创始人兼首席技术官"
-
-#~ msgid "CPChain Co-Founder, COO"
-#~ msgstr "CPChain联合创始人兼首席运营官"
-
-#~ msgid ""
-#~ "Mr. Shi is an early participant in blockchain technology and digital "
-#~ "currency. Founder of Shared Finance, and participant in the investment "
-#~ "and development of many successful projects. "
-#~ msgstr ""
-#~ "区块链和数字货币早期投资人，行业媒体共享财经的创始人，参与过多个项目筹备和"
-#~ "投资。拥有丰富的行业投资、区块链社区运营和市场营销经验。"
-
-#~ msgid "Your <br> opinion is important."
-#~ msgstr "联系我们"
-
-#~ msgid "You are presenting"
-#~ msgstr "您是:"
-
-#~ msgid "Your Purpose for CPChain*"
-#~ msgstr "您对于CPChain的建议:"
-
-#~ msgid ""
-#~ "Please select or drag and drop the upload file and limit it to within 10MB"
-#~ msgstr "请选择或拖放上传文件，并将其限制在10MB以内"
-
-#~ msgid "Receive Newsletter from CPChain"
-#~ msgstr "收到来自CPChain的最新消息"
-
-#~ msgid "Your Email *"
-#~ msgstr "您的邮箱*"
-
-#~ msgid ""
-#~ "1. Each CPC address can only obtain test coins once a day. The daily "
-#~ "limit is 100 CPC and an address can apply for 10.000 CPC test coins at "
-#~ "most."
-#~ msgstr ""
-#~ "1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为"
-#~ "10,000 CPC；"
-
-#~ msgid ""
-#~ "2. The total daily limitation of CPC test coins issued by CPChain Faucet "
-#~ "is up to 100,000. The Faucet will stop releasing test coins once the "
-#~ "limitation has been reached. Users can apply the next day. "
-#~ msgstr ""
-#~ "2. CPChain Faucet每天发放上限为100,000 CPC，当天超过上限则停止发放，用户可"
-#~ "第二天继续申请；"
-
-#~ msgid ""
-#~ "1. Each CPC address can only obtain test coins once a day. The daily "
-#~ "limit is 100 CPC and an address can apply for 10,000 CPC test coins at "
-#~ "most."
-#~ msgstr ""
-#~ "1. 每个CPChain地址每次可领取100 CPC，每天限领一次，每个地址可领取上限为"
-#~ "10,000 CPC；"
