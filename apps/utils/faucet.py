@@ -7,7 +7,7 @@ from pymongo import MongoClient
 sys.path.insert(0, os.getcwd())
 from cpchain_test.config import cfg
 
-EVERYDAY = 1000000 * 1e+18
+EVERYDAY = 100000 * 1e+18
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017)
