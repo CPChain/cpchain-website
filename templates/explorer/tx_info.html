@@ -30,13 +30,12 @@
                 <span class="info-id-icon d-inline-block"><img
                         src="{% static 'img/explorer/transaction info icon.png' %}"
                         alt=""></span>
-                <span class="col info-id-serial d-inline-block RobotoCondensed-Regular "
-                      style="word-wrap: break-word;margin-top: 5px;">{{ tx_dict.hash }}</span>
+                <span class="col info-id-serial d-inline-block "
+                      style="word-wrap: break-word;margin-top: 5px">{{ tx_dict.hash }}</span>
             </div>
             <div class="row info-row">
                 <div class="col-md-3 col-xs-3">TxHash:</div>
-                <div class="col RobotoCondensed-Regulart"
-                     style="word-wrap: break-word;margin-top: 5px">{{ tx_dict.hash }}</div>
+                <div class="col poppins-light" style="word-wrap: break-word;margin-top: 5px">{{ tx_dict.hash }}</div>
             </div>
             <div class="row info-row">
                 <div class="col-md-3 col-xs-3 ">TxReceipt Status:</div>
@@ -65,7 +64,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-md-3">To:</div>
-                <div class="col RobotoCondensed-Regular" style="word-wrap: break-word">
+                <div class="col poppins-light" style="word-wrap: break-word">
                     {% if tx_dict.to %}
                         <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
                     {% else %}
@@ -98,11 +97,7 @@
                 <div class="col" style="margin-top: 5px">
                     <div class="raw-data-container">
                         <div class="raw-data-content">
-                            {% if tx_dict.input == '0x' %}
-                                {{ '' }}
-                            {% else %}
-                                {{ tx_dict.input }}
-                            {% endif %}
+                            {{ tx_dict.input }}
                         </div>
                         {#                        <div class="raw-data-type-form">#}
                         {#                            <div class="form-check-inline form-check" @click="toggleDataType(0)">#}
