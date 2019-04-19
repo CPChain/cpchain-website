@@ -97,7 +97,11 @@
                 <div class="col" style="margin-top: 5px">
                     <div class="raw-data-container">
                         <div class="raw-data-content">
-                            {{ tx_dict.input }}
+                            {% if tx_dict.input == '0x' %}
+                                {{ '' }}
+                            {% else %}
+                                {{ tx_dict.input }}
+                            {% endif %}
                         </div>
                         {#                        <div class="raw-data-type-form">#}
                         {#                            <div class="form-check-inline form-check" @click="toggleDataType(0)">#}
