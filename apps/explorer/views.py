@@ -24,7 +24,7 @@ proposer_collection = CLIENT['cpchain']['proposer']
 event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
-chart_collection = CLIENT['cpchian']['chart']
+chart_collection = CLIENT['cpchain']['chart']
 try:
     import uwsgi
 except:
@@ -47,12 +47,10 @@ def timer(name):
 
 def get_chart():
     try:
-        return json.loads(chart_collection.find()[0].get('chart',[]))
+        return chart_collection.find()[0].get('chart',[])
     except Exception:
         return []
 
-
-chart = get_chart()
 
 
 class RNode:
@@ -150,7 +148,7 @@ def explorer(request):
         'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
     return render(request, 'explorer/explorer.html',
-                  {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': chart, 'header': header})
+                  {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
 
 def proposerFomatter(num):
