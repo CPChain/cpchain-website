@@ -24,7 +24,7 @@ proposer_collection = CLIENT['cpchain']['proposer']
 event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
-
+chart_collection = CLIENT['cpchian']['chart']
 try:
     import uwsgi
 except:
@@ -46,21 +46,7 @@ def timer(name):
 
 
 def get_chart():
-    ## chart
-    now = int(time.time())
-    day_zero = now - now % DAY_SECENDS
-    chart = []
-    for i in range(12):
-        gt_time = day_zero - (i + 1) * DAY_SECENDS
-        lt_time = day_zero - i * DAY_SECENDS
-        now_ts = now - (i + 1) * DAY_SECENDS
-        time_local = time.localtime(now_ts)
-        dt = time.strftime('%m/%d', time_local)
-        txs_day = txs_collection.find({'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count()
-        add_day = address_collection.find({'timestamp': {'$lt': lt_time}}).count()
-        chart.append({'time': dt, 'tx': txs_day, 'bk': add_day})
-    chart.reverse()
-    return chart
+    return json.loads(chart_collection.find()[0].get('chart',[]))
 
 
 chart = get_chart()
