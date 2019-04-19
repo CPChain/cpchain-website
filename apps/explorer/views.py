@@ -46,7 +46,10 @@ def timer(name):
 
 
 def get_chart():
-    return json.loads(chart_collection.find()[0].get('chart',[]))
+    try:
+        return json.loads(chart_collection.find()[0].get('chart',[]))
+    except Exception:
+        return []
 
 
 chart = get_chart()
