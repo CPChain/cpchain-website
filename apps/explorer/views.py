@@ -25,6 +25,8 @@ event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
 chart_collection = CLIENT['cpchain']['chart']
+num_collection = CLIENT['cpchain']['num']
+
 try:
     import uwsgi
 except:
@@ -226,14 +228,10 @@ def wshandler(req):
 
 
 def get_rate(bORt):
-    spend_time = 60 * 10
-    start_timestamp = int(time.time()) - spend_time
     if bORt == 'tps':
-        txs_count = txs_collection.find({'timestamp': {'$gte': start_timestamp}}).count()
-        return round(txs_count / spend_time, 2)
+        return num_collection.find({'type':'tps'})[0].get('tps')
     elif bORt == 'bps':
-        block_count = block_collection.find({'timestamp': {'$gte': start_timestamp}}).count()
-        return round(block_count / spend_time, 2)
+        return num_collection.find({'type':'bps'})[0].get('bps')
 
 
 def search(req):
