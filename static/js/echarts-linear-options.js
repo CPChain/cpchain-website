@@ -19,19 +19,29 @@ echartOption = {
         itemGap: 2,
         itemWidth: 100,
         itemHeight: 262,
-        extraCssText: 'box-shadow: 0 3px 21px rgba(0,0,0,.3)'
+        extraCssText: 'box-shadow: 0 3px 21px rgba(48,82,120,0.1)',
+        axisPointer:{
+            type:'cross',
+            crossStyle:{
+                color:'#C6EAFF'
+            }
+
+        }
     },
     calculable: true,
+    color: ['#305278', '#09ACF8'],
+    icon: 'circle',
     legend: {
         data: ['Transaction History', 'Address Growth'],
         textStyle: {
             color: '#a9bcd4',
             fontSize: 16,
-            fontFamily: 'poppins',
-
+            fontFamily: 'poppins-light',
         },
         left: 40,
-
+        itemGap: 40,
+        itemHeight: 10,
+        paddingBottom:60,
     },
     xAxis: [
         {
@@ -47,13 +57,13 @@ echartOption = {
             axisLabel: {
                 color: '#a9bcd4',
                 fontSize: 12,
-                fontFamily: 'poppins',
-            }
+                fontFamily: 'poppins-light',
+            },
+            splitLine: {show: true, lineStyle: {type: 'dotted', color: '#8CA0B3'}},
+
         }
     ],
-
     yAxis: [
-
         {
             type: 'value',
             axisLabel: {
@@ -61,7 +71,7 @@ echartOption = {
                 color: '#a9bcd4',
                 fontSize: 16,
                 padding: [0, 10],
-                fontFamily: 'poppins',
+                fontFamily: 'poppins-light',
             },
             axisLine: {
                 lineStyle: {
@@ -69,7 +79,7 @@ echartOption = {
                     width: 2,
                 }
             },
-            splitLine: {show: true, lineStyle: {type: 'dotted'}},
+            splitLine: {show: true, lineStyle: {type: 'dotted',color: ['#8CA0B3']}},
         },
         {
             type: 'value',
@@ -79,7 +89,7 @@ echartOption = {
                 color: '#a9bcd4',
                 fontSize: 16,
                 padding: [0, 10],
-                fontFamily: 'poppins',
+                fontFamily: 'poppins-light',
             },
             axisLine: {
                 lineStyle: {
@@ -96,8 +106,9 @@ echartOption = {
             type: 'line',
             data: [],
             lineStyle: {
-                color: '#191970',
+                color: '#305278',
             },
+            showSymbol: false,
             areaStyle: {
                 color: {
                     type: 'linear',
@@ -123,6 +134,7 @@ echartOption = {
             lineStyle: {
                 color: '#00abf1'
             },
+            showSymbol: false,
             areaStyle: {
                 color: {
                     type: 'linear',
