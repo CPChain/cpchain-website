@@ -392,7 +392,8 @@ def address(req, address):
         # add contract address
         if not d['to']:
             creator = cf.toChecksumAddress(d['from'])
-            d['contract'] = contract_collection.find({'creator': creator})[0]['address']
+            d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
+           # d['contract'] = contract_collection.find({'creator': creator})[0]['address']
         d['value'] = cf.fromWei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
 
