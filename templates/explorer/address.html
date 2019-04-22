@@ -62,7 +62,11 @@
                         {% for tx in txs %}
                             <div class="row row-content">
                                 {% if tx.status == 0 %}
-                                    <img style="height: 12px;width:12px;" src="{% static 'img/explorer/th.png' %}">
+                                    <div class="text-truncate">
+                                        <img style="height: 16px;width:16px;margin-right: 6px " src="{% static 'img/explorer/th.png' %}">
+                                    </div>
+                                {% else %}
+                                    <div style="width:22px"></div>
                                 {% endif %}
                                 <div class="col text-truncate"><span>TxHash:</span><a
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
