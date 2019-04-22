@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
-{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
 
     <script src="/static/js/util.js"></script>
 {% endblock %}
@@ -52,7 +52,7 @@
                         <div class="row list-header">
                             <div class="col text-truncate">TxHash</div>
                             <div class="col text-truncate">Block</div>
-                            <div class="col text-truncate marginfix"  >Age</div>
+                            <div class="col text-truncate marginfix">Age</div>
                             <div class="col text-truncate">From</div>
                             <div class="col-1 text-truncate">&nbsp;</div>
                             <div class="col text-truncate">To</div>
@@ -62,13 +62,14 @@
                         {% for tx in txs %}
                             <div class="row row-content">
                                 {% if tx.status == 0 %}
-                                    <img src="{% static 'img/explorer/th.png' %}">
+                                    <img style="height: 12px;width:12px;" src="{% static 'img/explorer/th.png' %}">
                                 {% endif %}
                                 <div class="col text-truncate"><span>TxHash:</span><a
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
                                 <div class="col text-truncate"><span>Block:</span><a
                                         href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate marginfix"  ><span>Age:</span>>[[ convertTime({{ tx.timesince }}) ]] ago
+                                <div class="col text-truncate marginfix"><span>Age:</span>>[[
+                                    convertTime({{ tx.timesince }}) ]] ago
                                 </div>
                                 <div class="col text-truncate"><span>From:</span><a
                                         href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>

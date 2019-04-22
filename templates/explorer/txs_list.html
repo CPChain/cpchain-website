@@ -23,7 +23,7 @@
                 <div class="page-header-main text-center">
                     <p class="text-truncate poppins-font card-link">Transactions for <a
                             href="{% url 'explorer:block' blockNumber %}"> Block #{{ blockNumber }}</a>. &nbsp;A
-                        Total Of {{ txs_count }} transactions found</p>
+                        total of {{ txs_count }} transactions found</p>
                 </div>
             {% endif %}
         </div>
@@ -45,7 +45,11 @@
                         {% for tx in txs.object_list %}
                             <div class="row row-content">
                                 {% if tx.status == 0 %}
-                                    <img src="{% static 'img/explorer/th.png' %}">
+                                    <div class="text-truncate">
+                                        <img style="height: 16px;width:16px;margin-right: 6px " src="{% static 'img/explorer/th.png' %}">
+                                    </div>
+                                {% else %}
+                                    <div style="width:22px"></div>
                                 {% endif %}
                                 <div class="col text-truncate"><span>TxHash:</span><a
                                         href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
