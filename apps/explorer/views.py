@@ -391,7 +391,6 @@ def address(req, address):
             d['flag'] = 'in'
         # add contract address
         if not d['to']:
-            creator = cf.toChecksumAddress(d['from'])
             d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
         d['value'] = cf.fromWei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
@@ -406,7 +405,6 @@ def address(req, address):
 
     # latest 25 txs
 
-    print('code',code)
     if code == '0x':
         return render(req, 'explorer/address.html', {'txs': txs,
                                                      'address': raw_address,
@@ -414,10 +412,7 @@ def address(req, address):
                                                      'txs_count': txs_count
                                                      })
     else:
-        print('raw_addr:',raw_address)
         creator = contract_collection.find({'address': raw_address})[0]['creator']
-        print(creator)
-
         return render(req, 'explorer/contract.html', {'txs': txs,
                                                       'address': raw_address,
                                                       'balance': balance,
