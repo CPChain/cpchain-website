@@ -38,6 +38,7 @@ class Partner(models.Model):
     image = models.ImageField(upload_to='img/Partners')
     link = models.CharField(max_length=200)
     type = models.CharField(choices=PARTNERS, max_length=20)
+    weight = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

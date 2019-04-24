@@ -28,9 +28,9 @@ class DeptAdmin:
 
 
 class PartnerAdmin:
-    list_display = ['name', 'type', 'link']
-
-
+    list_display = ['name', 'type', 'link','weight']
+    list_filter = ['type',]
+    ordering = ['-weight']
 class NewsAdmin:
     list_display = ['title', 'update_time', 'category']
     list_filter = ['update_time', 'category']
