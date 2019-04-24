@@ -329,7 +329,7 @@
         display: none
     }
 }
-@media screen and  (max-width: 00px) {
+@media screen and  (max-width: 200000px) {
     .info-table .info-table-list .info-table-list-content .table .row-content {
         border-radius: 2px;
         -webkit-box-shadow: 0 0 9px 3px rgba(48, 82, 120, 0.05);
