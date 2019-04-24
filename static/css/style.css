@@ -33,7 +33,9 @@
 .poppins-font {
     font-family: 'Poppins', sans-serif !important;
 }
-
+.pingfang{
+    font-family: 'pingfang', sans-serif !important;
+}
 .poppins-medium {
     font-family: 'poppins-medium', sans-serif !important;
 }
@@ -4052,7 +4054,7 @@ input[type="button"].btn-block {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 11px 26px;
+    padding:16px 26px;
 }
 
 .card-title {

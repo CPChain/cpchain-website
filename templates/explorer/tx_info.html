@@ -60,12 +60,12 @@
             </div>
             <div class="row info-row">
                 <div class="col-md-3">From:</div>
-                <div class="col poppins-light" style="word-wrap: break-word"><a
+                <div class="col pingfang" style="word-wrap: break-word"><a
                         href="{% url 'explorer:address' tx_dict.from %}">{{ tx_dict.from }}</a></div>
             </div>
             <div class="row info-row">
                 <div class="col-md-3">To:</div>
-                <div class="col poppins-light" style="word-wrap: break-word">
+                <div class="col pingfang" style="word-wrap: break-word">
                     {% if tx_dict.to %}
                         <a href="{% url 'explorer:address' tx_dict.to %}">{{ tx_dict.to }}</a>
                     {% else %}
@@ -95,7 +95,7 @@
             </div>
             <div class="row info-row">
                 <div class="col-md-3">Input Data:</div>
-                <div class="col" style="margin-top: 5px">
+                <div class="col" style="margin-top: 15px">
                     <div class="raw-data-container">
                         <div class="raw-data-content">
                             {% if tx_dict.input == '0x' %}

@@ -1,0 +1,13 @@
+[chain]
+ip=3.1.81.79
+port=8501
+
+[faucet]
+ip=172.31.20.161
+port=8501
+account = 0x5eA101f05fe790D8b2678c01D0D161Ba6b162A88
+password = GhzNTZHckqbatyev
+
+[db]
+ip=127.0.0.1
+

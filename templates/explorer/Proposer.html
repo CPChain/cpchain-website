@@ -22,19 +22,19 @@
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ term }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current Term</h3></div>
+                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Current Term</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ view }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Current View</h3></div>
+                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Current View</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ TermLen }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Proposers</h3></div>
+                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Proposers</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ BlockNumber }}</h1></div>
-                        <div class="text-left"><h3 class="index-font">Block Number</h3></div>
+                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Block Number</h3></div>
                     </a>
                 </div>
                 <h1 class="text-left">Proposers</h1>
@@ -49,7 +49,7 @@
                                 <div class="col-2 text-truncate">{% ifequal forloop.counter0 view %}
                                     <img src="{% static 'img/explorer/currentProposer.png' %}">
                                 {% endifequal %}</div>
-                                <div class="col-6 text-truncate"><a
+                                <div class="col-6 text-truncate pingfang"><a
                                         href="{% url 'explorer:address' proposer %}"
                                         style="color:#1BA3FF;">{{ proposer }}</a>
                                 </div>

@@ -55,6 +55,7 @@
     color: #305278;
     font-size: 16px;
     font-family: Poppins;
+    letter-spacing: 3px;
 }
 
 
@@ -131,8 +132,8 @@
 
 
 .table-content .table-item {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     -webkit-box-shadow: 0 9px 9px rgba(48, 82, 120, 0.05);
     box-shadow: rgba(48, 82, 120, 0.1) 0 0 9px;
 }
@@ -334,9 +335,10 @@
         border-radius: 2px;
         -webkit-box-shadow: 0 0 9px 3px rgba(48, 82, 120, 0.05);
         box-shadow: 0 0 9px 3px rgba(48, 82, 120, 0.05);
-        margin: 8px 0;
-        height: 50px;
-        line-height: 50px;
+        margin: 10px 0;
+        height: 48px;
+        line-height: 48px;
+        padding-left: 25px;
     
     }
     .info-table .info-table-list .info-table-list-content .table .row-content .marginfix {
