@@ -39,6 +39,12 @@
                 <div class="col-3">Transactions:</div>
                 <div class="col poppins-light">{{ txs_count }} txs</div>
             </div>
+            {% if proposer_history %}
+                <div class="row info-row">
+                    <div class="col-3">Proposer History:</div>
+                 <div class="col poppins-light">{{ proposer_history}} blocks</div>
+                </div>
+            {% endif %}
             <div class="info-table-subtitle info-table-subtitle-list"
                  style="border-bottom: solid 2px #305278;width: 186px;">Transactions
             </div>
@@ -63,7 +69,8 @@
                             <div class="row row-content">
                                 {% if tx.status == 0 %}
                                     <div class="text-truncate">
-                                        <img style="height: 16px;width:16px;margin-right: 6px " src="{% static 'img/explorer/th.png' %}">
+                                        <img style="height: 16px;width:16px;margin-right: 6px "
+                                             src="{% static 'img/explorer/th.png' %}">
                                     </div>
                                 {% else %}
                                     <div style="width:22px"></div>
