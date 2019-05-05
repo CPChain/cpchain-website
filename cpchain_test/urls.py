@@ -33,7 +33,7 @@ indexpatterns = [
     path('app/<app>', AppView.as_view(), name='app'),
     path('search/', include('haystack.urls')),
     path('password/',   PasswordView.as_view(), name='password'),
-    path('faucet/', FaucetView.as_view(), name='faucet'),
+    # path('faucet/', FaucetView.as_view(), name='faucet'),
     path('receipt/', ReceiptView.as_view(), name='receipt'),
 
     # functions
