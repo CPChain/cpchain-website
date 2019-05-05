@@ -38,7 +38,7 @@ ADD_SIZE = 42
 # config.ini
 
 DAY_SECENDS = 60 * 60 * 24
-
+proposer_start_timestamp = 1556448256
 
 @contextmanager
 def timer(name):
@@ -49,10 +49,9 @@ def timer(name):
 
 def get_chart():
     try:
-        return chart_collection.find()[0].get('chart',[])
+        return chart_collection.find()[0].get('chart', [])
     except Exception:
         return []
-
 
 
 class RNode:
@@ -229,9 +228,9 @@ def wshandler(req):
 
 def get_rate(bORt):
     if bORt == 'tps':
-        return num_collection.find({'type':'tps'})[0].get('tps')
+        return num_collection.find({'type': 'tps'})[0].get('tps')
     elif bORt == 'bps':
-        return num_collection.find({'type':'bps'})[0].get('bps')
+        return num_collection.find({'type': 'bps'})[0].get('bps')
 
 
 def search(req):
@@ -406,10 +405,12 @@ def address(req, address):
     # latest 25 txs
 
     if code == '0x':
+        proposer_history = block_collection.count_documents({'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
         return render(req, 'explorer/address.html', {'txs': txs,
                                                      'address': raw_address,
                                                      'balance': balance,
-                                                     'txs_count': txs_count
+                                                     'txs_count': txs_count,
+                                                     'proposer_history': proposer_history
                                                      })
     else:
         creator = contract_collection.find({'address': raw_address})[0]['creator']
