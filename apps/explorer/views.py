@@ -95,12 +95,9 @@ class Committee:
 
 
 def explorer(request):
-    with timer('height'):
-        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
-    with timer('b_li'):
-        b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
-    with timer('t_li'):
-        t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
+    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
     for b in b_li:
@@ -142,18 +139,16 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         txs.append(tx)
-    with timer('last'):
-
-        txs_count = txs_collection.find().count()
-        header = {
-            'blockHeight': height,
-            'txs': txs_count,
-            'rnode': len(RNode.rnode) if RNode.rnode else 0,
-            'bps': get_rate('bps'),
-            'tps': get_rate('tps'),
-            'committee': proposerFomatter(RNode.view),
-            'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
-        }
+    txs_count = txs_collection.find().count()
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': len(RNode.rnode) if RNode.rnode else 0,
+        'bps': get_rate('bps'),
+        'tps': get_rate('tps'),
+        'committee': proposerFomatter(RNode.view),
+        'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+    }
     return render(request, 'explorer/explorer.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
