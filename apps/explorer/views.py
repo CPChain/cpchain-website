@@ -45,7 +45,9 @@ def timer(name):
     start = time.time()
     yield
     print(f'[{name}] done in {time.time() - start:.2f} s')
-
+# usage:
+# with timer('123'):
+#     xxxxx
 
 def get_chart():
     try:
@@ -93,61 +95,67 @@ class Committee:
 
 
 def explorer(request):
-    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
-    t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
+    with timer('height'):
+        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    with timer('b_li'):
+        b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    with timer('t_li'):
+        t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
-    for b in b_li:
-        block = {
-            'id': b['number'],
-            'reward': b['reward'],
-            'txs': len(b['transactions']),
-            'producerID': b['miner'],
-            'timestamp': b['timestamp'],
-            'hash': b['hash'],
-        }
+    with timer('for b in b_li'):
+        for b in b_li:
+            block = {
+                'id': b['number'],
+                'reward': b['reward'],
+                'txs': len(b['transactions']),
+                'producerID': b['miner'],
+                'timestamp': b['timestamp'],
+                'hash': b['hash'],
+            }
 
-        if b['miner'].endswith('000000'):
-            block['impeach'] = True
-            block['impeachProposer'] = b['impeachProposer']
+            if b['miner'].endswith('000000'):
+                block['impeach'] = True
+                block['impeachProposer'] = b['impeachProposer']
 
-        blocks.append(block)
+            blocks.append(block)
 
     # txs
-    txs = []
-    for t in t_li:
-        if t['to']:
-            tx = {
-                'hash': t['hash'],
-                'sellerID': t['from'],
-                'buyerID': t['to'],
-                'timestamp': t['timestamp'],
-                'amount': format(t['txfee'], '.10f')
-            }
-        else:
-            creator = cf.toChecksumAddress(t['from'])
-            contract = contract_collection.find({'creator': creator})[0]['address']
-            tx = {
-                'hash': t['hash'],
-                'sellerID': t['from'],
-                'buyerID': t['to'],
-                'contract': contract,
-                'timestamp': t['timestamp'],
-                'amount': format(t['txfee'], '.10f')
-            }
-        txs.append(tx)
+    with timer('for t in t_li'):
+        txs = []
+        for t in t_li:
+            if t['to']:
+                tx = {
+                    'hash': t['hash'],
+                    'sellerID': t['from'],
+                    'buyerID': t['to'],
+                    'timestamp': t['timestamp'],
+                    'amount': format(t['txfee'], '.10f')
+                }
+            else:
+                creator = cf.toChecksumAddress(t['from'])
+                contract = contract_collection.find({'creator': creator})[0]['address']
+                tx = {
+                    'hash': t['hash'],
+                    'sellerID': t['from'],
+                    'buyerID': t['to'],
+                    'contract': contract,
+                    'timestamp': t['timestamp'],
+                    'amount': format(t['txfee'], '.10f')
+                }
+            txs.append(tx)
+    with timer('last'):
 
-    txs_count = txs_collection.count_documents({})
-    header = {
-        'blockHeight': height,
-        'txs': txs_count,
-        'rnode': len(RNode.rnode) if RNode.rnode else 0,
-        'bps': get_rate('bps'),
-        'tps': get_rate('tps'),
-        'committee': proposerFomatter(RNode.view),
-        'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
-    }
+        txs_count = txs_collection.count_documents({})
+        header = {
+            'blockHeight': height,
+            'txs': txs_count,
+            'rnode': len(RNode.rnode) if RNode.rnode else 0,
+            'bps': get_rate('bps'),
+            'tps': get_rate('tps'),
+            'committee': proposerFomatter(RNode.view),
+            'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        }
     return render(request, 'explorer/explorer.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
