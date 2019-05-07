@@ -170,18 +170,19 @@ def wshandler(req):
     with timer('temp_height'):
         temp_height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     while True:
-        with timer('before if get block:'):
-            block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
-            block_height = block['number']
+        block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
+        block_height = block['number']
         if block_height >= temp_height:
-            with timer('update'):
-                RNode.update()
-                Committee.update()
+            RNode.update()
+            Committee.update()
             with timer('ws 2'):
                 txs_count = txs_collection.count_documents({})
+            with timer('ws 21'):
+
                 data = {}
                 tps = get_rate('tps')
                 bps = get_rate('bps')
+            with timer('ws 22'):
                 header = {
                     'blockHeight': block_height,
                     'txs': txs_count,
@@ -207,28 +208,27 @@ def wshandler(req):
                     block['impeachProposer'] = temp_block['impeachProposer']
                 t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
                 txs = []
-            with timer('ws for t in t_li'):
-                for t in t_li:
-                    if t['to']:
-                        tx = {
-                            'hash': t['hash'],
-                            'sellerID': t['from'],
-                            'buyerID': t['to'],
-                            'timestamp': t['timestamp'],
-                            'amount': format(t['txfee'], '.10f')
-                        }
-                    else:
-                        creator = cf.toChecksumAddress(t['from'])
-                        contract = contract_collection.find({'creator': creator})[0]['address']
-                        tx = {
-                            'hash': t['hash'],
-                            'sellerID': t['from'],
-                            'buyerID': t['to'],
-                            'contract': contract,
-                            'timestamp': t['timestamp'],
-                            'amount': format(t['txfee'], '.10f')
-                        }
-                    txs.append(tx)
+            for t in t_li:
+                if t['to']:
+                    tx = {
+                        'hash': t['hash'],
+                        'sellerID': t['from'],
+                        'buyerID': t['to'],
+                        'timestamp': t['timestamp'],
+                        'amount': format(t['txfee'], '.10f')
+                    }
+                else:
+                    creator = cf.toChecksumAddress(t['from'])
+                    contract = contract_collection.find({'creator': creator})[0]['address']
+                    tx = {
+                        'hash': t['hash'],
+                        'sellerID': t['from'],
+                        'buyerID': t['to'],
+                        'contract': contract,
+                        'timestamp': t['timestamp'],
+                        'amount': format(t['txfee'], '.10f')
+                    }
+                txs.append(tx)
             with timer('ws last'):
                 data['header'] = header
                 data['block'] = block
