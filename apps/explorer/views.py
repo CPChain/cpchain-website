@@ -11,7 +11,8 @@ from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
 from cpchain_test.config import cfg
-from cpchain_test.settings import cf
+
+from apps.utils import currency
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
@@ -328,7 +329,7 @@ def txs(req):
         for tx in txs.object_list:
             if not tx['to']:
                 tx['contract'] = contract_collection.find({'txhash': tx['hash']})[0]['address']
-            tx['value'] = cf.fromWei(tx['value'], 'ether')
+            tx['value'] = currency.from_wei(tx['value'], 'ether')
         return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
     txs_from_block = txs_collection.find({'blockNumber': int(block)})
@@ -345,7 +346,7 @@ def txs(req):
     for tx in txs.object_list:
         if not tx['to']:
             tx['contract'] = contract_collection.find({'txhash': tx['hash']})[0]['address']
-        tx['value'] = cf.fromWei(tx['value'], 'ether')
+        tx['value'] = currency.from_wei(tx['value'], 'ether')
     return render(req, 'explorer/txs_list.html', {'txs': txs,
                                                   'blockNumber': block,
                                                   'txs_count': txs_count
@@ -360,7 +361,7 @@ def tx(req, tx_hash):
     tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
-    tx_dict['value'] = cf.fromWei(tx_dict['value'], 'ether')
+    tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
     if not tx_dict['to']:
         contract = contract_collection.find({'txhash': tx_hash})[0]['address']
         return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'contract': contract})
@@ -391,13 +392,13 @@ def address(req, address):
         # add contract address
         if not d['to']:
             d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
-        d['value'] = cf.fromWei(d['value'], 'ether')
+        d['value'] = currency.from_wei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
 
     # txs.sort(key=lambda x: x['timestamp'], reverse=True)
 
     try:
-        balance = cf.fromWei(cf.cpc.getBalance(raw_address), 'ether')
+        balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
     except:
         print('cf connection error')
         balance = 0
@@ -471,6 +472,7 @@ def decode_event(event_abi, event_list):
             'arg_types': event['arg_types'],
             'arg_values': values
         })
+
 
     return events
 

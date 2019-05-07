@@ -211,7 +211,6 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
-
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
 
