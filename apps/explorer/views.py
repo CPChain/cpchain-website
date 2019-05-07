@@ -103,50 +103,48 @@ def explorer(request):
         t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
-    with timer('for b in b_li'):
-        for b in b_li:
-            block = {
-                'id': b['number'],
-                'reward': b['reward'],
-                'txs': len(b['transactions']),
-                'producerID': b['miner'],
-                'timestamp': b['timestamp'],
-                'hash': b['hash'],
-            }
+    for b in b_li:
+        block = {
+            'id': b['number'],
+            'reward': b['reward'],
+            'txs': len(b['transactions']),
+            'producerID': b['miner'],
+            'timestamp': b['timestamp'],
+            'hash': b['hash'],
+        }
 
-            if b['miner'].endswith('000000'):
-                block['impeach'] = True
-                block['impeachProposer'] = b['impeachProposer']
+        if b['miner'].endswith('000000'):
+            block['impeach'] = True
+            block['impeachProposer'] = b['impeachProposer']
 
-            blocks.append(block)
+        blocks.append(block)
 
     # txs
-    with timer('for t in t_li'):
-        txs = []
-        for t in t_li:
-            if t['to']:
-                tx = {
-                    'hash': t['hash'],
-                    'sellerID': t['from'],
-                    'buyerID': t['to'],
-                    'timestamp': t['timestamp'],
-                    'amount': format(t['txfee'], '.10f')
-                }
-            else:
-                creator = cf.toChecksumAddress(t['from'])
-                contract = contract_collection.find({'creator': creator})[0]['address']
-                tx = {
-                    'hash': t['hash'],
-                    'sellerID': t['from'],
-                    'buyerID': t['to'],
-                    'contract': contract,
-                    'timestamp': t['timestamp'],
-                    'amount': format(t['txfee'], '.10f')
-                }
-            txs.append(tx)
+    txs = []
+    for t in t_li:
+        if t['to']:
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'], '.10f')
+            }
+        else:
+            creator = cf.toChecksumAddress(t['from'])
+            contract = contract_collection.find({'creator': creator})[0]['address']
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'contract': contract,
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'], '.10f')
+            }
+        txs.append(tx)
     with timer('last'):
 
-        txs_count = txs_collection.count_documents({})
+        txs_count = txs_collection.find().count()
         header = {
             'blockHeight': height,
             'txs': txs_count,
@@ -167,47 +165,42 @@ def proposerFomatter(num):
 def wshandler(req):
     # index websocket handler
     uwsgi.websocket_handshake()
-    with timer('temp_height'):
-        temp_height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    temp_height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     while True:
         block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
         block_height = block['number']
         if block_height >= temp_height:
             RNode.update()
             Committee.update()
-            with timer('ws 2'):
-                txs_count = txs_collection.find().count()
-            with timer('ws 21'):
+            txs_count = txs_collection.find().count()
 
-                data = {}
-                tps = get_rate('tps')
-                bps = get_rate('bps')
-            with timer('ws 22'):
-                header = {
-                    'blockHeight': block_height,
-                    'txs': txs_count,
-                    'rnode': len(RNode.rnode) if RNode.rnode else 0,
-                    'bps': bps,
-                    'tps': tps,
-                    'committee': proposerFomatter(RNode.view),
-                    'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
-                }
+            data = {}
+            tps = get_rate('tps')
+            bps = get_rate('bps')
+            header = {
+                'blockHeight': block_height,
+                'txs': txs_count,
+                'rnode': len(RNode.rnode) if RNode.rnode else 0,
+                'bps': bps,
+                'tps': tps,
+                'committee': proposerFomatter(RNode.view),
+                'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+            }
 
-            with timer('ws 3'):
-                temp_block = block_collection.find({'number': temp_height})[0]
-                block = {
-                    'id': temp_height,
-                    'reward': temp_block['reward'],
-                    'txs': len(temp_block['transactions']),
-                    'producerID': temp_block['miner'],
-                    'timestamp': temp_block['timestamp'],
-                    'hash': temp_block['hash'],
-                }
-                if temp_block['miner'].endswith('000000'):
-                    block['impeach'] = True
-                    block['impeachProposer'] = temp_block['impeachProposer']
-                t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
-                txs = []
+            temp_block = block_collection.find({'number': temp_height})[0]
+            block = {
+                'id': temp_height,
+                'reward': temp_block['reward'],
+                'txs': len(temp_block['transactions']),
+                'producerID': temp_block['miner'],
+                'timestamp': temp_block['timestamp'],
+                'hash': temp_block['hash'],
+            }
+            if temp_block['miner'].endswith('000000'):
+                block['impeach'] = True
+                block['impeachProposer'] = temp_block['impeachProposer']
+            t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
+            txs = []
             for t in t_li:
                 if t['to']:
                     tx = {
@@ -229,14 +222,13 @@ def wshandler(req):
                         'amount': format(t['txfee'], '.10f')
                     }
                 txs.append(tx)
-            with timer('ws last'):
-                data['header'] = header
-                data['block'] = block
-                data['txs'] = txs
-                data = json.dumps(data)
-                uwsgi.websocket_send(data)
-                temp_height += 1
-                time.sleep(0.2)
+            data['header'] = header
+            data['block'] = block
+            data['txs'] = txs
+            data = json.dumps(data)
+            uwsgi.websocket_send(data)
+            temp_height += 1
+            time.sleep(0.2)
         else:
             time.sleep(REFRESH_INTERVAL)
 
