@@ -176,7 +176,7 @@ def wshandler(req):
             RNode.update()
             Committee.update()
             with timer('ws 2'):
-                txs_count = txs_collection.count_documents({})
+                txs_count = txs_collection.find().count()
             with timer('ws 21'):
 
                 data = {}
