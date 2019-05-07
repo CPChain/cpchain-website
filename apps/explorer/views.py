@@ -407,7 +407,7 @@ def address(req, address):
     # latest 25 txs
 
     if code == '0x':
-        proposer_history = block_collection.find({'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).count()
+        proposer_history = block_collection.count_documents({'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
         return render(req, 'explorer/address.html', {'txs': txs,
                                                      'address': raw_address,
                                                      'balance': balance,
