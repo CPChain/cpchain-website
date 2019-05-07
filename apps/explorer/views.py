@@ -45,7 +45,9 @@ def timer(name):
     start = time.time()
     yield
     print(f'[{name}] done in {time.time() - start:.2f} s')
-
+# usage:
+# with timer('123'):
+#     xxxxx
 
 def get_chart():
     try:
@@ -137,8 +139,7 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         txs.append(tx)
-
-    txs_count = txs_collection.count_documents({})
+    txs_count = txs_collection.find().count()
     header = {
         'blockHeight': height,
         'txs': txs_count,
@@ -166,7 +167,8 @@ def wshandler(req):
         if block_height >= temp_height:
             RNode.update()
             Committee.update()
-            txs_count = txs_collection.count_documents({})
+            txs_count = txs_collection.find().count()
+
             data = {}
             tps = get_rate('tps')
             bps = get_rate('bps')
