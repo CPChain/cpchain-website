@@ -208,7 +208,7 @@ def wshandler():
         txs.append(tx)
     data={}
     data['header'] = header
-    data['block'] = block
+    data['block'] = new_block
     data['txs'] = txs
     return data
 
