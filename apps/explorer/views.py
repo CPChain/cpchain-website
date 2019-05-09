@@ -171,8 +171,7 @@ def wshandler():
         'committee': proposerFomatter(RNode.view),
         'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
     }
-
-    block = {
+    new_block = {
         'id': block_height,
         'reward': block['reward'],
         'txs': len(block['transactions']),
@@ -181,8 +180,9 @@ def wshandler():
         'hash': block['hash'],
     }
     if block['miner'].endswith('000000'):
-        block['impeach'] = True
-        block['impeachProposer'] = block['impeachProposer']
+        new_block['impeach'] = True
+        new_block['impeachProposer'] = block['impeachProposer']
+
     t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
     txs = []
     for t in t_li:
