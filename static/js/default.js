@@ -1,9 +1,9 @@
 var ws;
 var socketurl;
 if (location.protocol === 'https:') {
-    socketurl = "wss://" + window.location.host + "/explorer/wshandler/";
+    socketurl = "wss://" + window.location.host + "/ws/explorer/";
 } else {
-    socketurl = "ws://" + window.location.host + "/explorer/wshandler/";
+    socketurl = "ws://" + window.location.host + "/ws/explorer/";
 }
 
 $(function () {
@@ -18,7 +18,10 @@ $(function () {
             };
             ws.onmessage = function (evt) {
                 var msg = evt.data;
-                msg = JSON.parse(msg);
+                msg = JSON.parse(msg).message;
+                msg = JSON.parse(msg)
+                console.log(msg)
+                // console.log(msg.header)
                 //info
                 header = msg.header;
                 block = msg.block;
