@@ -16,4 +16,5 @@ urlpatterns = [
     path('event/<address>',views.event,name='event'),
     path('abi/<address>',csrf_exempt(views.abi),name='abi'),
     path('source/<address>',csrf_exempt(views.source),name='source'),
+    path('stats/<address>',views.stats,name='stats'),
 ]

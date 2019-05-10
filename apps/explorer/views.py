@@ -4,7 +4,7 @@ import time
 from contextlib import contextmanager
 
 import eth_abi
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
@@ -529,3 +529,27 @@ def source(req, address):
                 'source': source,
             })
         return JsonResponse({"status": 1, "message": 'success'})
+
+import json
+from bson import ObjectId
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, o)
+
+
+def stats(req, address):
+    address=address.strip()
+    if not cf.isAddress(address):
+        return HttpResponse('invalid address.')
+    address = cf.toChecksumAddress(address).lower()
+    impeach_bks = block_collection.find({'impeachProposer':address},{'_id': 0}).sort('number', DESCENDING)
+    res ={}
+    res['impeach_num'] = impeach_bks.count()
+    res['success_num'] = block_collection.find({'miner':address}).count()
+    res['impeach_bks'] = list(impeach_bks)
+    # res = JSONEncoder().encode(res)
+
+    return JsonResponse(res,safe=False)
