@@ -20,7 +20,7 @@ $(function () {
                 var msg = evt.data;
                 msg = JSON.parse(msg).message;
                 msg = JSON.parse(msg)
-                console.log(msg)
+                // console.log(msg)
                 // console.log(msg.header)
                 //info
                 header = msg.header;
