@@ -224,7 +224,7 @@ def start_block(start_block_id_from_db):
         else:
             return 0
     else:
-        logger.warning('block_id_from_chain is less than db !!! empty db...')
+        logger.warning('block_id_from_chain is less than db !!!!!! ')
         return 0
 
 
@@ -263,20 +263,21 @@ def main():
             last_block_id_from_db = 0
             logger.warning('initial cpchain  ... !!!')
 
-        if last_block_id_from_db:
-            try:
-                last_valid_block_id = start_block(last_block_id_from_db)
-            except Exception as e:
-                logger.info(e)
-                time.sleep(10)
-                continue
+        # try:
+        #     last_valid_block_id = start_block(last_block_id_from_db)
+        # except Exception as e:
+        #     logger.info(e)
+        #     time.sleep(10)
+        #     continue
+        if last_block_id_from_db == 0:
+            start_block_id = 0
         else:
-            last_valid_block_id = 0
-        start_block_id = last_valid_block_id + 1 if last_valid_block_id else 0
+            start_block_id = last_block_id_from_db + 1
+
         logger.info('start block id =%d', start_block_id)
         # remove invalid data from db
-        if start_block_id == 0:
-            remove_data_from_db()
+        # if start_block_id == 0:
+        #     remove_data_from_db()
 
         try:
             save_blocks_txs(start_block_id)
