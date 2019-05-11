@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -207,8 +207,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CKEDITOR_UPLOAD_PATH = 'upload/'
-
+CKEDITOR_UPLOAD_PATH = 'upload/'  
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
