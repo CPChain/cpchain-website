@@ -410,13 +410,13 @@ def address(req, address):
 
 
 def rnode(req):
-    epoch = RNode.term
-    rnodes = RNode.rnode
+    term = list(proposer_collection.find())[0].get('Term', [])
+    rnodes = list(rnode_collection.find(({'Address': {'$exists': True}})))
     try:
         rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
     except Exception:
         pass
-    return render(req, 'explorer/rnode.html', {'epoch': epoch,
+    return render(req, 'explorer/rnode.html', {'term': term,
                                                'rnodes': rnodes})
 
 
