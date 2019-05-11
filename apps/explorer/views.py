@@ -381,10 +381,19 @@ def address(req, address):
     # address info
     txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', -1)
     txs_count = txs.count()
+
+    try:
+      page = req.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
+
+    p = Paginator(txs, 25, request=req)
+    txs = p.page(page)
+    txs.object_list = list(txs.object_list)
     txs = list(txs[:25])
     timenow = int(time.time())
     # set flag
-    for d in txs:
+    for d in txs.object_list:
         if d['from'] == d['to']:
             d['flag'] = 'self'
         elif d['from'] == address:

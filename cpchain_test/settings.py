@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps/xadmin'))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -212,7 +212,7 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 WEBSOCKET_ACCEPT_ALL = True
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
-
+SECRET_KEY = '123123'
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
     'MARGIN_PAGES_DISPLAYED': 2,
