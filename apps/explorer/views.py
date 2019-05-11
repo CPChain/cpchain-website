@@ -9,7 +9,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
-
+from cpchain_test.settings import cf
 from cpchain_test.config import cfg
 
 from apps.utils import currency
