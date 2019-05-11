@@ -20,7 +20,7 @@ cf = Web3(Web3.HTTPProvider(chain))
 class IndexView(View):
     def get(self, req):
         partners = Partner.objects.filter(type='Partners').order_by('-weight')
-        print(partners)
+        # print(partners)
         investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
         main_teams = TeamMate.objects.filter(is_main=True)
