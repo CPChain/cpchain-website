@@ -209,11 +209,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CKEDITOR_UPLOAD_PATH = 'upload/'
-
+CKEDITOR_UPLOAD_PATH = 'upload/'  
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
-
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
 
