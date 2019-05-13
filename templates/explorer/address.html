@@ -65,7 +65,7 @@
                             <div class="col text-truncate">Value</div>
                             <div class="col text-truncate">TxFee</div>
                         </div>
-                        {% for tx in txs %}
+                        {% for tx in txs.object_list %}
                             <div class="row row-content">
                                 {% if tx.status == 0 %}
                                     <div class="text-truncate">
@@ -102,7 +102,34 @@
                     </div>
                 </div>
             </div>
+            <div class="pageturn">
+                {% ifnotequal txs.pages|length 1 %}
+                    <ul class="pagelist">
 
+                        {% if txs.has_previous %}
+                            <li class="long"><a href="?{{ txs.previous_page_number.querystring }}"><i
+                                    class="fa fa-angle-left"></i></a></li>
+                        {% endif %}
+                        {% for page in txs.pages %}
+                            {% if page %}
+                                {% ifequal page txs.number %}
+                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                {% endifequal %}
+                            {% else %}
+                                <li><a href="" class="none">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if txs.has_next %}
+                            <li class="long"><a href="?{{ txs.next_page_number.querystring }}"><i
+                                    class="fa fa-angle-right"></i></a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                {% endifnotequal %}
+            </div>
         </div>
     </div>
     <script>
