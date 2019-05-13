@@ -28,7 +28,6 @@ source_collection = CLIENT['cpchain']['source']
 chart_collection = CLIENT['cpchain']['chart']
 num_collection = CLIENT['cpchain']['num']
 
-
 REFRESH_INTERVAL = 3
 ADD_SIZE = 42
 
@@ -37,11 +36,14 @@ ADD_SIZE = 42
 DAY_SECENDS = 60 * 60 * 24
 proposer_start_timestamp = 1556448256
 
+
 @contextmanager
 def timer(name):
     start = time.time()
     yield
     print(f'[{name}] done in {time.time() - start:.2f} s')
+
+
 # usage:
 # with timer('123'):
 #     xxxxx
@@ -207,11 +209,12 @@ def wshandler():
                 'amount': format(t['txfee'], '.10f')
             }
         txs.append(tx)
-    data={}
+    data = {}
     data['header'] = header
     data['block'] = new_block
     data['txs'] = txs
     return data
+
 
 def get_rate(bORt):
     if bORt == 'tps':
@@ -373,7 +376,7 @@ def address(req, address):
 
     p = Paginator(txs, 25, request=req)
     txs = p.page(page)
-    txs.object_list = list(txs.object_list) 
+    txs.object_list = list(txs.object_list)
     timenow = int(time.time())
     # set flag
     for d in txs.object_list:
@@ -400,7 +403,8 @@ def address(req, address):
     # latest 25 txs
 
     if code == '0x':
-        proposer_history = block_collection.count_documents({'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+        proposer_history = block_collection.count_documents(
+            {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
         return render(req, 'explorer/address.html', {'txs': txs,
                                                      'address': raw_address,
                                                      'balance': balance,
@@ -466,7 +470,6 @@ def decode_event(event_abi, event_list):
             'arg_types': event['arg_types'],
             'arg_values': values
         })
-
 
     return events
 
@@ -540,26 +543,52 @@ def source(req, address):
             })
         return JsonResponse({"status": 1, "message": 'success'})
 
-import json
-from bson import ObjectId
 
-class JSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, ObjectId):
-            return str(o)
-        return json.JSONEncoder.default(self, o)
-
-
-def stats(req, address):
-    address=address.strip()
+def impeachs_by_addr(req, address):
+    address = address.strip()
     if not cf.isAddress(address):
         return HttpResponse('invalid address.')
     address = cf.toChecksumAddress(address).lower()
-    impeach_bks = block_collection.find({'impeachProposer':address},{'_id': 0}).sort('number', DESCENDING)
-    res ={}
+    impeach_bks = block_collection.find({'impeachProposer': address}, {'_id': 0}).sort('number', DESCENDING)
+    res = {}
     res['impeach_num'] = impeach_bks.count()
-    res['success_num'] = block_collection.find({'miner':address}).count()
+    res['success_num'] = block_collection.find({'miner': address}).count()
     res['impeach_bks'] = list(impeach_bks)
-    # res = JSONEncoder().encode(res)
+    return JsonResponse(res, safe=False)
 
-    return JsonResponse(res,safe=False)
+
+def impeachs_by_block(req, block, isOur):
+    block = int(block)
+    ours = ['0x9e61732d0b1c1674151a01ac0bba824c5b6258fb', '0xaa6cf4f0338e04a40709dfa3c653efc6cd9e65c9',
+            '0x7170f578ca82897375f009ddea399df08f31bcff', '0x4c61559aa727380e3fa516b6a7ae397b87ec2384',
+            '0xc5b481361bbcabb96ed0c835cee69b471449f49c', '0x6e7fdba0fe5067a25a3cf1df90429e3c949411e3',
+            '0x27e81a296f5b80d319d2f3008f2d5998530e79e4', '0x52e584b4fba8688eb7edcabb18e65661a99acc67',
+            '0x030352bba36c0c7cec8669f64a26d96d5d679bdb', '0xf561ebb8a40814c1cf3cc0a628df5a1bd7663b26',
+            '0xca8e011de0edea4929328bb86e35daa686c47ed0', '0xcc9cd266776b331fd424ea14dc30fc8561bec628',
+            '0xe94b7b6c5a0e526a4d97f9768ad6097bde25c62a', '0xc05302acebd0730e3a18a058d7d1cb1204c4a092',
+            '0x12c4e50789027c2a8c98f74d0afbdee44a313ed6', '0x92a3dcd80fd338993408602523beca6e36ac2a87',
+            '0xc6321c85f94678b450255ba92bf12897ed2d7ab4', '0x1502c71130ed779468b2de6d5fa355b7334b9efa',
+            '0xd7ca5d2115c6b0bcc9abfab13882c58f1dfe8484', '0xe20e49d97648acf48ef359824aae1bb0ae4a0c5b',
+            '0xc0de78cc5f2170769f3a7e08b41b60019b6a5a29', '0x5d89f4c28d4153799685076fd1af67f2f47899ee']
+    if isOur == '0':
+        impeach_bks = block_collection.find(
+            {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}},
+            {'_id': False}).sort('number', DESCENDING)
+    elif isOur == '1':
+        impeach_bks = block_collection.find(
+            {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}, 'impeachProposer': {'$in': ours}},
+            {'_id': False}).sort('number', DESCENDING)
+    res = {}
+    res['impeach_num'] = impeach_bks.count()
+    res['impeach_bks'] = list(impeach_bks)
+    return JsonResponse(res)
+
+
+def all_blocks(req):
+    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    height = int(height)
+    blocks = block_collection.find({'number': {'$gt': (height - 1000)}},
+                                   {'_id': False, 'transactions': False}).sort('number', DESCENDING)
+    res = {}
+    res['latest_1000_blocks'] = list(blocks)
+    return JsonResponse(res)
