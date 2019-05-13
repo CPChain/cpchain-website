@@ -383,14 +383,13 @@ def address(req, address):
     txs_count = txs.count()
 
     try:
-      page = req.GET.get('page', 1)
+        page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
 
     p = Paginator(txs, 25, request=req)
     txs = p.page(page)
-    txs.object_list = list(txs.object_list)
-    txs = list(txs[:25])
+    txs.object_list = list(txs.object_list) 
     timenow = int(time.time())
     # set flag
     for d in txs.object_list:
