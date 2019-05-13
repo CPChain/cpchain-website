@@ -166,7 +166,7 @@ def wshandler():
     header = {
         'blockHeight': block_height,
         'txs': txs_count,
-        'rnode': len(RNode.rnode) if RNode.rnode else 0,
+        'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': bps,
         'tps': tps,
         'committee': proposerFomatter(RNode.view),
