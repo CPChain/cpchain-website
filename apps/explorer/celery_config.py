@@ -30,9 +30,9 @@ CELERYBEAT_SCHEDULE = {
     #     'schedule': crontab(hour=9, minute=50),      # 每天早上 9 点 50 分执行一次
     #     'args': (3, 7)                               # 任务函数参数
     # },
-    'hello': {
-        'task': 'apps.explorer.tasks.hello',
-        'schedule': timedelta(seconds=3),          # 每 30 秒一次
+    'updateInfo-every-3-seconds': {
+        'task': 'apps.explorer.tasks.updateInfo',
+        'schedule': timedelta(seconds=3),          # 每 3 秒一次
         # 'args': ()                               # 任务函数参数
     }
 }
