@@ -22,3 +22,4 @@ from .views import wshandler
 def updateInfo():
     data =wshandler()
     send_channel_msg('ws_explorer',data)
+    return data['header']
