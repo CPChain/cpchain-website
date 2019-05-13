@@ -62,10 +62,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'cpchain_test.urls'
-True
-True
-True
-True
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
@@ -211,7 +211,8 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
-cf = Web3(Web3.HTTPProvider(chain)) 
+cf = Web3(Web3.HTTPProvider(chain))
+
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
     'MARGIN_PAGES_DISPLAYED': 2,
