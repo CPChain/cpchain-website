@@ -360,6 +360,11 @@
         color: #1BA3FF;
     
     }
+    .info-table .info-table-list .info-table-list-content .table .row-content .col a {
+        height: 16px;
+        line-height: 40px;
+        margin-top: 11px;
+    } 
 }
 @media screen and  (max-width: 576px) {
     .info-table .info-table-list .info-table-list-content .table .row-content {
