@@ -262,9 +262,11 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
-    # for b in blocks.object_list:
-    #     if  b['miner'].endswith('000000'):
-    #         b['impeach'] = True
+    for b in blocks.object_list:
+        if  b['miner'].endswith('000000'):
+            b['impeach'] = True
+        else:
+            b['impeach'] = False
     return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
