@@ -262,6 +262,10 @@ def blocks(req):
         page = 1
     p = Paginator(all_blocks, 25, request=req)
     blocks = p.page(page)
+    for b in blocks:
+        if b['miner'].endswith('000000'):
+            block['impeach'] = True
+            block['impeachProposer'] = b['impeachProposer']
     return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
