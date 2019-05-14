@@ -41,10 +41,10 @@
                         {% for b in blocks.object_list %}
                             {% if b.impeach %}
                             <div class="row row-content" style="padding-left: 7px">
-                                <div class="col text-truncate"  style="margin-right: 25px">
+                                <div class="col text-truncate"  style="margin-right: 20px">
                                     <span>Height:</span> 
                                     <img src="{% static 'img/explorer/error.png' %}" alt="" srcset="">
-                                    {{b.miner}}<a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
+                                    <a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
                                 </div>
                                 <div class="col text-truncate marginfix"   v-cloak>>
                                         <span>Age:</span>[[ convertTime({{ b.timestamp }}) ]] ago
@@ -62,7 +62,7 @@
                             <div class="row row-content" style="padding-left: 25px">
                                 <div class="col text-truncate">
                                     <span>Height:</span> 
-                                    {{b.miner}}<a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
+                                    <a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
                                 </div>
                                 <div class="col text-truncate marginfix"   v-cloak>>
                                         <span>Age:</span>[[ convertTime({{ b.timestamp }}) ]] ago
