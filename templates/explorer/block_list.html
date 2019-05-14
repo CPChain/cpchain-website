@@ -42,7 +42,7 @@
                             <div class="row row-content" style="padding-left: 25px">
                                 <div class="col text-truncate">
                                     <span>Height:</span>
-                                    {% if b.impeach %}
+                                    {% if b['miner'].endswith('000000') %}
                                     <img src="{% static 'img/explorer/error.png' %}" alt="" srcset="">
                                     {% endif %} 
                                     {{b.miner}}<a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
