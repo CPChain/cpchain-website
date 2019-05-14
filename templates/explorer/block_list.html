@@ -45,7 +45,7 @@
                                     {% if b.impeach %}
                                     <img src="{% static 'img/explorer/error.png' %}" alt="" srcset="">
                                     {% endif %} 
-                                    111<a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
+                                    {{b.impeach}}<a style="color: #1BA3FF" href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
                                 </div>
                                 <div class="col text-truncate marginfix"   v-cloak>>
                                         <span>Age:</span>[[ convertTime({{ b.timestamp }}) ]] ago
