@@ -22,6 +22,7 @@ address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
+proposer_history_collection = CLIENT['cpchain']['proposer_history']
 event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
@@ -597,3 +598,7 @@ def all_blocks(req):
     res = {}
     res['latest_1000_blocks'] = list(blocks)
     return JsonResponse(res)
+
+def proposer_history(req):
+    proposer_history = proposer_history_collection.find()
+    return JsonResponse(proposer_history)

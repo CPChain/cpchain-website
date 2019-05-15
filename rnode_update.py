@@ -16,7 +16,7 @@ mongoHost = cfg['db']['ip']
 client = MongoClient(host=mongoHost, port=27017)
 rnode_collection = client['cpchain']['rnode']
 proposer_collection = client['cpchain']['proposer']
-
+proposer_history_collection = client['cpchain']['proposer_history']
 
 def save_rnode_proposer():
     while True:
@@ -32,6 +32,8 @@ def save_rnode_proposer():
             # if proposer['Proposer'].endswith('000000'):
             #     proposer['Proposer'] = cf.cpc.getProposerByBlock(proposer['BlockNumber'])
             proposer_collection.update_one({}, {"$set": proposer}, upsert=True)
+
+            proposer_history_collection.update_one({"Term":proposer.get('Term')}, {"$set": proposer}, upsert=True)
 
         currentTerm = cf.cpc.getCurrentTerm
         if currentTerm:
