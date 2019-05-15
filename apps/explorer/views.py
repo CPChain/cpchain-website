@@ -600,6 +600,6 @@ def all_blocks(req):
     return JsonResponse(res)
 
 def proposer_history(req):
-    # proposer_history = json_util.dumps(list(proposer_collection.find())
-    proposer_history = {'value',1}
+    proposer_history = list(proposer_collection.find())
+    proposer_history = json_util.dumps(proposer_history)
     return JsonResponse(proposer_history,safe=False)
