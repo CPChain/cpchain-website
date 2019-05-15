@@ -328,7 +328,6 @@ def txs(req):
     except PageNotAnInteger:
         page = 1
     txs_count = txs_from_block.count()
-
     p = Paginator(txs_from_block, 25, request=req)
     txs = p.page(page)
     txs.object_list = list(txs.object_list)
@@ -366,7 +365,7 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     # address info
-    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', -1)
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('_id', DESCENDING)
     txs_count = txs.count()
 
     try:
