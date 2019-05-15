@@ -16,7 +16,7 @@ mongoHost = cfg['db']['ip']
 client = MongoClient(host=mongoHost, port=27017)
 rnode_collection = client['cpchain']['rnode']
 proposer_collection = client['cpchain']['proposer']
-proposer_history_collection = client['cpchain']['proposer_history']
+proposer_history_collection = client['cpchain']['proposerhistory']
 
 def save_rnode_proposer():
     while True:
