@@ -11,7 +11,7 @@ from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 from cpchain_test.settings import cf
 from cpchain_test.config import cfg
-
+from bson import json_util
 from apps.utils import currency
 from . import withdraw_abi
 
@@ -23,6 +23,7 @@ address_collection = CLIENT['cpchain']['address']
 contract_collection = CLIENT['cpchain']['contract']
 rnode_collection = CLIENT['cpchain']['rnode']
 proposer_collection = CLIENT['cpchain']['proposer']
+proposer_history_collection = CLIENT['cpchain']['proposer_history']
 event_collection = CLIENT['cpchain']['event']
 abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
@@ -255,7 +256,37 @@ def search(req):
                 return redirect('/explorer/block/' + search)
             else:
                 return render(req, 'explorer/search404.html')
-
+def searchproposer(req):
+    """
+    address/contract  42/40
+    number  <42
+    block hash 66/64
+    tx hash 66/64
+    """
+    search = req.GET.get('q').strip().lower()
+    if len(search) < ADD_SIZE - 2:
+        # block number
+        if not search.isdigit():
+            return render(req, 'explorer/search404.html')
+        return redirect('/explorer/block/' + search)
+    elif len(search) <= ADD_SIZE:
+        # address or contract
+        return redirect('/explorer/address/' + search)
+    else:
+        # hash
+        # get Transaction info
+        if not search.startswith('0x'):
+            search = '0x' + search
+        result = txs_collection.find({'hash': search}).count()
+        if result:
+            return redirect('/explorer/tx/' + search)
+        else:
+            result = block_collection.find({'hash': search}).count()
+            if result:
+                # get Block info
+                return redirect('/explorer/block/' + search)
+            else:
+                return render(req, 'explorer/search404.html')
 
 def blocks(req):
     # blocks
@@ -445,10 +476,20 @@ def committee(req):
     view = proposerlist.get('View', [])
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
-    proposers = proposerlist.get('Proposers', [])
+    proposers = proposerlist.get('Proposers', [])  
+    return render(req, 'explorer/Proposer.html',  locals())
 
-    return render(req, 'explorer/Proposer.html', locals())
-
+def committeeHistory(req):
+    all_historys = proposer_history_collection.find().sort('Term', -1)
+    try:
+        page = req.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
+    p = Paginator(all_historys, 3, request=req)
+    historys = p.page(page) 
+    historys.object_list = list(historys.object_list)
+    
+    return render(req, 'explorer/ProposerHistory.html', {'historys': historys}) 
 
 def event(req, address):
     address = cf.toChecksumAddress(address.strip())

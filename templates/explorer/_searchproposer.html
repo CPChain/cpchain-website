@@ -1,0 +1,15 @@
+<div class="jumbotron jumbotron-fluid jumbotron-bg pt-3 pb-4 mb-0" style="border-bottom: 1px solid #EBEFF5">
+    <div class="container">
+        <div class="row">
+            <div class="col-0 col-lg-7"></div>
+            <section class="search-bar h-75 d-flex position-relative bg-light col-12 col-lg-5">
+                <form class="form-inline d-flex align-items-center justify-content-end w-100"
+                      action="{% url 'explorer:searchproposer' %}" method="get">
+                    <input class="form-control d-block poppins-font" name="q" type="search"
+                           placeholder="Search by Address/TermId" aria-label="Search"
+                           style="font-size: 14px; width: 100%;">
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
