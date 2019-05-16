@@ -597,3 +597,20 @@ def all_blocks(req):
     res = {}
     res['latest_1000_blocks'] = list(blocks)
     return JsonResponse(res)
+
+
+def campaign_history(req):
+    from . import withdraw_abi
+    config= withdraw_abi.config
+    campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
+
+    withdraw_term = campaign.functions.withdrawTermIdx().call()
+    print("withdraw term: ", withdraw_term)
+    term = campaign.functions.termIdx().call()
+    print("current term: ", term)
+    for i in range(term - 10, term):
+        candidates = campaign.functions.candidatesOf(i).call()
+        print(candidates)
+        print("number of candidates: ", len(candidates))
+
+    return HttpResponse(1)
