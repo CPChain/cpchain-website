@@ -53,7 +53,7 @@
                                         href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a>
                                 </div>
                                 <div class="col text-truncate marginfix-l-sub70" ><span>Producer:</span><a
-                                        href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
+                                        href="{% url 'explorer:address' b.impeachProposer %}">{{ b.impeachProposer }}</a></div>
                                 <div class="col text-truncate marginfix-l-add80"><span>Gas Used:</span>{{ b.gasUsed }}</div>
                                 <div class="col text-truncate"><span>Gas Limit:</span>{{ b.gasLimit }}</div>
                                 <div class="col text-truncate"><span>Reward:</span>{{ b.reward }} CPC</div>

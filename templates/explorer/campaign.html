@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Campaign &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+    <body class="page-template-news">
+    {% include "explorer/_searchbar.html" %}
+    <div class="container">
+        {% for one_term in ten_candidates %}
+            <div class="page-header">
+                <div class="page-header-main" id="explorer-header">
+                    <div class="row text" style="margin-bottom: 47px">
+                        <a class="col-2" href="#">
+                            <div class="text-left"><h1 class="number-font">{{ one_term.term }}</h1></div>
+                            <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Term</h3>
+                            </div>
+                        </a>
+                        <a class="col-2" href="#">
+                            <div class="text-left"><h1 class="number-font">{{ one_term.candidates|length }}</h1></div>
+                            <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Candidates</h3></div>
+                        </a>
+                    </div>
+                    <h1 class="text-left poppins-font">Candidates</h1>
+                </div>
+            </div>
+            <div class="info-table" id="blocks-list">
+                <div class="info-table-list">
+                    <div class="info-table-list-content">
+                        <div class="table" style="padding-top: 47px">
+                            {% for candidate in one_term.candidates %}
+                                <div class="row row-content">
+                                <div class="col-2 text-truncate"></div>
+                                    <div class="col-6 text-truncate pingfang"><a
+                                            href="{% url 'explorer:candidate_info' candidate %}"
+                                            style="color:#1BA3FF;font-size: 15px">{{ candidate }}</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+    <script>
+        var blockListApp = new Vue({
+            el: '#blocks-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
+
+    </body>
+
+{% endblock %}
