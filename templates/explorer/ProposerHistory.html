@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+<link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+<link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+<script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+<title>Proposers &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+
+<body class="page-template-news">
+
+    {% include "explorer/_searchbar.html" %} 
+    <div class="container">
+        <div class="page-header">
+            <h1 class="text-left poppins-font">Proposers history</h1>
+        </div>
+
+        <div class="info-table  " id="historys-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row list-header">
+                            <div class="col text-truncate  " style="margin-left:55px">Term</div>
+                            <div class="col text-truncate">Proposer</div>
+                        </div>
+                        {% for ph in historys.object_list  %}
+                        {% for p in ph.Proposers  %}
+                        <div class="row row-content">
+                            <div class="col text-truncate marginfix-l-add80"><span>Term:</span>{{ ph.Term  }}</div>
+                            <div class="col text-truncate marginfix-l-sub70"><span>Proposer:</span>
+                                <a href="{% url 'explorer:address' p %}" style="color:#1BA3FF;font-size: 15px">{{p}}</a>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="pageturn">
+                {% ifnotequal historys.pages|length 1 %}
+                <ul class="pagelist">
+
+                    {% if historys.has_previous %}
+                    <li class="long"><a href="?{{ historys.previous_page_number.querystring }}"><i
+                                class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+
+                    {% for page in historys.pages %}
+                    {% if page %}
+                    {% ifequal page historys.number %}
+                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                    {% else %}
+                    <li class="none"><a href="">...</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if historys.has_next %}
+                    <li class="long"><a href="?{{ historys.next_page_number.querystring }}"><i
+                                class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+
+                </ul>
+                {% endifnotequal %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var blockListApp = new Vue({
+            el: '#historys-list',
+            delimiters: [`[[`, `]]`],
+            methods: {
+                convertTime: function (tss) {
+                    return formatTS(tss)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+{% endblock %}

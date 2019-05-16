@@ -13,6 +13,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('rnode/', views.rnode, name='rnode'),
     path('committee/', views.committee, name='committee'),
+    path('committee/history/', views.committeeHistory, name='committeeHistory'),
     path('event/<address>', views.event, name='event'),
     path('abi/<address>', csrf_exempt(views.abi), name='abi'),
     path('source/<address>', csrf_exempt(views.source), name='source'),
