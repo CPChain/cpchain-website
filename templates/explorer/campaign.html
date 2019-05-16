@@ -34,12 +34,12 @@
                 <div class="info-table-list">
                     <div class="info-table-list-content">
                         <div class="table" style="padding-top: 47px">
-                            {% for candicate in one_term.candidates %}
+                            {% for candidate in one_term.candidates %}
                                 <div class="row row-content">
                                 <div class="col-2 text-truncate"></div>
                                     <div class="col-6 text-truncate pingfang"><a
-                                            href="{% url 'explorer:address' candicate %}"
-                                            style="color:#1BA3FF;font-size: 15px">{{ candicate }}</a>
+                                            href="{% url 'explorer:candidate_info' candidate %}"
+                                            style="color:#1BA3FF;font-size: 15px">{{ candidate }}</a>
                                     </div>
                                 </div>
                             {% endfor %}

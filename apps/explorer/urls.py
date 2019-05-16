@@ -20,5 +20,6 @@ urlpatterns = [
     path('impeachs_by_addr/<address>/', views.impeachs_by_addr, name='impeachs_by_addr'),
     path('impeachs_by_block/<block>/<isOur>', views.impeachs_by_block, name='impeachs_by_block'),
     path('all_blocks/', views.all_blocks, name='impeachs_by_block'),
-    path('check_campaign/', views.campaign_history, name='campaign_history')
+    path('check_campaign/', views.campaign_history, name='campaign_history'),
+    path('candidate_info/<addr>', views.candidate_info, name='candidate_info'),
 ]

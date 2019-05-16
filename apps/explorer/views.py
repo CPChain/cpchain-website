@@ -599,7 +599,21 @@ def campaign_history(req):
     ten_candidates = []
     for i in range(term - 10, term):
         candidates = campaign.functions.candidatesOf(i).call()
-        candidates = [c.lower() + ' *' if c.lower() in withdraw_abi.ours else c.lower() + ' *' for c in candidates]
+        # for c in candidates:
+        #     print(campaign.functions.candidateInfoOf(c).call())
+        candidates = [c.lower() + ' *' if c.lower() in withdraw_abi.ours else c.lower() for c in candidates]
+
         ten_candidates.append({'term': i, 'candidates': candidates})
     ten_candidates = ten_candidates[::-1]
+
     return render(req, 'explorer/campaign.html', locals())
+
+def candidate_info(req,addr):
+    config = withdraw_abi.config
+    campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
+    if addr.endswith(' *'):
+        addr = addr[:-2]
+
+    addr = cf.toChecksumAddress(addr)
+    info = campaign.functions.candidateInfoOf(addr).call()
+    return JsonResponse(info,safe=False)
