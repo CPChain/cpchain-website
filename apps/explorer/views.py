@@ -13,6 +13,7 @@ from cpchain_test.settings import cf
 from cpchain_test.config import cfg
 
 from apps.utils import currency
+from . import withdraw_abi
 
 mongo = cfg['db']['ip']
 CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
@@ -264,10 +265,10 @@ def blocks(req):
     except PageNotAnInteger:
         page = 1
     p = Paginator(all_blocks, 25, request=req)
-    blocks = p.page(page) 
+    blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
     for b in blocks.object_list:
-        if  b['miner'].endswith('000000'):
+        if b['miner'].endswith('000000'):
             b['impeach'] = True
         else:
             b['impeach'] = False
@@ -564,24 +565,15 @@ def impeachs_by_addr(req, address):
 
 def impeachs_by_block(req, block, isOur):
     block = int(block)
-    ours = ['0x9e61732d0b1c1674151a01ac0bba824c5b6258fb', '0xaa6cf4f0338e04a40709dfa3c653efc6cd9e65c9',
-            '0x7170f578ca82897375f009ddea399df08f31bcff', '0x4c61559aa727380e3fa516b6a7ae397b87ec2384',
-            '0xc5b481361bbcabb96ed0c835cee69b471449f49c', '0x6e7fdba0fe5067a25a3cf1df90429e3c949411e3',
-            '0x27e81a296f5b80d319d2f3008f2d5998530e79e4', '0x52e584b4fba8688eb7edcabb18e65661a99acc67',
-            '0x030352bba36c0c7cec8669f64a26d96d5d679bdb', '0xf561ebb8a40814c1cf3cc0a628df5a1bd7663b26',
-            '0xca8e011de0edea4929328bb86e35daa686c47ed0', '0xcc9cd266776b331fd424ea14dc30fc8561bec628',
-            '0xe94b7b6c5a0e526a4d97f9768ad6097bde25c62a', '0xc05302acebd0730e3a18a058d7d1cb1204c4a092',
-            '0x12c4e50789027c2a8c98f74d0afbdee44a313ed6', '0x92a3dcd80fd338993408602523beca6e36ac2a87',
-            '0xc6321c85f94678b450255ba92bf12897ed2d7ab4', '0x1502c71130ed779468b2de6d5fa355b7334b9efa',
-            '0xd7ca5d2115c6b0bcc9abfab13882c58f1dfe8484', '0xe20e49d97648acf48ef359824aae1bb0ae4a0c5b',
-            '0xc0de78cc5f2170769f3a7e08b41b60019b6a5a29', '0x5d89f4c28d4153799685076fd1af67f2f47899ee']
+
     if isOur == '0':
         impeach_bks = block_collection.find(
             {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}},
             {'_id': False}).sort('number', DESCENDING)
     elif isOur == '1':
         impeach_bks = block_collection.find(
-            {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}, 'impeachProposer': {'$in': ours}},
+            {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
+             'impeachProposer': {'$in': withdraw_abi.ours}},
             {'_id': False}).sort('number', DESCENDING)
     res = {}
     res['impeach_num'] = impeach_bks.count()
@@ -600,17 +592,14 @@ def all_blocks(req):
 
 
 def campaign_history(req):
-    from . import withdraw_abi
-    config= withdraw_abi.config
+    config = withdraw_abi.config
     campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
 
-    withdraw_term = campaign.functions.withdrawTermIdx().call()
-    print("withdraw term: ", withdraw_term)
     term = campaign.functions.termIdx().call()
-    print("current term: ", term)
+    ten_candidates = []
     for i in range(term - 10, term):
         candidates = campaign.functions.candidatesOf(i).call()
-        print(candidates)
-        print("number of candidates: ", len(candidates))
-
-    return HttpResponse(1)
+        candidates = [c.lower() + ' *' if c.lower() in withdraw_abi.ours else c.lower() + ' *' for c in candidates]
+        ten_candidates.append({'term': i, 'candidates': candidates})
+    ten_candidates = ten_candidates[::-1]
+    return render(req, 'explorer/campaign.html', locals())
