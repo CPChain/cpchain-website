@@ -399,7 +399,7 @@ def address(req, address):
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
         code = contract_collection.find({'address': raw_address})[0]['code']
-        code = cf.toHex(code)
+        # code = cf.toHex(code)
     except Exception as e:
         code = '0x'
     # address info
