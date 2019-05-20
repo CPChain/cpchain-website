@@ -80,7 +80,7 @@
                                         <div class="col text-truncate">Value</div>
                                         <div class="col text-truncate">TxFee</div>
                                     </div>
-                                    {% for tx in txs %}
+                                    {% for tx in txs.object_list %}
                                         {% if tx.status == 0 %}
                                             <img style="height: 12px;width:12px;" src="{% static 'img/explorer/th.png' %}">
                                         {% endif %}
