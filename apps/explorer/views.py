@@ -673,7 +673,8 @@ def impeachFrequency(req):
     from_block = 265829
     our_impeachs = block_collection.find(
         {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
-         'impeachProposer': {'$in': withdraw_abi.ours}}).count()
+         'impeachProposer': {'$in': withdraw_abi.ours}},
+        {'_id': False}).count()
     all_impeachs = block_collection.find({'number': {'$gt': block}, 'impeachProposer': {'$exists': True}}).count()
     com_impeachs = all_impeachs - our_impeachs
     our_success = block_collection.find(
