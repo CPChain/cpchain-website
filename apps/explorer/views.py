@@ -6,13 +6,12 @@ from contextlib import contextmanager
 import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.cache import cache_page
 from pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
-from cpchain_test.settings import cf
-from cpchain_test.config import cfg
-from bson import json_util
+
 from apps.utils import currency
+from cpchain_test.config import cfg
+from cpchain_test.settings import cf
 from . import withdraw_abi
 
 mongo = cfg['db']['ip']
@@ -674,11 +673,11 @@ def impeachFrequency(req):
     from_block = 265829
     our_impeachs = block_collection.find(
         {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
-         'impeachProposer': {'$in': withdraw_abi.ours}}).length()
-    all_impeachs = block_collection.find({'number': {'$gt': block}, 'impeachProposer': {'$exists': True}}).length()
+         'impeachProposer': {'$in': withdraw_abi.ours}}).count()
+    all_impeachs = block_collection.find({'number': {'$gt': block}, 'impeachProposer': {'$exists': True}}).count()
     com_impeachs = all_impeachs - our_impeachs
     our_success = block_collection.find(
-        {'number': {'$gt': block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).length()
+        {'number': {'$gt': block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).count()
     com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
     return JsonResponse({
         'our_impeach_blocks': our_impeachs,
