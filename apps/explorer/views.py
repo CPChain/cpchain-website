@@ -641,7 +641,8 @@ def check_campaign(req):
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
-    for i in range(term - 10, term):
+    min = term - 10 if term -10 >=0 else 0
+    for i in range(min, term):
         candidates = campaign.functions.candidatesOf(i).call()
         # for c in candidates:
         #     print(campaign.functions.candidateInfoOf(c).call())
