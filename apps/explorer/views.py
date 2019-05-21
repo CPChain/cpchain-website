@@ -256,6 +256,8 @@ def search(req):
                 return redirect('/explorer/block/' + search)
             else:
                 return render(req, 'explorer/search404.html')
+
+
 def searchproposer(req):
     """
     address/contract  42/40
@@ -287,6 +289,7 @@ def searchproposer(req):
                 return redirect('/explorer/block/' + search)
             else:
                 return render(req, 'explorer/search404.html')
+
 
 def blocks(req):
     # blocks
@@ -476,8 +479,9 @@ def committee(req):
     view = proposerlist.get('View', [])
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
-    proposers = proposerlist.get('Proposers', [])  
-    return render(req, 'explorer/Proposer.html',  locals())
+    proposers = proposerlist.get('Proposers', [])
+    return render(req, 'explorer/Proposer.html', locals())
+
 
 def committeeHistory(req):
     all_historys = proposer_history_collection.find().sort('Term', -1)
@@ -486,10 +490,11 @@ def committeeHistory(req):
     except PageNotAnInteger:
         page = 1
     p = Paginator(all_historys, 3, request=req)
-    historys = p.page(page) 
+    historys = p.page(page)
     historys.object_list = list(historys.object_list)
-    
-    return render(req, 'explorer/ProposerHistory.html', {'historys': historys}) 
+
+    return render(req, 'explorer/ProposerHistory.html', {'historys': historys})
+
 
 def event(req, address):
     address = cf.toChecksumAddress(address.strip())
@@ -641,7 +646,7 @@ def check_campaign(req):
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
-    min = term - 10 if term -10 >=0 else 0
+    min = term - 10 if term - 10 >= 0 else 0
     for i in range(min, term):
         candidates = campaign.functions.candidatesOf(i).call()
         # for c in candidates:
@@ -653,7 +658,8 @@ def check_campaign(req):
 
     return render(req, 'explorer/campaign.html', locals())
 
-def candidate_info(req,addr):
+
+def candidate_info(req, addr):
     config = withdraw_abi.config
     campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
     if addr.endswith(' *'):
@@ -661,4 +667,24 @@ def candidate_info(req,addr):
 
     addr = cf.toChecksumAddress(addr)
     info = campaign.functions.candidateInfoOf(addr).call()
-    return JsonResponse(info,safe=False)
+    return JsonResponse(info, safe=False)
+
+
+def impeachFrequency(req):
+    from_block = 265829
+    our_impeachs = block_collection.find(
+        {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
+         'impeachProposer': {'$in': withdraw_abi.ours}}).length()
+    all_impeachs = block_collection.find({'number': {'$gt': block}, 'impeachProposer': {'$exists': True}}).length()
+    com_impeachs = all_impeachs - our_impeachs
+    our_success = block_collection.find(
+        {'number': {'$gt': block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).length()
+    com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
+    return JsonResponse({
+        'our_impeach_blocks': our_impeachs,
+        'our_success_blocks': our_success,
+        'our_impeach_frequency': our_impeachs / our_success,
+        'com_impeach_blocks': com_impeachs,
+        'com_success_blocks': com_success,
+        'com_impeach_frequency': com_impeachs / com_success,
+    })
