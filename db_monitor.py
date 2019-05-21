@@ -109,6 +109,7 @@ def save_blocks_txs(start_block_id):
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
+                # TODO save txs and block with lock
             reward = update_reward(temp_id)
             block_['reward'] = reward
             b_collection.save(block_)

@@ -632,9 +632,12 @@ def all_blocks(req):
     return JsonResponse(res)
 
 
-def campaign_history(req):
+def check_campaign(req):
     config = withdraw_abi.config
-    campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
+    from cpc_fusion import Web3
+    provider = "http://45.56.121.119:8601"
+    test_cf = Web3(Web3.HTTPProvider(provider))
+    campaign = test_cf.cpc.contract(abi=config["abi"], address="0x238cFc9AD2C5685946CDd5EE67F116f6aCccF3b7")
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
