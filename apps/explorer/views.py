@@ -672,13 +672,12 @@ def candidate_info(req, addr):
 def impeachFrequency(req):
     from_block = 265829
     our_impeachs = block_collection.find(
-        {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
-         'impeachProposer': {'$in': withdraw_abi.ours}},
-        {'_id': False}).count()
-    all_impeachs = block_collection.find({'number': {'$gt': block}, 'impeachProposer': {'$exists': True}}).count()
+        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True},
+         'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+    all_impeachs = block_collection.find({'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True}}).count()
     com_impeachs = all_impeachs - our_impeachs
     our_success = block_collection.find(
-        {'number': {'$gt': block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).count()
+        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).count()
     com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
     return JsonResponse({
         'our_impeach_blocks': our_impeachs,
