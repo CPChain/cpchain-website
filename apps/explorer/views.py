@@ -691,8 +691,9 @@ def impeachFrequency(req):
 
 
 def proposer_history(req, address):
+    address = address.lower()
     blocks_by_proposer = block_collection.find(
-        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).sort('number', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
@@ -700,9 +701,6 @@ def proposer_history(req, address):
     p = Paginator(blocks_by_proposer, 25, request=req)
     blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
-    # for b in blocks.object_list:
-    #     if b['miner'].endswith('000000'):
-    #         b['impeach'] = True
-    #     else:
-    #         b['impeach'] = False
-    return render(req, 'explorer/block_list.html', {'blocks': blocks})
+    blocks_count = blocks_by_proposer.count()
+    return render(req, 'explorer/proposer_history_list.html',
+                  {'blocks': blocks, 'address': address, 'blocks_count': blocks_count})
