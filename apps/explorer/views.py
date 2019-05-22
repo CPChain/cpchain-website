@@ -640,7 +640,7 @@ def check_campaign(req):
     # from cpc_fusion import Web3
     # provider = "http://45.56.121.119:8601"
     # test_cf = Web3(Web3.HTTPProvider(provider))
-    campaign = cf.cpc.contract(withdraw_abi.config["abi"], address="0x238cFc9AD2C5685946CDd5EE67F116f6aCccF3b7")
+    campaign = cf.cpc.contract(withdraw_abi.config["abi"], address="0x20BF49A0773a2b9eA5cF218C188d7F633b07c267")
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
