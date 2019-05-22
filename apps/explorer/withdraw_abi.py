@@ -1,4 +1,4 @@
-abi = [
+config = {'abi': [
     {'constant': True, 'inputs': [], 'name': 'termLen', 'outputs': [{'name': '', 'type': 'uint256'}], 'payable': False,
      'stateMutability': 'view', 'type': 'function'},
     {'constant': True, 'inputs': [{'name': '_termIdx', 'type': 'uint256'}], 'name': 'candidatesOf',
@@ -48,8 +48,7 @@ abi = [
     {'payable': True, 'stateMutability': 'payable', 'type': 'fallback'}, {'anonymous': False, 'inputs': [
         {'indexed': False, 'name': 'candidate', 'type': 'address'},
         {'indexed': False, 'name': 'startTermIdx', 'type': 'uint256'},
-        {'indexed': False, 'name': 'stopTermIdx', 'type': 'uint256'}], 'name': 'ClaimCampaign', 'type': 'event'}]
-
+        {'indexed': False, 'name': 'stopTermIdx', 'type': 'uint256'}], 'name': 'ClaimCampaign', 'type': 'event'}]}
 address = "0x20BF49A0773a2b9eA5cF218C188d7F633b07c267"
 ours = ['0x9e61732d0b1c1674151a01ac0bba824c5b6258fb', '0xaa6cf4f0338e04a40709dfa3c653efc6cd9e65c9',
         '0x7170f578ca82897375f009ddea399df08f31bcff', '0x4c61559aa727380e3fa516b6a7ae397b87ec2384',

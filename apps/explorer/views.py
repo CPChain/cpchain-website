@@ -637,11 +637,10 @@ def all_blocks(req):
 
 
 def check_campaign(req):
-    config = withdraw_abi.config
-    from cpc_fusion import Web3
+    # from cpc_fusion import Web3
     # provider = "http://45.56.121.119:8601"
     # test_cf = Web3(Web3.HTTPProvider(provider))
-    campaign = cf.cpc.contract(abi=config["abi"], address="0x238cFc9AD2C5685946CDd5EE67F116f6aCccF3b7")
+    campaign = cf.cpc.contract(withdraw_abi.config["abi"], address="0x238cFc9AD2C5685946CDd5EE67F116f6aCccF3b7")
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
