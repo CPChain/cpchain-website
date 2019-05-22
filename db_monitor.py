@@ -80,28 +80,7 @@ def save_blocks_txs(start_block_id):
                 for add in [_tx['from'], _tx['to']]:
                     if add and address_collection.find({'address': add}).count() == 0:
                         address_collection.insert_one({'address': add, 'timestamp': timestamp})
-                # jianhua's code
-                # if len(_tx['input']) >= 10:
-                #     method = _tx['input'][:10]
-                # else:
-                #     method = _tx['input']
-                #
-                # for log in tx_receipt.logs:
-                #     topics = []
-                #     for topic in log.topics:
-                #         topics.append(topic.hex())
-                #
-                #     event_collection.insert_one(
-                #         {
-                #             'contract_address': log.address,
-                #             'txhash': log.transactionHash.hex(),
-                #             'block': log.blockNumber,
-                #             'timestamp': timestamp,  # block timestamp
-                #             'method': method,
-                #             'topics': topics,
-                #             'data': log.data,
-                #         }
-                #     )
+
 
             # append 1 block's txs into txs_li
             if txs_li:
