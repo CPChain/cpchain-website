@@ -82,12 +82,12 @@ def save_blocks_txs(start_block_id):
                         address_collection.insert_one({'address': add, 'timestamp': timestamp})
 
 
+                # TODO save txs and block with lock
+            reward = update_reward(temp_id)
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
-                # TODO save txs and block with lock
-            reward = update_reward(temp_id)
             block_['reward'] = reward
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
@@ -160,14 +160,10 @@ def get_block_reward(number):
         logger.error(f'getProposerByBlock error:{e}')
         return 0
     p = cf.toChecksumAddress(p)
-    try:
-        current_balance = cf.cpc.getBalance(p, number)
-        last_balance = cf.cpc.getBalance(p, number - 1)
-        value_in_block = get_block_value(p, number)
-        reward = current_balance - last_balance - value_in_block
-    except Exception as e:
-        logger.error(e)
-        reward = 0
+    current_balance = cf.cpc.getBalance(p, number)
+    last_balance = cf.cpc.getBalance(p, number - 1)
+    value_in_block = get_block_value(p, number)
+    reward = current_balance - last_balance - value_in_block
     return str(cf.fromWei(reward, 'ether'))
 
 
