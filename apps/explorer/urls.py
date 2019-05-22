@@ -15,6 +15,7 @@ urlpatterns = [
     path('committee/', views.committee, name='committee'),
     path('committee/history/', views.committeeHistory, name='committeeHistory'),
     path('event/<address>', views.event, name='event'),
+    path('proposer_history/<address>', views.proposer_history, name='proposer_history'),
     path('abi/<address>', csrf_exempt(views.abi), name='abi'),
     path('source/<address>', csrf_exempt(views.source), name='source'),
     # dev

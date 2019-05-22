@@ -677,7 +677,8 @@ def impeachFrequency(req):
     all_impeachs = block_collection.find({'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True}}).count()
     com_impeachs = all_impeachs - our_impeachs
     our_success = block_collection.find(
-        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False}, 'miner': {'$in': withdraw_abi.ours}}).count()
+        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False},
+         'miner': {'$in': withdraw_abi.ours}}).count()
     com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
     return JsonResponse({
         'our_impeach_blocks': our_impeachs,
@@ -687,3 +688,21 @@ def impeachFrequency(req):
         'com_success_blocks': com_success,
         'com_impeach_frequency': com_impeachs / com_success,
     })
+
+
+def proposer_history(req, address):
+    blocks_by_proposer = block_collection.find(
+        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+    try:
+        page = req.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
+    p = Paginator(blocks_by_proposer, 25, request=req)
+    blocks = p.page(page)
+    blocks.object_list = list(blocks.object_list)
+    # for b in blocks.object_list:
+    #     if b['miner'].endswith('000000'):
+    #         b['impeach'] = True
+    #     else:
+    #         b['impeach'] = False
+    return render(req, 'explorer/block_list.html', {'blocks': blocks})
