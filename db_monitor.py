@@ -16,12 +16,10 @@ logging.basicConfig(level=logging.INFO,
                     filename='./log/chain.log',
                     datefmt='%Y/%m/%d %H:%M:%S',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s')
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('db_monitor')
 rf_handler = logging.handlers.TimedRotatingFileHandler(filename="./log/chain.log", when='midnight', backupCount=10)
 logger.addHandler(rf_handler)
-
-# chain
-
+# chain config
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
 
@@ -114,18 +112,16 @@ def save_blocks_txs(start_block_id):
             block_['reward'] = reward
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
-
             temp_id += 1
+            logging.info('************************************************')
         else:
             time.sleep(REFRESH_INTERVAL)
 
 
 def update_reward(id):
     reward = get_block_reward(id)
-    logger.info('reward')
-    logger.info(reward)
+    logger.info(f'reward:{reward}')
     return reward
-
 
 def block_formatter(block):
     block_ = {}
@@ -137,7 +133,7 @@ def block_formatter(block):
                 try:
                     block_['impeachProposer'] = cf.cpc.getProposerByBlock(block['number'])
                 except Exception as e:
-                    logger.info('getProposerByBlock error:', e)
+                    logger.error(f'getProposerByBlock error:{e}')
                     block_['impeachProposer'] = '0x'
         elif k == 'timestamp':
             block_[k] = v / 1000
@@ -159,8 +155,8 @@ def get_block_value(p, number):
     if number == 0:
         return 0
     p = p.lower()
-    logger.info('proposer:%s' % p)
-    logger.info('number:%s' % number)
+    logger.info(f'proposer:{p}')
+    logger.info(f'number:%{number}')
     in_txs = list(tx_collection.find({'blockNumber': number, 'to': p}))
     in_v = 0
     out_v = 0
@@ -182,13 +178,17 @@ def get_block_reward(number):
     try:
         p = cf.cpc.getProposerByBlock(number)
     except Exception as e:
-        logger.info('getProposerByBlock error:', e)
+        logger.error(f'getProposerByBlock error:{e}')
         return 0
     p = cf.toChecksumAddress(p)
-    current_balance = cf.cpc.getBalance(p, number)
-    last_balance = cf.cpc.getBalance(p, number - 1)
-    value_in_block = get_block_value(p, number)
-    reward = current_balance - last_balance - value_in_block
+    try:
+        current_balance = cf.cpc.getBalance(p, number)
+        last_balance = cf.cpc.getBalance(p, number - 1)
+        value_in_block = get_block_value(p, number)
+        reward = current_balance - last_balance - value_in_block
+    except Exception as e:
+        logger.error(e)
+        reward = 0
     return str(cf.fromWei(reward, 'ether'))
 
 
@@ -249,7 +249,7 @@ def check_block_hash(block_id):
 
 
 def remove_data_from_db():
-    logger.warning('start remove data from block:%d')
+    logger.warning('start remove data from block')
     b_collection.delete_many({'number': {'$gte': 0}})
     tx_collection.delete_many({'blockNumber': {'$gte': 0}})
     contract_collection.delete_many({'blockNumber': {'$gte': 0}})
@@ -264,26 +264,17 @@ def main():
             last_block_id_from_db = 0
             logger.warning('initial cpchain  ... !!!')
 
-        # try:
-        #     last_valid_block_id = start_block(last_block_id_from_db)
-        # except Exception as e:
-        #     logger.info(e)
-        #     time.sleep(10)
-        #     continue
         if last_block_id_from_db == 0:
             start_block_id = 0
         else:
             start_block_id = last_block_id_from_db + 1
 
         logger.info('start block id =%d', start_block_id)
-        # remove invalid data from db
-        # if start_block_id == 0:
-        #     remove_data_from_db()
 
         try:
             save_blocks_txs(start_block_id)
         except Exception as e:
-            logger.exception('save_blocks_txs error: ', e)
+            logger.error(f'loop error: {e}')
         time.sleep(10)
 
 
