@@ -182,7 +182,6 @@ def tx_formatter(tx, timestamp, status):
             tx_[k] = v
         if k == 'value':
             tx_[k] = float(v)
-    # TODO need gasused from receipt
     tx_['gasUsed'] = tx['gasUsed']
     tx_['timestamp'] = timestamp
     tx_['status'] = status
