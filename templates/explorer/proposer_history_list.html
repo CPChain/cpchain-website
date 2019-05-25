@@ -35,7 +35,7 @@
             <div class="info-table-list">
                 <div class="info-table-list-title">
                     Latest {% if blocks_count < 25 %}{{ blocks_count }}
-                {% else %}25{% endif %} blocks from a total of <a href>{{ blocks_count }} blocks</a>
+                {% else %}{{current.begin}} to {{current.end}}{% endif %} blocks from a total of <a href>{{ blocks_count }} blocks</a>
                 </div>
             </div>
             <div class="info-table" id="blocks-list">
