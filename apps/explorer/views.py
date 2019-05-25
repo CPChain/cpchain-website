@@ -440,11 +440,12 @@ def address(req, address):
         balance = 0
 
     # latest 25 txs
+    current = {'begin':(int(page)-1)*25+1,'end':(int(page)-1)*25 +  len(txs.object_list)}
 
     if code == '0x':
         proposer_history = block_collection.count_documents(
             {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
-        return render(req, 'explorer/address.html', {'txs': txs,
+        return render(req, 'explorer/address.html', {'txs': txs,'current':current,
                                                      'address': raw_address,
                                                      'balance': balance,
                                                      'txs_count': txs_count,
@@ -452,7 +453,7 @@ def address(req, address):
                                                      })
     else:
         creator = contract_collection.find({'address': raw_address})[0]['creator']
-        return render(req, 'explorer/contract.html', {'txs': txs,
+        return render(req, 'explorer/contract.html', {'txs': txs,'current':current,
                                                       'address': raw_address,
                                                       'balance': balance,
                                                       'txs_count': txs_count,
@@ -702,5 +703,6 @@ def proposer_history(req, address):
     blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
     blocks_count = blocks_by_proposer.count()
+    current = {'begin':(int(page)-1)*25+1,'end':(int(page)-1)*25 +  len(blocks.object_list)}
     return render(req, 'explorer/proposer_history_list.html',
-                  {'blocks': blocks, 'address': address, 'blocks_count': blocks_count})
+                  {'blocks': blocks,'current':current, 'address': address, 'blocks_count': blocks_count})
