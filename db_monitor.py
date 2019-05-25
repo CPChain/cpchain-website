@@ -80,14 +80,11 @@ def save_blocks_txs(start_block_id):
                 for add in [_tx['from'], _tx['to']]:
                     if add and address_collection.find({'address': add}).count() == 0:
                         address_collection.insert_one({'address': add, 'timestamp': timestamp})
-
-
-                # TODO save txs and block with lock
-            reward = update_reward(temp_id)
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
+            reward = update_reward(temp_id)
             block_['reward'] = reward
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
@@ -182,7 +179,6 @@ def tx_formatter(tx, timestamp, status):
             tx_[k] = v
         if k == 'value':
             tx_[k] = float(v)
-    # TODO need gasused from receipt
     tx_['gasUsed'] = tx['gasUsed']
     tx_['timestamp'] = timestamp
     tx_['status'] = status
