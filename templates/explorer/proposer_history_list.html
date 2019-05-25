@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+    <script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+    <title>Proposer Infomation &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+    <body class="page-template-news">
+    {% include "explorer/_searchbar.html" %}
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-main">
+                <p class="text-center poppins-font">Proposer History</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="container poppins-font" id="address">
+        <div class="info-table px-md-5" id="blocks-list">
+            <div class="row info-id">
+                <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
+                <span class="col info-id-serial" style="top: 4px">{{ address }}</span>
+            </div>
+            <div class="info-table-subtitle info-table-subtitle-list"
+                 style="border-bottom: solid 2px #305278;width: 186px;">Blocks
+            </div>
+            <div class="info-table-list">
+                <div class="info-table-list-title">
+                    Latest {% if blocks_count < 25 %}{{ blocks_count }}
+                {% else %}25{% endif %} blocks from a total of <a href>{{ blocks_count }} blocks</a>
+                </div>
+            </div>
+            <div class="info-table" id="blocks-list">
+                <div class="info-table-list">
+                    <div class="info-table-list-content">
+                        <div class="table">
+                            <div class="row list-header">
+                                <div class="col text-truncate">Height</div>
+                                <div class="col text-truncate marginfix">Age</div>
+                                <div class="col text-truncate">Txn</div>
+                                <div class="col text-truncate marginfix-l-sub70">Producer</div>
+                                <div class="col text-truncate marginfix-l-add80 ">Gas Used</div>
+                                <div class="col text-truncate">Gas Limit</div>
+                                <div class="col text-truncate">Reward</div>
+                            </div>
+                            {% for b in blocks.object_list %}
+                                {% if b.impeach %}
+                                    <div class="row row-content" style="padding-left: 7px">
+                                        <div class="col text-truncate" style="margin-right: 20px">
+                                            <span>Height:</span>
+                                            <img src="{% static 'img/explorer/error.png' %}" alt="" srcset="">
+                                            <a style="color: #1BA3FF"
+                                               href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
+                                        </div>
+                                        <div class="col text-truncate marginfix" v-cloak>>
+                                            <span>Age:</span>[[ convertTime({{ b.timestamp }}) ]] ago
+                                        </div>
+                                        <div class="col text-truncate"><span>Txn:</span><a
+                                                href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a>
+                                        </div>
+                                        <div class="col text-truncate marginfix-l-sub70"><span>Producer:</span><a
+                                                href="{% url 'explorer:address' b.impeachProposer %}">{{ b.impeachProposer }}</a>
+                                        </div>
+                                        <div class="col text-truncate marginfix-l-add80">
+                                            <span>Gas Used:</span>{{ b.gasUsed }}</div>
+                                        <div class="col text-truncate"><span>Gas Limit:</span>{{ b.gasLimit }}</div>
+                                        <div class="col text-truncate"><span>Reward:</span>{{ b.reward }} CPC</div>
+                                    </div>
+                                {% else %}
+                                    <div class="row row-content" style="padding-left: 25px">
+                                        <div class="col text-truncate">
+                                            <span>Height:</span>
+                                            <a style="color: #1BA3FF"
+                                               href="{% url 'explorer:block' b.number %}">{{ b.number }}</a>
+                                        </div>
+                                        <div class="col text-truncate marginfix" v-cloak>>
+                                            <span>Age:</span>[[ convertTime({{ b.timestamp }}) ]] ago
+                                        </div>
+                                        <div class="col text-truncate"><span>Txn:</span><a
+                                                href="{% url 'explorer:txs' %}?block={{ b.number }}">{{ b.transactions |length }}</a>
+                                        </div>
+                                        <div class="col text-truncate marginfix-l-sub70"><span>Producer:</span><a
+                                                href="{% url 'explorer:address' b.miner %}">{{ b.miner }}</a></div>
+                                        <div class="col text-truncate marginfix-l-add80">
+                                            <span>Gas Used:</span>{{ b.gasUsed }}</div>
+                                        <div class="col text-truncate"><span>Gas Limit:</span>{{ b.gasLimit }}</div>
+                                        <div class="col text-truncate"><span>Reward:</span>{{ b.reward }} CPC</div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="pageturn">
+                    {% ifnotequal blocks.pages|length 1 %}
+                        <ul class="pagelist">
+
+                            {% if blocks.has_previous %}
+                                <li class="long"><a href="?{{ blocks.previous_page_number.querystring }}"><i
+                                        class="fa fa-angle-left"></i></a></li>
+                            {% endif %}
+
+                            {% for page in blocks.pages %}
+                                {% if page %}
+                                    {% ifequal page blocks.number %}
+                                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="none"><a href="">...</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if blocks.has_next %}
+                                <li class="long"><a href="?{{ blocks.next_page_number.querystring }}"><i
+                                        class="fa fa-angle-right"></i></a></li>
+                            {% endif %}
+
+                        </ul>
+                    {% endifnotequal %}
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var blockListApp = new Vue({
+                el: '#blocks-list',
+                delimiters: [`[[`, `]]`],
+                methods: {
+                    convertTime: function (tss) {
+                        var cts = parseInt((Date.now() + 500) / 1000)
+                        return formatTS(cts - tss)
+                    }
+                }
+            })
+        </script>
+
+    </body>
+
+{% endblock %}

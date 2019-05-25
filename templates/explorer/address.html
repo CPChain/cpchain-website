@@ -42,7 +42,9 @@
             {% if proposer_history %}
                 <div class="row info-row">
                     <div class="col-3">Proposer History:</div>
-                 <div class="col poppins-light">{{ proposer_history}} blocks</div>
+                    <a href="{% url 'explorer:proposer_history' address %}">
+                        <div class="col poppins-light" style="padding-left: 0">{{ proposer_history }} blocks</div>
+                    </a>
                 </div>
             {% endif %}
             <div class="info-table-subtitle info-table-subtitle-list"
