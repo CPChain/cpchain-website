@@ -670,23 +670,41 @@ def candidate_info(req, addr):
 
 
 def impeachFrequency(req):
+    duration = req.GET.get('duration', 'all')
     from_block = 265829
-    our_impeachs = block_collection.find(
-        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True},
-         'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
-    all_impeachs = block_collection.find({'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True}}).count()
-    com_impeachs = all_impeachs - our_impeachs
-    our_success = block_collection.find(
-        {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False},
-         'miner': {'$in': withdraw_abi.ours}}).count()
-    com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
+    if duration == 'all':
+        from_block = 265829
+        our_impeachs = block_collection.find(
+            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True},
+             'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+        all_impeachs = block_collection.find(
+            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True}}).count()
+        com_impeachs = all_impeachs - our_impeachs
+        our_success = block_collection.find(
+            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False},
+             'miner': {'$in': withdraw_abi.ours}}).count()
+        com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
+    else:
+        time_before = time.time() - int(duration) * 60 * 60 * 24
+        our_impeachs = block_collection.find(
+            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True},
+             'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+        all_impeachs = block_collection.find(
+            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True}}).count()
+        com_impeachs = all_impeachs - our_impeachs
+        our_success = block_collection.find(
+            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': False},
+             'miner': {'$in': withdraw_abi.ours}}).count()
+        com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
+        our_impeach_frequency = our_impeachs / our_success if our_impeachs != 0 else 0
+        com_impeach_frequency = com_impeachs / com_success if com_impeachs != 0 else 0
     return JsonResponse({
         'our_impeach_blocks': our_impeachs,
         'our_success_blocks': our_success,
-        'our_impeach_frequency': our_impeachs / our_success,
+        'our_impeach_frequency': our_impeach_frequency,
         'com_impeach_blocks': com_impeachs,
         'com_success_blocks': com_success,
-        'com_impeach_frequency': com_impeachs / com_success,
+        'com_impeach_frequency': com_impeach_frequency
     })
 
 
