@@ -1,0 +1,35 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="{% url 'explorer:impeachFrequency' %}" method="get">
+    Duration: <input type="text" name="duration"><br>
+    <input type="submit" value="Submit">
+</form>
+<ul>
+    <li>our_impeach_blocks:{{ our_impeachs }} </li>
+    <li>our_success_blocks: {{ our_success }}
+    </li>
+    <li>our_impeach_frequency:{{ our_impeach_frequency }}
+    </li>
+</ul>
+<ul>
+    <li>com_impeach_blocks: {{ com_impeachs }}
+    </li>
+    <li>com_success_blocks: {{ com_success }}
+    </li>
+    <li>com_impeach_frequency:{{ com_impeach_frequency }}
+    </li>
+</ul>
+
+
+</body>
+</html>
+

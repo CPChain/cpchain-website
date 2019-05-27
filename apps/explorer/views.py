@@ -440,12 +440,12 @@ def address(req, address):
         balance = 0
 
     # latest 25 txs
-    current = {'begin':(int(page)-1)*25+1,'end':(int(page)-1)*25 +  len(txs.object_list)}
+    current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
 
     if code == '0x':
         proposer_history = block_collection.count_documents(
             {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
-        return render(req, 'explorer/address.html', {'txs': txs,'current':current,
+        return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                      'address': raw_address,
                                                      'balance': balance,
                                                      'txs_count': txs_count,
@@ -453,7 +453,7 @@ def address(req, address):
                                                      })
     else:
         creator = contract_collection.find({'address': raw_address})[0]['creator']
-        return render(req, 'explorer/contract.html', {'txs': txs,'current':current,
+        return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
                                                       'address': raw_address,
                                                       'balance': balance,
                                                       'txs_count': txs_count,
@@ -697,16 +697,16 @@ def impeachFrequency(req):
             {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': False},
              'miner': {'$in': withdraw_abi.ours}}).count()
         com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
-        our_impeach_frequency = our_impeachs / our_success if our_impeachs != 0 else 0
-        com_impeach_frequency = com_impeachs / com_success if com_impeachs != 0 else 0
-    return JsonResponse({
-        'our_impeach_blocks': our_impeachs,
-        'our_success_blocks': our_success,
-        'our_impeach_frequency': our_impeach_frequency,
-        'com_impeach_blocks': com_impeachs,
-        'com_success_blocks': com_success,
-        'com_impeach_frequency': com_impeach_frequency
-    })
+        try:
+            our_impeach_frequency = our_impeachs / our_success
+        except:
+            our_impeach_frequency = 0
+        try:
+            com_impeach_frequency = com_impeachs / com_success
+        except:
+            com_impeach_frequency = 0
+    return render(req, 'explorer/impeachs.html', locals())
+
 
 
 def proposer_history(req, address):
@@ -721,6 +721,6 @@ def proposer_history(req, address):
     blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
     blocks_count = blocks_by_proposer.count()
-    current = {'begin':(int(page)-1)*25+1,'end':(int(page)-1)*25 +  len(blocks.object_list)}
+    current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(blocks.object_list)}
     return render(req, 'explorer/proposer_history_list.html',
-                  {'blocks': blocks,'current':current, 'address': address, 'blocks_count': blocks_count})
+                  {'blocks': blocks, 'current': current, 'address': address, 'blocks_count': blocks_count})
