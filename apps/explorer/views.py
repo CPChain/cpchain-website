@@ -55,44 +55,6 @@ def get_chart():
         return []
 
 
-# class RNode:
-#     try:
-#         rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-#     except:
-#         rnode = None
-#     try:
-#         view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
-#     except:
-#         view = 1
-#     try:
-#         term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
-#     except:
-#         term = 0
-#
-#     @staticmethod
-#     def update():
-#         try:
-#             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-#             RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
-#             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
-#         except Exception as e:
-#             print(e)
-#
-#
-# class Committee:
-#     try:
-#         committee = list(proposer_collection.find())
-#     except:
-#         committee = None
-#
-#     @staticmethod
-#     def update():
-#         try:
-#             Committee.committee = list(proposer_collection.find())
-#         except Exception as e:
-#             print('committee update error>>>>>', e)
-
-
 def explorer(request):
     height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
