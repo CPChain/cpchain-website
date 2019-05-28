@@ -55,42 +55,42 @@ def get_chart():
         return []
 
 
-class RNode:
-    try:
-        rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-    except:
-        rnode = None
-    try:
-        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
-    except:
-        view = 1
-    try:
-        term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
-    except:
-        term = 0
-
-    @staticmethod
-    def update():
-        try:
-            RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
-            RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
-            RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
-        except Exception as e:
-            print(e)
-
-
-class Committee:
-    try:
-        committee = list(proposer_collection.find())
-    except:
-        committee = None
-
-    @staticmethod
-    def update():
-        try:
-            Committee.committee = list(proposer_collection.find())
-        except Exception as e:
-            print('committee update error>>>>>', e)
+# class RNode:
+#     try:
+#         rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
+#     except:
+#         rnode = None
+#     try:
+#         view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+#     except:
+#         view = 1
+#     try:
+#         term = rnode_collection.find({'term': {'$exists': True}})[0]['term']
+#     except:
+#         term = 0
+#
+#     @staticmethod
+#     def update():
+#         try:
+#             RNode.rnode = list(rnode_collection.find(({'Address': {'$exists': True}})))
+#             RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
+#             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
+#         except Exception as e:
+#             print(e)
+#
+#
+# class Committee:
+#     try:
+#         committee = list(proposer_collection.find())
+#     except:
+#         committee = None
+#
+#     @staticmethod
+#     def update():
+#         try:
+#             Committee.committee = list(proposer_collection.find())
+#         except Exception as e:
+#             print('committee update error>>>>>', e)
 
 
 def explorer(request):
@@ -139,13 +139,17 @@ def explorer(request):
             }
         txs.append(tx)
     txs_count = txs_collection.find().count()
+    try:
+        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+    except:
+        view = 1
     header = {
         'blockHeight': height,
         'txs': txs_count,
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': get_rate('bps'),
         'tps': get_rate('tps'),
-        'committee': proposerFomatter(RNode.view),
+        'committee': proposerFomatter(view),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
     return render(request, 'explorer/explorer.html',
@@ -160,19 +164,23 @@ def wshandler():
     # index websocket handler
     block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
     block_height = block['number']
-    RNode.update()
-    Committee.update()
     txs_count = txs_collection.find().count()
     tps = get_rate('tps')
     bps = get_rate('bps')
+    try:
+        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+    except:
+        view = 1
+
     header = {
         'blockHeight': block_height,
         'txs': txs_count,
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': bps,
         'tps': tps,
-        'committee': proposerFomatter(RNode.view),
-        'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': proposerFomatter(view),
+        # 'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
     new_block = {
         'id': block_height,
