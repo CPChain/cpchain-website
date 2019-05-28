@@ -678,6 +678,36 @@ def impeachFrequency(req):
             'date': str(dt)
         })
     chart.reverse()
+    # today impeach
+    our_impeachs = block_collection.find(
+        {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': True},
+         'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+    all_impeachs = block_collection.find(
+        {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': True}}).count()
+    com_impeachs = all_impeachs - our_impeachs
+    our_success = block_collection.find(
+        {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': False},
+         'miner': {'$in': withdraw_abi.ours}}).count()
+    com_success = block_collection.find(
+        {'timestamp': {'$gte': day_zero}}).count() - all_impeachs - our_success
+    try:
+        our_impeach_frequency = our_impeachs / our_success
+    except:
+        our_impeach_frequency = 0
+    try:
+        com_impeach_frequency = com_impeachs / com_success
+    except:
+        com_impeach_frequency = 0
+
+    chart.append({
+        'our_impeachs': -our_impeachs,
+        'our_success': our_success,
+        'com_impeachs': -com_impeachs,
+        'com_success': com_success,
+        'our_impeach_frequency': our_impeach_frequency,
+        'com_impeach_frequency': com_impeach_frequency,
+        'date': 'today'
+    })
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
