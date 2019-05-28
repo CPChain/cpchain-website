@@ -671,21 +671,10 @@ def candidate_info(req, addr):
 
 
 def impeachFrequency(req):
-    duration = req.GET.get('duration', 'all')
+    duration = req.GET.get('duration', '1')
     from_block = 265829
-    if duration == 'all':
-        from_block = 265829
-        our_impeachs = block_collection.find(
-            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True},
-             'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
-        all_impeachs = block_collection.find(
-            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': True}}).count()
-        com_impeachs = all_impeachs - our_impeachs
-        our_success = block_collection.find(
-            {'number': {'$gt': from_block}, 'impeachProposer': {'$exists': False},
-             'miner': {'$in': withdraw_abi.ours}}).count()
-        com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
-    else:
+    fooList = []
+    for i in range(1, 31):
         time_before = time.time() - int(duration) * 60 * 60 * 24
         our_impeachs = block_collection.find(
             {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True},
@@ -696,7 +685,9 @@ def impeachFrequency(req):
         our_success = block_collection.find(
             {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': False},
              'miner': {'$in': withdraw_abi.ours}}).count()
-        com_success = cf.cpc.blockNumber - from_block - all_impeachs - our_success
+        delta_blocks = cf.cpc.blockNumber - list(block_collection.find({'timestamp': {'$gte': time_before}}).limit(1))[0][
+            'number']
+        com_success = delta_blocks - all_impeachs - our_success
         try:
             our_impeach_frequency = our_impeachs / our_success
         except:
@@ -705,8 +696,16 @@ def impeachFrequency(req):
             com_impeach_frequency = com_impeachs / com_success
         except:
             com_impeach_frequency = 0
-    return render(req, 'explorer/impeachs.html', locals())
-
+        fooList.append({
+            'duration': i,
+            'our_impeachs': our_impeachs,
+            'our_success': our_success,
+            'com_impeachs': com_impeachs,
+            'com_success': com_success,
+            'our_impeach_frequency': our_impeach_frequency,
+            'com_impeach_frequency': com_impeach_frequency,
+        })
+    return render(req, 'explorer/impeachs.html', {'fooList': fooList})
 
 
 def proposer_history(req, address):
