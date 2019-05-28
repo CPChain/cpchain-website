@@ -675,7 +675,7 @@ def impeachFrequency(req):
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
     chart = []
-    for i in range(7):
+    for i in range(30):
         gt_time = day_zero - (i + 1) * DAY_SECENDS
         lt_time = day_zero - i * DAY_SECENDS
         our_impeachs = block_collection.find(
