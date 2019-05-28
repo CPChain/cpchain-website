@@ -39,16 +39,15 @@ DAY_SECENDS = 60 * 60 * 24
 proposer_start_timestamp = 1556448256
 
 
+# usage:
+# with timer('123'):
+#     xxxxx
 @contextmanager
 def timer(name):
     start = time.time()
     yield
     print(f'[{name}] done in {time.time() - start:.2f} s')
 
-
-# usage:
-# with timer('123'):
-#     xxxxx
 
 def get_chart():
     try:
@@ -144,7 +143,7 @@ def explorer(request):
     header = {
         'blockHeight': height,
         'txs': txs_count,
-        'rnode': len(RNode.rnode) if RNode.rnode else 0,
+        'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': get_rate('bps'),
         'tps': get_rate('tps'),
         'committee': proposerFomatter(RNode.view),
