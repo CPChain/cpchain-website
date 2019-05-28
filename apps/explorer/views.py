@@ -700,7 +700,6 @@ def impeachFrequency(req):
         now_ts = now - (i + 1) * DAY_SECENDS
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
-        print('dt', dt, 'i', i)
         chart.append({
             'our_impeachs': -our_impeachs,
             'our_success': our_success,
@@ -710,7 +709,7 @@ def impeachFrequency(req):
             'com_impeach_frequency': com_impeach_frequency,
             'date': str(dt)
         })
-        chart.reverse()
+    chart.reverse()
     pprint(chart)
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
