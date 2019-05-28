@@ -1,91 +1,3 @@
-{#<!doctype html>#}
-{#{% load static %}#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport"#}
-{#          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
-{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
-{#    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">#}
-{#    <title>Document</title>#}
-{#</head>#}
-{#<body>#}
-{##}
-{#<script src="https://unpkg.com/vue/dist/vue.js"></script>#}
-{#<!-- import JavaScript -->#}
-{#<script src="https://unpkg.com/element-ui/lib/index.js"></script>#}
-{##}
-{##}
-{#<div id="app">#}
-{#    <template>#}
-{#        <el-table#}
-{#                :data="tableData"#}
-{#                stripe#}
-{#                style="width: 100%">#}
-{#            <el-table-column#}
-{#                    prop="duration"#}
-{#                    label="Duration(days)"#}
-{#                    width="180">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="our_impeach_blocks"#}
-{#                    label="our_impeachs_blocks"#}
-{#                    width="180">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="our_success_blocks"#}
-{#                    label="our_success_blocks"#}
-{#                    width="180">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="our_impeach_frequency"#}
-{#                    label="our_impeach_frequency"#}
-{#                    width="180">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="com_impeachs_blocks"#}
-{#                    label="community_impeach_blocks"#}
-{#                    width="200">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="com_success_blocks"#}
-{#                    label="community_success_blocks"#}
-{#                    width="200">#}
-{#            </el-table-column>#}
-{#            <el-table-column#}
-{#                    prop="com_impeach_frequency"#}
-{#                    label="community_impeach_frequency"#}
-{#                    width="220">#}
-{#            </el-table-column>#}
-{#        </el-table>#}
-{#    </template>#}
-{#</div>#}
-{##}
-{#<script>#}
-{#    var Main = {#}
-{#        data() {#}
-{#            return {#}
-{#                tableData: [{% for a in fooList %}#}
-{##}
-{#                    {#}
-{#                        duration: {{ a.duration }},#}
-{#                        our_impeach_blocks: {{ a.our_impeachs }},#}
-{#                        our_success_blocks: {{ a.our_success }},#}
-{#                        our_impeach_frequency: {{ a.our_impeach_frequency }},#}
-{#                        com_impeachs_blocks:{{ a.com_impeachs }},#}
-{#                        com_success_blocks: {{ a.com_success }},#}
-{#                        com_impeach_frequency: {{ a.com_impeach_frequency }},#}
-{#                    },#}
-{#                {% endfor %}#}
-{#                ]#}
-{#            }#}
-{#        }#}
-{#    }#}
-{#    var Ctor = Vue.extend(Main)#}
-{#    new Ctor().$mount('#app')#}
-{#</script>#}
-{#</body>#}
-{#</html>#}
 <!DOCTYPE html>
 <html style="height: 100%">
 <head>
@@ -149,7 +61,7 @@
                 label: {
                     normal: {
                         show: true,
-                        position: 'inside'
+                        position: 'top'
                     }
                 },
                 data: [{% for day in chart %}
@@ -163,7 +75,7 @@
                 label: {
                     normal: {
                         show: true,
-                        position: 'inside'
+                        position: 'bottom'
                     }
                 },
                 data: [{% for day in chart %}
@@ -176,7 +88,8 @@
                 stack: 'com',
                 label: {
                     normal: {
-                        show: true
+                        show: true,
+                        position: "top"
                     }
                 },
                 data: [{% for day in chart %}
@@ -190,6 +103,8 @@
                 label: {
                     normal: {
                         show: true,
+                        position: 'bottom'
+
                     }
                 },
                 data: [{% for day in chart %}

@@ -710,7 +710,6 @@ def impeachFrequency(req):
             'date': str(dt)
         })
     chart.reverse()
-    pprint(chart)
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
