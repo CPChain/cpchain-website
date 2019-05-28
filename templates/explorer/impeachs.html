@@ -1,89 +1,207 @@
-<!doctype html>
-{% load static %}
-<html lang="en">
+{#<!doctype html>#}
+{#{% load static %}#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport"#}
+{#          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
+{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
+{#    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">#}
+{#    <title>Document</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#<script src="https://unpkg.com/vue/dist/vue.js"></script>#}
+{#<!-- import JavaScript -->#}
+{#<script src="https://unpkg.com/element-ui/lib/index.js"></script>#}
+{##}
+{##}
+{#<div id="app">#}
+{#    <template>#}
+{#        <el-table#}
+{#                :data="tableData"#}
+{#                stripe#}
+{#                style="width: 100%">#}
+{#            <el-table-column#}
+{#                    prop="duration"#}
+{#                    label="Duration(days)"#}
+{#                    width="180">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="our_impeach_blocks"#}
+{#                    label="our_impeachs_blocks"#}
+{#                    width="180">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="our_success_blocks"#}
+{#                    label="our_success_blocks"#}
+{#                    width="180">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="our_impeach_frequency"#}
+{#                    label="our_impeach_frequency"#}
+{#                    width="180">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="com_impeachs_blocks"#}
+{#                    label="community_impeach_blocks"#}
+{#                    width="200">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="com_success_blocks"#}
+{#                    label="community_success_blocks"#}
+{#                    width="200">#}
+{#            </el-table-column>#}
+{#            <el-table-column#}
+{#                    prop="com_impeach_frequency"#}
+{#                    label="community_impeach_frequency"#}
+{#                    width="220">#}
+{#            </el-table-column>#}
+{#        </el-table>#}
+{#    </template>#}
+{#</div>#}
+{##}
+{#<script>#}
+{#    var Main = {#}
+{#        data() {#}
+{#            return {#}
+{#                tableData: [{% for a in fooList %}#}
+{##}
+{#                    {#}
+{#                        duration: {{ a.duration }},#}
+{#                        our_impeach_blocks: {{ a.our_impeachs }},#}
+{#                        our_success_blocks: {{ a.our_success }},#}
+{#                        our_impeach_frequency: {{ a.our_impeach_frequency }},#}
+{#                        com_impeachs_blocks:{{ a.com_impeachs }},#}
+{#                        com_success_blocks: {{ a.com_success }},#}
+{#                        com_impeach_frequency: {{ a.com_impeach_frequency }},#}
+{#                    },#}
+{#                {% endfor %}#}
+{#                ]#}
+{#            }#}
+{#        }#}
+{#    }#}
+{#    var Ctor = Vue.extend(Main)#}
+{#    new Ctor().$mount('#app')#}
+{#</script>#}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html style="height: 100%">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <title>Document</title>
+    <meta charset="utf-8">
 </head>
-<body>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript"
+        src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    app.title = '正负条形图';
 
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-
-<div id="app">
-    <template>
-        <el-table
-                :data="tableData"
-                stripe
-                style="width: 100%">
-            <el-table-column
-                    prop="duration"
-                    label="Duration(days)"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="our_impeach_blocks"
-                    label="our_impeachs_blocks"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="our_success_blocks"
-                    label="our_success_blocks"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="our_impeach_frequency"
-                    label="our_impeach_frequency"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="com_impeachs_blocks"
-                    label="community_impeach_blocks"
-                    width="200">
-            </el-table-column>
-            <el-table-column
-                    prop="com_success_blocks"
-                    label="community_success_blocks"
-                    width="200">
-            </el-table-column>
-            <el-table-column
-                    prop="com_impeach_frequency"
-                    label="community_impeach_frequency"
-                    width="220">
-            </el-table-column>
-        </el-table>
-    </template>
-</div>
-
-<script>
-    var Main = {
-        data() {
-            return {
-                tableData: [{% for a in fooList %}
-
-                    {
-                        duration: {{ a.duration }},
-                        our_impeach_blocks: {{ a.our_impeachs }},
-                        our_success_blocks: {{ a.our_success }},
-                        our_impeach_frequency: {{ a.our_impeach_frequency }},
-                        com_impeachs_blocks:{{ a.com_impeachs }},
-                        com_success_blocks: {{ a.com_success }},
-                        com_impeach_frequency: {{ a.com_impeach_frequency }},
-                    },
-                {% endfor %}
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data: ['Our success', 'Our impeach', 'Community success', 'Community impeach']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {show: false},
+                data: [
+                    {% for day in chart %}
+                        '{{day.date}}',
+                    {% endfor %}
                 ]
             }
-        }
+        ],
+        series: [
+            {
+                name: 'Our success',
+                type: 'bar',
+                stack: 'our',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+                data: [{% for day in chart %}
+                    '{{day.our_success}}',
+                {% endfor %}]
+            },
+            {
+                name: 'Our impeach',
+                type: 'bar',
+                stack: 'our',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+                data: [{% for day in chart %}
+                    '{{day.our_impeachs}}',
+                {% endfor %}]
+            },
+            {
+                name: 'Community success',
+                type: 'bar',
+                stack: 'com',
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                data: [{% for day in chart %}
+                    '{{day.com_success}}',
+                {% endfor %}]
+            },
+            {
+                name: 'Community impeach',
+                type: 'bar',
+                stack: 'com',
+                label: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data: [{% for day in chart %}
+                    '{{day.com_impeachs}}',
+                {% endfor %}]
+            }
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
     }
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
 </script>
 </body>
 </html>
-

@@ -2,6 +2,7 @@ import json
 import math
 import time
 from contextlib import contextmanager
+from pprint import pprint
 
 import eth_abi
 from django.http import JsonResponse, HttpResponse
@@ -674,20 +675,27 @@ def impeachFrequency(req):
     duration = req.GET.get('duration', '1')
     from_block = 265829
     fooList = []
-    for i in range(1, 31):
-        time_before = time.time() - int(i) * 60 * 60 * 24
+
+    now = int(time.time())
+    day_zero = now - now % DAY_SECENDS
+    chart = []
+    for i in range(7):
+        gt_time = day_zero - (i + 1) * DAY_SECENDS
+        lt_time = day_zero - i * DAY_SECENDS
         our_impeachs = block_collection.find(
-            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True},
+            {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': True},
              'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
         all_impeachs = block_collection.find(
-            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True}}).count()
+            {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': True}}).count()
         com_impeachs = all_impeachs - our_impeachs
         our_success = block_collection.find(
-            {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': False},
+            {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': False},
              'miner': {'$in': withdraw_abi.ours}}).count()
-        delta_blocks = cf.cpc.blockNumber - list(block_collection.find({'timestamp': {'$gte': time_before}}).limit(1))[0][
-            'number']
-        com_success = delta_blocks - all_impeachs - our_success
+        # delta_blocks = cf.cpc.blockNumber - \
+        #                list(block_collection.find({'timestamp': {'$gte': gt_time}}).limit(1))[0][
+        #                    'number']
+        com_success = block_collection.find(
+            {'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count() - all_impeachs - our_success
         try:
             our_impeach_frequency = our_impeachs / our_success
         except:
@@ -696,16 +704,24 @@ def impeachFrequency(req):
             com_impeach_frequency = com_impeachs / com_success
         except:
             com_impeach_frequency = 0
-        fooList.append({
-            'duration': i,
-            'our_impeachs': our_impeachs,
+
+        now_ts = now - (i + 1) * DAY_SECENDS
+        time_local = time.localtime(now_ts)
+        dt = time.strftime('%m/%d', time_local)
+        chart.append({
+            'our_impeachs': -our_impeachs,
             'our_success': our_success,
-            'com_impeachs': com_impeachs,
+            'com_impeachs': -com_impeachs,
             'com_success': com_success,
             'our_impeach_frequency': our_impeach_frequency,
             'com_impeach_frequency': com_impeach_frequency,
+            'date': str(dt)
         })
-    return render(req, 'explorer/impeachs.html', {'fooList': fooList})
+        chart.reverse()
+    # for i in range(1, 31):
+
+    pprint(chart)
+    return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
 def proposer_history(req, address):
