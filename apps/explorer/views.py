@@ -145,8 +145,7 @@ def explorer(request):
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': get_rate('bps'),
         'tps': get_rate('tps'),
-        'committee': proposerFomatter(rnode_collection.find({'view': {'$exists': True}})[0]['view']),
-        # 'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': proposerFomatter(RNode.view),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
     return render(request, 'explorer/explorer.html',
