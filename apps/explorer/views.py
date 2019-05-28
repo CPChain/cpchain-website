@@ -675,7 +675,7 @@ def impeachFrequency(req):
     from_block = 265829
     fooList = []
     for i in range(1, 31):
-        time_before = time.time() - int(duration) * 60 * 60 * 24
+        time_before = time.time() - int(i) * 60 * 60 * 24
         our_impeachs = block_collection.find(
             {'timestamp': {'$gte': time_before}, 'impeachProposer': {'$exists': True},
              'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
