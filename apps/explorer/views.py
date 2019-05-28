@@ -77,7 +77,7 @@ class RNode:
             RNode.view = rnode_collection.find_one({'view': {'$exists': True}})['view']
             RNode.term = rnode_collection.find_one({'term': {'$exists': True}})['term']
         except Exception as e:
-            pass
+            print(e)
 
 
 class Committee:
@@ -146,8 +146,9 @@ def explorer(request):
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': get_rate('bps'),
         'tps': get_rate('tps'),
-        'committee': proposerFomatter(RNode.view),
-        'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'committee': proposerFomatter(rnode_collection.find({'view': {'$exists': True}})[0]['view']),
+        # 'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
+        'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
     return render(request, 'explorer/explorer.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
