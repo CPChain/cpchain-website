@@ -476,7 +476,7 @@ def rnode(req):
 def proposers(req):
     proposerlist = list(proposer_collection.find())[0]
     term = proposerlist.get('Term', [])
-    view = proposerlist.get('View', [])
+    view = int(proposerlist.get('View', [])) + 1
     TermLen = proposerlist['TermLen'] if proposerlist else 1
     BlockNumber = proposerlist['BlockNumber'] if proposerlist else 1
     proposers = proposerlist.get('Proposers', [])
