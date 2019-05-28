@@ -672,10 +672,6 @@ def candidate_info(req, addr):
 
 
 def impeachFrequency(req):
-    duration = req.GET.get('duration', '1')
-    from_block = 265829
-    fooList = []
-
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
     chart = []
@@ -691,9 +687,6 @@ def impeachFrequency(req):
         our_success = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': False},
              'miner': {'$in': withdraw_abi.ours}}).count()
-        # delta_blocks = cf.cpc.blockNumber - \
-        #                list(block_collection.find({'timestamp': {'$gte': gt_time}}).limit(1))[0][
-        #                    'number']
         com_success = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count() - all_impeachs - our_success
         try:
@@ -704,10 +697,10 @@ def impeachFrequency(req):
             com_impeach_frequency = com_impeachs / com_success
         except:
             com_impeach_frequency = 0
-
         now_ts = now - (i + 1) * DAY_SECENDS
         time_local = time.localtime(now_ts)
         dt = time.strftime('%m/%d', time_local)
+        print('dt', dt, 'i', i)
         chart.append({
             'our_impeachs': -our_impeachs,
             'our_success': our_success,
@@ -718,8 +711,6 @@ def impeachFrequency(req):
             'date': str(dt)
         })
         chart.reverse()
-    # for i in range(1, 31):
-
     pprint(chart)
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
