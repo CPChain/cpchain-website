@@ -2,7 +2,6 @@ import json
 import math
 import time
 from contextlib import contextmanager
-from pprint import pprint
 
 import eth_abi
 from django.http import JsonResponse, HttpResponse
@@ -474,7 +473,7 @@ def rnode(req):
                                                'rnodes': rnodes})
 
 
-def committee(req):
+def proposers(req):
     proposerlist = list(proposer_collection.find())[0]
     term = proposerlist.get('Term', [])
     view = proposerlist.get('View', [])
