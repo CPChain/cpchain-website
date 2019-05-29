@@ -96,10 +96,15 @@ class RnodeView(View):
 
 class DownloadView(View):
     def get(self, req, paper):
-        with open('static/' + paper, 'rb') as pdf:
-            response = HttpResponse(pdf.read(), content_type='application/pdf')
-            response['Content-Disposition'] = 'inline;filename="{}"'.format(paper)
-            return response
+        file = open('static/' + paper, 'rb')
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/pdf'
+        response['Content-Disposition'] = 'inline;filename="{}"'.format(paper)
+        return response
+        # with open('static/' + paper, 'rb') as pdf:
+        #     response = FileResponse(pdf.read(), content_type='application/pdf')
+        #     response['Content-Disposition'] = 'inline;filename="{}"'.format(paper)
+        #     return response
 
 
 class AppView(View):
