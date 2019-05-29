@@ -28,7 +28,6 @@ class IndexView(View):
         return render(req, 'index.html', locals())
 
 
-
 class CommunityView(View):
     def get(self, req):
         title = req.GET.get('title', '')
@@ -41,12 +40,14 @@ class CommunityView(View):
         else:
             # eng version
             if not req.path.startswith('/zh-hans'):
-                official_announcement_news = New.objects.filter(category='Official Announcement').order_by('-update_time')[:3]
+                official_announcement_news = New.objects.filter(category='Official Announcement').order_by(
+                    '-update_time')[:3]
                 community_update_news = New.objects.filter(category='Community Updates').order_by('-update_time')[:3]
                 community_events_news = New.objects.filter(category='Community Events').order_by('-update_time')[:3]
                 media_reports_news = Media.objects.filter(category='Media Reports').order_by('-update_time')[:3]
                 return render(req, 'community.html',
-                              {'OA_news':official_announcement_news,'CU_news': community_update_news, 'community_events_news': community_events_news,
+                              {'OA_news': official_announcement_news, 'CU_news': community_update_news,
+                               'community_events_news': community_events_news,
                                'media_news': media_reports_news})
 
             else:
@@ -95,53 +96,54 @@ class RnodeView(View):
 
 class DownloadView(View):
     def get(self, req, paper):
-        file = open('static/' + paper, 'rb')
-        response = FileResponse(file)
-        response['Content-Type'] = 'application/octet-stream'
-        response['Content-Disposition'] = 'attachment;filename="{}"'.format(paper)
-        return response
+        with open('static/' + paper, 'rb') as pdf:
+            response = HttpResponse(pdf.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline;filename="{}"'.format(paper)
+            return response
 
 
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
 
+
 class PasswordView(View):
     def get(self, req):
         if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']:
-            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+            cookie = req.get_signed_cookie('faucet', salt="cpc")
             if cookie == 'login':
                 return redirect('faucet')
         return render(req, 'password.html')
-    
+
     def post(self, req):
-        password = req.POST.get('password', '') 
+        password = req.POST.get('password', '')
         if not password:
             if not req.path.startswith('/zh-hans'):
                 return render(req, 'password.html', {'msg': "Please input a password."})
             return render(req, 'password.html', {'msg': "请输入密码"})
         else:
-            if password == 'cpchain2019': 
+            if password == 'cpchain2019':
                 # return redirect('faucet')
                 response = HttpResponseRedirect('/faucet')
-                response.set_signed_cookie('faucet','login',salt="cpc",max_age=60*30,httponly=True)
+                response.set_signed_cookie('faucet', 'login', salt="cpc", max_age=60 * 30, httponly=True)
                 return response
             else:
                 if not req.path.startswith('/zh-hans'):
                     return render(req, 'password.html', {'msg': "Incorrect password."})
                 return render(req, 'password.html', {'msg': "密码错误"})
-    
+
+
 class FaucetView(View):
     def get(self, req):
-        if 'faucet' in req.COOKIES  and ':' in req.COOKIES['faucet']: 
-            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']:
+            cookie = req.get_signed_cookie('faucet', salt="cpc")
             if cookie == 'login':
                 return render(req, 'faucet.html')
         return redirect('password')
 
     def post(self, req):
-        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']: 
-            cookie = req.get_signed_cookie('faucet',salt="cpc") 
+        if 'faucet' in req.COOKIES and ':' in req.COOKIES['faucet']:
+            cookie = req.get_signed_cookie('faucet', salt="cpc")
             if cookie == 'login':
                 address = req.POST.get('address', '')
                 address = address.strip()
@@ -156,13 +158,15 @@ class FaucetView(View):
                             return render(req, 'faucet.html', {'msg': "您已经申领今天的测试币"})
                     else:
                         if not req.path.startswith('/zh-hans'):
-                            return render(req, 'faucet.html', {'msg': 'The limitation of daily faucet has been reached. '})
+                            return render(req, 'faucet.html',
+                                          {'msg': 'The limitation of daily faucet has been reached. '})
                         return render(req, 'faucet.html', {'msg': '您已经达到了今天的测试币申领额度上限'})
                 else:
                     if not req.path.startswith('/zh-hans'):
                         return render(req, 'faucet.html', {'msg': 'Please enter a valid wallet address.'})
                     return render(req, 'faucet.html', {'msg': '请输入一个有效钱包地址'})
         return redirect('password')
+
 
 class ReceiptView(View):
     def get(self, req):
