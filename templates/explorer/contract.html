@@ -65,7 +65,7 @@
                     <div class="tab-content-item" id="txs">
                         <div class="info-table-list">
                             <div class="info-table-list-title">
-                                Latest {% if txs_count < 25 %}{{ txs_count }}
+                                {% if txs_count < 25 %}{{ txs_count }}
                             {% else %}{{current.begin}} to {{current.end}}{% endif %} txs from a total of <a href>{{ txs_count }} transactions</a>
                             </div>
                             <div class="info-table-list-content">
