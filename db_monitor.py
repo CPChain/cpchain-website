@@ -8,6 +8,7 @@ from decorator import contextmanager
 from pymongo import DESCENDING, MongoClient
 
 from cpchain_test.config import cfg
+from tools.dingding import post_message
 
 REFRESH_INTERVAL = 3
 
@@ -31,6 +32,7 @@ tx_collection = client['cpchain']['txs']
 address_collection = client['cpchain']['address']
 contract_collection = client['cpchain']['contract']
 event_collection = client['cpchain']['event']
+
 
 
 def save_blocks_txs(start_block_id):
@@ -246,6 +248,8 @@ def main():
             save_blocks_txs(start_block_id)
         except Exception as e:
             logger.error(f'loop error: {e}')
+            post_message(f"**db sync error:**\n{e}")
+
         time.sleep(10)
 
 
