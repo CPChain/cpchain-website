@@ -156,7 +156,7 @@ def get_block_reward(number, txs):
     basic_block_reward = cf.cpc.getBlockReward(number)
     fee = 0
     for t in txs:
-        fee += t['gas'] * t['gasPrice']
+        fee += t['gasUsed'] * t['gasPrice']
     reward = basic_block_reward + fee
     return str(cf.fromWei(reward, 'ether'))
 
