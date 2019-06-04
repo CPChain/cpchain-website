@@ -406,7 +406,7 @@ def address(req, address):
         balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
     except:
         print('cf connection error')
-        balance = 0
+        balance = 'N/A'
 
     # latest 25 txs
     current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
