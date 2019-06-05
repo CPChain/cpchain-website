@@ -8,6 +8,7 @@ from decorator import contextmanager
 from pymongo import DESCENDING, MongoClient
 
 from cpchain_test.config import cfg
+from tools.dingding import post_message
 
 REFRESH_INTERVAL = 3
 
@@ -84,7 +85,7 @@ def save_blocks_txs(start_block_id):
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
-            reward = update_reward(temp_id)
+            reward = update_reward(temp_id, txs_li)
             block_['reward'] = reward
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
@@ -94,10 +95,11 @@ def save_blocks_txs(start_block_id):
             time.sleep(REFRESH_INTERVAL)
 
 
-def update_reward(id):
-    reward = get_block_reward(id)
+def update_reward(id, txs):
+    reward = get_block_reward(id, txs)
     logger.info(f'reward:{reward}')
     return reward
+
 
 def block_formatter(block):
     block_ = {}
@@ -148,19 +150,14 @@ def get_block_value(p, number):
     return in_v - out_v
 
 
-def get_block_reward(number):
+def get_block_reward(number, txs):
     if number == 0:
         return 0
-    try:
-        p = cf.cpc.getProposerByBlock(number)
-    except Exception as e:
-        logger.error(f'getProposerByBlock error:{e}')
-        return 0
-    p = cf.toChecksumAddress(p)
-    current_balance = cf.cpc.getBalance(p, number)
-    last_balance = cf.cpc.getBalance(p, number - 1)
-    value_in_block = get_block_value(p, number)
-    reward = current_balance - last_balance - value_in_block
+    basic_block_reward = cf.cpc.getBlockReward(number)
+    fee = 0
+    for t in txs:
+        fee += t['gasUsed'] * t['gasPrice']
+    reward = basic_block_reward + fee
     return str(cf.fromWei(reward, 'ether'))
 
 
@@ -246,6 +243,8 @@ def main():
             save_blocks_txs(start_block_id)
         except Exception as e:
             logger.error(f'loop error: {e}')
+            post_message(f"**db sync error:**\n{e}")
+
         time.sleep(10)
 
 

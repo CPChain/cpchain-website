@@ -584,12 +584,12 @@ def impeachs_by_block(req, block, isOur):
     if isOur == '0':
         impeach_bks = block_collection.find(
             {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}},
-            {'_id': False}).sort('number', DESCENDING)
+            {'_id': False})
     elif isOur == '1':
         impeach_bks = block_collection.find(
             {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
              'impeachProposer': {'$in': withdraw_abi.ours}},
-            {'_id': False}).sort('number', DESCENDING)
+            {'_id': False})
     res = {}
     res['impeach_num'] = impeach_bks.count()
     res['impeach_bks'] = list(impeach_bks)
