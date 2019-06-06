@@ -7,7 +7,7 @@ import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
-from pymongo import DESCENDING, MongoClient
+from pymongo import DESCENDING, MongoClient, ASCENDING
 
 from apps.utils import currency
 from cpchain_test.config import cfg
@@ -376,7 +376,7 @@ def address(req, address):
             code = '0x'
         # address info
         with timer('get tx'):
-            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', ASCENDING)
 
         with timer('count'):
             txs_count = txs.count()
