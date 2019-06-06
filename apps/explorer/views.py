@@ -381,7 +381,6 @@ def address(req, address):
         with timer('count'):
             txs_count = txs.count()
 
-
         try:
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
@@ -419,8 +418,8 @@ def address(req, address):
         # current =1
         if code == '0x':
             with timer('poposer count'):
-                proposer_history = block_collection.find(
-                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).count()
+                proposer_history = block_collection.count(
+                    {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
             return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                          'address': raw_address,
                                                          'balance': balance,
