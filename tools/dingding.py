@@ -4,8 +4,9 @@ For detailed markdown format, cf. https://open-doc.dingtalk.com/microapp/servera
 """
 import requests
 
+from cpchain_test.config import cfg
 # ピカチュウ robot
-url = "https://oapi.dingtalk.com/robot/send?access_token=0f869ba2ac6397c89bdf277df8a9683857764f7944e1a10ce7d9b6054978a349"
+url = cfg['pikachu']['url']
 
 def post_message(message, title="pikachu"):
     headers = {"Content-Type": "application/json"}
