@@ -415,8 +415,8 @@ def address(req, address):
             balance = 0
 
         # latest 25 txs
-        # current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
-        current =1
+        current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
+        # current =1
         if code == '0x':
             with timer('poposer count'):
                 proposer_history = block_collection.count_documents(
