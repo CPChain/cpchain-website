@@ -376,7 +376,7 @@ def address(req, address):
             code = '0x'
         # address info
         with timer('get tx'):
-            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('_id', DESCENDING)
+            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
 
         with timer('count'):
             txs_count = txs.count()
