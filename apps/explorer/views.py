@@ -389,7 +389,7 @@ def address(req, address):
         with timer('pagenator'):
             p = Paginator(txs, 25, request=req)
             txs = p.page(page)
-            # txs.object_list = list(txs.object_list)
+            txs.object_list = list(txs.object_list)
 
         timenow = int(time.time())
         # set flag
