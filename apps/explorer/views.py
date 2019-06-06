@@ -388,7 +388,7 @@ def address(req, address):
     with timer('pagenator'):
         p = Paginator(txs, 25, request=req)
         txs = p.page(page)
-        txs.object_list = list(txs.object_list)
+        # txs.object_list = list(txs.object_list)
 
     timenow = int(time.time())
     # set flag
@@ -417,7 +417,8 @@ def address(req, address):
     current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
 
     if code == '0x':
-        proposer_history = block_collection.count_documents(
+        with timer('poposer count'):
+            proposer_history = block_collection.count_documents(
             {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
         return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                      'address': raw_address,
@@ -426,7 +427,8 @@ def address(req, address):
                                                      'proposer_history': proposer_history
                                                      })
     else:
-        creator = contract_collection.find({'address': raw_address})[0]['creator']
+        with timer('contract creator'):
+            creator = contract_collection.find({'address': raw_address})[0]['creator']
         return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
                                                       'address': raw_address,
                                                       'balance': balance,
