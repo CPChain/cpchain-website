@@ -419,8 +419,8 @@ def address(req, address):
         # current =1
         if code == '0x':
             with timer('poposer count'):
-                proposer_history = block_collection.count_documents(
-                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+                proposer_history = block_collection.find(
+                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).count()
             return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                          'address': raw_address,
                                                          'balance': balance,
