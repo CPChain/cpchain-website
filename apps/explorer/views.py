@@ -374,17 +374,22 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     # address info
-    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('_id', DESCENDING)
-    txs_count = txs.count()
+    with timer('get tx'):
+        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('_id', DESCENDING)
+
+    with timer('count'):
+        txs_count = txs.count()
+
 
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
+    with timer('pagenator'):
+        p = Paginator(txs, 25, request=req)
+        txs = p.page(page)
+        txs.object_list = list(txs.object_list)
 
-    p = Paginator(txs, 25, request=req)
-    txs = p.page(page)
-    txs.object_list = list(txs.object_list)
     timenow = int(time.time())
     # set flag
     for d in txs.object_list:
