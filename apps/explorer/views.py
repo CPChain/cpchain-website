@@ -15,7 +15,7 @@ from cpchain_test.settings import cf
 from . import withdraw_abi
 
 mongo = cfg['db']['ip']
-port = cfg['db']['port']
+port = int(cfg['db']['port'])
 
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 block_collection = CLIENT['cpchain']['blocks']

@@ -13,7 +13,7 @@ LIMIT_COIN = int(100 * 1e+18)
 DAY_SECENDS = 60 * 60 * 24
 
 mongo = cfg['db']['ip']
-port = cfg['db']['port']
+port = int(cfg['db']['port'])
 
 CLIENT = MongoClient(host=mongo, port=port)
 faucet_collection = CLIENT['cpchain']['faucet']
