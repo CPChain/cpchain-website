@@ -9,7 +9,7 @@ import json
 
 DAY_SECENDS = 60 * 60 * 24
 mongo = cfg['db']['ip']
-port = cfg['db']['port']
+port = int(cfg['db']['port'])
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
