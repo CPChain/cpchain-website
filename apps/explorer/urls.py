@@ -24,5 +24,5 @@ urlpatterns = [
     path('all_blocks/', views.all_blocks, name='impeachs_by_block'),
     path('check_campaign/', views.check_campaign, name='campaign_history'),
     path('candidate_info/<addr>', views.candidate_info, name='candidate_info'),
-    path('impeachFrequency/', views.impeachFrequency,name='impeachFrequency'),
+    path('impeachFrequency/', views.impeachFrequency, name='impeachFrequency'),
 ]
