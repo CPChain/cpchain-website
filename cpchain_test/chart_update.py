@@ -2,13 +2,15 @@ import time
 
 from pymongo import MongoClient
 import sys
+
 print(sys.argv)
 from config import cfg
 import json
 
 DAY_SECENDS = 60 * 60 * 24
 mongo = cfg['db']['ip']
-CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
+port = cfg['db']['port']
+CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
 chart_collection = CLIENT['cpchain']['chart']
@@ -31,5 +33,6 @@ def get_chart():
     chart.reverse()
     chart = json.dumps(chart)
     chart_collection.update({}, {'chart': chart}, upsert=True)
+
 
 get_chart()

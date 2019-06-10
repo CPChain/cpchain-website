@@ -2,7 +2,9 @@ from pymongo import MongoClient
 from cpchain_test.config import cfg
 
 mongoHost = cfg['db']['ip']
-client = MongoClient(host=mongoHost, port=27017)
+port = cfg['db']['port']
+
+client = MongoClient(host=mongoHost, port=port)
 b_collection = client['cpchain']['blocks']
 tx_collection = client['cpchain']['txs']
 

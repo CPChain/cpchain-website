@@ -15,7 +15,9 @@ from cpchain_test.settings import cf
 from . import withdraw_abi
 
 mongo = cfg['db']['ip']
-CLIENT = MongoClient(host=mongo, port=27017, maxPoolSize=200)
+port = cfg['db']['port']
+
+CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
@@ -705,7 +707,7 @@ def impeachFrequency(req):
         'our_success': our_success,
         'com_impeachs': -com_impeachs,
         'com_success': com_success,
-        'our_impeach_frequency': our_impeach_frequency,
+        'our_icmpeach_frequency': our_impeach_frequency,
         'com_impeach_frequency': com_impeach_frequency,
         'date': 'today'
     })

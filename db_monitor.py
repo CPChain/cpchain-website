@@ -26,7 +26,9 @@ cf = Web3(Web3.HTTPProvider(chain))
 
 # mongodb
 mongoHost = cfg['db']['ip']
-client = MongoClient(host=mongoHost, port=27017)
+port = cfg['db']['port']
+
+client = MongoClient(host=mongoHost, port=port)
 b_collection = client['cpchain']['blocks']
 tx_collection = client['cpchain']['txs']
 address_collection = client['cpchain']['address']

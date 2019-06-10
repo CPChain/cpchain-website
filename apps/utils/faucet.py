@@ -10,7 +10,9 @@ from cpchain_test.config import cfg
 EVERYDAY = 100000 * 1e+18
 
 mongo = cfg['db']['ip']
-CLIENT = MongoClient(host=mongo, port=27017)
+port = cfg['db']['port']
+
+CLIENT = MongoClient(host=mongo, port=port)
 faucet_collection = CLIENT['cpchain']['faucet']
 
 
