@@ -23,8 +23,6 @@ txs_collection = client['cpchain']['txs']
 num_collection = client['cpchain']['num']
 
 
-
-
 def update_rate():
     spend_time = 60 * 10
     start_timestamp = int(time.time()) - spend_time
