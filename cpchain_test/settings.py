@@ -220,11 +220,7 @@ PAGINATION_SETTINGS = {
     'MARGIN_PAGES_DISPLAYED': 2,
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
-# override settings
-try:
-    from .local import *
-except Exception as e:
-    pass
+
 
 ASGI_APPLICATION = "cpchain_test.routing.application"
 CHANNEL_LAYERS = {
@@ -235,3 +231,9 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# override settings
+try:
+    from .local import *
+except Exception as e:
+    pass
