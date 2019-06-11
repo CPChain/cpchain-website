@@ -7,7 +7,7 @@ import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from pure_pagination import PageNotAnInteger, Paginator
-from pymongo import DESCENDING, MongoClient, ASCENDING
+from pymongo import DESCENDING, MongoClient
 
 from apps.utils import currency
 from cpchain_test.config import cfg
@@ -58,7 +58,21 @@ def get_chart():
 
 
 def explorer(request):
-    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    try:
+        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    except IndexError as e:
+        print(e)
+        blocks = []
+        txs = []
+        header = {'blockHeight': 0,
+                  'txs': 0,
+                  'rnode': 0,
+                  'bps': 0,
+                  'tps': 0,
+                  'committee': '0/0',
+                  'proposer': 0, }
+        return render(request, 'explorer/explorer.html',
+                      {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
     b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
     t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks

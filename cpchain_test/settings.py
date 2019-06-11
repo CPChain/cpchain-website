@@ -14,8 +14,9 @@ import configparser
 import os
 import sys
 
-from .config import cfg
 from cpc_fusion import Web3
+
+from .config import cfg
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -209,7 +210,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CKEDITOR_UPLOAD_PATH = 'upload/'  
+CKEDITOR_UPLOAD_PATH = 'upload/'
 # explorer settings
 WEBSOCKET_ACCEPT_ALL = True
 chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
