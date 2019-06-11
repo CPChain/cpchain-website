@@ -13,6 +13,7 @@ def create_index():
     # block collection
     b_collection.create_index([('number', 1)])
     b_collection.create_index([('hash', 1)])
+    b_collection.create_index([('miner', 1), ('timestamp', 1)])
     # txs collection
     tx_collection.create_index([('blockNumber', 1)])
     tx_collection.create_index([('hash', 1)])
