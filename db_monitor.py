@@ -87,7 +87,10 @@ def save_blocks_txs(start_block_id):
             if txs_li:
                 tx_collection.insert_many(txs_li)
                 logger.info('saving tx: block = %d, txs_count = %d', temp_id, transaction_cnt)
-            reward = update_reward(temp_id, txs_li)
+            if block['miner'].endswith('00000000'):
+                reward = 0
+            else:
+                reward = update_reward(temp_id, txs_li)
             block_['reward'] = reward
             b_collection.save(block_)
             logger.info('saving block: #%s', str(temp_id))
