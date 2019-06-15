@@ -222,17 +222,20 @@ PAGINATION_SETTINGS = {
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
 
-
 ASGI_APPLICATION = "cpchain_test.routing.application"
+
+redis_host = cfg['redis']['host']
+redis_port = int(cfg['redis']['port'])
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [(redis_host, redis_port)],
         },
     },
 }
-
+print(CHANNEL_LAYERS)
 # override settings
 try:
     from .local import *
