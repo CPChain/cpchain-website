@@ -9,7 +9,7 @@ from pure_pagination import PageNotAnInteger, Paginator
 from cpchain_test.config import cfg
 from .faucet import Faucet
 from .models import *
-from .tasks import faucet
+# from .tasks import faucet
 
 chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
 cf = Web3(Web3.HTTPProvider(chain))

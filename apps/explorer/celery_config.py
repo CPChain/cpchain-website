@@ -4,8 +4,8 @@ import os, sys
 from datetime import timedelta
 from celery.schedules import crontab
 
-os.chdir(sys.path[0])
-sys.path.append('../..')
+# os.chdir(sys.path[0])
+# sys.path.append('../..')
 
 from cpchain_test.config import cfg
 
