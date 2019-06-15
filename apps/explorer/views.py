@@ -118,16 +118,16 @@ def explorer(request):
         txs.append(tx)
     txs_count = txs_collection.find().count()
     try:
-        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
     except:
-        view = 1
+        index = 1
     header = {
         'blockHeight': height,
         'txs': txs_count,
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': get_rate('bps'),
         'tps': get_rate('tps'),
-        'committee': proposerFomatter(view),
+        'committee': proposerFomatter(index),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
     return render(request, 'explorer/explorer.html',
@@ -146,9 +146,9 @@ def wshandler():
     tps = get_rate('tps')
     bps = get_rate('bps')
     try:
-        view = rnode_collection.find({'view': {'$exists': True}})[0]['view']
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
     except:
-        view = 1
+        index = 1
 
     header = {
         'blockHeight': block_height,
@@ -156,7 +156,7 @@ def wshandler():
         'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
         'bps': bps,
         'tps': tps,
-        'committee': proposerFomatter(view),
+        'committee': proposerFomatter(index),
         # 'proposer': str(Committee.committee[0]['TermLen']) if Committee.committee else 0,
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
