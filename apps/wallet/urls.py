@@ -3,4 +3,5 @@ from wallet.views import *
 
 urlpatterns = [
     path('news_detail/<pk>', community_detail),
+    path('news_list/', news_list),
 ]
