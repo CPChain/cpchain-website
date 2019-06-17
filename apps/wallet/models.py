@@ -2,7 +2,8 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
 NEWS_CATEGORY = (
-    ('News', 'News'),
+    ('News_en', 'News_en'),
+    ('News_cn', 'News_cn'),
     ('draft', 'draft'))
 
 
