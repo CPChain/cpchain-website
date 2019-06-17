@@ -30,6 +30,7 @@ indexpatterns = [
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
+    path('wallet/', include(('wallet.urls', 'wallet'), namespace='wallet')),
     path('app/<app>', AppView.as_view(), name='app'),
     path('search/', include('haystack.urls')),
     path('password/',   PasswordView.as_view(), name='password'),

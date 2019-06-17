@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'pure_pagination',
     'haystack',
     'utils',
+    'wallet',
 ]
 
 MIDDLEWARE = [
