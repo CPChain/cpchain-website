@@ -1,5 +1,6 @@
 import xadmin
 from .models import *
+from wallet.models import *
 from xadmin import views
 
 
@@ -39,6 +40,10 @@ class MediaAdmin:
     list_display = ['title', 'update_time', 'category']
     list_filter = ['update_time', 'category']
 
+class WalletAdmin:
+    list_display = ['title', 'update_time', 'category']
+    list_filter = ['update_time', 'category']
+
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
@@ -48,3 +53,4 @@ xadmin.site.register(Department, DeptAdmin)
 xadmin.site.register(Partner, PartnerAdmin)
 xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
+xadmin.site.register(WalletNews, WalletAdmin)

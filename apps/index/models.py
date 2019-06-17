@@ -67,3 +67,4 @@ class Media(models.Model):
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
     media_name = models.CharField(max_length=200, default='')
     summary = models.CharField(max_length=500, blank=True, null=True, default='')
+
