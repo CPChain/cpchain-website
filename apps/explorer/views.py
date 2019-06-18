@@ -512,14 +512,14 @@ def address(req, address):
             code = '0x'
         # address info
         txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-        with timer(1.2):
+        with timer(1):
             txs_count = txs_collection.count({'$or': [{'from': address}, {'to': address}]})
         try:
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
         p = Paginator(txs, 25, request=req)
-        with timer(2.2):
+        with timer(2):
             txs = p.page(page)
         txs.object_list = list(txs.object_list)
 
@@ -551,15 +551,14 @@ def address(req, address):
         current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
         # current =1
         if code == '0x':
-            with timer('proposer'):
-                proposer_history = block_collection.count(
-                    {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
-                return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
-                                                             'address': raw_address,
-                                                             'balance': balance,
-                                                             'txs_count': txs_count,
-                                                             'proposer_history': proposer_history
-                                                             })
+            proposer_history = block_collection.count(
+                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+            return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
+                                                         'address': raw_address,
+                                                         'balance': balance,
+                                                         'txs_count': txs_count,
+                                                         'proposer_history': proposer_history
+                                                         })
         else:
             creator = contract_collection.find({'address': raw_address})[0]['creator']
             return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
