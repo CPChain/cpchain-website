@@ -33,7 +33,7 @@ proposer_start_timestamp = 1556448256
 def timer(name):
     start = time.time()
     yield
-    print(f'[{name}] done in {time.time() - start:.2f} s')
+    print(f'[{name}] done in {time.time() - start:.3f} s')
 
 
 def get_chart():
@@ -513,7 +513,11 @@ def address(req, address):
         # address info
         txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
         with timer(1):
-            txs_count = txs_collection.count({'$or': [{'from': address}, {'to': address}]})
+            from_count = txs_collection.count({'from': address})
+            to_count = txs_collection.count({'from': address})
+            both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
+
+            txs_count = from_count + to_count - both_count
         try:
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
