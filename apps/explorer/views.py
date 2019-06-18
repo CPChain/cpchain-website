@@ -511,21 +511,18 @@ def address(req, address):
         except Exception as e:
             code = '0x'
         # address info
-        with timer(1.1):
-            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
         with timer(1.2):
             txs_count = txs_collection.count({'$or': [{'from': address}, {'to': address}]})
-        with timer(2):
-            try:
-                page = req.GET.get('page', 1)
-            except PageNotAnInteger:
-                page = 1
-            with timer(2.1):
-                p = Paginator(txs, 25, request=req)
-            with timer(2.2):
-                txs = p.page(page)
-            with timer(2.3):
-                txs.object_list = list(txs.object_list)
+        try:
+            page = req.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        with timer(2.1):
+            p = Paginator(txs, 25, request=req)
+        with timer(2.2):
+            txs = p.page(page)
+        txs.object_list = list(txs.object_list)
 
         timenow = int(time.time())
         # set flag
@@ -552,8 +549,7 @@ def address(req, address):
             balance = 'N/A'
 
         # latest 25 txs
-        with timer('curernt'):
-            current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
+        current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
         # current =1
         if code == '0x':
             with timer('proposer'):
