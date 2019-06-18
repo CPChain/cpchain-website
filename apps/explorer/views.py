@@ -518,8 +518,7 @@ def address(req, address):
             page = req.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        with timer(2.1):
-            p = Paginator(txs, 25, request=req)
+        p = Paginator(txs, 25, request=req)
         with timer(2.2):
             txs = p.page(page)
         txs.object_list = list(txs.object_list)
