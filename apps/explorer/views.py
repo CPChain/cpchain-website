@@ -514,8 +514,9 @@ def address(req, address):
         except Exception as e:
             code = '0x'
         # address info
-        with timer(1):
+        with timer(1.1):
             txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+        with timer(1.2):
             txs_count = txs.count()
         with timer(2):
             try:
