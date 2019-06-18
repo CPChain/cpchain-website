@@ -17,8 +17,6 @@ from . import withdraw_abi
 mongo = cfg['db']['ip']
 port = int(cfg['db']['port'])
 
-
-
 REFRESH_INTERVAL = 3
 ADD_SIZE = 42
 
@@ -250,7 +248,6 @@ def get_rate(bORt):
 
 
 def search(req):
-
     """
     address/contract  42/40
     number  <42
@@ -517,7 +514,7 @@ def address(req, address):
         with timer(1.1):
             txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
         with timer(1.2):
-            txs_count = txs.count()
+            txs_count = txs_collection.count({'$or': [{'from': address}, {'to': address}]})
         with timer(2):
             try:
                 page = req.GET.get('page', 1)
