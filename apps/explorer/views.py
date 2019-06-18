@@ -25,6 +25,11 @@ ADD_SIZE = 42
 DAY_SECENDS = 60 * 60 * 24
 proposer_start_timestamp = 1556448256
 
+CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
+block_collection = CLIENT['cpchain']['blocks']
+txs_collection = CLIENT['cpchain']['txs']
+contract_collection = CLIENT['cpchain']['contract']
+
 
 # usage:
 # with timer('123'):
@@ -498,10 +503,6 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
-    CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-    block_collection = CLIENT['cpchain']['blocks']
-    txs_collection = CLIENT['cpchain']['txs']
-    contract_collection = CLIENT['cpchain']['contract']
     with timer('all'):
         try:
             raw_address = cf.toChecksumAddress(address.strip())
