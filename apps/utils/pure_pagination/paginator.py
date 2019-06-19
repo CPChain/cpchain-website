@@ -16,13 +16,12 @@ SHOW_FIRST_PAGE_WHEN_INVALID = PAGINATION_SETTINGS.get("SHOW_FIRST_PAGE_WHEN_INV
 
 
 class Paginator(object):
-    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None, count=None):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None):
         self.object_list = object_list
         self.per_page = per_page
         self.orphans = orphans
         self.allow_empty_first_page = allow_empty_first_page
-        self._count = count
-        self._num_pages = None
+        self._num_pages = self._count = None
         self.request = request
 
     def validate_number(self, number):
@@ -65,7 +64,6 @@ class Paginator(object):
                 # (i.e. is of type list).
                 self._count = len(self.object_list)
         return self._count
-
     count = property(_get_count)
 
     def _get_num_pages(self):
@@ -77,7 +75,6 @@ class Paginator(object):
                 hits = max(1, self.count - self.orphans)
                 self._num_pages = int(ceil(hits / float(self.per_page)))
         return self._num_pages
-
     num_pages = property(_get_num_pages)
 
     def _get_page_range(self):
@@ -86,9 +83,7 @@ class Paginator(object):
         a template for loop.
         """
         return range(1, self.num_pages + 1)
-
     page_range = property(_get_page_range)
-
 
 QuerySetPaginator = Paginator  # For backwards-compatibility.
 
@@ -217,5 +212,5 @@ class Page(object):
         return render_to_string('pure_pagination/pagination.html', {
             'current_page': self,
             'page_obj': self,  # Issue 9 https://github.com/jamespacileo/django-pure-pagination/issues/9
-            # Use same naming conventions as Django
+                               # Use same naming conventions as Django
         })
