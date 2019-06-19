@@ -9,12 +9,12 @@ from celery.schedules import crontab
 
 from cpchain_test.config import cfg
 
-redis_host = cfg['redis']['host']
-redis_port = cfg['redis']['port']
+CELERY_REDIS_HOST = cfg['redis']['host']
+CELERY_REDIS_PORT = cfg['redis']['port']
 
-# celery
-BROKER_URL = f'redis://{redis_host}:{redis_port}/0'  # 使用Redis作为消息代理
-CELERY_RESULT_BACKEND = f'redis://{redis_host}:{redis_port}/0'  # 把任务结果存在了Redis
+# celere
+BROKER_URL = f'redis://{CELERY_REDIS_HOST}:{CELERY_REDIS_PORT}/0'  # 使用Redis作为消息代理
+CELERY_RESULT_BACKEND = f'redis://{CELERY_REDIS_HOST}:{CELERY_REDIS_PORT}/0'  # 把任务结果存在了Redis
 
 
 CELERY_TIMEZONE = 'Asia/Shanghai'  # 指定时区，默认是 UTC
