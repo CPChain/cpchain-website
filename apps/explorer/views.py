@@ -147,7 +147,6 @@ def proposerFomatter(num):
 
 
 def wshandler():
-
     # index websocket handler
     block = block_collection.find().sort('number', DESCENDING).limit(1)[0]
     block_height = block['number']
@@ -398,7 +397,6 @@ def tx(req, tx_hash):
 
 
 import pysnooper
-
 
 def address(req, address):
     try:

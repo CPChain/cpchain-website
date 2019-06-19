@@ -52,6 +52,7 @@ class Paginator(object):
         top = bottom + self.per_page
         if top + self.orphans >= self.count:
             top = self.count
+        print(111,self.object_list)
         return Page(self.object_list[bottom:top], number, self)
 
     def _get_count(self):
