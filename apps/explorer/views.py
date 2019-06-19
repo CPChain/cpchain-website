@@ -518,7 +518,7 @@ def address(req, address):
         p = Paginator(txs, 25, request=req)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)
-    timenow = int(time.time())
+        timenow = int(time.time())
     # set flag
     for d in txs.object_list:
         if d['from'] == d['to']:
