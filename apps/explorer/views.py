@@ -53,8 +53,6 @@ def timer(name):
 
 
 def get_chart():
-    CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-    chart_collection = CLIENT['cpchain']['chart']
     try:
         return chart_collection.find()[0].get('chart', [])
     except Exception:
