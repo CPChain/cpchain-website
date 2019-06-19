@@ -16,7 +16,7 @@ SHOW_FIRST_PAGE_WHEN_INVALID = PAGINATION_SETTINGS.get("SHOW_FIRST_PAGE_WHEN_INV
 
 
 class Paginator(object):
-    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None,fix_count=None):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None, fix_count=None):
         self.object_list = object_list
         self.per_page = per_page
         self.orphans = orphans
@@ -52,7 +52,6 @@ class Paginator(object):
         top = bottom + self.per_page
         if top + self.orphans >= self.count:
             top = self.count
-        print(111,self.object_list)
         return Page(self.object_list[bottom:top], number, self)
 
     def _get_count(self):
@@ -67,6 +66,7 @@ class Paginator(object):
                 # (i.e. is of type list).
                 self._count = len(self.object_list)
         return self._count
+
     count = property(_get_count)
 
     def _get_num_pages(self):
@@ -78,6 +78,7 @@ class Paginator(object):
                 hits = max(1, self.count - self.orphans)
                 self._num_pages = int(ceil(hits / float(self.per_page)))
         return self._num_pages
+
     num_pages = property(_get_num_pages)
 
     def _get_page_range(self):
@@ -86,7 +87,9 @@ class Paginator(object):
         a template for loop.
         """
         return range(1, self.num_pages + 1)
+
     page_range = property(_get_page_range)
+
 
 QuerySetPaginator = Paginator  # For backwards-compatibility.
 
@@ -122,6 +125,7 @@ def add_page_querystring(func):
 class Page(object):
     def __init__(self, object_list, number, paginator):
         self.object_list = object_list
+        print('123&**********', object_list)
         self.paginator = paginator
         if paginator.request:
             # Reason: I just want to perform this operation once, and not once per page
@@ -215,5 +219,5 @@ class Page(object):
         return render_to_string('pure_pagination/pagination.html', {
             'current_page': self,
             'page_obj': self,  # Issue 9 https://github.com/jamespacileo/django-pure-pagination/issues/9
-                               # Use same naming conventions as Django
+            # Use same naming conventions as Django
         })
