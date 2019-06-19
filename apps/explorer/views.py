@@ -6,8 +6,7 @@ from contextlib import contextmanager
 import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
-# from apps.utils.pure_pagination import PageNotAnInteger, Paginator
-from pure_pagination import PageNotAnInteger, Paginator
+from apps.utils.pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
 from apps.utils import currency
@@ -517,7 +516,6 @@ def address(req, address):
             txs = p.page(page)
         with timer('a'):
             txs.object_list = list(txs.object_list)
-            print(txs.object_list)
         timenow = int(time.time())
         # set flag
         for d in txs.object_list:
