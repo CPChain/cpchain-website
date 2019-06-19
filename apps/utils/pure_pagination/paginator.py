@@ -21,7 +21,8 @@ class Paginator(object):
         self.per_page = per_page
         self.orphans = orphans
         self.allow_empty_first_page = allow_empty_first_page
-        self._num_pages = self._count = count
+        self._count = count
+        self._num_pages = None
         self.request = request
 
     def validate_number(self, number):
