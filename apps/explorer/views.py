@@ -505,8 +505,8 @@ def address(req, address):
         code = '0x'
     # address info
     txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-    from_count = txs_collection.find({'from': address}).hint(('from', 1)).count()
-    to_count = txs_collection.count({'from': address})
+    from_count = txs_collection.find({'from': address}).hint('from_1').count()
+    to_count = txs_collection.count({'from': address}).hint('to_1').count()
     both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
     txs_count = from_count + to_count - both_count
     try:
