@@ -493,72 +493,71 @@ def tx(req, tx_hash):
 import pysnooper
 @pysnooper.snoop()
 def address(req, address):
-    with timer('all'):
 
-        try:
-            raw_address = cf.toChecksumAddress(address.strip())
-            address = raw_address.lower()
-            code = contract_collection.find({'address': raw_address})[0]['code']
-            # code = cf.toHex(code)
-        except Exception as e:
-            code = '0x'
-        # address info
-        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-        from_count = txs_collection.count({'from': address})
-        to_count = txs_collection.count({'from': address})
-        both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
-        txs_count = from_count + to_count - both_count
-        try:
-            page = req.GET.get('page', 1)
-        except PageNotAnInteger:
-            page = 1
-        p = Paginator(txs, 25, request=req)
-        txs = p.page(page)
-        txs.object_list = list(txs.object_list)
-        timenow = int(time.time())
-        # set flag
-        for d in txs.object_list:
-            if d['from'] == d['to']:
-                d['flag'] = 'self'
-            elif d['from'] == address:
-                d['flag'] = 'out'
-            else:
-                d['flag'] = 'in'
-            # add contract address
-            if not d['to']:
-                d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
-            d['value'] = currency.from_wei(d['value'], 'ether')
-            d['timesince'] = timenow - d['timestamp']
-
-        # txs.sort(key=lambda x: x['timestamp'], reverse=True)
-
-        try:
-            balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
-        except:
-            print('cf connection error')
-            balance = 'N/A'
-
-        # latest 25 txs
-        current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
-        # current =1
-        if code == '0x':
-            proposer_history = block_collection.count(
-                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
-            return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
-                                                         'address': raw_address,
-                                                         'balance': balance,
-                                                         'txs_count': txs_count,
-                                                         'proposer_history': proposer_history
-                                                         })
+    try:
+        raw_address = cf.toChecksumAddress(address.strip())
+        address = raw_address.lower()
+        code = contract_collection.find({'address': raw_address})[0]['code']
+        # code = cf.toHex(code)
+    except Exception as e:
+        code = '0x'
+    # address info
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+    from_count = txs_collection.count({'from': address})
+    to_count = txs_collection.count({'from': address})
+    both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
+    txs_count = from_count + to_count - both_count
+    try:
+        page = req.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
+    p = Paginator(txs, 25, request=req)
+    txs = p.page(page)
+    txs.object_list = list(txs.object_list)
+    timenow = int(time.time())
+    # set flag
+    for d in txs.object_list:
+        if d['from'] == d['to']:
+            d['flag'] = 'self'
+        elif d['from'] == address:
+            d['flag'] = 'out'
         else:
-            creator = contract_collection.find({'address': raw_address})[0]['creator']
-            return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
-                                                          'address': raw_address,
-                                                          'balance': balance,
-                                                          'txs_count': txs_count,
-                                                          'code': code,
-                                                          'creator': creator,
-                                                          })
+            d['flag'] = 'in'
+        # add contract address
+        if not d['to']:
+            d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
+        d['value'] = currency.from_wei(d['value'], 'ether')
+        d['timesince'] = timenow - d['timestamp']
+
+    # txs.sort(key=lambda x: x['timestamp'], reverse=True)
+
+    try:
+        balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
+    except:
+        print('cf connection error')
+        balance = 'N/A'
+
+    # latest 25 txs
+    current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
+    # current =1
+    if code == '0x':
+        proposer_history = block_collection.count(
+            {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+        return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
+                                                     'address': raw_address,
+                                                     'balance': balance,
+                                                     'txs_count': txs_count,
+                                                     'proposer_history': proposer_history
+                                                     })
+    else:
+        creator = contract_collection.find({'address': raw_address})[0]['creator']
+        return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
+                                                      'address': raw_address,
+                                                      'balance': balance,
+                                                      'txs_count': txs_count,
+                                                      'code': code,
+                                                      'creator': creator,
+                                                      })
 
 
 def rnode(req):
