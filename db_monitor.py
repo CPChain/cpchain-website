@@ -29,6 +29,11 @@ mongoHost = cfg['db']['ip']
 port = int(cfg['db']['port'])
 
 client = MongoClient(host=mongoHost, port=port)
+uname = cfg['db']['uname']
+pwd = cfg['db']['password']
+db = client['cpchain']
+db.authenticate(uname, pwd)
+
 b_collection = client['cpchain']['blocks']
 tx_collection = client['cpchain']['txs']
 address_collection = client['cpchain']['address']
@@ -248,7 +253,6 @@ def main():
             save_blocks_txs(start_block_id)
         except Exception as e:
             logger.error(f'loop error: {e}')
-            post_message(f"**db sync error:**\n{e}")
 
         time.sleep(10)
 
