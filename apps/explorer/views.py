@@ -6,7 +6,7 @@ from contextlib import contextmanager
 import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
-from pure_pagination import PageNotAnInteger, Paginator
+from apps.utils.pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
 from apps.utils import currency
@@ -43,18 +43,7 @@ def timer(name):
 
 def get_chart():
     CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-    block_collection = CLIENT['cpchain']['blocks']
-    txs_collection = CLIENT['cpchain']['txs']
-    address_collection = CLIENT['cpchain']['address']
-    contract_collection = CLIENT['cpchain']['contract']
-    rnode_collection = CLIENT['cpchain']['rnode']
-    proposer_collection = CLIENT['cpchain']['proposer']
-    proposer_history_collection = CLIENT['cpchain']['proposer_history']
-    event_collection = CLIENT['cpchain']['event']
-    abi_collection = CLIENT['cpchain']['abi']
-    source_collection = CLIENT['cpchain']['source']
     chart_collection = CLIENT['cpchain']['chart']
-    num_collection = CLIENT['cpchain']['num']
     try:
         return chart_collection.find()[0].get('chart', [])
     except Exception:
@@ -517,7 +506,6 @@ def address(req, address):
             from_count = txs_collection.count({'from': address})
             to_count = txs_collection.count({'from': address})
             both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
-
             txs_count = from_count + to_count - both_count
         try:
             page = req.GET.get('page', 1)
