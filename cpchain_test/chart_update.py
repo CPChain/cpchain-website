@@ -11,6 +11,10 @@ DAY_SECENDS = 60 * 60 * 24
 mongo = cfg['db']['ip']
 port = int(cfg['db']['port'])
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
+uname = cfg['db']['uname']
+pwd = cfg['db']['password']
+db = CLIENT['cpchain']
+db.authenticate(uname, pwd)
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']
 chart_collection = CLIENT['cpchain']['chart']

@@ -5,6 +5,10 @@ mongoHost = cfg['db']['ip']
 port = int(cfg['db']['port'])
 
 client = MongoClient(host=mongoHost, port=port)
+uname = cfg['db']['uname']
+pwd = cfg['db']['password']
+db = client['cpchain']
+db.authenticate(uname, pwd)
 b_collection = client['cpchain']['blocks']
 tx_collection = client['cpchain']['txs']
 

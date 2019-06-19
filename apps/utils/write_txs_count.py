@@ -26,7 +26,10 @@ block_number = 685000
 def write_count():
     address_list = address_collection.find()
     for a in address_list:
-        print(a)
+        address = a.get('address')
+        print(address)
+        count =
+
 
 
 if __name__ == '__main__':
