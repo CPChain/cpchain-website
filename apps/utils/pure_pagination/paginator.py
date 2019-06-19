@@ -125,7 +125,6 @@ def add_page_querystring(func):
 class Page(object):
     def __init__(self, object_list, number, paginator):
         self.object_list = object_list
-        print('123&**********', object_list)
         self.paginator = paginator
         if paginator.request:
             # Reason: I just want to perform this operation once, and not once per page
