@@ -514,7 +514,6 @@ def address(req, address):
     except PageNotAnInteger:
         page = 1
     with pysnooper.snoop():
-
         p = Paginator(txs, 25, request=req)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)

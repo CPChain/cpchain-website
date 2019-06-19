@@ -16,13 +16,14 @@ SHOW_FIRST_PAGE_WHEN_INVALID = PAGINATION_SETTINGS.get("SHOW_FIRST_PAGE_WHEN_INV
 
 
 class Paginator(object):
-    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None,fix_count=None):
         self.object_list = object_list
         self.per_page = per_page
         self.orphans = orphans
         self.allow_empty_first_page = allow_empty_first_page
         self._num_pages = self._count = None
         self.request = request
+        self.fix_count = fix_count
 
     def validate_number(self, number):
         "Validates the given 1-based page number."
@@ -55,6 +56,7 @@ class Paginator(object):
 
     def _get_count(self):
         "Returns the total number of objects, across all pages."
+        self._count = self.fix_count
         if self._count is None:
             try:
                 self._count = self.object_list.count()
