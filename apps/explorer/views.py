@@ -494,7 +494,6 @@ def tx(req, tx_hash):
 import pysnooper
 
 
-@pysnooper.snoop()
 def address(req, address):
     try:
         raw_address = cf.toChecksumAddress(address.strip())
@@ -504,18 +503,21 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     # address info
-    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-    from_count = txs_collection.find({'from': address}).hint('from_1').count()
-    to_count = txs_collection.find({'to': address}).hint('to_1').count()
-    both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
-    txs_count = from_count + to_count - both_count
+    with pysnooper.snoop():
+        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+        from_count = txs_collection.find({'from': address}).hint('from_1').count()
+        to_count = txs_collection.find({'to': address}).hint('to_1').count()
+        both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
+        txs_count = from_count + to_count - both_count
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    p = Paginator(txs, 25, request=req)
-    txs = p.page(page)
-    txs.object_list = list(txs.object_list)
+    with pysnooper.snoop():
+
+        p = Paginator(txs, 25, request=req)
+        txs = p.page(page)
+        txs.object_list = list(txs.object_list)
     timenow = int(time.time())
     # set flag
     for d in txs.object_list:
