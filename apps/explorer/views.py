@@ -493,25 +493,27 @@ def tx(req, tx_hash):
 
 def address(req, address):
     with timer('all'):
-        try:
-            raw_address = cf.toChecksumAddress(address.strip())
-            address = raw_address.lower()
-            code = contract_collection.find({'address': raw_address})[0]['code']
-            # code = cf.toHex(code)
-        except Exception as e:
-            code = '0x'
-        # address info
-        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+        with timer('a'):
+            try:
+                raw_address = cf.toChecksumAddress(address.strip())
+                address = raw_address.lower()
+                code = contract_collection.find({'address': raw_address})[0]['code']
+                # code = cf.toHex(code)
+            except Exception as e:
+                code = '0x'
+            # address info
+            txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
         with timer(1):
             from_count = txs_collection.count({'from': address})
             to_count = txs_collection.count({'from': address})
             both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
             txs_count = from_count + to_count - both_count
-        try:
-            page = req.GET.get('page', 1)
-        except PageNotAnInteger:
-            page = 1
-        p = Paginator(txs, 25, request=req)
+        with timer('b'):
+            try:
+                page = req.GET.get('page', 1)
+            except PageNotAnInteger:
+                page = 1
+            p = Paginator(txs, 25, request=req)
         with timer(2):
             txs = p.page(page)
         txs.object_list = list(txs.object_list)
@@ -533,15 +535,16 @@ def address(req, address):
             d['timesince'] = timenow - d['timestamp']
 
         # txs.sort(key=lambda x: x['timestamp'], reverse=True)
+        with timer('c'):
 
-        try:
-            balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
-        except:
-            print('cf connection error')
-            balance = 'N/A'
+            try:
+                balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
+            except:
+                print('cf connection error')
+                balance = 'N/A'
 
-        # latest 25 txs
-        current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
+            # latest 25 txs
+            current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
         # current =1
         if code == '0x':
             with timer('proposer'):
