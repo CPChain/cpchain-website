@@ -544,8 +544,9 @@ def address(req, address):
         current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
         # current =1
         if code == '0x':
-            proposer_history = block_collection.count(
-                {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+            with timer('proposer'):
+                proposer_history = block_collection.count(
+                    {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
             return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                          'address': raw_address,
                                                          'balance': balance,
