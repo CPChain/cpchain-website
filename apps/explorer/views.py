@@ -26,6 +26,11 @@ DAY_SECENDS = 60 * 60 * 24
 proposer_start_timestamp = 1556448256
 
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
+uname = cfg['db']['uname']
+pwd = cfg['db']['password']
+db = CLIENT['cpchain']
+db.authenticate(uname, pwd)
+
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 address_collection = CLIENT['cpchain']['address']

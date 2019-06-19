@@ -8,10 +8,12 @@ os.chdir(sys.path[0])
 from cpchain_test.config import cfg
 
 mongo = cfg['db']['ip']
+
 port = int(cfg['db']['port'])
+CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
+
 uname = cfg['db']['uname']
 pwd = cfg['db']['password']
-CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 
