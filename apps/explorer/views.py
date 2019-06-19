@@ -516,23 +516,22 @@ def address(req, address):
             txs = p.page(page)
         with timer('a'):
             txs.object_list = list(txs.object_list)
-
-        with timer('b'):
-            timenow = int(time.time())
-            # set flag
-            for d in txs.object_list:
-                if d['from'] == d['to']:
-                    d['flag'] = 'self'
-                elif d['from'] == address:
-                    d['flag'] = 'out'
-                else:
-                    d['flag'] = 'in'
-                # add contract address
-                if not d['to']:
-                    with timer('contract'):
-                        d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
-                d['value'] = currency.from_wei(d['value'], 'ether')
-                d['timesince'] = timenow - d['timestamp']
+            print(txs.object_list)
+        timenow = int(time.time())
+        # set flag
+        for d in txs.object_list:
+            if d['from'] == d['to']:
+                d['flag'] = 'self'
+            elif d['from'] == address:
+                d['flag'] = 'out'
+            else:
+                d['flag'] = 'in'
+            # add contract address
+            if not d['to']:
+                with timer('contract'):
+                    d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
+            d['value'] = currency.from_wei(d['value'], 'ether')
+            d['timesince'] = timenow - d['timestamp']
 
         # txs.sort(key=lambda x: x['timestamp'], reverse=True)
         with timer('c'):
