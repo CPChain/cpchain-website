@@ -20,7 +20,7 @@ def events_list(req, lang):
                                                                            'update_time')
     elif lang == 'cn':
         events_list = WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
-                                                                           'update_time')π
+                                                                           'update_time')
 
     msg = serializers.serialize('json', events_list)
     return JsonResponse(msg, safe=False)
