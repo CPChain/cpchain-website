@@ -29,7 +29,7 @@ class SwipeBanner(models.Model):
     lang = models.CharField(choices=(('en', 'en'), ('cn', 'cn')), default='en', max_length=50)
     index_banner = models.ImageField(upload_to='img/Wallet', null=False, blank=False)
     banner_time = models.DateField()
-    is_active = models.BooleanField('Active', default=False)
+    is_active = models.BooleanField('Active', default=True)
 
     def __str__(self):
         return self.news.title

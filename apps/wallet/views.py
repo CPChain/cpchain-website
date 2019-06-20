@@ -33,11 +33,12 @@ def news_list(req, lang):
 
     data = serializers.serialize("json", news_list,
                                  fields=('pk', 'category', 'title', 'banner', 'update_time'))
+    # data_dict = json.dumps(data)
     return JsonResponse(data, safe=False)
 
 
-def swipe(req):
-    if lang == 'en':
-        pass
-    elif lang == 'cn':
-        pass
+def swipe(req, lang):
+    banner = SwipeBanner.objects.filter(lang=lang)
+    print(banner)
+    data = serializers.serialize("json", news_list, )
+    return JsonResponse(data, safe=False)
