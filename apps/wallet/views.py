@@ -9,10 +9,6 @@ from .models import *
 
 def news_detail(req, pk):
     news = WalletNew.objects.filter(pk=pk)
-    print(news)
-    print(news.banner)
-    print(news.title)
-
     return render(req, 'wallet/news_detail.html', locals())
 
 
