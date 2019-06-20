@@ -32,4 +32,4 @@ class SwipeBanner(models.Model):
     # show =
 
     def __str__(self):
-        return self.title
+        return self.title.title
