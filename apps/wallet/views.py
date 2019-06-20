@@ -3,6 +3,7 @@ from .models import *
 from django.http import JsonResponse
 from django.core import serializers
 import json
+from django.db.models import Q
 
 
 # Create your views here.
@@ -12,31 +13,25 @@ def news_detail(req, pk):
     return JsonResponse(data, safe=False)
 
 
-# return msg:
-# "[{\"model\": \"wallet.WalletNew\", \"pk\": 2, \"fields\": {\"category\": \"News\", \"title\": \"321\", \"banner\": \"\", \"update_time\": \"2019-06-17\", \"content\": \"<p>fff</p>\"}}]"
-
+#    ('News_cn', 'News_cn'),
+#     ('Event_en', 'Event_en'),
+# ('Event_cn', 'Event_cn'),
 def news_list(req, lang):
     if lang == 'en':
-        news_list = WalletNew.objects.filter(category='News_en')
+        news_list = WalletNew.objects.filter(category='News_en').values('pk', 'category', 'title', 'banner',
+                                                                        'update_time')
+        events_list = WalletNew.objects.filter(category='Event_en').values('pk', 'category', 'title', 'banner',
+                                                                           'update_time')
     elif lang == 'cn':
-        news_list = WalletNew.objects.filter(category='News_cn')
+        news_list = WalletNew.objects.filter(category='News_cn').values('pk', 'category', 'title', 'banner',
+                                                                        'update_time')
+        events_list = WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
+                                                                           'update_time')
 
-    data = serializers.serialize("json", news_list,
-                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
-    return JsonResponse(data, safe=False)
+    msg = {'news': news_list, 'events': events_list}
 
-
-def event_list(req, lang):
-    if lang == 'en':
-        evnet_list = WalletEvent.objects.filter(category='Event_en')
-    elif lang == 'cn':
-        evnet_list = WalletEvent.objects.filter(category='Event_cn')
-
-    data = serializers.serialize("json", evnet_list,
-                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
-    return JsonResponse(data, safe=False)
+    return JsonResponse(json.loads(msg))
 
 
-def event_detail(req, pk):
-    data = serializers.serialize("json", WalletEvent.objects.filter(pk=pk))
-    return JsonResponse(data, safe=False)
+def swipe(req):
+    pass

@@ -64,5 +64,4 @@ xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
 
 xadmin.site.register(WalletNew, WalletNewsAdmin)
-xadmin.site.register(WalletEvent, WalletEventAdmin)
 
