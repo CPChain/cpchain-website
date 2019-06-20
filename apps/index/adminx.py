@@ -1,7 +1,8 @@
 import xadmin
-from .models import *
 from wallet.models import *
 from xadmin import views
+
+from .models import *
 
 
 # 开启后台主题样式选择
@@ -49,9 +50,10 @@ class WalletNewsAdmin:
     list_filter = ['update_time', 'category']
 
 
-class WalletEventAdmin:
-    list_display = ['title', 'update_time', 'category']
-    list_filter = ['update_time', 'category']
+class SwipeAdmin:
+    model = SwipeBanner
+    # list_display = ['title', 'update_time', 'category']
+    # list_filter = ['update_time', 'category', 'is_active']
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
@@ -64,4 +66,4 @@ xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
 
 xadmin.site.register(WalletNew, WalletNewsAdmin)
-
+xadmin.site.register(SwipeBanner, SwipeAdmin)
