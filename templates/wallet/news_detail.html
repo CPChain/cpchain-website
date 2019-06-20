@@ -7,10 +7,17 @@
 </head>
 <body>
 <img src="{{ MEDIA_URL }}{{ news.banner }}"/>
+title:
 {{ news.title }}
-{{ news.banner }}
-{{ news.update_time }}
-{{ news.content }}
+<p>
+    {{ news.update_time }}
+
+</p>
+<p>
+
+    {{ news.content }}
+</p>
+
 
 </body>
 </html>
