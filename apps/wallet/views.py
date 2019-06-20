@@ -1,9 +1,7 @@
-from django.shortcuts import render
-from .models import *
-from django.http import JsonResponse
 from django.core import serializers
-import json
-from django.db.models import Q
+from django.http import JsonResponse
+
+from .models import *
 
 
 # Create your views here.
@@ -25,7 +23,7 @@ def events_list(req, lang):
                                                                                 'update_time'))
 
     msg = serializers.serialize('json', events_list)
-    return JsonResponse(msg)
+    return JsonResponse(msg, safe=False)
 
 
 def news_list(req, lang):
@@ -37,7 +35,7 @@ def news_list(req, lang):
                                                                              'update_time'))
 
     msg = serializers.serialize('json', news_list)
-    return JsonResponse(msg)
+    return JsonResponse(msg, safe=False)
 
 
 def swipe(req):
