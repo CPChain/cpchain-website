@@ -33,5 +33,6 @@ def news_list(req, lang):
     return JsonResponse(json.dumps(msg))
 
 
+
 def swipe(req):
     pass
