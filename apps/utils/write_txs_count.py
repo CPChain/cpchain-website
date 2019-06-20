@@ -19,19 +19,30 @@ db.authenticate(uname, pwd)
 
 txs_collection = db['txs']
 address_collection = db['address']
+address_txs_collection = db['address_txs']
 
 block_number = 685000
 
 
 def write_count():
     address_list = address_collection.find()
-    # for a in address_list:
-    #     address = a.get('address')
-    #     print(address)
-    print(address_list)
-    print(address_list.count())
-
-
+    total = address_list.count()
+    i = 0
+    for a in address_list:
+        t_list = []
+        print(f'{i}/{total}')
+        address = a.get('address').lower()
+        print(address)
+        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}, {'_id': 0})
+        t_count = txs.count()
+        j = 0
+        for t in txs:
+            print('txs', j, t_count)
+            t_list.append(t)
+            j += 1
+        addr_dict = {address: t_list}
+        address_txs_collection.insert_one(addr_dict)
+        i += 1
 
 
 if __name__ == '__main__':
