@@ -18,15 +18,15 @@ def news_detail(req, pk):
 # ('Event_cn', 'Event_cn'),
 def news_list(req, lang):
     if lang == 'en':
-        news_list = WalletNew.objects.filter(category='News_en').values('pk', 'category', 'title', 'banner',
-                                                                        'update_time')
-        events_list = WalletNew.objects.filter(category='Event_en').values('pk', 'category', 'title', 'banner',
-                                                                           'update_time')
+        news_list = list(WalletNew.objects.filter(category='News_en').values('pk', 'category', 'title', 'banner',
+                                                                             'update_time'))
+        events_list = list(WalletNew.objects.filter(category='Event_en').values('pk', 'category', 'title', 'banner',
+                                                                                'update_time'))
     elif lang == 'cn':
-        news_list = WalletNew.objects.filter(category='News_cn').values('pk', 'category', 'title', 'banner',
-                                                                        'update_time')
-        events_list = WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
-                                                                           'update_time')
+        news_list = list(WalletNew.objects.filter(category='News_cn').values('pk', 'category', 'title', 'banner',
+                                                                             'update_time'))
+        events_list = list(WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
+                                                                                'update_time'))
 
     msg = {'news': news_list, 'events': events_list}
 
