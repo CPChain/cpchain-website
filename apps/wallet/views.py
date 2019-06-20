@@ -9,6 +9,8 @@ from .models import *
 
 def news_detail(req, pk):
     news = WalletNew.objects.filter(pk=pk)
+    news_dict = dict(news)
+    print(news_dict)
     return render(req, 'wallet/news_detail.html', locals())
 
 
