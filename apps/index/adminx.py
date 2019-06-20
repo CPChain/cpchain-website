@@ -29,18 +29,27 @@ class DeptAdmin:
 
 
 class PartnerAdmin:
-    list_display = ['name', 'type', 'link','weight']
-    list_filter = ['type',]
+    list_display = ['name', 'type', 'link', 'weight']
+    list_filter = ['type', ]
     ordering = ['-weight']
+
+
 class NewsAdmin:
     list_display = ['title', 'update_time', 'category']
     list_filter = ['update_time', 'category']
+
 
 class MediaAdmin:
     list_display = ['title', 'update_time', 'category']
     list_filter = ['update_time', 'category']
 
-class WalletAdmin:
+
+class WalletNewsAdmin:
+    list_display = ['title', 'update_time', 'category']
+    list_filter = ['update_time', 'category']
+
+
+class WalletEventAdmin:
     list_display = ['title', 'update_time', 'category']
     list_filter = ['update_time', 'category']
 
@@ -53,4 +62,7 @@ xadmin.site.register(Department, DeptAdmin)
 xadmin.site.register(Partner, PartnerAdmin)
 xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
-xadmin.site.register(WalletNews, WalletAdmin)
+
+xadmin.site.register(WalletNew, WalletNewsAdmin)
+xadmin.site.register(WalletEvent, WalletEventAdmin)
+
