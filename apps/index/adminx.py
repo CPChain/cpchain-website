@@ -52,8 +52,8 @@ class WalletNewsAdmin:
 
 class SwipeAdmin:
     model = SwipeBanner
-    # list_display = ['title', 'update_time', 'category']
-    # list_filter = ['update_time', 'category', 'is_active']
+    list_display = ['news', 'banner_time', 'is_active']
+    list_filter = ['news.category', 'is_active']
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
