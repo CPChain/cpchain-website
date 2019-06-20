@@ -8,7 +8,7 @@ NEWS_CATEGORY = (
 
 EVENT_CATEGORY = (
     ('Event_en', 'Event_en'),
-    ('Evnent_cn', 'Event_cn'),
+    ('Event_cn', 'Event_cn'),
     ('draft', 'draft'))
 
 
