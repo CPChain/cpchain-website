@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.http import JsonResponse
+from django.shortcuts import render
 
 from .models import *
 
@@ -7,8 +8,9 @@ from .models import *
 # Create your views here.
 
 def news_detail(req, pk):
-    data = serializers.serialize("json", WalletNew.objects.filter(pk=pk))
-    return JsonResponse(data, safe=False)
+    news = WalletNew.objects.filter(pk=pk)
+
+    return render(req, 'wallet/news_detail.html', locals())
 
 
 #    ('News_cn', 'News_cn'),
@@ -38,7 +40,6 @@ def news_list(req, lang):
 
 
 def swipe(req, lang):
-    banner = SwipeBanner.objects.filter(lang=lang)
-    print(banner)
-    data = serializers.serialize("json", banner, )
+    banner = SwipeBanner.objects.filter(lang=lang).order_by('-update_time')
+    data = serializers.serialize("json", banner)
     return JsonResponse(data, safe=False)

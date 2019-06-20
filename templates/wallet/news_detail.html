@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="{{ MEDIA_URL }}{{ news.banner }}"/>
+{{ news.title }}
+{{ news.banner }}
+{{ news.update_time }}
+{{ news.content }}
+
+</body>
+</html>
