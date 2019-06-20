@@ -29,9 +29,8 @@ def news_list(req, lang):
                                                                                 'update_time'))
 
     msg = {'news': news_list, 'events': events_list}
-
-    return JsonResponse(json.dumps(msg))
-
+    msg = serializers.serialize('json', msg)
+    return JsonResponse(msg)
 
 
 def swipe(req):
