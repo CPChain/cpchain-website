@@ -16,11 +16,9 @@ def news_detail(req, pk):
 # ('Event_cn', 'Event_cn'),
 def events_list(req, lang):
     if lang == 'en':
-        events_list = WalletNew.objects.filter(category='Event_en').values('pk', 'category', 'title', 'banner',
-                                                                           'update_time')
+        events_list = WalletNew.objects.filter(category='Event_en')
     elif lang == 'cn':
-        events_list = WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
-                                                                           'update_time')
+        events_list = WalletNew.objects.filter(category='Event_cn')
 
     msg = serializers.serialize('json', events_list,
                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
