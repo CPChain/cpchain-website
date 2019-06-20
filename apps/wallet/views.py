@@ -7,7 +7,7 @@ import json
 
 # Create your views here.
 
-def community_detail(req, pk):
+def news_detail(req, pk):
     data = serializers.serialize("json", WalletNew.objects.filter(pk=pk))
     return JsonResponse(data, safe=False)
 
@@ -26,7 +26,7 @@ def news_list(req, lang):
     return JsonResponse(data, safe=False)
 
 
-def evnet_list(req, lang):
+def event_list(req, lang):
     if lang == 'en':
         evnet_list = WalletEvent.objects.filter(category='Event_en')
     elif lang == 'cn':
@@ -34,4 +34,9 @@ def evnet_list(req, lang):
 
     data = serializers.serialize("json", evnet_list,
                                  fields=('pk', 'category', 'title', 'banner', 'update_time'))
+    return JsonResponse(data, safe=False)
+
+
+def event_detail(req, pk):
+    data = serializers.serialize("json", WalletEvent.objects.filter(pk=pk))
     return JsonResponse(data, safe=False)
