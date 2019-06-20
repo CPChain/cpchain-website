@@ -21,11 +21,15 @@ class WalletNew(models.Model):
 
     def __str__(self):
         return self.title
+
+
 #
-# class SwipeBanner(models.Model):
-#     index_banner = models.ImageField(upload_to='img/Wallet', null=True, blank=True)
-#     relate = models.ForeignObject()
-#     # show =
-#
-#     def __str__(self):
-#         return self.title
+class SwipeBanner(models.Model):
+    title = models.ForeignKey(WalletNew, on_delete=models.CASCADE)
+    index_banner = models.ImageField(upload_to='img/Wallet', null=False, blank=False)
+    is_active = models.BooleanField('Active', default=False)
+
+    # show =
+
+    def __str__(self):
+        return self.title
