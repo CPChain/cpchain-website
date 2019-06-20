@@ -9,6 +9,7 @@ from .models import *
 
 def news_detail(req, pk):
     news = WalletNew.objects.filter(pk=pk)
+    print(news)
 
     return render(req, 'wallet/news_detail.html', locals())
 
@@ -40,6 +41,6 @@ def news_list(req, lang):
 
 
 def swipe(req, lang):
-    banner = SwipeBanner.objects.filter(lang=lang).order_by('-update_time')
+    banner = SwipeBanner.objects.filter(lang=lang, is_active=True).order_by('-banner_time')
     data = serializers.serialize("json", banner)
     return JsonResponse(data, safe=False)
