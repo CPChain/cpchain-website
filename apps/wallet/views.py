@@ -37,4 +37,7 @@ def news_list(req, lang):
 
 
 def swipe(req):
-    pass
+    if lang == 'en':
+        pass
+    elif lang == 'cn':
+        pass

@@ -26,11 +26,10 @@ class WalletNew(models.Model):
 #
 class SwipeBanner(models.Model):
     news = models.ForeignKey(WalletNew, on_delete=models.CASCADE)
+    lang = models.CharField(choices=('en', 'cn'), max_length=10)
     index_banner = models.ImageField(upload_to='img/Wallet', null=False, blank=False)
     banner_time = models.DateField()
     is_active = models.BooleanField('Active', default=False)
-
-    # show =
 
     def __str__(self):
         return self.news.title
