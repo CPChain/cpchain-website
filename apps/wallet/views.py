@@ -22,20 +22,20 @@ def events_list(req, lang):
         events_list = WalletNew.objects.filter(category='Event_cn').values('pk', 'category', 'title', 'banner',
                                                                            'update_time')
 
-    msg = serializers.serialize('json', events_list)
+    msg = serializers.serialize('json', events_list,
+                                fields=('pk', 'category', 'title', 'banner', 'update_time'))
     return JsonResponse(msg, safe=False)
 
 
 def news_list(req, lang):
     if lang == 'en':
-        news_list = WalletNew.objects.filter(category='News_en').values('pk', 'category', 'title', 'banner',
-                                                                        'update_time')
+        news_list = WalletNew.objects.filter(category='News_en')
     elif lang == 'cn':
-        news_list = WalletNew.objects.filter(category='News_cn').values('pk', 'category', 'title', 'banner',
-                                                                        'update_time')
+        news_list = WalletNew.objects.filter(category='News_cn')
 
-    msg = serializers.serialize('json', news_list)
-    return JsonResponse(msg, safe=False)
+    data = serializers.serialize("json", news_list,
+                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
+    return JsonResponse(data, safe=False)
 
 
 def swipe(req):
