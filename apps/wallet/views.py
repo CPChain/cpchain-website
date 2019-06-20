@@ -40,5 +40,5 @@ def news_list(req, lang):
 def swipe(req, lang):
     banner = SwipeBanner.objects.filter(lang=lang)
     print(banner)
-    data = serializers.serialize("json", news_list, )
+    data = serializers.serialize("json", banner, )
     return JsonResponse(data, safe=False)
