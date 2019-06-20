@@ -30,7 +30,7 @@ def news_list(req, lang):
 
     msg = {'news': news_list, 'events': events_list}
 
-    return JsonResponse(json.loads(msg))
+    return JsonResponse(json.dumps(msg))
 
 
 def swipe(req):
