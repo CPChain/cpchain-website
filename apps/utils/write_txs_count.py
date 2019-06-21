@@ -17,7 +17,7 @@ txs_collection = db['txs']
 address_collection = db['address']
 address_txs_collection = db['address_txs']
 
-block_number = 700000
+block_number = 700644
 
 
 def write_count():
@@ -36,4 +36,5 @@ def write_count():
 
 
 if __name__ == '__main__':
-    write_count()
+    pass
+    # write_count()
