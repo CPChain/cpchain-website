@@ -14,24 +14,54 @@
 </head>
 <style>
     body {
-        font-family: "Poppins";
+        /* font-family: "Poppins"; */
+        background-color: rgba(40, 42, 63, 1);
+        padding-top: 16px;
     }
 
-    header {
-        font-family: "Poppins", sans-serif !important;
+    .header {
+        padding: 17px;
+    }
+
+    .header h1 {
+        font-size: 17px;
+        line-height: 24px;
+        color: white;
+        padding: 5px 17px;
+    }
+
+    .header img {
+        width: 100%
+    }
+
+    .header p {
+        padding: 20px 0;
+        font-size: 13px;
+        color: rgba(70, 79, 108, 1);
+        line-height: 20px;
+    }
+
+    .main {
+        padding: 24px 17px;
+        background-color: white;
+    }
+
+    .main img {
+        width: 100% !important
     }
 </style>
 
 <body>
-    title:
-    {{ news.title }}
-    <img src="{{ MEDIA_URL }}{{ news.banner }}" />
+    <div class="header">
+        <h1>{{ news.title }}</h1>
+        <p>
+            {{ news.update_time }}
+        </p>
+        <img class="top-banner" src="{{ MEDIA_URL }}{{ news.banner }}" />
 
-    <p>
-        {{ news.update_time }}
-    </p>
-    <div id="mainDiv"> 
     </div>
+
+    <div id="mainDiv" class="main"></div>
     <script>
         function HTMLDecode(text) {
             var temp = document.createElement("div");
