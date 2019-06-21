@@ -732,10 +732,14 @@ def impeachFrequency(req):
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
+import pysnooper
+
+
+@pysnooper.snoop()
 def proposer_history(req, address):
     address = address.lower()
     blocks_by_proposer = block_collection.find(
-        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).sort('number', DESCENDING)
+        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).sort('_id', DESCENDING)
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
