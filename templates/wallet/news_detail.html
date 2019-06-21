@@ -13,37 +13,39 @@
 
 </head>
 <style>
-        body {
+      body {
             /* font-family: "Poppins"; */
             background-color: rgba(40, 42, 63, 1);
-            padding-top: 16px;
+            padding-top: 0.16rem;
         }
 
         .header {
-            padding:  17px  0;
+            padding: 0.17rem 0;
         }
 
         .header h1 {
-            font-size: 17px;
-            line-height: 24px;
+            font-size: .17rem;
+            line-height: .24rem;
             color: white;
-            padding: 5px 34px;
+            padding: .5rem .34rem;
         }
 
-        .header p {  
-            padding:  20px  34px;
-            font-size: 13px;  
+        .header p {
+            padding: .20rem .34rem;
+            font-size: .13rem;
             color: rgba(70, 79, 108, 1);
-            line-height: 20px;
+            line-height: .20rem;
         }
 
         .header img {
             width: 100%
-        } 
+        }
 
-        .main{
-            padding:  24px 17px;
-            background-color: white; 
+
+
+        .main {
+            padding: .24rem .17rem;
+            background-color: white;
         }
 
         .main img {
@@ -63,6 +65,12 @@
 
     <div id="mainDiv" class="main"></div>
     <script>
+                (function () {
+            var html = document.documentElement;
+            var width = html.getBoundingClientRect().width;
+            html.style.fontSize = width / 7.5 + 'px';//至于除数15可自行设置
+            //1rem=50;
+        })()
         function HTMLDecode(text) {
             var temp = document.createElement("div");
             temp.innerHTML = text;
