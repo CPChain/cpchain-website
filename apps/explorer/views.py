@@ -434,7 +434,7 @@ def address(req, address):
     # current =1
     if code == '0x':
         proposer_history = block_collection.count(
-            {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}})
+            {'miner': address})
         return render(req, 'explorer/address.html', {'txs': txs, 'current': current,
                                                      'address': raw_address,
                                                      'balance': balance,
@@ -739,15 +739,16 @@ import pysnooper
 def proposer_history(req, address):
     address = address.lower()
     blocks_by_proposer = block_collection.find(
-        {'miner': address, "timestamp": {'$gt': proposer_start_timestamp}}).sort('_id', DESCENDING)
+        {'miner': address}).sort('_id', DESCENDING)
+    blocks_count = blocks_by_proposer.count()
+
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    p = Paginator(blocks_by_proposer, 25, request=req)
+    p = Paginator(blocks_by_proposer, 25, request=req, fix_count=blocks_count)
     blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
-    blocks_count = blocks_by_proposer.count()
     current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(blocks.object_list)}
     return render(req, 'explorer/proposer_history_list.html',
                   {'blocks': blocks, 'current': current, 'address': address, 'blocks_count': blocks_count})
