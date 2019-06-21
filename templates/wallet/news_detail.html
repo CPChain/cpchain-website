@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}"
+        type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
+        type='text/css' media='all' />
+    <title> {{ news.title }}</title>
+
 </head>
+<style>
+    body {
+        font-family: "Poppins";
+    }
+
+    header {
+        font-family: "Poppins", sans-serif !important;
+    }
+</style>
+
 <body>
-<img src="{{ MEDIA_URL }}{{ news.banner }}"/>
-title:
-{{ news.title }}
-<p>
-    {{ news.update_time }}
-</p>
-<p>
-    {{ news.content }}
-</p>
+    title:
+    {{ news.title }}
+    <img src="{{ MEDIA_URL }}{{ news.banner }}" />
+
+    <p>
+        {{ news.update_time }}
+    </p>
+    <div  id="mainDiv"  html={{ news.content }}>
+        <!-- {{ news.content }} -->
+    </div>
+    <script>
+        var mainDiv = document.getElementById('mainDiv')
+        mainDiv.innerHTML =   mainDiv.html
+    </script>
 
 </body>
+
 </html>
