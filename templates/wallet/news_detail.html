@@ -30,8 +30,7 @@
     <p>
         {{ news.update_time }}
     </p>
-    <div id="mainDiv">
-        <!-- {{ news.content }} -->
+    <div id="mainDiv"> 
     </div>
     <script>
         function HTMLDecode(text) {
@@ -42,7 +41,7 @@
             return output;
         }
         var mainDiv = document.getElementById('mainDiv')
-        mainDiv.innerHTML = HTMLDecode('{{news.content}}')
+        mainDiv.innerHTML = HTMLDecode(`{{news.content}}`)
     </script>
 
 </body>
