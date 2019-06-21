@@ -86,8 +86,12 @@ def save_blocks_txs(start_block_id):
 
                 # address growth
                 for addr in [_tx['from'], _tx['to']]:
+                    # new addr
                     if addr and address_collection.find({'address': addr}).count() == 0:
                         address_collection.insert_one({'address': addr, 'timestamp': timestamp})
+
+                update_txs_count(_tx)
+
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)
@@ -103,6 +107,17 @@ def save_blocks_txs(start_block_id):
             logging.info('************************************************')
         else:
             time.sleep(REFRESH_INTERVAL)
+
+
+# update one address's txs count
+def update_txs_count(tx):
+    if tx['from'] == tx['to']:
+        addr = tx['from']
+        address_collection.update({'address': addr}, {'$inc': {'txs_count': 1}}, False, False)
+    else:
+        for addr in [tx['from'], tx['to']]:
+            if addr:
+                address_collection.update({'address': addr}, {'$inc': {'txs_count': 1}}, False, False)
 
 
 def update_reward(id, txs):
