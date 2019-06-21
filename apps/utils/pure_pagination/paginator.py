@@ -1,11 +1,9 @@
 import collections
-
-from django.core.paginator import InvalidPage, EmptyPage, PageNotAnInteger
-from django.conf import settings
-
-from math import ceil
 import functools
+from math import ceil
 
+from django.conf import settings
+from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
 
 PAGINATION_SETTINGS = getattr(settings, "PAGINATION_SETTINGS", {})
@@ -16,7 +14,8 @@ SHOW_FIRST_PAGE_WHEN_INVALID = PAGINATION_SETTINGS.get("SHOW_FIRST_PAGE_WHEN_INV
 
 
 class Paginator(object):
-    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None, fix_count=None):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None, fix_count=None,
+                 restrain=False):
         self.object_list = object_list
         self.per_page = per_page
         self.orphans = orphans
@@ -24,6 +23,7 @@ class Paginator(object):
         self._num_pages = self._count = None
         self.request = request
         self.fix_count = fix_count
+        self.restrain = restrain
 
     def validate_number(self, number):
         "Validates the given 1-based page number."
@@ -76,7 +76,10 @@ class Paginator(object):
                 self._num_pages = 0
             else:
                 hits = max(1, self.count - self.orphans)
-                self._num_pages = int(ceil(hits / float(self.per_page)))
+                if self.restrain:
+                    self._num_pages = min(int(ceil(hits / float(self.per_page))), 2000)
+                else:
+                    self._num_pages = int(ceil(hits / float(self.per_page)))
         return self._num_pages
 
     num_pages = property(_get_num_pages)
@@ -138,7 +141,8 @@ class Page(object):
         return '<Page %s of %s>' % (self.number, self.paginator.num_pages)
 
     def has_next(self):
-        return self.number < self.paginator.num_pages
+        return self.number < 2000
+        # return self.number < self.paginator.num_pages
 
     def has_previous(self):
         return self.number > 1

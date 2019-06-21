@@ -6,10 +6,10 @@ from contextlib import contextmanager
 import eth_abi
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
-from apps.utils.pure_pagination import PageNotAnInteger, Paginator
 from pymongo import DESCENDING, MongoClient
 
 from apps.utils import currency
+from apps.utils.pure_pagination import PageNotAnInteger, Paginator
 from cpchain_test.config import cfg
 from cpchain_test.settings import cf
 from . import withdraw_abi
@@ -403,8 +403,9 @@ def address(req, address):
     except PageNotAnInteger:
         page = 1
     txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-    p = Paginator(txs, 25, request=req, fix_count=txs_count)
+    p = Paginator(txs, 25, request=req, fix_count=txs_count, restrain=True)
     txs = p.page(page)
+
     txs.object_list = list(txs.object_list)
     timenow = int(time.time())
     # set flag
