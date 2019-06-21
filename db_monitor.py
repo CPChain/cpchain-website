@@ -85,9 +85,9 @@ def save_blocks_txs(start_block_id):
                     contract_collection.insert_one(contract_dict)
 
                 # address growth
-                for add in [_tx['from'], _tx['to']]:
-                    if add and address_collection.find({'address': add}).count() == 0:
-                        address_collection.insert_one({'address': add, 'timestamp': timestamp})
+                for addr in [_tx['from'], _tx['to']]:
+                    if addr and address_collection.find({'address': addr}).count() == 0:
+                        address_collection.insert_one({'address': addr, 'timestamp': timestamp})
             # append 1 block's txs into txs_li
             if txs_li:
                 tx_collection.insert_many(txs_li)

@@ -400,18 +400,13 @@ def address(req, address):
         # code = cf.toHex(code)
     except Exception as e:
         code = '0x'
-    # address info
-    with pysnooper.snoop():
-        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-        from_count = txs_collection.find({'from': address}).hint('from_1').count()
-        to_count = txs_collection.find({'to': address}).hint('to_1').count()
-        both_count = txs_collection.count({'$and': [{'from': address}, {'to': address}]})
-        txs_count = from_count + to_count - both_count
+    txs_count = address_collection.find({'address': address})[0]['txs_count']
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
     with pysnooper.snoop():
+        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
         p = Paginator(txs, 25, request=req, fix_count=txs_count)
         txs = p.page(page)
         txs.object_list = list(txs.object_list)
