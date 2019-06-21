@@ -389,9 +389,6 @@ def tx(req, tx_hash):
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
 
 
-import pysnooper
-
-
 def address(req, address):
     try:
         raw_address = cf.toChecksumAddress(address.strip())
@@ -405,12 +402,11 @@ def address(req, address):
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    with pysnooper.snoop():
-        txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
-        p = Paginator(txs, 25, request=req, fix_count=txs_count)
-        txs = p.page(page)
-        txs.object_list = list(txs.object_list)
-        timenow = int(time.time())
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+    p = Paginator(txs, 25, request=req, fix_count=txs_count)
+    txs = p.page(page)
+    txs.object_list = list(txs.object_list)
+    timenow = int(time.time())
     # set flag
     for d in txs.object_list:
         if d['from'] == d['to']:
