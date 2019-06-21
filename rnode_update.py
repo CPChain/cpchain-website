@@ -16,6 +16,10 @@ mongoHost = cfg['db']['ip']
 port = int(cfg['db']['port'])
 
 client = MongoClient(host=mongoHost, port=port)
+uname = cfg['db']['uname']
+pwd = cfg['db']['password']
+db = client['cpchain']
+db.authenticate(uname, pwd)
 rnode_collection = client['cpchain']['rnode']
 proposer_collection = client['cpchain']['proposer']
 proposer_history_collection = client['cpchain']['proposer_history']
