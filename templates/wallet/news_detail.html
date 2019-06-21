@@ -30,12 +30,12 @@
     <p>
         {{ news.update_time }}
     </p>
-    <div  id="mainDiv"  html={{ news.content }}>
+    <div  id="mainDiv"  innerHTML={{ news.content }}>
         <!-- {{ news.content }} -->
     </div>
     <script>
         var mainDiv = document.getElementById('mainDiv')
-        mainDiv.innerHTML =   mainDiv.html
+        mainDiv.innerHTML =  '{{news.content}} '
     </script>
 
 </body>
