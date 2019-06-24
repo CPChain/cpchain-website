@@ -397,7 +397,10 @@ def address(req, address):
         # code = cf.toHex(code)
     except Exception as e:
         code = '0x'
-    txs_count = address_collection.find({'address': address})[0]['txs_count']
+    try:
+        txs_count = address_collection.find({'address': address})[0]['txs_count']
+    except:
+        txs_count = 0
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
