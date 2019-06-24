@@ -50,15 +50,15 @@ config = {'abi': [
         {'indexed': False, 'name': 'startTermIdx', 'type': 'uint256'},
         {'indexed': False, 'name': 'stopTermIdx', 'type': 'uint256'}], 'name': 'ClaimCampaign', 'type': 'event'}]}
 # address = "0x20BF49A0773a2b9eA5cF218C188d7F633b07c267"
-ours = ['0x9e61732d0b1c1674151a01ac0bba824c5b6258fb', '0xaa6cf4f0338e04a40709dfa3c653efc6cd9e65c9',
-        '0x7170f578ca82897375f009ddea399df08f31bcff', '0x4c61559aa727380e3fa516b6a7ae397b87ec2384',
-        '0xc5b481361bbcabb96ed0c835cee69b471449f49c', '0x6e7fdba0fe5067a25a3cf1df90429e3c949411e3',
-        '0x27e81a296f5b80d319d2f3008f2d5998530e79e4', '0x52e584b4fba8688eb7edcabb18e65661a99acc67',
-        '0x030352bba36c0c7cec8669f64a26d96d5d679bdb', '0xf561ebb8a40814c1cf3cc0a628df5a1bd7663b26',
-        '0xca8e011de0edea4929328bb86e35daa686c47ed0', '0xcc9cd266776b331fd424ea14dc30fc8561bec628',
-        '0xe94b7b6c5a0e526a4d97f9768ad6097bde25c62a', '0xc05302acebd0730e3a18a058d7d1cb1204c4a092',
-        '0x12c4e50789027c2a8c98f74d0afbdee44a313ed6', '0x92a3dcd80fd338993408602523beca6e36ac2a87',
-        '0xc6321c85f94678b450255ba92bf12897ed2d7ab4', '0x1502c71130ed779468b2de6d5fa355b7334b9efa',
-        '0xd7ca5d2115c6b0bcc9abfab13882c58f1dfe8484', '0xe20e49d97648acf48ef359824aae1bb0ae4a0c5b',
-        '0xc0de78cc5f2170769f3a7e08b41b60019b6a5a29', '0x5d89f4c28d4153799685076fd1af67f2f47899ee',
-        '0xb3801b8743dea10c30b0c21cae8b1923d9625f84']
+ours = ['0x27c3500c8a493a152f1dfdec162c422b3678b03e',
+        '0xf285996f36aa76adf637c60f2005da637efd71aa',
+        '0x50bf9d407d8e30b8124f3711df97611d76d45699',
+        '0x99fc3138ff48a4fae3a0e65c6f83266a5284a683',
+        '0xf6f59e901b3cd551f1753dfe80ab806bb0046b30',
+        '0xa3a0fe044eb8ce1731ed99ca0901a795abf58da8',
+        '0x45f40e0c7135d86d92a88443a160045a2897436e',
+        '0x0005efc08c5ff71c3538ebc85b1bb93c377cef14',
+        '0x46ac4607b5334b5dc7cd671b0c11c5ffa81324f6',
+        '0x1573ce2ab9a0113d25ce5e7a74b564a02f9058ad',
+        '0x01cf3229840fc212d54df720cdae3e6d04320a9c',
+        '0xaa8ad61eb978bbde0b6f69d2cd3033755d8f9d04', ]
