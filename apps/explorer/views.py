@@ -43,7 +43,6 @@ abi_collection = CLIENT['cpchain']['abi']
 source_collection = CLIENT['cpchain']['source']
 chart_collection = CLIENT['cpchain']['chart']
 num_collection = CLIENT['cpchain']['num']
-term = list(proposer_collection.find())[0].get('Term', [])
 
 
 # usage:
@@ -458,6 +457,8 @@ def address(req, address):
 
 def rnode(req):
     rnodes = list(rnode_collection.find(({'Address': {'$exists': True}})))
+    proposerlist = list(proposer_collection.find())[0]
+    term = proposerlist.get('Term', [])
     try:
         rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
     except Exception:
