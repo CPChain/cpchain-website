@@ -457,8 +457,11 @@ def address(req, address):
 
 def rnode(req):
     rnodes = list(rnode_collection.find(({'Address': {'$exists': True}})))
-    proposerlist = list(proposer_collection.find())[0]
-    term = proposerlist.get('Term', [])
+    proposerlist = list(proposer_collection.find())
+    if len(proposerlist) == 0:
+        term = []
+    else:
+        term = proposerlist[0].get('Term', [])
     try:
         rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
     except Exception:
