@@ -50,15 +50,6 @@ config = {'abi': [
         {'indexed': False, 'name': 'startTermIdx', 'type': 'uint256'},
         {'indexed': False, 'name': 'stopTermIdx', 'type': 'uint256'}], 'name': 'ClaimCampaign', 'type': 'event'}]}
 # address = "0x20BF49A0773a2b9eA5cF218C188d7F633b07c267"
-ours = ['0x27c3500c8a493a152f1dfdec162c422b3678b03e',
-        '0xf285996f36aa76adf637c60f2005da637efd71aa',
-        '0x50bf9d407d8e30b8124f3711df97611d76d45699',
-        '0x99fc3138ff48a4fae3a0e65c6f83266a5284a683',
-        '0xf6f59e901b3cd551f1753dfe80ab806bb0046b30',
-        '0xa3a0fe044eb8ce1731ed99ca0901a795abf58da8',
-        '0x45f40e0c7135d86d92a88443a160045a2897436e',
-        '0x0005efc08c5ff71c3538ebc85b1bb93c377cef14',
-        '0x46ac4607b5334b5dc7cd671b0c11c5ffa81324f6',
-        '0x1573ce2ab9a0113d25ce5e7a74b564a02f9058ad',
-        '0x01cf3229840fc212d54df720cdae3e6d04320a9c',
-        '0xaa8ad61eb978bbde0b6f69d2cd3033755d8f9d04', ]
+
+
+

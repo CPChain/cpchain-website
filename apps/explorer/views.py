@@ -10,10 +10,12 @@ from pymongo import DESCENDING, MongoClient
 
 from apps.utils import currency
 from apps.utils.pure_pagination import PageNotAnInteger, Paginator
+from apps.utils.update_our_proposer import read_our_proposer
 from cpchain_test.config import cfg
 from cpchain_test.settings import cf
 from . import withdraw_abi
 
+our_proposer = read_our_proposer()
 mongo = cfg['db']['ip']
 port = int(cfg['db']['port'])
 
@@ -617,7 +619,7 @@ def impeachs_by_block(req, block, isOur):
     elif isOur == '1':
         impeach_bks = block_collection.find(
             {'number': {'$gt': block}, 'impeachProposer': {'$exists': True},
-             'impeachProposer': {'$in': withdraw_abi.ours}},
+             'impeachProposer': {'$in': our_proposer}},
             {'_id': False})
     res = {}
     res['impeach_num'] = impeach_bks.count()
@@ -649,7 +651,7 @@ def check_campaign(req):
         candidates = campaign.functions.candidatesOf(i).call()
         # for c in candidates:
         #     print(campaign.functions.candidateInfoOf(c).call())
-        candidates = [c.lower() + ' *' if c.lower() in withdraw_abi.ours else c.lower() for c in candidates]
+        candidates = [c.lower() + ' *' if c.lower() in our_proposer else c.lower() for c in candidates]
 
         ten_candidates.append({'term': i, 'candidates': candidates})
     ten_candidates = ten_candidates[::-1]
@@ -672,18 +674,18 @@ def impeachFrequency(req):
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
     chart = []
-    for i in range(30):
+    for i in range(10):
         gt_time = day_zero - (i + 1) * DAY_SECENDS
         lt_time = day_zero - i * DAY_SECENDS
         our_impeachs = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': True},
-             'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+             'impeachProposer': {'$in': our_proposer}}, {'_id': False}).count()
         all_impeachs = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': True}}).count()
         com_impeachs = all_impeachs - our_impeachs
         our_success = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}, 'impeachProposer': {'$exists': False},
-             'miner': {'$in': withdraw_abi.ours}}).count()
+             'miner': {'$in': our_proposer}}).count()
         com_success = block_collection.find(
             {'timestamp': {'$gte': gt_time, '$lt': lt_time}}).count() - all_impeachs - our_success
         try:
@@ -710,13 +712,13 @@ def impeachFrequency(req):
     # today impeach
     our_impeachs = block_collection.find(
         {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': True},
-         'impeachProposer': {'$in': withdraw_abi.ours}}, {'_id': False}).count()
+         'impeachProposer': {'$in': our_proposer}}, {'_id': False}).count()
     all_impeachs = block_collection.find(
         {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': True}}).count()
     com_impeachs = all_impeachs - our_impeachs
     our_success = block_collection.find(
         {'timestamp': {'$gte': day_zero}, 'impeachProposer': {'$exists': False},
-         'miner': {'$in': withdraw_abi.ours}}).count()
+         'miner': {'$in': our_proposer}}).count()
     com_success = block_collection.find(
         {'timestamp': {'$gte': day_zero}}).count() - all_impeachs - our_success
     try:
