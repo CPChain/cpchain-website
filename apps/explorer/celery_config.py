@@ -2,7 +2,6 @@
 
 import os, sys
 from datetime import timedelta
-from celery.schedules import crontab
 
 # os.chdir(sys.path[0])
 # sys.path.append('../..')
@@ -28,21 +27,8 @@ CELERY_IMPORTS = (  # 指定导入的任务模块
     'apps.explorer.tasks',
 )
 CELERYBEAT_SCHEDULE = {
-    # 'add-every-10-seconds': {
-    #      'task': 'chat.tasks.add',
-    #      'schedule': timedelta(seconds=10),          # 每 30 秒一次
-    #      # 'schedule': timedelta(minutes=1),         # 每 1 分钟一次
-    #      # 'schedule': timedelta(hours=4),           # 每 4 小时一次
-    #      'args': (5, 8)                              # 任务函数参数
-    # },
-    # 'multiply-at-some-time': {
-    #     'task': 'chat.tasks.multiply',
-    #     'schedule': crontab(hour=9, minute=50),      # 每天早上 9 点 50 分执行一次
-    #     'args': (3, 7)                               # 任务函数参数
-    # },
     'updateInfo-every-3-seconds': {
         'task': 'apps.explorer.tasks.updateInfo',
         'schedule': timedelta(seconds=3),  # 每 3 秒一次
-        # 'args': ()                               # 任务函数参数
     }
 }

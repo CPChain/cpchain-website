@@ -268,6 +268,7 @@ def main():
             save_blocks_txs(start_block_id)
         except Exception as e:
             logger.error(f'loop error: {e}')
+            post_message(f"**db sync error:**\n{e}")
 
         time.sleep(10)
 
