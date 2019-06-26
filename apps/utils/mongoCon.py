@@ -1,4 +1,4 @@
 from cpchain_test.config import cfg
 
-mongo = cfg['db']['ip']
-db = cfg['db']['db']
+mongo = cfg['mongo']['ip']
+db = cfg['mongo']['db']

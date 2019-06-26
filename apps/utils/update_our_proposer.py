@@ -8,12 +8,12 @@ os.chdir(sys.path[0])
 from cpchain_test.config import cfg
 
 # mongodb
-mongoHost = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongoHost = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 
 CLIENT = MongoClient(host=mongoHost, port=port)
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 

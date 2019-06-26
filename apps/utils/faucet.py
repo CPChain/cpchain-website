@@ -1,5 +1,6 @@
+import os
+import sys
 import time
-import sys, os
 
 import schedule
 from pymongo import MongoClient
@@ -9,8 +10,8 @@ from cpchain_test.config import cfg
 
 EVERYDAY = 100000 * 1e+18
 
-mongo = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongo = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 
 CLIENT = MongoClient(host=mongo, port=port)
 faucet_collection = CLIENT['cpchain']['faucet']

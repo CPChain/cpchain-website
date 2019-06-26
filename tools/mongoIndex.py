@@ -1,12 +1,13 @@
 from pymongo import MongoClient
+
 from cpchain_test.config import cfg
 
-mongoHost = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongoHost = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 
 client = MongoClient(host=mongoHost, port=port)
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = client['cpchain']
 db.authenticate(uname, pwd)
 b_collection = client['cpchain']['blocks']

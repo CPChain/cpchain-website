@@ -1,15 +1,18 @@
-from pymongo import DESCENDING, MongoClient
-import os, sys
+import os
+import sys
+
+from pymongo import MongoClient
+
 sys.path.append('../..')
 os.chdir(sys.path[0])
 from cpchain_test.config import cfg
 
-mongo = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongo = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
 
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 

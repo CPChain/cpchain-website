@@ -161,13 +161,21 @@ WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+mysqlhost = cfg['mysql']['host']
+mysqlport = int(cfg['mysql']['port'])
+mysqldb = cfg['mysql']['db']
+mysql_user = cfg['mysql']['user']
+mysql_password = cfg['mysql']['password']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cpchain_django',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
+        'USER': mysql_user,
+        'PASSWORD': mysql_password,
+        'HOST': mysqlhost,
+        'PORT': mysqlport,
     }
 }
 
@@ -237,7 +245,5 @@ CHANNEL_LAYERS = {
     },
 }
 # override settings
-try:
-    from .local import *
-except Exception as e:
-    pass
+DEBUG = cfg['web']['debug']
+SECRET_KEY = cfg['web']['secretkey']

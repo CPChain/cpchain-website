@@ -1,18 +1,18 @@
+import sys
 import time
 
 from pymongo import MongoClient
-import sys
 
 print(sys.argv)
 from config import cfg
 import json
 
 DAY_SECENDS = 60 * 60 * 24
-mongo = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongo = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 txs_collection = CLIENT['cpchain']['txs']

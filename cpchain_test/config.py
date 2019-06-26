@@ -1,7 +1,7 @@
 import configparser
 import os
 
-parser = configparser.ConfigParser()
+parser = configparser.RawConfigParser()
 
 if 'config.ini' in os.listdir(os.path.dirname(__file__)):
     parser.read(os.path.join(os.path.dirname(__file__), 'config.ini'))

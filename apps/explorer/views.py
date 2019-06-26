@@ -16,8 +16,8 @@ from cpchain_test.settings import cf
 from . import withdraw_abi
 
 our_proposer = read_our_proposer()
-mongo = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongo = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 
 REFRESH_INTERVAL = 3
 ADD_SIZE = 42
@@ -28,8 +28,8 @@ DAY_SECENDS = 60 * 60 * 24
 proposer_start_timestamp = 1556448256
 
 CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 
@@ -742,10 +742,6 @@ def impeachFrequency(req):
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
-import pysnooper
-
-
-@pysnooper.snoop()
 def proposer_history(req, address):
     address = address.lower()
     blocks_by_proposer = block_collection.find(

@@ -1,6 +1,7 @@
 import time
+
 from cpc_fusion import Web3
-from pymongo import DESCENDING, MongoClient
+from pymongo import MongoClient
 
 from cpchain_test.config import cfg
 
@@ -12,12 +13,12 @@ chain = 'http://{0}:{1}'.format(cfg['chain']['ip'], cfg['chain']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
 
 # mongodb
-mongoHost = cfg['db']['ip']
-port = int(cfg['db']['port'])
+mongoHost = cfg['mongo']['ip']
+port = int(cfg['mongo']['port'])
 
 client = MongoClient(host=mongoHost, port=port)
-uname = cfg['db']['uname']
-pwd = cfg['db']['password']
+uname = cfg['mongo']['uname']
+pwd = cfg['mongo']['password']
 db = client['cpchain']
 db.authenticate(uname, pwd)
 rnode_collection = client['cpchain']['rnode']
