@@ -4,7 +4,7 @@ import time
 from pymongo import MongoClient
 
 print(sys.argv)
-from config import cfg
+from .config import cfg
 import json
 
 DAY_SECENDS = 60 * 60 * 24
@@ -37,6 +37,5 @@ def get_chart():
     chart.reverse()
     chart = json.dumps(chart)
     chart_collection.update({}, {'chart': chart}, upsert=True)
-
 
 get_chart()
