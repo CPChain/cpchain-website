@@ -38,4 +38,6 @@ def get_chart():
     chart = json.dumps(chart)
     chart_collection.update({}, {'chart': chart}, upsert=True)
 
-get_chart()
+if __name__ == '__main__':
+
+    get_chart()
