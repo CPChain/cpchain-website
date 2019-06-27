@@ -47,16 +47,6 @@ chart_collection = CLIENT['cpchain']['chart']
 num_collection = CLIENT['cpchain']['num']
 
 
-# usage:
-# with timer('123'):
-#     xxxxx
-@contextmanager
-def timer(name):
-    start = time.time()
-    yield
-    print(f'[{name}] done in {time.time() - start:.3f} s')
-
-
 def get_chart():
     try:
         return chart_collection.find()[0].get('chart', [])
