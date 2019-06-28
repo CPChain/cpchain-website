@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.explorer, name='explorer'),
-    path('dev', views.explorerDev, name='explorer'),
+    path('dev/', views.explorerDev, name='explorer'),
     path('wshandler/', views.wshandler, name='wshandler'),
     path('blocks/', views.blocks, name='blocks'),
     path('block/<block_identifier>', views.block, name='block'),
