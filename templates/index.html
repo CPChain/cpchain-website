@@ -495,10 +495,10 @@
             lang ='cn' 
         }
         bottomLearn.addEventListener('click', function () {
-            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=test`
+            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%AE%98%E6%96%B9%E5%85%AC%E5%91%8A`
         }) 
         learn.addEventListener('click', function () {
-            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=test`
+            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%AE%98%E6%96%B9%E5%85%AC%E5%91%8A`
         }) 
  
         closebtn.addEventListener('click', function () {
@@ -632,7 +632,8 @@
     
         let time = new Date()
         let timestamp = time.getTime()  
-        if(true){
+        if(timestamp > (1561724687709 * 1000 *60 *3) && timestamp<1562493600000){
+            1561724487393
         // if(timestamp > 1561888800000 && timestamp<1562493600000){
             main.className = 'main'
             start()
