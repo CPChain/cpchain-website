@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block custom_head %}
@@ -6,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
-{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
@@ -17,7 +16,7 @@
     {% include "explorer/_searchbar.html" %}
     <div class="container">
         <div class="page-header">
-            <div class="page-header-main"  id="explorer-header" >
+            <div class="page-header-main" id="explorer-header">
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ term }}</h1></div>
@@ -39,12 +38,14 @@
                             <div class="col-2 text-truncate list-header">Rank</div>
                             <div class="col-6 text-truncate list-header">RNodes</div>
                             <div class="col-2 text-truncate list-header" style="padding-left: 10px">Reputation</div>
-                            <div class="col-2 text-truncate list-header"style="padding-left: 5px">Status</div>
+                            <div class="col-2 text-truncate list-header" style="padding-left: 5px">Status</div>
                         </div>
                         {% for rnode in rnodes %}
                             <div class="row row-content" style="padding-left: 25px">
                                 <div class="col-2 text-truncate">{{ forloop.counter }}</div>
-                                <div class="col-6 text-truncate pingfang"><a href="{% url 'explorer:address' rnode.Address %}"  style="color:#1BA3FF;" >{{ rnode.Address }}</a></div>
+                                <div class="col-6 text-truncate"><a href="{% url 'explorer:address' rnode.Address %}"
+                                                                    style="color:#1BA3FF;font-family:'Helvetica Neue,Helvetica,Arial,sans-serif';">{{ rnode.Address }}</a>
+                                </div>
                                 <div class="col-2 text-truncate card-grey">{{ rnode.Rpt }}</div>
                                 <div class="col-2 text-truncate card-grey">{% ifequal rnode.Status 0 %}
                                     Proposer
