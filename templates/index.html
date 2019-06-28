@@ -94,27 +94,33 @@
                                 {% trans 'Community' %}
                             </a>
                         </li>
-                        <li class="dropdown bg-transparent">
-                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
-                                <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">
-                                    {% trans 'Developer' %}
-                                </a>
-                                <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-md-block"
-                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
-                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24">
-                                        <g opacity="0.4">
-                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>
-                                            <path d="M0,0H24V24H0Z" fill="none"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <ul class="dropdown-menu rounded">
-                                    <a href="{% url 'developer' %}" class="small ">{% trans 'Docs' %}</a>
+
+{#                        <li class="dropdown bg-transparent">#}
+{#                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
+{#                                <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">#}
+{#                                    {% trans 'Developer' %}#}
+{#                                </a>#}
+{#                                <div class="image-holder d-flex align-items-center justify-content-center">#}
+{#                                    <svg height="24px" class="d-none d-md-block"#}
+{#                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"#}
+{#                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
+{#                                         viewBox="0 0 24 24">#}
+{#                                        <g opacity="0.4">#}
+{#                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>#}
+{#                                            <path d="M0,0H24V24H0Z" fill="none"/>#}
+{#                                        </g>#}
+{#                                    </svg>#}
+{#                                </div>#}
+{#                                <ul class="dropdown-menu rounded">#}
+{#                                    <a href="{% url 'developer' %}" class="small ">{% trans 'Docs' %}</a>#}
 {#                                    <a href="{% url 'password' %}" class="small ">{% trans 'Faucet' %}</a>#}
-                                </ul>
-                            </div>
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </li>#}
+                        <li>
+                            <a href="{% url 'developer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Docs' %}
+                            </a>
                         </li>
                         <li class="dropdown bg-transparent">
                             <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
