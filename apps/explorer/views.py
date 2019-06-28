@@ -52,7 +52,82 @@ def get_chart():
         return chart_collection.find()[0].get('chart', [])
     except Exception:
         return []
+def explorerDev(request):
+    try:
+        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    except IndexError as e:
+        print(e)
+        blocks = []
+        txs = []
+        header = {'blockHeight': 0,
+                  'txs': 0,
+                  'rnode': 0,
+                  'bps': 0,
+                  'tps': 0,
+                  'committee': '0/0',
+                  'proposer': 0, }
+        return render(request, 'explorer/explorer.html',
+                      {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
+    # blocks
+    blocks = []
+    for b in b_li:
+        block = {
+            'id': b['number'],
+            'reward': b['reward'],
+            'txs': len(b['transactions']),
+            'producerID': b['miner'],
+            'timestamp': b['timestamp'],
+            'hash': b['hash'],
+        }
 
+        if b['miner'].endswith('000000'):
+            block['impeach'] = True
+            block['impeachProposer'] = b['impeachProposer']
+
+        blocks.append(block)
+
+    # txs
+    txs = []
+    for t in t_li:
+        if t['to']:
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'], '.10f')
+            }
+        else:
+            creator = cf.toChecksumAddress(t['from'])
+            contract = contract_collection.find({'creator': creator})[0]['address']
+            tx = {
+                'hash': t['hash'],
+                'sellerID': t['from'],
+                'buyerID': t['to'],
+                'contract': contract,
+                'timestamp': t['timestamp'],
+                'amount': format(t['txfee'], '.10f')
+            }
+        txs.append(tx)
+    txs_count = txs_collection.find().count()
+    try:
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
+    except:
+        index = 1
+    header = {
+        'blockHeight': height,
+        'txs': txs_count,
+        'rnode': rnode_collection.find(({'Address': {'$exists': True}})).count(),
+        'bps': get_rate('bps'),
+        'tps': get_rate('tps'),
+        'committee': proposerFomatter(index),
+        'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
+    } 
+    
+    return render(request, 'explorer/explorer.html',
+                  {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
 def explorer(request):
     try:
