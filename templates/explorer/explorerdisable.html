@@ -1,0 +1,77 @@
+{% extends 'basediable.html' %}
+{% load static %}
+{% block custom_head %}
+    <script>
+        if (window.name != "bencalie") {
+            location.reload();
+            window.name = "bencalie";
+        } else {
+            window.name = "";
+        }
+
+    </script>
+    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+    <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+
+        header {
+            font-family: "Poppins", sans-serif !important;
+        }
+
+        .mask {
+            z-index: 100;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            /* display: none; */
+        }
+        @media (min-width: 768px){
+            .coming { 
+                z-index: 10000;
+                width: 720px;
+                height: 261px; 
+                background-image: url("{% static 'img/explorer/comingsoon' %}");
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .img {
+                z-index: 0;
+                width: 100%;
+                height: 100%;  
+                background-image: url("{% static 'img/explorer/s1.png' %}");
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                position: absolute;
+            }
+        }
+    </style>
+{% endblock %}
+{% block title %}
+    <title>Explorer &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+    <body class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
+        <div class="img"></div>
+        <div class="mask">
+             
+                <div class="coming">
+                   
+                </div>
+        </div> 
+    </body>
+{% endblock %}

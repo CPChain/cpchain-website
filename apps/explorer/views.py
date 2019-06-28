@@ -127,8 +127,11 @@ def explorer(request):
         'committee': proposerFomatter(index),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
-    return render(request, 'explorer/explorer.html',
+    # to do
+    return render(request, 'explorer/explorerdisable.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
+    # return render(request, 'explorer/explorer.html',
+    #               {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
 
 def proposerFomatter(num):
