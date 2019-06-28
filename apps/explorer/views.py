@@ -369,8 +369,7 @@ def blocks(req):
             b['impeach'] = True
         else:
             b['impeach'] = False
-        if b['number'] == 0:
-            b['timestamp'] == 1561605600.0
+
     return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
