@@ -30,10 +30,405 @@
         display: inline !important;
         padding: 0 !important;
         margin: 0 !important;
-    }
-
-
+    } 
     </style>
+        <style>
+            * {
+                padding: 0;
+                margin: 0
+            }
+    
+            .main {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* display: none; */
+            }
+    
+            .mainclose {
+                display: none;
+            }
+    
+            @media (min-width: 375px) {
+                .board {
+                    display: flex;
+                    z-index: 10;
+                    width: 6.24rem;
+                    height: 9.44rem;
+                    border-radius: .60rem; 
+                    display: flex;
+                    flex-direction: column;
+    
+                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Safari 5.1 - 6.0 */
+                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Opera 11.1 - 12.0 */
+                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Firefox 3.6 - 15 */
+                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* 标准的语法（必须放在最后） */
+                }
+                .left {
+                    margin-left: 0.35rem;
+                    margin-top: 0.38rem; 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+    
+                .message {
+                    width: 4.14rem;
+                    height: 2.40rem;
+                    background-image: url('./img/text.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .learn { 
+                    display: none;
+                }
+    
+                .right {
+                    position: absolute;
+                    width: 5.4rem;
+                    height: 5.32rem;
+                    /* background-color: red; */
+                    margin-top: 2.78rem;
+                    margin-left:0.42rem; 
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+    
+                .outside {
+                    z-index: 20;
+                    position: absolute;
+                    width: 5.32rem;
+                    height: 5.32rem;
+                    background-image: url('./img/outside.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .outsideplay {
+                    animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -moz-animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -o-animation: outsidetrans 20s linear 0s infinite;
+                }
+    
+    
+    
+                .inside {
+                    width: 2.89rem;
+                    height: 2.89rem;
+                    background-image: url('./img/inside.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+    
+                }
+    
+                .insideplay {
+                    animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -moz-animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -o-animation: insidetrans 20s linear 0s infinite;
+                }
+    
+                .pause {
+                    animation-play-state: paused;
+                }
+    
+                .logo {
+                    width: .81rem;
+                    height: 1.11rem;
+                    background-image: url('./img/logo.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                }
+    
+    
+    
+                .bubble {
+                    z-index: 50;
+                    border-radius: 50%;
+                    background-image: url('./img/bubble.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .close {
+                    z-index: 50;
+                    width: .51rem;
+                    height: .51rem;
+                    border-radius: 26px;
+                    background-image: url('./img/close.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                    margin-top: -5.38rem;
+                    /* margin-left: 4.70rem; */
+                }
+    
+                .ball {
+                    z-index: 50;
+                    border-radius: 50%;
+                    background-image: url('./img/ball.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .bottomLearn{
+                    width: 1.98rem;
+                    height: 0.46rem;
+                    background-image: url('./img/button.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-top: 5.72rem;
+                    margin-left: 2.13rem;
+                }
+    
+            }
+    
+            @media (min-width: 1024px) {
+                .board {
+                    display: flex;
+                    z-index: 10;
+                    width: 990px;
+                    height: 635px;
+                    border-radius: 60px;
+    
+                    display: flex;
+                    flex-direction: row;
+    
+                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Safari 5.1 - 6.0 */
+                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Opera 11.1 - 12.0 */
+                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Firefox 3.6 - 15 */
+                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* 标准的语法（必须放在最后） */
+                }
+    
+                .left {
+                    margin-left: 50px;
+                    margin-top: 78px;
+                    /* background-color: #00f; */
+                    width: 414px;
+                    height: 446px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+    
+                .message {
+                    width: 414px;
+                    height: 240px;
+                    background-image: url('./img/text.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .learn {
+                    width: 198px;
+                    height: 46px;
+                    background-image: url('./img/button.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: inherit;
+                }
+    
+                .right {
+                    position: absolute;
+                    width: 532px;
+                    height: 532px;
+                    /* background-color: red; */
+                    margin-top: 52px;
+                    margin-left: 514px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+    
+                .outside {
+                    z-index: 20;
+                    position: absolute;
+                    width: 532px;
+                    height: 532px;
+                    background-image: url('./img/outside.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .outsideplay {
+                    animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -moz-animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -o-animation: outsidetrans 20s linear 0s infinite;
+                }
+    
+    
+    
+                .inside {
+                    width: 289px;
+                    height: 289px;
+                    background-image: url('./img/inside.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+    
+                }
+    
+                .insideplay {
+                    animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -moz-animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -o-animation: insidetrans 20s linear 0s infinite;
+                }
+    
+                .pause {
+                    animation-play-state: paused;
+                }
+    
+                .logo {
+                    width: 81px;
+                    height: 111px;
+                    background-image: url('./img/logo.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                }
+    
+    
+    
+                .bubble {
+                    z-index: 50;
+                    border-radius: 50%;
+                    background-image: url('./img/bubble.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .close {
+                    z-index: 50;
+                    width: 51px;
+                    height: 51px;
+                    border-radius: 26px;
+                    background-image: url('./img/close.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                    margin-top: -358px;
+                    margin-left: 470px;
+                }
+    
+                .ball {
+                    z-index: 50;
+                    border-radius: 50%;
+                    background-image: url('./img/ball.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+                .bottomLearn{
+                    display: none;
+                }
+            }
+    
+    
+            @keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+            }
+    
+            @-moz-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+            }
+    
+            @-o-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+    
+            }
+    
+            @-webkit-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+            }
+    
+            @keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                }
+    
+            }
+    
+            @-moz-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+    
+            @-o-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                }
+    
+            }
+    
+            @-webkit-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+        </style>
 </head>
 <style>
 
@@ -1625,6 +2020,188 @@
         </div>
     </div>
 </footer>
+<div id=main class="main mainclose">
+    <div id="closebtn" class="close"></div>
+    <div id='board' class="board">
+        <div class="left">
+            <div class="message"></div>
+            <div class="learn"></div>
+        </div>
+        <div id=right class="right">
+            <div id="outside" class="outside outsideplay">
+            </div>
+            <div id="inside" class="inside insideplay">
+            </div>
+            <div class="logo"></div>
+        </div>
+        <div class="bottomLearn"></div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var newRem = function () {
+
+            var html = document.documentElement;
+
+            var ClientWidth = html.getBoundingClientRect().width;
+
+            if (ClientWidth <= 750) {
+                html.style.fontSize = ClientWidth / 7.5 + 'px';
+            } else {
+                html.style.fontSize = '100px';
+            }
+        };
+
+        window.addEventListener('resize', newRem, false);
+        newRem();
+    })();
+
+    var main = document.getElementById('main')
+    var board = document.getElementById('board')
+    var rightDom = document.getElementById('right')
+    var outsideDom = document.getElementById('outside')
+    var insideDom = document.getElementById('inside')
+    var closebtn = document.getElementById('closebtn') 
+    
+    closebtn.addEventListener('click', function () {
+        main.className = 'main mainclose'
+    })
+
+    rightDom.addEventListener('click', function () {
+        if (outsideDom.classList.contains('pause')) {
+            outsideDom.className = 'outside outsideplay';
+        } else {
+            outsideDom.className = 'pause outside outsideplay';
+        }
+
+
+        if (insideDom.classList.contains('pause')) {
+            insideDom.className = ' inside insideplay';
+        } else {
+            insideDom.className = 'pause inside insideplay';
+        }
+    });
+
+
+    function RandomNum(num1, num2) {
+        return Math.floor(Math.random() * (num2 - num1 + 1) + num1);
+
+    }
+    function Bubble(size, { top, left }, { xrange, yrange }) {
+        let xoffset = (main.offsetWidth - board.offsetWidth) / 2
+        let yoffset = (main.offsetHeight - board.offsetHeight) / 2 
+
+        this.bubble = document.createElement("div");
+        this.width = size
+        this.height = size
+        this.left = xoffset + left
+        this.top = yoffset + top
+        this.left0 = xoffset + left
+        this.top0 = yoffset + top
+        this.xrange = xrange
+        this.yrange = yrange
+        this.tempX = this.left;
+        this.tempY = this.top;
+        this.speedx = (RandomNum(1, 3) - 2) / 2;//后面的小数是保证随机产生的方向有正有负
+        this.speedy = (RandomNum(1, 3) - 2) / 2; 
+
+    }
+    Bubble.prototype.draw = function () {
+        this.bubble.style.width = this.width + "px";
+        this.bubble.style.height = this.height + "px";
+        this.bubble.className = "bubble";
+        this.bubble.style.left = this.tempX + "px";
+        this.bubble.style.top = this.tempY + "px";
+        this.bubble.style.backgroundColor = this.backgroundColor;
+        board.appendChild(this.bubble);
+    }
+
+    Bubble.prototype.move = function () {
+
+        this.tempX = this.tempX + this.speedx;
+        this.tempY = this.tempY + this.speedy;
+        // 判断临界值
+        if (Math.abs(this.tempX - this.left0) >= this.xrange || this.tempX <= 0) {
+            this.speedx = -this.speedx;//改变方向
+        }
+        if (Math.abs(this.tempY - this.top0) >= this.yrange || this.tempY <= 0) {
+            this.speedy = -this.speedy;
+        }
+        this.draw();
+    }
+
+    //构造小球函数
+    function Ball() {
+        this.ball = document.createElement("div");
+        var randomNum = RandomNum(50, 150);
+        this.width = randomNum
+        this.height = randomNum
+        //如果元素有id名，我们可以直接使用，不用document.get....获取
+        this.left = RandomNum(0, main.offsetWidth - randomNum);
+        this.top = RandomNum(0, main.offsetHeight - randomNum);
+        // this.backgroundColor="rgba("+RandomNum(0,255)+","+RandomNum(0,255)+","+RandomNum(0,255)+","+Math.random()+")";//随机颜色
+        this.tempX = this.left;
+        this.tempY = this.top;
+        this.speedx = (RandomNum(1, 3) - 2) / 2;;//后面的小数是保证随机产生的方向有正有负
+        this.speedy = (RandomNum(1, 3) - 2) / 2;
+    }
+    //画小球的方法
+    Ball.prototype.draw = function () {
+        this.ball.style.width = this.width + "px";
+        this.ball.style.height = this.height + "px";
+        this.ball.className = "ball";
+        this.ball.style.left = this.tempX + "px";
+        this.ball.style.top = this.tempY + "px";
+        this.ball.style.backgroundColor = this.backgroundColor;
+        main.appendChild(this.ball);
+    }
+
+
+    //运动函数
+    Ball.prototype.move = function () {
+
+        this.tempX = this.tempX + this.speedx;
+        this.tempY = this.tempY + this.speedy;
+        // 判断临界值
+        if (this.tempX + this.width >= main.offsetWidth || this.tempX <= 0) {
+            this.speedx = -this.speedx;//改变方向
+        }
+        if (this.tempY + this.height >= main.offsetHeight || this.tempY <= 0) {
+            this.speedy = -this.speedy;
+        }
+        this.draw();
+    }
+    //产生小球
+    var balls = [];
+    var bubbles = []
+    for (var i = 0; i < 10; i++) {
+        var ball = new Ball();
+        balls.push(ball);//生成的小球对象放进数组
+
+    }
+    // bubbles.push(new Bubble(200, { top:-100, left: -100 },{xrange:100,yrange:50}))
+    // bubbles.push(new Bubble(100, { top: 550, left: 200 },{xrange:200,yrange:40}))
+    function start() {
+        for (var i = 0; i < balls.length; i++) {
+            balls[i].move();
+        }
+        for (var i = 0; i < bubbles.length; i++) {
+            bubbles[i].move();
+        }
+        window.requestAnimationFrame(start)
+    }
+    start()
+
+    let time = new Date()
+    let timestamp = time.getTime()  
+    if(true){
+    // if(timestamp > 1561888800000 && timestamp<1562493600000){
+        main.className = 'main'
+    }
+
+</script>
 </body>
 
 
