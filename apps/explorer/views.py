@@ -133,6 +133,9 @@ def explorerDev(request):
 
 
 def explorer(request):
+    if time.time() <1561888800:
+        return render(request, 'explorer/explorerdisable.html')
+
     try:
         height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     except IndexError as e:
@@ -205,11 +208,9 @@ def explorer(request):
         'committee': proposerFomatter(index),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
     }
-    # to do
-    return render(request, 'explorer/explorerdisable.html',
+
+    return render(request, 'explorer/explorer.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
-    # return render(request, 'explorer/explorer.html',
-    #               {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
 
 
 def proposerFomatter(num):
