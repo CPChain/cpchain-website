@@ -449,7 +449,7 @@
         <div id='board' class="board">
             <div class="left">
                 <div class="message"></div>
-                <div class="learn"></div>
+                <div id=learn class="learn"></div>
             </div>
             <div id=right class="right">
                 <div id="outside" class="outside outsideplay">
@@ -458,7 +458,7 @@
                 </div>
                 <div class="logo"></div>
             </div>
-            <div class="bottomLearn"></div>
+            <div id=bottomLearn class="bottomLearn"></div>
         </div>
     </div>
     
@@ -488,7 +488,19 @@
         var outsideDom = document.getElementById('outside')
         var insideDom = document.getElementById('inside')
         var closebtn = document.getElementById('closebtn') 
-        
+        var bottomLearn = document.getElementById('bottomLearn') 
+        var learn = document.getElementById('learn') 
+        let lang = 'en'
+        if(location.href.indexOf('zh')>0){
+            lang ='cn' 
+        }
+        bottomLearn.addEventListener('click', function () {
+            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=test`
+        }) 
+        learn.addEventListener('click', function () {
+            location.href = lang === 'en' ?`https://www.cpchain.io/community/?title=CPChain%20EN` : `https://www.cpchain.io/zh-hans/community/?title=test`
+        }) 
+ 
         closebtn.addEventListener('click', function () {
             main.className = 'main mainclose'
         })
