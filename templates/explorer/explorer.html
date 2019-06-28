@@ -115,7 +115,7 @@
                                             <span style="color: #305278;">Produced by</span>
                                             <a v-if="block.impeach" :href="'/explorer/address/'+block.impeachProposer"
                                                :title="block.impeachProposer"
-                                               style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color: red;">[[block.impeachProposer]]</a>
+                                               style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color: #BBBBBB;">[[block.impeachProposer]]</a>
                                             <a v-else :href="'/explorer/address/'+block.producerID"
                                                :title="block.producerID"
                                                style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">[[block.producerID]]</a>
@@ -192,7 +192,7 @@
     <script src="/static/js/echarts-theme-walden.js"></script>
     <script src="/static/js/echarts-linear-options.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
-{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
     <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 
     <script>
