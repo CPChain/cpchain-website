@@ -52,6 +52,8 @@ def get_chart():
         return chart_collection.find()[0].get('chart', [])
     except Exception:
         return []
+
+
 def explorerDev(request):
     try:
         height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
@@ -124,10 +126,11 @@ def explorerDev(request):
         'tps': get_rate('tps'),
         'committee': proposerFomatter(index),
         'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
-    } 
-    
+    }
+
     return render(request, 'explorer/explorer.html',
                   {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
+
 
 def explorer(request):
     try:
@@ -366,6 +369,8 @@ def blocks(req):
             b['impeach'] = True
         else:
             b['impeach'] = False
+        if b['number'] == 0:
+            b['timestamp'] == 1561605600.0
     return render(req, 'explorer/block_list.html', {'blocks': blocks})
 
 
