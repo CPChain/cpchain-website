@@ -245,5 +245,5 @@ CHANNEL_LAYERS = {
     },
 }
 # override settings
-DEBUG = cfg['web']['debug']
+DEBUG = cfg['web']['debug'] == 'True'
 SECRET_KEY = cfg['web']['secretkey']

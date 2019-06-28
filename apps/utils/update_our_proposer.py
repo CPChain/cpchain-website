@@ -19,22 +19,23 @@ db.authenticate(uname, pwd)
 
 our_proposer = CLIENT['cpchain']['our_proposer']
 
-ours = ['0x27c3500c8a493a152f1dfdec162c422b3678b03e',
-        '0xf285996f36aa76adf637c60f2005da637efd71aa',
-        '0x50bf9d407d8e30b8124f3711df97611d76d45699',
-        '0x99fc3138ff48a4fae3a0e65c6f83266a5284a683',
-        '0xf6f59e901b3cd551f1753dfe80ab806bb0046b30',
-        '0xa3a0fe044eb8ce1731ed99ca0901a795abf58da8',
-        '0x45f40e0c7135d86d92a88443a160045a2897436e',
-        '0x0005efc08c5ff71c3538ebc85b1bb93c377cef14',
-        '0x46ac4607b5334b5dc7cd671b0c11c5ffa81324f6',
-        '0x1573ce2ab9a0113d25ce5e7a74b564a02f9058ad',
-        '0x01cf3229840fc212d54df720cdae3e6d04320a9c',
-        '0xaa8ad61eb978bbde0b6f69d2cd3033755d8f9d04', ]
+ours = ['0x50f8c76f6d8442c54905c74245ae163132b9f4ae',
+        '0x8ab63651e6ce7eed40af33276011a5e2e1a533a2',
+        '0x501f6cf7b2437671d770998e3b785474878fef1d',
+        '0x9508e430ce672750bcf6bef9c4c0adf303b28c5c',
+        '0x049295e2e925cec28ddeeb63507e654b6d317423',
+        '0x8c65cb8568c4945d4b419af9066874178f19ba43',
+        '0x4d1f1d14f303b746121564e3295e2957e74ea5d2',
+        '0x73ae2b32ef3fad80707d4da0f49c675d3efc727c',
+        '0x5a55d5ef67c047b5d748724f7401781ed0af65ed',
+        '0x1f077085dfdfa4a65f8870e50348f277d6fcd97c',
+        '0xcb6fb6a201d6c126f80053fe17ca45188e24fe2f',
+        '0xfaf2a2cdc4da310b52ad7d8d86e8c1bd5d4c0bd0']
 
 
 def update_proposer():
-    our_proposer.update({}, {'our_proposer': ours})
+    our_proposer.drop()
+    our_proposer.insert({'our_proposer': ours})
 
 
 def read_our_proposer():
@@ -45,6 +46,7 @@ def read_our_proposer():
         ours = p[0].get('our_proposer')
 
     return ours
+
 
 if __name__ == '__main__':
     update_proposer()
