@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
-{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
     <script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
@@ -22,29 +22,30 @@
                 <div class="row text" style="margin-bottom: 97px">
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ term }}</h1></div>
-                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Current Term</h3></div>
+                        <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Current Term</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ view }}</h1></div>
-                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Current View</h3></div>
+                        <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Current View</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ TermLen }}</h1></div>
-                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Proposers</h3></div>
+                        <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Proposers</h3></div>
                     </a>
                     <a class="col-2" href="#">
                         <div class="text-left"><h1 class="number-font">{{ BlockNumber }}</h1></div>
-                        <div class="text-left"><h3 class="index-font"style="margin-top: 12px">Block Number</h3></div>
+                        <div class="text-left"><h3 class="index-font" style="margin-top: 12px">Block Number</h3></div>
                     </a>
                 </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between"> <h1 class="text-left poppins-font">Proposers</h1>
+                <div style="display:flex;flex-direction:row;justify-content:space-between"><h1
+                        class="text-left poppins-font">Proposers</h1>
                     <h1 class="text-right poppins-font">
-                            <a href="history" style="color:#1BA3FF;font-size: 15px">History</a> 
-                    </h1></div> 
+                        <a href="history" style="color:#1BA3FF;font-size: 15px">History</a>
+                    </h1></div>
             </div>
         </div>
         <div class="info-table" id="blocks-list">
-            <div class="info-table-list" >
+            <div class="info-table-list">
                 <div class="info-table-list-content">
                     <div class="table" style="padding-top: 47px">
                         {% for proposer in proposers %}
@@ -52,9 +53,9 @@
                                 <div class="col-2 text-truncate">{% ifequal forloop.counter0 index %}
                                     <img src="{% static 'img/explorer/currentProposer.png' %}">
                                 {% endifequal %}</div>
-                                <div class="col-6 text-truncate pingfang"><a
+                                <div class="col-6 text-truncate"><a
                                         href="{% url 'explorer:address' proposer %}"
-                                        style="color:#1BA3FF;font-size: 15px">{{ proposer }}</a>
+                                        style="font-family:'Helvetica Neue,Helvetica,Arial,sans-serif';color:#1BA3FF;font-size: 15px">{{ proposer }}</a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -62,7 +63,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <script>
