@@ -57,8 +57,8 @@ class SwipeAdmin:
 
 class FAQAdmin:
     model = FAQ
-    list_display = ['title', 'lang', 'weight', 'is_active']
-    list_filter = ['lang', 'is_active']
+    list_display = ['title', 'lang', 'weight', 'isActive']
+    list_filter = ['lang', 'isActive']
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
