@@ -1,7 +1,6 @@
 import json
 import math
 import time
-from contextlib import contextmanager
 
 import eth_abi
 from django.http import JsonResponse, HttpResponse
@@ -133,7 +132,7 @@ def explorerDev(request):
 
 
 def explorer(request):
-    if time.time() <1561888800:
+    if time.time() < 1561888800:
         return render(request, 'explorer/explorerdisable.html')
 
     try:
@@ -398,7 +397,8 @@ def block(req, block_identifier):
     gasUsed = block_dict['gasUsed']
     gasLimit = block_dict['gasLimit']
     blockReward = block_dict['reward']
-    extraData = block_dict['proofOfAuthorityData']
+
+    extraData = block_dict.get('extraData', block_dict.get('proofOfAuthorityData'))
     ##produce time
     if height > 1:
         last_block = block_collection.find({'number': height - 1})[0]
