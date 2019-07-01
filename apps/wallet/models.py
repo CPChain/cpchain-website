@@ -33,3 +33,12 @@ class SwipeBanner(models.Model):
 
     def __str__(self):
         return self.news.title
+
+
+class FAQ(models.Model):
+    title = models.CharField(max_length=200)
+    weight = models.IntegerField(default=0)
+    content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
+                                                                                                    '/static/youtube/',
+                                                                                                    'plugin.js')])
+    isActive = models.BooleanField('Active', default=True)
