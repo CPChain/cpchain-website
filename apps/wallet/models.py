@@ -37,6 +37,7 @@ class SwipeBanner(models.Model):
 
 class FAQ(models.Model):
     title = models.CharField(max_length=200)
+    lang = models.CharField(choices=(('en', 'en'), ('zh', 'zh')), default='en', max_length=50)
     weight = models.IntegerField(default=0)
     content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                     '/static/youtube/',
