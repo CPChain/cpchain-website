@@ -7,6 +7,11 @@ from .models import *
 
 # Create your views here.
 
+def faq_detail(req, pk):
+    news = FAQ.objects.get(pk=pk)
+    return render(req, 'wallet/faq_detail.html', locals())
+
+
 def news_detail(req, pk):
     news = WalletNew.objects.get(pk=pk)
     return render(req, 'wallet/news_detail.html', locals())
@@ -24,6 +29,18 @@ def events_list(req, lang):
     msg = serializers.serialize('json', events_list,
                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
     return JsonResponse(msg, safe=False)
+
+
+def faq_list(req, lang):
+    if lang == 'en':
+        faq_list = FAQ.objects.filter(lang='en')
+    elif lang == 'zh':
+        faq_list = FAQ.objects.filter(lang='zh')
+
+    data = serializers.serialize("json", faq_list,
+                                 fields=('pk', 'title','weight'))
+    # data_dict = json.dumps(data)
+    return JsonResponse(data, safe=False)
 
 
 def news_list(req, lang):
