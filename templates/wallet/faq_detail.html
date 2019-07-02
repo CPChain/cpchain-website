@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}"
+        type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
+        type='text/css' media='all' />
+    <title> {{ news.title }}</title>
+
+</head>
+<style>
+      body {
+            /* font-family: "Poppins"; */
+            background-color: rgba(40, 42, 63, 1);
+            /* padding-top: 0.16rem; */
+        }
+
+        .header {
+            padding: 0.17rem 0;
+        }
+
+        .header h1 {
+            font-size: .17rem;
+            line-height: .24rem;
+            color: white;
+            padding: .05rem .34rem;
+        }
+
+        .header p {
+            padding: .02rem .34rem;
+            font-size: .13rem;
+            color: rgba(70, 79, 108, 1);
+            line-height: .20rem;
+        }
+
+        .header img {
+            width: 100%
+        }
+
+        .main {
+            padding: .24rem .17rem;
+            background-color: white;
+        }
+
+        .main img {
+            width: 100% !important
+        }
+    </style>
+
+<body>
+    <div class="header">
+        <h1>{{ faq.title }}</h1>
+
+    </div>
+
+    <div id="mainDiv" class="main"></div>
+    <script>
+                (function () {
+            var html = document.documentElement;
+            var width = html.getBoundingClientRect().width;
+            html.style.fontSize = width / 3.75 + 'px';//至于除数15可自行设置
+            //1rem=50;
+        })()
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        var mainDiv = document.getElementById('mainDiv')
+        mainDiv.innerHTML = HTMLDecode(`{{faq.content}}`)
+    </script>
+
+</body>
+
+</html>

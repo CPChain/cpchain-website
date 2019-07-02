@@ -8,7 +8,7 @@ from .models import *
 # Create your views here.
 
 def faq_detail(req, pk):
-    news = FAQ.objects.get(pk=pk)
+    faq = FAQ.objects.get(pk=pk)
     return render(req, 'wallet/faq_detail.html', locals())
 
 
