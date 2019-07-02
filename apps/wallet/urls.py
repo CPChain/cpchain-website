@@ -9,4 +9,5 @@ urlpatterns = [
     path('get_banner/<lang>', swipe),
     path('faq_list/<lang>', faq_list),
     path('faq_detail/<pk>', faq_detail),
+    path('faq_detail/<title>', faq_detail),
 ]

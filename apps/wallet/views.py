@@ -6,6 +6,9 @@ from .models import *
 
 
 # Create your views here.
+def faq_detail(req, title):
+    # term = FAQ.objects.get(title=title)
+    return render(req, 'wallet/term.html', locals())
 
 def faq_detail(req, pk):
     faq = FAQ.objects.get(pk=pk)

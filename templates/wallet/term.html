@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}"
+        type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
+        type='text/css' media='all' />
+    <title> {{ term.title }}</title>
+
+</head>
+<style>
+    body {
+        /* font-family: "Poppins"; */
+        background-color: rgba(40, 42, 63, 1);
+        /* padding-top: 0.16rem; */
+    }
+
+    .header {
+        padding: 0.1rem 0;
+    }
+
+    .header h1 {
+        font-size: .17rem;
+        line-height: .24rem;
+        color: white;
+        padding: .05rem .34rem;
+    }
+
+    .header p {
+        padding: .02rem .34rem;
+        font-size: .13rem;
+        color: rgba(70, 79, 108, 1);
+        line-height: .20rem;
+    }
+
+    .header img {
+        width: 100%
+    }
+
+    .main {
+        padding: .24rem .17rem;
+        background-color: rgba(53, 55, 77, 1);
+        color: rgba(217, 219, 224, 1);
+    }
+
+    .main img {
+        width: 100% !important
+    }
+</style>
+
+<body>
+    <div class="header">
+        <h1>{{ term.title }}</h1>
+
+    </div>
+
+    <div id="mainDiv" class="main"></div>
+    <script>
+        (function () {
+
+            var newRem = function () {
+
+                var html = document.documentElement;
+
+                var ClientWidth = html.getBoundingClientRect().width;
+
+                if (ClientWidth <= 750) {
+                    html.style.fontSize = ClientWidth / 3.75 + 'px';
+                } else {
+                    html.style.fontSize = '100px';
+                }
+            };
+
+            window.addEventListener('resize', newRem, false);
+            newRem();
+        })();
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        var mainDiv = document.getElementById('mainDiv')
+        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`)
+    </script>
+
+</body>
+
+</html>
