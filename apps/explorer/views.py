@@ -132,9 +132,6 @@ def explorerDev(request):
 
 
 def explorer(request):
-    if time.time() < 1561888800:
-        return render(request, 'explorer/explorerdisable.html')
-
     try:
         height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
     except IndexError as e:
