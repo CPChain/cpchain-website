@@ -4,13 +4,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all' />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all'/>
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}"
-        type='text/css' media='all' />
+          type='text/css' media='all'/>
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
-        type='text/css' media='all' />
-    <title> {{ term.title }}</title>
+          type='text/css' media='all'/>
+    <title> {{ term.title|urlencode }}</title>
 
 </head>
 <style>
@@ -54,41 +54,43 @@
 </style>
 
 <body>
-    <div class="header">
-        <h1>{{ term.title }}</h1>
+<div class="header">
+    <h1>{{ term.title|urlencode }}</h1>
 
-    </div>
+</div>
 
-    <div id="mainDiv" class="main"></div>
-    <script>
-        (function () {
+<div id="mainDiv" class="main"></div>
+<script>
+    (function () {
 
-            var newRem = function () {
+        var newRem = function () {
 
-                var html = document.documentElement;
+            var html = document.documentElement;
 
-                var ClientWidth = html.getBoundingClientRect().width;
+            var ClientWidth = html.getBoundingClientRect().width;
 
-                if (ClientWidth <= 750) {
-                    html.style.fontSize = ClientWidth / 3.75 + 'px';
-                } else {
-                    html.style.fontSize = '100px';
-                }
-            };
+            if (ClientWidth <= 750) {
+                html.style.fontSize = ClientWidth / 3.75 + 'px';
+            } else {
+                html.style.fontSize = '100px';
+            }
+        };
 
-            window.addEventListener('resize', newRem, false);
-            newRem();
-        })();
-        function HTMLDecode(text) {
-            var temp = document.createElement("div");
-            temp.innerHTML = text;
-            var output = temp.innerText || temp.textContent;
-            temp = null;
-            return output;
-        }
-        var mainDiv = document.getElementById('mainDiv')
-        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`)
-    </script>
+        window.addEventListener('resize', newRem, false);
+        newRem();
+    })();
+
+    function HTMLDecode(text) {
+        var temp = document.createElement("div");
+        temp.innerHTML = text;
+        var output = temp.innerText || temp.textContent;
+        temp = null;
+        return output;
+    }
+
+    var mainDiv = document.getElementById('mainDiv')
+    mainDiv.innerHTML = HTMLDecode(`{{term.content}}`)
+</script>
 
 </body>
 
