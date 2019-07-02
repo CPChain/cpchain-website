@@ -55,6 +55,10 @@ class SwipeAdmin:
     list_display = ['news', 'lang', 'banner_time', 'is_active']
     list_filter = ['lang', 'is_active']
 
+class FAQAdmin:
+    model = FAQ
+    list_display = ['title', 'lang', 'weight', 'isActive']
+    list_filter = ['lang', 'isActive']
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
@@ -67,3 +71,4 @@ xadmin.site.register(Media, MediaAdmin)
 
 xadmin.site.register(WalletNew, WalletNewsAdmin)
 xadmin.site.register(SwipeBanner, SwipeAdmin)
+xadmin.site.register(FAQ, FAQAdmin)
