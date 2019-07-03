@@ -29,6 +29,7 @@
         line-height: .24rem;
         color: white;
         padding: .05rem .34rem;
+        text-align: center;
     }
 
     .header p {
@@ -55,8 +56,7 @@
 
 <body>
     <div class="header">
-        <h1>{{ term.title }}</h1>
-
+        <h1 id=headtitle></h1>
     </div>
 
     <div id="mainDiv" class="main"></div>
@@ -88,6 +88,8 @@
         }
         var mainDiv = document.getElementById('mainDiv')
         mainDiv.innerHTML = HTMLDecode(`{{term.content}}`)
+        var mainDiv = document.getElementById('headtitle')
+        mainDiv.headtitle = HTMLDecode(`{{term.title}}`)
     </script>
 
 </body>
