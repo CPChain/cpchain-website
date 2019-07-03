@@ -1,14 +1,18 @@
 from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
+from urllib.parse import unquote
 
 from .models import *
 
 
 # Create your views here.
-def faq_detail(req, title):
-    # term = FAQ.objects.get(title=title)
+def term_detail(req, title):
+    title = unquote(title)
+    print(title)
+    term = Term.objects.get(title=title)
     return render(req, 'wallet/term.html', locals())
+
 
 def faq_detail(req, pk):
     faq = FAQ.objects.get(pk=pk)
@@ -41,7 +45,7 @@ def faq_list(req, lang):
         faq_list = FAQ.objects.filter(lang='zh')
 
     data = serializers.serialize("json", faq_list,
-                                 fields=('pk', 'title','weight'))
+                                 fields=('pk', 'title', 'weight'))
     # data_dict = json.dumps(data)
     return JsonResponse(data, safe=False)
 

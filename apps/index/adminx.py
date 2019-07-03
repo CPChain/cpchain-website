@@ -60,6 +60,10 @@ class FAQAdmin:
     list_display = ['title', 'lang', 'weight', 'isActive']
     list_filter = ['lang', 'isActive']
 
+class TermAdmin:
+    model = Term
+    list_display = ['title']
+
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
 
@@ -72,3 +76,4 @@ xadmin.site.register(Media, MediaAdmin)
 xadmin.site.register(WalletNew, WalletNewsAdmin)
 xadmin.site.register(SwipeBanner, SwipeAdmin)
 xadmin.site.register(FAQ, FAQAdmin)
+xadmin.site.register(Term, TerTermmAdmin)
