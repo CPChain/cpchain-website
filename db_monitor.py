@@ -10,6 +10,7 @@ from pymongo import DESCENDING, MongoClient
 from cpchain_test.config import cfg
 from tools.dingding import post_message
 
+DAY_SECENDS = 60 * 60 * 24
 REFRESH_INTERVAL = 3
 
 # log
@@ -39,6 +40,7 @@ tx_collection = client['cpchain']['txs']
 address_collection = client['cpchain']['address']
 contract_collection = client['cpchain']['contract']
 event_collection = client['cpchain']['event']
+impeach_collection = client['cpchain']['impeach']
 
 
 def save_blocks_txs(start_block_id):
@@ -126,6 +128,19 @@ def update_reward(id, txs):
     return reward
 
 
+def impeach_notify(block):
+    impeach_time = int(block['timestamp'] / 1000)
+    impeach_collection.insert_one({'number': block['number'], 'timestamp': impeach_time})
+    now = int(time.time())
+    day_zero = now - now % DAY_SECENDS
+    count = impeach_collection.count(
+        {'timestamp': {'$gte': day_zero}})
+    if count >= 10:
+        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
+        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
+        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
+
+
 def block_formatter(block):
     block_ = {}
     # hex_to_int = ['difficulty', 'gasLimit', 'gasUsed', 'number', 'size', 'timestamp']
@@ -138,6 +153,7 @@ def block_formatter(block):
                 except Exception as e:
                     logger.error(f'getProposerByBlock error:{e}')
                     block_['impeachProposer'] = '0x'
+                impeach_notify(block)
         elif k == 'timestamp':
             block_[k] = v / 1000
         elif type(v) == hexbytes.HexBytes:
