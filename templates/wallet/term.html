@@ -10,7 +10,7 @@
           type='text/css' media='all'/>
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
           type='text/css' media='all'/>
-    <title> {{ term.title|urlencode }}</title>
+    <title> {{ term.title|urldecode }}</title>
 
 </head>
 <style>
@@ -56,7 +56,7 @@
 
 <body>
     <div class="header">
-        <h1>{{ term.title|urlencode }}</h1>
+        <h1>{{ term.title|urldecode }}</h1>
     </div>
 
     <div id="mainDiv" class="main"></div>
