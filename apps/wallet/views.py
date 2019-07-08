@@ -1,11 +1,23 @@
 from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
+from urllib.parse import unquote
 
 from .models import *
 
 
 # Create your views here.
+def term_detail(req, title):
+    title = unquote(title)
+    print(title)
+    term = Term.objects.get(title=title)
+    return render(req, 'wallet/term.html', locals())
+
+
+def faq_detail(req, pk):
+    faq = FAQ.objects.get(pk=pk)
+    return render(req, 'wallet/faq_detail.html', locals())
+
 
 def news_detail(req, pk):
     news = WalletNew.objects.get(pk=pk)
@@ -24,6 +36,18 @@ def events_list(req, lang):
     msg = serializers.serialize('json', events_list,
                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
     return JsonResponse(msg, safe=False)
+
+
+def faq_list(req, lang):
+    if lang == 'en':
+        faq_list = FAQ.objects.filter(lang='en')
+    elif lang == 'zh':
+        faq_list = FAQ.objects.filter(lang='zh')
+
+    data = serializers.serialize("json", faq_list,
+                                 fields=('pk', 'title', 'weight'))
+    # data_dict = json.dumps(data)
+    return JsonResponse(data, safe=False)
 
 
 def news_list(req, lang):

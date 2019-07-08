@@ -43,3 +43,16 @@ class FAQ(models.Model):
                                                                                                     '/static/youtube/',
                                                                                                     'plugin.js')])
     isActive = models.BooleanField('Active', default=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Term(models.Model):
+    title = models.CharField(max_length=200)
+    content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
+                                                                                                    '/static/youtube/',
+                                                                                                    'plugin.js')])
+
+    def __str__(self):
+        return self.title
