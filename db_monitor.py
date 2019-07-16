@@ -147,7 +147,7 @@ def block_formatter(block):
     for k, v in block.items():
         if k == 'miner':
             block_[k] = v.lower()
-            if block_[k].endswith('00000000'):
+            if block_[k] == '0x0000000000000000000000000000000000000000':
                 try:
                     block_['impeachProposer'] = cf.cpc.getProposerByBlock(block['number'])
                 except Exception as e:
