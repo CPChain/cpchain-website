@@ -46,6 +46,7 @@ indexpatterns = [
 ]
 
 urlpatterns = i18n_patterns(
+    path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
     prefix_default_language=False
 )
