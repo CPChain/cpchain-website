@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /explorer/blocks/
+Disallow: /explorer/block/
+Disallow: /explorer/block/
