@@ -37,6 +37,17 @@
                 padding: 0;
                 margin: 0
             }
+
+            @media (min-width: 375px) {
+                .mediaHidden{
+                    display: none
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .mediaHidden{ 
+                }
+            }
     
             .main {
                 z-index: 10000;
@@ -847,7 +858,7 @@
                         <div class="opacity-holder position-absolute w-100"></div>
                         <div class="video-holder position-absolute w-100 h-100">
                             <video autoplay="" loop id="video-background" muted plays-inline
-                                   class="w-100 video-height">
+                                   class="w-100 video-height mediaHidden">
                                 <source src="{% static '/img/video/final.mp4' %}"
                                         type="video/mp4" class="w-100 h-100">
                             </video>
