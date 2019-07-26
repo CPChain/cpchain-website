@@ -845,6 +845,7 @@
 
                         </div>
                         <div class="opacity-holder position-absolute w-100"></div>
+                    {% if not is_mobile %}
                         <div class="video-holder position-absolute w-100 h-100">
                             <video autoplay="" loop id="video-background" muted plays-inline
                                    class="w-100 video-height">
@@ -852,6 +853,7 @@
                                         type="video/mp4" class="w-100 h-100">
                             </video>
                         </div>
+                    {% endif %}
                     </section> <!-- section-one -->
 
                     <section class="section-two py-sm-5 my-sm-5 py-5 my-0" id="cpchain">
