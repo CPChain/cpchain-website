@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-26 10:31+0800\n"
+"POT-Creation-Date: 2019-07-26 16:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,10 @@ msgstr "CPChain_Whitepaper_CN.pdf"
 #: templates/index.html:810
 msgid "WHITE PAPER 2.0"
 msgstr "白皮书 2.0"
+
+#: templates/index.html:827
+msgid "RNode"
+msgstr "荣誉节点"
 
 #: templates/index.html:866
 msgid "Integration <br> of IoT & Blockchain"
