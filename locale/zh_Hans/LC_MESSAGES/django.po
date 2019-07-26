@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-02 10:48+0800\n"
+"POT-Creation-Date: 2019-07-26 10:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,12 +162,8 @@ msgid "CPChain_Whitepaper_English.pdf"
 msgstr "CPChain_Whitepaper_CN.pdf"
 
 #: templates/index.html:810
-msgid "WHITE PAPER"
-msgstr "白皮书"
-
-#: templates/index.html:816
-msgid "LIGHT PAPER"
-msgstr "项目简介"
+msgid "WHITE PAPER 2.0"
+msgstr "白皮书 2.0"
 
 #: templates/index.html:866
 msgid "Integration <br> of IoT & Blockchain"
@@ -1364,6 +1360,9 @@ msgstr ""
 "的哈希值记录在CPChain主链上，用来验证数据。系统对用户隐私保护有专门设计，能够"
 "在保证隐私的前提下，实现数据分享。因此，CPChain实现了对上层人工智能等应用的有"
 "效支持。 "
+
+#~ msgid "LIGHT PAPER"
+#~ msgstr "项目简介"
 
 #~ msgid "Beta Mainnet (Wayne)"
 #~ msgstr "测试网 (Wayne)"
