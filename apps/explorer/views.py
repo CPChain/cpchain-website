@@ -179,8 +179,7 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         else:
-            creator = cf.toChecksumAddress(t['from'])
-            contract = contract_collection.find({'creator': creator})[0]['address']
+            contract = contract_collection.find({'txhash': t['hash']})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -259,8 +258,7 @@ def wshandler():
                 'amount': format(t['txfee'], '.10f')
             }
         else:
-            creator = cf.toChecksumAddress(t['from'])
-            contract = contract_collection.find({'creator': creator})[0]['address']
+            contract = contract_collection.find({'txhash': t['hash']})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
