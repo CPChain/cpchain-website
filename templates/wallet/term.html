@@ -21,7 +21,7 @@
     }
 
     .header {
-        padding: 0.1rem 0;
+        padding-top: 0.36remm;
         background-color: rgba(53, 55, 77, 1);
     }
 
@@ -29,12 +29,12 @@
         font-size: .17rem;
         line-height: .24rem;
         color: white;
-        padding: .05rem .34rem;
+        padding: .05rem .0rem;
         text-align: center;
     }
 
     .header p {
-        padding: .02rem .34rem;
+        padding: .02rem .0;
         font-size: .13rem;
         color: rgba(70, 79, 108, 1);
         line-height: .20rem;
@@ -47,7 +47,7 @@
     .main {
         padding: .24rem .17rem;
         background-color: rgba(53, 55, 77, 1);
-        color: rgba(217, 219, 224, 1); 
+        color: rgba(217, 219, 224, 1);
     }
 
     .main img {
@@ -56,27 +56,28 @@
 
     p {
         color: rgba(217, 219, 224, 1) !important;
-        font-size: 0.11rem!important;
+        font-size: 0.11rem !important;
         margin-top: 0;
         margin-bottom: 0;
     }
 
     span {
         color: rgba(217, 219, 224, 1) !important;
-        font-size: 0.11rem!important;
+        font-size: 0.11rem !important;
     }
+
     ol,
     ul,
     dl {
         margin-right: 0px;
-        padding: 0 0.2rem!important;
+        padding: 0 0.2rem !important;
     }
 </style>
 
 <body>
     <div class="header">
         <h1>{{ term.title }}</h1>
-    </div> 
+    </div>
     <div id="mainDiv" class="main"></div>
     <script>
         (function () {
@@ -105,7 +106,7 @@
             return output;
         }
         var mainDiv = document.getElementById('mainDiv')
-        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`).replace('margin-left: 40px','margin-left: 0.2rem') 
+        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`).replace('margin-left: 40px', 'margin-left: 0.2rem') 
     </script>
 
 </body>
