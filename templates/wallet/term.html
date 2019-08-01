@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
-    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all'/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/contents.css' %}" type='text/css' media='all' />
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}"
-          type='text/css' media='all'/>
+        type='text/css' media='all' />
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
-          type='text/css' media='all'/>
+        type='text/css' media='all' />
     <title> {{ term.title }}</title>
 
 </head>
@@ -52,12 +52,20 @@
     .main img {
         width: 100% !important
     }
+
+    p {
+        color: rgba(217, 219, 224, 1) !important;
+    }
+
+    span {
+        color: rgba(217, 219, 224, 1) !important;
+    }
 </style>
 
 <body>
-    <div class="header">
+    <!-- <div class="header">
         <h1>{{ term.title }}</h1>
-    </div>
+    </div> -->
 
     <div id="mainDiv" class="main"></div>
     <script>
