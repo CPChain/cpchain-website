@@ -452,10 +452,15 @@ def tx(req, tx_hash):
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
+    try:
+        input_data = cf.toText(hexstr=tx_dict['input'])
+    except Exception as e:
+        input_data = tx_dict['input']
+
     if not tx_dict['to']:
         contract = contract_collection.find({'txhash': tx_hash})[0]['address']
-        return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'contract': contract})
-    return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict})
+        return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'contract': contract, 'input': input_data})
+    return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'input': input_data})
 
 
 def address(req, address):
