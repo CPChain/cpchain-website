@@ -444,7 +444,6 @@ def txs(req):
 
 def tx(req, tx_hash):
     # tx from hash
-
     search = tx_hash.strip().lower()
 
     tx_dict = list(txs_collection.find({"hash": search}))[0]
@@ -454,6 +453,8 @@ def tx(req, tx_hash):
     tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
     try:
         input_data = cf.toText(hexstr=tx_dict['input'])
+        input_data = input_data.replace('\\', r'\\')
+        input_data = input_data.replace('`', r'\`')
     except Exception as e:
         input_data = tx_dict['input']
 

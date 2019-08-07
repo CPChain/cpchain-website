@@ -101,19 +101,28 @@
                 <div class="col-md-3">Input Data:</div>
                 <div class="col" style="margin-top: 15px">
                     <div class="raw-data-container">
-                        <div class="raw-data-content" v-html="input">
-                        </div>
+                        <textarea class="raw-data-content " style="height: 222px;padding: 20px 30px;width: 100%;
+    background: #f7f9fc;
+    border-radius: 2px;
+    font-size: 14px;
+    word-wrap: break-word;
+    position: relative;
+    font-family: Monospace;
+"  v-html="input">
+                        </textarea>
+
                         <div class="raw-data-type-form">
                             <div class="form-check-inline form-check">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                       value="option1" checked  @click="toggleDataType(0)">
+                                       value="option1" checked @click="toggleDataType(0)">
                                 <label class="form-check-label" for="inlineRadio1">Default View</label>
                             </div>
-                            <div class="form-check-inline form-check" >
+                            <div class="form-check-inline form-check">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
                                        value="option1" @click="toggleDataType(1)">
                                 <label class="form-check-label" for="inlineRadio2">UTF-8 View</label>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -124,6 +133,14 @@
     <script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
 
     <script>
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+
         var txInfoApp = new Vue({
             el: '#tx-info',
             data: {input: '{{ tx_dict.input }}'},
@@ -137,11 +154,9 @@
             methods: {
                 toggleDataType: function (type) {
                     if (type == 0) {
-
                         txInfoApp.$data.input = '{{ tx_dict.input }}'
                     } else {
-                        txInfoApp.$data.input = '{{ input }}'
-
+                        txInfoApp.$data.input = HTMLDecode(`{{ input }}`)
                     }
 
                 }
