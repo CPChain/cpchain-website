@@ -16,6 +16,7 @@
 <style>
     body {
         /* font-family: "Poppins"; */
+        font-family: 'roboto,sourcehansans,sans-serif, Arial, Verdana, "Trebuchet MS"' !important;
         background-color: rgba(40, 42, 63, 1);
         /* padding-top: 0.16rem; */
     }
@@ -43,22 +44,39 @@
     }
 
     .main {
-        padding: .24rem .17rem;
+        padding: .24rem .0rem;
         background-color: rgba(53, 55, 77, 1);
         color: rgba(217, 219, 224, 1);
+        font-size: .13rem;
     }
 
     .main img {
         width: 100% !important
+    } 
+
+    p {
+        margin-top: 0!important;
+        margin-bottom: 0!important;
+        line-height: 0.17rem!important;
+    }
+
+    span{
+        line-height: 0.17rem!important;
+    }
+
+    ol,
+    ul,
+    dl {
+        margin-right: 0px;
+        padding: 0 0.2rem!important;
+        line-height: 0.17rem!important;
+    }
+    a {
+        max-width: 6.8rem;word-wrap:break-word;word-break:break-all;white-space: normal
     }
 </style>
 
-<body>
-    <div class="header">
-        <h1>{{ faq.title }}</h1>
-
-    </div>
-
+<body> 
     <div id="mainDiv" class="main"></div>
     <script>
         (function () {
