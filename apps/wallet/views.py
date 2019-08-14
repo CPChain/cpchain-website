@@ -7,11 +7,13 @@ from .models import *
 
 
 # Create your views here.
-def term_detail(req, title):
+def term_detail(req,lang, title):
     title = unquote(title)
-    print(title)
     term = Term.objects.get(title=title)
-    return render(req, 'wallet/term.html', locals())
+    if lang == 'en':
+        return render(req, 'wallet/term.html', locals())
+    else:
+        return render(req, 'wallet/term_cn.html', locals())
 
 
 def faq_detail(req, pk):
