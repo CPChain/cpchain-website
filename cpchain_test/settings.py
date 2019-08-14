@@ -103,7 +103,6 @@ CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
         # 'skin': 'office2013',
-        'imageResize' : { 'maxWidth' : 800, 'maxHeight' : 800 },
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
@@ -135,6 +134,8 @@ CKEDITOR_CONFIGS = {
                 'Preview',
                 'Maximize',
                 'Youtube',
+                'Resize'
+
             ]},
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
@@ -155,7 +156,7 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath',
             'youtube',
-            'imageresize'
+            'resize'
         ]),
     }
 }
