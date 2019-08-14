@@ -134,12 +134,10 @@ CKEDITOR_CONFIGS = {
                 'Preview',
                 'Maximize',
                 'Youtube'
-
             ]},
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'tabSpaces': 4,
-        'imageResize': {'maxWidth': 750},
         'extraPlugins': ','.join([
             'uploadimage',  # the upload image feature
             # your extra plugins here
@@ -156,7 +154,6 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath',
             'youtube',
-            'imageresize'
         ]),
     }
 }
