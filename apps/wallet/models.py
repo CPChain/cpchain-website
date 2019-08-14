@@ -17,7 +17,10 @@ class WalletNew(models.Model):
     update_time = models.DateField()
     content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                     '/static/youtube/',
-                                                                                                    'plugin.js')])
+                                                                                                    'plugin.js'), (
+                                                                                                       'imageresize',
+                                                                                                       '/static/imageresize/',
+                                                                                                       'plugin.js')])
 
     def __str__(self):
         return self.title
@@ -41,7 +44,7 @@ class FAQ(models.Model):
     weight = models.IntegerField(default=0)
     content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                     '/static/youtube/',
-                                                                                                    'plugin.js')])
+                                                                                                    'plugin.js'), ])
     isActive = models.BooleanField('Active', default=True)
 
     def __str__(self):

@@ -139,6 +139,7 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'tabSpaces': 4,
+        'imageResize': {'maxWidth': 750},
         'extraPlugins': ','.join([
             'uploadimage',  # the upload image feature
             # your extra plugins here
