@@ -133,7 +133,8 @@ CKEDITOR_CONFIGS = {
                 # put the name of your editor.ui.addButton here
                 'Preview',
                 'Maximize',
-                'Youtube'
+                'Youtube',
+                'Resize'
 
             ]},
         ],
@@ -154,7 +155,8 @@ CKEDITOR_CONFIGS = {
             'dialog',
             'dialogui',
             'elementspath',
-            'youtube'
+            'youtube',
+            'resize'
         ]),
     }
 }
@@ -252,3 +254,5 @@ CHANNEL_LAYERS = {
 # override settings
 DEBUG = cfg['web']['debug'] == 'True'
 SECRET_KEY = cfg['web']['secretkey']
+
+CKEDITOR_UPLOAD_PATH = 'upload/'

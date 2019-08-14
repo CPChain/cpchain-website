@@ -8,7 +8,7 @@ Media_CATEGORY = (('Media Reports', 'Media Reports'),
 NEWS_CATEGORY = (
     ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
     ('Official Announcement', 'Official Announcement'),
-    ('项目进展', '项目进展'), ('重大发布', '重大发布'),('draft','draft'))
+    ('项目进展', '项目进展'), ('重大发布', '重大发布'), ('draft', 'draft'))
 
 
 class Department(models.Model):
@@ -52,7 +52,10 @@ class New(models.Model):
     summary = models.CharField(max_length=500, blank=True, null=True, default='')
     content = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                     '/static/youtube/',
-                                                                                                    'plugin.js')])
+                                                                                                    'plugin.js'), (
+                                                                                                   'resize',
+                                                                                                   '/static/resize/',
+                                                                                                   'plugin.js')])
 
     def __str__(self):
         return self.title
@@ -67,4 +70,3 @@ class Media(models.Model):
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
     media_name = models.CharField(max_length=200, default='')
     summary = models.CharField(max_length=500, blank=True, null=True, default='')
-
