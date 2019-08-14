@@ -10,47 +10,36 @@
         type='text/css' media='all' />
     <link rel='stylesheet' href="{% static '/ckeditor/ckeditor/plugins/tableselection/styles/tableselection.css' %}"
         type='text/css' media='all' />
-    <title> {{ news.title }}</title>
+    <title> {{ term.title }}</title>
 
 </head>
 <style>
-    
     body {
-        font-family: 'roboto' !important;
+        font-family: 'sourcehansans' !important;
         background-color: rgba(40, 42, 63, 1);
-        /* padding-top: 0.16rem; */
-        margin:0
+
+        margin: 0;
     }
 
-    .header {
-        margin: 0 0.17rem;
-        padding: 0.1rem 0;
+    .layout {
+        background-color: rgba(53, 55, 77, 1);
+        margin: 0.36rem 0.16rem;
+        padding: 0.24rem 0;
     }
 
-    .header h1 {
-        font-size: .17rem;
-        line-height: .24rem;
+
+    .layout h1 {
+        font-size: .17rem; 
         color: white;
-        padding: .05rem .17rem;
+        text-align: center;
         font-weight: bold;
     }
 
-    .header p {
-        padding: .08rem .17rem;
-        font-size: .13rem;
-        color: rgba(70, 79, 108, 1);
-        line-height: .20rem;
-    }
 
-    .header img {
-        height: 100%;
-        width: 100%
-    }
 
     .main {
-        margin: 0 0.17rem;
-        padding: .24rem .17rem;
-        background-color: white;
+        padding: .1rem .17rem;
+        color: rgba(217, 219, 224, 1);
     }
 
     .main img {
@@ -58,42 +47,37 @@
     }
 
     p {
-        font-size: 0.11rem!important;
-        margin-top: 0!important;
-        margin-bottom: 0!important;
-        line-height: 0.17rem!important;
+        color: rgba(217, 219, 224, 1) !important;
+        font-size: 0.13rem !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 0.24rem!important;
     }
 
-    span{
-        font-size: 0.11rem!important;
-        line-height: 0.17rem!important;
+    span {
+        color: rgba(217, 219, 224, 1) !important;
+        font-size: 0.13rem !important;
+        line-height: 0.24rem!important;
     }
 
     ol,
     ul,
     dl {
         margin-right: 0px;
-        padding: 0 0.2rem!important;
-        line-height: 0.17rem!important;
-    }
-    a {
-        max-width: 6.8rem;word-wrap:break-word;word-break:break-all;white-space: normal
+        font-size: 0.13rem !important;
+        padding: 0 0.2rem !important;
+        line-height: 0.24rem!important;
     }
 </style>
 
 <body>
-    <div class="header">
-        <h1>{{ news.title }}</h1>
-        <p>
-            {{ news.update_time }}
-        </p>
-        <img class="top-banner" src="{{ MEDIA_URL }}{{ news.banner }}" />
-
+    <div class="layout">
+        <h1>{{ term.title }}</h1>
+        <div id="mainDiv" class="main"></div>
     </div>
-
-    <div id="mainDiv" class="main"></div>
     <script>
         (function () {
+
             var newRem = function () {
 
                 var html = document.documentElement;
@@ -118,7 +102,7 @@
             return output;
         }
         var mainDiv = document.getElementById('mainDiv')
-        mainDiv.innerHTML = HTMLDecode(`{{news.content}}`)
+        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`).replace('margin-left: 40px', 'margin-left: 0.2rem') 
     </script>
 
 </body>
