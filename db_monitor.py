@@ -137,8 +137,6 @@ def impeach_notify(block):
         {'timestamp': {'$gte': day_zero}})
     if count >= 10:
         post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
-        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
-        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
 
 
 def block_formatter(block):
