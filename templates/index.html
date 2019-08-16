@@ -107,7 +107,8 @@
                     background-repeat: no-repeat;
                     display: flex;
                     justify-content: center;
-                    align-items: center
+                    align-items: center;
+                    text-decoration:none
                 }
     
                 .btntext {
@@ -2372,9 +2373,9 @@
                                                 </div>
                                             </div>
                                             <div class="mobright">
-                                                <div id='btnwarp' class="btnwarp">
+                                                <a href="wallet/download_app" id='btnwarp' class="btnwarp">
                                                     <span class="btntext">DOWNLOAD</span>
-                                                </div>
+                                                </a>
                                             </div>
                                         </div>
                                         <div id='website' class="website">
@@ -2489,6 +2490,8 @@
 <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
 
 <script>
+    
+     
     {#获取本地地址和语言#}
     var localUrl = window.location.pathname;
 
