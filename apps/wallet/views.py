@@ -7,6 +7,8 @@ from .models import *
 
 
 # Create your views here.
+def download_app(req ):
+    return render(req, 'wallet/download_app.html' )
 def term_detail(req,lang, title):
     title = unquote(title)
     term = Term.objects.get(title=title)

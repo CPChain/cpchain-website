@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .layout {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            background: -webkit-linear-gradient(#2E3145, #151621);
+            /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(#2E3145, #151621);
+            /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(#2E3145, #151621);
+            /* Firefox 3.6 - 15 */
+            background: linear-gradient(#2E3145, #151621);
+            /* 标准的语法 */
+        }
+
+        .main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            /* background-color: red; */
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        .btnContent {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 6.32rem;
+            flex-grow: 0;
+            background: rgba(20, 23, 44, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            margin: 1.2rem 2.4rem;
+            height: 4rem;
+            background: rgba(73, 80, 160, 1);
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btnText {
+            font-size: 1.36rem;
+            font-family: 'Roboto';
+            font-weight: normal;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .wallet {
+            margin-top: 9rem;
+            margin-bottom: 2.08rem;
+            font-size: 2.88rem;
+            font-family: 'Poppins-Medium';
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            align-items: center
+        }
+
+        .split {
+            width: 3.2rem;
+            height: 2px;
+            background-color: #ffffff;
+        }
+
+        .info {
+            font-size: 0.96rem;
+            font-family: 'Poppins-Regular';
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            margin: 0.88rem 0;
+        }
+
+        .maskclose {
+            display: none
+        }
+
+        .mask {
+            z-index: 10000;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .guid {
+            margin-top: 6.88rem;
+            margin-right: 3.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guidText {
+            height: 1.6rem;
+            font-size: 1.12rem;
+            font-family: PingFangSC-Regular;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            line-height: 1.6rem;
+            align-self: center;
+        }
+
+        .guidArrow {
+            margin-left: 6.32rem;
+            width: 2.4rem;
+            height: 2.64rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mask" class="maskclose">
+        <div class="guid"> 
+            <img class="guidArrow" src="{% static '/img/wallet/jiantou.png' %}"    alt="">
+            <p class="guidText">点击右上角</p>
+            <p class="guidText">选择“在浏览器中打开”</p>
+        </div>
+    </div>
+    <div class="layout">
+        <div class="main">
+            <div class='group'>
+                <p class="wallet">CPC WALLET</p>
+                <div class="group">
+                    <div class="split"></div>
+                    <span class="info">Transfer CPC Anytime Anywhere</span>
+                    <div class="split"></div>
+                </div>
+            </div>
+            <img class="guidArrow" src="{% static '/img/wallet/bf.png' %}"    alt="">  
+        </div>
+        <div class="btnContent">
+            <div id='btn' class="btn">
+                <span class="btnText">DOWNLOAD</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+
+            var newRem = function () {
+
+                var html = document.documentElement;
+
+                var ClientWidth = html.getBoundingClientRect().width;
+
+                if (ClientWidth <= 750) {
+                    html.style.fontSize = ClientWidth / 30 + 'px';  // 1rem = 25px  
+                } else {
+                    // html.style.fontSize = '100px';
+                }
+            };
+
+            window.addEventListener('resize', newRem, false);
+            newRem();
+        })();
+
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                    weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+                    qq: u.match(/\sQQ/i) == " qq" //是否QQ
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+        let btn = document.getElementById('btn')
+        if (browser.versions.weixin || browser.versions.qq) {
+            document.getElementById('mask').className = 'mask'
+        } else if ( browser.versions.iPhone || browser.versions.iPad) { 
+            btn.addEventListener('click', function () {
+                location.href = 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContntsUserReviews?id=com-cpc-wallet1&pageNumber=0&srotOrdering=2&type=Purple+Software&mt=8'
+            })
+        } else {
+            btn.addEventListener('click', function () {
+                location.href = 'https://app.services.cpc-servers.com/getApp/app-release.apk'
+            })
+        }
+    </script>
+
+</body>
+
+</html>
