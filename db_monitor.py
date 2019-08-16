@@ -136,7 +136,10 @@ def impeach_notify(block):
     count = impeach_collection.count(
         {'timestamp': {'$gte': day_zero}})
     if count >= 10:
-        post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
+        try:
+            post_message(f'impeach number reaches {count}, newest block is {block["number"]}')
+        except Exception as e:
+            logger.error(f'post_message error_impeach_error:{e}')
 
 
 def block_formatter(block):
@@ -282,7 +285,10 @@ def main():
             save_blocks_txs(start_block_id)
         except Exception as e:
             logger.error(f'loop error: {e}')
-            post_message(f"**db sync error:**\n{e}")
+            try:
+                post_message(f"**db sync error:**\n{e}")
+            except Exception as e:
+                logger.error(f'post message error_db sync error:{e}')
 
         time.sleep(10)
 

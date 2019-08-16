@@ -5,10 +5,14 @@ For detailed markdown format, cf. https://open-doc.dingtalk.com/microapp/servera
 import requests
 
 from cpchain_test.config import cfg
+import time
+
 # ピカチュウ robot
 url = cfg['pikachu']['url']
+t = time.time()
 
 def post_message(message, title="pikachu"):
+    global t
     headers = {"Content-Type": "application/json"}
     data = {'msgtype': 'markdown',
             'markdown': {
@@ -18,10 +22,9 @@ def post_message(message, title="pikachu"):
             'at': {
                 "isAtAll": True
             }
-    }
-    response = requests.post(url=url, headers=headers, json=data)
-    result = response.json()
-    print(result)
-
-
-
+            }
+    if time.time() > t + 1:
+        response = requests.post(url=url, headers=headers, json=data)
+        result = response.json()
+        print(result)
+        t = time.time()
