@@ -17,6 +17,10 @@ def term_detail(req,lang, title):
     else:
         return render(req, 'wallet/term_cn.html', locals())
 
+def rule_detail(req, title):
+    title = unquote(title)
+    term = Term.objects.get(title=title) 
+    return render(req, 'wallet/rule.html', locals()) 
 
 def faq_detail(req, pk):
     faq = FAQ.objects.get(pk=pk)

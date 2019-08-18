@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+ 
+    <title> {{ term.title }}</title>
+
+</head>
+<style>
+    body {
+        font-family: 'roboto' !important;
+        margin: 0;
+    }
+
+
+    .main img {
+        width: 100% !important;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <div id="mainDiv" class="main"></div>
+    <script>
+        (function () {
+
+            var newRem = function () {
+
+                var html = document.documentElement;
+
+                var ClientWidth = html.getBoundingClientRect().width;
+
+                if (ClientWidth <= 750) {
+                    html.style.fontSize = ClientWidth / 3.75 + 'px';
+                } else {
+                    html.style.fontSize = '100px';
+                }
+            };
+
+            window.addEventListener('resize', newRem, false);
+            newRem();
+        })();
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        var mainDiv = document.getElementById('mainDiv')
+        mainDiv.innerHTML = HTMLDecode(`{{term.content}}`).replace('margin-left: 40px', 'margin-left: 0.2rem') 
+    </script>
+
+</body>
+
+</html>
