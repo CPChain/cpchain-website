@@ -7,7 +7,7 @@ from .models import *
 
 
 # Create your views here.
-def term_detail(req,lang, title):
+def term_detail(req, lang, title):
     title = unquote(title)
     term = Term.objects.get(title=title)
     if lang == 'en':
@@ -21,8 +21,10 @@ def faq_detail(req, pk):
     return render(req, 'wallet/faq_detail.html', locals())
 
 
-def news_detail(req, pk):
+def news_detail(req, pk, lang):
     news = WalletNew.objects.get(pk=pk)
+    if lang == 'cn':
+        news.update_time = str(news.update_time)
     return render(req, 'wallet/news_detail.html', locals())
 
 
