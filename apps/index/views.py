@@ -59,7 +59,7 @@ def judge_pc_or_mobile(ua):
 
 def reshape(arr,num):
     pages =[]
-    for index in range(len(arr)/num):
+    for index in range(int(len(arr)/num) +1):
        pages.append(arr[index*num:(index+1)*num])
     return pages
 
