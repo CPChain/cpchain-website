@@ -2149,6 +2149,46 @@
 <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
 
 <script>
+
+(function () {
+
+    var newRem = function () {
+
+        var html = document.documentElement;
+
+        var ClientWidth = html.getBoundingClientRect().width;
+
+        if (ClientWidth <= 750) {
+            html.style.fontSize = ClientWidth / 30 + 'px';
+        } else {
+            html.style.fontSize = '16px';
+        }
+    };
+
+    window.addEventListener('resize', newRem, false);
+    newRem();
+    })(); 
+    for (let i = 1; i <= 6; i++) {
+        new Swiper('.swiper-container-s' + i, {
+            autoplay: true,//可选选项，自动滑动
+            pagination: {
+                el: '.swiper-pagination-s' + i,
+                dynamicBullets: true,
+                clickable: true,
+            },
+
+        })
+    }
+
+
+    let tabitems = document.querySelectorAll('.tabitem')
+    tabitems.forEach(item => item.onclick = () => {
+    document.querySelectorAll('.tabitemactive').forEach(act => act.className = 'tabitem')
+    item.className = 'tabitem tabitemactive'
+
+    document.querySelectorAll('.swiperdiv').forEach(sd => sd.setAttribute('style', 'display:none'))
+    document.getElementById(item.getAttribute('data-seq')).setAttribute('style', 'display:block')
+    })
     {#获取本地地址和语言#}
     var localUrl = window.location.pathname;
 
