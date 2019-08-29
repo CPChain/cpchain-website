@@ -1,14 +1,16 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
-PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'))
+PARTNERS = (('Partners', 'Partners'), ('Investors', 'Investors'), ('Exchanges', 'Exchanges'), ('Industry', 'Industry'),
+            ('Project', 'Project'), ('Academia', 'Academia'), ('Capital', 'Capital'), ('Association', 'Association'),
+            ('Industry', 'Industry'))
 
 Media_CATEGORY = (('Media Reports', 'Media Reports'),
                   ('媒体报道', '媒体报道'))
 NEWS_CATEGORY = (
     ('Community Updates', 'Community Updates'), ('Community Events', 'Community Events'),
     ('Official Announcement', 'Official Announcement'),
-    ('项目进展', '项目进展'), ('重大发布', '重大发布'),('draft','draft'))
+    ('项目进展', '项目进展'), ('重大发布', '重大发布'), ('draft', 'draft'))
 
 
 class Department(models.Model):
@@ -67,4 +69,3 @@ class Media(models.Model):
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
     media_name = models.CharField(max_length=200, default='')
     summary = models.CharField(max_length=500, blank=True, null=True, default='')
-
