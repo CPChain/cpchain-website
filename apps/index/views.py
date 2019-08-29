@@ -57,6 +57,11 @@ def judge_pc_or_mobile(ua):
 
     return is_mobile
 
+def reshape(arr,num):
+    pages =[]
+    for index in range(len(arr)/num):
+       pages.append(arr[index*6:(index+1)*6])
+    return pages
 
 class IndexView(View):
     def get(self, req):
@@ -66,8 +71,16 @@ class IndexView(View):
         partners = Partner.objects.filter(type='Partners').order_by('-weight')
         investors = Partner.objects.filter(type='Investors')
         exchanges = Partner.objects.filter(type='Exchanges')
-        main_teams = TeamMate.objects.filter(is_main=True)
-        global_teams = TeamMate.objects.filter(is_main=False)
+         
+        industry = reshape(Partner.objects.filter(type='Industry'))
+
+        project =  reshape(Partner.objects.filter(type='Project'))
+        academia =  reshape(Partner.objects.filter(type='Academia'))
+        capital =  reshape(Partner.objects.filter(type='Capital'))
+        association =  reshape(Partner.objects.filter(type='Association') )
+        industryNode =  reshape(Partner.objects.filter(type='IndustryNode') )
+        main_teams =  reshape(TeamMate.objects.filter(is_main=True))
+        global_teams =  reshape(TeamMate.objects.filter(is_main=False))
         return render(req, 'index.html', locals())
 
 

@@ -31,630 +31,210 @@
         padding: 0 !important;
         margin: 0 !important;
     } 
-    </style>
+    </style> 
         <style>
-            * {
-                padding: 0;
-                margin: 0
-            }
-
-            @media (min-width: 375px) {
-                .mediaHidden{
-                    display: none
+                .tabitemactive {
+                    color: rgba(245, 194, 68, 1);
+                    z-index: 100;
                 }
-            }
-
-            @media (min-width: 1024px) {
-                .mediaHidden{ 
+        
+        
+        
+                @media (min-width: 375px) {
+                    .mobEcosystem {
+                        display: block
+                    }
+        
+                    .webEcosystem {
+                        display: none
+                    }
+        
+                    .tabitemactive i {
+                        background-color: rgba(245, 194, 68, 1) !important;
+                        height: 2.85rem;
+                        width: 3px !important;
+                        margin-left: -1px !important;
+                    }
+        
+                    .tabcontainer {
+                        height: 100%;
+                        background-color: white;
+                        margin-left: 1rem;
+                        border-left: 1px solid rgba(193, 206, 220, 1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                    }
+        
+                    .tabitem i {
+                        height: 2.85rem;
+                        width: 2px;
+                        margin-right: 1.785rem;
+                    }
+        
+                    .tabitem {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                        font-size: 1.071rem;
+                        /* font-family: 'SFUIText'; */
+                        font-weight: 500;
+                        color: rgba(56, 82, 117, 1);
+                        margin-bottom: 0.476rem;
+                        height: 2.85rem;
+                        line-height: 2.85rem;
+                    }
+        
+                    .carditem {
+                        width: 12.85rem;
+                        height: 4.5rem;
+                        box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+                        -moz-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+                        -webkit-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+        
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+        
+                    }
+        
+                    div.carditem:hover {
+                        width: 12.85rem;
+                        height: 4.5rem;
+                        box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                        -moz-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                        -webkit-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                    }
+        
+                    .carditem img {
+                        max-height: 4rem;
+                        max-width: 12rem;
+                    }
+        
+        
+                    .swiper-container {
+                        width: 30rem;
+                        /* height: 19.5rem; */
+                    }
+        
+                    .swiperdiv {
+                        /* height: 19.5rem; */
+                        padding: 0 !important;
+                    }
+        
+                    .swiper-wrapper {
+                        width: 30rem;
+                        /* height: 19.5rem; */
+                    }
+        
+                    .swiper-bottom {
+                        display: '-ms-grid';
+                        display: 'grid';
+                        grid-gap: 0.4rem;
+                        -ms-grid-columns: (auto) 2;
+                        grid-template-columns: repeat(2, auto) !important;
+                    }
                 }
-            }
-    
-            .main {
-                z-index: 10000;
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.7);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                /* display: none; */
-            }
-    
-            .mainclose {
-                display: none;
-            }
-    
-            @media (min-width: 375px) {
-                .board {
-                    display: flex;
-                    z-index: 100000;
-                    width: 24.96rem;
-                    height: 37.76rem;
-                    border-radius: 2.40rem; 
-                    display: flex;
-                    flex-direction: column;
-    
-                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Safari 5.1 - 6.0 */
-                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Opera 11.1 - 12.0 */
-                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Firefox 3.6 - 15 */
-                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* 标准的语法（必须放在最后） */
+        
+                @media (min-width: 1024px) {
+                    .mobEcosystem {
+                        display: none
+                    }
+        
+                    .webEcosystem {
+                        display: block
+                    }
+        
+                    .tabitemactive i {
+                        background-color: rgba(245, 194, 68, 1) !important;
+                        height: 2.85rem;
+                        width: 3px !important;
+                        margin-right: -1px !important;
+                        margin-left: 1.785rem!important;
+                    }
+        
+                    .tabitem i {
+                        height: 2.85rem;
+                        width: 2px;
+                        margin-left: 1.785rem;
+                        margin-right: 0 ;
+                    }
+        
+                    .tabcontainer {
+                        height: 100%;
+                        background-color: white;
+                        border-right: 1px solid rgba(193, 206, 220, 1);
+                        border-left: 0px solid rgba(193, 206, 220, 1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                    }
+        
+                    .tabitem {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        font-size: 1.071rem;
+                        /* font-family: 'SFUIText'; */
+                        font-weight: 500;
+                        color: rgba(56, 82, 117, 1);
+                        margin-bottom: 0.476rem;
+                        height: 2.85rem;
+                        line-height: 2.85rem;
+                    }
+        
+                    .carditem {
+                        width: 17.85rem;
+                        height: 6.54rem;
+                        box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+                        -moz-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+                        -webkit-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+        
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+        
+                    }
+        
+                    div.carditem:hover {
+                        width: 17.85rem;
+                        height: 6.54rem;
+                        box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                        -moz-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                        -webkit-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                    }
+        
+                    .carditem img {
+                        max-height: 6rem;
+                        max-width: 17rem;
+                    }
+        
+        
+                    .swiper-container {
+                        width: 55.47rem;
+                        height: 19.5rem;
+                    }
+        
+                    .swiperdiv {
+                        height: 19.5rem;
+                    }
+        
+                    .swiper-wrapper {
+                        width: 55.47rem;
+                        height: 19.5rem;
+                    }
+        
+                    .swiper-bottom {
+                        display: '-ms-grid';
+                        display: 'grid';
+                        grid-gap: 0.4rem;
+                        -ms-grid-columns: (auto) 3;
+                        grid-template-columns: repeat(3, auto) !important;
+                    }
                 }
-                .left {
-                    margin-left: 1.4rem;
-                    margin-top: 1.52rem; 
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
-    
-                .message {
-                    width: 16.56rem;
-                    height: 9.6rem;
-                    background-image: url("{% static 'img/mainnetwelcome/text.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                }
-    
-                .learn { 
-                    display: none;
-                }
-    
-                .right {
-                    position: absolute;
-                    width: 21.6rem;
-                    height: 21.28rem;
-                    /* background-color: red; */
-                    margin-top: 11.12rem;
-                    margin-left:1.68rem; 
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-    
-                .outside {
-                    z-index: 200000;
-                    position: absolute;
-                    width: 21.28rem;
-                    height: 21.28rem;
-                    background-image: url("{% static 'img/mainnetwelcome/outside.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                }
-    
-                .outsideplay {
-                    animation: outsidetrans 20s linear 0s infinite;
-                    -webkit-animation: outsidetrans 20s linear 0s infinite;
-                    -moz-animation: outsidetrans 20s linear 0s infinite;
-                    -webkit-animation: outsidetrans 20s linear 0s infinite;
-                    -o-animation: outsidetrans 20s linear 0s infinite;
-                }
-    
-    
-    
-                .inside {
-                    width: 11.56rem;
-                    height: 11.56rem;
-                    background-image: url("{% static 'img/mainnetwelcome/inside.png' %}");    
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: absolute;
-    
-                }
-    
-                .insideplay {
-                    animation: insidetrans 20s linear 0s infinite;
-                    -webkit-animation: insidetrans 20s linear 0s infinite;
-                    -moz-animation: insidetrans 20s linear 0s infinite;
-                    -webkit-animation: insidetrans 20s linear 0s infinite;
-                    -o-animation: insidetrans 20s linear 0s infinite;
-                }
-    
-                .pause {
-                    animation-play-state: paused;
-                }
-    
-                .logo {
-                    width: .3.24rem;
-                    height: 4.44rem;
-                    background-image: url("{% static 'img/mainnetwelcome/logo.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: absolute;
-                }
-    
-    
-    
-                .bubble {
-                    z-index: 500000;
-                    border-radius: 50%;
-                    background-image: url("{% static 'img/mainnetwelcome/bubble.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                }
-    
-    
-                .close {
-                    z-index: 500000;
-                    width: 2.04rem;
-                    height: 2.04rem;
-                    border-radius: 50%;
-                    background-image: url("{% static 'img/mainnetwelcome/close.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                    margin-top: -21.52rem;
-                    /* margin-left: 4.70rem; */
-                }
-    
-                .ball {
-                    z-index: 500000;
-                    border-radius: 50%;
-                    background-image:url("{% static 'img/mainnetwelcome/ball.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                }
-    
-    
-                .bottomLearn{
-                    width: 7.92rem;
-                    height: 1.84rem;
-                    background-image: url("{% static 'img/mainnetwelcome/button.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    margin-top: 22.88rem;
-                    margin-left: 8.52rem;
-                }
-    
-            }
-    
-            @media (min-width: 1024px) {
-                .board {
-                    display: flex;
-                    z-index: 100000;
-                    width: 990px;
-                    height: 635px;
-                    border-radius: 60px;
-    
-                    display: flex;
-                    flex-direction: row;
-    
-                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Safari 5.1 - 6.0 */
-                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Opera 11.1 - 12.0 */
-                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* Firefox 3.6 - 15 */
-                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
-                    /* 标准的语法（必须放在最后） */
-                }
-    
-                .left {
-                    margin-left: 50px;
-                    margin-top: 78px;
-                    /* background-color: #00f; */
-                    width: 414px;
-                    height: 446px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
-    
-                .message {
-                    width: 414px;
-                    height: 240px;
-                    background-image: url("{% static 'img/mainnetwelcome/text.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                }
-    
-                .learn {
-                    width: 198px;
-                    height: 46px;
-                    background-image:  url("{% static 'img/mainnetwelcome/button.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    display: inherit;
-                    cursor : pointer;
-                }
-    
-                .right {
-                    position: absolute;
-                    width: 532px;
-                    height: 532px;
-                    /* background-color: red; */
-                    margin-top: 52px;
-                    margin-left: 514px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-    
-                .outside {
-                    z-index: 200000;
-                    position: absolute;
-                    width: 532px;
-                    height: 532px;
-                    background-image:  url("{% static 'img/mainnetwelcome/outside.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                }
-    
-                .outsideplay {
-                    animation: outsidetrans 20s linear 0s infinite;
-                    -webkit-animation: outsidetrans 20s linear 0s infinite;
-                    -moz-animation: outsidetrans 20s linear 0s infinite;
-                    -webkit-animation: outsidetrans 20s linear 0s infinite;
-                    -o-animation: outsidetrans 20s linear 0s infinite;
-                }
-    
-    
-    
-                .inside {
-                    width: 289px;
-                    height: 289px;
-                    background-image: url("{% static 'img/mainnetwelcome/inside.png' %}");  
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: absolute;
-    
-                }
-    
-                .insideplay {
-                    animation: insidetrans 20s linear 0s infinite;
-                    -webkit-animation: insidetrans 20s linear 0s infinite;
-                    -moz-animation: insidetrans 20s linear 0s infinite;
-                    -webkit-animation: insidetrans 20s linear 0s infinite;
-                    -o-animation: insidetrans 20s linear 0s infinite;
-                }
-    
-                .pause {
-                    animation-play-state: paused;
-                }
-    
-                .logo {
-                    width: 81px;
-                    height: 111px;
-                    background-image: url("{% static 'img/mainnetwelcome/logo.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: absolute;
-                }
-    
-    
-    
-                .bubble {
-                    z-index: 500000;
-                    border-radius: 50%;
-                    background-image:  url("{% static 'img/mainnetwelcome/bubble.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                }
-    
-    
-                .close {
-                    z-index: 500000;
-                    width: 51px;
-                    height: 51px;
-                    border-radius: 26px;
-                    background-image:  url("{% static 'img/mainnetwelcome/close.png' %}");   
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                    margin-top: -358px;
-                    margin-left: 470px;
-                }
-    
-                .ball {
-                    z-index: 500000;
-                    border-radius: 50%;
-                    background-image:  url("{% static 'img/mainnetwelcome/ball.png' %}");    
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    position: fixed;
-                }
-    
-                .bottomLearn{
-                    display: none;
-                }
-            }
-    
-    
-            @keyframes outsidetrans {
-                100% {
-                    transform: rotate(-360deg);
-                    -webkit-transform: rotate(-360deg);
-                }
-            }
-    
-            @-moz-keyframes outsidetrans {
-                100% {
-                    transform: rotate(-360deg);
-                    -webkit-transform: rotate(-360deg);
-                }
-            }
-    
-            @-o-keyframes outsidetrans {
-                100% {
-                    transform: rotate(-360deg);
-                    -webkit-transform: rotate(-360deg);
-                }
-    
-            }
-    
-            @-webkit-keyframes outsidetrans {
-                100% {
-                    transform: rotate(-360deg);
-                    -webkit-transform: rotate(-360deg);
-                }
-            }
-    
-            @keyframes insidetrans {
-                100% {
-                    transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                }
-    
-            }
-    
-            @-moz-keyframes insidetrans {
-                100% {
-                    transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                }
-            }
-    
-            @-o-keyframes insidetrans {
-                100% {
-                    transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                }
-    
-            }
-    
-            @-webkit-keyframes insidetrans {
-                100% {
-                    transform: rotate(360deg);
-                    -webkit-transform: rotate(360deg);
-                }
-            }
-        </style>
-</head>
-<style>
-
-    body {
-        font-family: "Poppins";
-    }
-
-    header {
-        font-family: "Poppins", sans-serif !important;
-    }
-
-
-</style>
+            </style>
 <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
-    <div id=main class="main mainclose">
-        <div id="closebtn" class="close"></div>
-        <div id='board' class="board">
-            <div class="left">
-                <div class="message"></div>
-                <div id=learn class="learn"></div>
-            </div>
-            <div id=right class="right">
-                <div id="outside" class="outside outsideplay">
-                </div>
-                <div id="inside" class="inside insideplay">
-                </div>
-                <div class="logo"></div>
-            </div>
-            <div id=bottomLearn class="bottomLearn"></div>
-        </div>
-    </div>
-    
-    <script>
-        (function () {
-    
-            var newRem = function () {
-    
-                var html = document.documentElement;
-    
-                var ClientWidth = html.getBoundingClientRect().width;
-    
-                if (ClientWidth <= 750) {
-                    html.style.fontSize = ClientWidth / 30 + 'px';
-                } else {
-                    // html.style.fontSize = '100px';
-                }
-            };
-    
-            window.addEventListener('resize', newRem, false);
-            newRem();
-        })();
-    
-        var main = document.getElementById('main')
-        var board = document.getElementById('board')
-        var rightDom = document.getElementById('right')
-        var outsideDom = document.getElementById('outside')
-        var insideDom = document.getElementById('inside')
-        var closebtn = document.getElementById('closebtn') 
-        var bottomLearn = document.getElementById('bottomLearn') 
-        var learn = document.getElementById('learn') 
-        let lang = 'en'
-        if(location.href.indexOf('zh')>0){
-            lang ='cn' 
-        }
-        bottomLearn.addEventListener('click', function () {
-            location.href = lang === 'en' ?`https://cpchain.io/community/?title=CPChain%20Foundation%20Official%20Announcement%20about%20Formal%20Mainnet%20Launch%20and%20Project%20SPARK` :
-             `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%8F%91%E5%B8%83%E7%9A%84%E5%AE%98%E6%96%B9%E7%94%B3%E6%98%8E`
-        }) 
-        learn.addEventListener('click', function () {
-            location.href = lang === 'en' ?`https://cpchain.io/community/?title=CPChain%20Foundation%20Official%20Announcement%20about%20Formal%20Mainnet%20Launch%20and%20Project%20SPARK` :
-             `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%8F%91%E5%B8%83%E7%9A%84%E5%AE%98%E6%96%B9%E7%94%B3%E6%98%8E`
-        }) 
- 
-        closebtn.addEventListener('click', function () {
-            main.className = 'main mainclose'
-        })
-    
-        rightDom.addEventListener('click', function () {
-            if (outsideDom.classList.contains('pause')) {
-                outsideDom.className = 'outside outsideplay';
-            } else {
-                outsideDom.className = 'pause outside outsideplay';
-            }
-    
-    
-            if (insideDom.classList.contains('pause')) {
-                insideDom.className = ' inside insideplay';
-            } else {
-                insideDom.className = 'pause inside insideplay';
-            }
-        });
-    
-    
-        function RandomNum(num1, num2) {
-            return Math.floor(Math.random() * (num2 - num1 + 1) + num1);
-    
-        }
-        function Bubble(size, { top, left }, { xrange, yrange }) {
-            let xoffset = (main.offsetWidth - board.offsetWidth) / 2
-            let yoffset = (main.offsetHeight - board.offsetHeight) / 2 
-    
-            this.bubble = document.createElement("div");
-            this.width = size
-            this.height = size
-            this.left = xoffset + left
-            this.top = yoffset + top
-            this.left0 = xoffset + left
-            this.top0 = yoffset + top
-            this.xrange = xrange
-            this.yrange = yrange
-            this.tempX = this.left;
-            this.tempY = this.top;
-            this.speedx = (RandomNum(1, 3) - 2) / 2;//后面的小数是保证随机产生的方向有正有负
-            this.speedy = (RandomNum(1, 3) - 2) / 2; 
-    
-        }
-        Bubble.prototype.draw = function () {
-            this.bubble.style.width = this.width + "px";
-            this.bubble.style.height = this.height + "px";
-            this.bubble.className = "bubble";
-            this.bubble.style.left = this.tempX + "px";
-            this.bubble.style.top = this.tempY + "px";
-            this.bubble.style.backgroundColor = this.backgroundColor;
-            board.appendChild(this.bubble);
-        }
-    
-        Bubble.prototype.move = function () {
-    
-            this.tempX = this.tempX + this.speedx;
-            this.tempY = this.tempY + this.speedy;
-            // 判断临界值
-            if (Math.abs(this.tempX - this.left0) >= this.xrange || this.tempX <= 0) {
-                this.speedx = -this.speedx;//改变方向
-            }
-            if (Math.abs(this.tempY - this.top0) >= this.yrange || this.tempY <= 0) {
-                this.speedy = -this.speedy;
-            }
-            this.draw();
-        }
-    
-        //构造小球函数
-        function Ball() {
-            this.ball = document.createElement("div");
-            var randomNum = RandomNum(50, 150);
-            this.width = randomNum
-            this.height = randomNum
-            //如果元素有id名，我们可以直接使用，不用document.get....获取
-            this.left = RandomNum(0, 1000 - randomNum);
-            this.top = RandomNum(0, 1000 - randomNum);
-            // this.backgroundColor="rgba("+RandomNum(0,255)+","+RandomNum(0,255)+","+RandomNum(0,255)+","+Math.random()+")";//随机颜色
-            this.tempX = this.left;
-            this.tempY = this.top;
-            this.speedx = (RandomNum(1, 3) - 2) / 2;;//后面的小数是保证随机产生的方向有正有负
-            this.speedy = (RandomNum(1, 3) - 2) / 2;
-        }
-        //画小球的方法
-        Ball.prototype.draw = function () {
-            this.ball.style.width = this.width + "px";
-            this.ball.style.height = this.height + "px";
-            this.ball.className = "ball";
-            this.ball.style.left = this.tempX + "px";
-            this.ball.style.top = this.tempY + "px";
-            this.ball.style.backgroundColor = this.backgroundColor;
-            main.appendChild(this.ball);
-        }
-    
-    
-        //运动函数
-        Ball.prototype.move = function () {
-    
-            this.tempX = this.tempX + this.speedx;
-            this.tempY = this.tempY + this.speedy;
-            // 判断临界值
-            if (this.tempX + this.width >= 1000|| this.tempX <= 0) {
-                this.speedx = -this.speedx;//改变方向
-            }
-            if (this.tempY + this.height >= 1000 || this.tempY <= 0) {
-                this.speedy = -this.speedy;
-            }
-            this.draw();
-        }
-        //产生小球
-        var balls = [];
-        var bubbles = []
-        for (var i = 0; i < 10; i++) {
-            var ball = new Ball();
-            balls.push(ball);//生成的小球对象放进数组
-    
-        }
-        // bubbles.push(new Bubble(200, { top:-100, left: -100 },{xrange:100,yrange:50}))
-        // bubbles.push(new Bubble(100, { top: 550, left: 200 },{xrange:200,yrange:40}))
-        function start() {
-            for (var i = 0; i < balls.length; i++) {
-                balls[i].move();
-            }
-            for (var i = 0; i < bubbles.length; i++) {
-                bubbles[i].move();
-            }
-            window.requestAnimationFrame(start)
-        }
-      
-    
-        let time = new Date()
-        let timestamp = time.getTime()  
-        // if(timestamp > (1561724687709 + 1000 *60 *6) && timestamp<1562493600000){
-            // 1561724487393
-        if(timestamp > 1561888800000 && timestamp<1562493600000){
-            main.className = 'main'
-            start()
-        }
-    
-    </script>
-    <div id="page" class="site">
+ <div id="page" class="site">
     <header class="py-4 mx-auto w-100  position-fixed " id="header">
         <div class="container">
             <div class="row">
@@ -1773,6 +1353,319 @@
                             </div>
                         </div>
                     </section> <!-- section-eleven -->
+ 
+                    
+                    
+                    <section class="section-twelve py-sm-5 py-0 mb-5">
+                            <div class="container pt-5">
+                                <div class="row flex-column align-items-center justify-content-center">
+
+                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                        <h2 class="text-center poppins-font">Ecosystem</h2>
+                                        <hr class="middle-hr mb-0">
+                                    </div>
+                                    <div class="row" style="margin: 0 !important">
+                                        <div class=" pt-5 col-xl-3 col-lg-3 col-md-12 col-sm-12 ">
+                                            <div class="tabcontainer">
+                                                <div data-seq="s1" class="tabitem tabitemactive">Industry
+                                                    Partnership<i></i></div>
+                                                <div data-seq="s2" class="tabitem">Project Partnership<i></i></div>
+                                                <div data-seq="s3" class="tabitem">Academia Partnership<i></i></div>
+                                                <div data-seq="s4" class="tabitem">Capital Partnership<i></i></div>
+                                                <div data-seq="s5" class="tabitem">Association<i></i></div>
+                                                <div data-seq="s6" class="tabitem">Industry Node<i></i></div>
+                                            </div>
+                                        </div>
+
+                                        <div id='s1' class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s1">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in industry %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s1 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in industry %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
+                                        </div>
+
+                                        <div id='s2' style="display: none"
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s2">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in project %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s2 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in project %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
+
+                                        </div>
+                                        <div id='s3' style="display: none"
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s3">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in academia %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s3 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in academia %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+                                        </div>
+                                        <div id='s4' style="display: none"
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s4">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in capital %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s4 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in capital %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+                                        </div>
+                                        <div id='s5' style="display: none"
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s5">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in association %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s5 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in association %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+
+                                        </div>
+                                        <div id='s6' style="display: none"
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s6">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in industryNode %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s6 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in industryNode %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
 
                     <section class="section-twelve py-sm-5 py-0 mb-5">
                         <div class="container pt-5">
@@ -2328,6 +2221,7 @@
 
 
     let header = document.getElementById('header');
+    
     window.addEventListener('scroll', function (e) {
         (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
     });
