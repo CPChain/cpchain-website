@@ -69,3 +69,11 @@ class Media(models.Model):
     media_logo = models.ImageField(upload_to='img/MediaLogo', null=True, blank=True)
     media_name = models.CharField(max_length=200, default='')
     summary = models.CharField(max_length=500, blank=True, null=True, default='')
+
+
+class Notification(models.Model):
+    content = models.CharField(max_length=400)
+    content_en = models.CharField(max_length=400)
+    time_start = models.DateTimeField()
+    time_end = models.DateTimeField()
+    url = models.CharField(max_length=500, default='http://', null=True, blank=True)
