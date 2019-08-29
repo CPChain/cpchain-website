@@ -60,7 +60,7 @@ def judge_pc_or_mobile(ua):
 def reshape(arr,num):
     pages =[]
     for index in range(len(arr)/num):
-       pages.append(arr[index*6:(index+1)*6])
+       pages.append(arr[index*num:(index+1)*num])
     return pages
 
 class IndexView(View):
