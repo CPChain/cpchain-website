@@ -64,6 +64,10 @@ class TermAdmin:
     model = Term
     list_display = ['title']
 
+class NotificationAdmin:
+    model = Notification
+    list_display = ['content','time_start','time_end']
+
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
 
@@ -72,6 +76,7 @@ xadmin.site.register(Department, DeptAdmin)
 xadmin.site.register(Partner, PartnerAdmin)
 xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
+xadmin.site.register(Notification, NotificationAdmin)
 
 xadmin.site.register(WalletNew, WalletNewsAdmin)
 xadmin.site.register(SwipeBanner, SwipeAdmin)
