@@ -84,7 +84,7 @@ class IndexView(View):
         main_teams =  TeamMate.objects.filter(is_main=True)
         global_teams =  TeamMate.objects.filter(is_main=False) 
 
-        times = time.time()
+        times = str(time.time())
         notification = Notification.objects.filter(time_start__lt = time).filter(time_end__gt=time)
         return render(req, 'index.html', locals())
 
