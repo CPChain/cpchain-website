@@ -463,7 +463,7 @@
 <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
  <div id="page" class="site">
      {% for n in notification %}
-    <div id=messagemain class="message"><a href="{{n.url}}">{{n.content}}</a>
+    <div id=messagemain class="message"><a class="messageLink" href="{{n.url}}">{{n.content}}</a>
             <div id="messageclose" class="messageclose"></div>
     </div>
     {% endfor %}
