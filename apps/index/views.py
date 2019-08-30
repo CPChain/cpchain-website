@@ -80,7 +80,8 @@ class IndexView(View):
         association =  reshape(Partner.objects.filter(type='Association') ,6)
         industryNode =  reshape(Partner.objects.filter(type='IndustryNode') ,6)
         main_teams =  TeamMate.objects.filter(is_main=True)
-        global_teams =  TeamMate.objects.filter(is_main=False)
+        global_teams =  TeamMate.objects.filter(is_main=False) 
+        notification = Notification.objects.all()
         return render(req, 'index.html', locals())
 
 

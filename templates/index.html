@@ -430,9 +430,39 @@
                         grid-template-columns: repeat(3, auto) !important;
                     }
                 }
+
+                .message {
+                    height: 3rem;
+                    background-color: #4A5659;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    z-index: 100;
+                }
+        
+
+                .messageclose {
+                    margin-right: 1rem;
+                    width: 1.5rem;
+                    height: 1.5rem;  
+                    position: absolute;
+                    right: 0;
+                    z-index: 1000;
+                    border-radius: 50%;
+                    background-image: url("close.png");
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
             </style>
 <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
  <div id="page" class="site">
+     {% for n in notification %}
+    <div id=messagemain class="message"><a href="www.baidu.com">{{n.content}} {{n.content_en}} {{n.time_start}} {{n.time_end}} {{n.url}}</a>
+            <div id="messageclose" class="messageclose"></div>
+    </div>
+    {% endfor %}
     <header class="py-4 mx-auto w-100  position-fixed " id="header">
         <div class="container">
             <div class="row">
