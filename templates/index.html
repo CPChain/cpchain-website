@@ -970,6 +970,30 @@
                         </div>
                     </section> <!-- section-seven -->
 
+                    <section class="section-twelve py-sm-5 py-0 mb-5">
+                            <div class="container pt-5">
+                                <div class="row flex-column align-items-center justify-content-center">
+    
+                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                        <h2 class="text-center poppins-font">Videos</h2>
+                                        <hr class="middle-hr mb-0">
+                                    </div>
+                                    <div class="bottom swiper-bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                        {% for e in exchanges %}
+                                            <iframe height="308" class="rounded w-100"
+                                                src="{% trans 'https://www.youtube.com/embed/0dNFgy_aGkM' %}"
+                                                class="smaller disable-select d-block"
+                                                frameborder="0"
+                                                allow="autoplay; encrypted-media"
+                                                allowfullscreen>
+                                            </iframe> 
+                                        {% endfor %}
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </section>
+
                     <section class="section-eight pt-sm-5 mt-sm-5 py-0 my-0">
                         <div class="container mt-sm-5 pt-4">
                             <div class="row">
