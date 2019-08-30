@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import news_detail, news_list, events_list, swipe, faq_list, faq_detail, term_detail
+from .views import news_detail, news_list, events_list, swipe, faq_list, faq_detail, term_detail,download_app,rule_detail
 
 urlpatterns = [
     path('news_detail/<pk>/<lang>', news_detail),
@@ -10,4 +10,6 @@ urlpatterns = [
     path('faq_list/<lang>', faq_list),
     path('faq_detail/<pk>', faq_detail),
     path('term_detail/<lang>/<title>', term_detail),
+    path('rule_detail/<title>', rule_detail),
+    path('download_app/', download_app),
 ]
