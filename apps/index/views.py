@@ -10,6 +10,8 @@ from cpchain_test.config import cfg
 from .faucet import Faucet
 from .models import *
 import re
+import time
+
 
 chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
 cf = Web3(Web3.HTTPProvider(chain))
@@ -81,7 +83,9 @@ class IndexView(View):
         industryNode =  reshape(Partner.objects.filter(type='IndustryNode') ,6)
         main_teams =  TeamMate.objects.filter(is_main=True)
         global_teams =  TeamMate.objects.filter(is_main=False) 
-        notification = Notification.objects.all()
+
+        times = time.time()
+        notification = Notification.objects.filter(time_start<time).filter(time_end>time)
         return render(req, 'index.html', locals())
 
 
