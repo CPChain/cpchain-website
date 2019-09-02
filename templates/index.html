@@ -2134,9 +2134,9 @@
                 let n = resTimefilter[0]
                 messageBlock.setAttribute('style','display:flex')
                 if(n.fields.url.replace('http://','').replace('https://','')){
-                    messageBlock.append(`<a class="messageLink" href="${n.fields.url}"> ${localUrl.startsWith('/zh-hans')?n.content:n.content_en}</a><div id="messageclose" class="messageclose"></div>`)
+                    messageBlock.innerHTML=`<a class="messageLink" href="${n.fields.url}"> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</a><div id="messageclose" class="messageclose"></div>`
                 } else {
-                    messageBlock.append(`<span> ${localUrl.startsWith('/zh-hans')?n.content:n.content_en}</span><div id="messageclose" class="messageclose"></div>`)
+                    messageBlock.innerHTML=`<span> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</span><div id="messageclose" class="messageclose"></div>`
                 }
                 document.getElementById('messageclose').addEventListener('click',function(){
                     document.getElementById('messagemain').style='display:none'
