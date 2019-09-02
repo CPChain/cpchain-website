@@ -1328,7 +1328,7 @@
                                                     </div>
                                                     <div class="image-holder p-2">
                                                             <a href="javascript:void(0)" onclick="goToSlide(3, this);">
-                                                                <img src="{% static 'img/Team/shiyao.png' %}"
+                                                                <img src="/media/img/Team/shiyao.png"
                                                                      class="smaller disable-select d-block">
                                                             </a>
                                                     </div>
@@ -1380,7 +1380,7 @@
                                                             {% blocktrans %}CPChain Co-Founder, {% endblocktrans %}R&amp;D Director</h6>
                                                         <p class="mt-4"
                                                             style="color: #305278;font-family: 'Poppins';font-weight: 500;">
-                                                            {% blocktrans %}Mr. Shi is an early participant in blockchain technology and digital currency. Founder of Shared Finance, and participant in the investment and development of many successful projects. {% endblocktrans %}
+                                                            {% blocktrans %}马史耀博士的主要研究方向是区块链网络，以及基于大数据的并行处理平台及任务调度策略。多项科研成果发表于国际一流会议。 {% endblocktrans %}
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 3 -->
@@ -2360,6 +2360,8 @@
             imageTeam.src = '{% static 'img/Team/zhaobin.png' %}';
         } else if (currentSlide == 2) {
             imageTeam.src = '{% static 'img/Team/shi.png' %}';
+        } else if (currentSlide == 3) {
+            imageTeam.src = '/media/img/Team/shiyao.png';
         }
     })
 
