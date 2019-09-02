@@ -2131,7 +2131,7 @@
             let resTimefilter = res.filter(p=>timeNow>new Date(p.fields.time_start).getTime() && timeNow < new Date(p.fields.time_end).getTime())
             if(resTimefilter && resTimefilter.length>0){
                 let messageBlock = document.getElementById("messagemain")
-                let = resTimefilter[0]
+                let n = resTimefilter[0]
                 messageBlock.setAttribute('style','display:flex')
                 if(n.fields.url.replace('http://','').replace('https://','')){
                     messageBlock.append(`<a class="messageLink" href="${n.fields.url}"> ${localUrl.startsWith('/zh-hans')?n.content:n.content_en}</a><div id="messageclose" class="messageclose"></div>`)
