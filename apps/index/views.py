@@ -1,10 +1,11 @@
 from urllib.parse import unquote
 
 from cpc_fusion import Web3
-from django.http import FileResponse, HttpResponseRedirect
+from django.http import FileResponse, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import View
 from pure_pagination import PageNotAnInteger, Paginator
+from django.core import serializers
 
 from cpchain_test.config import cfg
 from .faucet import Faucet
@@ -69,6 +70,12 @@ class IndexView(View):
         main_teams = TeamMate.objects.filter(is_main=True)
         global_teams = TeamMate.objects.filter(is_main=False)
         return render(req, 'index.html', locals())
+
+
+class NotificationView(View):
+    def get(self, req):
+        data = serializers.serialize('json', Notification.objects.all(), )
+        return HttpResponse(data)
 
 
 class CommunityView(View):
