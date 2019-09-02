@@ -1662,6 +1662,7 @@
                                                 <div data-seq="s4" class="tabitem">Capital Partnership<i></i></div>
                                                 <div data-seq="s5" class="tabitem">Association<i></i></div>
                                                 <div data-seq="s6" class="tabitem">Industry Node<i></i></div>
+                                                <div data-seq="s7" class="tabitem">{% trans 'Exchanges' %}<i></i></div>
                                             </div>
                                         </div>
 
@@ -1944,7 +1945,53 @@
                                                 </div> 
 
                                         </div>
+                                        <div id='s7' style="display: none"
+                                        class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                        <!-- Swiper -->
+                                        <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s7">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in industryNode %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s7 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in industryNode %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
 
+                                    </div>
 
                                     </div>
 
@@ -1955,7 +2002,7 @@
 
 
 
-                    <section class="section-twelve py-sm-5 py-0 mb-5">
+                    <!-- <section class="section-twelve py-sm-5 py-0 mb-5">
                         <div class="container pt-5">
                             <div class="row flex-column align-items-center justify-content-center">
 
@@ -1977,7 +2024,8 @@
 
                             </div>
                         </div>
-                    </section> <!-- section-twelve --> 
+                    </section> -->
+                     <!-- section-twelve --> 
                      <!-- section-thirteen -->
                     </section> <!-- section-thirteen -->
                     
@@ -2130,7 +2178,7 @@
     newRem();
     })(); 
     function initEcosystem(){
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 7; i++) {
         new Swiper('.swiper-container-s' + i, {
             autoplay: true,//可选选项，自动滑动
             pagination: {

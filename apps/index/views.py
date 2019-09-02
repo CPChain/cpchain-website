@@ -71,7 +71,7 @@ class IndexView(View):
         is_mobile = judge_pc_or_mobile(ua)
         partners = Partner.objects.filter(type='Partners').order_by('-weight')
         investors = Partner.objects.filter(type='Investors')
-        exchanges = Partner.objects.filter(type='Exchanges')
+        exchanges = reshape(Partner.objects.filter(type='Exchanges'),6)
          
         industry = reshape(Partner.objects.filter(type='Industry'),6)
 
