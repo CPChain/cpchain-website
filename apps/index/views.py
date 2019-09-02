@@ -81,8 +81,8 @@ class IndexView(View):
         industryNode =  reshape(Partner.objects.filter(type='IndustryNode') ,6)
         main_teams =  TeamMate.objects.filter(is_main=True)
         global_teams =  TeamMate.objects.filter(is_main=False) 
-        notification = Notification.objects.all()
-
+        # notification = Notification.objects.all()
+        videos = []
         return render(req, 'index.html', locals())
 
 
