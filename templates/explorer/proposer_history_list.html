@@ -141,7 +141,8 @@
                 delimiters: [`[[`, `]]`],
                 methods: {
                     convertTime: function (tss) {
-                        var cts = parseInt((Date.now() + 500) / 1000)
+                        let now = new Date()
+                        var cts = parseInt((now.getTime() + 500) / 1000)
                         return formatTS(cts - tss)
                     }
                 }
