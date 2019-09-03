@@ -74,7 +74,7 @@ class NotificationAdmin:
 
 class IndexVideoAdmin:
     model = IndexVideo
-    list_display = ['name', 'name_en', 'ispulish', 'weight']
+    list_display = ['name', 'name_en', 'ispublish', 'weight']
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
