@@ -301,7 +301,7 @@ msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据
 #, fuzzy
 #| msgid "Industry Node: "
 msgid "Industries"
-msgstr "经济节点"
+msgstr "行业"
 
 #: templates/index.html:958
 msgid ""
@@ -328,7 +328,7 @@ msgstr "智能医疗"
 
 #: templates/index.html:1016
 msgid "Videos"
-msgstr ""
+msgstr "视频"
 
 #: templates/index.html:1073
 msgid "Industry <br> Chains"
@@ -529,8 +529,8 @@ msgstr ""
 #: templates/index.html:1383
 #, fuzzy
 #| msgid "CPChain Co-Founder, CTO"
-msgid "CPChain Co-Founder, CTO "
-msgstr "CPChain联合创始人兼首席技术官"
+msgid "CPChain CTO "
+msgstr "CPChain 首席技术官"
 
 #: templates/index.html:1386
 msgid ""
@@ -538,8 +538,10 @@ msgid ""
 "Technology. His reserach area convers the fields of Blockchain network and "
 "Big-data-based Parallel Processing Platform & Mission Schedule Strategy. A "
 "few of his researches have been publicized on international conferences. "
-msgstr ""
+msgstr "马史耀博士的主要研究方向是区块链网络，以及基于大数据的并行处理平台及任务调度策略。多项科研成果发表于国际一流会议。"
 
+msgid "Matthew Ma"
+msgstr "马史耀"
 #: templates/index.html:1440 templates/index.html:1449
 msgid "CPChain Team"
 msgstr "核心团队"
@@ -576,37 +578,40 @@ msgstr "投资者"
 #, fuzzy
 #| msgid "Business/Partnership"
 msgid "Industry Partnership"
-msgstr "业务/合伙企业"
+msgstr "企业合作"
+# msgstr "业务/合伙企业"
 
 #: templates/index.html:1662
 #, fuzzy
 #| msgid "Business/Partnership"
 msgid "Project Partnership"
-msgstr "业务/合伙企业"
+msgstr "项目合作"
+# msgstr "业务/合伙企业"
 
 #: templates/index.html:1663
 #, fuzzy
 #| msgid "Business/Partnership"
 msgid "Academia Partnership"
-msgstr "业务/合伙企业"
+msgstr "学术合作"
+# msgstr "业务/合伙企业"
 
 #: templates/index.html:1664
 #, fuzzy
 #| msgid "Business/Partnership"
 msgid "Capital Partnership"
-msgstr "业务/合伙企业"
+msgstr "资方合作"
 
 #: templates/index.html:1665
 #, fuzzy
 #| msgid "Application"
 msgid "Association"
-msgstr "应用"
+msgstr "协会联盟"
 
 #: templates/index.html:1666
 #, fuzzy
 #| msgid "Industry Node: "
 msgid "Industry Node"
-msgstr "经济节点"
+msgstr "行业节点"
 
 #: templates/index.html:1667 templates/index.html:2012
 msgid "Exchanges"
