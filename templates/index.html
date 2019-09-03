@@ -43,6 +43,9 @@
     
             /* 手机端 */
             @media (min-width: 125px) {
+                .videoContainer{
+                    grid-template-columns: repeat(1, auto) !important;
+                }
                 .website {
                     display: none;
                 }
@@ -1013,7 +1016,7 @@
                                         <h2 class="text-center poppins-font">Videos</h2>
                                         <hr class="middle-hr mb-0">
                                     </div>
-                                    <div class="bottom swiper-bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                    <div id=videosContainer class="bottom swiper-bottom videoContainer pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
                                         {% for e in videos %}
                                             <iframe height="308" class="rounded w-100"
                                                 src="{% trans 'https://www.youtube.com/embed/0dNFgy_aGkM' %}"
@@ -2228,11 +2231,30 @@
                     document.getElementById('messagemain').style='display:none'
                 })
             }
-        })
+        }).catch()
+    } 
+
+    function getIndexVideos(){
+        fetch('/index_video').then(res=>res.json()).then(res=>{
+            if(res && res.length>0){
+                let  videosContainer = document.getElementById('videosContainer')
+                let htmlStr = ''
+                res.forEach(v=>{ 
+                    htmlStr +=`<iframe height="308" class="rounded w-100"
+                                    src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
+                                    class="smaller disable-select d-block"
+                                    frameborder="0"
+                                    allow="autoplay; encrypted-media"
+                                    allowfullscreen>
+                                </iframe> `
+                })
+                videosContainer.innerHTML = htmlStr 
+            }
+             
+        }).catch()
     }
     getNotification()
-     
-
+    getIndexVideos()
 
     {#点击英文#}
     $(".en").click(function () {
