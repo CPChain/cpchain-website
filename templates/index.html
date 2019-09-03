@@ -2449,33 +2449,33 @@
     });
 
 
-    var swiperAmbassadors = new Swiper('.swiper-container-main', {
-        slidesPerView: 4,
-        spaceBetween: 50,
-        pagination: {
-            el: '.swiper-pagination-main',
-            dynamicBullets: true,
-            clickable: true,
-        },
-        breakpoints: {
-            1024: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-            },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-            },
-            640: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-            },
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 10,
-            }
-        }
-    });
+    // var swiperAmbassadors = new Swiper('.swiper-container-main', {
+    //     slidesPerView: 4,
+    //     spaceBetween: 50,
+    //     pagination: {
+    //         el: '.swiper-pagination-main',
+    //         dynamicBullets: true,
+    //         clickable: true,
+    //     },
+    //     breakpoints: {
+    //         1024: {
+    //             slidesPerView: 4,
+    //             spaceBetween: 40,
+    //         },
+    //         768: {
+    //             slidesPerView: 3,
+    //             spaceBetween: 30,
+    //         },
+    //         640: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20,
+    //         },
+    //         320: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 10,
+    //         }
+    //     }
+    // });
 
     //Vanilla 3d
     const element = document.querySelector(".js-tilt");
@@ -2538,7 +2538,7 @@
     ];
 
     function switchTeamAmbassadors(type) {
-        swiperAmbassadors.removeAllSlides();
+        // swiperAmbassadors.removeAllSlides();
         let swiperTeam;
 
         (type == 'all') ? swiperTeam = teamsAmbassadors : swiperTeam = teamsAmbassadors.filter(team => team.en.category == type);
