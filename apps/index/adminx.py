@@ -55,18 +55,27 @@ class SwipeAdmin:
     list_display = ['news', 'lang', 'banner_time', 'is_active']
     list_filter = ['lang', 'is_active']
 
+
 class FAQAdmin:
     model = FAQ
     list_display = ['title', 'lang', 'weight', 'isActive']
     list_filter = ['lang', 'isActive']
 
+
 class TermAdmin:
     model = Term
     list_display = ['title']
 
+
 class NotificationAdmin:
     model = Notification
-    list_display = ['content','time_start','time_end']
+    list_display = ['content', 'time_start', 'time_end']
+
+
+class IndexVideoAdmin:
+    model = IndexVideo
+    list_display = ['name', 'name_en', 'ispublish', 'weight']
+
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
@@ -77,6 +86,7 @@ xadmin.site.register(Partner, PartnerAdmin)
 xadmin.site.register(New, NewsAdmin)
 xadmin.site.register(Media, MediaAdmin)
 xadmin.site.register(Notification, NotificationAdmin)
+xadmin.site.register(IndexVideo, IndexVideoAdmin)
 
 xadmin.site.register(WalletNew, WalletNewsAdmin)
 xadmin.site.register(SwipeBanner, SwipeAdmin)

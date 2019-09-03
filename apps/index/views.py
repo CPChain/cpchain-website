@@ -93,6 +93,12 @@ class NotificationView(View):
         return HttpResponse(data)
 
 
+class IndexVideoView(View):
+    def get(self, req):
+        data = serializers.serialize('json', IndexVideo.objects.all())
+        return HttpResponse(data)
+
+
 class CommunityView(View):
     def get(self, req):
         title = req.GET.get('title', '')
