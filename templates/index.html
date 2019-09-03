@@ -1712,7 +1712,7 @@
                                             </div> 
                                         </div>
 
-                                        <div id='s2' style="display: none"
+                                        <div id='s2'  
                                             class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                             <!-- Swiper -->
                                             <div class="webEcosystem">
@@ -1759,7 +1759,7 @@
                                             </div> 
 
                                         </div>
-                                        <div id='s3' style="display: none"
+                                        <div id='s3'  
                                             class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                             <!-- Swiper -->
                                             <div class="webEcosystem">
@@ -1805,7 +1805,7 @@
                                                     </div>
                                                 </div> 
                                         </div>
-                                        <div id='s4' style="display: none"
+                                        <div id='s4' 
                                             class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                             <!-- Swiper -->
                                             <div class="webEcosystem">
@@ -1851,7 +1851,7 @@
                                                     </div>
                                                 </div> 
                                         </div>
-                                        <div id='s5' style="display: none"
+                                        <div id='s5' 
                                             class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                             <!-- Swiper -->
                                             <div class="webEcosystem">
@@ -1898,7 +1898,7 @@
                                                 </div> 
 
                                         </div>
-                                        <div id='s6' style="display: none"
+                                        <div id='s6'  
                                             class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                             <!-- Swiper -->
                                             <div class="webEcosystem">
@@ -1945,7 +1945,7 @@
                                                 </div> 
 
                                         </div>
-                                        <div id='s7' style="display: none"
+                                        <div id='s7' 
                                         class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
                                         <!-- Swiper -->
                                         <div class="webEcosystem">
@@ -2202,6 +2202,11 @@
         })
     }
     initEcosystem()
+ 
+    for (let i = 2; i <= 7; i++) {
+        document.getElementById('s'+i).setAttribute('style', 'display:none')
+    }
+   
     {#获取本地地址和语言#}
     var localUrl = window.location.pathname;
     /* 获取通知消息
