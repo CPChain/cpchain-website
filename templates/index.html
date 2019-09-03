@@ -571,7 +571,7 @@
 {#                        </li>#}
                         <li>
                             <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Partners' %}
+                                {% trans 'Ecosystem' %}
                             </a>
                         </li>
                         <li>
@@ -949,7 +949,7 @@
 
                                 <div class="upper col-12 col-sm-4 mx-0">
                                     <h2 class="text-left poppins-font"
-                                        style="font-weight: bold;padding-top: 150px">Industries</h2>
+                                        style="font-weight: bold;padding-top: 150px">{% trans 'Industries' %}</h2>
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
                                 <div class="middle d-flex flex-row w-100 col-xl-10 col-md-10 mb-sm-5 mb-2">
@@ -1013,7 +1013,7 @@
                                 <div class="row flex-column align-items-center justify-content-center">
     
                                     <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                        <h2 class="text-center poppins-font">Videos</h2>
+                                        <h2 class="text-center poppins-font">{% trans 'Videos' %}</h2>
                                         <hr class="middle-hr mb-0">
                                     </div>
                                     <div id=videosContainer class="bottom swiper-bottom videoContainer pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
@@ -1380,10 +1380,10 @@
                                                         <!-- <h2 class="mt-4 text-sm-left text-center"></h2> -->
                                                         <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> Matthew Ma</h2>
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            {% blocktrans %}CPChain Co-Founder, {% endblocktrans %}R&amp;D Director</h6>
+                                                            {% blocktrans %}CPChain Co-Founder, CTO {% endblocktrans %}</h6>
                                                         <p class="mt-4"
                                                             style="color: #305278;font-family: 'Poppins';font-weight: 500;">
-                                                            {% blocktrans %}马史耀博士的主要研究方向是区块链网络，以及基于大数据的并行处理平台及任务调度策略。多项科研成果发表于国际一流会议。 {% endblocktrans %}
+                                                            {% blocktrans %}Dr. Ma got his Doctorate degree from the Hong Kong University of Science and Technology. His reserach area convers the fields of Blockchain network and Big-data-based Parallel Processing Platform & Mission Schedule Strategy. A few of his researches have been publicized on international conferences. {% endblocktrans %}
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 3 -->
@@ -1469,13 +1469,13 @@
                                                 <li class="choice choice-en-team">
                                                         <a href="javascript:void(0)"
                                                            onclick="switchTeamAmbassadors('Global Ambassador')">
-                                                           Global Ambassador
+                                                           {% trans   'Global Ambassador' %}
                                                         </a>
                                                 </li>
                                                 <li class="choice choice-en-team">
                                                         <a href="javascript:void(0)"
                                                            onclick="switchTeamAmbassadors('Global Community Advisors')">
-                                                           Global Community Advisors
+                                                           {% trans   'Global Community Advisors' %}
                                                         </a>
                                                 </li>
                                             </ul>
@@ -1652,19 +1652,18 @@
                                 <div class="row flex-column align-items-center justify-content-center">
 
                                     <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                        <h2 class="text-center poppins-font">Ecosystem</h2>
+                                        <h2 class="text-center poppins-font">{% trans 'Ecosystem' %}</h2>
                                         <hr class="middle-hr mb-0">
                                     </div>
                                     <div class="row" style="margin: 0 !important">
                                         <div class=" pt-5 col-xl-3 col-lg-3 col-md-12 col-sm-12 ">
                                             <div class="tabcontainer">
-                                                <div data-seq="s1" class="tabitem tabitemactive">Industry
-                                                    Partnership<i></i></div>
-                                                <div data-seq="s2" class="tabitem">Project Partnership<i></i></div>
-                                                <div data-seq="s3" class="tabitem">Academia Partnership<i></i></div>
-                                                <div data-seq="s4" class="tabitem">Capital Partnership<i></i></div>
-                                                <div data-seq="s5" class="tabitem">Association<i></i></div>
-                                                <div data-seq="s6" class="tabitem">Industry Node<i></i></div>
+                                                <div data-seq="s1" class="tabitem tabitemactive">{% blocktrans %}Industry Partnership{% endblocktrans %}<i></i></div>
+                                                <div data-seq="s2" class="tabitem">{% blocktrans %}Project Partnership{% endblocktrans %}<i></i></div>
+                                                <div data-seq="s3" class="tabitem">{% blocktrans %}Academia Partnership{% endblocktrans %}<i></i></div>
+                                                <div data-seq="s4" class="tabitem">{% blocktrans %}Capital Partnership{% endblocktrans %}<i></i></div>
+                                                <div data-seq="s5" class="tabitem">{% blocktrans %}Association{% endblocktrans %}<i></i></div>
+                                                <div data-seq="s6" class="tabitem">{% blocktrans %}Industry Node{% endblocktrans %}<i></i></div>
                                                 <div data-seq="s7" class="tabitem">{% trans 'Exchanges' %}<i></i></div>
                                             </div>
                                         </div>
