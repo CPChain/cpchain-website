@@ -77,3 +77,12 @@ class Notification(models.Model):
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
     url = models.CharField(max_length=500, default='http://', null=True, blank=True)
+
+
+class IndexVideo(models.Model):
+    url = models.CharField(max_length=400, default='https://')
+    url_en = models.CharField(max_length=400, default='https://')
+    name = models.CharField(max_length=100)
+    name_en = models.CharField(max_length=100)
+    ispublish = models.BooleanField(default=True)
+    weight = models.IntegerField(default=0)
