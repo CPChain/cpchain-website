@@ -574,41 +574,27 @@ msgstr "全球团队"
 msgid "Investors"
 msgstr "投资者"
 
-#: templates/index.html:1661
-#, fuzzy
-#| msgid "Business/Partnership"
+#: templates/index.html:1661 
 msgid "Industry Partnership"
-msgstr "企业合作"
-# msgstr "业务/合伙企业"
+msgstr "企业合作" 
 
 #: templates/index.html:1662
-#, fuzzy
-#| msgid "Business/Partnership"
 msgid "Project Partnership"
-msgstr "项目合作"
-# msgstr "业务/合伙企业"
+msgstr "项目合作" 
 
 #: templates/index.html:1663
-#, fuzzy
-#| msgid "Business/Partnership"
 msgid "Academia Partnership"
 msgstr "学术合作"
-# msgstr "业务/合伙企业"
 
 #: templates/index.html:1664
-#, fuzzy
-#| msgid "Business/Partnership"
 msgid "Capital Partnership"
 msgstr "资方合作"
 
 #: templates/index.html:1665
-#, fuzzy
-#| msgid "Application"
 msgid "Association"
 msgstr "协会联盟"
 
 #: templates/index.html:1666
-#, fuzzy
 #| msgid "Industry Node: "
 msgid "Industry Node"
 msgstr "行业节点"
