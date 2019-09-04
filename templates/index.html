@@ -2564,7 +2564,7 @@
     ];
 
     function switchTeamAmbassadors(type) {
-        // swiperAmbassadors.removeAllSlides();
+        swiper.removeAllSlides();
         let swiperTeam;
 
         (type == 'all') ? swiperTeam = teamsAmbassadors : swiperTeam = teamsAmbassadors.filter(team => team.en.category == type);
