@@ -495,8 +495,12 @@ msgid "Dr. Bin Zhao"
 msgstr "赵滨 博士"
 
 #: templates/index.html:1359
-msgid "CPChain Co-Founder, CTO"
-msgstr "CPChain联合创始人兼首席技术官"
+msgid "CPChain Co-Founder, CPO"
+msgstr "CPChain联合创始人兼首席产品官"
+
+msgid "CPChain, CTO"
+msgstr "CPChain首席技术官"
+
 
 #: templates/index.html:1362
 msgid ""
@@ -575,19 +579,19 @@ msgid "Investors"
 msgstr "投资者"
 
 #: templates/index.html:1661 
-msgid "Industry Partnership"
+msgid "Industry"
 msgstr "企业合作" 
 
 #: templates/index.html:1662
-msgid "Project Partnership"
+msgid "Project"
 msgstr "项目合作" 
 
 #: templates/index.html:1663
-msgid "Academia Partnership"
+msgid "Academia"
 msgstr "学术合作"
 
 #: templates/index.html:1664
-msgid "Capital Partnership"
+msgid "Capital"
 msgstr "资方合作"
 
 #: templates/index.html:1665
