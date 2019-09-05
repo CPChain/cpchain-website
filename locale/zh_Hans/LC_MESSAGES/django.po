@@ -155,7 +155,7 @@ msgstr "重置"
 
 #: templates/index.html:574 templates/index.html:1655
 msgid "Ecosystem"
-msgstr ""
+msgstr "生态"
 
 #: templates/index.html:627
 msgid " A new distributed infrastructure for next generation IoT "
