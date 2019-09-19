@@ -889,7 +889,7 @@
                                         style="font-weight: bold;">{% trans 'Roadmap' %}</h2>
                                 </div>
 
-                                <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
+                                <!-- <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
                                      id="roadmap">
                                     <div class="middle-holder-upper roadmap-circles flex-row col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-0 px-0">
 
@@ -924,9 +924,10 @@
                                         </div>
 
                                     </div>
-                                </div> <!-- end of navigation for roadmap -->
+                                </div> -->
+                                 <!-- end of navigation for roadmap -->
 
-                                <div class="swiper-container-roadmap w-100">
+                                <div class="swiper-container-roadmap w-100" id="roadmap">
                                     <div class="swiper-wrapper">
 
                                         <div class="swiper-slide">
@@ -934,193 +935,54 @@
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="first text-left pt-5 pb-5 mb-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <h6 class="text-primary">2018Q2</h6>
                                                             <hr class="left-hr now-quarter pulse  w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
+                                                                Pdash 1.0 Release</p>
                                                         </div>
                                                         <div class="second text-left  pt-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
+                                                            <h6 class="text-primary">2019Q2:</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
+                                                                CPChain Formal Mainnet Launch</p>
+                                                        </div>
+                                                        <div class="second text-left  pt-5">
+                                                            <h6 class="text-primary">2020Q2:</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                DID authentication system realization<br>Mass adoption of IoT devices Identification and Authentication</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
                                                     <div class="right-side-holder">
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2018{% endblocktrans %}</h6>
+                                                            <h6 class="text-primary">2018Q4:</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash release{% endblocktrans %}</p>
+                                                                CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release</p>
                                                         </div>
                                                         <div class="fourth d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <h6 class="text-primary">2019Q4:</h6>
                                                             <hr class="right-hr now-quarter pulse w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash 2 release featuring <br> trusted
-                                                                    data relay{% endblocktrans %}</p>
+                                                                CPChain Ecosystem Stabilization<br>Traceability and Authentication related project implementation</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
+                                                            <h6 class="text-primary">2020Q4:</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash 3 release featuring<br> decentralized  market{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="five d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p class="">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}PDash 5 release featuring<br> open ecosystem{% endblocktrans %}
-                                                            </p>
-                                                        </div>
+                                                                Data encryption services Consolidation<br>Homomorphic encryption and Blackbox isolation data processing services relization</p>
+                                                        </div> 
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                            <!-- <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
                                                 <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
                                                     {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
                                                 <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="swiper-slide">
-                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
-                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
-                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
-                                                        <div class="second text-left py-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
-                                                            <hr class="left-hr now-quarter pulse w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}CPChain mainnet (alpha version) release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="left-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
-                                                    <div class="right-side-holder">
-                                                        <div class="first text-right pt-sm-5 pb-sm-5 py-0 mb-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Hybrid consensus protocol specification{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-right d-block d-sm-none d-md-none d-lg-none d-xl-none py-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Sidechain release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-right py-sm-5 py-0 my-5 d-block d-sm-none d-md-none d-lg-none d-xl-none">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
-                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
-                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
-                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="swiper-slide">
-                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
-                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
-                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
-                                                        <div class="second text-left  py-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="left-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="left-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-left py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
-                                                            <hr class="left-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
-                                                    <div class="right-side-holder">
-                                                        <div class="first text-right pt-0 pb-0 py-sm-5 mb-0 mb-sm-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
-                                                            <hr class="right-hr pulse  w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}IoT-chain specifications<br> and patent{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-right d-block d-sm-none py-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Token model for chains{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}Iot-chain for specialized industries<br> SDK release{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="third text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
-                                                            <hr class="right-hr w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %}DApp tutorials and examples{% endblocktrans %}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
-                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
-                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
-                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
-                                            </div>
-                                        </div>
+                                            </div> -->
+                                        </div> 
 
                                     </div>
                                 </div><!-- end of swiper-container-roadmap -->
@@ -2062,48 +1924,48 @@
     // home page
     let imageTeam = document.getElementById('imageTeamActive');
     // swiper for roadmap
-    var roadmapSwiper = new Swiper('.swiper-container-roadmap', {
-        effect: 'flip',
-        grabCursor: true,
-    });
+    // var roadmapSwiper = new Swiper('.swiper-container-roadmap', {
+    //     effect: 'flip',
+    //     grabCursor: true,
+    // });
 
-    let circles = document.getElementsByClassName('roadmap-circles')[0].childNodes;
+    // let circles = document.getElementsByClassName('roadmap-circles')[0].childNodes;
 
-    function roadmapNavigate(index, e) {
-        roadmapSwiper.slideTo(index, 1000);
-        for (var i = 0; i < circles.length; i++) {
-            if (circles[i].nodeType == 1) {
-                if (circles[i].getAttribute('id') == e.parentNode.parentNode.getAttribute('id')) {
-                    circles[i].classList.add('active');
-                } else {
-                    circles[i].classList.remove('active');
-                }
-            }
-        }
-    }
+    // function roadmapNavigate(index, e) {
+    //     roadmapSwiper.slideTo(index, 1000);
+    //     for (var i = 0; i < circles.length; i++) {
+    //         if (circles[i].nodeType == 1) {
+    //             if (circles[i].getAttribute('id') == e.parentNode.parentNode.getAttribute('id')) {
+    //                 circles[i].classList.add('active');
+    //             } else {
+    //                 circles[i].classList.remove('active');
+    //             }
+    //         }
+    //     }
+    // }
 
-    roadmapSwiper.on('slideChange', function () {
-        let currentSlide = this.activeIndex;
+    // roadmapSwiper.on('slideChange', function () {
+    //     let currentSlide = this.activeIndex;
 
-        if (currentSlide == 0) {
-            var eHolder = 'pdash';
-        } else if (currentSlide == 1) {
-            var eHolder = 'mainnet';
-        } else if (currentSlide == 2) {
-            var eHolder = 'industriy';
-        }
+    //     if (currentSlide == 0) {
+    //         var eHolder = 'pdash';
+    //     } else if (currentSlide == 1) {
+    //         var eHolder = 'mainnet';
+    //     } else if (currentSlide == 2) {
+    //         var eHolder = 'industriy';
+    //     }
 
-        for (var i = 0; i < circles.length; i++) {
-            if (circles[i].nodeType == 1) {
-                if (circles[i].getAttribute('id') == eHolder) {
-                    circles[i].classList.add('active');
-                } else {
-                    circles[i].classList.remove('active');
-                }
-            }
-        }
+    //     for (var i = 0; i < circles.length; i++) {
+    //         if (circles[i].nodeType == 1) {
+    //             if (circles[i].getAttribute('id') == eHolder) {
+    //                 circles[i].classList.add('active');
+    //             } else {
+    //                 circles[i].classList.remove('active');
+    //             }
+    //         }
+    //     }
 
-    });
+    // });
 
     // swiper for contact
     var contactSwiper = new Swiper('.swiper-container-contact', {
