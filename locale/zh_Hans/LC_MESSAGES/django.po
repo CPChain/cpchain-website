@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 17:06+0800\n"
+"POT-Creation-Date: 2019-09-24 20:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,47 +44,46 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: templates/base.html:70 templates/basediable.html:70 templates/index.html:498
+#: templates/base.html:70 templates/basediable.html:70 templates/index.html:505
 #: templates/intelligent-transportation.html:50 templates/security.html:42
 #: templates/smart-medical.html:49
 msgid "Application"
 msgstr "应用"
 
-#: templates/base.html:75 templates/basediable.html:75 templates/index.html:503
-#: templates/index.html:1041
+#: templates/base.html:75 templates/basediable.html:75 templates/index.html:510
+#: templates/index.html:889
 msgid "Roadmap"
 msgstr "路线图"
 
-#: templates/base.html:80 templates/basediable.html:80 templates/index.html:508
-#: templates/index.html:1292
+#: templates/base.html:80 templates/basediable.html:80 templates/index.html:515
+#: templates/index.html:1002
 msgid "Team"
 msgstr "团队"
 
-#: templates/base.html:86 templates/basediable.html:86 templates/index.html:514
+#: templates/base.html:86 templates/basediable.html:86 templates/index.html:521
 msgid "Community"
 msgstr "社区"
 
-#: templates/base.html:113 templates/index.html:542
+#: templates/base.html:113 templates/index.html:549
 msgid "Documentation"
 msgstr "文档"
 
 #: templates/base.html:118 templates/basediable.html:114
-#: templates/index.html:547
+#: templates/index.html:554
 msgid "Explorer"
 msgstr "区块浏览器"
 
 #: templates/base.html:144 templates/basediable.html:134
-#: templates/index.html:1586
 msgid "Partners"
 msgstr "合作伙伴"
 
 #: templates/base.html:149 templates/basediable.html:139
-#: templates/index.html:579
+#: templates/index.html:586
 msgid "Contact"
 msgstr "联系我们"
 
 #: templates/base.html:156 templates/basediable.html:146
-#: templates/index.html:586
+#: templates/index.html:593
 msgid "EN"
 msgstr "中文"
 
@@ -96,7 +95,7 @@ msgstr "开发者"
 msgid "Docs"
 msgstr "文档"
 
-#: templates/basediable.html:128 templates/index.html:1063
+#: templates/basediable.html:128 templates/index.html:911
 msgid "Mainnet"
 msgstr "主网"
 
@@ -153,31 +152,31 @@ msgstr "申领"
 msgid "Reset"
 msgstr "重置"
 
-#: templates/index.html:574 templates/index.html:1655
+#: templates/index.html:581 templates/index.html:1225
 msgid "Ecosystem"
 msgstr "生态"
 
-#: templates/index.html:627
+#: templates/index.html:634
 msgid " A new distributed infrastructure for next generation IoT "
 msgstr "新一代物联网分布式基础架构"
 
-#: templates/index.html:631
+#: templates/index.html:638
 msgid "CPChain_Whitepaper_English.pdf"
 msgstr "CPChain_Whitepaper_CN.pdf"
 
-#: templates/index.html:635
+#: templates/index.html:642
 msgid "WHITE PAPER 2.0"
 msgstr "白皮书 2.0"
 
-#: templates/index.html:652
+#: templates/index.html:659
 msgid "RNode"
 msgstr "荣誉节点"
 
-#: templates/index.html:693 templates/index.html:839
+#: templates/index.html:700
 msgid "Introduction"
 msgstr "简介"
 
-#: templates/index.html:697
+#: templates/index.html:704
 msgid ""
 "CPChain is a new distributed infrastructure for next generation IoT. CPChain "
 "intends to build a fundamental data platform for IoT systems in combination "
@@ -189,7 +188,7 @@ msgstr ""
 "术，为物联网系统构建基础数据平台，提供从数据采集、存储、共享到应用的全流程解"
 "决方案。"
 
-#: templates/index.html:700
+#: templates/index.html:707
 msgid ""
 "CPChain is a promising solution to a series of challenges of the current "
 "\"chimney architecture\" of IoT systems, reducing connectivity cost of "
@@ -198,11 +197,11 @@ msgstr ""
 "物信链是应对物联网系统当前“烟囱架构 ”一系列挑战的解决方案，能够降低物联网设备"
 "的连接成本，保护用户数据隐私，同时最大化物联网数据价值。"
 
-#: templates/index.html:724
+#: templates/index.html:731
 msgid "Three major <br> adoption scenarios"
 msgstr "三大应用落地场景"
 
-#: templates/index.html:727
+#: templates/index.html:734
 msgid ""
 "The value of CPChain comes from the improvement of the physical industry’s "
 "efficiency and the innovation of business models, which results from data "
@@ -211,99 +210,39 @@ msgstr ""
 "CPChain的价值来自物理行业效率的提高和商业模式的创新，这是数据聚合及其可流动性"
 "的结果。"
 
-#: templates/index.html:743
+#: templates/index.html:750
 msgid "Multi-party data transaction"
 msgstr "多方数据处理"
 
-#: templates/index.html:746
+#: templates/index.html:753
 msgid "Multi-party trust created by CPChain"
 msgstr "CPChain创建的多方信任"
 
-#: templates/index.html:759
+#: templates/index.html:766
 msgid "Artificial intelligence decisions based on IoT big data"
 msgstr "人工智能决策——CPChain以物联网大数据的人工智能决策为基础"
 
-#: templates/index.html:762
+#: templates/index.html:769
 msgid "Interoperability of heterogeneous data, forming big data aggregation"
 msgstr "异构数据的互操作性，可形成大数据聚合"
 
-#: templates/index.html:775
+#: templates/index.html:782
 msgid ""
 "Interaction and application of data assets in cross-chain, which lead to new "
 "business models"
 msgstr "跨链中数据资产的对接与应用，从而产生新商业模式"
 
-#: templates/index.html:778
+#: templates/index.html:785
 msgid "Cross-chain relay and collaboration"
 msgstr "跨链中继和协作"
 
-#: templates/index.html:795
-msgid "Features"
-msgstr "特征"
-
-#: templates/index.html:799
-msgid ""
-"The core feature of the CPChain is to realize the transmission of the value "
-"of cyber-physical systems. CPChain’s main technological innovation is to "
-"propose a systematic scheme to address the scalability and real-time "
-"problems of blockchain technology in IoTs from the perspective of data "
-"storage and computation, and consensus protocols, including parallel "
-"distributed architecture, two-layer hybrid consensus mechanism and "
-"lightweight side chain consensus protocol."
-msgstr ""
-"物信链的核心特征是实现物信系统价值的传递。主要的技术贡献是从数据存储计算以及"
-"共识协议（包括平行分布式架构、双层混合共识机制以及轻量级侧链共识协议）的角"
-"度，提出一种系统方案，解决物联网中区块链技术的可扩展性和实时性问题。"
-
-#: templates/index.html:808
-msgid "Scalability"
-msgstr "可扩展性"
-
-#: templates/index.html:815
-msgid "Security"
-msgstr "安全性"
-
-#: templates/index.html:823
-msgid "Rapidity"
-msgstr "高效性"
-
-#: templates/index.html:850 templates/index.html:1022
-msgid "https://www.youtube.com/embed/0dNFgy_aGkM"
-msgstr "https://v.qq.com/iframe/player.html?vid=r0711ah38nr&tiny=0&auto=0"
-
-#: templates/index.html:871
-msgid "Vision"
-msgstr "愿景"
-
-#: templates/index.html:889
-msgid ""
-"To build a new world of Internet of Things where data from IoT devices are "
-"highly integrated and valuable"
-msgstr "构建能够使物联网装置的数据高度集成且有价值的物联网新世界"
-
-#: templates/index.html:905
-msgid "To share data for business and research purposes"
-msgstr "全面开发和优化物信链的核心技术，寻求与合作伙伴的合作，以实现产业落地"
-
-#: templates/index.html:920
-msgid ""
-"To fully develop and optimize CPChain's core technology and seek cooperation "
-"with partners to fulfill industrial landing"
-msgstr "打造为业务和研究服务的共享型数据"
-
-#: templates/index.html:937
-msgid ""
-"To seek thorough business landing domestically and internationally to "
-"maximize the value of IoT data"
-msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据的价值"
-
-#: templates/index.html:952
+#: templates/index.html:800
 #, fuzzy
 #| msgid "Industry Node: "
 msgid "Industries"
 msgstr "行业"
 
-#: templates/index.html:958
+#: templates/index.html:806
 msgid ""
 "CPChain's distributed infrastructure will provide a full process solution "
 "for data acquisition, storage, sharing and transacting for large-scale "
@@ -314,152 +253,73 @@ msgstr ""
 "CPChain是大型分布式物联网系统数据共享与处理的可信基础平台，广泛应用于智能交"
 "通、智能医疗以及公共安全等行业。"
 
-#: templates/index.html:972
+#: templates/index.html:820
 msgid "Public <br> Security"
 msgstr "公共安全"
 
-#: templates/index.html:985
+#: templates/index.html:833
 msgid "Intelligent <br> Transportation"
 msgstr "智能交通"
 
-#: templates/index.html:998
+#: templates/index.html:846
 msgid "Smart <br> Medical"
 msgstr "智能医疗"
 
-#: templates/index.html:1016
+#: templates/index.html:864
 msgid "Videos"
 msgstr "视频"
 
-#: templates/index.html:1073
+#: templates/index.html:870
+msgid "https://www.youtube.com/embed/0dNFgy_aGkM"
+msgstr "https://v.qq.com/iframe/player.html?vid=r0711ah38nr&tiny=0&auto=0"
+
+#: templates/index.html:921
 msgid "Industry <br> Chains"
 msgstr "产业链"
 
-#: templates/index.html:1089 templates/index.html:1111
-#: templates/index.html:1150 templates/index.html:1172
-msgid "Q4 / 2018"
-msgstr "2018年第四季度"
+#: templates/index.html:941
+msgid " CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release "
+msgstr ""
 
-#: templates/index.html:1092
-msgid "PDash 2 release featuring <br> trusted data relay"
-msgstr "发布以可信数据中继为特色的PDash 2"
+#: templates/index.html:947
+msgid ""
+" CPChain Ecosystem Stabilization<br>Traceability and Authentication related "
+"project implementation "
+msgstr ""
 
-#: templates/index.html:1095 templates/index.html:1124
-#: templates/index.html:1156 templates/index.html:1184
-#: templates/index.html:1250
-msgid "Q4 / 2019"
-msgstr "2019年第四季度"
+#: templates/index.html:953
+msgid ""
+" Data encryption services Consolidation<br>Homomorphic encryption and "
+"Blackbox isolation data processing services relization "
+msgstr ""
 
-#: templates/index.html:1098 templates/index.html:1126
-msgid "PDash 4 release featuring <br> incentivized economic model"
-msgstr "发布以激励式经济模式为特色的PDash 4"
-
-#: templates/index.html:1105
-msgid "Q2 / 2018"
-msgstr "2018年第二季度"
-
-#: templates/index.html:1108
-msgid "PDash release"
+#: templates/index.html:963
+#, fuzzy
+#| msgid "PDash release"
+msgid " Pdash 1.0 Release "
 msgstr "发布PDash"
 
-#: templates/index.html:1114
+#: templates/index.html:969
+#, fuzzy
+#| msgid "CPChain mainnet release"
+msgid " CPChain Formal Mainnet Launch "
+msgstr "发布CPChain主网"
+
+#: templates/index.html:975
 msgid ""
-"PDash 2 release featuring <br> trusted\n"
-"                                                                    data "
-"relay"
-msgstr "发布合并主网2（向后兼容）"
+" DID authentication system realization<br>Mass adoption of IoT devices "
+"Identification and Authentication "
+msgstr ""
 
-#: templates/index.html:1118 templates/index.html:1178
-#: templates/index.html:1238
-msgid "Q2 / 2019"
-msgstr "2019年第二季度"
-
-#: templates/index.html:1121
-msgid "PDash 3 release featuring<br> decentralized  market"
-msgstr "发布以去中心化市场为特色的PDash 3"
-
-#: templates/index.html:1129 templates/index.html:1262
-msgid "Q2 / 2020"
-msgstr "2020年第二季度"
-
-#: templates/index.html:1132
-msgid "PDash 5 release featuring<br> open ecosystem"
-msgstr "发布以开放式生态系统为特色的PDash 5"
-
-#: templates/index.html:1140 templates/index.html:1194
-#: templates/index.html:1272
+#: templates/index.html:982
 msgid "Q3 / 2020"
 msgstr "2020年第三季度"
 
-#: templates/index.html:1141 templates/index.html:1195
-#: templates/index.html:1273
+#: templates/index.html:983
 msgid " Consolidated IoT-blockchain system"
 msgstr "合并物联网-区块链系统"
 
-#: templates/index.html:1153
-msgid "CPChain mainnet (alpha version) release"
-msgstr "发布CPChain主网"
-
-#: templates/index.html:1159 templates/index.html:1187
-msgid "Consolidated mainnet 2 release <br> (backward compatible)"
-msgstr "发布合并主网2（向后兼容）"
-
-#: templates/index.html:1166 templates/index.html:1226
-msgid "Q3 / 2018"
-msgstr "2018年第三季度"
-
-#: templates/index.html:1169
-msgid "Hybrid consensus protocol specification"
-msgstr "混合共识协议规范"
-
-#: templates/index.html:1175
-msgid "CPChain mainnet release"
-msgstr "发布CPChain主网"
-
-#: templates/index.html:1181
-msgid "Sidechain release"
-msgstr "发布侧链"
-
-#: templates/index.html:1204 templates/index.html:1232
-msgid "Q1 / 2019"
-msgstr "2019年第一季度"
-
-#: templates/index.html:1207 templates/index.html:1235
-msgid "IoT-chain prototype"
-msgstr "物联网-链原型"
-
-#: templates/index.html:1210 templates/index.html:1244
-msgid "Q3 / 2019"
-msgstr "2019年第三季度"
-
-#: templates/index.html:1213 templates/index.html:1247
-msgid "IoT-chain release <br> Wallet release"
-msgstr "发布物联网-链和钱包"
-
-#: templates/index.html:1216 templates/index.html:1256
-msgid "Q1 / 2020"
-msgstr "2020年第一季度"
-
-#: templates/index.html:1219 templates/index.html:1259
-msgid "User and developer <br> community building"
-msgstr "用户和开发者社区建设"
-
-#: templates/index.html:1229
-msgid "IoT-chain specifications<br> and patent"
-msgstr "物联网-链规范和专利"
-
-#: templates/index.html:1241
-msgid "Token model for chains"
-msgstr "发布物联网-链和钱包"
-
-#: templates/index.html:1253
-msgid "Iot-chain for specialized industries<br> SDK release"
-msgstr "发布特色产业SDK的物联网-链"
-
-#: templates/index.html:1265
-msgid "DApp tutorials and examples"
-msgstr "DApp（去中心化应用托管）学习指南和示例"
-
-#: templates/index.html:1295
+#: templates/index.html:1005
 msgid ""
 "CPChain’s team is comprised of intelligent, talented, and energetic members "
 "with years of experience in related industries. The founding team members "
@@ -469,15 +329,15 @@ msgstr ""
 "CPChain研发团队是一支国际化、知识结构复合化、年轻化的团队。创始成员包括来自高"
 "校、物联网、金融证券以及商业运营的顶级人才。"
 
-#: templates/index.html:1346
+#: templates/index.html:1056
 msgid "Dr. Chengnian Long"
 msgstr "龙承念 博士"
 
-#: templates/index.html:1348
+#: templates/index.html:1058
 msgid "Founder, CEO, Professor, Principal Scientist"
 msgstr "创始人、首席执行官、教授及首席科学家"
 
-#: templates/index.html:1351
+#: templates/index.html:1061
 msgid ""
 "Dr. Long is a university professor with many years of experience in the "
 "fields of cyber physical system security, Internet of Things, distributed "
@@ -490,19 +350,15 @@ msgstr ""
 "信息物理系统安全、物联网、基于区块链的分布式智能系统等领域有多年从业经验，国"
 "际知名期刊和会议上发表论文80多篇，拥有发明专利10余项。"
 
-#: templates/index.html:1357
+#: templates/index.html:1067
 msgid "Dr. Bin Zhao"
 msgstr "赵滨 博士"
 
-#: templates/index.html:1359
+#: templates/index.html:1069
 msgid "CPChain Co-Founder, CPO"
 msgstr "CPChain联合创始人兼首席产品官"
 
-msgid "CPChain, CTO"
-msgstr "CPChain首席技术官"
-
-
-#: templates/index.html:1362
+#: templates/index.html:1072
 msgid ""
 "Dr. Zhao has more than 12 years research and development experience in the "
 "fields of communication, Internet of Things and FinTech, with extended "
@@ -513,15 +369,15 @@ msgstr ""
 "深厚的行业背景。拥有多项物联网领域发明专利，参与制定多项国内、国际物联网标"
 "准。"
 
-#: templates/index.html:1369
+#: templates/index.html:1079
 msgid "Qingwei Shi"
 msgstr "史青伟"
 
-#: templates/index.html:1371
+#: templates/index.html:1081
 msgid "CPChain Co-Founder, COO"
 msgstr "CPChain联合创始人兼首席运营官"
 
-#: templates/index.html:1374
+#: templates/index.html:1084
 msgid ""
 "Mr. Shi is an early participant in blockchain technology and digital "
 "currency. Founder of Shared Finance, and participant in the investment and "
@@ -530,80 +386,73 @@ msgstr ""
 "区块链和数字货币早期投资人，行业媒体共享财经的创始人，参与过多个项目筹备和投"
 "资。拥有丰富的行业投资、区块链社区运营和市场营销经验。"
 
-#: templates/index.html:1383
-#, fuzzy
-#| msgid "CPChain Co-Founder, CTO"
-msgid "CPChain CTO "
-msgstr "CPChain 首席技术官"
+#: templates/index.html:1091
+msgid "Matthew Ma"
+msgstr "马史耀"
 
-#: templates/index.html:1386
+#: templates/index.html:1093
+msgid "CPChain, CTO"
+msgstr "CPChain首席技术官"
+
+#: templates/index.html:1096
 msgid ""
 "Dr. Ma got his Doctorate degree from the Hong Kong University of Science and "
 "Technology. His reserach area convers the fields of Blockchain network and "
 "Big-data-based Parallel Processing Platform & Mission Schedule Strategy. A "
 "few of his researches have been publicized on international conferences. "
-msgstr "马史耀博士的主要研究方向是区块链网络，以及基于大数据的并行处理平台及任务调度策略。多项科研成果发表于国际一流会议。"
+msgstr ""
+"马史耀博士的主要研究方向是区块链网络，以及基于大数据的并行处理平台及任务调度"
+"策略。多项科研成果发表于国际一流会议。"
 
-msgid "Matthew Ma"
-msgstr "马史耀"
-#: templates/index.html:1440 templates/index.html:1449
+#: templates/index.html:1150 templates/index.html:1159
 msgid "CPChain Team"
 msgstr "核心团队"
 
-#: templates/index.html:1454
+#: templates/index.html:1164
 msgid "R&D"
 msgstr "研发部"
 
-#: templates/index.html:1460
+#: templates/index.html:1170
 msgid "Marketing"
 msgstr "市场及运营部"
 
-#: templates/index.html:1466
+#: templates/index.html:1176
 msgid "Administrative"
 msgstr "行政部"
 
-#: templates/index.html:1472 templates/index.html:1538
+#: templates/index.html:1182
 msgid "Global Ambassador"
 msgstr "全球大使"
 
-#: templates/index.html:1478 templates/index.html:1544
+#: templates/index.html:1188
 msgid "Global Community Advisors"
 msgstr "全球社区顾问"
 
-#: templates/index.html:1522 templates/index.html:1532
-msgid "CPChain Global Team"
-msgstr "全球团队"
-
-#: templates/index.html:1595
-msgid "Investors"
-msgstr "投资者"
-
-#: templates/index.html:1661 
+#: templates/index.html:1231
 msgid "Industry"
-msgstr "企业合作" 
+msgstr "企业合作"
 
-#: templates/index.html:1662
+#: templates/index.html:1232
 msgid "Project"
-msgstr "项目合作" 
+msgstr "项目合作"
 
-#: templates/index.html:1663
+#: templates/index.html:1233
 msgid "Academia"
 msgstr "学术合作"
 
-#: templates/index.html:1664
+#: templates/index.html:1234
 msgid "Capital"
 msgstr "资方合作"
 
-#: templates/index.html:1665
+#: templates/index.html:1235
 msgid "Association"
 msgstr "协会联盟"
 
-#: templates/index.html:1666
-#| msgid "Industry Node: "
+#: templates/index.html:1236
 msgid "Industry Node"
 msgstr "行业节点"
 
-#: templates/index.html:1667 templates/index.html:2012
+#: templates/index.html:1237 templates/index.html:1582
 msgid "Exchanges"
 msgstr "交易所"
 
@@ -1352,6 +1201,142 @@ msgstr ""
 "的哈希值记录在CPChain主链上，用来验证数据。系统对用户隐私保护有专门设计，能够"
 "在保证隐私的前提下，实现数据分享。因此，CPChain实现了对上层人工智能等应用的有"
 "效支持。 "
+
+#~ msgid "Features"
+#~ msgstr "特征"
+
+#~ msgid ""
+#~ "The core feature of the CPChain is to realize the transmission of the "
+#~ "value of cyber-physical systems. CPChain’s main technological innovation "
+#~ "is to propose a systematic scheme to address the scalability and real-"
+#~ "time problems of blockchain technology in IoTs from the perspective of "
+#~ "data storage and computation, and consensus protocols, including parallel "
+#~ "distributed architecture, two-layer hybrid consensus mechanism and "
+#~ "lightweight side chain consensus protocol."
+#~ msgstr ""
+#~ "物信链的核心特征是实现物信系统价值的传递。主要的技术贡献是从数据存储计算以"
+#~ "及共识协议（包括平行分布式架构、双层混合共识机制以及轻量级侧链共识协议）的"
+#~ "角度，提出一种系统方案，解决物联网中区块链技术的可扩展性和实时性问题。"
+
+#~ msgid "Scalability"
+#~ msgstr "可扩展性"
+
+#~ msgid "Security"
+#~ msgstr "安全性"
+
+#~ msgid "Rapidity"
+#~ msgstr "高效性"
+
+#~ msgid "Vision"
+#~ msgstr "愿景"
+
+#~ msgid ""
+#~ "To build a new world of Internet of Things where data from IoT devices "
+#~ "are highly integrated and valuable"
+#~ msgstr "构建能够使物联网装置的数据高度集成且有价值的物联网新世界"
+
+#~ msgid "To share data for business and research purposes"
+#~ msgstr ""
+#~ "全面开发和优化物信链的核心技术，寻求与合作伙伴的合作，以实现产业落地"
+
+#~ msgid ""
+#~ "To fully develop and optimize CPChain's core technology and seek "
+#~ "cooperation with partners to fulfill industrial landing"
+#~ msgstr "打造为业务和研究服务的共享型数据"
+
+#~ msgid ""
+#~ "To seek thorough business landing domestically and internationally to "
+#~ "maximize the value of IoT data"
+#~ msgstr "寻求国内和国际全面的业务落地，以最大化物联网数据的价值"
+
+#~ msgid "Q4 / 2018"
+#~ msgstr "2018年第四季度"
+
+#~ msgid "PDash 2 release featuring <br> trusted data relay"
+#~ msgstr "发布以可信数据中继为特色的PDash 2"
+
+#~ msgid "Q4 / 2019"
+#~ msgstr "2019年第四季度"
+
+#~ msgid "PDash 4 release featuring <br> incentivized economic model"
+#~ msgstr "发布以激励式经济模式为特色的PDash 4"
+
+#~ msgid "Q2 / 2018"
+#~ msgstr "2018年第二季度"
+
+#~ msgid ""
+#~ "PDash 2 release featuring <br> trusted\n"
+#~ "                                                                    data "
+#~ "relay"
+#~ msgstr "发布合并主网2（向后兼容）"
+
+#~ msgid "Q2 / 2019"
+#~ msgstr "2019年第二季度"
+
+#~ msgid "PDash 3 release featuring<br> decentralized  market"
+#~ msgstr "发布以去中心化市场为特色的PDash 3"
+
+#~ msgid "Q2 / 2020"
+#~ msgstr "2020年第二季度"
+
+#~ msgid "PDash 5 release featuring<br> open ecosystem"
+#~ msgstr "发布以开放式生态系统为特色的PDash 5"
+
+#~ msgid "CPChain mainnet (alpha version) release"
+#~ msgstr "发布CPChain主网"
+
+#~ msgid "Consolidated mainnet 2 release <br> (backward compatible)"
+#~ msgstr "发布合并主网2（向后兼容）"
+
+#~ msgid "Q3 / 2018"
+#~ msgstr "2018年第三季度"
+
+#~ msgid "Hybrid consensus protocol specification"
+#~ msgstr "混合共识协议规范"
+
+#~ msgid "Sidechain release"
+#~ msgstr "发布侧链"
+
+#~ msgid "Q1 / 2019"
+#~ msgstr "2019年第一季度"
+
+#~ msgid "IoT-chain prototype"
+#~ msgstr "物联网-链原型"
+
+#~ msgid "Q3 / 2019"
+#~ msgstr "2019年第三季度"
+
+#~ msgid "IoT-chain release <br> Wallet release"
+#~ msgstr "发布物联网-链和钱包"
+
+#~ msgid "Q1 / 2020"
+#~ msgstr "2020年第一季度"
+
+#~ msgid "User and developer <br> community building"
+#~ msgstr "用户和开发者社区建设"
+
+#~ msgid "IoT-chain specifications<br> and patent"
+#~ msgstr "物联网-链规范和专利"
+
+#~ msgid "Token model for chains"
+#~ msgstr "发布物联网-链和钱包"
+
+#~ msgid "Iot-chain for specialized industries<br> SDK release"
+#~ msgstr "发布特色产业SDK的物联网-链"
+
+#~ msgid "DApp tutorials and examples"
+#~ msgstr "DApp（去中心化应用托管）学习指南和示例"
+
+#, fuzzy
+#~| msgid "CPChain Co-Founder, CTO"
+#~ msgid "CPChain CTO "
+#~ msgstr "CPChain 首席技术官"
+
+#~ msgid "CPChain Global Team"
+#~ msgstr "全球团队"
+
+#~ msgid "Investors"
+#~ msgstr "投资者"
 
 #~ msgid "Integration <br> of IoT & Blockchain"
 #~ msgstr "物联网与区块链的整合"
