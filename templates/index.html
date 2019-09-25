@@ -31,451 +31,630 @@
         padding: 0 !important;
         margin: 0 !important;
     } 
-    </style> 
     </style>
-    <!-- 手机下载样式 -->
-     <style>
+        <style>
             * {
                 padding: 0;
                 margin: 0
             }
-    
-    
-            /* 手机端 */
-            @media (min-width: 125px) {
-                .videoContainer{
-                    display: grid;
-                    grid-gap: 10px;
-                    grid-template-columns: repeat(1, auto) !important;
+
+            @media (min-width: 375px) {
+                .mediaHidden{
+                    display: none
                 }
-                .website {
+            }
+
+            @media (min-width: 1024px) {
+                .mediaHidden{ 
+                }
+            }
+    
+            .main {
+                z-index: 10000;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* display: none; */
+            }
+    
+            .mainclose {
+                display: none;
+            }
+    
+            @media (min-width: 375px) {
+                .board {
+                    display: flex;
+                    z-index: 100000;
+                    width: 24.96rem;
+                    height: 37.76rem;
+                    border-radius: 2.40rem; 
+                    display: flex;
+                    flex-direction: column;
+    
+                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Safari 5.1 - 6.0 */
+                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Opera 11.1 - 12.0 */
+                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Firefox 3.6 - 15 */
+                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* 标准的语法（必须放在最后） */
+                }
+                .left {
+                    margin-left: 1.4rem;
+                    margin-top: 1.52rem; 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+    
+                .message {
+                    width: 16.56rem;
+                    height: 9.6rem;
+                    background-image: url("{% static 'img/mainnetwelcome/text.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .learn { 
                     display: none;
                 }
     
-                .mob {
-                    width: 100%;
-                    height: 12.24rem;
-                    /* background-image:  url("/static/img/mainnetwelcome/bubble.png");    */
-                    background-image: url('/static/img/wallet/bj.png');
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    padding-left: 2.64rem;
-                    padding-right: 2.16rem;
-                }
-    
-                .mobleft {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    padding: 3.12rem 0;
-                }
-    
-                .cpcwallet {
-                    width: 8.88rem;
-                    height: 2rem;
-                    font-size: 1.44rem;
-                    font-family: 'Poppins-Medium';
-                    font-weight: 500;
-                    color: rgba(48, 82, 120, 1);
-                    line-height: 2.16rem;
-                }
-    
-                .info {
-                    width: 15.84rem;
-                    height: 1.36rem;
-                    font-size: 0.96rem;
-                    font-family: 'Poppins-Regular';
-                    font-weight: 400;
-                    color: rgba(48, 82, 120, 1);
-                    line-height: 1.44rem;
-                    margin-top: 0.24rem;
-                    margin-bottom: 0.32rem;
-                }
-    
-                .split {
-                    width: 1.68rem;
-                    height: 2px;
-                    background-color: #305278;
-                }
-    
-                .btnwarp {
-                    width: 9.28rem;
-                    height: 2.4rem;
-                    border-radius: 1.6rem;
-                    background-image: url('/static/img/wallet/button.png');
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
+                .right {
+                    position: absolute;
+                    width: 21.6rem;
+                    height: 21.28rem;
+                    /* background-color: red; */
+                    margin-top: 11.12rem;
+                    margin-left:1.68rem; 
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    text-decoration:none
                 }
     
-                .btntext {
-                    /* width: 5.68rem; */
-                    /* height: 17px; */
-                    font-size: 0.96rem;
-                    font-family: 'Poppins-Medium';
-                    font-weight: 500;
-                    color: rgba(48, 82, 120, 1);
-                    /* line-height: 18px; */
+                .outside {
+                    z-index: 200000;
+                    position: absolute;
+                    width: 21.28rem;
+                    height: 21.28rem;
+                    background-image: url("{% static 'img/mainnetwelcome/outside.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
     
-                .mobright {
-                    padding-top: 2.71rem;
-                    padding-left: 1.36rem;
+                .outsideplay {
+                    animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -moz-animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -o-animation: outsidetrans 20s linear 0s infinite;
+                }
+    
+    
+    
+                .inside {
+                    width: 11.56rem;
+                    height: 11.56rem;
+                    background-image: url("{% static 'img/mainnetwelcome/inside.png' %}");    
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+    
+                }
+    
+                .insideplay {
+                    animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -moz-animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -o-animation: insidetrans 20s linear 0s infinite;
+                }
+    
+                .pause {
+                    animation-play-state: paused;
+                }
+    
+                .logo {
+                    width: .3.24rem;
+                    height: 4.44rem;
+                    background-image: url("{% static 'img/mainnetwelcome/logo.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                }
+    
+    
+    
+                .bubble {
+                    z-index: 500000;
+                    border-radius: 50%;
+                    background-image: url("{% static 'img/mainnetwelcome/bubble.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .close {
+                    z-index: 500000;
+                    width: 2.04rem;
+                    height: 2.04rem;
+                    border-radius: 50%;
+                    background-image: url("{% static 'img/mainnetwelcome/close.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                    margin-top: -21.52rem;
+                    /* margin-left: 4.70rem; */
+                }
+    
+                .ball {
+                    z-index: 500000;
+                    border-radius: 50%;
+                    background-image:url("{% static 'img/mainnetwelcome/ball.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .bottomLearn{
+                    width: 7.92rem;
+                    height: 1.84rem;
+                    background-image: url("{% static 'img/mainnetwelcome/button.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-top: 22.88rem;
+                    margin-left: 8.52rem;
+                }
+    
+            }
+    
+            @media (min-width: 1024px) {
+                .board {
+                    display: flex;
+                    z-index: 100000;
+                    width: 990px;
+                    height: 635px;
+                    border-radius: 60px;
+    
+                    display: flex;
+                    flex-direction: row;
+    
+                    background: -webkit-linear-gradient(left top, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Safari 5.1 - 6.0 */
+                    background: -o-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Opera 11.1 - 12.0 */
+                    background: -moz-linear-gradient(bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* Firefox 3.6 - 15 */
+                    background: linear-gradient(to bottom right, rgba(0, 75, 191, 1), rgba(0, 103, 212, 1));
+                    /* 标准的语法（必须放在最后） */
+                }
+    
+                .left {
+                    margin-left: 50px;
+                    margin-top: 78px;
+                    /* background-color: #00f; */
+                    width: 414px;
+                    height: 446px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+    
+                .message {
+                    width: 414px;
+                    height: 240px;
+                    background-image: url("{% static 'img/mainnetwelcome/text.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .learn {
+                    width: 198px;
+                    height: 46px;
+                    background-image:  url("{% static 'img/mainnetwelcome/button.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: inherit;
+                    cursor : pointer;
+                }
+    
+                .right {
+                    position: absolute;
+                    width: 532px;
+                    height: 532px;
+                    /* background-color: red; */
+                    margin-top: 52px;
+                    margin-left: 514px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+    
+                .outside {
+                    z-index: 200000;
+                    position: absolute;
+                    width: 532px;
+                    height: 532px;
+                    background-image:  url("{% static 'img/mainnetwelcome/outside.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .outsideplay {
+                    animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -moz-animation: outsidetrans 20s linear 0s infinite;
+                    -webkit-animation: outsidetrans 20s linear 0s infinite;
+                    -o-animation: outsidetrans 20s linear 0s infinite;
+                }
+    
+    
+    
+                .inside {
+                    width: 289px;
+                    height: 289px;
+                    background-image: url("{% static 'img/mainnetwelcome/inside.png' %}");  
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+    
+                }
+    
+                .insideplay {
+                    animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -moz-animation: insidetrans 20s linear 0s infinite;
+                    -webkit-animation: insidetrans 20s linear 0s infinite;
+                    -o-animation: insidetrans 20s linear 0s infinite;
+                }
+    
+                .pause {
+                    animation-play-state: paused;
+                }
+    
+                .logo {
+                    width: 81px;
+                    height: 111px;
+                    background-image: url("{% static 'img/mainnetwelcome/logo.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                }
+    
+    
+    
+                .bubble {
+                    z-index: 500000;
+                    border-radius: 50%;
+                    background-image:  url("{% static 'img/mainnetwelcome/bubble.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+    
+                .close {
+                    z-index: 500000;
+                    width: 51px;
+                    height: 51px;
+                    border-radius: 26px;
+                    background-image:  url("{% static 'img/mainnetwelcome/close.png' %}");   
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                    margin-top: -358px;
+                    margin-left: 470px;
+                }
+    
+                .ball {
+                    z-index: 500000;
+                    border-radius: 50%;
+                    background-image:  url("{% static 'img/mainnetwelcome/ball.png' %}");    
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    position: fixed;
+                }
+    
+                .bottomLearn{
+                    display: none;
                 }
             }
     
-            /* 电脑端 */
-            @media (min-width: 1024px) {
-                .videoContainer{
-                    display: grid;
-                    grid-gap: 10px;
-                    grid-template-columns: repeat(3, auto) !important;
+    
+            @keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
                 }
-                .mob {
-                    display: none
+            }
+    
+            @-moz-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+            }
+    
+            @-o-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
                 }
     
-                .website {
-                    display: block;
-                    width: 100%;
-                    height: 540px;
-                    background-image: url('/static/img/wallet/beijing1.png');
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+            }
+    
+            @-webkit-keyframes outsidetrans {
+                100% {
+                    transform: rotate(-360deg);
+                    -webkit-transform: rotate(-360deg);
+                }
+            }
+    
+            @keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
                 }
     
-                .webleft {
-                    margin-right: 228px;
-                    margin-top: -7px;
-                    height: 322px;
-                    /* background-color: brown; */
-                    width: 221px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
+            }
+    
+            @-moz-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+    
+            @-o-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
                 }
     
-                .webright {
-                    width: 319px;
-                    height: 430px;
-                    background-image: url('/static/img/wallet/iPhone.png');
-                    background-position: center center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                }
+            }
     
-                .cpcwallet {
-                    width: 221px;
-                    height: 51px;
-                    font-size: 36px;
-                    font-family: 'Poppins-Medium';
-                    font-weight: 500;
-                    color: rgba(48, 82, 120, 1);
-                    line-height: 55px;
-                }
-    
-                .group {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center
-                }
-    
-                .info {
-                    width: 198px;
-                    /* height: 34px; */
-                    font-size: 12px;
-                    font-family: 'Poppins-Regular';
-                    font-weight: 400;
-                    color: rgba(48, 82, 120, 1);
-                    line-height: 18px;
-                }
-    
-                .split {
-                    width: 40px;
-                    height: 2px;
-                    background-color: #305278;
-                }
-    
-                .qr {
-                    width: 108px;
-                    height: 159px;
-                    background: rgba(255, 255, 255, 1);
-                    border-radius: 7px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                    /* padding: 12px 0 25px 0; */
-                }
-    
-                .qrimg {
-                    width: 86px;
-                    height: 85px;
-                    margin-top: 12px;
-                }
-    
-                .qrtext {
-                    margin-bottom: 25px;
-                    /* width: 65px;
-                    height: 16px; */
-                    font-size: 11px;
-                    font-family: 'Poppins-Medium';
-                    font-weight: 500;
-                    color: rgba(48, 82, 120, 1);
-                    line-height: 17px;
+            @-webkit-keyframes insidetrans {
+                100% {
+                    transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
                 }
             }
         </style>
-        <style>
-                .tabitemactive {
-                    color: rgba(245, 194, 68, 1);
-                    z-index: 100;
-                }
-        
-        
-        
-                @media (min-width: 375px) {
-                    .mobEcosystem {
-                        display: block
-                    }
-        
-                    .webEcosystem {
-                        display: none
-                    }
-        
-                    .tabitemactive i {
-                        background-color: rgba(245, 194, 68, 1) !important;
-                        height: 2.85rem;
-                        width: 3px !important;
-                        margin-left: -1px !important;
-                    }
-        
-                    .tabcontainer {
-                        height: 100%;
-                        background-color: white;
-                        margin-left: 1rem;
-                        border-left: 1px solid rgba(193, 206, 220, 1);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                    }
-        
-                    .tabitem i {
-                        height: 2.85rem;
-                        width: 2px;
-                        margin-right: 1.785rem;
-                    }
-        
-                    .tabitem {
-                        display: flex;
-                        flex-direction: row-reverse;
-                        justify-content: flex-end;
-                        font-size: 1.071rem;
-                        /* font-family: 'SFUIText'; */
-                        font-weight: 500;
-                        color: rgba(56, 82, 117, 1);
-                        margin-bottom: 0.476rem;
-                        height: 2.85rem;
-                        line-height: 2.85rem;
-                    }
-        
-                    .carditem {
-                        width: 12.85rem;
-                        height: 4.5rem;
-                        box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
-                        -moz-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
-                        -webkit-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
-        
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-        
-                    }
-        
-                    div.carditem:hover {
-                        width: 12.85rem;
-                        height: 4.5rem;
-                        box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
-                        -moz-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
-                        -webkit-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
-                    }
-        
-                    .carditem img {
-                        max-height: 4rem;
-                        max-width: 12rem;
-                    }
-        
-        
-                    .swiper-container {
-                        width: 30rem;
-                        /* height: 19.5rem; */
-                    }
-        
-                    .swiperdiv {
-                        /* height: 19.5rem; */
-                        padding: 0 !important;
-                    }
-        
-                    .swiper-wrapper {
-                        width: 30rem;
-                        /* height: 19.5rem; */
-                    }
-        
-                    .swiper-bottom {
-                        display: '-ms-grid';
-                        display: 'grid';
-                        grid-gap: 0.4rem;
-                        -ms-grid-columns: (auto) 2;
-                        grid-template-columns: repeat(2, auto) !important;
-                    }
-                }
-        
-                @media (min-width: 1024px) {
-                    .mobEcosystem {
-                        display: none
-                    }
-        
-                    .webEcosystem {
-                        display: block
-                    }
-        
-                    .tabitemactive i {
-                        background-color: rgba(245, 194, 68, 1) !important;
-                        height: 2.85rem;
-                        width: 3px !important;
-                        margin-right: -1px !important;
-                        margin-left: 1.785rem!important;
-                    }
-        
-                    .tabitem i {
-                        height: 2.85rem;
-                        width: 2px;
-                        margin-left: 1.785rem;
-                        margin-right: 0 ;
-                    }
-        
-                    .tabcontainer {
-                        height: 100%;
-                        background-color: white;
-                        border-right: 1px solid rgba(193, 206, 220, 1);
-                        border-left: 0px solid rgba(193, 206, 220, 1);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                    }
-        
-                    .tabitem {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-end;
-                        font-size: 1.071rem;
-                        /* font-family: 'SFUIText'; */
-                        font-weight: 500;
-                        color: rgba(56, 82, 117, 1);
-                        margin-bottom: 0.476rem;
-                        height: 2.85rem;
-                        line-height: 2.85rem;
-                    }
-        
-                    .carditem {
-                        width: 17.85rem;
-                        height: 6.54rem;
-                        box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
-                        -moz-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
-                        -webkit-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
-        
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-        
-                    }
-        
-                    div.carditem:hover {
-                        width: 17.85rem;
-                        height: 6.54rem;
-                        box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
-                        -moz-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
-                        -webkit-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
-                    }
-        
-                    .carditem img {
-                        max-height: 6rem;
-                        max-width: 17rem;
-                    }
-        
-        
-                    .swiper-container {
-                        width: 55.47rem;
-                        height: 19.5rem;
-                    }
-        
-                    .swiperdiv {
-                        height: 19.5rem;
-                    }
-        
-                    .swiper-wrapper {
-                        width: 55.47rem;
-                        height: 19.5rem;
-                    }
-        
-                    .swiper-bottom {
-                        display: '-ms-grid';
-                        display: 'grid';
-                        grid-gap: 0.4rem;
-                        -ms-grid-columns: (auto) 3;
-                        grid-template-columns: repeat(3, auto) !important;
-                    }
-                }
+</head>
+<style>
 
-                .message {
-            position: fixed;
-            width: 100%;
-            height: 3rem;
-            background-color: #4A5659;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            z-index: 10000;
-        }  
-        .messageLink{
-                    color: white; 
-                    cursor:'hand'
-                }
- 
+    body {
+        font-family: "Poppins";
+    }
 
-        .messageclose {
-            margin-right: 1rem;
-            width: 1.5rem;
-            height: 1.5rem;  
-            position: absolute;
-            right: 0;
-            z-index: 10000;
-            border-radius: 50%;
-            background-image: url("{% static 'img/mainnetwelcome/close.png' %}");  
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        } 
- </style>
+    header {
+        font-family: "Poppins", sans-serif !important;
+    }
+
+
+</style>
 <body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
- <div id="page" class="site"> 
-    <div id=messagemain class="message"> 
-    </div> 
+    <div id=main class="main mainclose">
+        <div id="closebtn" class="close"></div>
+        <div id='board' class="board">
+            <div class="left">
+                <div class="message"></div>
+                <div id=learn class="learn"></div>
+            </div>
+            <div id=right class="right">
+                <div id="outside" class="outside outsideplay">
+                </div>
+                <div id="inside" class="inside insideplay">
+                </div>
+                <div class="logo"></div>
+            </div>
+            <div id=bottomLearn class="bottomLearn"></div>
+        </div>
+    </div>
+    
+    <script>
+        (function () {
+    
+            var newRem = function () {
+    
+                var html = document.documentElement;
+    
+                var ClientWidth = html.getBoundingClientRect().width;
+    
+                if (ClientWidth <= 750) {
+                    html.style.fontSize = ClientWidth / 30 + 'px';
+                } else {
+                    // html.style.fontSize = '100px';
+                }
+            };
+    
+            window.addEventListener('resize', newRem, false);
+            newRem();
+        })();
+    
+        var main = document.getElementById('main')
+        var board = document.getElementById('board')
+        var rightDom = document.getElementById('right')
+        var outsideDom = document.getElementById('outside')
+        var insideDom = document.getElementById('inside')
+        var closebtn = document.getElementById('closebtn') 
+        var bottomLearn = document.getElementById('bottomLearn') 
+        var learn = document.getElementById('learn') 
+        let lang = 'en'
+        if(location.href.indexOf('zh')>0){
+            lang ='cn' 
+        }
+        bottomLearn.addEventListener('click', function () {
+            location.href = lang === 'en' ?`https://cpchain.io/community/?title=CPChain%20Foundation%20Official%20Announcement%20about%20Formal%20Mainnet%20Launch%20and%20Project%20SPARK` :
+             `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%8F%91%E5%B8%83%E7%9A%84%E5%AE%98%E6%96%B9%E7%94%B3%E6%98%8E`
+        }) 
+        learn.addEventListener('click', function () {
+            location.href = lang === 'en' ?`https://cpchain.io/community/?title=CPChain%20Foundation%20Official%20Announcement%20about%20Formal%20Mainnet%20Launch%20and%20Project%20SPARK` :
+             `https://www.cpchain.io/zh-hans/community/?title=CPChain%E5%9F%BA%E9%87%91%E4%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%BB%E7%BD%91%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF%E5%8F%8A%E6%98%9F%E7%81%AB%E8%AE%A1%E5%88%92%E5%8F%91%E5%B8%83%E7%9A%84%E5%AE%98%E6%96%B9%E7%94%B3%E6%98%8E`
+        }) 
+ 
+        closebtn.addEventListener('click', function () {
+            main.className = 'main mainclose'
+        })
+    
+        rightDom.addEventListener('click', function () {
+            if (outsideDom.classList.contains('pause')) {
+                outsideDom.className = 'outside outsideplay';
+            } else {
+                outsideDom.className = 'pause outside outsideplay';
+            }
+    
+    
+            if (insideDom.classList.contains('pause')) {
+                insideDom.className = ' inside insideplay';
+            } else {
+                insideDom.className = 'pause inside insideplay';
+            }
+        });
+    
+    
+        function RandomNum(num1, num2) {
+            return Math.floor(Math.random() * (num2 - num1 + 1) + num1);
+    
+        }
+        function Bubble(size, { top, left }, { xrange, yrange }) {
+            let xoffset = (main.offsetWidth - board.offsetWidth) / 2
+            let yoffset = (main.offsetHeight - board.offsetHeight) / 2 
+    
+            this.bubble = document.createElement("div");
+            this.width = size
+            this.height = size
+            this.left = xoffset + left
+            this.top = yoffset + top
+            this.left0 = xoffset + left
+            this.top0 = yoffset + top
+            this.xrange = xrange
+            this.yrange = yrange
+            this.tempX = this.left;
+            this.tempY = this.top;
+            this.speedx = (RandomNum(1, 3) - 2) / 2;//后面的小数是保证随机产生的方向有正有负
+            this.speedy = (RandomNum(1, 3) - 2) / 2; 
+    
+        }
+        Bubble.prototype.draw = function () {
+            this.bubble.style.width = this.width + "px";
+            this.bubble.style.height = this.height + "px";
+            this.bubble.className = "bubble";
+            this.bubble.style.left = this.tempX + "px";
+            this.bubble.style.top = this.tempY + "px";
+            this.bubble.style.backgroundColor = this.backgroundColor;
+            board.appendChild(this.bubble);
+        }
+    
+        Bubble.prototype.move = function () {
+    
+            this.tempX = this.tempX + this.speedx;
+            this.tempY = this.tempY + this.speedy;
+            // 判断临界值
+            if (Math.abs(this.tempX - this.left0) >= this.xrange || this.tempX <= 0) {
+                this.speedx = -this.speedx;//改变方向
+            }
+            if (Math.abs(this.tempY - this.top0) >= this.yrange || this.tempY <= 0) {
+                this.speedy = -this.speedy;
+            }
+            this.draw();
+        }
+    
+        //构造小球函数
+        function Ball() {
+            this.ball = document.createElement("div");
+            var randomNum = RandomNum(50, 150);
+            this.width = randomNum
+            this.height = randomNum
+            //如果元素有id名，我们可以直接使用，不用document.get....获取
+            this.left = RandomNum(0, 1000 - randomNum);
+            this.top = RandomNum(0, 1000 - randomNum);
+            // this.backgroundColor="rgba("+RandomNum(0,255)+","+RandomNum(0,255)+","+RandomNum(0,255)+","+Math.random()+")";//随机颜色
+            this.tempX = this.left;
+            this.tempY = this.top;
+            this.speedx = (RandomNum(1, 3) - 2) / 2;;//后面的小数是保证随机产生的方向有正有负
+            this.speedy = (RandomNum(1, 3) - 2) / 2;
+        }
+        //画小球的方法
+        Ball.prototype.draw = function () {
+            this.ball.style.width = this.width + "px";
+            this.ball.style.height = this.height + "px";
+            this.ball.className = "ball";
+            this.ball.style.left = this.tempX + "px";
+            this.ball.style.top = this.tempY + "px";
+            this.ball.style.backgroundColor = this.backgroundColor;
+            main.appendChild(this.ball);
+        }
+    
+    
+        //运动函数
+        Ball.prototype.move = function () {
+    
+            this.tempX = this.tempX + this.speedx;
+            this.tempY = this.tempY + this.speedy;
+            // 判断临界值
+            if (this.tempX + this.width >= 1000|| this.tempX <= 0) {
+                this.speedx = -this.speedx;//改变方向
+            }
+            if (this.tempY + this.height >= 1000 || this.tempY <= 0) {
+                this.speedy = -this.speedy;
+            }
+            this.draw();
+        }
+        //产生小球
+        var balls = [];
+        var bubbles = []
+        for (var i = 0; i < 10; i++) {
+            var ball = new Ball();
+            balls.push(ball);//生成的小球对象放进数组
+    
+        }
+        // bubbles.push(new Bubble(200, { top:-100, left: -100 },{xrange:100,yrange:50}))
+        // bubbles.push(new Bubble(100, { top: 550, left: 200 },{xrange:200,yrange:40}))
+        function start() {
+            for (var i = 0; i < balls.length; i++) {
+                balls[i].move();
+            }
+            for (var i = 0; i < bubbles.length; i++) {
+                bubbles[i].move();
+            }
+            window.requestAnimationFrame(start)
+        }
+      
+    
+        let time = new Date()
+        let timestamp = time.getTime()  
+        // if(timestamp > (1561724687709 + 1000 *60 *6) && timestamp<1562493600000){
+            // 1561724487393
+        if(timestamp > 1561888800000 && timestamp<1562493600000){
+            main.className = 'main'
+            start()
+        }
+    
+    </script>
+    <div id="page" class="site">
     <header class="py-4 mx-auto w-100  position-fixed " id="header">
         <div class="container">
             <div class="row">
@@ -578,7 +757,7 @@
 {#                        </li>#}
                         <li>
                             <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
-                                {% trans 'Ecosystem' %}
+                                {% trans 'Partners' %}
                             </a>
                         </li>
                         <li>
@@ -694,10 +873,10 @@
 
                                 <div class="first col-sm-12 col-md-6 py-5 py-sm-0">
                                     <div class="col-12 col-sm-11 poppins-font" style="padding-right: 10px;">
-                                        <!-- <h6 class="font-weight-bold text-warning mb-4"
-                                            style="font-family: 'Poppins', sans-serif !important;">WHAT IS CPCHAIN?</h6> -->
+                                        <h6 class="font-weight-bold text-warning mb-4"
+                                            style="font-family: 'Poppins', sans-serif !important;">WHAT IS CPCHAIN?</h6>
 
-                                        <h2 class="display-5 poppins-font mb-7"> {% blocktrans %}Introduction{% endblocktrans %}
+                                        <h2 class="display-5 poppins-font mb-7"> {% blocktrans %}Integration <br> of IoT & Blockchain{% endblocktrans %}
                                         </h2>
                                         <hr class="right-hr w-100 mb-4">
                                         <p style="color: #305278;font-family: 'Poppins', sans-serif !important;line-height: 1.9">
@@ -721,83 +900,171 @@
                         </div>
                     </section> <!-- section-two -->
 
-                    <section class="section-seven py-sm-5 py-0 ">
-                            <div class="container py-sm-5 py-0">
-                                <div class="row flex-row align-items-center py-5">
-    
-                                    <div class="left-side col-xl-6 col-md-6 col-sm-12">
-                                        <div class="left-side-holder col-xl-10 col-md-10 col-sm-12 px-0">
-                                            <h1 class="display-1 font-italic" style="color: #F3F5F7;">3</h1>
-                                            <h2 class="poppins-font">{% blocktrans %}Three major <br> adoption scenarios{% endblocktrans %}</h2>
-                                            <hr class="right-hr w-100 ml-0">
-                                            <p style="color: #305278;font-family: 'Poppins';line-height: 30px;">
-                                                {% blocktrans %}The value of CPChain comes from the improvement of the physical industry’s efficiency and the innovation of business models, which results from data aggregation and mobility.{% endblocktrans %}
-                                            </p>
+                    <section class="section-three py-sm-5 py-0 mt-sm-5 mt-0">
+                        <div class="container">
+                            <div class="row d-flex align-items-center justify-content-center py-sm-5 py-0">
+
+                                <div class="col-xl-11 col-lg-11 col-md-11 col-sm-12 py-5">
+                                    <div class="upper col-12 col-sm-6 mb-0 px-0 mx-auto">
+                                        <h2 class="text-center poppins-font"
+                                            style="font-weight: bold;">{% trans 'Features' %}</h2>
+                                        <hr class="middle-hr w-100 mb-0">
+                                    </div>
+                                    <p class="text-sm-center text-left py-5" style="color: #305278;line-height: 1.9">
+                                        {% blocktrans %}The core feature of the CPChain is to realize the transmission of the value of cyber-physical systems. CPChain’s main technological innovation is to propose a systematic scheme to address the scalability and real-time problems of blockchain technology in IoTs from the perspective of data storage and computation, and consensus protocols, including parallel distributed architecture, two-layer hybrid consensus mechanism and lightweight side chain consensus protocol.{% endblocktrans %}
+                                    </p>
+                                    <div class="box-holder d-flex align-items-center justify-content-between col-xl-7 col-lg-7 col-md-7 col-sm-12 mx-auto">
+                                        <div class="item-one">
+                                            <div class="image-holder">
+                                                <img src="{% static '/img/Icons/scalability.png' %}"
+                                                     class="d-blocks disable-select p-sm-4"
+                                                     alt="Scalability - CPChain">
+                                            </div>
+                                            <h6 class="text-center mt-0">{% trans 'Scalability' %}</h6>
+                                        </div>
+                                        <div class="item-one">
+                                            <div class="image-holder">
+                                                <img src="{% static '/img/Icons/security.png' %}"
+                                                     class="d-block disable-select p-sm-4" alt="Security - CPChain">
+                                            </div>
+                                            <h6 class="text-center mt-0">{% trans 'Security' %}</h6>
+                                        </div>
+                                        <div class="item-one">
+                                            <div class="image-holder">
+                                                <img src="{% static '/img/Icons/rapidity.png' %}"
+                                                     class="d-block  disable-select p-sm-4"
+                                                     alt="Rapidity - CPChain">
+                                            </div>
+                                            <h6 class="text-center mt-0">{% trans 'Rapidity' %}</h6>
                                         </div>
                                     </div>
-                                    <div class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex flex-column align-items-end justify-content-between py-5 py-sm-0">
-                                        <div class="right-side-holder col-xl-9 col-md-9 col-lg-9 col-sm-12 px-0">
-                                            <div class="item d-flex flex-row" style="margin-bottom: 70px">
-                                                <div class="left-side">
-                                                    <div class="image-holder mr-4">
-                                                        <img src="{% static '/img/Icons/multi-party.png' %}"
-                                                             class="d-block disable-select w-100"
-                                                             alt="Multi-parties data transaction - CPChain">
-                                                    </div>
-                                                </div>
-                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
-                                                        {% blocktrans %}Multi-party data transaction{% endblocktrans %}</h6>
-                                                    <p class="mb-0"
-                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
-                                                        {% blocktrans %}Multi-party trust created by CPChain{% endblocktrans %}</p>
-                                                </div>
-                                            </div>
-                                            <div class="item d-flex flex-row mb-5">
-                                                <div class="left-side">
-                                                    <div class="image-holder mr-4">
-                                                        <img src="{% static '/img/Icons/artificial.png' %}"
-                                                             class="d-block disable-select w-100"
-                                                             alt="Artificial intelligence decisions - CPChain">
-                                                    </div>
-                                                </div>
-                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
-                                                        {% blocktrans %}Artificial intelligence decisions based on IoT big data{% endblocktrans %}</h6>
-                                                    <p class="mb-0"
-                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
-                                                        {% blocktrans %}Interoperability of heterogeneous data, forming big data aggregation{% endblocktrans %}</p>
-                                                </div>
-                                            </div>
-                                            <div class="item d-flex flex-row">
-                                                <div class="left-side">
-                                                    <div class="image-holder mr-4">
-                                                        <img src="{% static '/img/Icons/interaction.png' %}"
-                                                             class="d-block disable-select w-100"
-                                                             alt="Interaction and application of data assets - CPChain">
-                                                    </div>
-                                                </div>
-                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
-                                                        {% blocktrans %}Interaction and application of data assets in cross-chain, which lead to new business models{% endblocktrans %}</h6>
-                                                    <p class="mb-0"
-                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
-                                                        {% blocktrans %}Cross-chain relay and collaboration{% endblocktrans %}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
                                 </div>
+
                             </div>
-                        </section> <!-- section-seven -->  
+                        </div>
+                    </section> <!-- section-three -->
+
+                    <section class="section-four position-relative py-sm-5 py-0">
+                        <div class="container py-sm-5 py-0">
+                            <div class="row d-flex flex-row position-relative py-sm-5 pt-5 my-sm-5 my-0">
+
+                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                    <h2 class="text-center text-sm-left text-md-left text-lg-left text-xl-left poppins-font"
+                                        style="font-weight: bold;">
+                                        {% trans 'Introduction' %}</h2>
+                                    <hr class="right-hr col-10 col-sm-8 col-md-8 col-lg-8 col-xl-8 ml-0 my-4">
+                                </div>
+
+                                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                                    <div class="swiper-container-two w-100" style="overflow:hidden;">
+                                        <div class="swiper-wrapper border-left-0 border-right-0 pt-sm-0 pt-5 pb-0">
+                                            <div class="swiper-slide">
+                                                <div class="swiper-slide-holder">
+                                                    <div class="video-holder">
+                                                        <iframe height="308" class="rounded w-100"
+                                                                src="{% trans 'https://www.youtube.com/embed/0dNFgy_aGkM' %}"
+                                                                class="smaller disable-select d-block"
+                                                                frameborder="0"
+                                                                allow="autoplay; encrypted-media"
+                                                                allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- swiper wrapper-->
+                                    </div> <!-- swiper container -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-four -->
+
+                    <section class="section-five mt-5 py-sm-5" id="vision">
+                        <div class="container mb-5">
+                            <div class="row d-flex align-items-center justify-content-center">
+
+                                <div class="upper col-12 col-sm-5 mb-5">
+                                    <h2 class="text-center poppins-font">{% trans 'Vision' %}</h2>
+                                    <hr class="middle-hr w-100">
+                                </div>
+                                <div class="vision-holder d-flex flex-sm-row flex-md-row flex-lg-row flex-xl-row flex-column align-items-center justify-content-center">
+                                    <div class="left-side left-side col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                                        <div class="box">
+                                            <div class="left-side d-flex align-items-center justify-content-start mb-sm-5 mb-5">
+                                                <div class="image-holder pr-4 hidden-md hidden-xs">
+                                                    <svg id="14e9cb86-cfd0-4b63-b1f9-de49dc49d49e"
+                                                         data-name="Layer 1"
+                                                         xmlns="http://www.w3.org/2000/svg" width="50.03"
+                                                         height="50.03"
+                                                         viewBox="0 0 50.03 50.03"><title>1</title>
+                                                        <path d="M25,0a25.42,25.42,0,0,0-2.9.17h0A25,25,0,1,0,25,0ZM23.06,3q1-.08,1.94-.09A22.06,22.06,0,0,1,46.92,22.45a63.13,63.13,0,0,1-10.72,6.85,5.37,5.37,0,0,0-9.5,3.43c0,.08,0,.16,0,.24a48.93,48.93,0,0,1-11.79,1.74,33.73,33.73,0,0,1-.75-11,5.37,5.37,0,0,0,2.51-9.64A64.64,64.64,0,0,1,23.06,3ZM34.52,32.74a2.44,2.44,0,1,1-2.44-2.44h0A2.44,2.44,0,0,1,34.52,32.74Zm-21-11.88a2.44,2.44,0,1,1,2.44-2.44A2.44,2.44,0,0,1,13.48,20.85ZM2.93,25A22.07,22.07,0,0,1,19.06,3.74a57.67,57.67,0,0,0-5.11,9.33l-.46,0A5.37,5.37,0,0,0,11.27,23.3a36.53,36.53,0,0,0,.66,11.4A52.41,52.41,0,0,1,4.82,34,22,22,0,0,1,2.93,25ZM6.6,37.2a54.54,54.54,0,0,0,6.07.46,52.93,52.93,0,0,0,2.67,7.2A22.28,22.28,0,0,1,6.6,37.2ZM25,47.07a22.19,22.19,0,0,1-5.7-.74,53.43,53.43,0,0,1-3.6-8.7,51.82,51.82,0,0,0,11.93-1.87A5.37,5.37,0,0,0,37.39,32,64.82,64.82,0,0,0,47,26,22.06,22.06,0,0,1,25,47.07Z"
+                                                              transform="translate(0.04)" fill="#305278"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="mb-0 font-weight-normal">
+                                                    {% blocktrans %}To build a new world of Internet of Things where data from IoT devices are highly integrated and valuable{% endblocktrans %}</p>
+                                            </div>
+                                            <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
+                                                <div class="image-holder pr-4 hidden-md hidden-xs">
+                                                    <svg id="974a1696-eac6-4ce1-b171-c84431b86c53"
+                                                         data-name="Layer 1"
+                                                         xmlns="http://www.w3.org/2000/svg" width="50.5"
+                                                         height="45.62"
+                                                         viewBox="0 0 50.5 45.62"><title>2</title>
+                                                        <path d="M50.5,22.8c0-3.53-3.71-6.72-10.19-8.78,1.48-6.69.6-11.53-2.42-13.31A6.24,6.24,0,0,0,33.1.28a22.54,22.54,0,0,0-7.84,4.94A19.71,19.71,0,0,0,17.43.32C15.05-.3,14,0,12.65.77,9.58,2.54,8.7,7.38,10.24,14.07,3.73,16.07,0,19.25,0,22.8s3.71,6.74,10.19,8.78c-1.48,6.69-.6,11.53,2.41,13.3a5.41,5.41,0,0,0,2.68.71h.12a7.88,7.88,0,0,0,2.05-.27,20.52,20.52,0,0,0,7.8-4.94,19.72,19.72,0,0,0,7.82,4.89,8.29,8.29,0,0,0,2,.27,5.31,5.31,0,0,0,2.79-.71c3.07-1.77,3.95-6.61,2.42-13.3C46.79,29.53,50.5,26.35,50.5,22.8Zm-2.59,0c0,2.31-3.15,4.72-8.25,6.31a50.22,50.22,0,0,0-2.34-6.31,50.3,50.3,0,0,0,2.34-6.31C44.76,18.1,47.91,20.51,47.91,22.8ZM36.56,42.62a3.62,3.62,0,0,1-2.82.19,17.47,17.47,0,0,1-6.68-4.25,50.83,50.83,0,0,0,4.23-5.19,49,49,0,0,0,6.46-1.08C39,37.69,38.59,41.45,36.56,42.62ZM12.76,32.24a49.3,49.3,0,0,0,6.46,1.08,50.77,50.77,0,0,0,4.23,5.19,17.45,17.45,0,0,1-6.68,4.31,3.62,3.62,0,0,1-2.82-.19C11.92,41.46,11.49,37.68,12.76,32.24ZM13.89,3l.06,0a2.87,2.87,0,0,1,1.49-.38,5.21,5.21,0,0,1,1.33.19A17.48,17.48,0,0,1,23.44,7a50.75,50.75,0,0,0-4.23,5.19,49.14,49.14,0,0,0-6.46,1.08C11.49,8,11.9,4.22,13.89,3ZM37.74,13.37a49.16,49.16,0,0,0-6.46-1.08,50.84,50.84,0,0,0-4.23-5.19,17.46,17.46,0,0,1,6.67-4.3,5.19,5.19,0,0,1,1.34-.2A2.84,2.84,0,0,1,36.55,3C38.58,4.15,39,7.93,37.74,13.37ZM17.35,15q-.7,1.14-1.4,2.32c-.42.75-.84,1.52-1.22,2.27-.44-1.13-.86-2.37-1.32-3.84C14.71,15.47,16,15.22,17.35,15Zm-1.51,13,.11.2q.7,1.18,1.4,2.32c-1.32-.19-2.65-.44-3.95-.75.38-1.3.83-2.59,1.33-3.85C15.07,26.66,15.46,27.36,15.84,28.05ZM34.53,22.8c-.62,1.33-1.32,2.7-2.13,4.16s-1.7,2.8-2.48,4H29.8c-1.44.1-2.92.19-4.5.19s-3.08-.06-4.61-.2c-.94-1.39-1.82-2.84-2.48-4-.78-1.35-1.5-2.74-2.13-4.16a36.6,36.6,0,0,1,2.13-4.15h0c1-1.62,1.73-2.85,2.48-4h.08c1.45-.1,2.94-.19,4.53-.19s3.08.05,4.61.2c.94,1.39,1.82,2.84,2.48,4C33.17,20,33.89,21.39,34.53,22.8Zm1-3.55c-.31-.6-.63-1.22-1-1.84s-.88-1.53-1.39-2.32c1.32.19,2.64.44,3.93.75-.38,1.31-.83,2.6-1.33,3.87ZM33.15,30.57q.7-1.14,1.4-2.32c.4-.71.83-1.5,1.22-2.27.44,1.13.86,2.37,1.32,3.84C35.79,30.13,34.47,30.38,33.15,30.57ZM22.63,12c.82-1.08,1.7-2.12,2.62-3.12.91,1,1.79,2,2.62,3.12L25.24,12Zm5.23,21.51c-.83,1.08-1.71,2.13-2.62,3.12-.91-1-1.79-2-2.62-3.12l2.62.08ZM13.18,22.8a50.48,50.48,0,0,0-2.35,6.31c-5.09-1.61-8.25-4-8.25-6.31s3.15-4.7,8.25-6.31A50.48,50.48,0,0,0,13.18,22.8Z"
+                                                              transform="translate(0 0.02)" fill="#305278"/>
+                                                        <path d="M25.25,29.12c3.13,0,6.26-.89,6.26-2.87V19.46h0c0-2-3.13-2.87-6.26-2.87S19,17.48,19,19.46h0v6.78C19,28.23,22.12,29.12,25.25,29.12Zm4.17-6.47c-.31.31-1.78.89-4.17.89s-3.86-.57-4.17-.89v-1a12.37,12.37,0,0,0,4.17.63,12.37,12.37,0,0,0,4.17-.63Zm-8.35,3.5v-1.2a12.37,12.37,0,0,0,4.17.63,12.37,12.37,0,0,0,4.17-.63v1.2c-.31.31-1.78.89-4.17.89s-3.86-.58-4.17-.89Zm4.17-7.57a8,8,0,0,1,4,.78,8.67,8.67,0,0,1-4,.78,8,8,0,0,1-4-.78,8.67,8.67,0,0,1,4-.79Z"
+                                                              transform="translate(0 0.02)" fill="#305278"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="mb-0 font-weight-normal">
+                                                    {% blocktrans %}To share data for business and research purposes{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-side left-side col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                                        <div class="left-side d-flex align-items-center justify-content-start mb-sm-5 mb-5">
+                                            <div class="image-holder pr-4 hidden-xs hidden-md ">
+                                                <svg id="78a95932-5b80-4acf-a102-741d23da1924" data-name="Layer 1"
+                                                     xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                     viewBox="0 0 50 50"><title>3</title>
+                                                    <path d="M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0ZM4.35,33.89A23,23,0,0,1,2.49,25a21.91,21.91,0,0,1,1.85-8.89Zm10,10.87A21.27,21.27,0,0,1,10,41.69h4.35Zm27.94-5.44v-13h5.11A22.44,22.44,0,0,1,42.33,39.32ZM45.59,16H19.18a1.28,1.28,0,0,0,0,2.56H46.55a20,20,0,0,1,.9,5.18H41a1.28,1.28,0,0,0-1.28,1.28V42a20.8,20.8,0,0,1-1.85,1.47H25.26V32.1A1.28,1.28,0,0,0,24,30.82H15.41a2.78,2.78,0,0,0-2.56-1.6,2.88,2.88,0,0,0,0,5.75,2.78,2.78,0,0,0,2.56-1.6H22.7V44.69A1.28,1.28,0,0,0,24,46h9.27A22,22,0,0,1,25,47.57,21.58,21.58,0,0,1,16.88,46v-5.5a1.28,1.28,0,0,0-1.28-1.28h-8a10.93,10.93,0,0,1-.7-.9V11.7A22,22,0,0,1,10,8.31V25a1.28,1.28,0,0,0,1.28,1.28H31.2v6.78a3.84,3.84,0,1,0,2.56,0V25a1.28,1.28,0,0,0-1.28-1.28H12.53V6.33a23.43,23.43,0,0,1,5.05-2.56H32.35a22.9,22.9,0,0,1,8.12,4.92H23.34A2.78,2.78,0,0,0,20.78,7.1a2.88,2.88,0,0,0,0,5.75,2.78,2.78,0,0,0,2.56-1.6H42.77A22.47,22.47,0,0,1,45.59,16Z"
+                                                          transform="translate(0)" fill="#305278"/>
+                                                </svg>
+                                            </div>
+                                            <p class="mb-0 font-weight-normal">
+                                                {% blocktrans %}To fully develop and optimize CPChain's core technology and seek cooperation with partners to fulfill industrial landing{% endblocktrans %}</p>
+                                        </div>
+                                        <div class="right-side d-flex align-items-center justify-content-start mb-sm-0 mb-5">
+                                            <div class="image-holder pr-4 hidden-md hidden-xs">
+                                                <svg id="59aa2a35-6d45-479d-acf0-05a7addacd94" data-name="Layer 1"
+                                                     xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                     viewBox="0 0 50 50"><title>4</title>
+                                                    <circle cx="25" cy="25" r="25" fill="none"/>
+                                                    <path d="M25,50A25,25,0,1,1,50,25,25,25,0,0,1,25,50ZM25,3A22,22,0,1,0,47,25,22,22,0,0,0,25,3Z"
+                                                          fill="#305278"/>
+                                                    <circle cx="25" cy="25" r="15" fill="none"/>
+                                                    <path d="M25,40A15,15,0,1,1,40,25,15,15,0,0,1,25,40Zm0-27A12,12,0,1,0,37,25,12,12,0,0,0,25,13Z"
+                                                          fill="#305278"/>
+                                                    <circle cx="25" cy="25" r="5" fill="#305278"/>
+                                                </svg>
+                                            </div>
+                                            <p class="mb-0 font-weight-normal">
+                                                {% blocktrans %}To seek thorough business landing domestically and internationally to maximize the value of IoT data{% endblocktrans %}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-five -->
+
                     <section class="section-six py-sm-5 py-0" id="application">
                         <div class="container py-1 py-sm-5">
                             <div class="row">
 
                                 <div class="upper col-12 col-sm-4 mx-0">
                                     <h2 class="text-left poppins-font"
-                                        style="font-weight: bold;padding-top: 0px">{% trans 'Industries' %}</h2>
+                                        style="font-weight: bold;padding-top: 150px">{% trans 'Application' %}</h2>
                                     <hr class="right-hr w-100 ml-0">
                                 </div>
                                 <div class="middle d-flex flex-row w-100 col-xl-10 col-md-10 mb-sm-5 mb-2">
@@ -854,31 +1121,76 @@
                         </div>
                     </section> <!-- section-six -->
 
-   
+                    <section class="section-seven py-sm-5 py-0 ">
+                        <div class="container py-sm-5 py-0">
+                            <div class="row flex-row align-items-center py-5">
 
-                    <section class="section-twelve py-sm-5 py-0 mb-5">
-                            <div class="container pt-5">
-                                <div class="row flex-column align-items-center justify-content-center">
-    
-                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                        <h2 class="text-center poppins-font">{% trans 'Videos' %}</h2>
-                                        <hr class="middle-hr mb-0">
+                                <div class="left-side col-xl-6 col-md-6 col-sm-12">
+                                    <div class="left-side-holder col-xl-10 col-md-10 col-sm-12 px-0">
+                                        <h1 class="display-1 font-italic" style="color: #F3F5F7;">3</h1>
+                                        <h2 class="poppins-font">{% blocktrans %}Three major <br> adoption scenarios{% endblocktrans %}</h2>
+                                        <hr class="right-hr w-100 ml-0">
+                                        <p style="color: #305278;font-family: 'Poppins';line-height: 30px;">
+                                            {% blocktrans %}The value of CPChain comes from the improvement of the physical industry’s efficiency and the innovation of business models, which results from data aggregation and mobility.{% endblocktrans %}
+                                        </p>
                                     </div>
-                                    <div id=videosContainer class="videoContainer   pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                        {% for e in videos %}
-                                            <iframe height="308" class="rounded w-100"
-                                                src="{% trans 'https://www.youtube.com/embed/0dNFgy_aGkM' %}"
-                                                class="smaller disable-select d-block"
-                                                frameborder="0"
-                                                allow="autoplay; encrypted-media"
-                                                allowfullscreen>
-                                            </iframe> 
-                                        {% endfor %}
-                                    </div>
-    
                                 </div>
+                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex flex-column align-items-end justify-content-between py-5 py-sm-0">
+                                    <div class="right-side-holder col-xl-9 col-md-9 col-lg-9 col-sm-12 px-0">
+                                        <div class="item d-flex flex-row" style="margin-bottom: 70px">
+                                            <div class="left-side">
+                                                <div class="image-holder mr-4">
+                                                    <img src="{% static '/img/Icons/multi-party.png' %}"
+                                                         class="d-block disable-select w-100"
+                                                         alt="Multi-parties data transaction - CPChain">
+                                                </div>
+                                            </div>
+                                            <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                    {% blocktrans %}Multi-party data transaction{% endblocktrans %}</h6>
+                                                <p class="mb-0"
+                                                   style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                    {% blocktrans %}Multi-party trust created by CPChain{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
+                                        <div class="item d-flex flex-row mb-5">
+                                            <div class="left-side">
+                                                <div class="image-holder mr-4">
+                                                    <img src="{% static '/img/Icons/artificial.png' %}"
+                                                         class="d-block disable-select w-100"
+                                                         alt="Artificial intelligence decisions - CPChain">
+                                                </div>
+                                            </div>
+                                            <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                    {% blocktrans %}Artificial intelligence decisions based on IoT big data{% endblocktrans %}</h6>
+                                                <p class="mb-0"
+                                                   style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                    {% blocktrans %}Interoperability of heterogeneous data, forming big data aggregation{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
+                                        <div class="item d-flex flex-row">
+                                            <div class="left-side">
+                                                <div class="image-holder mr-4">
+                                                    <img src="{% static '/img/Icons/interaction.png' %}"
+                                                         class="d-block disable-select w-100"
+                                                         alt="Interaction and application of data assets - CPChain">
+                                                </div>
+                                            </div>
+                                            <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                    {% blocktrans %}Interaction and application of data assets in cross-chain, which lead to new business models{% endblocktrans %}</h6>
+                                                <p class="mb-0"
+                                                   style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                    {% blocktrans %}Cross-chain relay and collaboration{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </section>
+                        </div>
+                    </section> <!-- section-seven -->
 
                     <section class="section-eight pt-sm-5 mt-sm-5 py-0 my-0">
                         <div class="container mt-sm-5 pt-4">
@@ -889,7 +1201,7 @@
                                         style="font-weight: bold;">{% trans 'Roadmap' %}</h2>
                                 </div>
 
-                                <!-- <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
+                                <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
                                      id="roadmap">
                                     <div class="middle-holder-upper roadmap-circles flex-row col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-0 px-0">
 
@@ -924,65 +1236,203 @@
                                         </div>
 
                                     </div>
-                                </div> -->
-                                 <!-- end of navigation for roadmap -->
+                                </div> <!-- end of navigation for roadmap -->
 
-                                <div class="swiper-container-roadmap w-100" id="roadmap">
-                                    <div class="">
+                                <div class="swiper-container-roadmap w-100">
+                                    <div class="swiper-wrapper">
 
-                                        <div class="">
+                                        <div class="swiper-slide">
                                             <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="first text-left pt-5 pb-5 mb-5">
-                                                            <h6 class="text-primary">2018 Q4</h6>
-                                                            <hr class="left-hr     w-100">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="left-hr now-quarter pulse  w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release {% endblocktrans %}</p>
+                                                                {% blocktrans %}PDash 2 release featuring <br> trusted data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-left  pt-5">
-                                                            <h6 class="text-primary">2019 Q4:</h6>
-                                                            <hr class="left-hr pulse now-quarter w-100">
-                                                            <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} CPChain Ecosystem Stabilization<br>Traceability and Authentication related project implementation {% endblocktrans %}</p>
-                                                        </div>
-                                                        <div class="second text-left  pt-5">
-                                                            <h6 class="text-primary">2020 Q4:</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
                                                             <hr class="left-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} Data encryption services Consolidation<br>Homomorphic encryption and Blackbox isolation data processing services relization {% endblocktrans %}</p>
+                                                                {% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
                                                     <div class="right-side-holder">
                                                         <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">2018 Q2:</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2018{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} Pdash 1.0 Release {% endblocktrans %}</p>
+                                                                {% blocktrans %}PDash release{% endblocktrans %}</p>
                                                         </div>
-                                                        <div class="fourth text-right pt-4 pb-0 pb-sm-5 mb-5">
-                                                            <h6 class="text-primary">2019 Q2:</h6>
-                                                            <hr class="right-hr   w-100">
+                                                        <div class="fourth d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="right-hr now-quarter pulse w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} CPChain Formal Mainnet Launch {% endblocktrans %}</p>
+                                                                {% blocktrans %}PDash 2 release featuring <br> trusted
+                                                                    data relay{% endblocktrans %}</p>
                                                         </div>
                                                         <div class="second text-right py-sm-5 py-0 my-5">
-                                                            <h6 class="text-primary">2020 Q2:</h6>
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
                                                             <hr class="right-hr w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
-                                                                {% blocktrans %} DID authentication system realization<br>Mass adoption of IoT devices Identification and Authentication {% endblocktrans %}</p>
-                                                        </div> 
+                                                                {% blocktrans %}PDash 3 release featuring<br> decentralized  market{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="five d-block d-sm-none d-md-none d-lg-none d-xl-none text-right">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p class="">{% blocktrans %}PDash 4 release featuring <br> incentivized economic model{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-right py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}PDash 5 release featuring<br> open ecosystem{% endblocktrans %}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
                                                 <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
                                                     {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
                                                 <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
-                                            </div> -->
-                                        </div> 
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
+                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                        <div class="second text-left py-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="left-hr now-quarter pulse w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}CPChain mainnet (alpha version) release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-left py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
+                                                    <div class="right-side-holder">
+                                                        <div class="first text-right pt-sm-5 pb-sm-5 py-0 mb-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Hybrid consensus protocol specification{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right d-block d-sm-none d-md-none d-lg-none d-xl-none py-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}CPChain mainnet release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Sidechain release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right py-sm-5 py-0 my-5 d-block d-sm-none d-md-none d-lg-none d-xl-none">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Consolidated mainnet 2 release <br> (backward compatible){% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
+                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                        <div class="second text-left  py-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-left py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-left py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
+                                                    <div class="right-side-holder">
+                                                        <div class="first text-right pt-0 pb-0 py-sm-5 mb-0 mb-sm-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2018{% endblocktrans %}</h6>
+                                                            <hr class="right-hr pulse  w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}IoT-chain specifications<br> and patent{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right d-block d-sm-none py-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}IoT-chain prototype{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Token model for chains{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q3 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}IoT-chain release <br> Wallet release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q4 / 2019{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}Iot-chain for specialized industries<br> SDK release{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-right d-block d-sm-none py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q1 / 2020{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}User and developer <br> community building{% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="third text-right py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">{% blocktrans %}Q2 / 2020{% endblocktrans %}</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %}DApp tutorials and examples{% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div><!-- end of swiper-container-roadmap -->
@@ -1009,7 +1459,7 @@
                                         </a> -->
                                     </div>
                                 </div>
-                                <div style="padding-left:0;padding-right: 0; " class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 mt-5 pt-5 mt-sm-0 pt-sm-0">
+                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 mt-5 pt-5 mt-sm-0 pt-sm-0">
                                     <div class="right-side-holder col-xl-11 col-lg-11 col-md-11 col-sm-12 d-flex flex-column align-items-start justify-content-center mx-auto mt-5 mt-sm-0 mr-sm-0 pr-sm-0 pt-0 pt-sm-0">
 
 
@@ -1039,12 +1489,6 @@
                                                                  class="smaller disable-select d-block">
                                                         </a>
                                                     </div>
-                                                    <div class="image-holder p-2">
-                                                            <a href="javascript:void(0)" onclick="goToSlide(3, this);">
-                                                                <img src="/media/img/Team/shiyao.png"
-                                                                     class="smaller disable-select d-block">
-                                                            </a>
-                                                    </div>
                                                 </div>
                                             </div> <!-- end of images-team -->
 
@@ -1066,7 +1510,7 @@
                                                     <div class="slider-desc">
                                                         <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Dr. Bin Zhao' %}</h2>
                                                         <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            {% blocktrans %}CPChain Co-Founder, CPO{% endblocktrans %}</h6>
+                                                            {% blocktrans %}CPChain Co-Founder, CTO{% endblocktrans %}</h6>
                                                         <p class="mt-4"
                                                            style="color: #305278;font-family: 'Poppins';font-weight: 500;">
                                                             {% blocktrans %}Dr. Zhao has more than 12 years research and development experience in the fields of communication, Internet of Things and FinTech, with extended experience in R&D team management. He has 3 patents for inventions in the field of IoT technology. {% endblocktrans %}
@@ -1085,18 +1529,6 @@
                                                         </p>
                                                     </div>
                                                 </div> <!-- end of swiper 2 -->
-                                                <div class="px-sm-3 swiper-slide">
-                                                    <div class="slider-desc">
-                                                        <!-- <h2 class="mt-4 text-sm-left text-center"></h2> -->
-                                                        <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Matthew Ma' %}</h2>
-                                                        <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
-                                                            {% blocktrans %}CPChain, CTO{% endblocktrans %}</h6>
-                                                        <p class="mt-4"
-                                                            style="color: #305278;font-family: 'Poppins';font-weight: 500;">
-                                                            {% blocktrans %}Dr. Ma got his Doctorate degree from the Hong Kong University of Science and Technology. His reserach area convers the fields of Blockchain network and Big-data-based Parallel Processing Platform & Mission Schedule Strategy. A few of his researches have been publicized on international conferences. {% endblocktrans %}
-                                                        </p>
-                                                    </div>
-                                                </div> <!-- end of swiper 3 -->
 
                                             </div> <!-- end of swiper-wrapper -->
 
@@ -1176,18 +1608,6 @@
                                                         {% trans 'Administrative' %}
                                                     </a>
                                                 </li>
-                                                <li class="choice choice-en-team">
-                                                        <a href="javascript:void(0)"
-                                                           onclick="switchTeamAmbassadors('Global Ambassador')">
-                                                           {% trans   'Global Ambassador' %}
-                                                        </a>
-                                                </li>
-                                                <li class="choice choice-en-team">
-                                                        <a href="javascript:void(0)"
-                                                           onclick="switchTeamAmbassadors('Global Community Advisors')">
-                                                           {% trans   'Global Community Advisors' %}
-                                                        </a>
-                                                </li>
                                             </ul>
 
                                         </div>
@@ -1200,7 +1620,7 @@
                                     <hr class="middle-hr w-100 d-block">
                                 </div>
 
-                                <div class="swiper-container swiper-container-team2 w-100 py-4 h-100 my-1">
+                                <div class="swiper-container w-100 py-4 h-100 my-1">
                                     <div class="swiper-wrapper border-left-0 border-right-0 containerr"
                                          id="team-swiper"></div> <!-- swiper wrapper-->
                                 </div> <!-- swiper container -->
@@ -1216,365 +1636,145 @@
 
                             </div>
                         </div>
-                    </section> <!-- section-ten --> 
-                    <section class="section-twelve py-sm-5 py-0 mb-5"  id="partners">
-                            <div class="container pt-5" style="max-width: 100% !important">
-                                <div class="row flex-column align-items-center justify-content-center" style="margin-left:1rem !important">
+                    </section> <!-- section-ten -->
 
-                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                        <h2 class="text-center poppins-font">{% trans 'Ecosystem' %}</h2>
-                                        <hr class="middle-hr mb-0">
+
+                    <section class="section-ten section-main-team py-0">
+                        <div class="container py-sm-5 py-0">
+                            <div class="row py-sm-0 pb-5">
+
+                                <div class="upper text-left col-sm-12 col-sm-5 globlAll">
+                                    <div class="dropdown position-relative upper d-flex align-items-center justify-content-sm-start justify-content-center px-0 col">
+                                        <div class="dropdown position-relative d-flex flex-row pb-3 globlDown">
+
+                                            <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row"
+                                                 id="outputen-ambassadors">
+                                                {% blocktrans %}CPChain Global Team{% endblocktrans %}
+                                            </div>
+                                            <i class="fas fa-caret-down ml-2 "
+                                               style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+
+                                            <ul class="dropdown-content mt-5 p-0 team globlList"
+                                                id="dropdown-content">
+                                                <li class="choice choice-en-ambassadors">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamAmbassadors('all')">
+                                                        {% blocktrans %}CPChain Global Team{% endblocktrans %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-ambassadors">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamAmbassadors('Global Ambassador')">
+                                                        {% blocktrans %}Global Ambassador{% endblocktrans %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-ambassadors">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamAmbassadors('Global Community Advisors')">
+                                                        {% blocktrans %}Global Community Advisors{% endblocktrans %}
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
                                     </div>
-                                    <div class="row" style="margin: 0 !important;width: 100%;">
-                                        <div class=" pt-5 col-xl-2 col-lg-2 col-md-12 col-sm-12 ">
-                                            <div class="tabcontainer">
-                                                <div data-seq="s1" class="tabitem tabitemactive">{% trans 'Industry' %}<i></i></div>
-                                                <div data-seq="s2" class="tabitem">{% trans 'Project' %}<i></i></div>
-                                                <div data-seq="s3" class="tabitem">{% trans 'Academia' %}<i></i></div>
-                                                <div data-seq="s4" class="tabitem">{% trans 'Capital' %}<i></i></div>
-                                                <div data-seq="s5" class="tabitem">{% trans 'Association' %}<i></i></div>
-                                                <div data-seq="s6" class="tabitem">{% trans 'Industry Node' %}<i></i></div>
-                                                <div data-seq="s7" style="margin-bottom: 0 !important;" class="tabitem">{% trans 'Exchanges' %}<i></i></div>
-                                            </div>
-                                        </div>
-
-                                        <div id='s1' class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                <div class="  swiper-container swiper-container-s1">
-                                                    <div class="swiper-wrapper">
-                                                        {% for page in industry %}
-                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                            {% for e in page %}
-                                                                <div class="image-holder carditem  col-sm-12">
-                                                                    <a href="{{ e.link }}" target="_blank">
-                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                    </a>
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div> 
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                    <div
-                                                        class="swiper-pagination-s1 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                        <span
-                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                            tabindex="0" role="button" aria-label="Go to slide 1"
-                                                            style="left: 0px;"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mobEcosystem">
-                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                    {% for page in industry %}
-                                                        {% for e in page %}
-                                                        <div class="image-holder carditem  col-sm-12">
-                                                            <a href="{{ e.link }}" target="_blank">
-                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
-                                                            </a>
-                                                        </div>
-                                                        {% endfor %}
-                                                    {% endfor %}
-                                                </div>
-                                            </div> 
-                                        </div>
-
-                                        <div id='s2'  
-                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                <div class="  swiper-container swiper-container-s2">
-                                                    <div class="swiper-wrapper">
-                                                        {% for page in project %}
-                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                            {% for e in page %}
-                                                                <div class="image-holder carditem  col-sm-12">
-                                                                    <a href="{{ e.link }}" target="_blank">
-                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                    </a>
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div> 
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                    <div
-                                                        class="swiper-pagination-s2 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                        <span
-                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                            tabindex="0" role="button" aria-label="Go to slide 1"
-                                                            style="left: 0px;"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mobEcosystem">
-                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                    {% for page in project %}
-                                                        {% for e in page %}
-                                                        <div class="image-holder carditem  col-sm-12">
-                                                            <a href="{{ e.link }}" target="_blank">
-                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
-                                                            </a>
-                                                        </div>
-                                                        {% endfor %}
-                                                    {% endfor %}
-                                                </div>
-                                            </div> 
-
-                                        </div>
-                                        <div id='s3'  
-                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                    <div class="  swiper-container swiper-container-s3">
-                                                        <div class="swiper-wrapper">
-                                                            {% for page in academia %}
-                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                                {% for e in page %}
-                                                                    <div class="image-holder carditem  col-sm-12">
-                                                                        <a href="{{ e.link }}" target="_blank">
-                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                        </a>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div> 
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                        <div
-                                                            class="swiper-pagination-s3 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                            <span
-                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                                tabindex="0" role="button" aria-label="Go to slide 1"
-                                                                style="left: 0px;"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobEcosystem">
-                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                        {% for page in academia %}
-                                                            {% for e in page %}
-                                                            <div class="image-holder carditem  col-sm-12">
-                                                                <a href="{{ e.link }}" target="_blank">
-                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                </a>
-                                                            </div>
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
-                                                </div> 
-                                        </div>
-                                        <div id='s4' 
-                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                    <div class="  swiper-container swiper-container-s4">
-                                                        <div class="swiper-wrapper">
-                                                            {% for page in capital %}
-                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                                {% for e in page %}
-                                                                    <div class="image-holder carditem  col-sm-12">
-                                                                        <a href="{{ e.link }}" target="_blank">
-                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                        </a>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div> 
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                        <div
-                                                            class="swiper-pagination-s4 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                            <span
-                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                                tabindex="0" role="button" aria-label="Go to slide 1"
-                                                                style="left: 0px;"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobEcosystem">
-                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                        {% for page in capital %}
-                                                            {% for e in page %}
-                                                            <div class="image-holder carditem  col-sm-12">
-                                                                <a href="{{ e.link }}" target="_blank">
-                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                </a>
-                                                            </div>
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
-                                                </div> 
-                                        </div>
-                                        <div id='s5' 
-                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                    <div class="  swiper-container swiper-container-s5">
-                                                        <div class="swiper-wrapper">
-                                                            {% for page in association %}
-                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                                {% for e in page %}
-                                                                    <div class="image-holder carditem  col-sm-12">
-                                                                        <a href="{{ e.link }}" target="_blank">
-                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                        </a>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div> 
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                        <div
-                                                            class="swiper-pagination-s5 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                            <span
-                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                                tabindex="0" role="button" aria-label="Go to slide 1"
-                                                                style="left: 0px;"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobEcosystem">
-                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                        {% for page in association %}
-                                                            {% for e in page %}
-                                                            <div class="image-holder carditem  col-sm-12">
-                                                                <a href="{{ e.link }}" target="_blank">
-                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                </a>
-                                                            </div>
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
-                                                </div> 
-
-                                        </div>
-                                        <div id='s6'  
-                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                            <!-- Swiper -->
-                                            <div class="webEcosystem">
-                                                    <div class="  swiper-container swiper-container-s6">
-                                                        <div class="swiper-wrapper">
-                                                            {% for page in industryNode %}
-                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                                {% for e in page %}
-                                                                    <div class="image-holder carditem  col-sm-12">
-                                                                        <a href="{{ e.link }}" target="_blank">
-                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                        </a>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div> 
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                        <div
-                                                            class="swiper-pagination-s6 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                            <span
-                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                                tabindex="0" role="button" aria-label="Go to slide 1"
-                                                                style="left: 0px;"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mobEcosystem">
-                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                        {% for page in industryNode %}
-                                                            {% for e in page %}
-                                                            <div class="image-holder carditem  col-sm-12">
-                                                                <a href="{{ e.link }}" target="_blank">
-                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                </a>
-                                                            </div>
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
-                                                </div> 
-
-                                        </div>
-                                        <div id='s7' 
-                                        class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
-                                        <!-- Swiper -->
-                                        <div class="webEcosystem">
-                                                <div class="  swiper-container swiper-container-s7">
-                                                    <div class="swiper-wrapper">
-                                                        {% for page in exchanges %}
-                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
-                                                            {% for e in page %}
-                                                                <div class="image-holder carditem  col-sm-12">
-                                                                    <a href="{{ e.link }}" target="_blank">
-                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
-                                                                    </a>
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div> 
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
-                                                    <div
-                                                        class="swiper-pagination-s7 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-                                                        <span
-                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
-                                                            tabindex="0" role="button" aria-label="Go to slide 1"
-                                                            style="left: 0px;"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mobEcosystem">
-                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-                                                    {% for page in exchanges %}
-                                                        {% for e in page %}
-                                                        <div class="image-holder carditem  col-sm-12">
-                                                            <a href="{{ e.link }}" target="_blank">
-                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
-                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
-                                                            </a>
-                                                        </div>
-                                                        {% endfor %}
-                                                    {% endfor %}
-                                                </div>
-                                            </div> 
-
-                                    </div>
-
-                                    </div>
-
-
                                 </div>
+
+                                <!-- Swiper -->
+                                <div class="col-12">
+                                    <hr class="middle-hr w-100 d-block">
+                                </div>
+
+                                <div class="swiper-container-main w-100 py-4 h-100 my-1">
+                                    <div class="swiper-wrapper border-left-0 border-right-0 containerr"
+                                         style="text-align: center;"></div> <!-- swiper wrapper-->
+                                </div> <!-- swiper container -->
+
+                                <div class="col-12">
+                                    <hr class="middle-hr w-100 d-block">
+                                </div>
+
+                                <div class="swiper-container-horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                    <div class="swiper-pagination-main" style="margin-left: 90px;"></div>
+                                </div>
+
                             </div>
-                        </section>
+                        </div>
+                    </section> <!-- section-ambassadors -->
 
 
+                    <section class="section-eleven pt-sm-5 pt-0" id="partners">
+                        <div class="container py-5">
+                            <div class="row flex-column">
 
-                    <!-- <section class="section-twelve py-sm-5 py-0 mb-5">
+
+                                <div class="upper col-xl-10 col-lg-10 col-md-10 col-sm-12 d-flex flex-row mx-auto pb-5">
+                                    <div class="first-col col-6 text-right swiper-partners-button-prev">
+                                        <h2>
+                                            <a href="javascript:void(0)">
+                                                <h2 class="text-right poppins-font"
+                                                    style="font-weight: bold;">{% trans 'Partners' %}</h2>
+                                            </a>
+                                        </h2>
+                                        <hr class="right-hr">
+                                    </div>
+                                    <div class="second-col col-6 swiper-partners-button-next">
+                                        <h2>
+                                            <a href="javascript:void(0)">
+                                                <h2 class="text-left poppins-font"
+                                                    style="font-weight: bold;">{% trans 'Investors' %}</h2>
+                                            </a>
+                                        </h2>
+                                        <hr class="left-hr">
+                                    </div>
+                                </div>
+
+                                <div class="swiper-container-partners col-12">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide">
+
+                                            <div class="bottom partners d-flex align-items-center justify-content-center">
+                                                <div class="row-first">
+                                                    {% for p in partners %}
+
+                                                        <div class="image-holder mb-4">
+                                                            <a href="{{ p.link }}" target="_blank">
+                                                                <img class="h-100 disable-select img-fluid d-block"
+                                                                     src="{{ MEDIA_URL }}{{ p.image }}">
+                                                            </a>
+                                                        </div>
+
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="bottom investor d-flex align-items-center justify-content-center">
+                                                <div class="row-first">
+                                                    {% for i in investors %}
+
+                                                        <div class="image-holder mb-4">
+                                                            <a href="{{ i.link }}" target="_blank">
+                                                                <img class="h-100 disable-select img-fluid d-block"
+                                                                     src="{{ MEDIA_URL }}{{ i.image }}">
+                                                            </a>
+                                                        </div>
+
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-eleven -->
+
+                    <section class="section-twelve py-sm-5 py-0 mb-5">
                         <div class="container pt-5">
                             <div class="row flex-column align-items-center justify-content-center">
 
@@ -1584,7 +1784,7 @@
                                 </div>
                                 <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
                                     {% for e in exchanges %}
-                                        <div class="image-holder carditem col-sm-12">
+                                        <div class="image-holder col-sm-12">
                                             <a href="{{ e.link }}" target="_blank">
                                                 <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
                                                      src="{{ MEDIA_URL }}{{ e.image }}">
@@ -1596,45 +1796,372 @@
 
                             </div>
                         </div>
-                    </section> -->
-                     <!-- section-twelve --> 
-                     <!-- section-thirteen -->
-                    </section> <!-- section-thirteen -->
-                    
-                    <section class="section-thirteen pt-5" id="downloadApp"  style="display: block">
-                            <div  > 
-                                    <div id='mob' class="mob">
-                                            <div class="mobleft">
-                                                <span class="cpcwallet">CPC WALLET</span>
-                                                <div>
-                                                    <div class="split"></div>
-                                                    <span class="info">Transfer CPC Anytime Anywhere</span>
-                                                    <div class="split"></div>
-                                                </div>
+                    </section> <!-- section-twelve -->
+                    <section class="section-thirteen pt-5" id="contact">
+                        <div class="container pt-sm-5 pt-0 pb-2s">
+                            <div class="row py-sm-5 py-0">
+
+                                <div class="left-side main col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="left-side-holder col-sm-9 col-12 px-0">
+                                        <h5 class="text-warning poppins-font">{% trans 'CONTACT' %}</h5>
+                                        <h1 class="display-4 font-weight-bold poppins-font">{% blocktrans %}Your <br> opinion is important.{% endblocktrans %}</h1>
+                                        <hr class="right-hr">
+                                        <p class="pt-3">
+                                            {% blocktrans %}If you have any suggestion or idea of enterprise cooperation, please feel free to contact us.{% endblocktrans %}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12">
+
+                                    <div class="right-side-holder">
+                                        <div class="swiper-contact-navigation col-12 d-flex flex-row pt-3 pb-1 py-sm-0 px-0">
+                                            <div class="left-side col-6 pr-sm-2 pr-2 swiper-contact-button-prev swiper-button-disabled">
+                                                <h5 class="text-right">
+                                                    <a href="javascript:void(0)" class="font-weight-normal"
+                                                       style="font-family: 'Poppins';">
+                                                        {% blocktrans %}I have a question{% endblocktrans %}
+                                                    </a>
+                                                </h5>
+                                                <hr class="right-hr">
                                             </div>
-                                            <div class="mobright">
-                                                <a href="wallet/download_app" id='btnwarp' class="btnwarp">
-                                                    <span class="btntext">DOWNLOAD</span>
-                                                </a>
+                                            <div class="right-side col-6 pl-sm-3 pl-1 pr-2 swiper-contact-button-next">
+                                                <h5>
+                                                    <a href="javascript:void(0)" class="font-weight-normal"
+                                                       style="font-family: 'Poppins';">
+                                                        {% blocktrans %}Business/Partnership{% endblocktrans %}
+                                                    </a>
+                                                </h5>
+                                                <hr class="left-hr">
                                             </div>
-                                        </div>
-                                        <div id='website' class="website">
-                                            <div class="webleft">
-                                                <span class="cpcwallet">CPC WALLET</span>
-                                                <div class="group">
-                                                    <div class="split"></div>
-                                                    <span class="info">Transfer CPC Anytime Anywhere</span>
-                                                    <div class="split"></div>
+                                        </div> <!-- end of swiper-contact-navigation -->
+
+                                        <div class="swiper-container-contact m-1">
+                                            <div class="swiper-wrapper pb-sm-5">
+
+                                                <div class="swiper-slide">
+                                                    <form id="contact-form">
+                                                        <div class="mx-3 form-group row flex-column"
+                                                             style="margin-bottom: 40px">
+                                                            <label for="inputEmail3"
+                                                                   class="col-sm-5 col-form-label px-0">{% blocktrans %}Your Email *{% endblocktrans %}</label>
+                                                            <div class="col-sm-12 px-0">
+                                                                <input type="email" name="email"
+                                                                       class="form-control"
+                                                                       id="inputEmail3" placeholder=""
+                                                                       autocomplete="off" required>
+                                                            </div>
+                                                        </div>
+                                                        <fieldset class="mx-3 form-group my-0">
+                                                            <div class="row flex-column">
+                                                                <legend class="col-form-label col-sm-12 py-1">
+                                                                    {% blocktrans %}You are presenting{% endblocktrans %}
+                                                                </legend>
+                                                                <div class="col-sm-10 d-flex flex-row">
+                                                                    <div class="pr-3">
+                                                                        <label class="customcheck d-flex align-items-center pl-4">
+                                                                            <input type="checkbox" checked>
+                                                                            <span class="d-flex align-items-center justify-content-center checkmark"></span>
+                                                                            {% trans 'individual' %}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="pr-3">
+                                                                        <label class="customcheck d-flex align-items-center pl-4">
+                                                                            <input type="checkbox">
+                                                                            <span class="d-flex align-items-center justify-content-center checkmark"></span>
+                                                                            {% trans 'enterprise' %}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <div class="mx-3 form-group py-4">
+                                                            <label for="exampleFormControlTextarea1">{% blocktrans %} Your Purpose for CPChain*{% endblocktrans %}</label>
+                                                            <textarea name="message" class="form-control"
+                                                                      style="resize:none;"
+                                                                      id="exampleFormControlTextarea1"
+                                                                      maxlength="250"
+                                                                      rows="3" required></textarea>
+                                                        </div>
+                                                        <div class="mx-3 form-group pb-4">
+                                                            <label for="exampleFormControlTextarea1">{% trans 'Attachment' %}</label>
+                                                            <div class="custom-file">
+                                                                <label class="custom-file-label d-flex flex-row align-items-center justify-content-center"
+                                                                       for="customFile"
+                                                                       class="text-primary d-flex flex-row">
+                                                                    <i class="fas fa-plus pr-2"></i>
+                                                                    <p class="small mb-0">
+                                                                        {% blocktrans %}Please select or drag and drop the upload file and limit it to within 10MB{% endblocktrans %}</p>
+                                                                </label>
+                                                                <input type="file" name="attachment"
+                                                                       class="custom-file-input" id="customFile">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="mx-3 form-group row flex-column pb-5 mb-3">
+                                                            <div class="col-sm-12 px-0">
+                                                                <p>You want to</p>
+                                                            </div>
+                                                            <div class="col-sm-10 px-0">
+                                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                                                    <label class="custom-control-label" for="customControlAutosizing">
+                                                                        Receive Newsletter from CPChain
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="mx-3 form-group checking row flex-column pb-5 mb-3">
+                                                            <div class="col-sm-12 px-0">
+                                                                <p>{% blocktrans %}You want to{% endblocktrans %}</p>
+                                                            </div>
+                                                            <label class="containerr d-flex align-items-center pl-4 mb-0">
+                                                                <input type="checkbox" checked="checked">
+                                                                <span class="checkmark"></span> {% blocktrans %}Receive Newsletter from CPChain{% endblocktrans %}
+                                                            </label>
+                                                        </div>
+                                                        <div class="mx-3 form-group row">
+                                                            <div class="col-sm-10 px-0">
+                                                                <button href="javascript:void(0)"
+                                                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
+                                                                        target="_blank">
+                                                                    {% trans 'SEND' %}
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-sm-5 text-right">
+                                                                <div class="loading-icon d-none" id="loading">
+                                                                    <svg class="lds-curve-bars" width="35px"
+                                                                         height="35px"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         viewBox="0 0 100 100"
+                                                                         preserveAspectRatio="xMidYMid">
+                                                                        <g transform="translate(50,50)">
+                                                                            <circle cx="0" cy="0"
+                                                                                    r="8.333333333333334"
+                                                                                    fill="none" stroke="#0080ff"
+                                                                                    stroke-width="4"
+                                                                                    stroke-dasharray="26.179938779914945 26.179938779914945"
+                                                                                    transform="rotate(308.129)">
+                                                                                <animateTransform
+                                                                                        attributeName="transform"
+                                                                                        type="rotate"
+                                                                                        values="0 0 0;360 0 0"
+                                                                                        times="0;1" dur="1s"
+                                                                                        calcMode="spline"
+                                                                                        keySplines="0.2 0 0.8 1"
+                                                                                        begin="0"
+                                                                                        repeatCount="indefinite"></animateTransform>
+                                                                            </circle>
+                                                                            <circle cx="0" cy="0"
+                                                                                    r="16.666666666666668"
+                                                                                    fill="none" stroke="#fff"
+                                                                                    stroke-width="4"
+                                                                                    stroke-dasharray="52.35987755982989 52.35987755982989"
+                                                                                    transform="rotate(360)">
+                                                                                <animateTransform
+                                                                                        attributeName="transform"
+                                                                                        type="rotate"
+                                                                                        values="0 0 0;360 0 0"
+                                                                                        times="0;1" dur="1s"
+                                                                                        calcMode="spline"
+                                                                                        keySplines="0.2 0 0.8 1"
+                                                                                        begin="-0.2"
+                                                                                        repeatCount="indefinite"></animateTransform>
+                                                                            </circle>
+                                                                            <circle cx="0" cy="0" r="25" fill="none"
+                                                                                    stroke="#0080ff"
+                                                                                    stroke-width="4"
+                                                                                    stroke-dasharray="78.53981633974483 78.53981633974483"
+                                                                                    transform="rotate(51.8709)">
+                                                                                <animateTransform
+                                                                                        attributeName="transform"
+                                                                                        type="rotate"
+                                                                                        values="0 0 0;360 0 0"
+                                                                                        times="0;1" dur="1s"
+                                                                                        calcMode="spline"
+                                                                                        keySplines="0.2 0 0.8 1"
+                                                                                        begin="-0.4"
+                                                                                        repeatCount="indefinite"></animateTransform>
+                                                                            </circle>
+                                                                            <circle cx="0" cy="0"
+                                                                                    r="33.333333333333336"
+                                                                                    fill="none" stroke="#c0f6d2"
+                                                                                    stroke-width="4"
+                                                                                    stroke-dasharray="104.71975511965978 104.71975511965978"
+                                                                                    transform="rotate(135.238)">
+                                                                                <animateTransform
+                                                                                        attributeName="transform"
+                                                                                        type="rotate"
+                                                                                        values="0 0 0;360 0 0"
+                                                                                        times="0;1" dur="1s"
+                                                                                        calcMode="spline"
+                                                                                        keySplines="0.2 0 0.8 1"
+                                                                                        begin="-0.6"
+                                                                                        repeatCount="indefinite"></animateTransform>
+                                                                            </circle>
+                                                                            <circle cx="0" cy="0"
+                                                                                    r="41.666666666666664"
+                                                                                    fill="none" stroke="#dae4bf"
+                                                                                    stroke-width="4"
+                                                                                    stroke-dasharray="130.89969389957471 130.89969389957471"
+                                                                                    transform="rotate(224.762)">
+                                                                                <animateTransform
+                                                                                        attributeName="transform"
+                                                                                        type="rotate"
+                                                                                        values="0 0 0;360 0 0"
+                                                                                        times="0;1" dur="1s"
+                                                                                        calcMode="spline"
+                                                                                        keySplines="0.2 0 0.8 1"
+                                                                                        begin="-0.8"
+                                                                                        repeatCount="indefinite"></animateTransform>
+                                                                            </circle>
+                                                                        </g>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="message small font-weight-light d-none"
+                                                                     id="message-response"></div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+
+                                                    <script type="text/javascript">
+
+                                                        let form = document.getElementById("contact-form");
+                                                        let loading = document.getElementById('loading');
+                                                        let message = document.getElementById('message-response');
+
+                                                        form.onsubmit = function (e) {
+
+                                                            e.preventDefault();
+
+                                                            loading.classList.remove('d-none');
+
+                                                            let formValues = new FormData(form);
+
+                                                            // define ajax part
+                                                            let xmlhttp = new XMLHttpRequest();
+                                                            let url = 'ajax.php';
+
+
+                                                            xmlhttp.onreadystatechange = function () {
+
+                                                                if (this.readyState == 4 && this.status == 200) {
+
+                                                                    loading.classList.add('d-none');
+
+                                                                    let response = null;
+                                                                    if (this.responseText) {
+                                                                        response = JSON.parse(this.responseText);
+                                                                    }
+
+                                                                    // if there is error
+                                                                    if (response && response.error) {
+                                                                        message.classList.add('text-danger');
+                                                                        message.classList.remove('d-none');
+                                                                        message.innerHTML = response.message;
+                                                                    } else {
+                                                                        message.classList.add('text-success');
+                                                                        message.classList.remove('d-none');
+                                                                        message.innerHTML = response.message;
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                            xmlhttp.open('POST', url, true);
+                                                            xmlhttp.send(formValues);
+
+                                                        };
+
+
+                                                    </script>
                                                 </div>
-                                                <div class="qr">
-                                                    <img class="qrimg" src="{% static '/img/wallet/qr.png' %}"   alt="" srcset="">
-                                                    <span class="qrtext">DOWNLOAD</span>
+
+                                                <div class="swiper-slide">
+                                                    <form>
+                                                        <div class="mx-3 form-group row flex-column mb-4">
+                                                            <label for="inputEmail3"
+                                                                   class="col-sm-5 col-form-label px-0">{% blocktrans %} Your Email *{% endblocktrans %}</label>
+                                                            <div class="col-sm-12 px-0">
+                                                                <input type="email" class="form-control"
+                                                                       id="inputEmail3" placeholder=""
+                                                                       autocomplete="off" required>
+                                                            </div>
+                                                        </div>
+                                                        <fieldset class="mx-3 form-group">
+                                                            <div class="row flex-column">
+                                                                <legend class="col-form-label col-sm-12 py-1">
+                                                                    {% blocktrans %}You are presenting{% endblocktrans %}
+                                                                </legend>
+                                                                <div class="col-sm-10 d-flex flex-row">
+                                                                    <div class="pr-3">
+                                                                        <label class="customcheck d-flex align-items-center pl-4">
+                                                                            <input type="checkbox" checked>
+                                                                            <span class="d-flex align-items-center justify-content-center checkmark"></span>
+                                                                            {% trans 'individual' %}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="pr-3">
+                                                                        <label class="customcheck d-flex align-items-center pl-4">
+                                                                            <input type="checkbox">
+                                                                            <span class="d-flex align-items-center justify-content-center checkmark"></span>
+                                                                            {% trans 'enterprise' %}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <div class="mx-3 form-group py-4">
+                                                            <label for="exampleFormControlTextarea1">{% blocktrans %} Your Purpose for CPChain*{% endblocktrans %}</label>
+                                                            <textarea class="form-control" style="resize:none;"
+                                                                      id="exampleFormControlTextarea1"
+                                                                      maxlength="250"
+                                                                      rows="3" required></textarea>
+                                                        </div>
+                                                        <div class="mx-3 form-group pb-4">
+                                                            <label for="exampleFormControlTextarea1">{% trans 'Attachment' %}</label>
+                                                            <div class="custom-file">
+                                                                <label class="custom-file-label d-flex flex-row align-items-center justify-content-center"
+                                                                       for="customFile"
+                                                                       class="text-primary d-flex flex-row"><i
+                                                                        class="fas fa-plus pr-2"></i>
+                                                                    <p class="small mb-0"> {% blocktrans %}Please select or drag and drop the upload file and limit it to within 10MB{% endblocktrans %}</p></label>
+                                                                <input type="file" name="attachment"
+                                                                       class="custom-file-input" id="customFile">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mx-3 form-group checking row flex-column pb-5 mb-3">
+                                                            <div class="col-sm-12 px-0">
+                                                                <p>{% blocktrans %}You want to{% endblocktrans %}</p>
+                                                            </div>
+                                                            <label class="containerr d-flex align-items-center pl-4 mb-0">
+                                                                <input type="checkbox" checked="checked">
+                                                                <span class="checkmark"></span> {% blocktrans %}Receive Newsletter from CPChain{% endblocktrans %}
+                                                            </label>
+                                                        </div>
+                                                        <div class="mx-3 form-group row">
+                                                            <div class="col-sm-10 px-0">
+                                                                <button href="javascript:void(0)"
+                                                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white"
+                                                                        target="_blank">
+                                                                    {% trans 'SEND' %}
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
+
                                             </div>
-                                            <div class="webright"></div>
-                                        </div>
+                                        </div> <!-- end of swiper-container-contact -->
+                                    </div>
+
+                                </div>  <!-- end of right side  -->
+
                             </div>
-                        </section> <!-- section-thirteen -->
+                        </div>
+                    </section> <!-- section-thirteen -->
 
                 </main><!-- #main -->
 
@@ -1644,11 +2171,10 @@
         </div><!-- #content -->
 
     </div><!-- .site-content-contain -->
-    
 </div><!-- #page -->
 
 <footer class="footer pb-2 pb-sm-0">
-    <div class="container"   id="contact">
+    <div class="container">
         <div class="row flex-rox d-flex align-items-center justify-content-center">
 
             <hr class="w-100 middle-footer-hr">
@@ -1730,102 +2256,8 @@
 <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
 
 <script>
-
-(function () {
-
-    var newRem = function () {
-
-        var html = document.documentElement;
-
-        var ClientWidth = html.getBoundingClientRect().width;
-
-        if (ClientWidth <= 750) {
-            html.style.fontSize = ClientWidth / 30 + 'px';
-        } else {
-            html.style.fontSize = '16px';
-        }
-    };
-
-    window.addEventListener('resize', newRem, false);
-    newRem();
-    })(); 
-    function initEcosystem(){
-        for (let i = 1; i <= 7; i++) {
-            new Swiper('.swiper-container-s' + i, {
-                autoplay: true,//可选选项，自动滑动
-
-                pagination: {
-                    el: '.swiper-pagination-s' + i,
-                    dynamicBullets: true,
-                    clickable: true,
-                },
-
-            })
-        }
- 
-        let tabitems = document.querySelectorAll('.tabitem')
-        tabitems.forEach(item => { 
-            item.onclick = () => {
-                document.querySelectorAll('.tabitemactive').forEach(act => act.className = 'tabitem')
-                item.className = 'tabitem tabitemactive'
-
-                document.querySelectorAll('.swiperdiv').forEach(sd => sd.setAttribute('style', 'display:none'))
-                document.getElementById(item.getAttribute('data-seq')).setAttribute('style', 'display:block')
-            }
-            item.onmousemove =  item.onclick
-        })
-    }
-    initEcosystem()
- 
-    for (let i = 2; i <= 7; i++) {
-        document.getElementById('s'+i).setAttribute('style', 'display:none')
-    }
-   
     {#获取本地地址和语言#}
     var localUrl = window.location.pathname;
-    /* 获取通知消息
-    */
-    function getNotification(){
-        fetch('/notification').then(res=>res.json()).then(res=>{
-            let timeNow = new Date().getTime()  
-            let resTimefilter = res.filter(p=>timeNow>new Date(p.fields.time_start).getTime() && timeNow < new Date(p.fields.time_end).getTime())
-            if(resTimefilter && resTimefilter.length>0){
-                let messageBlock = document.getElementById("messagemain")
-                let n = resTimefilter[0]
-                messageBlock.setAttribute('style','display:flex')
-                if(n.fields.url.replace('http://','').replace('https://','')){
-                    messageBlock.innerHTML=`<a class="messageLink" href="${n.fields.url}"> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</a><div id="messageclose" class="messageclose"></div>`
-                } else {
-                    messageBlock.innerHTML=`<span> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</span><div id="messageclose" class="messageclose"></div>`
-                }
-                document.getElementById('messageclose').addEventListener('click',function(){
-                    document.getElementById('messagemain').style='display:none'
-                })
-            }
-        }).catch()
-    } 
-
-    function getIndexVideos(){
-        fetch('/index_video').then(res=>res.json()).then(res=>{
-            if(res && res.length>0){
-                let  videosContainer = document.getElementById('videosContainer')
-                let htmlStr = ''
-                res.forEach(v=>{ 
-                    htmlStr +=`<iframe height="308" class="rounded w-100"
-                                    src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
-                                    class="smaller disable-select d-block"
-                                    frameborder="0"
-                                    allow="autoplay; encrypted-media"
-                                    allowfullscreen>
-                                </iframe> `
-                })
-                videosContainer.innerHTML = htmlStr 
-            }
-             
-        }).catch()
-    }
-    getNotification()
-    getIndexVideos()
 
     {#点击英文#}
     $(".en").click(function () {
@@ -1896,7 +2328,6 @@
 
 
     let header = document.getElementById('header');
-    
     window.addEventListener('scroll', function (e) {
         (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
     });
@@ -1924,48 +2355,48 @@
     // home page
     let imageTeam = document.getElementById('imageTeamActive');
     // swiper for roadmap
-    // var roadmapSwiper = new Swiper('.swiper-container-roadmap', {
-    //     effect: 'flip',
-    //     grabCursor: true,
-    // });
+    var roadmapSwiper = new Swiper('.swiper-container-roadmap', {
+        effect: 'flip',
+        grabCursor: true,
+    });
 
-    // let circles = document.getElementsByClassName('roadmap-circles')[0].childNodes;
+    let circles = document.getElementsByClassName('roadmap-circles')[0].childNodes;
 
-    // function roadmapNavigate(index, e) {
-    //     roadmapSwiper.slideTo(index, 1000);
-    //     for (var i = 0; i < circles.length; i++) {
-    //         if (circles[i].nodeType == 1) {
-    //             if (circles[i].getAttribute('id') == e.parentNode.parentNode.getAttribute('id')) {
-    //                 circles[i].classList.add('active');
-    //             } else {
-    //                 circles[i].classList.remove('active');
-    //             }
-    //         }
-    //     }
-    // }
+    function roadmapNavigate(index, e) {
+        roadmapSwiper.slideTo(index, 1000);
+        for (var i = 0; i < circles.length; i++) {
+            if (circles[i].nodeType == 1) {
+                if (circles[i].getAttribute('id') == e.parentNode.parentNode.getAttribute('id')) {
+                    circles[i].classList.add('active');
+                } else {
+                    circles[i].classList.remove('active');
+                }
+            }
+        }
+    }
 
-    // roadmapSwiper.on('slideChange', function () {
-    //     let currentSlide = this.activeIndex;
+    roadmapSwiper.on('slideChange', function () {
+        let currentSlide = this.activeIndex;
 
-    //     if (currentSlide == 0) {
-    //         var eHolder = 'pdash';
-    //     } else if (currentSlide == 1) {
-    //         var eHolder = 'mainnet';
-    //     } else if (currentSlide == 2) {
-    //         var eHolder = 'industriy';
-    //     }
+        if (currentSlide == 0) {
+            var eHolder = 'pdash';
+        } else if (currentSlide == 1) {
+            var eHolder = 'mainnet';
+        } else if (currentSlide == 2) {
+            var eHolder = 'industriy';
+        }
 
-    //     for (var i = 0; i < circles.length; i++) {
-    //         if (circles[i].nodeType == 1) {
-    //             if (circles[i].getAttribute('id') == eHolder) {
-    //                 circles[i].classList.add('active');
-    //             } else {
-    //                 circles[i].classList.remove('active');
-    //             }
-    //         }
-    //     }
+        for (var i = 0; i < circles.length; i++) {
+            if (circles[i].nodeType == 1) {
+                if (circles[i].getAttribute('id') == eHolder) {
+                    circles[i].classList.add('active');
+                } else {
+                    circles[i].classList.remove('active');
+                }
+            }
+        }
 
-    // });
+    });
 
     // swiper for contact
     var contactSwiper = new Swiper('.swiper-container-contact', {
@@ -2007,8 +2438,6 @@
             imageTeam.src = '{% static 'img/Team/zhaobin.png' %}';
         } else if (currentSlide == 2) {
             imageTeam.src = '{% static 'img/Team/shi.png' %}';
-        } else if (currentSlide == 3) {
-            imageTeam.src = '/media/img/Team/shiyao.png';
         }
     })
 
@@ -2017,7 +2446,7 @@
     }
 
     //Swiper for team
-    var swiper = new Swiper('.swiper-container-team2', {
+    var swiper = new Swiper('.swiper-container', {
         slidesPerView: 4,
         spaceBetween: 50,
         pagination: {
@@ -2047,33 +2476,33 @@
     });
 
 
-    // var swiperAmbassadors = new Swiper('.swiper-container-main', {
-    //     slidesPerView: 4,
-    //     spaceBetween: 50,
-    //     pagination: {
-    //         el: '.swiper-pagination-main',
-    //         dynamicBullets: true,
-    //         clickable: true,
-    //     },
-    //     breakpoints: {
-    //         1024: {
-    //             slidesPerView: 4,
-    //             spaceBetween: 40,
-    //         },
-    //         768: {
-    //             slidesPerView: 3,
-    //             spaceBetween: 30,
-    //         },
-    //         640: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 20,
-    //         },
-    //         320: {
-    //             slidesPerView: 1,
-    //             spaceBetween: 10,
-    //         }
-    //     }
-    // });
+    var swiperAmbassadors = new Swiper('.swiper-container-main', {
+        slidesPerView: 4,
+        spaceBetween: 50,
+        pagination: {
+            el: '.swiper-pagination-main',
+            dynamicBullets: true,
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            }
+        }
+    });
 
     //Vanilla 3d
     const element = document.querySelector(".js-tilt");
@@ -2136,13 +2565,12 @@
     ];
 
     function switchTeamAmbassadors(type) {
-        swiper.removeAllSlides();
+        swiperAmbassadors.removeAllSlides();
         let swiperTeam;
 
         (type == 'all') ? swiperTeam = teamsAmbassadors : swiperTeam = teamsAmbassadors.filter(team => team.en.category == type);
 
-        // setupTeamSlides(swiperTeam, swiperAmbassadors, 'ambassadors');
-        setupTeamSlides(swiperTeam, swiper, 'teams');
+        setupTeamSlides(swiperTeam, swiperAmbassadors, 'ambassadors');
     }
 
     function switchTeamCategory(type) {
@@ -2155,7 +2583,7 @@
 
     window.onload = function () {
         setupTeamSlides(teams, swiper, 'teams');
-        // setupTeamSlides(teamsAmbassadors, swiperAmbassadors, 'ambassadors');
+        setupTeamSlides(teamsAmbassadors, swiperAmbassadors, 'ambassadors');
     }
 
     function setupTeamSlides(teams, typeOfSwiper, type) {

@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js no-svg">
+{% load i18n %}
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="6a1afpzWotLmgUio99dPp1Pmc5mShxvwdsVIYli_2MM"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="shortcut icon" href="{% static '/img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/swiper.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Source+Sans+Pro:400,600,700,900"
+          rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script>(function (html) {
+        html.className = html.className.replace(/\bno-js\b/, 'js')
+    })(document.documentElement);</script>
+    <title>CPChain &#8211; A new distributed infrastructure for next generation IoT</title>
+    <link rel='dns-prefetch' href='//s.w.org'/>
+    <link rel='stylesheet' id='wpm-main-css' href="{% static '/css/main.css' %}" type='text/css' media='all'/>
+    <link rel='stylesheet' href="{% static '/css/style.css' %}" type='text/css' media='all'/>
+    <link rel="canonical" href="https://cpchain.io/"/>
+    <link rel='shortlink' href='https://cpchain.io/'/>
+    <link rel="alternate" hreflang="x-default" href="https://cpchain.io/"/>
+    <link rel="alternate" hreflang="en-us" href="https://cpchain.io/"/>
+    <link rel="alternate" hreflang="zh-cn" href="https://cpchain.io/zh-hans/"/>
+    <style type="text/css">.recentcomments a {
+        display: inline !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    } 
+    </style> 
+    </style>
+    <!-- 手机下载样式 -->
+     <style>
+            * {
+                padding: 0;
+                margin: 0
+            }
+    
+    
+            /* 手机端 */
+            @media (min-width: 125px) {
+                .videoContainer{
+                    display: grid;
+                    grid-gap: 10px;
+                    grid-template-columns: repeat(1, auto) !important;
+                }
+                .website {
+                    display: none;
+                }
+    
+                .mob {
+                    width: 100%;
+                    height: 12.24rem;
+                    /* background-image:  url("/static/img/mainnetwelcome/bubble.png");    */
+                    background-image: url('/static/img/wallet/bj.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding-left: 2.64rem;
+                    padding-right: 2.16rem;
+                }
+    
+                .mobleft {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    padding: 3.12rem 0;
+                }
+    
+                .cpcwallet {
+                    width: 8.88rem;
+                    height: 2rem;
+                    font-size: 1.44rem;
+                    font-family: 'Poppins-Medium';
+                    font-weight: 500;
+                    color: rgba(48, 82, 120, 1);
+                    line-height: 2.16rem;
+                }
+    
+                .info {
+                    width: 15.84rem;
+                    height: 1.36rem;
+                    font-size: 0.96rem;
+                    font-family: 'Poppins-Regular';
+                    font-weight: 400;
+                    color: rgba(48, 82, 120, 1);
+                    line-height: 1.44rem;
+                    margin-top: 0.24rem;
+                    margin-bottom: 0.32rem;
+                }
+    
+                .split {
+                    width: 1.68rem;
+                    height: 2px;
+                    background-color: #305278;
+                }
+    
+                .btnwarp {
+                    width: 9.28rem;
+                    height: 2.4rem;
+                    border-radius: 1.6rem;
+                    background-image: url('/static/img/wallet/button.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration:none
+                }
+    
+                .btntext {
+                    /* width: 5.68rem; */
+                    /* height: 17px; */
+                    font-size: 0.96rem;
+                    font-family: 'Poppins-Medium';
+                    font-weight: 500;
+                    color: rgba(48, 82, 120, 1);
+                    /* line-height: 18px; */
+                }
+    
+                .mobright {
+                    padding-top: 2.71rem;
+                    padding-left: 1.36rem;
+                }
+            }
+    
+            /* 电脑端 */
+            @media (min-width: 1024px) {
+                .videoContainer{
+                    display: grid;
+                    grid-gap: 10px;
+                    grid-template-columns: repeat(3, auto) !important;
+                }
+                .mob {
+                    display: none
+                }
+    
+                .website {
+                    display: block;
+                    width: 100%;
+                    height: 540px;
+                    background-image: url('/static/img/wallet/beijing1.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+    
+                .webleft {
+                    margin-right: 228px;
+                    margin-top: -7px;
+                    height: 322px;
+                    /* background-color: brown; */
+                    width: 221px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+    
+                .webright {
+                    width: 319px;
+                    height: 430px;
+                    background-image: url('/static/img/wallet/iPhone.png');
+                    background-position: center center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+    
+                .cpcwallet {
+                    width: 221px;
+                    height: 51px;
+                    font-size: 36px;
+                    font-family: 'Poppins-Medium';
+                    font-weight: 500;
+                    color: rgba(48, 82, 120, 1);
+                    line-height: 55px;
+                }
+    
+                .group {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center
+                }
+    
+                .info {
+                    width: 198px;
+                    /* height: 34px; */
+                    font-size: 12px;
+                    font-family: 'Poppins-Regular';
+                    font-weight: 400;
+                    color: rgba(48, 82, 120, 1);
+                    line-height: 18px;
+                }
+    
+                .split {
+                    width: 40px;
+                    height: 2px;
+                    background-color: #305278;
+                }
+    
+                .qr {
+                    width: 108px;
+                    height: 159px;
+                    background: rgba(255, 255, 255, 1);
+                    border-radius: 7px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    /* padding: 12px 0 25px 0; */
+                }
+    
+                .qrimg {
+                    width: 86px;
+                    height: 85px;
+                    margin-top: 12px;
+                }
+    
+                .qrtext {
+                    margin-bottom: 25px;
+                    /* width: 65px;
+                    height: 16px; */
+                    font-size: 11px;
+                    font-family: 'Poppins-Medium';
+                    font-weight: 500;
+                    color: rgba(48, 82, 120, 1);
+                    line-height: 17px;
+                }
+            }
+        </style>
+        <style>
+                .tabitemactive {
+                    color: rgba(245, 194, 68, 1);
+                    z-index: 100;
+                }
+        
+        
+        
+                @media (min-width: 375px) {
+                    .mobEcosystem {
+                        display: block
+                    }
+        
+                    .webEcosystem {
+                        display: none
+                    }
+        
+                    .tabitemactive i {
+                        background-color: rgba(245, 194, 68, 1) !important;
+                        height: 2.85rem;
+                        width: 3px !important;
+                        margin-left: -1px !important;
+                    }
+        
+                    .tabcontainer {
+                        height: 100%;
+                        background-color: white;
+                        margin-left: 1rem;
+                        border-left: 1px solid rgba(193, 206, 220, 1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                    }
+        
+                    .tabitem i {
+                        height: 2.85rem;
+                        width: 2px;
+                        margin-right: 1.785rem;
+                    }
+        
+                    .tabitem {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                        font-size: 1.071rem;
+                        /* font-family: 'SFUIText'; */
+                        font-weight: 500;
+                        color: rgba(56, 82, 117, 1);
+                        margin-bottom: 0.476rem;
+                        height: 2.85rem;
+                        line-height: 2.85rem;
+                    }
+        
+                    .carditem {
+                        width: 12.85rem;
+                        height: 4.5rem;
+                        box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+                        -moz-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+                        -webkit-box-shadow: 0px 1px 2px 0px rgba(7, 9, 12, 0.05);
+        
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+        
+                    }
+        
+                    div.carditem:hover {
+                        width: 12.85rem;
+                        height: 4.5rem;
+                        box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                        -moz-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                        -webkit-box-shadow: 0px 1px 2px 0px rgba(245, 194, 68, 1);
+                    }
+        
+                    .carditem img {
+                        max-height: 4rem;
+                        max-width: 12rem;
+                    }
+        
+        
+                    .swiper-container {
+                        width: 30rem;
+                        /* height: 19.5rem; */
+                    }
+        
+                    .swiperdiv {
+                        /* height: 19.5rem; */
+                        padding: 0 !important;
+                    }
+        
+                    .swiper-wrapper {
+                        width: 30rem;
+                        /* height: 19.5rem; */
+                    }
+        
+                    .swiper-bottom {
+                        display: '-ms-grid';
+                        display: 'grid';
+                        grid-gap: 0.4rem;
+                        -ms-grid-columns: (auto) 2;
+                        grid-template-columns: repeat(2, auto) !important;
+                    }
+                }
+        
+                @media (min-width: 1024px) {
+                    .mobEcosystem {
+                        display: none
+                    }
+        
+                    .webEcosystem {
+                        display: block
+                    }
+        
+                    .tabitemactive i {
+                        background-color: rgba(245, 194, 68, 1) !important;
+                        height: 2.85rem;
+                        width: 3px !important;
+                        margin-right: -1px !important;
+                        margin-left: 1.785rem!important;
+                    }
+        
+                    .tabitem i {
+                        height: 2.85rem;
+                        width: 2px;
+                        margin-left: 1.785rem;
+                        margin-right: 0 ;
+                    }
+        
+                    .tabcontainer {
+                        height: 100%;
+                        background-color: white;
+                        border-right: 1px solid rgba(193, 206, 220, 1);
+                        border-left: 0px solid rgba(193, 206, 220, 1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                    }
+        
+                    .tabitem {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        font-size: 1.071rem;
+                        /* font-family: 'SFUIText'; */
+                        font-weight: 500;
+                        color: rgba(56, 82, 117, 1);
+                        margin-bottom: 0.476rem;
+                        height: 2.85rem;
+                        line-height: 2.85rem;
+                    }
+        
+                    .carditem {
+                        width: 17.85rem;
+                        height: 6.54rem;
+                        box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+                        -moz-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+                        -webkit-box-shadow: 0px 1px 5px 0px rgba(7, 9, 12, 0.05);
+        
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+        
+                    }
+        
+                    div.carditem:hover {
+                        width: 17.85rem;
+                        height: 6.54rem;
+                        box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                        -moz-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                        -webkit-box-shadow: 0px 1px 5px 0px rgba(245, 194, 68, 1);
+                    }
+        
+                    .carditem img {
+                        max-height: 6rem;
+                        max-width: 17rem;
+                    }
+        
+        
+                    .swiper-container {
+                        width: 55.47rem;
+                        height: 19.5rem;
+                    }
+        
+                    .swiperdiv {
+                        height: 19.5rem;
+                    }
+        
+                    .swiper-wrapper {
+                        width: 55.47rem;
+                        height: 19.5rem;
+                    }
+        
+                    .swiper-bottom {
+                        display: '-ms-grid';
+                        display: 'grid';
+                        grid-gap: 0.4rem;
+                        -ms-grid-columns: (auto) 3;
+                        grid-template-columns: repeat(3, auto) !important;
+                    }
+                }
+
+                .message {
+            position: fixed;
+            width: 100%;
+            height: 3rem;
+            background-color: #4A5659;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 10000;
+        }  
+        .messageLink{
+                    color: white; 
+                    cursor:'hand'
+                }
+ 
+
+        .messageclose {
+            margin-right: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;  
+            position: absolute;
+            right: 0;
+            z-index: 10000;
+            border-radius: 50%;
+            background-image: url("{% static 'img/mainnetwelcome/close.png' %}");  
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        } 
+ </style>
+<body class="home page-template-default page page-id-2 language-en twentyseventeen-front-page has-header-image page-two-column colors-light">
+ <div id="page" class="site"> 
+    <div id=messagemain class="message"> 
+    </div> 
+    <header class="py-4 mx-auto w-100  position-fixed " id="header">
+        <div class="container">
+            <div class="row">
+                {#logo#}
+                <div class="col-3 d-flex flex-row align-items-center">
+                    <a href="{% url 'index' %}" class="logo-hov">
+                        <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
+                            <img src="{% static '/img/logo_new.svg' %}" class="disable-select">
+                        </div>
+                    </a>
+                </div>
+                {#logo#}
+
+                <div class="menu col-9 d-flex align-items-center justify-content-end">
+                    <ul class="list-unstyled mainul flex-column flex-md-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-md-center justify-content-md-between align-items-start justify-content-start w-100 mb-0"
+                        id="mySidenav">
+                        <li class="d-md-none d-block w-100">
+                            <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                          fill="#fff"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#application" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Application' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#roadmap" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Roadmap' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#team" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Team' %}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Community' %}
+                            </a>
+                        </li>
+
+{#                        <li class="dropdown bg-transparent">#}
+{#                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
+{#                                <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">#}
+{#                                    {% trans 'Developer' %}#}
+{#                                </a>#}
+{#                                <div class="image-holder d-flex align-items-center justify-content-center">#}
+{#                                    <svg height="24px" class="d-none d-md-block"#}
+{#                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"#}
+{#                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
+{#                                         viewBox="0 0 24 24">#}
+{#                                        <g opacity="0.4">#}
+{#                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>#}
+{#                                            <path d="M0,0H24V24H0Z" fill="none"/>#}
+{#                                        </g>#}
+{#                                    </svg>#}
+{#                                </div>#}
+{#                                <ul class="dropdown-menu rounded">#}
+{#                                    <a href="{% url 'developer' %}" class="small ">{% trans 'Docs' %}</a>#}
+{#                                    <a href="{% url 'password' %}" class="small ">{% trans 'Faucet' %}</a>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </li>#}
+                        <li>
+                            <a href="{% url 'developer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Documentation' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Explorer' %}
+                            </a>
+                        </li>
+{#                        <li class="dropdown bg-transparent">#}
+{#                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
+{#                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">#}
+{#                                    {% trans 'Explorer' %}#}
+{#                                </a>#}
+{#                                <div class="image-holder d-flex align-items-center justify-content-center">#}
+{#                                    <svg height="24px" class="d-none d-md-block"#}
+{#                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"#}
+{#                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
+{#                                         viewBox="0 0 24 24">#}
+{#                                        <g opacity="0.4">#}
+{#                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>#}
+{#                                            <path d="M0,0H24V24H0Z" fill="none"/>#}
+{#                                        </g>#}
+{#                                    </svg>#}
+{#                                </div>#}
+{#                                <ul class="dropdown-menu rounded rhea">#}
+{#                                    <a href="{% url 'explorer:explorer' %}"#}
+{#                                       class="small">{% trans 'Mainnet' %}</a>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </li>#}
+                        <li>
+                            <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Ecosystem' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="font-weight-bold" onclick="openMenu(0)">
+                                {% trans 'Contact' %}
+                            </a>
+                        </li>
+                        <li class="line"></li>
+                        <li class="dropdown bg-transparent">
+                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
+                                    {% trans 'EN' %} </a>
+                                <div class="image-holder d-flex align-items-center justify-content-center">
+                                    <svg height="24px" class="d-none d-md-block"
+                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24">
+                                        <g opacity="0.4">
+                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                            <path d="M0,0H24V24H0Z" fill="none"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <ul class="dropdown-menu list-unstyled rounded">
+                                    <a href="javascript:void(0);" class="small en">EN</a>
+                                    <a href="javascript:void(0);" class="small zh">中文</a>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8 menuopen position-absolute d-flex justify-content-end align-items-center">
+                    <a onclick="openMenu(1)"><i class="fas fa-bars d-block d-md-none"></i></a>
+                </div>
+            </div>
+        </div>
+    </header> <!-- header -->
+    <div class="site-content-contain">
+        <div id="content" class="site-content">
+
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main" role="main">
+
+                    <section class="section-one d-flex align-items-center justify-content-center position-relative">
+                        <div class="container h-100">
+                            <div class="row mt-5 position-relative text-center h-100 flex-column align-items-center justify-content-end justify-content-md-center">
+
+                                <div class="text-center">
+                                    <h1 class="col-10 col-sm-12 poppins-light p-0 mx-auto text-uppercase">
+                                        Cyber Physical Chain
+                                    </h1>
+                                    <p class="col-10 col-sm-12 mt-4 mt-sm-0 px-0 mx-auto .poppins-light-italic">
+                                        {% blocktrans %} A new distributed infrastructure for next generation IoT {% endblocktrans %}
+                                    </p>
+                                </div>
+                                <div class="pt-5 mt-3 main-buttons ">
+                                    <a href="/download/{% trans 'CPChain_Whitepaper_English.pdf' %}"
+                                       class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3 px-3 "
+                                       target="_blank"
+                                       style="font-family: 'Poppins', sans-serif !important;">
+                                        {% trans 'WHITE PAPER 2.0' %}
+                                    </a>
+{#                                    <a href="/download/CPChain_lightpaper_English.pdf"#}
+{#                                       class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "#}
+{#                                       target="_blank"#}
+{#                                       style="font-family: 'Poppins', sans-serif !important;">#}
+{#                                        {% trans 'LIGHT PAPER' %}#}
+{#                                    </a>#}
+                                    <a href="https://github.com/CPChain" target="_blank"
+                                       class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 mr-0 mr-sm-2 ml-sm-2 mb-3 mb-sm-0 "
+                                       style="font-family: 'Poppins', sans-serif !important;">
+                                        <i class="fab fa-github glyphicon pr-2"></i>
+                                        GitHub
+                                    </a>
+                                    <a href="{% url 'rnode' %}"
+                                       class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white ml-0 ml-sm-2 poppins-font"
+                                       style="font-family: 'Poppins', sans-serif !important;">
+                                        {% trans 'RNode' %}
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="rounded-wrapper position-absolute">
+                                <div class="rounded-holder position-relative">
+
+                                    <div class="scroll-downs d-sm-flex d-none align-items-center justify-content-center">
+                                        <a href="#cpchain">
+                                            <div class="mousey">
+                                                <div class="scroller"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="opacity-holder position-absolute w-100"></div>
+                    {% if not is_mobile %}
+                        <div class="video-holder position-absolute w-100 h-100">
+                            <video autoplay="" loop id="video-background" muted plays-inline
+                                   class="w-100 video-height">
+                                <source src="{% static '/img/video/final.mp4' %}"
+                                        type="video/mp4" class="w-100 h-100">
+                            </video>
+                        </div>
+                    {% endif %}
+                    </section> <!-- section-one -->
+
+                    <section class="section-two py-sm-5 my-sm-5 py-5 my-0" id="cpchain">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-center">
+
+                                <div class="first col-sm-12 col-md-6 py-5 py-sm-0">
+                                    <div class="col-12 col-sm-11 poppins-font" style="padding-right: 10px;">
+                                        <!-- <h6 class="font-weight-bold text-warning mb-4"
+                                            style="font-family: 'Poppins', sans-serif !important;">WHAT IS CPCHAIN?</h6> -->
+
+                                        <h2 class="display-5 poppins-font mb-7"> {% blocktrans %}Introduction{% endblocktrans %}
+                                        </h2>
+                                        <hr class="right-hr w-100 mb-4">
+                                        <p style="color: #305278;font-family: 'Poppins', sans-serif !important;line-height: 1.9">
+                                            {% blocktrans %}CPChain is a new distributed infrastructure for next generation IoT. CPChain intends to build a fundamental data platform for IoT systems in combination with distributed storage, encryption computation and blockchain technologies, providing the whole process solution from data acquisition, storage, sharing to application.{% endblocktrans %}
+                                        </p>
+                                        <p style="color: #305278;font-family: 'Poppins', sans-serif !important;line-height: 1.9">
+                                            {% blocktrans %}CPChain is a promising solution to a series of challenges of the current "chimney architecture" of IoT systems, reducing connectivity cost of devices, protecting data privacy and maximizing the value of IoT data.{% endblocktrans %}
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="second col-sm-12 col-md-6">
+                                    <div class="image-holder">
+                                        <img src="{% static 'img/integration.png' %}"
+                                             class="w-100 d-block disable-select"
+                                             alt="Integration of IoT & Blockchain - CPChain">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-two -->
+
+                    <section class="section-seven py-sm-5 py-0 ">
+                            <div class="container py-sm-5 py-0">
+                                <div class="row flex-row align-items-center py-5">
+    
+                                    <div class="left-side col-xl-6 col-md-6 col-sm-12">
+                                        <div class="left-side-holder col-xl-10 col-md-10 col-sm-12 px-0">
+                                            <h1 class="display-1 font-italic" style="color: #F3F5F7;">3</h1>
+                                            <h2 class="poppins-font">{% blocktrans %}Three major <br> adoption scenarios{% endblocktrans %}</h2>
+                                            <hr class="right-hr w-100 ml-0">
+                                            <p style="color: #305278;font-family: 'Poppins';line-height: 30px;">
+                                                {% blocktrans %}The value of CPChain comes from the improvement of the physical industry’s efficiency and the innovation of business models, which results from data aggregation and mobility.{% endblocktrans %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex flex-column align-items-end justify-content-between py-5 py-sm-0">
+                                        <div class="right-side-holder col-xl-9 col-md-9 col-lg-9 col-sm-12 px-0">
+                                            <div class="item d-flex flex-row" style="margin-bottom: 70px">
+                                                <div class="left-side">
+                                                    <div class="image-holder mr-4">
+                                                        <img src="{% static '/img/Icons/multi-party.png' %}"
+                                                             class="d-block disable-select w-100"
+                                                             alt="Multi-parties data transaction - CPChain">
+                                                    </div>
+                                                </div>
+                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                        {% blocktrans %}Multi-party data transaction{% endblocktrans %}</h6>
+                                                    <p class="mb-0"
+                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                        {% blocktrans %}Multi-party trust created by CPChain{% endblocktrans %}</p>
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex flex-row mb-5">
+                                                <div class="left-side">
+                                                    <div class="image-holder mr-4">
+                                                        <img src="{% static '/img/Icons/artificial.png' %}"
+                                                             class="d-block disable-select w-100"
+                                                             alt="Artificial intelligence decisions - CPChain">
+                                                    </div>
+                                                </div>
+                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                        {% blocktrans %}Artificial intelligence decisions based on IoT big data{% endblocktrans %}</h6>
+                                                    <p class="mb-0"
+                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                        {% blocktrans %}Interoperability of heterogeneous data, forming big data aggregation{% endblocktrans %}</p>
+                                                </div>
+                                            </div>
+                                            <div class="item d-flex flex-row">
+                                                <div class="left-side">
+                                                    <div class="image-holder mr-4">
+                                                        <img src="{% static '/img/Icons/interaction.png' %}"
+                                                             class="d-block disable-select w-100"
+                                                             alt="Interaction and application of data assets - CPChain">
+                                                    </div>
+                                                </div>
+                                                <div class="right-side d-flex flex-column align-items-start justify-content-center">
+                                                    <h6 class="poppins-font" style="line-height:30px;font-size: 20px;">
+                                                        {% blocktrans %}Interaction and application of data assets in cross-chain, which lead to new business models{% endblocktrans %}</h6>
+                                                    <p class="mb-0"
+                                                       style="color: #305278;font-family: 'Poppins';line-height: 1.3;">
+                                                        {% blocktrans %}Cross-chain relay and collaboration{% endblocktrans %}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </section> <!-- section-seven -->  
+                    <section class="section-six py-sm-5 py-0" id="application">
+                        <div class="container py-1 py-sm-5">
+                            <div class="row">
+
+                                <div class="upper col-12 col-sm-4 mx-0">
+                                    <h2 class="text-left poppins-font"
+                                        style="font-weight: bold;padding-top: 0px">{% trans 'Industries' %}</h2>
+                                    <hr class="right-hr w-100 ml-0">
+                                </div>
+                                <div class="middle d-flex flex-row w-100 col-xl-10 col-md-10 mb-sm-5 mb-2">
+                                    <div class="col-6 d-md-block d-none"></div>
+                                    <p style="line-height: 1.6">
+                                        {% blocktrans %}CPChain's distributed infrastructure will provide a full process solution for data acquisition, storage, sharing and transacting for large-scale distributed IoT systems. Our technology has the potential to revolutionize multiple industries including intelligent transportation, smart medical, public security, and intelligent manufacturing, etc.{% endblocktrans %}
+                                    </p>
+                                </div>
+                                <div class="bottom col-12">
+                                    <div class="box-holder">
+                                        <div class="item item-one">
+                                            <div class="image-holder position-relative" data-tilt>
+                                                <a href="{% url 'app' 'security' %}">
+                                                    <img src="{% static '/img/public.jpg' %}"
+                                                         class="w-100 d-block disable-select"
+                                                         alt="Intelligent Manufacturing - CPChain">
+                                                    <div class="overlay-image w-100 h-100"></div>
+                                                    <p class="position-absolute w-100 text-right text-white pr-4"
+                                                       style="font-family: 'Poppins', sans-serif !important;">
+                                                        {% trans 'Public <br> Security' %}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="item item-two">
+                                            <div class="image-holder position-relative" data-tilt>
+                                                <a href="{% url 'app' 'intelligent-transportation' %}">
+                                                    <img src="{% static '/img/IntelligentTransportation.png' %}"
+                                                         class="w-100 d-block disable-select"
+                                                         alt="Intelligent Transportation - CPChain">
+                                                    <div class="overlay-image w-100 h-100"></div>
+                                                    <p class="position-absolute w-100 text-right text-white pr-4"
+                                                       style="font-family: 'Poppins', sans-serif !important;">
+                                                        {% trans 'Intelligent <br> Transportation' %}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="item item-three">
+                                            <div class="image-holder position-relative" data-tilt>
+                                                <a href="{% url 'app' 'smart-medical' %}">
+                                                    <img src="{% static '/img/SmartMedical.png' %}"
+                                                         class="w-100 d-block disable-select"
+                                                         alt="Smart Medical - CPChain">
+                                                    <div class="overlay-image w-100 h-100"></div>
+                                                    <p class="position-absolute w-100 text-right text-white pr-4"
+                                                       style="font-family: 'Poppins', sans-serif !important;">
+                                                        {% trans 'Smart <br> Medical' %}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-six -->
+
+   
+
+                    <section class="section-twelve py-sm-5 py-0 mb-5">
+                            <div class="container pt-5">
+                                <div class="row flex-column align-items-center justify-content-center">
+    
+                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                        <h2 class="text-center poppins-font">{% trans 'Videos' %}</h2>
+                                        <hr class="middle-hr mb-0">
+                                    </div>
+                                    <div id=videosContainer class="videoContainer   pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                        {% for e in videos %}
+                                            <iframe height="308" class="rounded w-100"
+                                                src="{% trans 'https://www.youtube.com/embed/0dNFgy_aGkM' %}"
+                                                class="smaller disable-select d-block"
+                                                frameborder="0"
+                                                allow="autoplay; encrypted-media"
+                                                allowfullscreen>
+                                            </iframe> 
+                                        {% endfor %}
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </section>
+
+                    <section class="section-eight pt-sm-5 mt-sm-5 py-0 my-0">
+                        <div class="container mt-sm-5 pt-4">
+                            <div class="row">
+
+                                <div class="col-12 upper mb-5">
+                                    <h2 class="text-lext text-center poppins-font"
+                                        style="font-weight: bold;">{% trans 'Roadmap' %}</h2>
+                                </div>
+
+                                <!-- <div class="col-12 middle d-flex align-items-center justify-content-center py-4"
+                                     id="roadmap">
+                                    <div class="middle-holder-upper roadmap-circles flex-row col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-0 px-0">
+
+                                        <div class="item d-flex align-items-center justify-content-center animated-box in position-relative active"
+                                             id="pdash">
+                                            <h6 class="mb-0 text-center poppins-font">
+                                                <a class="text-primary" href="javascript:void(0)"
+                                                   onclick="roadmapNavigate(0, this)">
+                                                    PDash
+                                                </a>
+                                            </h6>
+                                        </div>
+
+                                        <div class="item d-flex align-items-center justify-content-center animated-box in position-relative"
+                                             id="mainnet">
+                                            <h6 class="mb-0 text-center poppins-font">
+                                                <a class="text-primary" href="javascript:void(0)"
+                                                   onclick="roadmapNavigate(1, this)">
+                                                    {% trans 'Mainnet' %}
+                                                </a>
+                                            </h6>
+                                        </div>
+
+                                        <div class="item d-flex align-items-center justify-content-center animated-box in position-relative"
+                                             id="industriy">
+                                            <h6 class="mb-0 text-center poppins-font">
+                                                <a class="text-primary" href="javascript:void(0)"
+                                                   onclick="roadmapNavigate(2, this)">
+                                                    {% blocktrans %}Industry <br> Chains{% endblocktrans %}
+                                                </a>
+                                            </h6>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+                                 <!-- end of navigation for roadmap -->
+
+                                <div class="swiper-container-roadmap w-100" id="roadmap">
+                                    <div class="">
+
+                                        <div class="">
+                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
+                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                        <div class="first text-left pt-5 pb-5 mb-5">
+                                                            <h6 class="text-primary">2018 Q4</h6>
+                                                            <hr class="left-hr     w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-left  pt-5">
+                                                            <h6 class="text-primary">2019 Q4:</h6>
+                                                            <hr class="left-hr pulse now-quarter w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Ecosystem Stabilization<br>Traceability and Authentication related project implementation {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-left  pt-5">
+                                                            <h6 class="text-primary">2020 Q4:</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} Data encryption services Consolidation<br>Homomorphic encryption and Blackbox isolation data processing services relization {% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
+                                                    <div class="right-side-holder">
+                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">2018 Q2:</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} Pdash 1.0 Release {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="fourth text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">2019 Q2:</h6>
+                                                            <hr class="right-hr   w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Formal Mainnet Launch {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">2020 Q2:</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} DID authentication system realization<br>Mass adoption of IoT devices Identification and Authentication {% endblocktrans %}</p>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
+                                            </div> -->
+                                        </div> 
+
+                                    </div>
+                                </div><!-- end of swiper-container-roadmap -->
+
+
+                            </div>
+                        </div>
+                    </section> <!-- section-eight -->
+
+                    <section class="section-nine py-5" id="team">
+                        <div class="container my-sm-5 my-0">
+                            <div class="row align-items-center justify-content-center">
+
+                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="col-xl-8 col-lg-8 col-md-8 px-0 col-sm-12">
+                                        <h2 class="poppins-font"
+                                            style="font-size:40px;font-weight: bold;">{% trans 'Team' %}</h2>
+                                        <hr class="right-hr ml-0 mb-4">
+                                        <p style="color: #305278;font-family: 'Poppins';font-weight: 500; line-height: 30px">
+                                            {% blocktrans %}CPChain’s team is comprised of intelligent, talented, and energetic members with years of experience in related industries. The founding team members include top talent from universities, the Internet of Things industry, FinTech, and financial security companies.{% endblocktrans %}
+                                        </p>
+                                        <!-- <a href="javascript:void(0);" class="btn mt-4 btn-sm btn-light rounded-circle font-weight-bold bg-white mr-0 mr-sm-2 mb-sm-0 mb-3" target="_blank">
+                                            JOIN US
+                                        </a> -->
+                                    </div>
+                                </div>
+                                <div style="padding-left:0;padding-right: 0; " class="right-side col-xl-6 col-lg-6 col-md-6 col-sm-12 mt-5 pt-5 mt-sm-0 pt-sm-0">
+                                    <div class="right-side-holder col-xl-11 col-lg-11 col-md-11 col-sm-12 d-flex flex-column align-items-start justify-content-center mx-auto mt-5 mt-sm-0 mr-sm-0 pr-sm-0 pt-0 pt-sm-0">
+
+
+                                        <div class="swiper-container-team w-100">
+
+                                            <div class="images-team col-12 d-flex px-sm-3 flex-column align-items-center flex-md-row flex-lg-row flex-xl-row flex-sm-row justify-content-between px-0">
+                                                <div class="image-team-holder-bigger d-inline mb-4 mb-sm-0">
+                                                    <img src="{% static 'img/Team/long.png' %}"
+                                                         class="bigger disable-select d-block" id="imageTeamActive">
+                                                </div>
+                                                <div class="full-team col-10 col-sm d-flex flex-row align-items-center justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-between">
+                                                    <div class="image-holder p-2">
+                                                        <a href="javascript:void(0)" onclick="goToSlide(0, this);">
+                                                            <img src="{% static 'img/Team/long.png' %}"
+                                                                 class="smaller disable-select d-block">
+                                                        </a>
+                                                    </div>
+                                                    <div class="image-holder p-2">
+                                                        <a href="javascript:void(0)" onclick="goToSlide(1, this);">
+                                                            <img src="{% static 'img/Team/zhaobin.png' %}"
+                                                                 class="smaller disable-select d-block">
+                                                        </a>
+                                                    </div>
+                                                    <div class="image-holder p-2">
+                                                        <a href="javascript:void(0)" onclick="goToSlide(2, this);">
+                                                            <img src="{% static 'img/Team/shi.png' %}"
+                                                                 class="smaller disable-select d-block">
+                                                        </a>
+                                                    </div>
+                                                    <div class="image-holder p-2">
+                                                            <a href="javascript:void(0)" onclick="goToSlide(3, this);">
+                                                                <img src="/media/img/Team/shiyao.png"
+                                                                     class="smaller disable-select d-block">
+                                                            </a>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end of images-team -->
+
+
+                                            <div class="swiper-wrapper">
+
+                                                <div class="px-sm-3 swiper-slide">
+                                                    <div class="slider-desc">
+                                                        <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Dr. Chengnian Long' %}</h2>
+                                                        <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
+                                                            {% blocktrans %}Founder, CEO, Professor, Principal Scientist{% endblocktrans %}</h6>
+                                                        <p class="mt-4"
+                                                           style="color: #305278;font-family: 'Poppins';font-weight: 500;">
+                                                            {% blocktrans %}Dr. Long is a university professor with many years of experience in the fields of cyber physical system security, Internet of Things, distributed intelligent systems and blockchain technology. He has published more than 80 papers in internationally renowned journals, and has more than 10 patents for invention.{% endblocktrans %}
+                                                        </p>
+                                                    </div>
+                                                </div> <!-- end of swiper 1 -->
+                                                <div class="px-sm-3 swiper-slide">
+                                                    <div class="slider-desc">
+                                                        <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Dr. Bin Zhao' %}</h2>
+                                                        <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
+                                                            {% blocktrans %}CPChain Co-Founder, CPO{% endblocktrans %}</h6>
+                                                        <p class="mt-4"
+                                                           style="color: #305278;font-family: 'Poppins';font-weight: 500;">
+                                                            {% blocktrans %}Dr. Zhao has more than 12 years research and development experience in the fields of communication, Internet of Things and FinTech, with extended experience in R&D team management. He has 3 patents for inventions in the field of IoT technology. {% endblocktrans %}
+                                                        </p>
+                                                    </div>
+                                                </div> <!-- end of swiper 2 -->
+                                                <div class="px-sm-3 swiper-slide">
+                                                    <div class="slider-desc">
+                                                        <!-- <h2 class="mt-4 text-sm-left text-center"></h2> -->
+                                                        <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Qingwei Shi' %}</h2>
+                                                        <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
+                                                            {% blocktrans %}CPChain Co-Founder, COO{% endblocktrans %}</h6>
+                                                        <p class="mt-4"
+                                                           style="color: #305278;font-family: 'Poppins';font-weight: 500;">
+                                                            {% blocktrans %}Mr. Shi is an early participant in blockchain technology and digital currency. Founder of Shared Finance, and participant in the investment and development of many successful projects. {% endblocktrans %}
+                                                        </p>
+                                                    </div>
+                                                </div> <!-- end of swiper 2 -->
+                                                <div class="px-sm-3 swiper-slide">
+                                                    <div class="slider-desc">
+                                                        <!-- <h2 class="mt-4 text-sm-left text-center"></h2> -->
+                                                        <h2 class="mt-4 font-weight-bold text-sm-left text-center poppins-font"> {% trans 'Matthew Ma' %}</h2>
+                                                        <h6 class="font-weight-light font-italic text-sm-left text-center poppins-font">
+                                                            {% blocktrans %}CPChain, CTO{% endblocktrans %}</h6>
+                                                        <p class="mt-4"
+                                                            style="color: #305278;font-family: 'Poppins';font-weight: 500;">
+                                                            {% blocktrans %}Dr. Ma got his Doctorate degree from the Hong Kong University of Science and Technology. His reserach area convers the fields of Blockchain network and Big-data-based Parallel Processing Platform & Mission Schedule Strategy. A few of his researches have been publicized on international conferences. {% endblocktrans %}
+                                                        </p>
+                                                    </div>
+                                                </div> <!-- end of swiper 3 -->
+
+                                            </div> <!-- end of swiper-wrapper -->
+
+                                            <div class="px-sm-3 custom-pagination-arrow arrow-holder d-flex flex-row align-items-center justify-content-center align-items-md-start justify-content-md-start  align-items-sm-center justify-content-sm-center mt-4 w-100">
+                                                <div class="image-holder pr-2">
+                                                    <a href="javascript:void(0);" class="swiper-team-button-prev">
+                                                        <svg id="8dc6349a-f3f4-4b08-b9fa-888d0e7aa8db"
+                                                             data-name="arrow_grey"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             width="30.93" height="31.06" viewBox="0 0 30.93 31.06">
+                                                            <path d="M30,16.56a.92.92,0,0,1,.93,1h0a15.53,15.53,0,1,1,0-4.15v0a.92.92,0,0,1-.8,1H12.31c-.28,0-.35-.16-.15-.36l4.08-4.07A1,1,0,0,0,14.77,8.6h0l-6.11,6a1.27,1.27,0,0,0,0,1.8l0,0,6.11,6A1,1,0,1,0,16.24,21h0l-4.08-4.07c-.2-.2-.13-.36.15-.36Z"
+                                                                  transform="translate(0 0.01)" fill="#dde4f0"/>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                                <div class="image-holder pl-2">
+                                                    <a href="javascript:void(0);" class="swiper-team-button-next">
+                                                        <svg id="75444f8c-faff-4620-96f1-b225d7e6ebd7"
+                                                             data-name="arrow_orange"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             width="30.93" height="31.06" viewBox="0 0 30.93 31.06">
+                                                            <path d="M1,14.5a.92.92,0,0,1-.93-1H0a15.53,15.53,0,1,1,0,4.15v0a.92.92,0,0,1,.8-1H18.63c.28,0,.35.16.15.36L14.7,21a1,1,0,0,0,1.46,1.46h0l6.11-6a1.27,1.27,0,0,0,0-1.8l0,0-6.11-6a1,1,0,0,0-1.46,1.46h0l4.08,4.07c.2.2.13.36-.15.36Z"
+                                                                  transform="translate(-0.01 -0.01)"
+                                                                  fill="#dde4f0"/>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div> <!-- end arrow-holder -->
+
+                                        </div> <!-- end of swiper-container-team -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> <!-- section-nine -->
+
+
+                    <section class="section-ten py-0">
+                        <div class="container py-sm-5 py-0">
+                            <div class="row py-sm-0 pb-5">
+
+
+                                <div class="upper text-left col-sm-12 col-sm-5 teamAll">
+                                    <div class="dropdown upper d-flex align-items-center justify-content-sm-start justify-content-center px-0 col">
+                                        <div class="dropdown d-flex flex-row pb-3 teamDown">
+
+                                            <div class="button-arrow mb-0 dropbtn h2 d-flex flex-row"
+                                                 id="outputen-team">
+                                                {% blocktrans %}CPChain Team{% endblocktrans %}
+                                            </div>
+                                            <i class="fas fa-caret-down ml-2 "
+                                               style="color:rgba(48, 82, 120, 0.4);align-self: center;"></i>
+
+                                            <ul class="dropdown-content mt-5 p-0 teamList" id="dropdown-content">
+                                                <li class="choice choice-en-team">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamCategory('all')">
+                                                        {% trans 'CPChain Team' %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-team">
+                                                    <a href="javascript:void(0)" onclick="switchTeamCategory('RD')">
+                                                        {% trans 'R&D' %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-team">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamCategory('Marketing')">
+                                                        {% trans 'Marketing' %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-team">
+                                                    <a href="javascript:void(0)"
+                                                       onclick="switchTeamCategory('Administrative')">
+                                                        {% trans 'Administrative' %}
+                                                    </a>
+                                                </li>
+                                                <li class="choice choice-en-team">
+                                                        <a href="javascript:void(0)"
+                                                           onclick="switchTeamAmbassadors('Global Ambassador')">
+                                                           {% trans   'Global Ambassador' %}
+                                                        </a>
+                                                </li>
+                                                <li class="choice choice-en-team">
+                                                        <a href="javascript:void(0)"
+                                                           onclick="switchTeamAmbassadors('Global Community Advisors')">
+                                                           {% trans   'Global Community Advisors' %}
+                                                        </a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Swiper -->
+                                <div class="col-12">
+                                    <hr class="middle-hr w-100 d-block">
+                                </div>
+
+                                <div class="swiper-container swiper-container-team2 w-100 py-4 h-100 my-1">
+                                    <div class="swiper-wrapper border-left-0 border-right-0 containerr"
+                                         id="team-swiper"></div> <!-- swiper wrapper-->
+                                </div> <!-- swiper container -->
+
+                                <div class="col-12">
+                                    <hr class="middle-hr w-100 d-block">
+                                </div>
+
+                                <div class="swiper-container-horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                    <div class="swiper-pagination"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </section> <!-- section-ten --> 
+                    <section class="section-twelve py-sm-5 py-0 mb-5"  id="partners">
+                            <div class="container pt-5" style="max-width: 100% !important">
+                                <div class="row flex-column align-items-center justify-content-center" style="margin-left:1rem !important">
+
+                                    <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                        <h2 class="text-center poppins-font">{% trans 'Ecosystem' %}</h2>
+                                        <hr class="middle-hr mb-0">
+                                    </div>
+                                    <div class="row" style="margin: 0 !important;width: 100%;">
+                                        <div class=" pt-5 col-xl-2 col-lg-2 col-md-12 col-sm-12 ">
+                                            <div class="tabcontainer">
+                                                <div data-seq="s1" class="tabitem tabitemactive">{% trans 'Industry' %}<i></i></div>
+                                                <div data-seq="s2" class="tabitem">{% trans 'Project' %}<i></i></div>
+                                                <div data-seq="s3" class="tabitem">{% trans 'Academia' %}<i></i></div>
+                                                <div data-seq="s4" class="tabitem">{% trans 'Capital' %}<i></i></div>
+                                                <div data-seq="s5" class="tabitem">{% trans 'Association' %}<i></i></div>
+                                                <div data-seq="s6" class="tabitem">{% trans 'Industry Node' %}<i></i></div>
+                                                <div data-seq="s7" style="margin-bottom: 0 !important;" class="tabitem">{% trans 'Exchanges' %}<i></i></div>
+                                            </div>
+                                        </div>
+
+                                        <div id='s1' class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s1">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in industry %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s1 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in industry %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
+                                        </div>
+
+                                        <div id='s2'  
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s2">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in project %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s2 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in project %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
+
+                                        </div>
+                                        <div id='s3'  
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s3">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in academia %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s3 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in academia %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+                                        </div>
+                                        <div id='s4' 
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s4">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in capital %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s4 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in capital %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+                                        </div>
+                                        <div id='s5' 
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s5">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in association %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s5 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in association %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+
+                                        </div>
+                                        <div id='s6'  
+                                            class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                            <!-- Swiper -->
+                                            <div class="webEcosystem">
+                                                    <div class="  swiper-container swiper-container-s6">
+                                                        <div class="swiper-wrapper">
+                                                            {% for page in industryNode %}
+                                                            <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                                {% for e in page %}
+                                                                    <div class="image-holder carditem  col-sm-12">
+                                                                        <a href="{{ e.link }}" target="_blank">
+                                                                            <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                                 src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                        </a>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div> 
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                        <div
+                                                            class="swiper-pagination-s6 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                            <span
+                                                                class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                                tabindex="0" role="button" aria-label="Go to slide 1"
+                                                                style="left: 0px;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobEcosystem">
+                                                    <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                        {% for page in industryNode %}
+                                                            {% for e in page %}
+                                                            <div class="image-holder carditem  col-sm-12">
+                                                                <a href="{{ e.link }}" target="_blank">
+                                                                    <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                         src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                </a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div> 
+
+                                        </div>
+                                        <div id='s7' 
+                                        class="swiperdiv pt-5 col-xl-9 col-lg-9 col-md-9 col-sm-9 ">
+                                        <!-- Swiper -->
+                                        <div class="webEcosystem">
+                                                <div class="  swiper-container swiper-container-s7">
+                                                    <div class="swiper-wrapper">
+                                                        {% for page in exchanges %}
+                                                        <div class="swiper-slide bottom swiper-bottom pt-5  ">
+                                                            {% for e in page %}
+                                                                <div class="image-holder carditem  col-sm-12">
+                                                                    <a href="{{ e.link }}" target="_blank">
+                                                                        <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                             src="{{ MEDIA_URL }}{{ e.image }}">
+                                                                    </a>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div> 
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="swiper--horizontal position-relative d-flex w-100 justify-content-center mt-5">
+                                                    <div
+                                                        class="swiper-pagination-s7 swiper-pagination-main swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
+                                                        <span
+                                                            class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main"
+                                                            tabindex="0" role="button" aria-label="Go to slide 1"
+                                                            style="left: 0px;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mobEcosystem">
+                                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                                    {% for page in exchanges %}
+                                                        {% for e in page %}
+                                                        <div class="image-holder carditem  col-sm-12">
+                                                            <a href="{{ e.link }}" target="_blank">
+                                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                                            </a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div> 
+
+                                    </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
+
+                    <!-- <section class="section-twelve py-sm-5 py-0 mb-5">
+                        <div class="container pt-5">
+                            <div class="row flex-column align-items-center justify-content-center">
+
+                                <div class="upper col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                                    <h2 class="text-center poppins-font">{% trans 'Exchanges' %}</h2>
+                                    <hr class="middle-hr mb-0">
+                                </div>
+                                <div class="bottom pt-5 col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                                    {% for e in exchanges %}
+                                        <div class="image-holder carditem col-sm-12">
+                                            <a href="{{ e.link }}" target="_blank">
+                                                <img class=" disable-select img-fluid d-block" style="margin: auto 0;"
+                                                     src="{{ MEDIA_URL }}{{ e.image }}">
+                                            </a>
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </section> -->
+                     <!-- section-twelve --> 
+                     <!-- section-thirteen -->
+                    </section> <!-- section-thirteen -->
+                    
+                    <section class="section-thirteen pt-5" id="downloadApp"  style="display: none">
+                            <div  > 
+                                    <div id='mob' class="mob">
+                                            <div class="mobleft">
+                                                <span class="cpcwallet">CPC WALLET</span>
+                                                <div>
+                                                    <div class="split"></div>
+                                                    <span class="info">Transfer CPC Anytime Anywhere</span>
+                                                    <div class="split"></div>
+                                                </div>
+                                            </div>
+                                            <div class="mobright">
+                                                <a href="wallet/download_app" id='btnwarp' class="btnwarp">
+                                                    <span class="btntext">DOWNLOAD</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id='website' class="website">
+                                            <div class="webleft">
+                                                <span class="cpcwallet">CPC WALLET</span>
+                                                <div class="group">
+                                                    <div class="split"></div>
+                                                    <span class="info">Transfer CPC Anytime Anywhere</span>
+                                                    <div class="split"></div>
+                                                </div>
+                                                <div class="qr">
+                                                    <img class="qrimg" src="{% static '/img/wallet/qr.png' %}"   alt="" srcset="">
+                                                    <span class="qrtext">DOWNLOAD</span>
+                                                </div>
+                                            </div>
+                                            <div class="webright"></div>
+                                        </div>
+                            </div>
+                        </section> <!-- section-thirteen -->
+
+                </main><!-- #main -->
+
+            </div><!-- #primary -->
+
+
+        </div><!-- #content -->
+
+    </div><!-- .site-content-contain -->
+    
+</div><!-- #page -->
+
+<footer class="footer pb-2 pb-sm-0">
+    <div class="container"   id="contact">
+        <div class="row flex-rox d-flex align-items-center justify-content-center">
+
+            <hr class="w-100 middle-footer-hr">
+
+            <div class="col-12 d-flex flex-row flex-wrap align-items-center justify-content-center px-0 py-3 py-sm-5">
+
+                <div class="col-sm-4 col-6 d-flex flex-row align-items-center">
+                    <a href="https://cpchain.io" class="logo-hov">
+                        <div class="image-footer-holder d-flex flex-row align-items-center justify-content-start">
+                            <img src="{% static '/img/logo_new.svg' %}"
+                                 class="disable-select">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-4 middle-col col-6 text-sm-right text-center d-flex align-items-center justify-content-end justify-content-sm-center">
+                    <h6 class="mb-0 pr-sm-0"><a
+                            href="mailto:info@cpchain.io" class=""><span
+                            class="__cf_email__">info@cpchain.io</span></a>
+                    </h6>
+                </div>
+                <div class="col-sm-4 col-12 last-col d-flex flex-row align-items-xl-center justify-content-xl-end  align-items-lg-center justify-content-lg-end  align-items-md-center justify-content-md-end  align-items-sm-center justify-content-sm-end justify-content-center list-unstyled mt-5 mt-sm-0">
+                    <ul class="display-flex list-unstyled d-flex align-items-center justify-content-between my-auto w-75">
+                        <li>
+                            <a href="https://github.com/CPChain" style="color:#305278;" target="_blank">
+                                <i class="fab fa-github glyphicon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/cpchain_io" style="color:#305278;" target="_blank">
+                                <i class="fab fa-twitter glyphicon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://medium.com/search?q=cpchain" style="color:#305278;"
+                               target="_blank">
+                                <i class="fab fa-medium-m glyphicon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.reddit.com/r/CPChain_Official/" style="color:#305278;"
+                               target="_blank">
+                                <i class="fab fa-reddit-alien glyphicon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/cpchain" style="color:#305278;" target="_blank">
+                                <i class="fab fa-telegram-plane glyphicon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://discordapp.com/invite/X8WxPst" style="color:#305278;"
+                               target="_blank">
+                                <i class="fab fa-discord glyphicon"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="middle-footer-hr w-100">
+
+            <div class="col-12 pb-sm-4 pt-sm-3 text-center">
+                <h6 class="text-opacity small"> 2019 CPChain Foundation © All rights reserved.</h6>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</body>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
+<script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
+
+<script src="https://cdn.bootcss.com/Swiper/4.4.6/js/swiper.min.js"></script>
+<script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
+
+<script>
+
+(function () {
+
+    var newRem = function () {
+
+        var html = document.documentElement;
+
+        var ClientWidth = html.getBoundingClientRect().width;
+
+        if (ClientWidth <= 750) {
+            html.style.fontSize = ClientWidth / 30 + 'px';
+        } else {
+            html.style.fontSize = '16px';
+        }
+    };
+
+    window.addEventListener('resize', newRem, false);
+    newRem();
+    })(); 
+    function initEcosystem(){
+        for (let i = 1; i <= 7; i++) {
+            new Swiper('.swiper-container-s' + i, {
+                autoplay: true,//可选选项，自动滑动
+
+                pagination: {
+                    el: '.swiper-pagination-s' + i,
+                    dynamicBullets: true,
+                    clickable: true,
+                },
+
+            })
+        }
+ 
+        let tabitems = document.querySelectorAll('.tabitem')
+        tabitems.forEach(item => { 
+            item.onclick = () => {
+                document.querySelectorAll('.tabitemactive').forEach(act => act.className = 'tabitem')
+                item.className = 'tabitem tabitemactive'
+
+                document.querySelectorAll('.swiperdiv').forEach(sd => sd.setAttribute('style', 'display:none'))
+                document.getElementById(item.getAttribute('data-seq')).setAttribute('style', 'display:block')
+            }
+            item.onmousemove =  item.onclick
+        })
+    }
+    initEcosystem()
+ 
+    for (let i = 2; i <= 7; i++) {
+        document.getElementById('s'+i).setAttribute('style', 'display:none')
+    }
+   
+    {#获取本地地址和语言#}
+    var localUrl = window.location.pathname;
+    /* 获取通知消息
+    */
+    function getNotification(){
+        fetch('/notification').then(res=>res.json()).then(res=>{
+            let timeNow = new Date().getTime()  
+            let resTimefilter = res.filter(p=>timeNow>new Date(p.fields.time_start).getTime() && timeNow < new Date(p.fields.time_end).getTime())
+            if(resTimefilter && resTimefilter.length>0){
+                let messageBlock = document.getElementById("messagemain")
+                let n = resTimefilter[0]
+                messageBlock.setAttribute('style','display:flex')
+                if(n.fields.url.replace('http://','').replace('https://','')){
+                    messageBlock.innerHTML=`<a class="messageLink" href="${n.fields.url}"> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</a><div id="messageclose" class="messageclose"></div>`
+                } else {
+                    messageBlock.innerHTML=`<span> ${localUrl.startsWith('/zh-hans')?n.fields.content:n.fields.content_en}</span><div id="messageclose" class="messageclose"></div>`
+                }
+                document.getElementById('messageclose').addEventListener('click',function(){
+                    document.getElementById('messagemain').style='display:none'
+                })
+            }
+        }).catch()
+    } 
+
+    function getIndexVideos(){
+        fetch('/index_video').then(res=>res.json()).then(res=>{
+            if(res && res.length>0){
+                let  videosContainer = document.getElementById('videosContainer')
+                let htmlStr = ''
+                res.forEach(v=>{ 
+                    htmlStr +=`<iframe height="308" class="rounded w-100"
+                                    src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
+                                    class="smaller disable-select d-block"
+                                    frameborder="0"
+                                    allow="autoplay; encrypted-media"
+                                    allowfullscreen>
+                                </iframe> `
+                })
+                videosContainer.innerHTML = htmlStr 
+            }
+             
+        }).catch()
+    }
+    getNotification()
+    getIndexVideos()
+
+    {#点击英文#}
+    $(".en").click(function () {
+
+        if (localUrl.startsWith('/zh-hans')) {
+            window.location.href = '/en' + window.location.pathname.slice(8,)
+        } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
+            window.location.href = '/en' + window.location.pathname
+        }
+
+    });
+
+    {#点击中文#}
+    $(".zh").click(function () {
+        if (localUrl.startsWith('/en')) {
+            window.location.href = '/zh-hans' + window.location.pathname.slice(3,)
+        } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
+            window.location.href = '/zh-hans' + window.location.pathname
+        }
+    })
+    {#获取本地地址和语言#}
+
+
+    $(".teamDown").click(function () {
+        $('.teamList').css("display", "block");
+    })
+    $('.teamList').click(function () {
+        $('.teamList').css("display", "none");
+    })
+
+    $(".teamDown").mouseover(function () {
+        $('.teamList').css("display", "block");
+    })
+    $(".teamDown").mouseout(function () {
+        $('.teamList').css("display", "none");
+    })
+
+    $(".globlDown").click(function () {
+        $('.globlList').css("display", "block");
+    })
+    $('.globlList').click(function () {
+        $('.globlList').css("display", "none");
+    })
+    $(".globlDown").mouseover(function () {
+        $('.globlList').css("display", "block");
+    })
+    $(".globlDown").mouseout(function () {
+        $('.globlList').css("display", "none");
+    })
+
+
+    function closeBanner() {
+        let rnode = document.getElementById('banner-rnodes');
+        rnode.classList.add('closed');
+        let countdown = document.getElementById('countdown');
+        countdown.classList.add('show-here');
+        // add cookie
+        setCookie('banner', 'false', 5);
+
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+
+    let header = document.getElementById('header');
+    
+    window.addEventListener('scroll', function (e) {
+        (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
+    });
+
+    //Navigation
+    let anchorlinks = document.querySelectorAll('a[href^="#"]');
+    for (let item of anchorlinks) {
+        item.addEventListener('click', (e) => {
+
+            for (let i of anchorlinks) {
+                (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+            }
+
+            let hashval = item.getAttribute('href');
+            let target = document.querySelector(hashval)
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+            history.pushState(null, null, hashval);
+            e.preventDefault();
+            openMenu(0);
+        });
+    }
+
+    // home page
+    let imageTeam = document.getElementById('imageTeamActive');
+    // swiper for roadmap
+    // var roadmapSwiper = new Swiper('.swiper-container-roadmap', {
+    //     effect: 'flip',
+    //     grabCursor: true,
+    // });
+
+    // let circles = document.getElementsByClassName('roadmap-circles')[0].childNodes;
+
+    // function roadmapNavigate(index, e) {
+    //     roadmapSwiper.slideTo(index, 1000);
+    //     for (var i = 0; i < circles.length; i++) {
+    //         if (circles[i].nodeType == 1) {
+    //             if (circles[i].getAttribute('id') == e.parentNode.parentNode.getAttribute('id')) {
+    //                 circles[i].classList.add('active');
+    //             } else {
+    //                 circles[i].classList.remove('active');
+    //             }
+    //         }
+    //     }
+    // }
+
+    // roadmapSwiper.on('slideChange', function () {
+    //     let currentSlide = this.activeIndex;
+
+    //     if (currentSlide == 0) {
+    //         var eHolder = 'pdash';
+    //     } else if (currentSlide == 1) {
+    //         var eHolder = 'mainnet';
+    //     } else if (currentSlide == 2) {
+    //         var eHolder = 'industriy';
+    //     }
+
+    //     for (var i = 0; i < circles.length; i++) {
+    //         if (circles[i].nodeType == 1) {
+    //             if (circles[i].getAttribute('id') == eHolder) {
+    //                 circles[i].classList.add('active');
+    //             } else {
+    //                 circles[i].classList.remove('active');
+    //             }
+    //         }
+    //     }
+
+    // });
+
+    // swiper for contact
+    var contactSwiper = new Swiper('.swiper-container-contact', {
+        slidesPerView: 1,
+        navigation: {
+            nextEl: '.swiper-contact-button-next',
+            prevEl: '.swiper-contact-button-prev',
+        },
+        autoplay: false,
+        allowTouchMove: false
+    })
+
+    // swiper for partners / investors
+    var partnersSwiper = new Swiper('.swiper-container-partners', {
+        slidesPerView: 1,
+        navigation: {
+            nextEl: '.swiper-partners-button-next',
+            prevEl: '.swiper-partners-button-prev',
+        },
+        autoplay: true,
+    });
+
+    // swiper for team
+    var swiperTeam = new Swiper('.swiper-container-team', {
+        slidesPerView: 1,
+        navigation: {
+            nextEl: '.swiper-team-button-next',
+            prevEl: '.swiper-team-button-prev',
+        },
+        autoplay: true,
+    });
+
+    swiperTeam.on('slideChange', function () {
+        // change active image
+        let currentSlide = this.activeIndex;
+        if (currentSlide == 0) {
+            imageTeam.src = '{% static 'img/Team/long.png' %}';
+        } else if (currentSlide == 1) {
+            imageTeam.src = '{% static 'img/Team/zhaobin.png' %}';
+        } else if (currentSlide == 2) {
+            imageTeam.src = '{% static 'img/Team/shi.png' %}';
+        } else if (currentSlide == 3) {
+            imageTeam.src = '/media/img/Team/shiyao.png';
+        }
+    })
+
+    function goToSlide(index, e) {
+        swiperTeam.slideTo(index, 200);
+    }
+
+    //Swiper for team
+    var swiper = new Swiper('.swiper-container-team2', {
+        slidesPerView: 4,
+        spaceBetween: 50,
+        pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true,
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            }
+        }
+        // reInit();
+    });
+
+
+    // var swiperAmbassadors = new Swiper('.swiper-container-main', {
+    //     slidesPerView: 4,
+    //     spaceBetween: 50,
+    //     pagination: {
+    //         el: '.swiper-pagination-main',
+    //         dynamicBullets: true,
+    //         clickable: true,
+    //     },
+    //     breakpoints: {
+    //         1024: {
+    //             slidesPerView: 4,
+    //             spaceBetween: 40,
+    //         },
+    //         768: {
+    //             slidesPerView: 3,
+    //             spaceBetween: 30,
+    //         },
+    //         640: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 20,
+    //         },
+    //         320: {
+    //             slidesPerView: 1,
+    //             spaceBetween: 10,
+    //         }
+    //     }
+    // });
+
+    //Vanilla 3d
+    const element = document.querySelector(".js-tilt");
+    VanillaTilt.init(element);
+
+    function openMenu(type) {
+        let menuHolder = document.getElementById('mySidenav');
+        (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+    }
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    var homeURL = 'https://cpchain.io/';
+
+    //First swiper for team category
+    var teamsAmbassadors = [
+        {% for p in global_teams %}
+            {
+                en: {
+                    name: '{{ p.name }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                },
+                ch: {
+                    name: '{{ p.name }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title_zh }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                }
+            },
+        {% endfor %}
+
+
+
+    ];
+
+    // Second swiper for team category
+    var teams = [
+        {% for p in main_teams %}
+            {
+
+                en: {
+                    name: '{{ p.name }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                },
+                ch: {
+                    name: '{{ p.name_zh }}',
+                    category: '{{ p.department }}',
+                    title: '{{ p.title_zh }}',
+                    image: '{{ MEDIA_URL }}{{ p.image }}',
+                }
+            },
+        {% endfor %}
+
+    ];
+
+    function switchTeamAmbassadors(type) {
+        swiper.removeAllSlides();
+        let swiperTeam;
+
+        (type == 'all') ? swiperTeam = teamsAmbassadors : swiperTeam = teamsAmbassadors.filter(team => team.en.category == type);
+
+        // setupTeamSlides(swiperTeam, swiperAmbassadors, 'ambassadors');
+        setupTeamSlides(swiperTeam, swiper, 'teams');
+    }
+
+    function switchTeamCategory(type) {
+        swiper.removeAllSlides();
+        let swiperTeam;
+        (type == 'all') ? swiperTeam = teams : swiperTeam = teams.filter(team => team.en.category == type);
+
+        setupTeamSlides(swiperTeam, swiper, 'teams');
+    }
+
+    window.onload = function () {
+        setupTeamSlides(teams, swiper, 'teams');
+        // setupTeamSlides(teamsAmbassadors, swiperAmbassadors, 'ambassadors');
+    }
+
+    function setupTeamSlides(teams, typeOfSwiper, type) {
+
+        let languageType = window.location.pathname.slice(1, 8);
+        if (type == 'teams') {
+            teams.forEach(function (team, i) {
+                if (languageType == 'zh-hans') {
+                    typeOfSwiper.addSlide(i, [
+                        '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder"> <div class="image-holder  mb-4"> <img src="' + team.ch.image + '"></div><p class="font-weight-bold mb-0">' + team.ch.name + '</p><h6 class="font-italic small">' + team.ch.title + '</h6></div> </div>'
+                    ]);
+                } else {
+                    typeOfSwiper.addSlide(i, [
+                        '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder">  <div class="image-holder  mb-4"> <img src="' + team.en.image + '"></div><p class="font-weight-bold mb-0">' + team.en.name + '</p><h6 class="font-italic small">' + team.en.title + '</h6></div> </div>'
+                    ]);
+                }
+            });
+        } else {
+            teams.forEach(function (team, i) {
+                if (languageType == 'zh-hans') {
+                    typeOfSwiper.addSlide(i, [
+                        '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder"> <div class="image-holder  mb-4"> <img width="160px" height="160px" src="' + team.ch.image + '"></div><p class="font-weight-bold mb-0">' + team.ch.name + '</p><h6 class="font-italic small">' + team.ch.title + '</h6></div> </div>'
+                    ]);
+                } else {
+                    typeOfSwiper.addSlide(i, [
+                        '<div class="swiper-slide pic team-member h-100 py-4 position-relative"> <div class="swiper-slide-holder">  <div class="image-holder  mb-4"> <img width="160px" height="160px" src="' + team.en.image + '"></div><p class="font-weight-bold mb-0">' + team.en.name + '</p><h6 class="font-italic small">' + team.en.title + '</h6></div> </div>'
+                    ]);
+                }
+            });
+        }
+
+        typeOfSwiper.update();
+    }
+
+    //Dropdowns
+    //Dropdown en ambassadors
+    var listItemsenamb = document.querySelectorAll("li.choice-en-ambassadors");
+    listItemsenamb.forEach(function (item) {
+        item.onclick = function (e) {
+            document.getElementById('outputen-ambassadors').innerText = this.innerText;
+        }
+    });
+    //Dropdown en team
+    var listItemsenteam = document.querySelectorAll("li.choice-en-team");
+    listItemsenteam.forEach(function (item) {
+        item.onclick = function (e) {
+            document.getElementById('outputen-team').innerText = this.innerText;
+        }
+    });
+    //Dropdown zh ambassadors
+    var listItemszhamb = document.querySelectorAll("li.choice-ch-ambassadors");
+    listItemszhamb.forEach(function (item) {
+        item.onclick = function (e) {
+            document.getElementById('outputch-ambassadors').innerText = this.innerText;
+        }
+    });
+    //Dropdown zh team
+    var listItemszhteam = document.querySelectorAll("li.choice-ch-team");
+    listItemszhteam.forEach(function (item) {
+        item.onclick = function (e) {
+            document.getElementById('outputch-team').innerText = this.innerText;
+        }
+    });
+
+
+</script>
+<script>
+</script>
+</html>
+
