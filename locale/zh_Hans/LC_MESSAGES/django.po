@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -237,7 +236,6 @@ msgid "Cross-chain relay and collaboration"
 msgstr "跨链中继和协作"
 
 #: templates/index.html:800
-#, fuzzy
 #| msgid "Industry Node: "
 msgid "Industries"
 msgstr "行业"
@@ -279,28 +277,26 @@ msgstr "产业链"
 
 #: templates/index.html:941
 msgid " CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release "
-msgstr ""
+msgstr "发布CPChain区块链原型版本<br> 发布CPChain节点生态激励计划"
 
 #: templates/index.html:947
 msgid ""
 " CPChain Ecosystem Stabilization<br>Traceability and Authentication related "
 "project implementation "
-msgstr ""
+msgstr "完善CPChain生态系统<br>支持基于物联网的溯源、确权等商业项目的接入"
 
 #: templates/index.html:953
 msgid ""
 " Data encryption services Consolidation<br>Homomorphic encryption and "
 "Blackbox isolation data processing services relization "
-msgstr ""
+msgstr "完善数据加密处理服务 <br>支持满足物联网的同态、黑盒隔离等数据加密处理业务"
 
 #: templates/index.html:963
-#, fuzzy
 #| msgid "PDash release"
 msgid " Pdash 1.0 Release "
-msgstr "发布PDash"
+msgstr "发布PDash1.0版本"
 
 #: templates/index.html:969
-#, fuzzy
 #| msgid "CPChain mainnet release"
 msgid " CPChain Formal Mainnet Launch "
 msgstr "发布CPChain主网"
@@ -309,7 +305,7 @@ msgstr "发布CPChain主网"
 msgid ""
 " DID authentication system realization<br>Mass adoption of IoT devices "
 "Identification and Authentication "
-msgstr ""
+msgstr "实现DID身份认证系统<br>支持海量设备的认证与授权"
 
 #: templates/index.html:982
 msgid "Q3 / 2020"
@@ -1327,7 +1323,6 @@ msgstr ""
 #~ msgid "DApp tutorials and examples"
 #~ msgstr "DApp（去中心化应用托管）学习指南和示例"
 
-#, fuzzy
 #~| msgid "CPChain Co-Founder, CTO"
 #~ msgid "CPChain CTO "
 #~ msgstr "CPChain 首席技术官"
