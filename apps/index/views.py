@@ -106,7 +106,7 @@ class IndexView_New(View):
         global_teams =  TeamMate.objects.filter(is_main=False) 
         # notification = Notification.objects.all()
         videos = []
-        return render(req, 'index.html', locals())
+        return render(req, 'index_new.html', locals())
 
 class NotificationView(View):
     def get(self, req):
