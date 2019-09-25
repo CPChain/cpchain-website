@@ -1,3 +1,5 @@
+ 
+
 import xadmin
 from wallet.models import *
 from xadmin import views
@@ -74,7 +76,7 @@ class NotificationAdmin:
 
 class IndexVideoAdmin:
     model = IndexVideo
-    list_display = ['name', 'name_en', 'ispublish', 'weight']
+    list_display = ['name', 'name_en', 'ispublish','time', 'weight','ispublish']
 
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
