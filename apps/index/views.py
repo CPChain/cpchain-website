@@ -86,6 +86,27 @@ class IndexView(View):
         videos = []
         return render(req, 'index.html', locals())
 
+class IndexView_New(View):
+    def get(self, req):
+        ua = req.META.get('HTTP_USER_AGENT', None)
+        # 判断是否手机端，是则取消首页视频
+        is_mobile = judge_pc_or_mobile(ua)
+        partners = Partner.objects.filter(type='Partners').order_by('-weight')
+        investors = Partner.objects.filter(type='Investors')
+        exchanges = reshape(Partner.objects.filter(type='Exchanges'),6)
+         
+        industry = reshape(Partner.objects.filter(type='Industry'),6)
+
+        project =  reshape(Partner.objects.filter(type='Project'),6)
+        academia =  reshape(Partner.objects.filter(type='Academia'),6)
+        capital =  reshape(Partner.objects.filter(type='Capital'),6)
+        association =  reshape(Partner.objects.filter(type='Association') ,6)
+        industryNode =  reshape(Partner.objects.filter(type='IndustryNode') ,6)
+        main_teams =  TeamMate.objects.filter(is_main=True)
+        global_teams =  TeamMate.objects.filter(is_main=False) 
+        # notification = Notification.objects.all()
+        videos = []
+        return render(req, 'index.html', locals())
 
 class NotificationView(View):
     def get(self, req):
