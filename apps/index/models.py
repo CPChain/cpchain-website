@@ -84,5 +84,6 @@ class IndexVideo(models.Model):
     url_en = models.CharField(max_length=400, default='https://')
     name = models.CharField(max_length=100)
     name_en = models.CharField(max_length=100)
+    time = models.CharField()
     ispublish = models.BooleanField(default=True)
     weight = models.IntegerField(default=0)
