@@ -1811,13 +1811,13 @@
                 let  videosContainer = document.getElementById('videosContainer')
                 let htmlStr = ''
                 res.forEach(v=>{ 
-                    htmlStr +=`<iframe height="308" class="rounded w-100"
+                    htmlStr +=`<video height="308" class="rounded w-100"
                                     src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
                                     class="smaller disable-select d-block"
                                     frameborder="0"
                                     allow="encrypted-media"
                                     allowfullscreen>
-                                </iframe> `
+                                </video> `
                 })
                 videosContainer.innerHTML = htmlStr 
             }
