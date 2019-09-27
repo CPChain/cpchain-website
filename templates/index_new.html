@@ -1811,7 +1811,7 @@
                 let  videosContainer = document.getElementById('videosContainer')
                 let htmlStr = ''
                 res.forEach(v=>{ 
-                    htmlStr +=`<video height="308" class="rounded w-100"
+                    `<video height="308" class="rounded w-100"
                                     src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
                                     class="smaller disable-select d-block"
                                     frameborder="0"
@@ -1819,6 +1819,9 @@
                                     allowfullscreen>
                                      <source src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}">
                                 </video> `
+                     htmlStr +=`<video width="308"   controls>
+    <source  src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}" type="video/mp4">
+</video>`            
                 })
                 videosContainer.innerHTML = htmlStr 
             }
