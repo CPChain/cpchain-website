@@ -64,7 +64,7 @@ def reshape(arr,num):
        pages.append(arr[index*num:(index+1)*num])
     return pages
 
-class IndexView(View):
+class IndexView_New(View):
     def get(self, req):
         ua = req.META.get('HTTP_USER_AGENT', None)
         # 判断是否手机端，是则取消首页视频
@@ -91,7 +91,7 @@ class IndexView(View):
         # videos = []
         return render(req, 'index.html', locals())
 
-class IndexView_New(View):
+class IndexView(View):
     def get(self, req):
         ua = req.META.get('HTTP_USER_AGENT', None)
         # 判断是否手机端，是则取消首页视频
