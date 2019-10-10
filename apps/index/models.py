@@ -88,4 +88,4 @@ class IndexVideo(models.Model):
     ispublish = models.BooleanField(default=True)
     weight = models.IntegerField(default=0)
     time = models.DateTimeField()
-    placeHolderTime = models.FloatField()
+    placeHolderTime = models.FloatField(default=0.5)
