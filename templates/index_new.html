@@ -1822,7 +1822,7 @@
                                      <source src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}">
                                 </video> `
                      htmlStr +=`<video width="308"   height="200" controls>
-    <source  src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}" >
+    <source  src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}#t=1" >
 </video>`            
                 })
                 videosContainer.innerHTML = htmlStr 
