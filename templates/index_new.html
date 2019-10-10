@@ -935,7 +935,7 @@
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
                                                         <div class="first text-left pt-5 pb-5 mb-5">
-                                                            <h6 class="text-primary">2018 Q4</h6>
+                                                            <h6 class="text-primary">2018 Q4:</h6>
                                                             <hr class="left-hr     w-100">
                                                             <p style="color: #4671A2;font-family: 'Poppins';">
                                                                 {% blocktrans %} CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release {% endblocktrans %}</p>
@@ -1752,7 +1752,7 @@
     function initEcosystem(){
         for (let i = 1; i <= 7; i++) {
             new Swiper('.swiper-container-s' + i, {
-                autoplay: true,//可选选项，自动滑动
+                autoplay: false,//可选选项，自动滑动
 
                 pagination: {
                     el: '.swiper-pagination-s' + i,
@@ -1772,7 +1772,7 @@
                 document.querySelectorAll('.swiperdiv').forEach(sd => sd.setAttribute('style', 'display:none'))
                 document.getElementById(item.getAttribute('data-seq')).setAttribute('style', 'display:block')
             }
-            item.onmousemove =  item.onclick
+            //item.onmousemove =  item.onclick
         })
     }
     initEcosystem()
