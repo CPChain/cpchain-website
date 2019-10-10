@@ -76,7 +76,7 @@ class NotificationAdmin:
 
 class IndexVideoAdmin:
     model = IndexVideo
-    list_display = ['name', 'name_en', 'ispublish', 'weight', 'time']
+    list_display = ['name', 'name_en', 'ispublish', 'weight', 'time','placeHolderTime']
     ordering = ['-weight']
 
 
