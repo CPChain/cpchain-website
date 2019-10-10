@@ -64,7 +64,7 @@ def reshape(arr,num):
        pages.append(arr[index*num:(index+1)*num])
     return pages
 
-class IndexView_New(View):
+class IndexView_Old(View):
     def get(self, req):
         ua = req.META.get('HTTP_USER_AGENT', None)
         # 判断是否手机端，是则取消首页视频

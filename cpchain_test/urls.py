@@ -25,7 +25,7 @@ from django.conf.urls.i18n import i18n_patterns
 indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('index_new', IndexView_New.as_view(), name='index_new'),
+    path('index_old', IndexView_Old.as_view(), name='index_old'),
     path('notification',NotificationView.as_view(),name='notification'),
     path('index_video',IndexVideoView.as_view(),name='index_video'),
     path('community/', CommunityView.as_view(), name='community'),
