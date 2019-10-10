@@ -1812,7 +1812,7 @@
             if(res && res.length>0){
                 let  videosContainer = document.getElementById('videosContainer')
                 let htmlStr = ''
-                res.forEach(v=>{ 
+                res.sort((x,y) => x.fields.weight-y.fields.weight).forEach(v=>{ 
                     {% comment %} `<video height="308" class="rounded w-100"
                                     src="${localUrl.startsWith('/zh-hans')?v.fields.url:v.fields.url_en}"
                                     class="smaller disable-select d-block"
