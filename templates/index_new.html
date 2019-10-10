@@ -39,7 +39,9 @@
                 padding: 0;
                 margin: 0
             }
-    
+            .swiper-pagination-main{
+                 text-align: center;
+            }
     
             /* 手机端 */
             @media (min-width: 125px) {
@@ -1752,7 +1754,7 @@
     function initEcosystem(){
         for (let i = 1; i <= 7; i++) {
             new Swiper('.swiper-container-s' + i, {
-                autoplay: false,//可选选项，自动滑动
+                autoplay: true,//可选选项，自动滑动
 
                 pagination: {
                     el: '.swiper-pagination-s' + i,
