@@ -45,6 +45,12 @@
     
             /* 手机端 */
             @media (min-width: 125px) {
+                .roadmap-web{
+                    display:none
+                }
+                .roadmap-mob{
+                    display:block
+                }
                 .videoContainer{
                     display: grid;
                     grid-gap: 10px;
@@ -137,6 +143,12 @@
     
             /* 电脑端 */
             @media (min-width: 1024px) {
+                .roadmap-web{
+                    display:block
+                }
+                .roadmap-mob{
+                    display:none
+                }
                 .videoContainer{
                     display: grid;
                     grid-gap: 10px;
@@ -932,7 +944,7 @@
                                 <div class="swiper-container-roadmap w-100" id="roadmap">
                                     <div class="">
 
-                                        <div class="">
+                                        <div class="roadmap-web">
                                             <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
                                                 <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
                                                     <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
@@ -985,7 +997,60 @@
                                                 <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
                                             </div> -->
                                         </div> 
-
+                                    <div class="roadmap-mob">
+                                            <div class="middle-second col-xl-8 col-md-8 col-lg-8 col-sm-12 d-flex flex-row py-5 mx-auto">
+                                                <div class="left-side col-xl-6 col-lg-6 col-md-6 col-2 px-0 border-top-0 border-left-0 border-bottom-0">
+                                                    <div class="left-side-holder d-none d-md-block d-md-block d-lg-block d-xl-block pt-5 mt-5">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="right-side col-xl-6 col-lg-6 col-md-6 col-10 px-0">
+                                                    <div class="right-side-holder">  
+                                                        <div class="first text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">2018 Q2:</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} Pdash 1.0 Release {% endblocktrans %}</p>
+                                                        </div>
+                                                         <div class="first text-left pt-5 pb-5 mb-5">
+                                                            <h6 class="text-primary">2018 Q4:</h6>
+                                                            <hr class="left-hr     w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Alpha Mainnet launch<br>CPChain RNode Structure Release {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="fourth text-right pt-4 pb-0 pb-sm-5 mb-5">
+                                                            <h6 class="text-primary">2019 Q2:</h6>
+                                                            <hr class="right-hr   w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Formal Mainnet Launch {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-left  pt-5">
+                                                            <h6 class="text-primary">2019 Q4:</h6>
+                                                            <hr class="left-hr pulse now-quarter w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} CPChain Ecosystem Stabilization<br>Traceability and Authentication related project implementation {% endblocktrans %}</p>
+                                                        </div>
+                                                        <div class="second text-right py-sm-5 py-0 my-5">
+                                                            <h6 class="text-primary">2020 Q2:</h6>
+                                                            <hr class="right-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} DID authentication system realization<br>Mass adoption of IoT devices Identification and Authentication {% endblocktrans %}</p>
+                                                        </div> 
+                                                         <div class="second text-left  pt-5">
+                                                            <h6 class="text-primary">2020 Q4:</h6>
+                                                            <hr class="left-hr w-100">
+                                                            <p style="color: #4671A2;font-family: 'Poppins';">
+                                                                {% blocktrans %} Data encryption services Consolidation<br>Homomorphic encryption and Blackbox isolation data processing services relization {% endblocktrans %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-12 col-10 bottom mt-4 mx-auto">
+                                                <h6 class="text-sm-center text-md-center text-lg-center text-xl-center text-left text-primary">
+                                                    {% blocktrans %}Q3 / 2020{% endblocktrans %}</h6>
+                                                <p class="text-sm-center text-left poppins-font">{% blocktrans %} Consolidated IoT-blockchain system{% endblocktrans %}</p>
+                                            </div> -->
+                                        </div> 
                                     </div>
                                 </div><!-- end of swiper-container-roadmap -->
 
