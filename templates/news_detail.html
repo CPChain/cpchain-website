@@ -47,6 +47,8 @@
                                                 {{ news.content|safe }}
                                                 <div>
                                                     <a href="javascript:window.open('http://twitter.com/home?status='+encodeURIComponent(document.title)+' '+encodeURIComponent(document.location.href),'_blank','toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=450,top=100,left=350');void(0)"
+                                                    {% comment %} <a href="javascript:window.open('http://twitter.com/share?title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(document.location.href),'_blank','toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=450,top=100,left=350');void(0)" {% endcomment %}
+
                                                        class="btn btn-sm btn-light rounded-circle font-weight-bold bg-white text-primary mr-0 mr-sm-2 "
                                                        style="margin-top: 80px;margin-bottom: 50px">
                                                         <img src="{% static 'img/twitter@2x.png' %}" alt=""
