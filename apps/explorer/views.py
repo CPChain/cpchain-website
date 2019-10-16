@@ -802,12 +802,12 @@ def impeachFrequency(req):
         com_impeach_frequency = 0
 
     chart.append({
-        'our_impeachs':   -10,  #-our_impeachs,
-        'our_success': 100,# our_success,
-        'com_impeachs': -15,# -com_impeachs,
-        'com_success': 20,# com_success,
-        'our_icmpeach_frequency': 60,# our_impeach_frequency,
-        'com_impeach_frequency': 20,# com_impeach_frequency,
+        'our_impeachs': -our_impeachs,
+        'our_success': our_success,
+        'com_impeachs': -com_impeachs,
+        'com_success': com_success,
+        'our_icmpeach_frequency': our_impeach_frequency,
+        'com_impeach_frequency': com_impeach_frequency,
         'date': 'today'
     })
     return render(req, 'explorer/impeachs.html', {'chart': chart})
