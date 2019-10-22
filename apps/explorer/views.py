@@ -1,6 +1,7 @@
 import json
 import math
 import time
+from datetime import datetime as dt
 
 import eth_abi
 from django.http import JsonResponse, HttpResponse
@@ -741,11 +742,41 @@ def candidate_info(req, addr):
     return JsonResponse(info, safe=False)
 
 
-def impeachFrequency(req):
+def impeachQuery(req):
+    block = int(req.GET.get('block'))
+    impeach_bks = block_collection.find(
+        {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}},
+        {'_id': False})
+    res = {}
+    res['impeach_num'] = impeach_bks.count()
+    res['impeach_bks'] = list(impeach_bks)
+    bks = res.get('impeach_bks')
+    li = []
+    addr = {}
+    for i in range(len(bks)):
+        time = dt.fromtimestamp(bks[i]["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
+        impeach_item = {"address": bks[i]['impeachProposer'], 'number': bks[i]['number'],
+                        'time': time}
+        if impeach_item['address'] not in addr:
+            addr[impeach_item['address']] = 1
+        else:
+            addr[impeach_item['address']] += 1
+        li.append(impeach_item)
+    # li.reverse()
+    # sort them by number
+    count_num = sorted(addr.items(), key=lambda x: x[1], reverse=True)
+    return JsonResponse({"impeach_number": len(li), "impeach": count_num})
+
+
+def impeachFrequency301(req):
+    return redirect('explorer:impeachFrequency', days=7)
+
+
+def impeachFrequency(req, days=7):
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
     chart = []
-    for i in range(10):
+    for i in range(int(days)):
         gt_time = day_zero - (i + 1) * DAY_SECENDS
         lt_time = day_zero - i * DAY_SECENDS
         our_impeachs = block_collection.find(
