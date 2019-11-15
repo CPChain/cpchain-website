@@ -75,11 +75,11 @@
                             {% trans 'Roadmap' %}
                         </a>
                     </li>
-                    <li>
+                    {% comment %} <li>
                         <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Team' %}
                         </a>
-                    </li>
+                    </li> {% endcomment %}
 
                     <li>
                         <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
@@ -141,7 +141,7 @@
 {#                    </li>#}
                     <li>
                         <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Partners' %}
+                            {% trans 'Ecosystem' %}
                         </a>
                     </li>
                     <li>
