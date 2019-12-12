@@ -224,7 +224,7 @@
         
         } else {
             fetch('https://app.services.cpc-servers.com/getAppVersion/').then(res=> res.json()).then(version=>{
-                if(version.fields.AndroidAppName){
+                if(version[0].fields.AndroidAppName){
                     btn.addEventListener('click', function () {
                         location.href = 'https://app.services.cpc-servers.com/getApp/' + version.fields.AndroidAppName
                     })
