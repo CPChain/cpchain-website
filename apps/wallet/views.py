@@ -39,9 +39,9 @@ def news_detail(req, pk, lang):
 # ('Event_cn', 'Event_cn'),
 def events_list(req, lang):
     if lang == 'en':
-        events_list = WalletNew.objects.filter(category='Event_en')
+        events_list = WalletNew.objects.filter(category='Event_en').order_by('-update_time')
     elif lang == 'cn':
-        events_list = WalletNew.objects.filter(category='Event_cn')
+        events_list = WalletNew.objects.filter(category='Event_cn').order_by('-update_time')
 
     msg = serializers.serialize('json', events_list,
                                 fields=('pk', 'category', 'title', 'banner', 'update_time'))
@@ -62,9 +62,9 @@ def faq_list(req, lang):
 
 def news_list(req, lang):
     if lang == 'en':
-        news_list = WalletNew.objects.filter(category='News_en')
+        news_list = WalletNew.objects.filter(category='News_en').order_by('-update_time')
     elif lang == 'cn':
-        news_list = WalletNew.objects.filter(category='News_cn')
+        news_list = WalletNew.objects.filter(category='News_cn').order_by('-update_time')
 
     data = serializers.serialize("json", news_list,
                                  fields=('pk', 'category', 'title', 'banner', 'update_time'))
