@@ -218,7 +218,7 @@
             fetch('https://app.services.cpc-servers.com/getAppSettings/').then(res=> res.json()).then(settings=>{
                 let iosSetting = settings.filter(p=>p.fields.name == 'iOSUpdateUrl')
                 btn.addEventListener('click', function () {
-                    location.href = iosSetting //'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContntsUserReviews?id=com-cpc-wallet1&pageNumber=0&srotOrdering=2&type=Purple+Software&mt=8'
+                    location.href = iosSetting.value //'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContntsUserReviews?id=com-cpc-wallet1&pageNumber=0&srotOrdering=2&type=Purple+Software&mt=8'
                 })
             })
         
