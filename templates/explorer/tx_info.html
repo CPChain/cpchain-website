@@ -97,7 +97,7 @@
                 <div class="col-md-3">Actual Tx Cost/Fee:</div>
                 <div class="col poppins-light">{{ tx_dict.txfee }} CPC</div>
             </div>
-           <div class="row info-row">
+           <div v-if="remark" class="row info-row">
                 <div class="col-md-3">Remark:</div>
                 <div class="col poppins-light"  v-html="remark"></div>
             </div>
