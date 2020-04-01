@@ -97,6 +97,10 @@
                 <div class="col-md-3">Actual Tx Cost/Fee:</div>
                 <div class="col poppins-light">{{ tx_dict.txfee }} CPC</div>
             </div>
+           <div class="row info-row">
+                <div class="col-md-3">Remark:</div>
+                <div class="col poppins-light"  v-html="remark"></div>
+            </div>
             <div class="row info-row">
                 <div class="col-md-3">Input Data:</div>
                 <div class="col" style="margin-top: 15px">
@@ -141,9 +145,43 @@
             return output;
         }
 
+        function JsonTryParse(str) {
+            try {
+                let obj = JSON.parse(str)
+                if (typeof obj == "object") {
+                    return obj;
+                } 
+            } catch(e) {
+            }
+            return false;
+        }
+
+
+        var hex2String = function (hexCharCodeStr) {
+            var trimStr = hexCharCodeStr.trim();
+            var rawStr =
+                trimStr.substr(0, 2).toLowerCase() === "0x"
+                    ?
+                    trimStr.substr(2)
+                    :
+                    trimStr;
+            var len = rawStr.length;
+            if (len % 2 !== 0) {
+                alert("Illegal Format ASCII Code!");
+                return "";
+            }
+            var curCharCode;
+            var resultStr = [];
+            for (var i = 0; i < len; i = i + 2) {
+                curCharCode = parseInt(rawStr.substr(i, 2), 16); // ASCII Code Value
+                resultStr.push(String.fromCharCode(curCharCode));
+            }
+            return resultStr.join("");
+        };
+
         var txInfoApp = new Vue({
             el: '#tx-info',
-            data: {input: '{{ tx_dict.input }}'},
+            data: {input: '{{ tx_dict.input }}',remark:''},
             delimiters: [`[[`, `]]`],
             computed: {
                 timeTicker: function () {
@@ -160,6 +198,15 @@
                     }
 
                 }
+            },
+            created(){
+                if ( '{{ tx_dict.input }}' &&  '{{ tx_dict.input }}'.length > 2) {
+                    let itemStr = decodeURI(hex2String( '{{ tx_dict.input }}'))
+                    if (itemStr) {
+                        itemObj = JsonTryParse(itemStr)
+                         txInfoApp.$data.remark = itemObj.remark
+                    } 
+                } 
             }
         })
         var ps = new PerfectScrollbar('.raw-data-content')
