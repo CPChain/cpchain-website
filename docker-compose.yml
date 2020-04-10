@@ -8,7 +8,7 @@ services:
       volumes:
         - mysql-data:/var/lib/mysql
       ports:
-        - 3306:3306
+        - 3307:3306
       environment:
         - MYSQL_DATABASE=cpchain_django
         - MYSQL_ROOT_PASSWORD=cpchain
@@ -25,7 +25,22 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
       - MONGO_INITDB_DATABASE=admin
     ports:
-      - 27017:27017
+      - 27018:27017
+
+  test:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        python manage.py makemigrations index wallet community;
+        python manage.py migrate
+        python makemigrations runserver
+
+    ports:
+      - 8001:8000
 
 volumes:
   mysql-data:
