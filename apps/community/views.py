@@ -1,6 +1,7 @@
 
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from .models import Tasks, Proposals, Congress, ApprovedAddress, VotedAddress
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
@@ -25,6 +26,53 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     queryset = Proposals.objects.all()
     serializer_class = ProposalsSerializer
 
+    @action(detail=False, methods=['get'])
+    def voted(self, request):
+        """
+        判断地址是否已投票
+
+        + proposal_id: proposal id
+        + address: 地址
+
+        返回值
+        
+        ```json
+        {
+            "exists": true/false
+        }
+        ```
+        """
+        queryset = VotedAddress.objects.all()
+        proposal_id = self.request.query_params.get('proposal_id')
+        address = self.request.query_params.get('address')
+        cnt = 0
+        if address:
+            cnt = self.queryset.filter(proposal_id=proposal_id, address=address).count()
+        return Response({"exists": cnt > 0})
+
+    @action(detail=False, methods=['get'])
+    def liked(self, request):
+        """
+        判断地址是否已赞同
+
+        + proposal_id: proposal id
+        + address: 地址
+
+        返回值
+        
+        ```json
+        {
+            "exists": true/false
+        }
+        ```
+        """
+        queryset = ApprovedAddress.objects.all()
+        proposal_id = self.request.query_params.get('proposal_id')
+        address = self.request.query_params.get('address')
+        cnt = 0
+        if address:
+            cnt = self.queryset.filter(proposal_id=proposal_id, address=address).count()
+        return Response({"exists": cnt > 0})
 
 class ApprovedAddressViewSet(mixins.ListModelMixin,
                              viewsets.GenericViewSet):
@@ -68,7 +116,6 @@ class VotedAddressViewSet(mixins.ListModelMixin,
             queryset = queryset.filter(proposal_id=proposal_id)
         return queryset
 
-
 class ProposalsUpdateViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
 
     """
@@ -100,3 +147,25 @@ class CongressViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     queryset = Congress.objects.all()
     serializer_class = CongressSerializer
+
+    @action(detail=False, methods=['get'])
+    def joined(self, request):
+        """
+        判断地址是在议会中
+
+        + address: 地址
+
+        返回值
+
+        ```json
+        {
+            "exists": true/false
+        }
+        ```
+        """
+        queryset = Congress.objects.all()
+        address = self.request.query_params.get('address')
+        cnt = 0
+        if address:
+            cnt = self.queryset.filter(address=address).count()
+        return Response({"exists": cnt > 0})
