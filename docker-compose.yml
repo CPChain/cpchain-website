@@ -37,8 +37,10 @@ services:
       - |
         python manage.py makemigrations index wallet community;
         python manage.py migrate
-        python makemigrations runserver
-
+        python manage.py runserver
+    depends_on: 
+      - mysql
+      - mongo
     ports:
       - 8001:8000
 
