@@ -14,13 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include, re_path
-from django.conf.urls import handler404, handler500
+from django.conf.urls import url, handler404, handler500
+
+from rest_framework_swagger.views import get_swagger_view
 
 import xadmin
 from index.views import *
 from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
+
+schema_view = get_swagger_view(title='CPChain Website API')
 
 indexpatterns = [
     path('xadmin/', xadmin.site.urls),
@@ -51,6 +55,8 @@ indexpatterns = [
 urlpatterns = i18n_patterns(
     path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
+    path('community-manage/', include('community.urls')),
+    url(r'^api-docs$', schema_view),
     prefix_default_language=False
 )
 
