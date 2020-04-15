@@ -81,7 +81,9 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 下面这一行表示接口文档的访问权限, AllowAny不做权限限制.
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
-    # 'PAGE_SIZE': 10,
+    # pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
     'PAGINATE_BY':10,
 }
 

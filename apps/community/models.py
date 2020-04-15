@@ -52,7 +52,5 @@ class VotedAddress(models.Model):
 
 class Congress(models.Model):
     """ 议会 """
-    address = models.CharField(max_length=200, help_text='地址')
-    exitd = models.BooleanField(default=False, help_text='是否已退出')
+    address = models.CharField(primary_key=True, max_length=200, help_text='地址')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
