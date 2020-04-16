@@ -1,28 +1,28 @@
 
 from rest_framework import serializers
 
-from .models import Tasks, Proposals, ApprovedAddress, VotedAddress, Congress, ProposalType
+from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType
 
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tasks
+        model = Task
         fields = '__all__'
 
 class ProposalsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Proposals
+        model = Proposal
         fields = '__all__'
 
 class ProposalsCreateSerializer(serializers.ModelSerializer):
 
     proposals_id = serializers.UUIDField(read_only=True)
     class Meta:
-        model = Proposals
+        model = Proposal
         fields = ['proposals_id', 'title', 'proposal_type', 'description', 'proposer_addr']
 
 class ProposalsUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Proposals
+        model = Proposal
         fields = ['title', 'proposal_type', 'description', 'status', 'reason']
 
 class ApprovedAddressSerializer(serializers.ModelSerializer):

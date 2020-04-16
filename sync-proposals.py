@@ -16,7 +16,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cpchain_test.settings')
 django.setup()
 
 # import models
-from community.models import Proposals, ApprovedAddress, VotedAddress
+from community.models import Proposal, ApprovedAddress, VotedAddress
 
 from log import get_log
 
@@ -52,11 +52,11 @@ def main():
             proposal = instance.call().proposalsIDList(i)
             log.debug(f'get proposal - {proposal}')
             # check if the proposal exists in table
-            if Proposals.objects.filter(proposal_id=proposal).count() == 0:
+            if Proposal.objects.filter(proposal_id=proposal).count() == 0:
                 log.info(f"add new proposal - {proposal}")
-                obj = Proposals(proposal_id=proposal)
+                obj = Proposal(proposal_id=proposal)
                 obj.save()
-            obj = Proposals.objects.filter(proposal_id=proposal)[0]
+            obj = Proposal.objects.filter(proposal_id=proposal)[0]
             # sync status
             status = instance.functions.getStatus(proposal).call()
             status = STATUS[status]

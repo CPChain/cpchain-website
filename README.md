@@ -34,6 +34,8 @@ start mysql and mongo with Docker
 
 docker-compose up -d
 
+# create super user
+
 ```
 
 
