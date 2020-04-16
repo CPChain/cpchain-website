@@ -3,10 +3,10 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .models import Tasks, Proposals, Congress, ApprovedAddress, VotedAddress
+from .models import Tasks, Proposals, Congress, ApprovedAddress, VotedAddress, ProposalType
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
     VotedAddressAddressSerializer, ProposalsCreateSerializer, ProposalsUpdateSerializer, \
-    CongressSerializer
+    CongressSerializer, ProposalTypeSerializer
 
 
 class TasksViewSet(viewsets.ModelViewSet):
@@ -16,6 +16,13 @@ class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
 
+
+class ProposalTypeViewSet(viewsets.ModelViewSet):
+    """
+    提案类型
+    """
+    queryset = ProposalType.objects.all()
+    serializer_class = ProposalTypeSerializer
 
 class ProposalsViewSet(mixins.RetrieveModelMixin,
                        mixins.ListModelMixin,

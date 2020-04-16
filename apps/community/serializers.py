@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from .models import Tasks, Proposals, ApprovedAddress, VotedAddress, Congress
+from .models import Tasks, Proposals, ApprovedAddress, VotedAddress, Congress, ProposalType
 
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,12 +16,12 @@ class ProposalsSerializer(serializers.ModelSerializer):
 class ProposalsCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposals
-        fields = ['title', 'description', 'proposer_addr']
+        fields = ['title', 'proposal_type', 'description', 'proposer_addr']
 
 class ProposalsUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposals
-        fields = ['title', 'description', 'status', 'reason']
+        fields = ['title', 'proposal_type', 'description', 'status', 'reason']
 
 class ApprovedAddressSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,4 +36,10 @@ class VotedAddressAddressSerializer(serializers.ModelSerializer):
 class CongressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Congress
+        fields = '__all__'
+
+class ProposalTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProposalType
         fields = '__all__'

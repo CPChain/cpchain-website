@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
 from .views import TasksViewSet, ProposalsViewSet, ProposalsUpdateViewSet, ProposalsCreateViewSet, CongressViewSet, \
-    ApprovedAddressViewSet, VotedAddressViewSet
+    ApprovedAddressViewSet, VotedAddressViewSet, ProposalTypeViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -14,6 +14,7 @@ router.register(r'proposals', ProposalsCreateViewSet, basename='create proposal'
 router.register(r'congress', CongressViewSet)
 router.register(r'likes', ApprovedAddressViewSet)
 router.register(r'votes', VotedAddressViewSet)
+router.register(r'proposal-type', ProposalTypeViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

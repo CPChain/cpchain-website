@@ -18,10 +18,17 @@ class Tasks(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class ProposalType(models.Model):
+    """ 类型 """
+    zh = models.CharField(max_length=50, help_text='中文', null=False)
+    cn = models.CharField(max_length=50, default='', help_text='英文')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 class Proposals(models.Model):
     """ 提案 """
     proposal_id = models.CharField(max_length=36)
-    proposal_type = models.CharField(default='', max_length=100)
+    proposal_type = models.ForeignKey(ProposalType, models.DO_NOTHING, null=True)
     title = models.CharField(default='', max_length=100)
     description = models.CharField(default='', max_length=1000)
     locked_amount = models.FloatField(help_text='金额，单位为CPC', null=True)
