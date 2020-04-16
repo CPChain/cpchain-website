@@ -1,5 +1,6 @@
 
 from django.db import models
+import uuid
 
 PROPOSAL_STATUS = (
     ('submitted', 'submitted'),
@@ -27,7 +28,7 @@ class ProposalType(models.Model):
 
 class Proposals(models.Model):
     """ 提案 """
-    proposal_id = models.CharField(max_length=36)
+    proposal_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     proposal_type = models.ForeignKey(ProposalType, models.DO_NOTHING, null=True)
     title = models.CharField(default='', max_length=100)
     description = models.CharField(default='', max_length=1000)

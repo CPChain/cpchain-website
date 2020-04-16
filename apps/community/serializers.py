@@ -14,9 +14,11 @@ class ProposalsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProposalsCreateSerializer(serializers.ModelSerializer):
+
+    proposals_id = serializers.UUIDField(read_only=True)
     class Meta:
         model = Proposals
-        fields = ['title', 'proposal_type', 'description', 'proposer_addr']
+        fields = ['proposals_id', 'title', 'proposal_type', 'description', 'proposer_addr']
 
 class ProposalsUpdateSerializer(serializers.ModelSerializer):
     class Meta:

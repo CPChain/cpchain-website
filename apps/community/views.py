@@ -25,13 +25,22 @@ class ProposalTypeViewSet(viewsets.ModelViewSet):
     serializer_class = ProposalTypeSerializer
 
 class ProposalsViewSet(mixins.RetrieveModelMixin,
+                       mixins.UpdateModelMixin,
                        mixins.ListModelMixin,
+                       mixins.CreateModelMixin,
                        viewsets.GenericViewSet):
     """
     Proposals
     """
     queryset = Proposals.objects.all()
-    serializer_class = ProposalsSerializer
+    # serializer_class = ProposalsSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'update' or self.action == 'partial_update':
+            return ProposalsUpdateSerializer
+        if self.action == 'create':
+            return ProposalsCreateSerializer
+        return ProposalsSerializer
 
     @action(detail=False, methods=['get'])
     def voted(self, request):
@@ -122,29 +131,6 @@ class VotedAddressViewSet(mixins.ListModelMixin,
         if proposal_id:
             queryset = queryset.filter(proposal_id=proposal_id)
         return queryset
-
-class ProposalsUpdateViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
-
-    """
-    Proposals
-
-    用于决策议会改变提案
-    """
-
-    queryset = Proposals.objects.all()
-    serializer_class = ProposalsUpdateSerializer
-
-
-class ProposalsCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-
-    """
-    Proposals
-
-    用户在前台提交提案
-    """
-
-    queryset = Proposals.objects.all()
-    serializer_class = ProposalsCreateSerializer
 
 
 class CongressViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
