@@ -1,0 +1,123 @@
+
+version: "3.7"
+
+services:
+
+  mysql:
+      image: mysql:5.7
+      volumes:
+        - mysql-data:/var/lib/mysql
+      ports:
+        - 3306:3306
+      environment:
+        - MYSQL_DATABASE=cpchain_django
+        - MYSQL_ROOT_PASSWORD=cpchain
+        - LANG=C.UTF-8
+      command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci --skip-character-set-client-handshake
+
+  mongo:
+    image: mongo:4-bionic
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=admin
+    ports:
+      - 27017:27017
+
+  test:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 30;
+        python manage.py makemigrations index wallet community;
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    depends_on: 
+      - mysql
+      - mongo
+    ports:
+      - 8001:8000
+
+  monitor:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 30;
+        python monitor.py
+        mkdir -p log
+        tail -f log/chain.log
+
+  create-index:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 60;
+        python tools/mongoIndex.py;
+        python tools/mongoIndex_v0.1.py;
+
+  chart-update:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        while true
+        do
+        echo "update chart..."`date`
+        python cpchain_test/chart_update.py;
+        sleep 3600;
+        done;
+
+  sync-community:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        mkdir -p logs;
+        while true
+        do
+        echo "sync..."`date`
+        python sync-congress.py;
+        python sync-proposals.py;
+        sleep 60;
+        done;
+
+volumes:
+  mysql-data:
+    external: false
+
+  mongo-data:
+    external: false
+  

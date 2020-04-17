@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'utils',
     'wallet',
     'django_prometheus',
-
+    'community',
+    'rest_framework',
+    'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,21 @@ MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusAfterMiddleware',
 
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    # 下面这一行表示接口文档的访问权限, AllowAny不做权限限制.
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    # pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'PAGINATE_BY':10,
+}
 
 ROOT_URLCONF = 'cpchain_test.urls'
 
@@ -251,3 +268,11 @@ CHANNEL_LAYERS = {
 # override settings
 DEBUG = cfg['web']['debug'] == 'True'
 SECRET_KEY = cfg['web']['secretkey']
+
+# when you use https, you should add this line to your local.py and uncomment.
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+try:
+    from .local import *
+except:
+    pass

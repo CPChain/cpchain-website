@@ -28,6 +28,21 @@ Clone this repo to your local machine using `git clone https://github.com/CPChai
 
 ### Setup
 
+start mysql and mongo with Docker
+
+```bash
+
+docker-compose up -d
+
+# create super user in test-env
+sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
+
+# username: admin
+# password: password
+
+
+```
+
 
 > update and install the requirements first
 ```python3
@@ -60,20 +75,12 @@ There are two modes to start this website , through http or socket(default):
 Now You can access http://127.0.0.1:8000/
 ```
 
-
-
-
-
-
 ## Documentation 
 
 The website uses a third-party package cpc-fusion. For more detailed information, please see here:
 [cpc-fusion](https://docs.cpchain.io/api/cpc_fusion.html)
 
 ---
-
-
-
 
 ## License
 
