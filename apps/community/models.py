@@ -31,7 +31,7 @@ class ProposalType(models.Model):
     """ 类型 """
     zh = models.CharField(max_length=50, help_text='中文',
                           null=False, verbose_name='中文名称')
-    cn = models.CharField(max_length=50, default='',
+    en = models.CharField(max_length=50, default='',
                           help_text='英文', verbose_name='English name')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
