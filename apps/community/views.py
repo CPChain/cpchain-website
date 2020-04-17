@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 
 from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
-    VotedAddressAddressSerializer, ProposalsCreateSerializer, ProposalsUpdateSerializer, \
+    VotedAddressAddressSerializer, ProposalsCreateSerializer, \
     CongressSerializer, ProposalTypeSerializer
 
 
