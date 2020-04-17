@@ -268,3 +268,11 @@ CHANNEL_LAYERS = {
 # override settings
 DEBUG = cfg['web']['debug'] == 'True'
 SECRET_KEY = cfg['web']['secretkey']
+
+# when you use https, you should add this line to your local.py and uncomment.
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+try:
+    from .local import *
+except:
+    pass

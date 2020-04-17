@@ -2,6 +2,8 @@
 __pycache__/
 migrations
 
+local.py
+
 *.py[cod]
 *$py.class
 .idea/

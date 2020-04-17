@@ -34,7 +34,12 @@ start mysql and mongo with Docker
 
 docker-compose up -d
 
-# create super user
+# create super user in test-env
+sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
+
+# username: admin
+# password: password
+
 
 ```
 
