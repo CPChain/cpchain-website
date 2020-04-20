@@ -7,9 +7,9 @@ from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, Pro
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
     VotedAddressAddressSerializer, ProposalsCreateSerializer, \
     CongressSerializer, ProposalTypeSerializer, TaskClaimSerializer
+from .permissions import IPLimitPermission
 
 from cpchain_test.config import cfg
-
 
 class ContractViewSet(mixins.ListModelMixin,
                       viewsets.GenericViewSet):
@@ -51,6 +51,7 @@ class TaskClaimViewSet(mixins.CreateModelMixin,
 
     queryset = TaskClaim.objects.all()
     serializer_class = TaskClaimSerializer
+    permission_classes = [IPLimitPermission]
 
 
 class TasksViewSet(mixins.RetrieveModelMixin,
@@ -81,7 +82,7 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     Proposals
     """
     queryset = Proposal.objects.all()
-    # serializer_class = ProposalsSerializer
+    permission_classes = [IPLimitPermission]
 
     def get_serializer_class(self):
         if self.action == 'create':

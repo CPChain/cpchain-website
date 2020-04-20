@@ -19,6 +19,12 @@ TASK_STATUS = (
     ('completed', 'completed')
 )
 
+class IPAccess(models.Model):
+    """ IP 访问表 """
+    IP = models.GenericIPAddressField()
+    url = models.CharField(max_length=100)
+    date = models.DateField()
+
 
 class Task(models.Model):
     """ 任务 """

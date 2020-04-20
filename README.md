@@ -40,6 +40,8 @@ sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 # username: admin
 # password: password
 
+# cleanup ip access table
+python manage.py cleanup
 
 ```
 
