@@ -104,7 +104,7 @@ class Proposal(models.Model):
     depositor_addr = models.CharField(
         default='', max_length=100, help_text='提案存钱人地址', editable=False)
     status = models.CharField(
-        help_text='提案状态', choices=PROPOSAL_STATUS, max_length=30)
+        help_text='提案状态', choices=PROPOSAL_STATUS, max_length=30, default='submitted')
     reason = RichTextUploadingField(help_text='理由-决策议会给出的结果', blank=True, null=True,
                                     default='', external_plugin_resources=[
                                         ('youtube',
