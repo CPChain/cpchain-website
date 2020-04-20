@@ -1,12 +1,18 @@
 
 from rest_framework import serializers
 
-from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType
+from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType, TaskClaim
 
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+class TaskClaimSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TaskClaim
+        fields = ['task_id', 'name', 'email', 'advantages', 'estimated_date']
 
 class ProposalsSerializer(serializers.ModelSerializer):
     class Meta:

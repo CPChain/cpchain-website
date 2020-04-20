@@ -3,11 +3,12 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
 from .views import TasksViewSet, ProposalsViewSet, CongressViewSet, \
-    ApprovedAddressViewSet, VotedAddressViewSet, ProposalTypeViewSet, ContractViewSet
+    ApprovedAddressViewSet, VotedAddressViewSet, ProposalTypeViewSet, ContractViewSet, TaskClaimViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'tasks', TasksViewSet)
+router.register(r'task/claim', TaskClaimViewSet)
 router.register(r'contract', ContractViewSet)
 router.register(r'proposals', ProposalsViewSet)
 router.register(r'congress', CongressViewSet)

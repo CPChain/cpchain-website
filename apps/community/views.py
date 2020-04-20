@@ -3,15 +3,16 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType
+from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
     VotedAddressAddressSerializer, ProposalsCreateSerializer, \
-    CongressSerializer, ProposalTypeSerializer
+    CongressSerializer, ProposalTypeSerializer, TaskClaimSerializer
 
 from cpchain_test.config import cfg
 
+
 class ContractViewSet(mixins.ListModelMixin,
-               viewsets.GenericViewSet):
+                      viewsets.GenericViewSet):
     """
     合约地址及合约 ABI
     """
@@ -21,7 +22,7 @@ class ContractViewSet(mixins.ListModelMixin,
     def list(self, request, *args, **kwargs):
         proposal_addr = cfg['community']['proposal']
         congress_addr = cfg['community']['congress']
-        
+
         proposal_abi = cfg['community']['proposalABI'][1:-1].replace('\\', '')
         congress_abi = cfg['community']['congressABI'][1:-1].replace('\\', '')
 
@@ -40,6 +41,17 @@ class ContractViewSet(mixins.ListModelMixin,
                 'version': congress_version,
             }
         })
+
+
+class TaskClaimViewSet(mixins.CreateModelMixin,
+                       viewsets.GenericViewSet):
+    """
+    任务认领接口
+    """
+
+    queryset = TaskClaim.objects.all()
+    serializer_class = TaskClaimSerializer
+
 
 class TasksViewSet(mixins.RetrieveModelMixin,
                    mixins.ListModelMixin,

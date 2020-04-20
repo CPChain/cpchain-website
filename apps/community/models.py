@@ -41,6 +41,23 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class ClaimEmailReceiver(models.Model):
+    """ 认领任务时，需给此 model 中所有的邮箱发送邮件 """
+    name = models.CharField(max_length=30, blank=False, null=False)
+    email = models.EmailField(max_length=50, blank=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class TaskClaim(models.Model):
+    """ 任务认领接口 """
+    task_id = models.ForeignKey(Task, models.DO_NOTHING, null=False)
+    name = models.CharField(max_length=50, null=False, blank=False)
+    email = models.EmailField(max_length=100, blank=False, null=False)
+    advantages = models.CharField(max_length=1000, null=False, blank=False, help_text='优势')
+    estimated_date = models.DateField(verbose_name='预计完成日期', help_text='预计完成日期', null=True)
+    send_email = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class ProposalType(models.Model):
     """ 类型 """
