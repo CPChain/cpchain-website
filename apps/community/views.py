@@ -8,6 +8,38 @@ from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSe
     VotedAddressAddressSerializer, ProposalsCreateSerializer, \
     CongressSerializer, ProposalTypeSerializer
 
+from cpchain_test.config import cfg
+
+class ContractViewSet(mixins.ListModelMixin,
+               viewsets.GenericViewSet):
+    """
+    合约地址及合约 ABI
+    """
+    queryset = Task.objects.all()
+    serializer_class = TasksSerializer
+
+    def list(self, request, *args, **kwargs):
+        proposal_addr = cfg['community']['proposal']
+        congress_addr = cfg['community']['congress']
+        
+        proposal_abi = cfg['community']['proposalABI'][1:-1].replace('\\', '')
+        congress_abi = cfg['community']['congressABI'][1:-1].replace('\\', '')
+
+        proposal_version = cfg['community']['proposalVersion']
+        congress_version = cfg['community']['congressVersion']
+
+        return Response({
+            "proposal": {
+                'address': proposal_addr,
+                'abi': proposal_abi,
+                'version': proposal_version,
+            },
+            "congress": {
+                'address': congress_addr,
+                'abi': congress_abi,
+                'version': congress_version,
+            }
+        })
 
 class TasksViewSet(mixins.RetrieveModelMixin,
                    mixins.ListModelMixin,
