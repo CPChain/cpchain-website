@@ -114,6 +114,28 @@ services:
         sleep 60;
         done;
 
+  check-timeout:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        mkdir -p logs;
+        while true
+        do
+        echo "check timeout..."`date`
+        python check-proposal-timeout.py;
+        sleep 60;
+        done;
+
+
 volumes:
   mysql-data:
     external: false

@@ -15,7 +15,7 @@ class IPLimitPermission(permissions.BasePermission):
         url = request.META['PATH_INFO']
         if url in ['/api-docs']:
             return True
-        ip = request.META.get('X-Real-IP', request.META.get('REMOTE_ADDR'))
+        ip = request.META.get('HTTP_X_REAL_IP', request.META.get('REMOTE_ADDR'))
         # check
         blocklisted = IPAccess.objects.filter(IP=ip, url=url, date=dt.now().date()).count() >= self.limit
         if not blocklisted:
