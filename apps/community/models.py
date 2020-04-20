@@ -13,11 +13,26 @@ PROPOSAL_STATUS = (
     ('timeout', 'timeout'),
 )
 
+TASK_STATUS = (
+    ('available', 'available'),
+    ('development', 'development'),
+    ('completed', 'completed')
+)
+
 
 class Task(models.Model):
     """ 任务 """
     title = models.CharField(max_length=100)
     description = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
+                                                                                                        '/static/youtube/',
+                                                                                                        'plugin.js'), (
+                                                                                                       'imageresize',
+                                                                                                       '/static/imageresize/',
+                                                                                                       'plugin.js')])
+    amount = models.FloatField(help_text='金额(cpc)', default=0)
+    status = models.CharField(
+        default='available', choices=TASK_STATUS, max_length=30, help_text='任务状态')
+    requirement = RichTextUploadingField(blank=True, null=True, default='', external_plugin_resources=[('youtube',
                                                                                                         '/static/youtube/',
                                                                                                         'plugin.js'), (
                                                                                                        'imageresize',

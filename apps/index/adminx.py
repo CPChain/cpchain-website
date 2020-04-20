@@ -83,7 +83,7 @@ class IndexVideoAdmin:
 
 class TasksAdmin:
     model = communityModels.Task
-    list_display = ['title', 'created_at', 'updated_at']
+    list_display = ['title', 'status', 'amount', 'updated_at']
     search_fields = ['title']
     ordering = ['-updated_at']
 
