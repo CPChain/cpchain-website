@@ -89,7 +89,7 @@ class TasksAdmin:
 
 class ProposalTypeAdmin:
     model = communityModels.ProposalType
-    list_display = ['zh', 'cn']
+    list_display = ['zh', 'en']
 
 class ProposalAdmin:
     model = communityModels.Proposal
