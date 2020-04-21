@@ -3,6 +3,8 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
     VotedAddressAddressSerializer, ProposalsCreateSerializer, \
@@ -82,6 +84,8 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     Proposals
     """
     queryset = Proposal.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['status']
     permission_classes = [IPLimitPermission]
 
     def get_serializer_class(self):

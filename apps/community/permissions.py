@@ -7,7 +7,7 @@ from .serializers import IPAccessSerializer
 
 class IPLimitPermission(permissions.BasePermission):
     message = "You posted too many requests today."
-    limit = 5
+    limit = 1000
 
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
