@@ -27,6 +27,25 @@ services:
     ports:
       - 27017:27017
 
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  rmq:
+    image: rabbitmq:3.7.15-alpine
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    volumes: 
+      - rmq-data:/var/lib/rabbitmq/mnesia/node@rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+      - ABBITMQ_NODENAME=node@rabbitmq
+
   test:
     image: liaojl/website
     volumes:
@@ -142,4 +161,9 @@ volumes:
 
   mongo-data:
     external: false
+
+  redis-data:
+    external: false
   
+  rmq-data:
+    external: false
