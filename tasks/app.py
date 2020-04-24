@@ -1,7 +1,7 @@
 from celery import Celery
 
-from sync_congress import sync_congress
-from sync_proposals import sync_proposals
+from tasks.sync_congress import sync_congress
+from tasks.sync_proposals import sync_proposals
 
 from log import get_log
 
