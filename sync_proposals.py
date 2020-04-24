@@ -20,6 +20,13 @@ from community.models import Proposal, ApprovedAddress, VotedAddress
 
 from log import get_log
 
+STATUS = {
+    0: 'deposited',
+    1: 'community congress',
+    2: 'decision congress',
+    3: 'timeout'
+}
+
 log = get_log('sync-proposals')
 
 host = cfg["chain"]["ip"]
@@ -36,14 +43,8 @@ cf = Web3(Web3.HTTPProvider(f'http://{host}:{port}'))
 abi = cfg['community']['proposalABI'][1:-1].replace('\\', '')
 instance = cf.cpc.contract(abi=abi, address=address)
 
-STATUS = {
-    0: 'deposited',
-    1: 'community congress',
-    2: 'decision congress',
-    3: 'timeout'
-}
-
-def main():
+def sync_proposals():
+    
     cnt = instance.functions.getProposalsCnt().call()
     log.info(f"proposal's count is {cnt}")
     # iterate
@@ -116,4 +117,4 @@ def main():
         
 
 if __name__ == '__main__':
-    main()
+    sync_proposals()
