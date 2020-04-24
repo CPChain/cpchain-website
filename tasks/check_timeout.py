@@ -52,7 +52,7 @@ abi = cfg['community']['proposalABI'][1:-1].replace('\\', '')
 instance = cf.cpc.contract(abi=abi, address=address)
 
 
-def main():
+def check_timeout():
     cnt = instance.functions.getProposalsCnt().call()
     log.info(f"proposal's count is {cnt}")
     # iterate
@@ -61,6 +61,15 @@ def main():
             proposal = instance.call().proposalsIDList(i)
             status = instance.functions.getStatus(proposal).call()
             if status != 2 and status != 3:
+                # get lockedTime and period
+                lockedTime = instance.functions.getLockedTime(proposal).call()
+                period = instance.functions.getPeriod(proposal).call()
+                log.info(f'lockedTime {lockedTime}, period {period}')
+
+                lockedAt = dt.fromtimestamp(lockedTime)
+                if (dt.now() - lockedAt).seconds < period:
+                    continue
+                # timeout
                 gas_price = cf.cpc.gasPrice
                 nonce = cf.cpc.getTransactionCount(owner)
                 # estimate gas
@@ -81,4 +90,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    check_timeout()
