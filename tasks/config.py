@@ -27,16 +27,20 @@ CELERYBEAT_SCHEDULE = {
     #     'task': 'apps.explorer.tasks.updateInfo',
     #     'schedule': timedelta(seconds=3),  # 每 3 秒一次
     # },
-    # 'sync-congress': {
-    #     'task': 'tasks.app.sync_congress_task',
-    #     'schedule': timedelta(seconds=10),
-    # },
-    # 'sync-proposals': {
-    #     'task': 'tasks.app.sync_proposals_task',
-    #     'schedule': timedelta(seconds=10),
-    # },
+    'sync-congress': {
+        'task': 'tasks.app.sync_congress_task',
+        'schedule': timedelta(seconds=10),
+    },
+    'sync-proposals': {
+        'task': 'tasks.app.sync_proposals_task',
+        'schedule': timedelta(seconds=10),
+    },
     'check-timeout': {
         'task': 'tasks.app.check_timeout_task',
+        'schedule': timedelta(minutes=1),
+    },
+    'update-chart': {
+        'task': 'tasks.app.chart_update_task',
         'schedule': timedelta(minutes=1),
     }
 }

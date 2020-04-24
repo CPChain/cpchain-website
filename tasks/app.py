@@ -3,6 +3,7 @@ from celery import Celery
 from tasks.sync_congress import sync_congress
 from tasks.sync_proposals import sync_proposals
 from tasks.check_timeout import check_timeout
+from tasks.chart_update import update_chart
 
 from log import get_log
 
@@ -33,8 +34,10 @@ def check_timeout_task():
     check_timeout()
 
 @app.task
-def chart_update():
-    pass
+def chart_update_task():
+    log = get_log('celery')
+    log.info('update chart task')
+    update_chart()
 
 @app.task
 def send_email():
