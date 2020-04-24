@@ -117,6 +117,7 @@ services:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
+    restart: always
     depends_on: 
       - mysql
       - mongo
@@ -139,6 +140,7 @@ services:
       - ./:/cpchain-website
       - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
       - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    restart: always
     depends_on: 
       - mysql
       - mongo

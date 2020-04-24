@@ -7,7 +7,10 @@ local.py
 *.py[cod]
 *$py.class
 .idea/
+
 celerybeat.pid
+celerybeat-schedule.db
+
 # C extensions
 *.so
 # Custom
