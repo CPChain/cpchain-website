@@ -8,13 +8,17 @@ from cpc_fusion import Web3
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim
+from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim, Email, ClaimEmailReceiver
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
     VotedAddressAddressSerializer, ProposalsCreateSerializer, \
-    CongressSerializer, ProposalTypeSerializer, TaskClaimSerializer
+    CongressSerializer, ProposalTypeSerializer, TaskClaimSerializer, EmailSerializer
 from .permissions import IPLimitPermission
 
 from cpchain_test.config import cfg
+
+from log import get_log
+
+log = get_log('app')
 
 # web3
 host = cfg["chain"]["ip"]
@@ -106,6 +110,41 @@ class TaskClaimViewSet(mixins.CreateModelMixin,
     queryset = TaskClaim.objects.all()
     serializer_class = TaskClaimSerializer
     permission_classes = [IPLimitPermission]
+
+    def create(self, request, *args, **kwargs):
+        res = super().create(request, *args, **kwargs)
+        try:
+            if res.status_code == 201:
+                log.debug('there is a claim for task')
+                for item in ClaimEmailReceiver.objects.filter():
+                    log.debug(f'name: {item.name}, email: {item.email}')
+                    # get the title of task
+                    task_id = request.data['task_id']
+                    task = Task.objects.get(id=task_id)
+                    if not task:
+                        log.error(f"not exists task {task_id}")
+                        continue
+                    # content
+                    content = f'''
+                    <div>
+                        <ul>
+                            <li>Task Title: <label>{task.title}</label></li>
+                            <li>Email: <label>{request.data["email"]}</label></li>
+                            <li>Name: <label>{request.data["name"]}</label></li>
+                            <li>Adantages: <label>{request.data["advantages"]}</label></li>
+                            <li>Estimated Date: <label>{request.data["estimated_date"]}</label></li>
+                        </ul>
+                    </div>
+                    '''
+                    log.debug(content)
+
+                    # create email
+                    serializer = EmailSerializer(data=dict(content=content, to=item.email))
+                    serializer.is_valid(raise_exception=True)
+                    serializer.save()
+        except Exception as e:
+            log.error(e)
+        return res
 
 
 class TasksViewSet(mixins.RetrieveModelMixin,

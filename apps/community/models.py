@@ -139,3 +139,12 @@ class Congress(models.Model):
     address = models.CharField(
         primary_key=True, max_length=200, help_text='地址')
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Email(models.Model):
+    """ Email """
+    content = models.TextField(help_text='邮件内容')
+    to = models.CharField(max_length=50, help_text='收信人')
+    sent = models.BooleanField(default=False, help_text='是否发送')
+    sent_at = models.DateTimeField(null=True, help_text='发送时间')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

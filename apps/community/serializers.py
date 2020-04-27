@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType, TaskClaim, IPAccess
+from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType, TaskClaim, IPAccess, Email
 
 class IPAccessSerializer(serializers.ModelSerializer):
 
@@ -51,4 +51,10 @@ class ProposalTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProposalType
+        fields = '__all__'
+
+class EmailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Email
         fields = '__all__'
