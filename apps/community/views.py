@@ -115,7 +115,7 @@ class TaskClaimViewSet(mixins.CreateModelMixin,
         res = super().create(request, *args, **kwargs)
         try:
             if res.status_code == 201:
-                log.debug('there is a claim for task')
+                log.info('there is a claim for task')
                 for item in ClaimEmailReceiver.objects.filter():
                     log.debug(f'name: {item.name}, email: {item.email}')
                     # get the title of task
