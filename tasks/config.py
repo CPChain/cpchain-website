@@ -29,18 +29,22 @@ CELERYBEAT_SCHEDULE = {
     # },
     'sync-congress': {
         'task': 'tasks.app.sync_congress_task',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(minutes=1),
     },
     'sync-proposals': {
         'task': 'tasks.app.sync_proposals_task',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(minutes=1),
     },
     'check-timeout': {
         'task': 'tasks.app.check_timeout_task',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(hours=1),
     },
     'update-chart': {
         'task': 'tasks.app.chart_update_task',
+        'schedule': timedelta(hours=1),
+    },
+    'auto-send-email': {
+        'task': 'tasks.app.auto_send_email',
         'schedule': timedelta(minutes=1),
     }
 }

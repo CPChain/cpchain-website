@@ -2,6 +2,8 @@
 
 Send Email
 
+You need configure the SMTP in GSuite.
+
 """
 
 import django
@@ -28,6 +30,7 @@ mail_host = 'smtp-relay.gmail.com'
 mail_port = 587
 
 def send_email():
+    log.info('send email')
     for item in Email.objects.filter(sent=False):
         try:
             log.info(f'send email, id: {item.id}')
@@ -42,7 +45,6 @@ def send_email():
             smtpObj.ehlo()
             smtpObj.sendmail(sender, to, message.as_string())
             log.debug('send success')
-
             item.sent = True
             item.sent_at = dt.now(tz=pytz.timezone('Asia/Shanghai'))
             item.save()

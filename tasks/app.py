@@ -4,6 +4,7 @@ from tasks.sync_congress import sync_congress
 from tasks.sync_proposals import sync_proposals
 from tasks.check_timeout import check_timeout
 from tasks.chart_update import update_chart
+from tasks.send_email import send_email
 
 from log import get_log
 
@@ -40,8 +41,10 @@ def chart_update_task():
     update_chart()
 
 @app.task
-def send_email():
-    pass
+def auto_send_email():
+    log = get_log('send-email')
+    log.info('send email')
+    send_email()
 
 @app.task
 def rnode_update():
