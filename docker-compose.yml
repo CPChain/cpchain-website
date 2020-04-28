@@ -103,8 +103,6 @@ services:
       - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
     restart: always
     depends_on: 
-      - mysql
-      - mongo
       - redis
     command: 
       - /bin/sh
@@ -120,8 +118,6 @@ services:
       - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
     restart: always
     depends_on: 
-      - mysql
-      - mongo
       - worker
       - redis
     command: 
