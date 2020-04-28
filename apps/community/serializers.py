@@ -1,12 +1,24 @@
 
 from rest_framework import serializers
 
-from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType
+from .models import Task, Proposal, ApprovedAddress, VotedAddress, Congress, ProposalType, TaskClaim, IPAccess, Email
+
+class IPAccessSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = IPAccess
+        fields = '__all__'
 
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+class TaskClaimSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TaskClaim
+        fields = ['task_id', 'name', 'email', 'advantages', 'estimated_date']
 
 class ProposalsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,15 +27,10 @@ class ProposalsSerializer(serializers.ModelSerializer):
 
 class ProposalsCreateSerializer(serializers.ModelSerializer):
 
-    proposals_id = serializers.UUIDField(read_only=True)
+    proposal_id = serializers.UUIDField(read_only=True)
     class Meta:
         model = Proposal
-        fields = ['proposals_id', 'title', 'proposal_type', 'description', 'proposer_addr']
-
-class ProposalsUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Proposal
-        fields = ['title', 'proposal_type', 'description', 'status', 'reason']
+        fields = ['proposal_id', 'title', 'proposal_type', 'description', 'proposer_addr']
 
 class ApprovedAddressSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,4 +51,10 @@ class ProposalTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProposalType
+        fields = '__all__'
+
+class EmailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Email
         fields = '__all__'

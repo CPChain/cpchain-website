@@ -27,6 +27,25 @@ services:
     ports:
       - 27017:27017
 
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  rmq:
+    image: rabbitmq:3.7.15-alpine
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    volumes: 
+      - rmq-data:/var/lib/rabbitmq/mnesia/node@rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+      - ABBITMQ_NODENAME=node@rabbitmq
+
   test:
     image: liaojl/website
     volumes:
@@ -76,43 +95,41 @@ services:
         python tools/mongoIndex.py;
         python tools/mongoIndex_v0.1.py;
 
-  chart-update:
+  worker:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    restart: always
     depends_on: 
       - mysql
       - mongo
+      - redis
     command: 
       - /bin/sh
       - -c
       - |
-        while true
-        do
-        echo "update chart..."`date`
-        python cpchain_test/chart_update.py;
-        sleep 3600;
-        done;
+        celery worker -A tasks.app
 
-  sync-community:
+  beat:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    restart: always
     depends_on: 
       - mysql
       - mongo
+      - worker
+      - redis
     command: 
       - /bin/sh
       - -c
       - |
-        mkdir -p logs;
-        while true
-        do
-        echo "sync..."`date`
-        python sync-congress.py;
-        python sync-proposals.py;
-        sleep 60;
-        done;
+        celery beat -A tasks.app --pidfile /tmp/beat.pid --schedule /tmp/schedule.db
+
 
 volumes:
   mysql-data:
@@ -120,4 +137,9 @@ volumes:
 
   mongo-data:
     external: false
+
+  redis-data:
+    external: false
   
+  rmq-data:
+    external: false

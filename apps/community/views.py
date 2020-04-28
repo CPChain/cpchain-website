@@ -3,10 +3,148 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType
+from decimal import Decimal
+from cpc_fusion import Web3
+
+from django_filters.rest_framework import DjangoFilterBackend
+
+from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim, Email, ClaimEmailReceiver
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
-    VotedAddressAddressSerializer, ProposalsCreateSerializer, ProposalsUpdateSerializer, \
-    CongressSerializer, ProposalTypeSerializer
+    VotedAddressAddressSerializer, ProposalsCreateSerializer, \
+    CongressSerializer, ProposalTypeSerializer, TaskClaimSerializer, EmailSerializer
+from .permissions import IPLimitPermission
+
+from cpchain_test.config import cfg
+
+from log import get_log
+
+log = get_log('app')
+
+# web3
+host = cfg["chain"]["ip"]
+port = cfg["chain"]["port"]
+
+cf = Web3(Web3.HTTPProvider(f'http://{host}:{port}'))
+
+# congress contract
+congressAddress = cfg['community']['congress']
+congressABI = cfg['community']['congressABI'][1:-1].replace('\\', '')
+congressInstance = cf.cpc.contract(abi=congressABI, address=congressAddress)
+
+# proposal contract
+proposalAddress = cfg['community']['proposal']
+proposalABI = cfg['community']['proposalABI'][1:-1].replace('\\', '')
+proposalInstance = cf.cpc.contract(abi=proposalABI, address=proposalAddress)
+
+class ConfigViewSet(mixins.ListModelMixin,
+                    viewsets.GenericViewSet):
+    """
+    合约参数
+
+    + `period` 和 `maxPeriod` 单位为秒
+    + `amountThreshold` 单位为 `cpc`
+    + `approvalThreshold` 表示赞同个数
+    + `voteThreshold` 表示比例
+    + `congressThreshold` 单位为 `cpc`
+    """
+    queryset = Task.objects.all()
+    serializer_class = TasksSerializer
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        return Response({
+            "proposal": {
+                "amountThreshold": Decimal(proposalInstance.functions.amountThreshold().call()) / Decimal(1e18),
+                "approvalThreshold": proposalInstance.functions.approvalThreshold().call(),
+                "voteThreshold": proposalInstance.functions.voteThreshold().call()/100,
+                "maxPeriod": proposalInstance.functions.maxPeriod().call(),
+                "idLength": proposalInstance.functions.idLength().call(),
+            },
+            "congress": {
+                "period": congressInstance.functions.period().call(),
+                "congressThreshold": Decimal(congressInstance.functions.congressThreshold().call()) / Decimal(1e18 + 0.1),
+                "supportedVersion": congressInstance.functions.supportedVersion().call(),
+            }
+        })
+
+
+class ContractViewSet(mixins.ListModelMixin,
+                      viewsets.GenericViewSet):
+    """
+    合约地址及合约 ABI
+    """
+    queryset = Task.objects.all()
+    serializer_class = TasksSerializer
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        proposal_addr = cfg['community']['proposal']
+        congress_addr = cfg['community']['congress']
+
+        proposal_abi = cfg['community']['proposalABI'][1:-1].replace('\\', '')
+        congress_abi = cfg['community']['congressABI'][1:-1].replace('\\', '')
+
+        proposal_version = cfg['community']['proposalVersion']
+        congress_version = cfg['community']['congressVersion']
+
+        return Response({
+            "proposal": {
+                'address': proposal_addr,
+                'abi': proposal_abi,
+                'version': proposal_version,
+            },
+            "congress": {
+                'address': congress_addr,
+                'abi': congress_abi,
+                'version': congress_version,
+            }
+        })
+
+
+class TaskClaimViewSet(mixins.CreateModelMixin,
+                       viewsets.GenericViewSet):
+    """
+    任务认领接口
+    """
+
+    queryset = TaskClaim.objects.all()
+    serializer_class = TaskClaimSerializer
+    permission_classes = [IPLimitPermission]
+
+    def create(self, request, *args, **kwargs):
+        res = super().create(request, *args, **kwargs)
+        try:
+            if res.status_code == 201:
+                log.info('there is a claim for task')
+                for item in ClaimEmailReceiver.objects.filter():
+                    log.debug(f'name: {item.name}, email: {item.email}')
+                    # get the title of task
+                    task_id = request.data['task_id']
+                    task = Task.objects.get(id=task_id)
+                    if not task:
+                        log.error(f"not exists task {task_id}")
+                        continue
+                    # content
+                    content = f'''
+                    <div>
+                        <ul>
+                            <li>Task Title: <label>{task.title}</label></li>
+                            <li>Email: <label>{request.data["email"]}</label></li>
+                            <li>Name: <label>{request.data["name"]}</label></li>
+                            <li>Adantages: <label>{request.data["advantages"]}</label></li>
+                            <li>Estimated Date: <label>{request.data["estimated_date"]}</label></li>
+                        </ul>
+                    </div>
+                    '''
+                    log.debug(content)
+
+                    # create email
+                    serializer = EmailSerializer(data=dict(content=content, to=item.email))
+                    serializer.is_valid(raise_exception=True)
+                    serializer.save()
+        except Exception as e:
+            log.error(e)
+        return res
 
 
 class TasksViewSet(mixins.RetrieveModelMixin,
@@ -37,7 +175,9 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     Proposals
     """
     queryset = Proposal.objects.all()
-    # serializer_class = ProposalsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['status']
+    permission_classes = [IPLimitPermission]
 
     def get_serializer_class(self):
         if self.action == 'create':

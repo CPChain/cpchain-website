@@ -3,23 +3,23 @@ import time
 
 from pymongo import MongoClient
 
-from config import cfg
+from cpchain_test.config import cfg
 import json
 
 DAY_SECENDS = 60 * 60 * 24
 mongo = cfg['mongo']['ip']
 port = int(cfg['mongo']['port'])
-CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
-uname = cfg['mongo']['uname']
-pwd = cfg['mongo']['password']
-db = CLIENT['cpchain']
-db.authenticate(uname, pwd)
-txs_collection = CLIENT['cpchain']['txs']
-address_collection = CLIENT['cpchain']['address']
-chart_collection = CLIENT['cpchain']['chart']
 
 
-def get_chart():
+def update_chart():
+    CLIENT = MongoClient(host=mongo, port=port, maxPoolSize=200)
+    uname = cfg['mongo']['uname']
+    pwd = cfg['mongo']['password']
+    db = CLIENT['cpchain']
+    db.authenticate(uname, pwd)
+    txs_collection = CLIENT['cpchain']['txs']
+    address_collection = CLIENT['cpchain']['address']
+    chart_collection = CLIENT['cpchain']['chart']
     ## chart
     now = int(time.time())
     day_zero = now - now % DAY_SECENDS
@@ -39,4 +39,4 @@ def get_chart():
 
 if __name__ == '__main__':
 
-    get_chart()
+    update_chart()

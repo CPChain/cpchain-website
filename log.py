@@ -8,7 +8,7 @@ def get_log(name):
     M = 1024 * 1024 * 1024
 
     log = logging.getLogger(name)
-    log.setLevel(logging.DEBUG)
+    log.setLevel(logging.INFO)
 
     handler = logging.handlers.RotatingFileHandler(
         f'logs/{name}.log', mode='a', maxBytes=10*M, backupCount=3, encoding='utf-8', delay=0)
