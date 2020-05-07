@@ -2,11 +2,15 @@
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter, BaseFilterBackend
 
 from decimal import Decimal
 from cpc_fusion import Web3
 
 from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import compat
+
+import warnings
 
 from .models import Task, Proposal, Congress, ApprovedAddress, VotedAddress, ProposalType, TaskClaim, Email, ClaimEmailReceiver
 from .serializers import TasksSerializer, ProposalsSerializer, ApprovedAddressSerializer, \
@@ -166,6 +170,41 @@ class ProposalTypeViewSet(mixins.RetrieveModelMixin,
     queryset = ProposalType.objects.all()
     serializer_class = ProposalTypeSerializer
 
+class StatusFilterBackend(BaseFilterBackend):
+    """
+    Filter that only allows users to see their own objects.
+    """
+    def filter_queryset(self, request, queryset, view):
+        status = request.query_params.get('status')
+        if status:
+            labels = status.split(',')
+            queryset = queryset.filter(status__in=labels)
+        return queryset
+
+    def get_schema_fields(self, view):
+        return [
+            compat.coreapi.Field(
+                name='status',
+                required=False,
+                location='query',
+                schema=compat.coreschema.String(
+                    description="e.g.: submitted,deposited"
+                )
+            )
+        ]
+
+    def get_schema_operation_parameters(self, view):
+        return [
+            {
+                'name': 'status',
+                'required': False,
+                'in': 'query',
+                'description': 'status of proposal',
+                'schema': {
+                    'type': 'string',
+                },
+            }
+        ]
 
 class ProposalsViewSet(mixins.RetrieveModelMixin,
                        mixins.ListModelMixin,
@@ -173,10 +212,24 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
                        viewsets.GenericViewSet):
     """
     Proposals
+
+    Filters
+    ---
+    + status，e.g. `status=submitted,deposited`
+
+    Ordering
+    ---
+    + updated_at
+    + status
+
+    *reverse: -updated_at*
+
     """
     queryset = Proposal.objects.all()
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['status']
+    filter_backends = [StatusFilterBackend, OrderingFilter]
+    ordering_fields = ["updated_at", "status"]
+    ordering = "-updated_at"
+    filter_fields = ['status']
     permission_classes = [IPLimitPermission]
 
     def get_serializer_class(self):
