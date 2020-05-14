@@ -46,6 +46,7 @@ indexpatterns = [
     path('proposal/', ProposalView.as_view(), name='proposal'),
     path('proposal/list/<types>', ProposalListView.as_view(), name='proposal_list'),
     path('proposal/detail/<proposal_id>', ProposalDetailView.as_view(), name='proposal_detail'),
+    path('proposal/congress', CongressListView.as_view(), name='proposal_congress'),
 
     # functions
     # 配置富文本media地址

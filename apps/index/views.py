@@ -239,6 +239,10 @@ class  ProposalListView(View):
 class  ProposalDetailView(View):
     def get(self, req, proposal_id): 
         return render(req, 'proposals_detail.html') 
+class  CongressListView(View):
+    def get(self, req): 
+        return render(req, 'congress_list.html') 
+        
 
 class FaucetView(View):
     def get(self, req):

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_head %}
+<link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+<link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="/static/js/util.js"></script>
+{% endblock %}
+{% block title %}
+<title>RNode &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+
+<body class="page-template-news">
+    <div id="content" class="container">
+        <div class="page-header">
+            <div class="page-header-main" id="explorer-header">
+                <div class="row text" style="margin-bottom: 97px">
+
+                    <a class="col-2" href="#">
+                        <div class="text-left">
+                            <h1 class="number-font"> [[congress.length]] </h1>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="index-font" style="margin-top: 12px">RNodes</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="info-table " id="blocks-list">
+            <div class="info-table-list">
+                <div class="info-table-list-content">
+                    <div class="table">
+                        <div class="row" style="padding-left: 25px;margin-top: 30px">
+                            <div class="col-2 text-truncate list-header">No.</div>
+                            <div class="col-6 text-truncate list-header">RNodes</div>
+                            <div class="col-4 text-truncate list-header" style="padding-left: 10px">Create At</div>
+                        </div>
+                        <div class="row row-content" v-for="(node, i) in congress" key="i" style="padding-left: 25px">
+                            <div class="col-2 text-truncate">[[i+1]]</div>
+                            <div class="col-6 text-truncate"> [[node.address]]  </div>
+                            <div class="col-4 text-truncate card-grey">[[node.created_at]]</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const serverUrl = 'https://test.yourserverless.site/'
+        const fetchJson = (url) => {
+            return fetch(url,
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json',
+                    }
+                }).then(res => res.json())
+        }
+
+
+        var listApp = new Vue({
+            el: '#content',
+            delimiters: [`[[`, `]]`],
+            data: {
+                congress: {},
+            },
+            methods: {
+                initData: () => {
+                    fetchJson(`${serverUrl}community-manage/congress/`).then(res => {
+                        listApp.$data.congress = res.results
+                    })
+                }
+            },
+            created() {
+                this.initData()
+            }
+        })
+        console.log(type)
+    </script>
+
+</body>
+
+{% endblock %}
