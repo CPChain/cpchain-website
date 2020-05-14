@@ -230,6 +230,15 @@ class PasswordView(View):
                     return render(req, 'password.html', {'msg': "Incorrect password."})
                 return render(req, 'password.html', {'msg': "密码错误"})
 
+class  ProposalView(View):
+    def get(self, req): 
+        return render(req, 'proposal.html') 
+class  ProposalListView(View):
+    def get(self, req, types): 
+        return render(req, 'proposals_list.html') 
+class  ProposalDetailView(View):
+    def get(self, req, proposal_id): 
+        return render(req, 'proposals_detail.html') 
 
 class FaucetView(View):
     def get(self, req):

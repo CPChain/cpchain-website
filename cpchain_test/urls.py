@@ -43,6 +43,9 @@ indexpatterns = [
     path('password/',   PasswordView.as_view(), name='password'),
     # path('faucet/', FaucetView.as_view(), name='faucet'),
     path('receipt/', ReceiptView.as_view(), name='receipt'),
+    path('proposal/', ProposalView.as_view(), name='proposal'),
+    path('proposal/list/<types>', ProposalListView.as_view(), name='proposal_list'),
+    path('proposal/detail/<proposal_id>', ProposalDetailView.as_view(), name='proposal_detail'),
 
     # functions
     # 配置富文本media地址
