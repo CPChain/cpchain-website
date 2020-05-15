@@ -115,10 +115,125 @@
         line-height: 2.125rem;
         cursor: pointer;
     }
+
+
+    .main {
+        z-index: 10000;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* display: none; */
+    }
+
+    .mainclose {
+        display: none;
+    }
+
+
+    .board {
+        display: flex;
+        z-index: 100000;
+        width: 790px;
+        height: 835px;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        padding: 45px;
+
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .row_input {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .row_input span {
+        width: 150px;
+        padding: 0 20px;
+    }
+
+    .row_input input {
+        flex: 1;
+    }
+
+    .row_input select {
+        flex: 1;
+        background-color: white;
+    }
+
+
+    .row_input textarea {
+        flex: 1;
+        height: 250px;
+    }
+
+    .row_btn {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+
+    .row_btn a {
+        display: block;
+        width: 12rem;
+        height: 3rem;
+        border: 1px solid #abaeb6;
+        border-radius: 3px;
+        font-size: .875rem;
+        color: #2e3550;
+        text-align: center;
+        line-height: 3rem;
+        cursor: pointer;
+    }
+
+    
+    
+    
 </style>
 
-<body
-    class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
+<body  class="page-template page-template-news page-template-news-php page page-id-15 language-en has-header-image page-two-column colors-light">
+    <div id="main" class="main mainclose ">
+        <div id="board" class="board">
+            <h3>Propose</h3>
+            <div class="row_input">
+                <span>Title:</span>
+                <input id="Title" type="text">
+            </div>
+            <div class="row_input">
+                <span>Type:</span>
+
+                <select id="Type">
+                </select>
+            </div>
+            <div class="row_input">
+                <span>Description:</span>
+                <textarea id="Description" type="text"></textarea>
+            </div>
+            <div class="row_input">
+                <span>Proposer:</span>
+                <input id="Proposer" type="text">
+            </div>
+
+            <div class="row_btn">
+                <a id="cancel" href="#">CANCEL</a>
+                <a id="submit" href="#" style="background-color:rgb(93, 178, 235) ;">SUBMIT</a>
+            </div>
+
+        </div>
+    </div>
 
     <section class="section-seven py-sm-5 py-0 ">
         <div class="container py-sm-5 py-0">
@@ -151,7 +266,7 @@
                                 </div>
                             </div> -->
                             <div class="right-side d-flex flex-column align-items-start justify-content-center">
-                                <a class="btn_link" href="create" >
+                                <a class="btn_link" href="#"  id="btnCreate">
                                     {% blocktrans %}Propose{% endblocktrans %}</a>
                                
                             </div>
@@ -255,6 +370,61 @@
 
     <script>
 
+        var btnCreate = document.getElementById('btnCreate')
+        var cancel = document.getElementById('cancel')
+        var submit = document.getElementById('submit')
+        btnCreate.addEventListener('click', function () {
+            main.className = 'main'
+        })
+        cancel.addEventListener('click', function () {
+            main.className = 'main mainclose'
+        })
+        submit.addEventListener('click', function () {
+            let obj = {
+                title: document.getElementById("Title").value,
+                proposal_type: document.getElementById("Type").value,
+                description: document.getElementById("Description").value,
+                proposer_addr:  document.getElementById("Proposer").value
+            } 
+ 
+            if(!obj.title){
+                alert('Title is required!')
+                return
+            }
+
+            if(!obj.description){
+                alert('Description is required!')
+                return
+            }
+
+            if(!obj.proposer_addr){
+                alert('Proposer is required!')
+                return
+            }
+            
+                fetch(`${serverUrl}community-manage/proposals/`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json', 
+                    },
+                    body: JSON.stringify(obj) 
+                }).then(res=>res.json()).then(result=>{
+                    console.log(result)
+                    if(result.proposal_id){
+                        main.className = 'main mainclose'
+                        alert('Create Proposal Succeeded! Please Remember Id:' + result.proposal_id )
+                    }else{ 
+                        alert('Create Proposal Failed!')
+                    }
+                })
+            
+        })
+
+    
+
+
         const serverUrl = 'https://test.yourserverless.site/'
         const fetchJson = (url) => {
             return fetch(url,
@@ -294,7 +464,17 @@
                 initData: () => {
                     fetchJson(`${serverUrl}community-manage/proposal-type/`).then(types => {
           
-                        listApp.$data.types = types.results  
+                        listApp.$data.types = types.results
+                        let type = document.getElementById("Type")
+                        for (let i = 0; i < types.results.length; i++) {     //循环添加多个值 
+                            let name = ''
+                            if (window.location.pathname.startsWith('/zh-hans')) {
+                                name = types.results[i].zh
+                            } else {
+                                name = types.results[i].en
+                            }
+                            type.appendChild(new Option(name, types.results[i].id))
+                        }
                     })
 
                     fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted`).then(res => {
@@ -329,10 +509,7 @@
             }
         })
 
-
-
-
-
+ 
 
 
     </script>
