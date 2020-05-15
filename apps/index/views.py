@@ -230,6 +230,9 @@ class PasswordView(View):
                     return render(req, 'password.html', {'msg': "Incorrect password."})
                 return render(req, 'password.html', {'msg': "密码错误"})
 
+class  TaskView(View):
+    def get(self, req): 
+        return render(req, 'task.html') 
 class  ProposalView(View):
     def get(self, req): 
         return render(req, 'proposal.html') 
