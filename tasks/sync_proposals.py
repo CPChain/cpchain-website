@@ -4,6 +4,9 @@ sync all proposals from proposal contract
 
 """
 
+import sys
+sys.path.append("..")
+
 from cpc_fusion import Web3
 from datetime import datetime as dt
 from cpchain_test.config import cfg
@@ -51,12 +54,17 @@ def sync_proposals():
     for i in range(cnt):
         try:
             proposal = instance.call().proposalsIDList(i)
-            log.debug(f'get proposal - {proposal}')
+            log.info(f'get proposal - {proposal}')
+            origin = None
             # check if the proposal exists in table
             if Proposal.objects.filter(proposal_id=proposal).count() == 0:
+                # if not exists
                 log.info(f"add new proposal - {proposal}")
                 obj = Proposal(proposal_id=proposal)
                 obj.save()
+            else:
+                origin = Proposal.objects.filter(proposal_id=proposal)[0]
+
             obj = Proposal.objects.filter(proposal_id=proposal)[0]
             # sync status
             status = instance.functions.getStatus(proposal).call()
@@ -111,7 +119,20 @@ def sync_proposals():
                     item = VotedAddress(proposal_id=proposal, address=addr)
                     item.save()
 
-            obj.save()
+            if origin != None:
+                # validate changes, update if have changes
+                validators = [
+                    lambda origin, obj: origin.status != obj.status,
+                    lambda origin, obj: origin.locked_amount != obj.locked_amount,
+                    lambda origin, obj: origin.likes != obj.likes,
+                    lambda origin, obj: origin.votes != obj.votes,
+                ]
+                for v in validators:
+                    if v(origin, obj):
+                        obj.save()
+                        break
+            else:
+                obj.save()
         except Exception as e:
             log.error(e)
         
