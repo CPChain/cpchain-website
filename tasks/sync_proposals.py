@@ -64,6 +64,10 @@ def sync_proposals():
                 obj.save()
             else:
                 origin = Proposal.objects.filter(proposal_id=proposal)[0]
+                # status check
+                if origin.status in ['decision congress', 'passed', 'declined', 'timeout']:
+                    # no need sync anymore
+                    continue
 
             obj = Proposal.objects.filter(proposal_id=proposal)[0]
             # sync status
