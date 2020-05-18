@@ -163,17 +163,22 @@
     }
 
     .row_input span {
-        width: 150px;
+        width: 200px;
         padding: 0 20px;
     }
 
+    .row_input p { 
+        padding: 0 20px;
+    }
     .row_input input {
         flex: 1;
+        padding:0 10px
     }
 
     .row_input select {
         flex: 1;
         background-color: white;
+                padding:0 10px
     }
 
 
@@ -243,29 +248,39 @@
     <div class="container"  id="task-list" style="margin-bottom: 120px">
         <div id="main" v-if="show" class="main ">
             <div id="board" class="board">
-                <h3>Propose</h3>
+                <h3>[[task.title]]</h3>
+                 
                 <div class="row_input">
-                    <span>Title:</span>
-                    <input id="Title" type="text">
+                    <p>Total Bounty:[[task.amount]] CPC</p> 
                 </div>
                 <div class="row_input">
-                    <span>Type:</span>
-
-                    <select id="Type">
-                    </select>
+                     <span>[[task.description]]</span> 
                 </div>
                 <div class="row_input">
-                    <span>Description:</span>
-                    <textarea id="Description" type="text"></textarea>
+                    <span>Requirement:</span>
+                    <span>[[task.requirement]]</span> 
                 </div>
                 <div class="row_input">
-                    <span>Proposer:</span>
-                    <input id="Proposer" type="text">
+                    <span>Name:</span>
+                    <input id="name" type="text">
+                </div>
+                    <div class="row_input">
+                    <span>Email:</span>
+                    <input id="email" type="text">
+                </div> 
+                <div class="row_input">
+                    <span>Advantages:</span>
+                    <input id="advantages" type="text">
+                </div>
+               
+                <div class="row_input">
+                    <span>Estimated Date:</span>
+                    <input id="estimated_date" type="date">
                 </div>
 
                 <div class="row_btn">
-                    <a  v-on:click="cancel()" id="cancel" href="#">CANCEL</a>
-                    <a id="submit" href="#" style="background-color:rgb(93, 178, 235) ;">SUBMIT</a>
+                    <a  v-on:click="cancel()"   href="#">CANCEL</a>
+                    <a   v-on:click="submit(task)" href="#" style="background-color:rgb(93, 178, 235) ;">SUBMIT</a>
                 </div>
 
             </div>
@@ -322,7 +337,7 @@
 
     <script>
 
-        var cancel = document.getElementById('cancel')
+        {% comment %} var cancel = document.getElementById('cancel')
         var submit = document.getElementById('submit')
 
         cancel.addEventListener('click', function () {
@@ -369,7 +384,7 @@
                 }
             })
 
-        })
+        }) {% endcomment %}
 
 
 
@@ -400,6 +415,59 @@
                 show: false
             },
             methods: {
+                submit:(task) =>{
+                    let obj = {
+                        task_id: task.id,
+                        name: document.getElementById("name").value,
+                        email: document.getElementById("email").value,
+                        advantages: document.getElementById("advantages").value,
+                        estimated_date: document.getElementById("estimated_date").value
+                    }
+
+                    if (!obj.name) {
+                        alert('Name is required!')
+                        return
+                    }
+
+                    if (!obj.email) {
+                        alert('Email is required!')
+                        return
+                    }
+
+                    if (!obj.advantages) {
+                        alert('Advantages is required!')
+                        return
+                    }
+
+                    if (!obj.estimated_date) {
+                        alert('Estimated_date is required!')
+                        return
+                    }
+
+                    fetch(`${serverUrl}community-manage/task/claim/`, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'accept': 'application/json',
+                        },
+                        body: JSON.stringify(obj)
+                    }).then(res => res.json()).then(result => {
+                        console.log(result)
+                        if (result.task_id) {
+                           listApp.$data.task = null
+                            listApp.$data.show = !listApp.$data.show  
+                            if(listApp.$data.show){
+                                bo.style.overflow = "hidden";
+                            } else {
+                                bo.style.overflow = "";
+                            }
+                            alert('Submit Succeeded!')
+                        } else {
+                            alert('Submit Failed!')
+                        }
+                    })
+                },
                 claim:(task) =>{
                     listApp.$data.task = task
                     listApp.$data.show = !listApp.$data.show  
