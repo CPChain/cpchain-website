@@ -424,8 +424,8 @@
 
     
 
-
-        const serverUrl = 'https://test.yourserverless.site/'
+        console.log(window.location.hostname)
+        const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' :'/'
         const fetchJson = (url) => {
             return fetch(url,
                 {
