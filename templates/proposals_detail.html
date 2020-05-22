@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+{% block title %}
+<title>{{ category }} &#8211; CPChain</title>
+{% endblock %}
+{% block content %}
+<style type="text/css">
+    .proposal-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    .card {
+        width: 270px;
+        height: 370px;
+        margin: 0 auto;
+        position: relative;
+        padding: 25px 0;
+        margin-bottom: 50px;
+
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        font-size: 1.25rem;
+        color: #2e3550;
+        letter-spacing: -.34px;
+        text-align: center;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        padding: 0 10px;
+    }
+
+
+    .type {
+        font-size: 1rem;
+        color: #a4aab4;
+        letter-spacing: -.48px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .desc {
+        font-size: 1rem;
+        color: #737d8e;
+        letter-spacing: -.27px;
+        text-align: center;
+        height: 4.6rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        margin-bottom: 2.65rem;
+        line-height: 1.2rem;
+        overflow-y: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+    }
+
+    .more_btn {
+        display: block;
+        width: 8.5rem;
+        height: 2.125rem;
+        border: 1px solid #abaeb6;
+        border-radius: 3px;
+        font-size: .875rem;
+        color: #2e3550;
+        text-align: center;
+        line-height: 2.125rem;
+        cursor: pointer;
+    }
+</style>
+
+
+<body
+    class="archive category category-community-updates category-2 language-en hfeed has-header-image has-sidebar page-two-column colors-light">
+    <div id="page" class="site">
+        <div class="site-content-contain">
+            <div id="content" class="site-content">
+                <section class="section-category py-5 d-flex align-items-center justify-content-center">
+                    <div class="container h-100">
+                        <div class="row"> 
+                            <div class="news-view-holder" style="width: 100%;"> 
+                                <div class="upper col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-auto">
+                      
+                                    <h4 class="my-3">
+                                        <a href="javascript:void(0)">
+                                             [[proposal.title ]] 
+                                        </a>
+                                    </h4>
+                                    <h6 class="mb-5 text-muted">[[typeName(proposal.proposal_type)]] </h6>
+                                </div> 
+                                <div  class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column "> 
+                                    <div class="media-share">
+                                        <span>Description :</span>
+                                        <p>[[proposal.description ]]</p>
+                                    </div>
+                                </div>
+                                <div  class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column "> 
+                                    <div class="media-share">
+                                       <span>Proposal ID :</span>  <p>[[proposal.proposal_id ]]</p>
+                                    </div>
+                                    <div class="media-share">
+                                        <span>Status :</span>  <p>[[proposal.status ]]</p>
+                                     </div> 
+                                    <div class="media-share">
+                                        <span>Proposer :</span>  <p>[[proposal.proposer_addr ]]</p>
+                                     </div>
+                                     <div v-if="proposal.depositor_addr" class="media-share">
+                                        <span>Depositor :</span>  <p>[[proposal.depositor_addr ]]</p>
+                                     </div>
+                                    <div v-if="proposal.likes" class="media-share">
+                                        <span>Like :</span>  <p>[[proposal.likes ]]</p>
+                                     </div>
+                                     <div v-if="proposal.votes" class="media-share">
+                                        <span>Vote :</span>  <p>[[proposal.votes ]]</p>
+                                     </div>
+                                     <div  v-if="proposal.created_at" class="media-share">
+                                        <span>Created at :</span>  <p>[[proposal.created_at ]]</p>
+                                     </div>
+                                     <div v-if="proposal.reason" class="media-share">
+                                        <span>Reason :</span>  <p>[[proposal.reason ]]</p>
+                                     </div>
+                                </div>
+
+ 
+                                <div class="line-holder col-sm-10 col-12 mx-auto">
+                                    <hr>
+                                </div> 
+                            </div>  
+
+                        </div>
+
+                    </div>
+                </section>
+
+
+            </div><!-- #content -->
+
+
+        </div><!-- .site-content-contain -->
+    </div><!-- #page -->
+
+    <script type='text/javascript' src="{% static '/js/skip-link-focus-fix.js' %}"></script>
+    <script type='text/javascript' src="{% static '/js/wp-embed.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/Swiper/4.4.6/js/swiper.min.js"></script>
+    <script src="{% static '/js/vanilla-tilt.min.js' %}"></script>
+
+    <script>
+        let proposal_id = ''
+        let paths = window.location.pathname.split('/')
+        if (paths.length > 0) {
+            proposal_id = paths.pop()
+        }
+
+
+        const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' :'/'
+        const fetchJson = (url) => {
+            return fetch(url,
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json',
+                    }
+                }).then(res => res.json())
+        }
+
+
+        var listApp = new Vue({
+            el: '#content',
+            delimiters: [`[[`, `]]`],
+            data: {
+                proposal: {},
+
+                types: []
+            },
+            methods: {
+                typeName: (id) => {
+                    let obj = listApp.$data.types.find(p => p.id == id)
+                    if (!obj) return ''
+                    if (window.location.pathname.startsWith('/zh-hans')) {
+                        return obj.zh
+                    } else {
+                        return obj.en
+                    }
+
+                },
+                initData: () => {
+                    fetchJson(`${serverUrl}community-manage/proposal-type/`).then(types => {
+
+                        listApp.$data.types = types.results
+                    })
+                    fetchJson(`${serverUrl}community-manage/proposals/${proposal_id}/` ).then(res => {
+
+                        listApp.$data.proposal = res 
+                    })
+                }
+            },
+            created() {
+                this.initData()
+            }
+        })
+        console.log(type)
+
+    </script>
+
+</body>
+{% endblock %}

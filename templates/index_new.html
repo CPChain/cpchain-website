@@ -529,12 +529,12 @@
                                 {% trans 'Team' %}
                             </a>
                         </li> {% endcomment %}
-
+                     
                         <li>
                             <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
                                 {% trans 'Community' %}
                             </a>
-                        </li>
+                        </li>  
 
 {#                        <li class="dropdown bg-transparent">#}
 {#                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
@@ -590,12 +590,41 @@
 {#                                </ul>#}
 {#                            </div>#}
 {#                        </li>#}
-                        <li>
+                        {% comment %} <li>
                             <a href="#partners" class="font-weight-bold" onclick="openMenu(0)">
                                 {% trans 'Ecosystem' %}
                             </a>
-                        </li> 
-                         <li>
+                        </li>  {% endcomment %}
+                   
+                      <li class="dropdown bg-transparent">
+                            <div style="margin-top:3px" class="dropdown-holder d-flex flex-row align-items-center justify-content-center ">
+                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
+                                  {% trans 'Ecosystem' %}</a>
+                                <div class="image-holder d-flex align-items-center justify-content-center">
+                                    <svg height="24px" class="d-none d-md-block"
+                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24">
+                                        <g opacity="0.4">
+                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                            <path d="M0,0H24V24H0Z" fill="none"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <ul class="dropdown-menu list-unstyled rounded">
+                                   <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                        {% trans 'Ecosystem' %}
+                                    </a>
+                                     <a href="{% url 'proposal' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                        {% trans 'Proposals' %}
+                                    </a>
+                                      <a href="{% url 'task' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                        {% trans 'Tasks' %}
+                                    </a>
+                                </ul>
+                            </div>
+                         </li>
+                       <li>
                             <a href="#downloadApp" class="font-weight-bold" onclick="openMenu(0)">
                                 {% trans 'Download' %}
                             </a>
@@ -604,10 +633,10 @@
                             <a href="#contact" class="font-weight-bold" onclick="openMenu(0)">
                                 {% trans 'Contact' %}
                             </a>
-                        </li>
+                        </li> 
                         <li class="line"></li>
                         <li class="dropdown bg-transparent">
-                            <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <div style="margin-top:3px" class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
                                 <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
                                     {% trans 'EN' %} </a>
                                 <div class="image-holder d-flex align-items-center justify-content-center">

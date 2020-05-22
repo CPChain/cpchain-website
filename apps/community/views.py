@@ -30,16 +30,6 @@ port = cfg["chain"]["port"]
 
 cf = Web3(Web3.HTTPProvider(f'http://{host}:{port}'))
 
-# congress contract
-congressAddress = cfg['community']['congress']
-congressABI = cfg['community']['congressABI'][1:-1].replace('\\', '')
-congressInstance = cf.cpc.contract(abi=congressABI, address=congressAddress)
-
-# proposal contract
-proposalAddress = cfg['community']['proposal']
-proposalABI = cfg['community']['proposalABI'][1:-1].replace('\\', '')
-proposalInstance = cf.cpc.contract(abi=proposalABI, address=proposalAddress)
-
 class ConfigViewSet(mixins.ListModelMixin,
                     viewsets.GenericViewSet):
     """
@@ -56,6 +46,15 @@ class ConfigViewSet(mixins.ListModelMixin,
     pagination_class = None
 
     def list(self, request, *args, **kwargs):
+        # congress contract
+        congressAddress = cfg['community']['congress']
+        congressABI = cfg['community']['congressABI'][1:-1].replace('\\', '')
+        congressInstance = cf.cpc.contract(abi=congressABI, address=congressAddress)
+
+        # proposal contract
+        proposalAddress = cfg['community']['proposal']
+        proposalABI = cfg['community']['proposalABI'][1:-1].replace('\\', '')
+        proposalInstance = cf.cpc.contract(abi=proposalABI, address=proposalAddress)
         return Response({
             "proposal": {
                 "amountThreshold": Decimal(proposalInstance.functions.amountThreshold().call()) / Decimal(1e18),
