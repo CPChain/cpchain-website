@@ -1,0 +1,141 @@
+
+version: "3.7"
+
+services:
+
+  mysql:
+      image: mysql:5.7
+      volumes:
+        - mysql-data:/var/lib/mysql
+      ports:
+        - 3306:3306
+      environment:
+        - MYSQL_DATABASE=cpchain_django
+        - MYSQL_ROOT_PASSWORD=cpchain
+        - LANG=C.UTF-8
+      command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci --skip-character-set-client-handshake
+
+  mongo:
+    image: mongo:4-bionic
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=admin
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  rmq:
+    image: rabbitmq:3.7.15-alpine
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    volumes: 
+      - rmq-data:/var/lib/rabbitmq/mnesia/node@rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+      - ABBITMQ_NODENAME=node@rabbitmq
+
+  test:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 30;
+        python manage.py makemigrations index wallet community;
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    depends_on: 
+      - mysql
+      - mongo
+    ports:
+      - 8001:8000
+
+  monitor:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 30;
+        python monitor.py
+        mkdir -p log
+        tail -f log/chain.log
+
+  create-index:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on: 
+      - mysql
+      - mongo
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        sleep 60;
+        python tools/mongoIndex.py;
+        python tools/mongoIndex_v0.1.py;
+
+  worker:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    restart: always
+    depends_on: 
+      - redis
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        celery worker -A tasks.app
+
+  beat:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
+      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+    restart: always
+    depends_on: 
+      - worker
+      - redis
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        celery beat -A tasks.app --pidfile /tmp/beat.pid --schedule /tmp/schedule.db
+
+
+volumes:
+  mysql-data:
+    external: false
+
+  mongo-data:
+    external: false
+
+  redis-data:
+    external: false
+  
+  rmq-data:
+    external: false

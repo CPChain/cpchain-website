@@ -1,7 +1,5 @@
 ![](https://github.com/CPChain/cpchain-website/blob/master/static/img/logo_new.svg)
 
-
-
 # CPChain Website
 
 > Including CPCHAIN.IO and EXPLORER of CPCHAIN.
@@ -13,11 +11,10 @@
 
 
 ## What is CPChain?
+
 CPChain is a new distributed infrastructure for next generation IoT. CPChain intends to build a fundamental data platform for IoT systems in combination with distributed storage, encryption computation and blockchain technologies, providing the whole process solution from data acquisition, storage, sharing to application.
 
 CPChain is a promising solution to a series of challenges of the current "chimney architecture" of IoT systems, reducing connectivity cost of devices, protecting data privacy and maximizing the value of IoT data.
-
-
 
 
 ## Installation
@@ -28,19 +25,55 @@ Clone this repo to your local machine using `git clone https://github.com/CPChai
 
 ### Setup
 
+start mysql and mongo with Docker
 
-> update and install the requirements first
-```python3
-pip3 install -r requirements.txt
+```bash
+
+docker-compose up -d
+
+# create super user in test-env
+sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
+
+# username: admin
+# password: password
+
+# cleanup ip access table
+python manage.py cleanup
+
 ```
-> change your settings in config.default.ini
+
+
+Update and install the requirements first
+
+```python3
+
+pip3 install -r requirements.txt
+
+```
+
+Change your settings in config.default.ini
+
 ```ini
+
 [chain]
 ip=127.0.0.1
 port=8501
 
 [db]
 ip=127.0.0.1 #mongodb
+
+```
+
+### Start Celery
+
+```bash
+
+# start worker
+celery worker -A tasks.app
+
+# beat start
+celery beat -A tasks.app
+
 ```
 
 ---
@@ -60,20 +93,12 @@ There are two modes to start this website , through http or socket(default):
 Now You can access http://127.0.0.1:8000/
 ```
 
-
-
-
-
-
 ## Documentation 
 
 The website uses a third-party package cpc-fusion. For more detailed information, please see here:
 [cpc-fusion](https://docs.cpchain.io/api/cpc_fusion.html)
 
 ---
-
-
-
 
 ## License
 

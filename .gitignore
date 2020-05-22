@@ -1,9 +1,16 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+migrations
+
+local.py
+
 *.py[cod]
 *$py.class
 .idea/
+
 celerybeat.pid
+celerybeat-schedule.db
+
 # C extensions
 *.so
 # Custom

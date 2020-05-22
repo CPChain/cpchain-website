@@ -4,6 +4,8 @@ import xadmin
 from wallet.models import *
 from xadmin import views
 
+from community import models as communityModels
+
 from .models import *
 
 
@@ -79,6 +81,49 @@ class IndexVideoAdmin:
     list_display = ['name', 'name_en', 'ispublish', 'weight', 'time','placeHolderTime']
     ordering = ['-weight']
 
+class TasksAdmin:
+    model = communityModels.Task
+    list_display = ['title', 'status', 'amount', 'updated_at']
+    search_fields = ['title']
+    ordering = ['-updated_at']
+
+class ProposalTypeAdmin:
+    model = communityModels.ProposalType
+    list_display = ['zh', 'en']
+
+class ProposalAdmin:
+    model = communityModels.Proposal
+    list_display = ['proposal_id', 'title', 'status', 'likes', 'votes']
+    search_fields = ['proposal_id', 'title']
+    list_filter = ['status']
+    ordering = ['-updated_at']
+
+class ClaimEmailReceiverAdmin:
+    model = communityModels.ClaimEmailReceiver
+    list_display = ['id', 'name', 'email']
+    ordering = ['-updated_at']
+
+class TaskClaimAdmin:
+    model = communityModels.TaskClaim
+    list_display = ['task_id', 'name', 'email', 'estimated_date']
+    ordering = ['-updated_at']
+
+    _actions = None
+
+    def get_actions(self, request):
+        #Disable delete
+        actions = super().get_actions(request)
+        print(actions)
+        self._actions = actions
+        del actions['delete_selected']
+        del actions['editing']
+        del actions['add']
+        del actions['add']
+        return actions
+
+    def has_delete_permission(self, obj=None):
+        #Disable delete
+        return False
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
@@ -95,3 +140,9 @@ xadmin.site.register(WalletNew, WalletNewsAdmin)
 xadmin.site.register(SwipeBanner, SwipeAdmin)
 xadmin.site.register(FAQ, FAQAdmin)
 xadmin.site.register(Term, TermAdmin)
+
+xadmin.site.register(communityModels.Task, TasksAdmin)
+xadmin.site.register(communityModels.ProposalType, ProposalTypeAdmin)
+xadmin.site.register(communityModels.Proposal, ProposalAdmin)
+xadmin.site.register(communityModels.ClaimEmailReceiver, ClaimEmailReceiverAdmin)
+# xadmin.site.register(communityModels.TaskClaim, TaskClaimAdmin)
