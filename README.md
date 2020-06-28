@@ -35,13 +35,12 @@ docker-compose up -d
 sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 
 # username: admin
-# password: password
+# password: 93b2fe1ead43
 
 # cleanup ip access table
 python manage.py cleanup
 
 ```
-
 
 Update and install the requirements first
 
@@ -103,4 +102,3 @@ The website uses a third-party package cpc-fusion. For more detailed information
 ## License
 
 - Copyright 2019 © [cpchain.io](https://cpchain.io).
-

@@ -4,9 +4,6 @@ sync all proposals from proposal contract
 
 """
 
-import sys
-sys.path.append("..")
-
 from cpc_fusion import Web3
 from datetime import datetime as dt
 from cpchain_test.config import cfg
