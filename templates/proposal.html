@@ -365,6 +365,12 @@
 
     <script>
 
+        let client_id  = localStorage.getItem('client_id')
+        if(!client_id){
+            client_id = (Math.random() * 10 ** 18 ).toString(16)
+            localStorage.setItem('client_id',client_id)
+        }
+
         var btnCreate = document.getElementById('btnCreate')
         var cancel = document.getElementById('cancel')
         var submit = document.getElementById('submit')
@@ -379,7 +385,8 @@
                 title: document.getElementById("Title").value,
                 proposal_type: document.getElementById("Type").value,
                 description: document.getElementById("Description").value,
-                proposer_addr:  document.getElementById("Proposer").value
+                proposer_addr:  document.getElementById("Proposer").value,
+                client_id:localStorage.getItem('client_id')
             } 
  
             if(!obj.title){
@@ -417,9 +424,7 @@
             
         })
 
-    
-
-        console.log(window.location.hostname)
+     
         const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' :'/'
         const fetchJson = (url) => {
             return fetch(url,
@@ -472,14 +477,10 @@
                         }
                     })
 
-                    fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted`).then(res => {
+                    fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted?client_id=${localStorage.getItem('client_id')}`).then(res => {
                         
                         listApp.$data.Submitted = res.results 
-                    })
-                    fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted`).then(res => {
-                        
-                        listApp.$data.Submitted = res.results
-                    })
+                    }) 
                     fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=deposited`).then(res => {
                         
                         listApp.$data.Deposited = res.results
