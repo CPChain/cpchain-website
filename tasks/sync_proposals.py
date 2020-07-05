@@ -55,10 +55,12 @@ def sync_proposals():
             origin = None
             # check if the proposal exists in table
             if Proposal.objects.filter(proposal_id=proposal).count() == 0:
-                # if not exists
-                log.info(f"add new proposal - {proposal}")
-                obj = Proposal(proposal_id=proposal)
-                obj.save()
+                # if not exists, skip it
+                # 不同步直接提交给链上的提案，直接提交的无法确认提案内容
+                # log.info(f"add new proposal - {proposal}")
+                # obj = Proposal(proposal_id=proposal)
+                # obj.save()
+                continue
             else:
                 origin = Proposal.objects.filter(proposal_id=proposal)[0]
                 # status check
