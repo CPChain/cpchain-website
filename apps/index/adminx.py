@@ -118,7 +118,6 @@ class TaskClaimAdmin:
         del actions['delete_selected']
         del actions['editing']
         del actions['add']
-        del actions['add']
         return actions
 
     def has_delete_permission(self, obj=None):
