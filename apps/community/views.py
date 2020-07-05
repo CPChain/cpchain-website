@@ -174,12 +174,18 @@ class StatusFilterBackend(BaseFilterBackend):
     """
     Filter that only allows users to see their own objects.
     """
-    def filter_queryset(self, request, queryset, view):
+    def filter_queryset(self, request, qs, view):
         status = request.query_params.get('status')
+        client_id = request.query_params.get('client_id')
         if status:
             labels = status.split(',')
-            queryset = queryset.filter(status__in=labels)
-        return queryset
+            filters = Q(status__in=labels)
+            if 'submitted' in labels and client_id:
+                filters |= Q(status='unchecked') & Q(client_id=client_id)
+            qs = qs.filter(filters)
+        else:
+            qs = qs.filter(~Q(status="unchecked"))
+        return qs
 
     def get_schema_fields(self, view):
         return [
@@ -249,11 +255,6 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     ordering = "-updated_at"
     filter_fields = ['status', 'client_id']
     permission_classes = [IPLimitPermission]
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        qs = qs.filter(~Q(status="unchecked"))
-        return qs
 
     def get_serializer_class(self):
         if self.action == 'create':
