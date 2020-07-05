@@ -35,7 +35,7 @@ docker-compose up -d
 sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 
 # username: admin
-# password: 93b2fe1ead43
+# password: 123456
 
 # cleanup ip access table
 python manage.py cleanup

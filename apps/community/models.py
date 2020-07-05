@@ -4,6 +4,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 import uuid
 
 PROPOSAL_STATUS = (
+    ('unchecked', 'unchecked'),
     ('submitted', 'submitted'),
     ('deposited', 'deposited'),
     ('community congress', 'community congress'),
@@ -96,15 +97,15 @@ class Proposal(models.Model):
         help_text='金额，单位为CPC', null=True, editable=False)
     locked_time = models.DateTimeField(
         help_text='提案时间', null=True, editable=False)
-    period = models.IntegerField(help_text='等待时间，单位为秒', null=True)
+    period = models.IntegerField(help_text='等待时间，单位为秒', null=True, editable=False)
     likes = models.IntegerField(help_text='赞同数', null=True, editable=False)
     votes = models.IntegerField(help_text='投票数', null=True, editable=False)
     proposer_addr = models.CharField(
-        default='', max_length=100, help_text='发起人地址')
+        default='', max_length=100, help_text='发起人地址', editable=False)
     depositor_addr = models.CharField(
         default='', max_length=100, help_text='提案存钱人地址', editable=False)
     status = models.CharField(
-        help_text='提案状态', choices=PROPOSAL_STATUS, max_length=30, default='submitted')
+        help_text='提案状态', choices=PROPOSAL_STATUS, max_length=30, default='unchecked')
     reason = RichTextUploadingField(help_text='理由-决策议会给出的结果', blank=True, null=True,
                                     default='', external_plugin_resources=[
                                         ('youtube',

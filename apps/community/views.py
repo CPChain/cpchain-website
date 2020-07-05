@@ -9,6 +9,7 @@ from cpc_fusion import Web3
 
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import compat
+from django.db.models import Q
 
 import warnings
 
@@ -224,7 +225,7 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     *reverse: -updated_at*
 
     """
-    queryset = Proposal.objects.all()
+    queryset = Proposal.objects.filter(~Q(status="unchecked"))
     filter_backends = [StatusFilterBackend, OrderingFilter]
     ordering_fields = ["updated_at", "status"]
     ordering = "-updated_at"
