@@ -30,7 +30,7 @@ class ProposalsCreateSerializer(serializers.ModelSerializer):
     proposal_id = serializers.UUIDField(read_only=True)
     class Meta:
         model = Proposal
-        fields = ['proposal_id', 'title', 'proposal_type', 'description', 'proposer_addr']
+        fields = ['proposal_id', 'title', 'proposal_type', 'description', 'proposer_addr', 'client_id']
 
 class ApprovedAddressSerializer(serializers.ModelSerializer):
     class Meta:

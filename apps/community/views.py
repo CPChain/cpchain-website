@@ -174,12 +174,18 @@ class StatusFilterBackend(BaseFilterBackend):
     """
     Filter that only allows users to see their own objects.
     """
-    def filter_queryset(self, request, queryset, view):
+    def filter_queryset(self, request, qs, view):
         status = request.query_params.get('status')
+        client_id = request.query_params.get('client_id')
         if status:
             labels = status.split(',')
-            queryset = queryset.filter(status__in=labels)
-        return queryset
+            filters = Q(status__in=labels)
+            if 'submitted' in labels and client_id:
+                filters |= Q(status='unchecked') & Q(client_id=client_id)
+            qs = qs.filter(filters)
+        else:
+            qs = qs.filter(~Q(status="unchecked"))
+        return qs
 
     def get_schema_fields(self, view):
         return [
@@ -189,6 +195,14 @@ class StatusFilterBackend(BaseFilterBackend):
                 location='query',
                 schema=compat.coreschema.String(
                     description="e.g.: submitted,deposited"
+                )
+            ),
+            compat.coreapi.Field(
+                name='client_id',
+                required=False,
+                location='query',
+                schema=compat.coreschema.String(
+                    description="client_id"
                 )
             )
         ]
@@ -200,6 +214,15 @@ class StatusFilterBackend(BaseFilterBackend):
                 'required': False,
                 'in': 'query',
                 'description': 'status of proposal',
+                'schema': {
+                    'type': 'string',
+                },
+            },
+            {
+                'name': 'client_id',
+                'required': False,
+                'in': 'query',
+                'description': 'client_id of client',
                 'schema': {
                     'type': 'string',
                 },
@@ -216,6 +239,7 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     Filters
     ---
     + status，e.g. `status=submitted,deposited`
+    + client_id
 
     Ordering
     ---
@@ -225,11 +249,11 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     *reverse: -updated_at*
 
     """
-    queryset = Proposal.objects.filter(~Q(status="unchecked"))
+    queryset = Proposal.objects.all()
     filter_backends = [StatusFilterBackend, OrderingFilter]
     ordering_fields = ["updated_at", "status"]
     ordering = "-updated_at"
-    filter_fields = ['status']
+    filter_fields = ['status', 'client_id']
     permission_classes = [IPLimitPermission]
 
     def get_serializer_class(self):
