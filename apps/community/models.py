@@ -4,6 +4,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 import uuid
 
 PROPOSAL_STATUS = (
+    ('unchecked', 'unchecked'),
     ('submitted', 'submitted'),
     ('deposited', 'deposited'),
     ('community congress', 'community congress'),
