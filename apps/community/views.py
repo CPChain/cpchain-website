@@ -190,6 +190,14 @@ class StatusFilterBackend(BaseFilterBackend):
                 schema=compat.coreschema.String(
                     description="e.g.: submitted,deposited"
                 )
+            ),
+            compat.coreapi.Field(
+                name='client_id',
+                required=False,
+                location='query',
+                schema=compat.coreschema.String(
+                    description="client_id"
+                )
             )
         ]
 
@@ -200,6 +208,15 @@ class StatusFilterBackend(BaseFilterBackend):
                 'required': False,
                 'in': 'query',
                 'description': 'status of proposal',
+                'schema': {
+                    'type': 'string',
+                },
+            },
+            {
+                'name': 'client_id',
+                'required': False,
+                'in': 'query',
+                'description': 'client_id of client',
                 'schema': {
                     'type': 'string',
                 },
@@ -216,6 +233,7 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     Filters
     ---
     + status，e.g. `status=submitted,deposited`
+    + client_id
 
     Ordering
     ---
@@ -225,12 +243,17 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     *reverse: -updated_at*
 
     """
-    queryset = Proposal.objects.filter(~Q(status="unchecked"))
+    queryset = Proposal.objects.all()
     filter_backends = [StatusFilterBackend, OrderingFilter]
     ordering_fields = ["updated_at", "status"]
     ordering = "-updated_at"
-    filter_fields = ['status']
+    filter_fields = ['status', 'client_id']
     permission_classes = [IPLimitPermission]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.filter(~Q(status="unchecked"))
+        return qs
 
     def get_serializer_class(self):
         if self.action == 'create':

@@ -115,6 +115,7 @@ class Proposal(models.Model):
                                             'imageresize',
                                             '/static/imageresize/',
                                             'plugin.js')])
+    client_id = models.CharField(max_length=100, blank=True, null=True, help_text='客户端 ID')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
