@@ -101,7 +101,7 @@ class Proposal(models.Model):
     likes = models.IntegerField(help_text='赞同数', null=True, editable=False)
     votes = models.IntegerField(help_text='投票数', null=True, editable=False)
     proposer_addr = models.CharField(
-        default='', max_length=100, help_text='发起人地址', editable=False)
+        default='', max_length=100, help_text='发起人地址')
     depositor_addr = models.CharField(
         default='', max_length=100, help_text='提案存钱人地址', editable=False)
     status = models.CharField(
