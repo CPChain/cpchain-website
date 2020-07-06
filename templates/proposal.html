@@ -477,7 +477,7 @@
                         }
                     })
 
-                    fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted?client_id=${localStorage.getItem('client_id')}`).then(res => {
+                    fetchJson(`${serverUrl}community-manage/proposals/?limit=3&offset=0&status=submitted&client_id=${localStorage.getItem('client_id')}`).then(res => {
                         
                         listApp.$data.Submitted = res.results 
                     }) 
