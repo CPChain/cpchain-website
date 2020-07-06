@@ -207,7 +207,7 @@
                         listApp.$data.types = types.results  
                     }) 
                     if(type=='submitted'){
-                        fetchJson(`${serverUrl}community-manage/proposals/?limit=999&offset=0&status=` + (type) +`?client_id=${localStorage.getItem('client_id')}`).then(res => {
+                        fetchJson(`${serverUrl}community-manage/proposals/?limit=999&offset=0&status=` + (type) +`&client_id=${localStorage.getItem('client_id')}`).then(res => {
                         
                             listApp.$data.list = res.results
                         }) 
