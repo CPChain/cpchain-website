@@ -183,7 +183,7 @@ class StatusFilterBackend(BaseFilterBackend):
             if 'submitted' in labels and client_id:
                 filters |= Q(status='unchecked') & Q(client_id=client_id)
             qs = qs.filter(filters)
-        else:
+        elif request.parser_context['kwargs'].get('pk') == None:
             qs = qs.filter(~Q(status="unchecked"))
         return qs
 
