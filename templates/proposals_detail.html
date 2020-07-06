@@ -83,10 +83,9 @@
         cursor: pointer;
     }
 
-.media-share span{
-    color:#428bc1 !important
-}
-
+    .media-share span {
+        color: #428bc1 !important
+    }
 </style>
 
 
@@ -97,55 +96,65 @@
             <div id="content" class="site-content">
                 <section class="section-category py-5 d-flex align-items-center justify-content-center">
                     <div class="container h-100">
-                        <div class="row"> 
-                            <div class="news-view-holder" style="width: 100%;"> 
+                        <div class="row">
+                            <div class="news-view-holder" style="width: 100%;">
                                 <div class="upper col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mx-auto">
-                      
+
                                     <h4 class="my-3">
                                         <a href="javascript:void(0)">
-                                             [[proposal.title ]] 
+                                            [[proposal.title ]]
                                         </a>
                                     </h4>
                                     <h6 class="mb-5 text-muted">[[typeName(proposal.proposal_type)]] </h6>
-                                </div> 
-                                <div  class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column "> 
+                                </div>
+                                <div
+                                    class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column ">
                                     <div class="media-share">
                                         <span>Description :</span>
                                         <p>[[proposal.description ]]</p>
                                     </div>
                                 </div>
-                                <div  class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column "> 
+                                <div
+                                    class="bottom py-5 mx-auto col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column ">
                                     <div class="media-share">
-                                       <span>Proposal ID :</span>  <p>[[proposal.proposal_id ]]</p>
+                                        <span>Proposal ID :</span>
+                                        <p>[[proposal.proposal_id ]]</p>
                                     </div>
                                     <div class="media-share">
-                                        <span>Status :</span>  <p>[[proposal.status ]]</p>
-                                     </div> 
+                                        <span>Status :</span>
+                                        <p>[[proposal.status ]]</p>
+                                    </div>
                                     <div class="media-share">
-                                        <span>Proposer :</span>  <p>[[proposal.proposer_addr ]]</p>
-                                     </div>
-                                     <div v-if="proposal.depositor_addr" class="media-share">
-                                        <span>Depositor :</span>  <p>[[proposal.depositor_addr ]]</p>
-                                     </div>
+                                        <span>Proposer :</span>
+                                        <p>[[proposal.proposer_addr ]]</p>
+                                    </div>
+                                    <div v-if="proposal.depositor_addr" class="media-share">
+                                        <span>Depositor :</span>
+                                        <p>[[proposal.depositor_addr ]]</p>
+                                    </div>
                                     <div v-if="proposal.likes" class="media-share">
-                                        <span>Like :</span>  <p>[[proposal.likes ]]</p>
-                                     </div>
-                                     <div v-if="proposal.votes" class="media-share">
-                                        <span>Vote :</span>  <p>[[proposal.votes ]]</p>
-                                     </div>
-                                     <div  v-if="proposal.created_at" class="media-share">
-                                        <span>Created at :</span>  <p>[[proposal.created_at ]]</p>
-                                     </div>
-                                     <div v-if="proposal.reason" class="media-share">
-                                        <span>Reason :</span>  <p>[[proposal.reason ]]</p>
-                                     </div>
+                                        <span>Like :</span>
+                                        <p>[[proposal.likes ]]</p>
+                                    </div>
+                                    <div v-if="proposal.votes" class="media-share">
+                                        <span>Vote :</span>
+                                        <p>[[proposal.votes ]]</p>
+                                    </div>
+                                    <div v-if="proposal.created_at" class="media-share">
+                                        <span>Created at :</span>
+                                        <p>[[proposal.created_at ]]</p>
+                                    </div>
+                                    <div v-if="proposal.reason" class="media-share">
+                                        <span>Reason :</span>
+                                        <p>[[proposal.reason ]]</p>
+                                    </div>
                                 </div>
 
- 
+
                                 <div class="line-holder col-sm-10 col-12 mx-auto">
                                     <hr>
-                                </div> 
-                            </div>  
+                                </div>
+                            </div>
 
                         </div>
 
@@ -173,7 +182,7 @@
         }
 
 
-        const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' :'/'
+        const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' : '/'
         const fetchJson = (url) => {
             return fetch(url,
                 {
@@ -211,9 +220,13 @@
 
                         listApp.$data.types = types.results
                     })
-                    fetchJson(`${serverUrl}community-manage/proposals/${proposal_id}/` ).then(res => {
+                    fetchJson(`${serverUrl}community-manage/proposals/${proposal_id}/`).then(res => {
 
-                        listApp.$data.proposal = res 
+                        listApp.$data.proposal = res
+
+                        if (listApp.$data.proposal.status === 'unchecked') {
+                            listApp.$data.proposal.status = 'submitted'
+                        }
                     })
                 }
             },
