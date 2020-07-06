@@ -1610,6 +1610,12 @@
 
 (function () {
 
+    let client_id  = localStorage.getItem('client_id')
+    if(!client_id){
+        client_id = (Math.random() * 10 ** 18 ).toString(16)
+        localStorage.setItem('client_id',client_id)
+    }
+
     var newRem = function () {
 
         var html = document.documentElement;
