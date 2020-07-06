@@ -78,6 +78,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 下面这一行表示接口文档的访问权限, AllowAny不做权限限制.
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
