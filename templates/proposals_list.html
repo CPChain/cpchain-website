@@ -163,7 +163,11 @@
             type =  paths.pop()
         }
 
-
+        let client_id  = localStorage.getItem('client_id')
+        if(!client_id){
+            client_id = (Math.random() * 10 ** 18 ).toString(16)
+            localStorage.setItem('client_id',client_id)
+        }
         const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' :'/'
         const fetchJson = (url) => {
             return fetch(url,
@@ -202,10 +206,18 @@
           
                         listApp.$data.types = types.results  
                     }) 
-                    fetchJson(`${serverUrl}community-manage/proposals/?limit=999&offset=0&status=` + (type)).then(res => {
+                    if(type=='submitted'){
+                        fetchJson(`${serverUrl}community-manage/proposals/?limit=999&offset=0&status=` + (type) +`&client_id=${localStorage.getItem('client_id')}`).then(res => {
                         
-                        listApp.$data.list = res.results
-                    }) 
+                            listApp.$data.list = res.results
+                        }) 
+                    } else {
+                        fetchJson(`${serverUrl}community-manage/proposals/?limit=999&offset=0&status=` + (type)).then(res => {
+                        
+                            listApp.$data.list = res.results
+                        }) 
+                    }
+                    
                 }
             },
             created() {
