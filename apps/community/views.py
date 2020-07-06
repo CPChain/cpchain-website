@@ -184,7 +184,10 @@ class StatusFilterBackend(BaseFilterBackend):
                 filters |= Q(status='unchecked') & Q(client_id=client_id)
             qs = qs.filter(filters)
         elif request.parser_context['kwargs'].get('pk') == None:
-            qs = qs.filter(~Q(status="unchecked"))
+            if not client_id:
+                qs = qs.filter(~Q(status="unchecked"))
+            else:
+                qs = qs.filter(~Q(status="unchecked")|Q(status='unchecked') & Q(client_id=client_id))
         return qs
 
     def get_schema_fields(self, view):
