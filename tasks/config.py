@@ -29,11 +29,11 @@ CELERYBEAT_SCHEDULE = {
     # },
     'sync-congress': {
         'task': 'tasks.app.sync_congress_task',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(seconds=10),
     },
     'sync-proposals': {
         'task': 'tasks.app.sync_proposals_task',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(seconds=10),
     },
     'check-timeout': {
         'task': 'tasks.app.check_timeout_task',
