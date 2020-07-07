@@ -148,6 +148,10 @@
                                         <span>Reason :</span>
                                         <p>[[proposal.reason ]]</p>
                                     </div>
+                                    <div v-if="proposal.due" class="media-share">
+                                        <span>Last in :</span>
+                                        <p>[[proposal.due ]] (days)</p>
+                                    </div>
                                 </div>
 
 
@@ -181,6 +185,24 @@
             proposal_id = paths.pop()
         }
 
+        function dueDay(time, delta = 0) {
+            if (!time) {
+                return ''
+            }
+            if (typeof time === 'string') {
+
+                time = new Date(time)
+            } else if (typeof time === 'number') {
+                if (time < 1000376460 * 1000) {
+                    time = time * 1000
+                }
+                time = new Date(time)
+            }
+
+            let now = new Date()
+            // new Date().getTime() / 1000
+            return Math.ceil((time.getTime() + delta * day_ms - now.getTime()) / day_ms)
+        }
 
         const serverUrl = window.location.hostname == '127.0.0.1' ? 'https://test.yourserverless.site/' : '/'
         const fetchJson = (url) => {
@@ -226,6 +248,10 @@
 
                         if (listApp.$data.proposal.status === 'unchecked') {
                             listApp.$data.proposal.status = 'submitted'
+                        }
+
+                        if (istApp.$data.proposal.status != 'expired' || istApp.$data.proposal.status != 'approved' || istApp.$data.proposal.status != 'declined') {
+                            listApp.$data.proposal.due = dueDay(listApp.$data.proposal.due.created_at, 30)
                         }
                     })
                 }
