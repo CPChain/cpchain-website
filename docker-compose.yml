@@ -75,9 +75,8 @@ services:
       - /bin/sh
       - -c
       - |
-        sleep 30;
         python monitor.py
-        mkdir -p log
+        sleep 10;
         tail -f log/chain.log
 
   create-index:
