@@ -2,6 +2,7 @@
 __pycache__/
 
 local.py
+static-root
 
 *.py[cod]
 *$py.class

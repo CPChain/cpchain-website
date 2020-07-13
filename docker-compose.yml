@@ -46,7 +46,16 @@ services:
       - RABBITMQ_DEFAULT_PASS=password
       - ABBITMQ_NODENAME=node@rabbitmq
 
-  test:
+  nginx-dev:
+    image: nginx:1.15.12-alpine
+    ports:
+      - "8001:80"
+    restart: always
+    volumes:
+      - ./nginx/cpchain-dev.conf:/etc/nginx/conf.d/default.conf
+      - ./static-root:/static
+
+  dev:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
@@ -62,7 +71,20 @@ services:
       - mysql
       - mongo
     ports:
-      - 8001:8000
+      - 8010:8000
+
+  collect-static:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        python manage.py collectstatic
+    depends_on: 
+      - mysql
+      - mongo
 
   monitor:
     image: liaojl/website
@@ -75,9 +97,8 @@ services:
       - /bin/sh
       - -c
       - |
-        sleep 30;
         python monitor.py
-        mkdir -p log
+        sleep 10;
         tail -f log/chain.log
 
   create-index:
@@ -95,12 +116,27 @@ services:
         python tools/mongoIndex.py;
         python tools/mongoIndex_v0.1.py;
 
+  daphne:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on:
+      - redis
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /cpchain-website
+        daphne -b 0.0.0.0 -p 8001 --proxy-headers cpchain_test.asgi:application
+
   worker:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+      # ./key-ca:/key-ca
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}:/key-ca
+      # ./password-ca:/password-ca
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}:/password-ca
     restart: always
     depends_on: 
       - redis
@@ -114,8 +150,8 @@ services:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}:/key-ca
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}:/password-ca
     restart: always
     depends_on: 
       - worker

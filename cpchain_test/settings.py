@@ -238,7 +238,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # for deployment
-STATIC_ROOT = '/srv/www/cpc_django/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
