@@ -134,9 +134,9 @@ services:
     volumes:
       - ./:/cpchain-website
       # ./key-ca:/key-ca
-      - ${COMMUNITY_ACCOUNT_KEY_PATH}
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}:/key-ca
       # ./password-ca:/password-ca
-      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}:/password-ca
     restart: always
     depends_on: 
       - redis
@@ -150,8 +150,8 @@ services:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
-      - ${COMMUNITY_ACCOUNT_KEY_PATH}
-      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}:/key-ca
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}:/password-ca
     restart: always
     depends_on: 
       - worker
