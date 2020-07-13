@@ -46,7 +46,16 @@ services:
       - RABBITMQ_DEFAULT_PASS=password
       - ABBITMQ_NODENAME=node@rabbitmq
 
-  test:
+  nginx-dev:
+    image: nginx:1.15.12-alpine
+    ports:
+      - "8001:80"
+    restart: always
+    volumes:
+      - ./nginx/nginx-cpchain.conf:/etc/nginx/conf.d/cpchain.conf
+      - ./static-root:/static
+
+  dev:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
@@ -62,7 +71,20 @@ services:
       - mysql
       - mongo
     ports:
-      - 8001:8000
+      - 8010:8000
+
+  collect-static:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        python manage.py collectstatic
+    depends_on: 
+      - mysql
+      - mongo
 
   monitor:
     image: liaojl/website
