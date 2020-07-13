@@ -59,7 +59,7 @@ docker-compose run collect-static
 docker-compose up dev
 
 # create super user in test-env
-docker exec -it cpchain-website_test_1 python manage.py createsuperuser
+docker exec -it cpchain-website_dev_1 python manage.py createsuperuser
 
 # username: admin
 # password: 123456
