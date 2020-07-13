@@ -59,10 +59,13 @@ docker-compose run collect-static
 docker-compose up dev
 
 # create super user in test-env
-sudo docker exec -it cpchain-website_test_1 python manage.py createsuperuser
+docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 
 # username: admin
 # password: 123456
+
+# start daphne and nginx
+docker-compose up -d daphne
 
 # cleanup ip access table
 python manage.py cleanup

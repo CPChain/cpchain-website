@@ -116,6 +116,19 @@ services:
         python tools/mongoIndex.py;
         python tools/mongoIndex_v0.1.py;
 
+  daphne:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    depends_on:
+      - redis
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /cpchain-website
+        daphne -b 0.0.0.0 -p 8001 --proxy-headers cpchain_test.asgi:application
+
   worker:
     image: liaojl/website
     volumes:
