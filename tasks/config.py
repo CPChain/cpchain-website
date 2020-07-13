@@ -46,5 +46,9 @@ CELERYBEAT_SCHEDULE = {
     'auto-send-email': {
         'task': 'tasks.app.auto_send_email',
         'schedule': timedelta(minutes=1),
+    },
+    'updateInfo-every-3-seconds': {
+        'task': 'tasks.app.pushBlocksInfo',
+        'schedule': timedelta(seconds=3),  # 每 3 秒一次
     }
 }

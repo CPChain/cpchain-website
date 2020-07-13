@@ -133,8 +133,10 @@ services:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+      # ./key-ca:/key-ca
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}
+      # ./password-ca:/password-ca
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}
     restart: always
     depends_on: 
       - redis
@@ -148,8 +150,8 @@ services:
     image: liaojl/website
     volumes:
       - ./:/cpchain-website
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/keys/key21:/key-ca
-      - /home/ubuntu/workspace/deployment/website/docker-compose/dev-chain/conf-dev/passwords/password:/password-ca
+      - ${COMMUNITY_ACCOUNT_KEY_PATH}
+      - ${COMMUNITY_ACCOUNT_PASSWORD_PATH}
     restart: always
     depends_on: 
       - worker

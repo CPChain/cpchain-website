@@ -70,6 +70,9 @@ docker-compose up -d daphne
 # start nginx: http://localhost:8001/
 docker-compose up -d nginx-dev
 
+# start worker and beat
+docker-compose up -d beat worker
+
 # cleanup ip access table
 python manage.py cleanup
 
