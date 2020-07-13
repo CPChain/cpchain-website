@@ -64,8 +64,11 @@ docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 # username: admin
 # password: 123456
 
-# start daphne and nginx
+# start daphne
 docker-compose up -d daphne
+
+# start nginx: http://localhost:8001/
+docker-compose up -d nginx-dev
 
 # cleanup ip access table
 python manage.py cleanup
