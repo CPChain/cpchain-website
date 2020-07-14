@@ -203,7 +203,9 @@ class DownloadView(View):
 class AppView(View):
     def get(self, req, app):
         return render(req, app + '.html')
-
+class WorldMapView(View):
+    def get(self, req):
+        return render(req,   'world_map.html')
 
 class PasswordView(View):
     def get(self, req):
