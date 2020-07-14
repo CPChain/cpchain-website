@@ -24,6 +24,8 @@ from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
 
+from cpchain_test.settings import SWAGGER_URL
+
 schema_view = get_swagger_view(title='CPChain Website API')
 
 indexpatterns = [
