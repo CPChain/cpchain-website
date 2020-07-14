@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django_prometheus',
     'community',
     'rest_framework',
-    'rest_framework_swagger'
+    'rest_framework_swagger',
+    'node_ip'
 ]
 
 MIDDLEWARE = [
