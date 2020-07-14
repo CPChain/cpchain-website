@@ -15,5 +15,5 @@ class IPViewSet(mixins.CreateModelMixin,
                 viewsets.GenericViewSet):
     """ CPChain 节点分布
     """
-    queryset = IP.objects.all()
+    queryset = IP.objects.filter(handled=True, deleted=False)
     serializer_class = IPSerializer
