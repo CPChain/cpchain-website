@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+
+
+
+
+
+
+
+
+        function makeMapDataFromList(list) {
+            var mapData = [];
+            for (let i = 0; i < list.length; i++) {
+                mapData.push({
+                    name: list[i].city,
+                    value: [list[i].longitude, list[i].latitude]
+                });
+            }
+            return mapData;
+        }
+
+
+
+
+
+        option = {
+            backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.4, [{
+                offset: 0,
+                color: '#4b5769'
+            }, {
+                offset: 1,
+                color: '#404a59'
+            }]),
+            title: {
+                text: 'CPChain Node Distribution Diagram',
+                // subtext: 'data from macrofocus',
+                // sublink: 'https://www.macrofocus.com/public/products/infoscope/datasets/pricesandearnings/',
+                left: 'center',
+                top: 5,
+                itemGap: 0,
+                textStyle: {
+                    color: '#eee'
+                },
+                z: 200
+            },
+            brush: {
+                geoIndex: 0,
+                brushLink: 'all',
+                inBrush: {
+                    opacity: 1,
+                    symbolSize: 14
+                },
+                outOfBrush: {
+                    color: '#000',
+                    opacity: 0.2
+                },
+                z: 10
+            },
+            geo: {
+                map: 'world',
+                silent: true,
+                emphasis: {
+                    label: {
+                        show: false,
+                        areaColor: '#eee'
+                    }
+                },
+                itemStyle: {
+                    borderWidth: 0.2,
+                    borderColor: '#404a59'
+                },
+                left: '6%',
+                top: 40,
+                bottom: '6%',
+                right: '14%',
+                roam: true
+            },
+            series: [
+                {
+                    name: 'Prices and Earnings 2012',
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    symbolSize: 8,
+                    data: [],
+                    activeOpacity: 1,
+                    label: {
+                        formatter: '{b}',
+                        position: 'right',
+                        show: false
+                    },
+                    symbolSize: 10,
+                    // symbolSize: function (data) {
+                    //     return Math.max(5, data[2] / 5);
+                    // },
+                    itemStyle: {
+                        borderColor: '#fff',
+                        color: '#577ceb',
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    }
+                }
+            ]
+        };
+
+        const serverUrl = window.location.hostname == 'cpchain.io' ? '/' : 'https://test.yourserverless.site/'
+        fetch(serverUrl + 'nodes/ip/')
+            .then(res => res.json())
+            .then(res => {
+                option = {
+                    backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.4, [{
+                        offset: 0,
+                        color: '#4b5769'
+                    }, {
+                        offset: 1,
+                        color: '#404a59'
+                    }]),
+                    title: {
+                        text: 'CPChain Node Distribution Diagram',
+                        left: 'center',
+                        top: 5,
+                        itemGap: 0,
+                        textStyle: {
+                            color: '#eee'
+                        },
+                        z: 200
+                    },
+                    brush: {
+                        geoIndex: 0,
+                        brushLink: 'all',
+                        inBrush: {
+                            opacity: 1,
+                            symbolSize: 14
+                        },
+                        outOfBrush: {
+                            color: '#000',
+                            opacity: 0.2
+                        },
+                        z: 10
+                    },
+                    geo: {
+                        map: 'world',
+                        silent: true,
+                        emphasis: {
+                            label: {
+                                show: false,
+                                areaColor: '#eee'
+                            }
+                        },
+                        itemStyle: {
+                            borderWidth: 0.2,
+                            borderColor: '#404a59'
+                        },
+                        left: '6%',
+                        top: 40,
+                        bottom: '6%',
+                        right: '14%',
+                        roam: true
+                    },
+                    series: [
+                        {
+                            name: 'Prices and Earnings 2012',
+                            type: 'scatter',
+                            coordinateSystem: 'geo',
+                            symbolSize: 8,
+                            data: makeMapDataFromList(res.results),
+                            activeOpacity: 1,
+                            label: {
+                                formatter: '{b}',
+                                position: 'right',
+                                show: false
+                            },
+                            symbolSize: 10,
+                            // symbolSize: function (data) {
+                            //     return Math.max(5, data[2] / 5);
+                            // },
+                            itemStyle: {
+                                borderColor: '#fff',
+                                color: '#577ceb',
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        }
+                    ]
+                };
+
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            })
+
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+
+    </script>
+</body>
+
+</html>
