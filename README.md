@@ -46,6 +46,8 @@ ip=127.0.0.1 #mongodb
 
 ```bash
 
+mkdir -p logs
+
 # start database
 docker-compose up -d mysql mongo
 
@@ -54,6 +56,9 @@ docker-compose up -d monitor
 
 # collect static
 docker-compose run collect-static
+
+# makemigrations and migrate
+docker-compose run migrations
 
 # start test-container if you are developing or testing
 docker-compose up dev
@@ -74,6 +79,12 @@ docker-compose up -d nginx-dev
 
 # start worker and beat
 docker-compose up -d beat worker
+
+# start the uwsgi container
+docker-compose up -d uwsgi
+
+# if you want to test, start the nginx container
+docker-compose up -d nginx-uwsgi-test
 
 # cleanup ip access table
 python manage.py cleanup
