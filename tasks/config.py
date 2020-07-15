@@ -56,6 +56,6 @@ CELERYBEAT_SCHEDULE = {
     },
     'rate-update': {
         'task': 'tasks.app.rate_update',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(minutes=3),
     }
 }
