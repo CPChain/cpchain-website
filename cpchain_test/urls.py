@@ -41,6 +41,7 @@ indexpatterns = [
     path('explorer/', include(('explorer.urls', 'explorer'), namespace='explorer')),
     path('wallet/', include(('wallet.urls', 'wallet'), namespace='wallet')),
     path('app/<app>', AppView.as_view(), name='app'),
+    path('world_map/', WorldMapView.as_view(), name='world_map'),
     path('search/', include('haystack.urls')),
     path('password/',   PasswordView.as_view(), name='password'),
     # path('faucet/', FaucetView.as_view(), name='faucet'),
