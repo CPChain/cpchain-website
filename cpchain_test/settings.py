@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django_prometheus',
     'community',
     'rest_framework',
-    'rest_framework_swagger'
+    'rest_framework_swagger',
+    'node_ip'
 ]
 
 MIDDLEWARE = [
@@ -274,6 +275,8 @@ SECRET_KEY = cfg['web']['secretkey']
 
 # when you use https, you should add this line to your local.py and uncomment.
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SWAGGER_URL = "http://127.0.0.1:8000"
 
 try:
     from .local import *

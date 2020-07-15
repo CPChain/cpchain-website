@@ -24,6 +24,8 @@ from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
 
+from cpchain_test.settings import SWAGGER_URL
+
 schema_view = get_swagger_view(title='CPChain Website API')
 
 indexpatterns = [
@@ -62,6 +64,7 @@ urlpatterns = i18n_patterns(
     path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
     path('community-manage/', include('community.urls')),
+    path('nodes/', include('node_ip.urls')),
     url(r'^api-docs$', schema_view),
     prefix_default_language=False
 )

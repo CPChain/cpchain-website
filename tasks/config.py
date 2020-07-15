@@ -49,6 +49,10 @@ CELERYBEAT_SCHEDULE = {
     },
     'updateInfo-every-3-seconds': {
         'task': 'tasks.app.pushBlocksInfo',
-        'schedule': timedelta(seconds=3),  # 每 3 秒一次
+        'schedule': timedelta(seconds=3),
+    },
+    'geo-ip': {
+        'task': 'tasks.app.get_geo_for_ip',
+        'schedule': timedelta(seconds=30)
     }
 }

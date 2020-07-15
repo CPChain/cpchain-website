@@ -50,9 +50,16 @@ services:
     image: nginx:1.15.12-alpine
     ports:
       - "8001:80"
-    restart: always
     volumes:
       - ./nginx/cpchain-dev.conf:/etc/nginx/conf.d/default.conf
+      - ./static-root:/static
+
+  nginx-uwsgi-test:
+    image: nginx:1.15.12-alpine
+    ports:
+      - "8002:80"
+    volumes:
+      - ./nginx/cpchain-uwsgi-test.conf:/etc/nginx/conf.d/default.conf
       - ./static-root:/static
 
   dev:
@@ -64,14 +71,43 @@ services:
       - -c
       - |
         # sleep 3;
-        python manage.py makemigrations index wallet community;
-        python manage.py migrate
         python manage.py runserver 0.0.0.0:8000
     depends_on: 
       - mysql
       - mongo
     ports:
       - 8010:8000
+
+  migrations:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        # sleep 3;
+        python manage.py makemigrations
+        python manage.py migrate
+    depends_on: 
+      - mysql
+      - mongo
+
+  uwsgi:
+    image: liaojl/website
+    volumes:
+      - ./:/cpchain-website
+    restart: always
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        uwsgi --ini cpchain_test/config.ini
+    depends_on: 
+      - mysql
+      - mongo
+    ports:
+      - 8012:8080
 
   collect-static:
     image: liaojl/website
@@ -122,6 +158,8 @@ services:
       - ./:/cpchain-website
     depends_on:
       - redis
+    ports:
+      - 8011:8001
     command:
       - /bin/sh
       - -c
