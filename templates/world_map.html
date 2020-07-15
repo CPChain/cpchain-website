@@ -124,7 +124,7 @@
         };
 
         const serverUrl = window.location.hostname == 'cpchain.io' ? '/' : 'https://test.yourserverless.site/'
-        fetch(serverUrl + 'nodes/ip/')
+        fetch(serverUrl + 'nodes/ip/?limit=1000')
             .then(res => res.json())
             .then(res => {
                 option = {
