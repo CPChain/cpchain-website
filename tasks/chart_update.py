@@ -36,7 +36,7 @@ def update_chart():
     chart.reverse()
     chart = json.dumps(chart)
     chart_collection.update({}, {'chart': chart}, upsert=True)
+    CLIENT.close()
 
 if __name__ == '__main__':
-
     update_chart()

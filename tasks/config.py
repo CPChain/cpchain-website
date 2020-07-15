@@ -18,7 +18,6 @@ CELERY_TIMEZONE = 'Asia/Shanghai'  # 指定时区，默认是 UTC
 CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24  # 任务过期时间，不建议直接写86400，应该让这样的magic数字表述更明显
 
 CELERY_IMPORTS = (  # 指定导入的任务模块
-    # 'apps.explorer.tasks',
     'tasks.app'
 )
 
@@ -54,5 +53,9 @@ CELERYBEAT_SCHEDULE = {
     'geo-ip': {
         'task': 'tasks.app.get_geo_for_ip',
         'schedule': timedelta(seconds=30)
+    },
+    'rate-update': {
+        'task': 'tasks.app.rate_update',
+        'schedule': timedelta(seconds=5),
     }
 }

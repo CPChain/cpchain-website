@@ -9,6 +9,7 @@ from tasks.sync_proposals import sync_proposals
 from tasks.check_timeout import check_timeout
 from tasks.chart_update import update_chart
 from tasks.send_email import send_email
+from tasks.rate_update import update_rate
 
 from log import get_log
 
@@ -77,8 +78,7 @@ def rnode_update():
 
 @app.task
 def rate_update():
-    pass
-
+    update_rate()
 
 def ip_into_int(ip):
     # 先把 192.168.31.46 用map分割'.'成数组，然后用reduuce+lambda转成10进制的 3232243502
