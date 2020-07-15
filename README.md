@@ -67,6 +67,8 @@ docker exec -it cpchain-website_test_1 python manage.py createsuperuser
 # start daphne
 docker-compose up -d daphne
 
+# When you develop locally, start the nginx-dev.
+# But if you want to deploy on prod-env or test-env, do not use this Nginx, use the Nginx which installed on prod-env or test-env
 # start nginx: http://localhost:8001/
 docker-compose up -d nginx-dev
 

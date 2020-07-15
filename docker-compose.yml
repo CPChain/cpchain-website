@@ -122,6 +122,8 @@ services:
       - ./:/cpchain-website
     depends_on:
       - redis
+    ports:
+      - 8011:8001
     command:
       - /bin/sh
       - -c
