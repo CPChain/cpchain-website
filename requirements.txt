@@ -119,7 +119,7 @@ uWSGI==2.0.18
 vine==1.3.0
 wcwidth==0.1.7
 websockets==7.0
-Werkzeug==0.15.2
+Werkzeug==0.15.3
 Whoosh==2.7.4
 wrapt==1.11.2
 xlrd==1.1.0
