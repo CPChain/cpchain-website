@@ -1,150 +1,157 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block custom_head %}
-    <link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
-    <link rel="stylesheet" href="/static/css/reset.css" content="text/css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-    {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+<link rel="stylesheet" href="/static/css/explorer.css" content="text/css">
+<link rel="stylesheet" href="/static/css/reset.css" content="text/css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+{#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
 
-    <script src="/static/js/util.js"></script>
+<script src="/static/js/util.js"></script>
 {% endblock %}
 {% block title %}
-    <title>Address &#8211; CPChain</title>
+<title>Address &#8211; CPChain</title>
 {% endblock %}
 {% block content %}
 
-    <body class="page-template-news">
-    {% include "explorer/_searchbar.html" %}
+<body class="page-template-news">
+  {% include "explorer/_searchbar.html" %}
 
-    <div class="container">
-        <div class="page-header">
-            <div class="page-header-main">
-                <p class="text-center poppins-font">Address</p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="page-header">
+      <div class="page-header-main">
+        <p class="text-center poppins-font">Address</p>
+      </div>
     </div>
+  </div>
 
-    <div class="container poppins-font" id="address">
-        <div class="info-table px-md-5" id="blocks-list">
-            <div class="row info-id">
-                <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
-                <span class="col info-id-serial" style="top: 4px">{{ address }}</span>
-            </div>
-            <div class="info-table-subtitle">Overview</div>
-            <div class="row info-row">
-                <div class="col-3">Balance:</div>
-                <div class="col poppins-light">{{ balance }} CPC</div>
-            </div>
-            <div class="row info-row">
-                <div class="col-3">Transactions:</div>
-                <div class="col poppins-light">{{ txs_count }} txs</div>
-            </div>
-            {% if proposer_history %}
-                <div class="row info-row">
-                    <div class="col-3">Proposer History:</div>
-                    <a href="{% url 'explorer:proposer_history' address %}">
-                        <div class="col poppins-light" style="padding-left: 0">{{ proposer_history }} blocks</div>
-                    </a>
-                </div>
-            {% endif %}
-            <div class="info-table-subtitle info-table-subtitle-list"
-                 style="border-bottom: solid 2px #305278;width: 186px;">Transactions
-            </div>
-            <div class="info-table-list">
-                <div class="info-table-list-title">
-                    {% if txs_count < 25 %}{{ txs_count }}
-                {% else %}{{current.begin}} to {{current.end}}{% endif %} txs from a total of <a href>{{ txs_count }} transactions</a>
-                </div>
-                <div class="info-table-list-content">
-                    <div class="table">
-                        <div class="row list-header">
-                            <div class="col text-truncate">TxHash</div>
-                            <div class="col text-truncate">Block</div>
-                            <div class="col text-truncate marginfix">Age</div>
-                            <div class="col text-truncate">From</div>
-                            <div class="col-1 text-truncate">&nbsp;</div>
-                            <div class="col text-truncate">To</div>
-                            <div class="col text-truncate">Value</div>
-                            <div class="col text-truncate">TxFee</div>
-                        </div>
-                        {% for tx in txs.object_list %}
-                            <div class="row row-content">
-                                {% if tx.status == 0 %}
-                                    <div class="text-truncate">
-                                        <img style="height: 16px;width:16px;margin-right: 6px "
-                                             src="{% static 'img/explorer/th.png' %}">
-                                    </div>
-                                {% else %}
-                                    <div style="width:22px"></div>
-                                {% endif %}
-                                <div class="col text-truncate"><span>TxHash:</span><a
-                                        href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
-                                <div class="col text-truncate"><span>Block:</span><a
-                                        href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
-                                <div class="col text-truncate marginfix"><span>Age:</span>>[[
-                                    convertTime({{ tx.timesince }}) ]] ago
-                                </div>
-                                <div class="col text-truncate"><span>From:</span><a
-                                        href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
-                                <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
-                                <div class="col text-truncate"><span>To:</span>
-                                    {% if tx.to %}
-                                        <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
-                                    {% else %}
-                                        <a href="{% url 'explorer:address' tx.contract %}"
-                                           class="text-truncate col px-0" title="{{ tx.contract }}">Contract
-                                            Creation</a>
-                                    {% endif %}
-
-                                </div>
-                                <div class="col text-truncate"><span>Value:</span>{{ tx.value }} CPC</div>
-                                <div class="col text-truncate"><span>TxFee:</span>{{ tx.txfee|floatformat:10 }}</div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="pageturn">
-                {% ifnotequal txs.pages|length 1 %}
-                    <ul class="pagelist">
-
-                        {% if txs.has_previous %}
-                            <li class="long"><a href="?{{ txs.previous_page_number.querystring }}"><i
-                                    class="fa fa-angle-left"></i></a></li>
-                        {% endif %}
-                        {% for page in txs.pages %}
-                            {% if page %}
-                                {% ifequal page txs.number %}
-                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
-                                {% else %}
-                                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                                {% endifequal %}
-                            {% else %}
-                                <li><a href="" class="none">...</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if txs.has_next %}
-                            <li class="long"><a href="?{{ txs.next_page_number.querystring }}"><i
-                                    class="fa fa-angle-right"></i></a>
-                            </li>
-                        {% endif %}
-
-                    </ul>
-                {% endifnotequal %}
-            </div>
+  <div class="container poppins-font" id="address">
+    <div class="info-table px-md-5" id="blocks-list">
+      <div class="row info-id">
+        <span class="info-id-icon"><img src="{% static 'img/explorer/contract icon.png' %}" alt=""></span>
+        <span class="col info-id-serial" style="top: 4px">{{ address }}</span>
+        <div id="qrcode" style="width:100px; height:100px; margin-left: -200px;   margin-top: -30px; "></div>
+      </div>
+      <div class="info-table-subtitle">Overview</div>
+      <div class="row info-row">
+        <div class="col-3">Balance:</div>
+        <div class="col poppins-light">{{ balance }} CPC</div>
+      </div>
+      <div class="row info-row">
+        <div class="col-3">Transactions:</div>
+        <div class="col poppins-light">{{ txs_count }} txs</div>
+      </div>
+      {% if proposer_history %}
+      <div class="row info-row">
+        <div class="col-3">Proposer History:</div>
+        <a href="{% url 'explorer:proposer_history' address %}">
+          <div class="col poppins-light" style="padding-left: 0">{{ proposer_history }} blocks</div>
+        </a>
+      </div>
+      {% endif %}
+      <div class="info-table-subtitle info-table-subtitle-list" style="border-bottom: solid 2px #305278;width: 186px;">
+        Transactions
+      </div>
+      <div class="info-table-list">
+        <div class="info-table-list-title">
+          {% if txs_count < 25 %}{{ txs_count }}
+          {% else %}{{current.begin}} to {{current.end}}{% endif %} txs from a total of <a href>{{ txs_count }}
+            transactions</a>
         </div>
+        <div class="info-table-list-content">
+          <div class="table">
+            <div class="row list-header">
+              <div class="col text-truncate">TxHash</div>
+              <div class="col text-truncate">Block</div>
+              <div class="col text-truncate marginfix">Age</div>
+              <div class="col text-truncate">From</div>
+              <div class="col-1 text-truncate">&nbsp;</div>
+              <div class="col text-truncate">To</div>
+              <div class="col text-truncate">Value</div>
+              <div class="col text-truncate">TxFee</div>
+            </div>
+            {% for tx in txs.object_list %}
+            <div class="row row-content">
+              {% if tx.status == 0 %}
+              <div class="text-truncate">
+                <img style="height: 16px;width:16px;margin-right: 6px " src="{% static 'img/explorer/th.png' %}">
+              </div>
+              {% else %}
+              <div style="width:22px"></div>
+              {% endif %}
+              <div class="col text-truncate"><span>TxHash:</span><a
+                  href="{% url 'explorer:tx' tx.hash %}">{{ tx.hash }}</a></div>
+              <div class="col text-truncate"><span>Block:</span><a
+                  href="{% url 'explorer:block' tx.blockNumber %}">{{ tx.blockNumber }}</a></div>
+              <div class="col text-truncate marginfix"><span>Age:</span>>[[
+                convertTime({{ tx.timesince }}) ]] ago
+              </div>
+              <div class="col text-truncate"><span>From:</span><a
+                  href="{% url 'explorer:address' tx.from %}">{{ tx.from }}</a></div>
+              <div class="col-1 text-truncate flag-{{ tx.flag }}"><span>{{ tx.flag }}</span></div>
+              <div class="col text-truncate"><span>To:</span>
+                {% if tx.to %}
+                <a href="{% url 'explorer:address' tx.to %}">{{ tx.to }}</a>
+                {% else %}
+                <a href="{% url 'explorer:address' tx.contract %}" class="text-truncate col px-0"
+                  title="{{ tx.contract }}">Contract
+                  Creation</a>
+                {% endif %}
+
+              </div>
+              <div class="col text-truncate"><span>Value:</span>{{ tx.value }} CPC</div>
+              <div class="col text-truncate"><span>TxFee:</span>{{ tx.txfee|floatformat:10 }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="pageturn">
+        {% ifnotequal txs.pages|length 1 %}
+        <ul class="pagelist">
+
+          {% if txs.has_previous %}
+          <li class="long"><a href="?{{ txs.previous_page_number.querystring }}"><i class="fa fa-angle-left"></i></a>
+          </li>
+          {% endif %}
+          {% for page in txs.pages %}
+          {% if page %}
+          {% ifequal page txs.number %}
+          <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+          {% else %}
+          <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+          {% endifequal %}
+          {% else %}
+          <li><a href="" class="none">...</a></li>
+          {% endif %}
+          {% endfor %}
+          {% if txs.has_next %}
+          <li class="long"><a href="?{{ txs.next_page_number.querystring }}"><i class="fa fa-angle-right"></i></a>
+          </li>
+          {% endif %}
+
+        </ul>
+        {% endifnotequal %}
+      </div>
     </div>
-    <script>
-        var blockListApp = new Vue({
-            el: '#blocks-list',
-            delimiters: [`[[`, `]]`],
-            methods: {
-                convertTime: function (tss) {
-                    return formatTS(tss)
-                }
-            }
-        })
-    </script>
-    </body>
+  </div>
+  <script src="/static/js/qrcode.min.js"></script>
+  <script>
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      width: 100,
+      height: 100
+    });
+
+    qrcode.makeCode(`{{address}}`);
+    var blockListApp = new Vue({
+      el: '#blocks-list',
+      delimiters: [`[[`, `]]`],
+      methods: {
+        convertTime: function (tss) {
+          return formatTS(tss)
+        }
+      }
+    })
+  </script>
+</body>
 
 {% endblock %}
