@@ -278,6 +278,9 @@ SECRET_KEY = cfg['web']['secretkey']
 
 SWAGGER_URL = "http://127.0.0.1:8000"
 
+# 不连接 chain 节点，用于测试
+NO_CHAIN_NODE = False
+
 try:
     from .local import *
 except:
