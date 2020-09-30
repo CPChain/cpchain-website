@@ -12,7 +12,7 @@ from apps.utils import currency
 from apps.utils.pure_pagination import PageNotAnInteger, Paginator
 from apps.utils.update_our_proposer import read_our_proposer
 from cpchain_test.config import cfg
-from cpchain_test.settings import cf
+from cpchain_test.settings import cf, NO_CHAIN_NODE
 from . import withdraw_abi
 
 our_proposer = read_our_proposer()
@@ -503,10 +503,12 @@ def address(req, address):
 
     # txs.sort(key=lambda x: x['timestamp'], reverse=True)
 
+    balance = 'N/A'
     try:
-        balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
-    except:
-        print('cf connection error')
+        if not NO_CHAIN_NODE:
+            balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
+    except Exception as e:
+        print('cf connection error', e)
         balance = 'N/A'
 
     # latest 25 txs
