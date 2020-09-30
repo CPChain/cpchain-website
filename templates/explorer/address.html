@@ -136,12 +136,14 @@
   </div>
   <script src="/static/js/qrcode.min.js"></script>
   <script>
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      width: 100,
-      height: 100
-    });
+  setTimeout(() => {
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 100,
+        height: 100
+      });
 
-    qrcode.makeCode(`{{address}}`);
+      qrcode.makeCode(`{{address}}`);
+    }, 500)
     var blockListApp = new Vue({
       el: '#blocks-list',
       delimiters: [`[[`, `]]`],
