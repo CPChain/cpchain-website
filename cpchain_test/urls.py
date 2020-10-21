@@ -66,6 +66,7 @@ urlpatterns = i18n_patterns(
     path('', include(indexpatterns)),
     path('community-manage/', include('community.urls')),
     path('nodes/', include('node_ip.urls')),
+    path('suggest/', include('suggest.urls')),
     url(r'^api-docs$', schema_view),
     prefix_default_language=False
 )
