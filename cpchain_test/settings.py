@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'community',
     'rest_framework',
     'rest_framework_swagger',
-    'node_ip'
+    'node_ip',
+    'suggest'
 ]
 
 MIDDLEWARE = [
