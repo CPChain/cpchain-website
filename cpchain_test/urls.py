@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.urls import path, include, re_path
 from django.conf.urls import url, handler404, handler500
+from django.views.generic.base import View
+from django.shortcuts import render
 
 from rest_framework_swagger.views import get_swagger_view
 
@@ -28,6 +30,10 @@ from cpchain_test.settings import SWAGGER_URL
 
 schema_view = get_swagger_view(title='CPChain Website API')
 
+class PrivacyView(View):
+    def get(self, req):
+        return render(req, 'privacy.html')
+
 indexpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(), name='index'),
@@ -35,6 +41,7 @@ indexpatterns = [
     path('notification',NotificationView.as_view(),name='notification'),
     path('index_video',IndexVideoView.as_view(),name='index_video'),
     path('community/', CommunityView.as_view(), name='community'),
+    path('privacy/', PrivacyView.as_view(), name='privacy'),
     path('developer/', DeveloperView.as_view(),name='developer'),
     path('news/list/<category>', NewsListView.as_view(), name='news_list'),
     path('rnode/', RnodeView.as_view(), name='rnode'),
