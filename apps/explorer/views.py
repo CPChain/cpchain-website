@@ -504,9 +504,14 @@ def address(req, address):
     # txs.sort(key=lambda x: x['timestamp'], reverse=True)
 
     balance = 'N/A'
+    is_rnode = False
     try:
         if not NO_CHAIN_NODE:
             balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
+            # check if the address have locked 200k cpc in RNode contract
+            if rnode_collection.find({"Address": address}).count() > 0:
+                balance += 200000
+                is_rnode = True
     except Exception as e:
         print('cf connection error', e)
         balance = 'N/A'
@@ -521,6 +526,7 @@ def address(req, address):
                                                      'address': raw_address,
                                                      'balance': balance,
                                                      'txs_count': txs_count,
+                                                     'is_rnode': is_rnode,
                                                      'proposer_history': proposer_history
                                                      })
     else:
