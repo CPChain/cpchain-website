@@ -137,4 +137,4 @@ The website uses a third-party package cpc-fusion. For more detailed information
 
 ## License
 
-- Copyright 2019 © [cpchain.io](https://cpchain.io).
+- Copyright 2020 © [cpchain.io](https://cpchain.io).
