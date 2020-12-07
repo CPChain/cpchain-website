@@ -72,6 +72,7 @@ urlpatterns = i18n_patterns(
     path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
     path('community-manage/', include('community.urls')),
+    path('chain/', include('chain.urls')),
     path('nodes/', include('node_ip.urls')),
     path('suggest/', include('suggest.urls')),
     url(r'^api-docs$', schema_view),
