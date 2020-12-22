@@ -18,7 +18,8 @@ from django.conf.urls import url, handler404, handler500
 from django.views.generic.base import View
 from django.shortcuts import render
 
-from rest_framework_swagger.views import get_swagger_view
+from rest_framework.schemas import get_schema_view
+from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPICodec
 
 import xadmin
 from index.views import *
@@ -28,7 +29,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 from cpchain_test.settings import SWAGGER_URL
 
-schema_view = get_swagger_view(title='CPChain Website API')
+schema_view = get_schema_view(title='CPChain Website API', public=True, renderer_classes=[SwaggerUIRenderer, OpenAPICodec])
 
 class PrivacyView(View):
     def get(self, req):
@@ -71,11 +72,12 @@ indexpatterns = [
 urlpatterns = i18n_patterns(
     path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
+    url(r'^api-docs$', schema_view, name='docs'),
     path('community-manage/', include('community.urls')),
     path('chain/', include('chain.urls')),
     path('nodes/', include('node_ip.urls')),
     path('suggest/', include('suggest.urls')),
-    url(r'^api-docs$', schema_view),
+    path('user/', include('user.urls')),
     prefix_default_language=False
 )
 

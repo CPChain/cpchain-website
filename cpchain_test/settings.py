@@ -56,9 +56,11 @@ INSTALLED_APPS = [
     'community',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
     'node_ip',
     'suggest',
-    'chain'
+    'chain',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +93,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
     'PAGINATE_BY':10,
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser',
+    ],
 }
 
 ROOT_URLCONF = 'cpchain_test.urls'
@@ -282,6 +289,16 @@ SWAGGER_URL = "http://127.0.0.1:8000"
 
 # 不连接 chain 节点，用于测试
 NO_CHAIN_NODE = False
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
 
 try:
     from .local import *
