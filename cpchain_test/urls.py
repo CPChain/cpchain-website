@@ -69,6 +69,8 @@ indexpatterns = [
 
 ]
 
+api_v="api/"
+
 urlpatterns = i18n_patterns(
     path('', include('django_prometheus.urls')),
     path('', include(indexpatterns)),
@@ -77,7 +79,7 @@ urlpatterns = i18n_patterns(
     path('chain/', include('chain.urls')),
     path('nodes/', include('node_ip.urls')),
     path('suggest/', include('suggest.urls')),
-    path('user/', include('user.urls')),
+    path(api_v + 'user/', include('user.urls')),
     prefix_default_language=False
 )
 

@@ -16,3 +16,13 @@ class HelloView(generics.GenericAPIView):
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
+
+class UserInfoView(generics.GenericAPIView):
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+            "avatar": "static/img/favicon.ico",
+        })
