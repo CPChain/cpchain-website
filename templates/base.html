@@ -71,7 +71,7 @@
                     </li>
                     <li>
                         <a href="{% url 'index' %}#application" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Application' %}
+                            {% trans 'Solutions' %}
                         </a>
                     </li>
                     <li>
@@ -152,8 +152,13 @@
                             {% trans 'Ecosystem' %}
                         </a>
                     </li>-->
+                    <li>
+                        <a href="{% url 'world_map' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            Map
+                        </a>
+                    </li>
 
-                    <li class="dropdown bg-transparent">
+                    <!--<li class="dropdown bg-transparent">
                         <div style="margin-top:3px"
                             class="dropdown-holder d-flex flex-row align-items-center justify-content-center ">
                             <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
@@ -172,9 +177,9 @@
                                 <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
                                     {% trans 'Ecosystem' %}
                                 </a>
-                                <!-- <a href="{% url 'proposal' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                <a href="{% url 'proposal' %}" class="font-weight-bold" onclick="openMenu(0)">
                                         {% trans 'Proposals' %}
-                                    </a> -->
+                                    </a>
                                 <a href="{% url 'task' %}" class="font-weight-bold" onclick="openMenu(0)">
                                     {% trans 'Tasks' %}
                                 </a>
@@ -183,7 +188,7 @@
                                 </a>
                             </ul>
                         </div>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Contact' %}
@@ -296,8 +301,6 @@
 <script>
     $(function () {
         var localUrl = window.location.pathname;
-
-
         // 点击英文
         $(".en").click(function () {
 
@@ -317,17 +320,15 @@
                 window.location.href = '/zh-hans' + window.location.pathname
             }
         })
-        // 获取本地地址和语言
     })
-</script>
-<script>
+
     //  let header = document.getElementById('header');
     //
     //  window.addEventListener('scroll', function (e) {
     //      (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
     //  });
 
-    //Navigation
+    // Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
     for (let item of anchorlinks) {
         item.addEventListener('click', (e) => {
