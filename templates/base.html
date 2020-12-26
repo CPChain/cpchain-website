@@ -2,41 +2,45 @@
 <html lang="en-US" class="no-js no-svg">
 {% load staticfiles %}
 {% load i18n %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="shortcut icon" href="{% static '/img/favicon.ico' %}"/>
+    <link rel="shortcut icon" href="{% static '/img/favicon.ico' %}" />
     <link rel="stylesheet" href="{% static '/css/all.css' %}">
     <link rel="stylesheet" href="{% static '/css/swiper.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Source+Sans+Pro:400,600,700,900"
-          rel="stylesheet">
-    <script>(function (html) {
-        html.className = html.className.replace(/\bno-js\b/, 'js')
-    })(document.documentElement);</script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Source+Sans+Pro:400,600,700,900"
+        rel="stylesheet">
+    <script>
+        (function (html) {
+            html.className = html.className.replace(/\bno-js\b/, 'js')
+        })(document.documentElement);
+    </script>
     {% block title %}
     {% endblock %}
-    <link rel='dns-prefetch' href='//s.w.org'/>
-    <link rel='stylesheet' id='wpm-main-css' href="{% static '/css/main.css' %}" type='text/css' media='all'/>
-    <link rel='stylesheet' href="{% static '/css/style.css' %}" type='text/css' media='all'/>
-    <link rel="canonical" href="https://cpchain.io/"/>
-    <link rel='shortlink' href='https://cpchain.io/'/>
-    <link rel="alternate" hreflang="x-default" href="https://cpchain.io/"/>
-    <link rel="alternate" hreflang="en-us" href="https://cpchain.io/"/>
-    <link rel="alternate" hreflang="zh-cn" href="https://cpchain.io/zh/"/>
-    <style type="text/css">.recentcomments a {
-        display: inline !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel='stylesheet' id='wpm-main-css' href="{% static '/css/main.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{% static '/css/style.css' %}" type='text/css' media='all' />
+    <link rel="canonical" href="https://cpchain.io/" />
+    <link rel='shortlink' href='https://cpchain.io/' />
+    <link rel="alternate" hreflang="x-default" href="https://cpchain.io/" />
+    <link rel="alternate" hreflang="en-us" href="https://cpchain.io/" />
+    <link rel="alternate" hreflang="zh-cn" href="https://cpchain.io/zh/" />
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
 
 
-    header {
-        font-family: "Poppins", sans-serif !important;
-    }
-
+        header {
+            font-family: "Poppins", sans-serif !important;
+        }
     </style>
     {% block custom_head %}
     {% endblock %}
@@ -44,7 +48,7 @@
 <header class="py-4 mx-auto w-100" id="header">
     <div class="container">
         <div class="row">
-            {#logo#}
+            <!--logo-->
             <div class="col-3 d-flex flex-row align-items-center">
                 <a href="{% url 'index' %}" class="logo-hov">
                     <div class="image-header-holder d-flex flex-row align-items-center justify-content-start">
@@ -52,22 +56,22 @@
                     </div>
                 </a>
             </div>
-            {#logo#}
 
             <div class="menu col-9 d-flex align-items-center justify-content-end">
-                    <ul class="list-unstyled mainul flex-column flex-md-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-md-center justify-content-md-between align-items-start justify-content-start w-100 mb-0"
+                <ul class="list-unstyled mainul flex-column flex-md-row sidenav d-flex align-items-xl-center justify-content-xl-between align-items-md-center justify-content-md-between align-items-lg-center justify-content-lg-between align-items-md-center justify-content-md-between align-items-start justify-content-start w-100 mb-0"
                     id="mySidenav">
                     <li class="d-md-none d-block w-100">
                         <a href="javascript:void(0);" class="closebtn text-right p-0" onclick="openMenu(0)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                                      fill="#fff"/>
+                                <path
+                                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                    fill="#fff" />
                             </svg>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'index' %}#application" class="font-weight-bold" onclick="openMenu(0)">
-                            {% trans 'Application' %}
+                            {% trans 'Solutions' %}
                         </a>
                     </li>
                     <li>
@@ -75,107 +79,116 @@
                             {% trans 'Roadmap' %}
                         </a>
                     </li>
-                    {% comment %} <li>
+                    <!--<li>
                         <a href="{% url 'index' %}#team" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Team' %}
                         </a>
-                    </li> {% endcomment %}
+                    </li>-->
 
                     <li>
                         <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Community' %}
                         </a>
                     </li>
-{#                    <li class="dropdown bg-transparent" >#}
-{#                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
-{#                            <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">#}
-{#                                 {% trans 'Developer' %}#}
-{#                            </a>#}
-{#                            <div class="image-holder d-flex align-items-center justify-content-center">#}
-{#                                <svg height="24px" class="d-none d-md-block"#}
-{#                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"#}
-{#                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
-{#                                     viewBox="0 0 24 24">#}
-{#                                    <g opacity="0.4">#}
-{#                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>#}
-{#                                        <path d="M0,0H24V24H0Z" fill="none"/>#}
-{#                                    </g>#}
-{#                                </svg>#}
-{#                            </div>#}
-{#                            <ul class="dropdown-menu list-unstyled rounded">#}
-{#                                <a href="{% url 'developer' %}" class="small">{% trans 'Docs' %}</a>#}
-{#                               <a href="{% url 'password' %}" class="small">{% trans 'Faucet' %}</a>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </li>#}
+                    <!--
+                    <li class="dropdown bg-transparent" >
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold dropbtn-links p-0 small d-none d-md-block">
+                                 {% trans 'Developer' %}
+                            </a>
+                            <div class="image-holder d-flex align-items-center justify-content-center">
+                                <svg height="24px" class="d-none d-md-block"
+                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24">
+                                    <g opacity="0.4">
+                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                        <path d="M0,0H24V24H0Z" fill="none"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'developer' %}" class="small">{% trans 'Docs' %}</a>
+                               <a href="{% url 'password' %}" class="small">{% trans 'Faucet' %}</a>
+                            </ul>
+                        </div>
+                    </li>
+-->
                     <li>
                         <a href="{% url 'developer' %}" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Documentation' %}
                         </a>
                     </li>
                     <li>
-                            <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                        <a href="{% url 'explorer:explorer' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            {% trans 'Explorer' %}
+                        </a>
+                    </li>
+                    <!--
+                    <li class="dropdown bg-transparent">
+                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">
+                            <a class="font-weight-bold  p-0 small font-weight-bold d-none d-md-block" onclick="openMenu(0)">
                                 {% trans 'Explorer' %}
                             </a>
+                            <div class="image-holder d-flex align-items-center justify-content-center">
+                                <svg height="24px" class="d-none d-md-block"
+                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24">
+                                    <g opacity="0.4">
+                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>
+                                        <path d="M0,0H24V24H0Z" fill="none"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="dropdown-menu list-unstyled rounded rhea">
+                                <a href="{% url 'explorer:explorer' %}" class="small">{% trans 'Mainnet' %}</a>
+                            </ul>
+                        </div>
                     </li>
-{#                    <li class="dropdown bg-transparent">#}
-{#                        <div class="dropdown-holder d-flex flex-row align-items-center justify-content-center">#}
-{#                            <a class="font-weight-bold  p-0 small font-weight-bold d-none d-md-block" onclick="openMenu(0)">#}
-{#                                {% trans 'Explorer' %}#}
-{#                            </a>#}
-{#                            <div class="image-holder d-flex align-items-center justify-content-center">#}
-{#                                <svg height="24px" class="d-none d-md-block"#}
-{#                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"#}
-{#                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
-{#                                     viewBox="0 0 24 24">#}
-{#                                    <g opacity="0.4">#}
-{#                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>#}
-{#                                        <path d="M0,0H24V24H0Z" fill="none"/>#}
-{#                                    </g>#}
-{#                                </svg>#}
-{#                            </div>#}
-{#                            <ul class="dropdown-menu list-unstyled rounded rhea">#}
-{#                                <a href="{% url 'explorer:explorer' %}" class="small">{% trans 'Mainnet' %}</a>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </li>#}
-                    {% comment %} <li>
+                    -->
+                    <!--<li>
                         <a href="{% url 'index' %}#partners" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Ecosystem' %}
                         </a>
-                    </li> {% endcomment %}
+                    </li>-->
+                    <li>
+                        <a href="{% url 'world_map' %}" class="font-weight-bold" onclick="openMenu(0)">
+                            Map
+                        </a>
+                    </li>
 
-                    <li class="dropdown bg-transparent">
-                            <div style="margin-top:3px" class="dropdown-holder d-flex flex-row align-items-center justify-content-center ">
-                                <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
-                                  {% trans 'Ecosystem' %}</a>
-                                <div class="image-holder d-flex align-items-center justify-content-center">
-                                    <svg height="24px" class="d-none d-md-block"
-                                         id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
-                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24">
-                                        <g opacity="0.4">
-                                            <path d="M7,10l5,5,5-5Z" fill="#305278"/>
-                                            <path d="M0,0H24V24H0Z" fill="none"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <ul class="dropdown-menu list-unstyled rounded">
-                                   <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                        {% trans 'Ecosystem' %}
-                                    </a>
-                                     <a href="{% url 'proposal' %}" class="font-weight-bold" onclick="openMenu(0)">
+                    <!--<li class="dropdown bg-transparent">
+                        <div style="margin-top:3px"
+                            class="dropdown-holder d-flex flex-row align-items-center justify-content-center ">
+                            <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
+                                {% trans 'Ecosystem' %}</a>
+                            <div class="image-holder d-flex align-items-center justify-content-center">
+                                <svg height="24px" class="d-none d-md-block" id="723dc0ec-7619-4a51-9a43-c524926a5ebc"
+                                    data-name="drop_down_arrow" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24">
+                                    <g opacity="0.4">
+                                        <path d="M7,10l5,5,5-5Z" fill="#305278" />
+                                        <path d="M0,0H24V24H0Z" fill="none" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <ul class="dropdown-menu list-unstyled rounded">
+                                <a href="{% url 'community' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                    {% trans 'Ecosystem' %}
+                                </a>
+                                <a href="{% url 'proposal' %}" class="font-weight-bold" onclick="openMenu(0)">
                                         {% trans 'Proposals' %}
                                     </a>
-                                      <a href="{% url 'task' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                        {% trans 'Tasks' %}
-                                    </a>
-                                    <a href="{% url 'world_map' %}" class="font-weight-bold" onclick="openMenu(0)">
-                                         Node Map
-                                    </a>
-                                </ul>
-                            </div>
-                         </li>
+                                <a href="{% url 'task' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                    {% trans 'Tasks' %}
+                                </a>
+                                <a href="{% url 'world_map' %}" class="font-weight-bold" onclick="openMenu(0)">
+                                    Node Map
+                                </a>
+                            </ul>
+                        </div>
+                    </li>-->
                     <li>
                         <a href="{% url 'index' %}#contact" class="font-weight-bold" onclick="openMenu(0)">
                             {% trans 'Contact' %}
@@ -187,13 +200,12 @@
                             <a class="dropbtn-links p-0 small font-weight-bold d-none d-md-block">
                                 {% trans 'EN' %} </a>
                             <div class="image-holder d-flex align-items-center justify-content-center">
-                                <svg height="24px" class="d-none d-md-block"
-                                     id="723dc0ec-7619-4a51-9a43-c524926a5ebc" data-name="drop_down_arrow"
-                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                     viewBox="0 0 24 24">
+                                <svg height="24px" class="d-none d-md-block" id="723dc0ec-7619-4a51-9a43-c524926a5ebc"
+                                    data-name="drop_down_arrow" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24">
                                     <g opacity="0.4">
-                                        <path d="M7,10l5,5,5-5Z" fill="#305278"/>
-                                        <path d="M0,0H24V24H0Z" fill="none"/>
+                                        <path d="M7,10l5,5,5-5Z" fill="#305278" />
+                                        <path d="M0,0H24V24H0Z" fill="none" />
                                     </g>
                                 </svg>
                             </div>
@@ -218,27 +230,28 @@
     <div class="container">
         <div class="row flex-rox d-flex align-items-center justify-content-center">
 
-{#            <hr class="w-100 middle-footer-hr">#}
+            <!--<hr class="w-100 middle-footer-hr">-->
 
             <div class="col-12 d-flex flex-row flex-wrap align-items-center justify-content-center px-0 py-3 py-sm-5">
 
                 <div class="col-sm-4 col-6 d-flex flex-row align-items-center">
                     <a href="https://cpchain.io" class="logo-hov">
                         <div class="image-footer-holder d-flex flex-row align-items-center justify-content-start">
-                            <img src="{% static '/img/logo_new.svg' %}"
-                                 class="disable-select">
+                            <img src="{% static '/img/logo_new.svg' %}" class="disable-select">
                         </div>
                     </a>
                 </div>
 
-                <div class="col-sm-4 middle-col col-6 text-sm-right text-center d-flex align-items-center justify-content-end justify-content-sm-center">
-                    <h6 class="mb-0 pr-sm-0 poppins-font"><a
-                            href="mailto:info@cpchain.io" class=""><span
-                            class="__cf_email__">info@cpchain.io</span></a>
+                <div
+                    class="col-sm-4 middle-col col-6 text-sm-right text-center d-flex align-items-center justify-content-end justify-content-sm-center">
+                    <h6 class="mb-0 pr-sm-0 poppins-font"><a href="mailto:info@cpchain.io" class=""><span
+                                class="__cf_email__">info@cpchain.io</span></a>
                     </h6>
                 </div>
-                <div class="col-sm-4 col-12 last-col d-flex flex-row align-items-xl-center justify-content-xl-end  align-items-lg-center justify-content-lg-end  align-items-md-center justify-content-md-end  align-items-sm-center justify-content-sm-end justify-content-center list-unstyled mt-5 mt-sm-0">
-                    <ul class="display-flex list-unstyled d-flex align-items-center justify-content-between my-auto w-75">
+                <div
+                    class="col-sm-4 col-12 last-col d-flex flex-row align-items-xl-center justify-content-xl-end  align-items-lg-center justify-content-lg-end  align-items-md-center justify-content-md-end  align-items-sm-center justify-content-sm-end justify-content-center list-unstyled mt-5 mt-sm-0">
+                    <ul
+                        class="display-flex list-unstyled d-flex align-items-center justify-content-between my-auto w-75">
                         <li>
                             <a href="https://github.com/CPChain" style="color:#305278;" target="_blank">
                                 <i class="fab fa-github glyphicon"></i>
@@ -250,14 +263,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://medium.com/search?q=cpchain" style="color:#305278;"
-                               target="_blank">
+                            <a href="https://medium.com/search?q=cpchain" style="color:#305278;" target="_blank">
                                 <i class="fab fa-medium-m glyphicon"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.reddit.com/r/CPChain_Official/" style="color:#305278;"
-                               target="_blank">
+                            <a href="https://www.reddit.com/r/CPChain_Official/" style="color:#305278;" target="_blank">
                                 <i class="fab fa-reddit-alien glyphicon"></i>
                             </a>
                         </li>
@@ -267,8 +278,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://discordapp.com/invite/X8WxPst" style="color:#305278;"
-                               target="_blank">
+                            <a href="https://discordapp.com/invite/X8WxPst" style="color:#305278;" target="_blank">
                                 <i class="fab fa-discord glyphicon"></i>
                             </a>
                         </li>
@@ -279,7 +289,7 @@
             <hr class="middle-footer-hr w-100">
 
             <div class="col-12 pb-sm-4 pt-sm-3 text-center">
-                <h6 class="text-opacity small"> 2018 CPChain Team © All rights reserved.</h6>
+                <h6 class="text-opacity small"> 2021 CPChain Team © All rights reserved.</h6>
             </div>
 
         </div>
@@ -291,32 +301,26 @@
 <script>
     $(function () {
         var localUrl = window.location.pathname;
-
-
-        {#点击英文#}
+        // 点击英文
         $(".en").click(function () {
 
             if (localUrl.startsWith('/zh-hans')) {
-                window.location.href = '/en' + window.location.pathname.slice(8,)
+                window.location.href = '/en' + window.location.pathname.slice(8, )
             } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
                 window.location.href = '/en' + window.location.pathname
             }
 
         });
 
-        {#点击中文#}
+        // 点击中文
         $(".zh").click(function () {
             if (localUrl.startsWith('/en')) {
-                window.location.href = '/zh-hans' + window.location.pathname.slice(3,)
+                window.location.href = '/zh-hans' + window.location.pathname.slice(3, )
             } else if (!(localUrl.startsWith('/zh-hans') || localUrl.startsWith('/en'))) {
                 window.location.href = '/zh-hans' + window.location.pathname
             }
         })
-        {#获取本地地址和语言#}
     })
-
-</script>
-<script>
 
     //  let header = document.getElementById('header');
     //
@@ -324,13 +328,14 @@
     //      (window.scrollY > 30) ? header.classList.add('active') : header.classList.remove('active');
     //  });
 
-    //Navigation
+    // Navigation
     let anchorlinks = document.querySelectorAll('a[href^="#"]');
     for (let item of anchorlinks) {
         item.addEventListener('click', (e) => {
 
             for (let i of anchorlinks) {
-                (i.textContent != item.textContent) ? i.classList.remove('selected') : i.classList.add('selected');
+                (i.textContent != item.textContent) ? i.classList.remove('selected'): i.classList.add(
+                    'selected');
             }
 
             let hashval = item.getAttribute('href');
@@ -347,13 +352,12 @@
 
     function openMenu(type) {
         let menuHolder = document.getElementById('mySidenav');
-        (type == 1) ? menuHolder.classList.add('col-8', 'active') : menuHolder.classList.remove('col-8', 'active');
+        (type == 1) ? menuHolder.classList.add('col-8', 'active'): menuHolder.classList.remove('col-8', 'active');
     }
 
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
-
-
 </script>
+
 </html>

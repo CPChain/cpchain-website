@@ -3,6 +3,8 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, BaseFilterBackend
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from decimal import Decimal
 from cpc_fusion import Web3
@@ -113,7 +115,7 @@ class TaskClaimViewSet(mixins.CreateModelMixin,
 
     queryset = TaskClaim.objects.all()
     serializer_class = TaskClaimSerializer
-    permission_classes = [IPLimitPermission]
+    permission_classes = [IsAuthenticated, IPLimitPermission]
 
     def create(self, request, *args, **kwargs):
         res = super().create(request, *args, **kwargs)
@@ -257,7 +259,8 @@ class ProposalsViewSet(mixins.RetrieveModelMixin,
     ordering_fields = ["updated_at", "status"]
     ordering = "-updated_at"
     filter_fields = ['status', 'client_id']
-    permission_classes = [IPLimitPermission]
+    permission_classes = [IsAuthenticated, IPLimitPermission]
+    
 
     def get_serializer_class(self):
         if self.action == 'create':
