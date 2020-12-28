@@ -1,4 +1,5 @@
 from rest_framework.views import exception_handler
+from django.http import JsonResponse
 
 
 def custom_exception_handler(exc, context):
@@ -10,4 +11,10 @@ def custom_exception_handler(exc, context):
     if response is not None:
         response.data['status_code'] = response.status_code
         response.data['message'] = str(exc)
+    else:
+        err_data = {
+            'code': 503,
+            'message': str(exc)
+        }
+        return JsonResponse(err_data, safe=False, status=503)
     return response
