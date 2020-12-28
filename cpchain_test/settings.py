@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'suggest',
     'chain',
     'user',
-    'operating'
+    'operating',
+    'explorer'
 ]
 
 MIDDLEWARE = [

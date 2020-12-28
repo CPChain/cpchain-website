@@ -15,6 +15,12 @@ from cpchain_test.config import cfg
 from cpchain_test.settings import cf, NO_CHAIN_NODE
 from . import withdraw_abi
 
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from .models import AddressMark, AddressMarkType
+from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
+
 our_proposer = read_our_proposer()
 mongo = cfg['mongo']['ip']
 port = int(cfg['mongo']['port'])
@@ -56,7 +62,8 @@ def get_chart():
 
 def explorerDev(request):
     try:
-        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+        height = block_collection.find().sort(
+            'number', DESCENDING).limit(1)[0]['number']
     except IndexError as e:
         print(e)
         blocks = []
@@ -70,7 +77,8 @@ def explorerDev(request):
                   'proposer': 0, }
         return render(request, 'explorer/explorer.html',
                       {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort(
+        'number', DESCENDING).limit(20))[::-1]
     t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
@@ -103,7 +111,8 @@ def explorerDev(request):
             }
         else:
             creator = cf.toChecksumAddress(t['from'])
-            contract = contract_collection.find({'creator': creator})[0]['address']
+            contract = contract_collection.find(
+                {'creator': creator})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -115,7 +124,8 @@ def explorerDev(request):
         txs.append(tx)
     txs_count = txs_collection.find().count()
     try:
-        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[
+            0]['ProposerIndex'] + 1
     except:
         index = 1
     header = {
@@ -134,7 +144,8 @@ def explorerDev(request):
 
 def explorer(request):
     try:
-        height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+        height = block_collection.find().sort(
+            'number', DESCENDING).limit(1)[0]['number']
     except IndexError as e:
         print(e)
         blocks = []
@@ -148,7 +159,8 @@ def explorer(request):
                   'proposer': 0, }
         return render(request, 'explorer/explorer.html',
                       {'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
-    b_li = list(block_collection.find({'number': {'$lte': height}}).sort('number', DESCENDING).limit(20))[::-1]
+    b_li = list(block_collection.find({'number': {'$lte': height}}).sort(
+        'number', DESCENDING).limit(20))[::-1]
     t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
     # blocks
     blocks = []
@@ -180,7 +192,8 @@ def explorer(request):
                 'amount': format(t['txfee'], '.10f')
             }
         else:
-            contract = contract_collection.find({'txhash': t['hash']})[0]['address']
+            contract = contract_collection.find(
+                {'txhash': t['hash']})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -192,7 +205,8 @@ def explorer(request):
         txs.append(tx)
     txs_count = txs_collection.find().count()
     try:
-        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[
+            0]['ProposerIndex'] + 1
     except:
         index = 1
     header = {
@@ -221,7 +235,8 @@ def wshandler():
     tps = get_rate('tps')
     bps = get_rate('bps')
     try:
-        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[0]['ProposerIndex'] + 1
+        index = proposer_collection.find({'ProposerIndex': {'$exists': True}})[
+            0]['ProposerIndex'] + 1
     except:
         index = 1
 
@@ -247,7 +262,8 @@ def wshandler():
         new_block['impeach'] = True
         new_block['impeachProposer'] = block['impeachProposer']
 
-    t_li = list(txs_collection.find().sort('timestamp', DESCENDING).limit(20))[::-1]
+    t_li = list(txs_collection.find().sort(
+        'timestamp', DESCENDING).limit(20))[::-1]
     txs = []
     for t in t_li:
         if t['to']:
@@ -259,7 +275,8 @@ def wshandler():
                 'amount': format(t['txfee'], '.10f')
             }
         else:
-            contract = contract_collection.find({'txhash': t['hash']})[0]['address']
+            contract = contract_collection.find(
+                {'txhash': t['hash']})[0]['address']
             tx = {
                 'hash': t['hash'],
                 'sellerID': t['from'],
@@ -394,8 +411,9 @@ def block(req, block_identifier):
     gasLimit = block_dict['gasLimit']
     blockReward = block_dict['reward']
 
-    extraData = block_dict.get('extraData', block_dict.get('proofOfAuthorityData'))
-    ##produce time
+    extraData = block_dict.get(
+        'extraData', block_dict.get('proofOfAuthorityData'))
+    # produce time
     if height > 1:
         last_block = block_collection.find({'number': height - 1})[0]
         timeproduce = timestamp - last_block['timestamp']
@@ -419,7 +437,8 @@ def txs(req):
         txs.object_list = list(txs.object_list)
         for tx in txs.object_list:
             if not tx['to']:
-                tx['contract'] = contract_collection.find({'txhash': tx['hash']})[0]['address']
+                tx['contract'] = contract_collection.find(
+                    {'txhash': tx['hash']})[0]['address']
             tx['value'] = currency.from_wei(tx['value'], 'ether')
         return render(req, 'explorer/txs_list.html', {'txs': txs})
     # block's type is string
@@ -435,7 +454,8 @@ def txs(req):
     txs.object_list = list(txs.object_list)
     for tx in txs.object_list:
         if not tx['to']:
-            tx['contract'] = contract_collection.find({'txhash': tx['hash']})[0]['address']
+            tx['contract'] = contract_collection.find(
+                {'txhash': tx['hash']})[0]['address']
         tx['value'] = currency.from_wei(tx['value'], 'ether')
     return render(req, 'explorer/txs_list.html', {'txs': txs,
                                                   'blockNumber': block,
@@ -448,7 +468,8 @@ def tx(req, tx_hash):
     search = tx_hash.strip().lower()
 
     tx_dict = list(txs_collection.find({"hash": search}))[0]
-    tx_dict['gasLimit'] = block_collection.find({'number': tx_dict['blockNumber']})[0]['gasLimit']
+    tx_dict['gasLimit'] = block_collection.find(
+        {'number': tx_dict['blockNumber']})[0]['gasLimit']
     tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
     tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
     tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
@@ -466,6 +487,7 @@ def tx(req, tx_hash):
 
 
 def address(req, address):
+    raw_address = address
     try:
         raw_address = cf.toChecksumAddress(address.strip())
         address = raw_address.lower()
@@ -474,14 +496,16 @@ def address(req, address):
     except Exception as e:
         code = '0x'
     try:
-        txs_count = address_collection.find({'address': address})[0]['txs_count']
+        txs_count = address_collection.find(
+            {'address': address})[0]['txs_count']
     except:
         txs_count = 0
     try:
         page = req.GET.get('page', 1)
     except PageNotAnInteger:
         page = 1
-    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort('timestamp', DESCENDING)
+    txs = txs_collection.find({'$or': [{'from': address}, {'to': address}]}).sort(
+        'timestamp', DESCENDING)
     p = Paginator(txs, 25, request=req, fix_count=txs_count, restrain=True)
     txs = p.page(page)
 
@@ -497,7 +521,8 @@ def address(req, address):
             d['flag'] = 'in'
         # add contract address
         if not d['to']:
-            d['contract'] = contract_collection.find({'txhash': d['hash']})[0]['address']
+            d['contract'] = contract_collection.find(
+                {'txhash': d['hash']})[0]['address']
         d['value'] = currency.from_wei(d['value'], 'ether')
         d['timesince'] = timenow - d['timestamp']
 
@@ -507,7 +532,8 @@ def address(req, address):
     is_rnode = False
     try:
         if not NO_CHAIN_NODE:
-            balance = currency.from_wei(cf.cpc.getBalance(raw_address), 'ether')
+            balance = currency.from_wei(
+                cf.cpc.getBalance(raw_address), 'ether')
             # check if the address have locked 200k cpc in RNode contract
             if rnode_collection.find({"Address": address}).count() > 0:
                 balance += 200000
@@ -517,7 +543,8 @@ def address(req, address):
         balance = 'N/A'
 
     # latest 25 txs
-    current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(txs.object_list)}
+    current = {'begin': (int(page) - 1) * 25 + 1,
+               'end': (int(page) - 1) * 25 + len(txs.object_list)}
     # current =1
     if code == '0x':
         proposer_history = block_collection.count(
@@ -530,7 +557,8 @@ def address(req, address):
                                                      'proposer_history': proposer_history
                                                      })
     else:
-        creator = contract_collection.find({'address': raw_address})[0]['creator']
+        creator = contract_collection.find(
+            {'address': raw_address})[0]['creator']
         return render(req, 'explorer/contract.html', {'txs': txs, 'current': current,
                                                       'address': raw_address,
                                                       'balance': balance,
@@ -581,8 +609,10 @@ def committeeHistory(req):
 
 def event(req, address):
     address = cf.toChecksumAddress(address.strip())
-    events = list(event_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0}))
-    queryset = abi_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+    events = list(event_collection.find(
+        {'contract_address': address}, {'_id': 0, 'contract_address': 0}))
+    queryset = abi_collection.find({'contract_address': address}, {
+                                   '_id': 0, 'contract_address': 0})
     if queryset.count() > 0:
         event_abi = queryset[0]['event_abi']
         events = decode_event(event_abi, events)
@@ -596,7 +626,8 @@ def decode_event(event_abi, event_list):
         topics = e['topics']
         data = e['data']
         event = event_abi[topics[0]]
-        values = eth_abi.decode_abi(event['arg_types'], cf.toBytes(hexstr=data))
+        values = eth_abi.decode_abi(
+            event['arg_types'], cf.toBytes(hexstr=data))
         event_name = event['event_name']
         events.append({
             'topics': topics,
@@ -629,7 +660,8 @@ def parse_event_abi(contract_abi):
 def abi(req, address):
     address = cf.toChecksumAddress(address.strip())
     if req.method == 'GET':
-        queryset = abi_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        queryset = abi_collection.find({'contract_address': address}, {
+                                       '_id': 0, 'contract_address': 0})
         if queryset.count() == 0:
             return JsonResponse({"status": 0, "message": 'no abi found'})
         abi = list(queryset)
@@ -658,7 +690,8 @@ def abi(req, address):
 def source(req, address):
     address = cf.toChecksumAddress(address.strip())
     if req.method == 'GET':
-        queryset = source_collection.find({'contract_address': address}, {'_id': 0, 'contract_address': 0})
+        queryset = source_collection.find({'contract_address': address}, {
+                                          '_id': 0, 'contract_address': 0})
         if queryset.count() == 0:
             return JsonResponse({"status": 0, "message": 'no source found'})
         source = list(queryset)
@@ -684,7 +717,8 @@ def impeachs_by_addr(req, address):
     if not cf.isAddress(address):
         return HttpResponse('invalid address.')
     address = cf.toChecksumAddress(address).lower()
-    impeach_bks = block_collection.find({'impeachProposer': address}, {'_id': 0}).sort('number', DESCENDING)
+    impeach_bks = block_collection.find({'impeachProposer': address}, {
+                                        '_id': 0}).sort('number', DESCENDING)
     res = {}
     res['impeach_num'] = impeach_bks.count()
     res['success_num'] = block_collection.find({'miner': address}).count()
@@ -694,7 +728,7 @@ def impeachs_by_addr(req, address):
 
 def impeachs_by_block(req, block, isOur):
     block = int(block)
-
+    impeach_bks = None
     if isOur == '0':
         impeach_bks = block_collection.find(
             {'number': {'$gt': block}, 'impeachProposer': {'$exists': True}},
@@ -711,7 +745,8 @@ def impeachs_by_block(req, block, isOur):
 
 
 def all_blocks(req):
-    height = block_collection.find().sort('number', DESCENDING).limit(1)[0]['number']
+    height = block_collection.find().sort(
+        'number', DESCENDING).limit(1)[0]['number']
     height = int(height)
     blocks = block_collection.find({'number': {'$gt': (height - 1000)}},
                                    {'_id': False, 'transactions': False}).sort('number', DESCENDING)
@@ -722,7 +757,8 @@ def all_blocks(req):
 
 def check_campaign(req):
     config = withdraw_abi.config
-    campaign = cf.cpc.contract(abi=config["abi"], address="0x20BF49A0773a2b9eA5cF218C188d7F633b07c267")
+    campaign = cf.cpc.contract(
+        abi=config["abi"], address="0x20BF49A0773a2b9eA5cF218C188d7F633b07c267")
 
     term = campaign.functions.termIdx().call()
     ten_candidates = []
@@ -731,7 +767,8 @@ def check_campaign(req):
         candidates = campaign.functions.candidatesOf(i).call()
         # for c in candidates:
         #     print(campaign.functions.candidateInfoOf(c).call())
-        candidates = [c.lower() + ' *' if c.lower() in our_proposer else c.lower() for c in candidates]
+        candidates = [c.lower() + ' *' if c.lower()
+                      in our_proposer else c.lower() for c in candidates]
 
         ten_candidates.append({'term': i, 'candidates': candidates})
     ten_candidates = ten_candidates[::-1]
@@ -741,7 +778,8 @@ def check_campaign(req):
 
 def candidate_info(req, addr):
     config = withdraw_abi.config
-    campaign = cf.cpc.contract(abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
+    campaign = cf.cpc.contract(
+        abi=config["abi"], address="0xb8A07aE42E2902C41336A301C22b6e849eDd4F8B")
     if addr.endswith(' *'):
         addr = addr[:-2]
 
@@ -762,7 +800,8 @@ def impeachQuery(req):
     li = []
     addr = {}
     for i in range(len(bks)):
-        time = dt.fromtimestamp(bks[i]["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
+        time = dt.fromtimestamp(
+            bks[i]["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
         impeach_item = {"address": bks[i]['impeachProposer'], 'number': bks[i]['number'],
                         'time': time}
         if impeach_item['address'] not in addr:
@@ -865,6 +904,21 @@ def proposer_history(req, address):
     p = Paginator(blocks_by_proposer, 25, request=req, fix_count=blocks_count)
     blocks = p.page(page)
     blocks.object_list = list(blocks.object_list)
-    current = {'begin': (int(page) - 1) * 25 + 1, 'end': (int(page) - 1) * 25 + len(blocks.object_list)}
+    current = {'begin': (int(page) - 1) * 25 + 1,
+               'end': (int(page) - 1) * 25 + len(blocks.object_list)}
     return render(req, 'explorer/proposer_history_list.html',
                   {'blocks': blocks, 'current': current, 'address': address, 'blocks_count': blocks_count})
+
+
+class AddressMarkViewSet(viewsets.ModelViewSet):
+    queryset = AddressMark.objects.filter()
+    serializer_class = AddressMarkSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
+
+
+class AddressMarkTypeViewSet(viewsets.ModelViewSet):
+    queryset = AddressMarkType.objects.filter()
+    serializer_class = AddressMarkTypeSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
