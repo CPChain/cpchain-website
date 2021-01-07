@@ -1,10 +1,19 @@
 from django.urls import path
+from django.conf.urls import url, include
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import routers
 
+from .views import AddressMarkTypeViewSet, AddressMarkViewSet
 from . import views
+
+router = routers.DefaultRouter()
+router.register('address-mark-type', AddressMarkTypeViewSet, basename='address-mark-type')
+router.register('address-mark', AddressMarkViewSet, basename='address-mark')
+
 
 urlpatterns = [
     path('', views.explorer, name='explorer'),
+    url('admin/', include(router.urls)),
     path('dev/', views.explorerDev, name='explorerDev'),
     path('wshandler/', views.wshandler, name='wshandler'),
     path('blocks/', views.blocks, name='blocks'),
