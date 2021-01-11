@@ -18,8 +18,9 @@ from . import withdraw_abi
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import AddressMark, AddressMarkType
-from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
+
+# from .models import AddressMark, AddressMarkType
+# from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
 
 our_proposer = read_our_proposer()
 mongo = cfg['mongo']['ip']
@@ -910,15 +911,15 @@ def proposer_history(req, address):
                   {'blocks': blocks, 'current': current, 'address': address, 'blocks_count': blocks_count})
 
 
-class AddressMarkViewSet(viewsets.ModelViewSet):
-    queryset = AddressMark.objects.filter()
-    serializer_class = AddressMarkSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+# class AddressMarkViewSet(viewsets.ModelViewSet):
+#     queryset = AddressMark.objects.filter()
+#     serializer_class = AddressMarkSerializer
+#     authentication_classes = (TokenAuthentication, )
+#     permission_classes = (IsAuthenticated,)
 
 
-class AddressMarkTypeViewSet(viewsets.ModelViewSet):
-    queryset = AddressMarkType.objects.filter()
-    serializer_class = AddressMarkTypeSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+# class AddressMarkTypeViewSet(viewsets.ModelViewSet):
+#     queryset = AddressMarkType.objects.filter()
+#     serializer_class = AddressMarkTypeSerializer
+#     authentication_classes = (TokenAuthentication, )
+#     permission_classes = (IsAuthenticated,)
