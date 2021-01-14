@@ -79,6 +79,7 @@ urlpatterns = i18n_patterns(
     path('chain/', include('chain.urls')),
     path('nodes/', include('node_ip.urls')),
     path('suggest/', include('suggest.urls')),
+    path('dapps/', include('dapps.urls')),
     path(api_v + 'user/', include('user.urls')),
     path(api_v + 'operating/', include('operating.urls')),
     prefix_default_language=False

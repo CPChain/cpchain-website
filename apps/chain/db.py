@@ -20,5 +20,7 @@ pwd = cfg['mongo']['password']
 db = CLIENT['cpchain']
 db.authenticate(uname, pwd)
 
+cpchain_db = CLIENT['cpchain']
+
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']

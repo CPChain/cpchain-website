@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'chain',
     'user',
     'operating',
-    'explorer'
+    'explorer',
+    'dapps'
 ]
 
 MIDDLEWARE = [
