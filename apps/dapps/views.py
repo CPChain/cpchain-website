@@ -7,9 +7,22 @@ views
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.filters import BaseFilterBackend
+from cpc_fusion import Web3
 from django_filters import compat
 
 from apps.chain.db import cpchain_db
+
+from cpchain_test.config import cfg
+
+from log import get_log
+
+log = get_log('app')
+
+# web3
+host = cfg["chain"]["ip"]
+port = cfg["chain"]["port"]
+
+cf = Web3(Web3.HTTPProvider(f'http://{host}:{port}'))
 
 class EventPageableBackend(BaseFilterBackend):
 
@@ -56,6 +69,7 @@ class MessageDAppView(viewsets.ViewSet):
         offset:int = request.GET.get('offset', 0)
         if addr.strip() == '':
             raise ValueError('地址不能为空')
+        addr = cf.toChecksumAddress(addr)
         dapp_events = cpchain_db['dapps_events']
         count = dapp_events.count_documents(
             {
