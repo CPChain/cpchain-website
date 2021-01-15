@@ -13,7 +13,7 @@ from django_filters import compat
 from cpchain_test.settings import cf
 from log import get_log
 
-from .db import txs_collection
+from .db import txs_collection, rnode_reward_total_col
 
 log = get_log('app')
 
@@ -194,3 +194,52 @@ class TxViewSet(viewsets.ViewSet):
                 }, status=404)
             return Response(handle_tx(found[0], address))
         return Response({})
+
+
+class RNodeRewardFilterBackend(BaseFilterBackend):
+    """
+    RNode rewards
+    """
+
+    def filter_queryset(self, request, qs, view):
+        return qs
+
+    def get_schema_fields(self, view):
+        return [
+            compat.coreapi.Field(
+                name='address',
+                required=True,
+                location='query',
+                schema=compat.coreschema.String(
+                    description="指定获取此钱包地址内的交易"
+                )
+            ),
+        ]
+
+
+class RNodeRewardViewSet(viewsets.ViewSet):
+    """
+    RNode reward 查询
+    """
+    filter_backends = [RNodeRewardFilterBackend,]
+
+    def list(self, request):
+        """ RNode rewards 查询
+
+        + `reward`: 总收益
+        + `total_blocks`: 总出块数
+        + `today_reward`: 今日收益
+        + `today_blocks`: 今日出块数
+        """
+        addr = request.GET['address']
+        result = {
+            'reward': 0,
+            'total_blocks': 0,
+            'today_reward': 0,
+            'today_blocks': 0,
+        }
+        addr = addr.lower()
+        if rnode_reward_total_col.count_documents({'miner': addr}) == 0:
+            return Response(result)
+        result = rnode_reward_total_col.find({'miner': addr}, projection={"_id": False})[0]
+        return Response(result)

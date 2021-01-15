@@ -55,7 +55,7 @@ def update_rewards(c_total, c_history, miner, reward, timestamp):
             'timestamp': old_timestamp,
             'total_blocks': 0,
             'today_blocks': 0,
-            'today_rewards': 0
+            'today_reward': 0
         })
     else:
         r = c_total.find({'miner': miner})[0]
@@ -63,7 +63,7 @@ def update_rewards(c_total, c_history, miner, reward, timestamp):
         old_timestamp = r['timestamp']
         ttb = r['total_blocks']
         tb = r['today_blocks']
-        tr = r['today_rewards']
+        tr = r['today_reward']
     
     # 判断是否为今天
     if is_date_equal(old_timestamp, timestamp):
@@ -89,7 +89,7 @@ def update_rewards(c_total, c_history, miner, reward, timestamp):
             'timestamp': timestamp,
             'total_blocks': ttb,
             'today_blocks': tb,
-            'today_rewards': tr
+            'today_reward': tr
         }
     }, True)
 
