@@ -295,11 +295,14 @@ def wshandler():
 
 
 def get_rate(bORt):
-    if bORt == 'tps':
-        return num_collection.find({'type': 'tps'})[0].get('tps')
-    elif bORt == 'bps':
-        return num_collection.find({'type': 'bps'})[0].get('bps')
-
+    try:
+        if bORt == 'tps':
+            return num_collection.find({'type': 'tps'})[0].get('tps')
+        elif bORt == 'bps':
+            return num_collection.find({'type': 'bps'})[0].get('bps')
+    except Exception as e:
+        print(e)
+        return 0
 
 def search(req):
     """

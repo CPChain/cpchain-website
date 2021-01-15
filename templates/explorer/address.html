@@ -13,6 +13,8 @@
 </style>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 {#//    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
 
 <script src="/static/js/util.js"></script>
@@ -62,6 +64,24 @@
         </a>
       </div>
       {% endif %}
+      <div class="row info-row" v-if='total_reward > 0'>
+        <div class="col-3">Total Reward:</div>
+        <div class="col poppins-light" style="padding-left: 0">
+          <a href="{% url 'explorer:proposer_history' address %}">[[ total_reward ]] CPC</a>
+        </div>
+      </div>
+      <div class="row info-row" v-if='today_reward > 0'>
+        <div class="col-3">Today Reward:</div>
+        <div class="col poppins-light" style="padding-left: 0">
+          [[ today_reward ]] CPC
+        </div>
+      </div>
+      <div class="row info-row" v-if='today_blocks > 0'>
+        <div class="col-3">Today Blocks:</div>
+        <div class="col poppins-light" style="padding-left: 0">
+          [[ today_blocks ]] Blocks
+        </div>
+      </div>
       <div class="info-table-subtitle info-table-subtitle-list" style="border-bottom: solid 2px #305278;width: 186px;">
         Transactions
       </div>
@@ -161,6 +181,27 @@
     var blockListApp = new Vue({
       el: '#blocks-list',
       delimiters: [`[[`, `]]`],
+      data: function() {
+        return {
+          'total_reward': 0,
+          'today_reward': 0,
+          'today_blocks': 0,
+        }
+      },
+      created() {
+        this.total_reward = 100
+        var host = window.location.protocol + "//" + window.location.host
+        var address = window.location.pathname.split('/')[3]
+        var url = host + "/chain/rnods-reward/?address="+address
+        var that = this
+        axios.get(url).then(function(res){
+          var data = res.data
+          console.log(data)
+          that.total_reward = data['reward']
+          that.today_reward = data['today_reward']
+          that.today_blocks = data['today_blocks']
+        })
+      },
       methods: {
         convertTime: function (tss) {
           return formatTS(tss)
