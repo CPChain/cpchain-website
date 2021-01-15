@@ -2,7 +2,9 @@
 
 事件同步
 
-sudo docker run -it --name sync_events -v `pwd`:/cpchain-website liaojl/website python sync_events.py
+sudo docker run -d --name sync_events -v `pwd`:/cpchain-website liaojl/website python sync_events.py
+
+sudo docker logs -f --since 1m sync_events
 
 """
 
