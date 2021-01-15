@@ -12,6 +12,7 @@
 import time
 from log import get_log
 from datetime import datetime
+from tools.dingding import post_message
 from apps.chain.db import cpchain_db, block_collection
 
 logger = get_log('sync-reward')
@@ -95,28 +96,31 @@ def update_rewards(c_total, c_history, miner, reward, timestamp):
 
 
 def sync_rnode_rewards(c_blocks):
-    c_meta = cpchain_db[RNODE_REWARD_META]
-    c_total = cpchain_db[RNODE_REWARD_TOTEL]
-    c_history = cpchain_db[RNODE_REWARD_HISTORY]
+    try:
+        c_meta = cpchain_db[RNODE_REWARD_META]
+        c_total = cpchain_db[RNODE_REWARD_TOTEL]
+        c_history = cpchain_db[RNODE_REWARD_HISTORY]
 
-    # 获取最近遍历的区块号
-    current = get_meta(c_meta)
+        # 获取最近遍历的区块号
+        current = get_meta(c_meta)
 
-    while True:
-        current += 1
-        if current <= get_latest(c_blocks):
-            logger.info("sync block #%d", current)
-            b = c_blocks.find({'number': current})[0]
-            miner = b['miner']
-            reward = float(b['reward'])
-            timestamp = datetime.fromtimestamp(b['timestamp'])
-            if reward > 0:
-                # 总收益、每日出块数、每日收益
-                update_rewards(c_total, c_history, miner, reward, timestamp)
-            update_meta(c_meta, current)
-        else:
-            time.sleep(10)
-
+        while True:
+            current += 1
+            if current <= get_latest(c_blocks):
+                logger.info("sync block #%d", current)
+                b = c_blocks.find({'number': current})[0]
+                miner = b['miner']
+                reward = float(b['reward'])
+                timestamp = datetime.fromtimestamp(b['timestamp'])
+                if reward > 0:
+                    # 总收益、每日出块数、每日收益
+                    update_rewards(c_total, c_history, miner, reward, timestamp)
+                update_meta(c_meta, current)
+            else:
+                time.sleep(10)
+    except Exception as e:
+        logger.error(e)
+        post_message(f"**sync reward error:**\n{e}")
 
 if __name__ == '__main__':
     sync_rnode_rewards(block_collection)
