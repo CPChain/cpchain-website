@@ -7,7 +7,9 @@
 + 监控 RNode 状态
     + running: 1小时内有发送到 Campaign 合约的交易
 
-sudo docker run -it --name sync_reward -v `pwd`:/cpchain-website liaojl/website python sync_reward.py
+sudo docker run -d --name sync_reward -v `pwd`:/cpchain-website liaojl/website python sync_reward.py
+
+sudo docker logs -f --since 1m sync_reward
 
 """
 
