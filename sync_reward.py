@@ -107,8 +107,8 @@ def sync_rnode_rewards(c_blocks):
         current = get_meta(c_meta)
 
         while True:
-            current += 1
-            if current <= get_latest(c_blocks):
+            if current < get_latest(c_blocks):
+                current += 1
                 logger.info("sync block #%d", current)
                 b = c_blocks.find({'number': current})[0]
                 miner = b['miner']
