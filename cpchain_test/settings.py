@@ -304,6 +304,12 @@ SWAGGER_SETTINGS = {
     }
 }
 
+# redis 缓存层
+REDIS_CACHE = {
+    'host': '127.0.0.1',
+    'port': 6379,
+}
+
 try:
     from .local import *
 except:
