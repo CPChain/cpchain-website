@@ -19,7 +19,7 @@ from tools import redis_helper as rh
 
 logger = get_log('sync-for-cache')
 
-def sync_rnode_rewards(txs):
+def sync_for_cache(txs):
     try:
         rc = rh.get_redis_client()
         current_tx_ts = 0
@@ -48,8 +48,8 @@ def sync_rnode_rewards(txs):
             time.sleep(10)
     except Exception as e:
         logger.error(e)
-        post_message(f"**sync reward error:**\n{e}")
+        post_message(f"**sync for cache error:**\n{e}")
 
 if __name__ == '__main__':
-    sync_rnode_rewards(txs_collection)
+    sync_for_cache(txs_collection)
 
