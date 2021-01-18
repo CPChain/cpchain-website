@@ -8,6 +8,7 @@ sudo docker logs -f --since 1m sync-for-cache
 
 """
 
+import sys
 import time
 import json
 
@@ -22,7 +23,9 @@ logger = get_log('sync-for-cache')
 def sync_for_cache(txs):
     try:
         rc = rh.get_redis_client()
-        current_tx_ts = 0
+        current_tx_ts = rc.get('current_tx_ts')
+        if current_tx_ts is None:
+            current_tx_ts = 0
         while True:
             filters = {
                 "value": {
@@ -45,6 +48,7 @@ def sync_for_cache(txs):
                         continue
                 rh.push_tx(rc, r['from'], json.dumps(r))
                 current_tx_ts = r['timestamp']
+                rc.set('current_tx_ts', current_tx_ts)
             time.sleep(10)
     except Exception as e:
         logger.error(e)
