@@ -36,7 +36,7 @@ def sync_for_cache(txs):
                 }
             }
             count = txs.count_documents(filters)
-            logger.info("txs count: %d, current timestamp: %d", count, current_tx_ts)
+            logger.info("txs count: %d, current timestamp: %s", count, str(current_tx_ts))
             # 获取所有的 value 不为 0 的交易
             cursor = txs.find(filters, projection={"_id": False})
             for r in cursor:
