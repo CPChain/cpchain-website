@@ -290,7 +290,7 @@ class RNodeStatusViewSet(viewsets.ViewSet):
                 'timestamp': {
                     "$gt": datetime.now().timestamp() - 60 * 60
                 }
-            }).count()
+            })
             if cnt > 0:
                 status = 'RUNNING'
         return Response({
