@@ -4,11 +4,15 @@ chain RESTful APIs
 
 """
 
+import time
+
 from sys import flags
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.filters import BaseFilterBackend
 from django_filters import compat
+
+from prometheus_client import Gauge
 
 from cpchain_test.settings import cf
 from log import get_log
@@ -18,6 +22,8 @@ from tools import redis_helper as rh
 from .db import txs_collection, rnode_reward_total_col
 
 log = get_log('app')
+
+chain_txs_query_elapsed = Gauge('chain_txs_query_elapsed', '交易查询时间')
 
 
 def check_flag(tx, address): return None if address is None else (
@@ -120,6 +126,7 @@ class TxViewSet(viewsets.ViewSet):
         + `page`: 页码，从 0 开始，默认为 0
         + `exclude_empty_value`: 是否排除 value 为 0 的交易（仅 address 不为空时有效）, true/false，默认为 true
         """
+        start_at = time.clock()
         address = request.GET.get('address')
         flag = request.GET.get('flag')
         limit = request.GET.get('limit', 20)
@@ -190,6 +197,8 @@ class TxViewSet(viewsets.ViewSet):
             'limit': limit,
             'page': page,
         }
+        end_at = time.clock()
+        chain_txs_query_elapsed.set((end_at - start_at) * 1000)
         return Response(results)
 
     def retrieve(self, request, pk=None):
