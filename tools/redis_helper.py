@@ -28,11 +28,13 @@ def push_tx(rc: redis.Redis, frm: str, tx: str):
         rc.rpop(channel)
     rc.lpush(channel, tx)
 
+
 def count_tx(rc: redis.Redis, frm: str):
     """ 获取 frm 地址的交易数量
     """
     channel = TX_CHANNEL + frm
     return rc.llen(channel)
+
 
 def tail_tx(rc: redis.Redis, frm: str):
     """ 获取最后一笔交易
@@ -42,11 +44,13 @@ def tail_tx(rc: redis.Redis, frm: str):
         return None
     return rc.lindex(channel, 0)
 
-def search_tx(rc: redis.Redis, frm: str, limit: int, offset: int):
+
+def query_tx(rc: redis.Redis, frm: str, limit: int, offset: int):
     start = offset
     channel = TX_CHANNEL + frm
     end = max(start+limit, rc.llen(channel)-1)
     return [json.loads(i) for i in rc.lrange(channel, start, end)]
+
 
 def clean_tx(rc: redis.Redis, frm: str):
     """ 删除缓存
