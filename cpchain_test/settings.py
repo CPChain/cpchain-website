@@ -306,8 +306,8 @@ SWAGGER_SETTINGS = {
 
 # redis 缓存层
 REDIS_CONFIG = {
-    # 'host': '10.254.0.119',
-    'host': '127.0.0.1',
+    'host': '10.254.0.119',
+    # 'host': '127.0.0.1',
     'port': 6379,
 }
 
