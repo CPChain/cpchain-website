@@ -144,7 +144,6 @@ class TxViewSet(viewsets.ViewSet):
         if flag in ['in', 'out'] or not exclude_empty_value:
             # 从 mongodb 中获取
             filters = {}
-
             if address:
                 address = cf.toChecksumAddress(address.strip()).lower()
                 address_filter = {'$or': [{'from': address}, {'to': address}]}
@@ -164,6 +163,7 @@ class TxViewSet(viewsets.ViewSet):
             count = found.count()
             txs = found.sort('timestamp', -1).limit(limit).skip(page * limit)
         elif address:
+            address = cf.toChecksumAddress(address.strip()).lower()
             # 从缓存中获取
             rc = rh.get_redis_client()
             count = rh.count_tx(rc, address)
