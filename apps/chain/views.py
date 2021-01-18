@@ -141,7 +141,7 @@ class TxViewSet(viewsets.ViewSet):
 
         count = 0
         txs = []
-        if flag in ['in', 'out'] or not exclude_empty_value:
+        if flag in ['in', 'out'] or exclude_empty_value:
             # 从 mongodb 中获取
             filters = {}
             if address:
