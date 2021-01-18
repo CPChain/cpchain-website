@@ -29,7 +29,7 @@ def sync_for_cache(txs):
                     "$gt": 0
                 },
                 "timestamp": {
-                    "$gte": current_tx_ts
+                    "$gt": current_tx_ts
                 }
             }
             count = txs.count_documents(filters)
@@ -37,7 +37,6 @@ def sync_for_cache(txs):
             # 获取所有的 value 不为 0 的交易
             cursor = txs.find(filters, projection={"_id": False})
             for r in cursor:
-                current_tx_ts = r['timestamp']
                 # 获取此 from 的最后一笔交易，判断时间戳，只有之后的时间戳，可加入
                 latest = rh.tail_tx(rc, r['from'])
                 if latest != None:
@@ -45,6 +44,7 @@ def sync_for_cache(txs):
                     if r['timestamp'] <= tx['timestamp']:
                         continue
                 rh.push_tx(rc, r['from'], json.dumps(r))
+                current_tx_ts = r['timestamp']
             time.sleep(10)
     except Exception as e:
         logger.error(e)
