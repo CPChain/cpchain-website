@@ -194,7 +194,7 @@
         if(!address.startsWith('0x')) {
           address = '0x' + address
         }
-        var url = host + "/chain/rnods-reward/?address="+address
+        var url = host + "/chain/rnodes-reward/?address="+address
         var that = this
         axios.get(url).then(function(res){
           var data = res.data

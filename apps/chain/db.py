@@ -29,6 +29,8 @@ cpchain_db = CLIENT['cpchain']
 block_collection = CLIENT['cpchain']['blocks']
 txs_collection = CLIENT['cpchain']['txs']
 
+rnode_col = CLIENT['rnode']
+
 rnode_reward_meta_col = db[RNODE_REWARD_META]
 rnode_reward_total_col = db[RNODE_REWARD_TOTEL]
 rnode_reward_history = db[RNODE_REWARD_HISTORY]

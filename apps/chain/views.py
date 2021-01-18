@@ -4,6 +4,7 @@ chain RESTful APIs
 
 """
 
+from datetime import datetime
 import time
 
 from sys import flags
@@ -19,7 +20,7 @@ from log import get_log
 
 from tools import redis_helper as rh
 
-from .db import txs_collection, rnode_reward_total_col
+from .db import txs_collection, rnode_reward_total_col, rnode_col
 
 log = get_log('app')
 
@@ -263,3 +264,36 @@ class RNodeRewardViewSet(viewsets.ViewSet):
             return Response(result)
         result = rnode_reward_total_col.find({'miner': addr}, projection={"_id": False})[0]
         return Response(result)
+
+
+class RNodeStatusViewSet(viewsets.ViewSet):
+    """
+    RNode status 查询
+    """
+
+    def retrieve(self, request, pk):
+        """ RNode 状态查询
+
+        `id` 为 RNode 地址
+
+        + `NO`: 不是 RNode
+        + `RUNNING`: 运行中，1小时内有打向 campaign 合约地址的交易
+        + `STOPPED`: 停止状态，1小时内没有打向 campaign 合约地址的交易
+        """
+        addr = pk.lower()
+        status = 'NO'
+        if rnode_col.count_documents({'Address': addr, 'Status': 1}) > 0:
+            status = 'STOPPED'
+            cnt = rnode_col.count_documents({
+                'from': addr,
+                'to': '0x2A186bE66Dd20c1699Add34A49A3019a93a7Fcd0'.lower(),
+                'timestamp': {
+                    "$gt": datetime.now().timestamp() - 60 * 60
+                }
+            }).count()
+            if cnt > 0:
+                status = 'RUNNING'
+        return Response({
+            "address": addr,
+            "status": status
+        })
