@@ -191,7 +191,7 @@
       created() {
         var host = window.location.protocol + "//" + window.location.host
         var address = window.location.pathname.split('/')[3]
-        if(address.startsWith('0x')) {
+        if(!address.startsWith('0x')) {
           address = '0x' + address
         }
         var url = host + "/chain/rnods-reward/?address="+address
