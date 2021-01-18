@@ -305,9 +305,14 @@ SWAGGER_SETTINGS = {
 }
 
 # redis 缓存层
-REDIS_CACHE = {
+REDIS_CONFIG = {
     'host': '127.0.0.1',
     'port': 6379,
+}
+
+CACHE_CONFIG = {
+    # 每个地址最多缓存的交易
+    'MAX_TX_COUNT_PER_ADDR': 1000
 }
 
 try:
