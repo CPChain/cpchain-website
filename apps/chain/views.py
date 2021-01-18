@@ -284,7 +284,7 @@ class RNodeStatusViewSet(viewsets.ViewSet):
         status = 'NO'
         if rnode_col.count_documents({'Address': addr, 'Status': 1}) > 0:
             status = 'STOPPED'
-            cnt = rnode_col.count_documents({
+            cnt = txs_collection.count_documents({
                 'from': addr,
                 'to': '0x2A186bE66Dd20c1699Add34A49A3019a93a7Fcd0'.lower(),
                 'timestamp': {
