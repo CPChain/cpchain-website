@@ -10,6 +10,7 @@ from django.core import serializers
 from cpchain_test.config import cfg
 from .faucet import Faucet
 from .models import *
+import json
 import re
 
 chain = 'http://{0}:{1}'.format(cfg['faucet']['ip'], cfg['faucet']['port'])
@@ -112,6 +113,24 @@ class IndexView(View):
         # notification = Notification.objects.all()
         videos = []
         return render(req, 'index_new.html', locals())
+
+def get_partners(type):
+    partners = json.loads(serializers.serialize('json', Partner.objects.filter(type=type).order_by('-weight')))
+    return [i['fields'] for i in partners]
+
+class EcosystemView(View):
+    def get(self, req):
+        return JsonResponse({
+            'partners': get_partners('Partners'),
+            'investors': get_partners('Investors'),
+            'exchanges': get_partners('Exchanges'),
+            'industry': get_partners('Industry'),
+            'projects': get_partners('Project'),
+            'academia': get_partners('Academia'),
+            'captial': get_partners('Capital'),
+            'association': get_partners('Association'),
+            'industryNode': get_partners('IndustryNode')
+        })
 
 class NotificationView(View):
     def get(self, req):
