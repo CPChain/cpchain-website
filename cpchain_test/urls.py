@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from apps.index.views import EcosystemView
 from django.urls import path, include, re_path
 from django.conf.urls import url, handler404, handler500
 from django.views.generic.base import View
@@ -41,6 +42,7 @@ indexpatterns = [
     path('index_old', IndexView_Old.as_view(), name='index_old'),
     path('notification',NotificationView.as_view(),name='notification'),
     path('index_video',IndexVideoView.as_view(),name='index_video'),
+    path('get_ecosystem',EcosystemView.as_view(),name='index_video'),
     path('community/', CommunityView.as_view(), name='community'),
     path('privacy/', PrivacyView.as_view(), name='privacy'),
     path('developer/', DeveloperView.as_view(),name='developer'),
