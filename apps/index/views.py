@@ -8,8 +8,9 @@ from pure_pagination import PageNotAnInteger, Paginator
 from django.core import serializers
 
 from cpchain_test.config import cfg
-from .faucet import Faucet
-from .models import *
+from apps.index.faucet import Faucet
+from apps.index import faucet
+from apps.index.models import *
 import json
 import re
 
