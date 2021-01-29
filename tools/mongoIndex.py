@@ -30,6 +30,9 @@ def create_index():
     tx_collection.create_index([('from', 1), ('timestamp', -1)])
     tx_collection.create_index([('to', 1), ('timestamp', -1)])
 
+    # 2021/01/29 增加 value 的索引
+    tx_collection.create_index([('value', 1)])
+
 
 if __name__ == '__main__':
     create_index()
