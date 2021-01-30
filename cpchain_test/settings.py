@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'index.apps.IndexConfig',
     'django_celery_beat',
     'channels',
     'django.contrib.admin',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'xadmin',
     'crispy_forms',
-    'index',
     'ckeditor',
     'ckeditor_uploader',
     'pure_pagination',
@@ -63,7 +63,8 @@ INSTALLED_APPS = [
     'user',
     'operating',
     'explorer',
-    'dapps'
+    'dapps',
+    'news'
 ]
 
 MIDDLEWARE = [

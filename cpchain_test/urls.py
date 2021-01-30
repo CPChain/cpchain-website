@@ -23,7 +23,7 @@ from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPICodec
 
 import xadmin
-from index.views import *
+from apps.index.views import *
 from django.views.static import serve
 from cpchain_test.settings import MEDIA_ROOT
 from django.conf.urls.i18n import i18n_patterns
@@ -82,6 +82,7 @@ urlpatterns = i18n_patterns(
     path('nodes/', include('node_ip.urls')),
     path('suggest/', include('suggest.urls')),
     path('dapps/', include('dapps.urls')),
+    path('news/', include('news.urls')),
     path(api_v + 'user/', include('user.urls')),
     path(api_v + 'operating/', include('operating.urls')),
     prefix_default_language=False

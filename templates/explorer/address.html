@@ -202,6 +202,12 @@
           that.total_reward = data['reward']
           that.today_reward = data['today_reward']
           that.today_blocks = data['today_blocks']
+          var now = new Date();
+          var ts = new Date(data['timestamp'])
+          if((now - ts)/1000/60/60 >= 24) {
+            that.today_reward = 0;
+            that.today_blocks = 0
+          }
         })
       },
       methods: {
