@@ -59,6 +59,9 @@ class New(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-id']
+
 
 class Media(models.Model):
     category = models.CharField(choices=Media_CATEGORY, max_length=50)

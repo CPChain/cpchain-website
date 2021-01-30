@@ -5,14 +5,11 @@ views
 """
 
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework.filters import BaseFilterBackend
-from cpc_fusion import Web3
 from django_filters import compat
 
-from common.pageable import PageableBackend
-
-from apps.index.models import New, Media
+from apps.index.models import New, NEWS_CATEGORY
+from .serializers import NewsSerializer
 
 from log import get_log
 
@@ -22,6 +19,9 @@ log = get_log('app')
 class NewsBackend(BaseFilterBackend):
 
     def filter_queryset(self, request, qs, view):
+        category = request.GET.get('category')
+        if category and category.strip() != "":
+            return qs.filter(category=category)
         return qs
 
     def get_schema_fields(self, view):
@@ -31,19 +31,13 @@ class NewsBackend(BaseFilterBackend):
                 required=False,
                 location='query',
                 schema=compat.coreschema.String(
-                    description="类型"
+                    description="文章类型: " + ", ".join([f'"{i[0]}"' for i in NEWS_CATEGORY])
                 )
             ),
         ]
 
 
-class NewsView(viewsets.ViewSet):
+class NewsView(viewsets.GenericViewSet, viewsets.mixins.ListModelMixin):
     queryset = New.objects.all()
-    filter_backends = [PageableBackend, NewsBackend]
-
-    def list(self, request):
-        limit:int = request.GET.get('limit', 10)
-        offset:int = request.GET.get('page', 0)
-        
-        data = {}
-        return Response(data)
+    serializer_class = NewsSerializer
+    filter_backends = [NewsBackend,]
