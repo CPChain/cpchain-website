@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'operating',
     'explorer',
     'dapps',
-    'news'
+    'news',
+    'protocols'
 ]
 
 MIDDLEWARE = [

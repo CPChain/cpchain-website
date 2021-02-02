@@ -18,7 +18,11 @@ class TemplateTypeViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 class TemplateViewSet(viewsets.ModelViewSet):
-    queryset = Templates.objects.filter()
+    queryset = Templates.objects.filter(deleted=False)
     serializer_class = TemplateSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated,)
+
+    def perform_destroy(self, instance):
+        instance.deleted = True
+        instance.save()

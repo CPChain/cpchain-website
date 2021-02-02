@@ -32,6 +32,9 @@ def create_index():
 
     # 2021/01/29 增加 value 的索引
     tx_collection.create_index([('value', 1)])
+    tx_collection.create_index([('from', 1), ('value', 1)])
+    tx_collection.create_index([('to', 1), ('value', 1)])
+    tx_collection.create_index([('from', 1), ('to', 1), ('value', 1)])
 
 
 if __name__ == '__main__':
