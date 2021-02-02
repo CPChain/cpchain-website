@@ -9,7 +9,7 @@ from rest_framework.filters import BaseFilterBackend
 from django_filters import compat
 
 from apps.index.models import New, NEWS_CATEGORY
-from .serializers import NewsSerializer
+from .serializers import NewsSerializer, NewsListSerializer
 
 from log import get_log
 
@@ -37,7 +37,12 @@ class NewsBackend(BaseFilterBackend):
         ]
 
 
-class NewsView(viewsets.GenericViewSet, viewsets.mixins.ListModelMixin):
+class NewsView(viewsets.GenericViewSet, viewsets.mixins.ListModelMixin, viewsets.mixins.RetrieveModelMixin):
     queryset = New.objects.all()
     serializer_class = NewsSerializer
     filter_backends = [NewsBackend,]
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return NewsListSerializer
+        return super().get_serializer_class()
