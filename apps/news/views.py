@@ -72,7 +72,7 @@ class MySearchView(SearchView):
         context = self.get_context()
         page = context['page']
         paginator = context['paginator']
-        results = [dict(banner=str(i.object.banner), category=i.object.category, title=i.object.title,
+        results = [dict(id=i.object.id, banner=str(i.object.banner), category=i.object.category, title=i.object.title,
                         update_time=i.object.update_time.strftime('%Y-%m-%d'), summary=i.object.summary) for i in page.object_list]
         return Response({
             "count": paginator.count,
