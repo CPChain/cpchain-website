@@ -77,7 +77,7 @@ class MySearchView(SearchView):
         return Response({
             "count": paginator.count,
             "page": page.number,
-            "result": results
+            "results": results
         })
 
 
