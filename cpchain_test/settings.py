@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'pure_pagination',
-    'haystack',
+    'haystack', # 全文检索 https://pypi.org/project/django-haystack/
     'utils',
     'wallet',
     'django_prometheus',
@@ -126,6 +126,10 @@ TEMPLATES = [
     },
 ]
 
+# Haystack 配置，自动索引及分页大小
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 12
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         # 使用whoosh引擎
@@ -193,9 +197,6 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 12
 
 WSGI_APPLICATION = 'cpchain_test.wsgi.application'
 
