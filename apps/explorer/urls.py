@@ -6,6 +6,9 @@ from rest_framework import routers
 # from .views import AddressMarkTypeViewSet, AddressMarkViewSet
 from . import views
 
+router = routers.DefaultRouter()
+router.register('dashboard', views.ExplorerDashboardView, basename='dashboard')
+
 # router = routers.DefaultRouter()
 # router.register('address-mark-type', AddressMarkTypeViewSet, basename='address-mark-type')
 # router.register('address-mark', AddressMarkViewSet, basename='address-mark')
@@ -13,6 +16,7 @@ from . import views
 
 urlpatterns = [
     path('', views.explorer, name='explorer'),
+    url(r'api/', include(router.urls)),
     # url('admin/', include(router.urls)),
     path('dev/', views.explorerDev, name='explorerDev'),
     path('wshandler/', views.wshandler, name='wshandler'),
