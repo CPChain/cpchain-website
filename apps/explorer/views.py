@@ -58,6 +58,7 @@ num_collection = CLIENT['cpchain']['num']
 
 def get_chart():
     try:
+        # TODO 目前 chart 中存储的是序列化后的字符串，需改为数组，改掉后，本处也将修改
         return chart_collection.find()[0].get('chart', [])
     except Exception:
         return []
