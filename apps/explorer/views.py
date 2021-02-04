@@ -218,7 +218,7 @@ class ExplorerDashboardView(viewsets.ViewSet):
             'committee': proposerFomatter(index),
             'proposer': len(list(proposer_collection.find())[0].get('Proposers', []))
         }
-        return Response({'blocks': json.dumps(blocks), 'txs': json.dumps(txs), 'chart': get_chart(), 'header': header})
+        return Response({'blocks': blocks, 'txs': txs, 'chart': get_chart(), 'header': header})
 
 
 def explorer(request):
