@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import url, include
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import base
 from rest_framework import routers
 
 # from .views import AddressMarkTypeViewSet, AddressMarkViewSet
@@ -12,6 +13,7 @@ router.register('rnodes', views.RNodesView, basename='rnodes')
 router.register('proposers', views.ProposersView, basename='api/proposers')
 router.register('blocks', views.BlocksView, basename='api/blocks')
 router.register('txs', views.TxsView, basename='api/txs')
+router.register('address', views.AddressView, basename='api/address')
 
 # router = routers.DefaultRouter()
 # router.register('address-mark-type', AddressMarkTypeViewSet, basename='address-mark-type')
