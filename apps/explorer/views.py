@@ -461,6 +461,7 @@ class BlocksView(viewsets.ViewSet):
     def list(self, request):
         results = []
         count = 0
+        page = 1
         try:
             # blocks
             all_blocks = block_collection.find(projection={'_id': False, 'dpor': False}).sort('number', DESCENDING)
@@ -480,7 +481,7 @@ class BlocksView(viewsets.ViewSet):
             results = blocks.object_list
         except Exception as e:
             log.error(e)
-        return Response({'results': results, 'count': count})
+        return Response({'results': results, 'count': count, 'page': page})
 
     def retrieve(self, request, pk):
         """ 通过指定 Number 或 Hash 获取区块信息
@@ -555,6 +556,33 @@ def block(req, block_identifier):
         timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
+
+
+class TxsView(viewsets.ViewSet):
+    filter_backends = [PageableBackend,]
+
+    def list(self, request):
+        results = []
+        count = 0
+        page = 1
+        try:
+            # blocks
+            all_txs = txs_collection.find(projection={'_id': False}).sort('_id', DESCENDING)
+            count = txs_collection.count_documents({})
+            limit = int(request.GET.get('limit', 25))
+            page = int(request.GET.get('page', 1))
+            p = Paginator(all_txs, limit, request=request)
+            txs = p.page(page)
+            txs.object_list = list(txs.object_list)
+            for tx in txs.object_list:
+                if not tx['to']:
+                    tx['contract'] = contract_collection.find(
+                        {'txhash': tx['hash']})[0]['address']
+                tx['value'] = currency.from_wei(tx['value'], 'ether')
+            results = txs.object_list
+        except Exception as e:
+            log.error(e)
+        return Response({'results': results, 'count': count, 'page': page})
 
 
 def txs(req):

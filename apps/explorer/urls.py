@@ -11,6 +11,7 @@ router.register('dashboard', views.ExplorerDashboardView, basename='dashboard')
 router.register('rnodes', views.RNodesView, basename='rnodes')
 router.register('proposers', views.ProposersView, basename='api/proposers')
 router.register('blocks', views.BlocksView, basename='api/blocks')
+router.register('txs', views.TxsView, basename='api/txs')
 
 # router = routers.DefaultRouter()
 # router.register('address-mark-type', AddressMarkTypeViewSet, basename='address-mark-type')
