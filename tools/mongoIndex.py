@@ -1,5 +1,8 @@
 from pymongo import MongoClient
 
+import sys
+sys.path.append('..')
+
 from cpchain_test.config import cfg
 
 mongoHost = cfg['mongo']['ip']

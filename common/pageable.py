@@ -29,7 +29,7 @@ class PageableBackend(BaseFilterBackend):
                 required=False,
                 location='query',
                 schema=compat.coreschema.String(
-                    description="页数，从0开始"
+                    description="页数，从1开始"
                 )
             ),
         ]

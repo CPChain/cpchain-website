@@ -1,3 +1,5 @@
+from django.http.response import Http404
+from common.pageable import PageableBackend
 import json
 import math
 import time
@@ -23,6 +25,10 @@ from rest_framework.permissions import IsAuthenticated
 
 # from .models import AddressMark, AddressMarkType
 # from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
+
+from log import get_log
+
+log = get_log('app')
 
 our_proposer = read_our_proposer()
 mongo = cfg['mongo']['ip']
@@ -58,6 +64,7 @@ num_collection = CLIENT['cpchain']['num']
 
 def get_chart():
     try:
+        # TODO 目前 chart 中存储的是序列化后的字符串，需改为数组，改掉后，本处也将修改
         return chart_collection.find()[0].get('chart', [])
     except Exception:
         return []
@@ -154,16 +161,17 @@ class ExplorerDashboardView(viewsets.ViewSet):
         except IndexError as e:
             print(e)
             header = {'blockHeight': 0,
-                    'txs': 0,
-                    'rnode': 0,
-                    'bps': 0,
-                    'tps': 0,
-                    'committee': '0/0',
-                    'proposer': 0, }
+                      'txs': 0,
+                      'rnode': 0,
+                      'bps': 0,
+                      'tps': 0,
+                      'committee': '0/0',
+                      'proposer': 0, }
             return Response({'blocks': [], 'txs': [], 'chart': get_chart(), 'header': header})
         b_li = list(block_collection.find({'number': {'$lte': height}}).sort(
             'number', DESCENDING).limit(20))[::-1]
-        t_li = list(txs_collection.find().sort('_id', DESCENDING).limit(20))[::-1]
+        t_li = list(txs_collection.find().sort(
+            '_id', DESCENDING).limit(20))[::-1]
         # blocks
         blocks = []
         for b in b_li:
@@ -382,6 +390,7 @@ def get_rate(bORt):
         print(e)
         return 0
 
+
 def search(req):
     """
     address/contract  42/40
@@ -449,6 +458,68 @@ def searchproposer(req):
                 return render(req, 'explorer/search404.html')
 
 
+class BlocksView(viewsets.ViewSet):
+    filter_backends = [PageableBackend, ]
+
+    def list(self, request):
+        results = []
+        count = 0
+        page = 1
+        try:
+            # blocks
+            all_blocks = block_collection.find(
+                projection={'_id': False, 'dpor': False}).sort('number', DESCENDING)
+            count = block_collection.count_documents({})
+            limit = int(request.GET.get('limit', 25))
+            page = int(request.GET.get('page', 1))
+            p = Paginator(all_blocks, limit, request=request)
+            blocks = p.page(page)
+            blocks.object_list = list(blocks.object_list)
+            for b in blocks.object_list:
+                if b['miner'].endswith('000000'):
+                    b['impeach'] = True
+                else:
+                    b['impeach'] = False
+                b['txs_cnt'] = len(b['transactions'])
+                del b['transactions']
+            results = blocks.object_list
+        except Exception as e:
+            log.error(e)
+        return Response({'results': results, 'count': count, 'page': page})
+
+    def retrieve(self, request, pk):
+        """ 通过指定 Number 或 Hash 获取区块信息
+        """
+        search = pk.strip().lower()
+        filters = {}
+        if len(search) < ADD_SIZE - 2:
+            # search by number
+            filters = {'number': int(search)}
+        else:
+            if not search.startswith('0x'):
+                search = '0x' + search
+            filters = {"hash": search}
+        if block_collection.count_documents(filters) == 0:
+            return Response({"error": "not found"}, status=404)
+        block_dict = block_collection.find(
+            filters, projection={'_id': False})[0]
+        block_dict['txs_cnt'] = len(block_dict['transactions'])
+        del block_dict['transactions']
+        block_dict['transactions'] = []
+        if block_dict['txs_cnt'] > 0:
+            txs_from_block = txs_collection.find(
+                {'blockNumber': int(block_dict['number'])}, projection={'_id': False})
+            txs = []
+            for tx in txs_from_block:
+                if not tx['to']:
+                    tx['contract_address'] = contract_collection.find(
+                        {'txhash': tx['hash']})[0]['address']
+                tx['value'] = currency.from_wei(tx['value'], 'ether')
+                txs.append(tx)
+            block_dict['transactions'] = txs
+        return Response(block_dict)
+
+
 def blocks(req):
     # blocks
     all_blocks = block_collection.find().sort('number', DESCENDING)
@@ -503,6 +574,65 @@ def block(req, block_identifier):
         timeproduce = 0
 
     return render(req, 'explorer/block_info.html', locals())
+
+
+class TxsView(viewsets.ViewSet):
+    filter_backends = [PageableBackend, ]
+
+    def list(self, request):
+        results = []
+        count = 0
+        page = 1
+        try:
+            # blocks
+            all_txs = txs_collection.find(
+                projection={'_id': False}).sort('_id', DESCENDING)
+            count = txs_collection.count_documents({})
+            limit = int(request.GET.get('limit', 25))
+            page = int(request.GET.get('page', 1))
+            p = Paginator(all_txs, limit, request=request)
+            txs = p.page(page)
+            txs.object_list = list(txs.object_list)
+            for tx in txs.object_list:
+                if not tx['to']:
+                    tx['contract'] = contract_collection.find(
+                        {'txhash': tx['hash']})[0]['address']
+                tx['value'] = currency.from_wei(tx['value'], 'ether')
+            results = txs.object_list
+        except Exception as e:
+            log.error(e)
+        return Response({'results': results, 'count': count, 'page': page})
+
+    def retrieve(self, request, pk):
+        """ 根据 hash 获取交易
+        """
+        search = pk.strip().lower()
+        filters = {}
+        if not search.startswith('0x'):
+            search = '0x' + search
+        filters = {"hash": search}
+        if txs_collection.count_documents(filters) == 0:
+            return Response({"error": "not found"}, status=404)
+        tx_dict = txs_collection.find(filters, projection={'_id': False})[0]
+        tx_dict['gasLimit'] = block_collection.find(
+            {'number': tx_dict['blockNumber']})[0]['gasLimit']
+        tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
+        tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
+        tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
+        try:
+            input_data = cf.toText(hexstr=tx_dict['input'])
+            input_data = input_data.replace('\\', r'\\')
+            input_data = input_data.replace('`', r'\`')
+        except Exception as e:
+            input_data = tx_dict['input']
+
+        tx_dict['input_data'] = input_data
+
+        if not tx_dict['to']:
+            tx_dict['contract_address'] = contract_collection.find(
+                {'txhash': search}, projection={'_id': False})[0]['address']
+
+        return Response(tx_dict)
 
 
 def txs(req):
@@ -566,6 +696,63 @@ def tx(req, tx_hash):
         contract = contract_collection.find({'txhash': tx_hash})[0]['address']
         return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'contract': contract, 'input': input_data})
     return render(req, 'explorer/tx_info.html', {'tx_dict': tx_dict, 'input': input_data})
+
+
+class AddressView(viewsets.ViewSet):
+
+    def retrieve(self, request, pk):
+        """ 根据地址获取信息
+        """
+        address = pk
+        raw_address = address
+        try:
+            raw_address = cf.toChecksumAddress(address.strip())
+            address = raw_address.lower()
+            code = contract_collection.find(
+                {'address': raw_address})[0]['code']
+            # code = cf.toHex(code)
+        except Exception as e:
+            code = '0x'
+        try:
+            txs_count = address_collection.find(
+                {'address': address})[0]['txs_count']
+        except:
+            txs_count = 0
+
+        balance = 'N/A'
+        is_rnode = False
+        try:
+            if not NO_CHAIN_NODE:
+                balance = currency.from_wei(
+                    cf.cpc.getBalance(raw_address), 'ether')
+                # check if the address have locked 200k cpc in RNode contract
+                if rnode_collection.find({"Address": address}).count() > 0:
+                    balance += 200000
+                    is_rnode = True
+        except Exception as e:
+            print('cf connection error', e)
+            balance = 'N/A'
+
+        if code == '0x':
+            proposer_history = block_collection.count(
+                {'miner': address})
+            return Response({
+                'address': raw_address,
+                'balance': balance,
+                'txs_count': txs_count,
+                'is_rnode': is_rnode,
+                'proposer_history': proposer_history
+            })
+        else:
+            creator = contract_collection.find(
+                {'address': raw_address})[0]['creator']
+            return Response({
+                'address': raw_address,
+                'balance': balance,
+                'txs_count': txs_count,
+                'code': code,
+                'creator': creator,
+            })
 
 
 def address(req, address):
@@ -650,6 +837,25 @@ def address(req, address):
                                                       })
 
 
+class RNodesView(viewsets.ViewSet):
+
+    def list(self, request):
+        rnodes = list(rnode_collection.find(
+            {'Address': {'$exists': True}}, projection={'_id': False}))
+        proposerlist = list(proposer_collection.find())
+        term = []
+        if len(proposerlist) > 0:
+            term = proposerlist[0].get('Term', [])
+        try:
+            rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
+        except Exception as e:
+            log.error(e)
+        return Response({
+            'term': term,
+            'rnodes': rnodes
+        })
+
+
 def rnode(req):
     rnodes = list(rnode_collection.find(({'Address': {'$exists': True}})))
     proposerlist = list(proposer_collection.find())
@@ -663,6 +869,26 @@ def rnode(req):
         pass
     return render(req, 'explorer/rnode.html', {'term': term,
                                                'rnodes': rnodes})
+
+
+class ProposersView(viewsets.ViewSet):
+
+    def list(self, request):
+        proposerlist = list(proposer_collection.find())[0]
+        term = proposerlist.get('Term', [])
+        view = int(proposerlist.get('View', 0))
+        index = int(proposerlist.get('ProposerIndex', 0))
+        termLen = proposerlist['TermLen'] if proposerlist else 1
+        blockNumber = proposerlist['BlockNumber'] if proposerlist else 1
+        proposers = proposerlist.get('Proposers', [])
+        return Response({
+            'term': term,
+            'view': view,
+            'index': index,
+            'termLen': termLen,
+            'blockNumber': blockNumber,
+            'proposers': proposers
+        })
 
 
 def proposers(req):
@@ -971,6 +1197,28 @@ def impeachFrequency(req, days=7):
         'date': 'today'
     })
     return render(req, 'explorer/impeachs.html', {'chart': chart})
+
+
+class ProposerHistoryView(viewsets.ViewSet):
+    filter_backends = [PageableBackend, ]
+
+    def retrieve(self, request, pk):
+        """ 获取 proposer 的出块历史
+        """
+        address = pk.lower()
+        blocks_by_proposer = block_collection.find(
+            {'miner': address}, projection={'_id': False, 'dpor': False}).sort('_id', DESCENDING)
+        blocks_count = blocks_by_proposer.count()
+        limit = int(request.GET.get('limit', 25))
+        page = int(request.GET.get('page', 1))
+        p = Paginator(blocks_by_proposer, limit,
+                      request=request, fix_count=blocks_count)
+        blocks = p.page(page)
+        blocks.object_list = list(blocks.object_list)
+        for b in blocks.object_list:
+            b['txs_cnt'] = len(b['transactions'])
+            del b['transactions']
+        return Response({'results': blocks.object_list, 'page': page, 'address': address, 'count': blocks_count})
 
 
 def proposer_history(req, address):
