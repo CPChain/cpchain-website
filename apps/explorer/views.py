@@ -500,6 +500,17 @@ class BlocksView(viewsets.ViewSet):
         block_dict = block_collection.find(filters, projection={'_id': False})[0]
         block_dict['txs_cnt'] = len(block_dict['transactions'])
         del block_dict['transactions']
+        block_dict['transactions'] = []
+        if block_dict['txs_cnt'] > 0:
+            txs_from_block = txs_collection.find({'blockNumber': int(block_dict['number'])}, projection={'_id': False})
+            txs = []
+            for tx in txs_from_block:
+                if not tx['to']:
+                    tx['contract_address'] = contract_collection.find(
+                        {'txhash': tx['hash']})[0]['address']
+                tx['value'] = currency.from_wei(tx['value'], 'ether')
+                txs.append(tx)
+            block_dict['transactions'] = txs
         return Response(block_dict)
 
 def blocks(req):
