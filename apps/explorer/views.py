@@ -1199,6 +1199,28 @@ def impeachFrequency(req, days=7):
     return render(req, 'explorer/impeachs.html', {'chart': chart})
 
 
+class ProposerHistoryView(viewsets.ViewSet):
+    filter_backends = [PageableBackend, ]
+
+    def retrieve(self, request, pk):
+        """ 获取 proposer 的出块历史
+        """
+        address = pk.lower()
+        blocks_by_proposer = block_collection.find(
+            {'miner': address}, projection={'_id': False, 'dpor': False}).sort('_id', DESCENDING)
+        blocks_count = blocks_by_proposer.count()
+        limit = int(request.GET.get('limit', 25))
+        page = int(request.GET.get('page', 1))
+        p = Paginator(blocks_by_proposer, limit,
+                      request=request, fix_count=blocks_count)
+        blocks = p.page(page)
+        blocks.object_list = list(blocks.object_list)
+        for b in blocks.object_list:
+            b['txs_cnt'] = len(b['transactions'])
+            del b['transactions']
+        return Response({'results': blocks.object_list, 'page': page, 'address': address, 'count': blocks_count})
+
+
 def proposer_history(req, address):
     address = address.lower()
     blocks_by_proposer = block_collection.find(
