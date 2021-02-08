@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from common.pageable import PageableBackend
 import json
 import math
@@ -480,6 +481,25 @@ class BlocksView(viewsets.ViewSet):
         except Exception as e:
             log.error(e)
         return Response({'results': results, 'count': count})
+
+    def retrieve(self, request, pk):
+        """ 通过指定 Number 或 Hash 获取区块信息
+        """
+        search = pk.strip().lower()
+        filters = {}
+        if len(search) < ADD_SIZE - 2:
+            # search by number
+            filters = {'number': int(search)}
+        else:
+            if not search.startswith('0x'):
+                search = '0x' + search
+            filters = {"hash": search}
+        if block_collection.count_documents(filters) == 0:
+            return Response({"error": "not found"}, status=404)
+        block_dict = block_collection.find(filters, projection={'_id': False})[0]
+        block_dict['txs_cnt'] = len(block_dict['transactions'])
+        del block_dict['transactions']
+        return Response(block_dict)
 
 def blocks(req):
     # blocks
