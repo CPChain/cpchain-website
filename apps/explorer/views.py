@@ -688,6 +688,25 @@ def rnode(req):
                                                'rnodes': rnodes})
 
 
+class ProposersView(viewsets.ViewSet):
+
+    def list(self, request):
+        proposerlist = list(proposer_collection.find())[0]
+        term = proposerlist.get('Term', [])
+        view = int(proposerlist.get('View', 0))
+        index = int(proposerlist.get('ProposerIndex', 0))
+        termLen = proposerlist['TermLen'] if proposerlist else 1
+        blockNumber = proposerlist['BlockNumber'] if proposerlist else 1
+        proposers = proposerlist.get('Proposers', [])
+        return Response({
+            'term': term,
+            'view': view,
+            'index': index,
+            'termLen': termLen,
+            'blockNumber': blockNumber,
+            'proposers': proposers
+        })
+
 def proposers(req):
     proposerlist = list(proposer_collection.find())[0]
     term = proposerlist.get('Term', [])
