@@ -453,6 +453,34 @@ def searchproposer(req):
             else:
                 return render(req, 'explorer/search404.html')
 
+class BlocksView(viewsets.ViewSet):
+
+    def list(self, request):
+        results = []
+        try:
+            # blocks
+            all_blocks = block_collection.find(projection={'_id': False, 'dpor': False}).sort('number', DESCENDING)
+            try:
+                page = request.GET.get('page', 1)
+            except PageNotAnInteger:
+                page = 1
+            p = Paginator(all_blocks, 25, request=request)
+            blocks = p.page(page)
+            blocks.object_list = list(blocks.object_list)
+            for b in blocks.object_list:
+                if b['miner'].endswith('000000'):
+                    b['impeach'] = True
+                else:
+                    b['impeach'] = False
+                b['txs_cnt'] = len(b['transactions'])
+                del b['transactions']
+            
+            for k, v in blocks.object_list[5].items():
+                print(k, v, type(v))
+            results = [i for i in blocks.object_list[5:6]]
+        except Exception as e:
+            log.error(e)
+        return Response({'blocks': results})
 
 def blocks(req):
     # blocks
