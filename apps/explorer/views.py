@@ -1,3 +1,4 @@
+from common.pageable import PageableBackend
 import json
 import math
 import time
@@ -454,17 +455,18 @@ def searchproposer(req):
                 return render(req, 'explorer/search404.html')
 
 class BlocksView(viewsets.ViewSet):
+    filter_backends = [PageableBackend,]
 
     def list(self, request):
         results = []
+        count = 0
         try:
             # blocks
             all_blocks = block_collection.find(projection={'_id': False, 'dpor': False}).sort('number', DESCENDING)
-            try:
-                page = request.GET.get('page', 1)
-            except PageNotAnInteger:
-                page = 1
-            p = Paginator(all_blocks, 25, request=request)
+            count = block_collection.count_documents({})
+            limit = int(request.GET.get('limit', 25))
+            page = int(request.GET.get('page', 1))
+            p = Paginator(all_blocks, limit, request=request)
             blocks = p.page(page)
             blocks.object_list = list(blocks.object_list)
             for b in blocks.object_list:
@@ -474,13 +476,10 @@ class BlocksView(viewsets.ViewSet):
                     b['impeach'] = False
                 b['txs_cnt'] = len(b['transactions'])
                 del b['transactions']
-            
-            for k, v in blocks.object_list[5].items():
-                print(k, v, type(v))
-            results = [i for i in blocks.object_list[5:6]]
+            results = blocks.object_list
         except Exception as e:
             log.error(e)
-        return Response({'blocks': results})
+        return Response({'results': results, 'count': count})
 
 def blocks(req):
     # blocks
