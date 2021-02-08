@@ -24,6 +24,10 @@ from rest_framework.permissions import IsAuthenticated
 # from .models import AddressMark, AddressMarkType
 # from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
 
+from log import get_log
+
+log = get_log('app')
+
 our_proposer = read_our_proposer()
 mongo = cfg['mongo']['ip']
 port = int(cfg['mongo']['port'])
@@ -649,6 +653,24 @@ def address(req, address):
                                                       'code': code,
                                                       'creator': creator,
                                                       })
+
+
+class RNodesView(viewsets.ViewSet):
+
+    def list(self, request):
+        rnodes = list(rnode_collection.find({'Address': {'$exists': True}}, projection={'_id': False}))
+        proposerlist = list(proposer_collection.find())
+        term = []
+        if len(proposerlist) > 0:
+            term = proposerlist[0].get('Term', [])
+        try:
+            rnodes.sort(key=lambda d: d['Rpt'], reverse=True)
+        except Exception as e:
+            log.error(e)
+        return Response({
+            'term': term,
+            'rnodes': rnodes
+        })
 
 
 def rnode(req):
