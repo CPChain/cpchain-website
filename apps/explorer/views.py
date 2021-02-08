@@ -584,6 +584,36 @@ class TxsView(viewsets.ViewSet):
             log.error(e)
         return Response({'results': results, 'count': count, 'page': page})
 
+    def retrieve(self, request, pk):
+        """ 根据 hash 获取交易
+        """
+        search = pk.strip().lower()
+        filters = {}
+        if not search.startswith('0x'):
+            search = '0x' + search
+        filters = {"hash": search}
+        if txs_collection.count_documents(filters) == 0:
+            return Response({"error": "not found"}, status=404)
+        tx_dict = txs_collection.find(filters, projection={'_id': False})[0]
+        tx_dict['gasLimit'] = block_collection.find(
+            {'number': tx_dict['blockNumber']})[0]['gasLimit']
+        tx_dict['gasPrice'] = format(tx_dict['gasPrice'] / 1e18, '.20f')
+        tx_dict['txfee'] = format(tx_dict['txfee'], '.20f')
+        tx_dict['value'] = currency.from_wei(tx_dict['value'], 'ether')
+        try:
+            input_data = cf.toText(hexstr=tx_dict['input'])
+            input_data = input_data.replace('\\', r'\\')
+            input_data = input_data.replace('`', r'\`')
+        except Exception as e:
+            input_data = tx_dict['input']
+        
+        tx_dict['input_data'] = input_data
+
+        if not tx_dict['to']:
+            tx_dict['contract_address'] = contract_collection.find({'txhash': search}, projection={'_id': False})[0]['address']
+
+        return Response(tx_dict)
+
 
 def txs(req):
     # txs
