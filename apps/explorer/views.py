@@ -469,8 +469,8 @@ class BlocksView(viewsets.ViewSet):
             # blocks
             all_blocks = block_collection.find(
                 projection={'_id': False, 'dpor': False}).sort('number', DESCENDING)
-            count = block_collection.count_documents({})
-            limit = int(request.GET.get('limit', 25))
+            count = block_collection.estimated_document_count()
+            limit = min(int(request.GET.get('limit', 25)), 100)
             page = int(request.GET.get('page', 1))
             p = Paginator(all_blocks, limit, request=request)
             blocks = p.page(page)
@@ -587,7 +587,7 @@ class TxsView(viewsets.ViewSet):
             # blocks
             all_txs = txs_collection.find(
                 projection={'_id': False}).sort('_id', DESCENDING)
-            count = txs_collection.count_documents({})
+            count = txs_collection.estimated_document_count()
             limit = int(request.GET.get('limit', 25))
             page = int(request.GET.get('page', 1))
             p = Paginator(all_txs, limit, request=request)
