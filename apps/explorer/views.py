@@ -23,6 +23,8 @@ from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
+from .filters import TxsQueryBackend
+
 # from .models import AddressMark, AddressMarkType
 # from .serializers import AddressMarkSerializer, AddressMarkTypeSerializer
 
@@ -576,19 +578,72 @@ def block(req, block_identifier):
     return render(req, 'explorer/block_info.html', locals())
 
 
+def parse_txs_filter(request):
+    address = request.GET.get('address', None)
+    filters = {}
+    address_filter = None
+    # address
+    if address is not None:
+        if not address.startswith('0x'):
+            address = "0x" + address
+        address = cf.toChecksumAddress(address.strip()).lower()
+        address_filter = {'$or': [{'from': address}, {'to': address}]}
+        flag = request.GET.get('type')
+        if flag == 'in':
+            address_filter = {'to': address}
+        elif flag == 'out':
+            address_filter = {'from': address}
+
+    # 是否排除交易额为 0 的交易
+    exclude_empty_value = request.GET.get('exclude_value_0', False)
+    exclude_empty_value_filter = None
+    if exclude_empty_value:
+        exclude_empty_value_filter = {'value': {'$ne': 0.0}}
+
+    # TODO 暂不支持
+    # exclude_contract = request.GET.get('exclude_contract', False)
+    # exclude_contract_filter = None
+    # if exclude_contract:
+    #     exclude_contract_filter = {'isContract': False}
+
+    block_number = request.GET.get('block_number', None)
+    block_number_filter = None
+    try:
+        block_number = int(block_number)
+        if block_number >= 0:
+            block_number_filter = {'blockNumber': block_number}
+    except Exception:
+        pass
+
+    block_hash = request.GET.get('block_hash', False)
+    block_hash_filter = None
+    if block_hash:
+        block_hash_filter = {'blockHash': block_hash}
+
+    filters_list = [address_filter,
+                    exclude_empty_value_filter, block_number_filter, block_hash_filter]
+    filters_list = [i for i in filters_list if i is not None]
+    if len(filters_list) > 0:
+        filters = {"$and": filters_list}
+    return filters
+
+
 class TxsView(viewsets.ViewSet):
-    filter_backends = [PageableBackend, ]
+    filter_backends = [PageableBackend, TxsQueryBackend]
 
     def list(self, request):
         results = []
         count = 0
         page = 1
+        limit = 25
         try:
+            # query filters
+            filters = parse_txs_filter(request)
             # blocks
             all_txs = txs_collection.find(
-                projection={'_id': False}).sort('_id', DESCENDING)
-            count = txs_collection.estimated_document_count()
-            limit = int(request.GET.get('limit', 25))
+                filters, projection={'_id': False}).sort('_id', DESCENDING)
+            count = txs_collection.count(filters)
+            limit = min(int(request.GET.get('limit', 25)), 50)
             page = int(request.GET.get('page', 1))
             p = Paginator(all_txs, limit, request=request)
             txs = p.page(page)
@@ -601,7 +656,7 @@ class TxsView(viewsets.ViewSet):
             results = txs.object_list
         except Exception as e:
             log.error(e)
-        return Response({'results': results, 'count': count, 'page': page})
+        return Response({'results': results, 'count': count, 'page': page, 'limit': limit})
 
     def retrieve(self, request, pk):
         """ 根据 hash 获取交易
