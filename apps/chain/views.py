@@ -18,8 +18,6 @@ from prometheus_client import Gauge
 from cpchain_test.settings import cf
 from log import get_log
 
-from tools import redis_helper as rh
-
 from .db import txs_collection, rnode_reward_total_col, rnode_col
 
 log = get_log('app')
@@ -149,33 +147,26 @@ class TxViewSet(viewsets.ViewSet):
 
         count = 0
         txs = []
-        if flag in ['in', 'out'] or exclude_empty_value:
-            # 从 mongodb 中获取
-            filters = {}
-            if address:
-                address = cf.toChecksumAddress(address.strip()).lower()
-                address_filter = {'$or': [{'from': address}, {'to': address}]}
-                if flag == 'in':
-                    address_filter = {'to': address}
-                elif flag == 'out':
-                    address_filter = {'from': address}                
-
-                filters = address_filter
-                if exclude_empty_value:
-                    filters = {'$and': [
-                        address_filter,
-                        {'value': {'$ne': 0.0}}
-                    ]}
-
-            found = txs_collection.find(filters)
-            count = found.count()
-            txs = found.sort('timestamp', -1).limit(limit).skip(page * limit)
-        elif address:
+        # 从 mongodb 中获取
+        filters = {}
+        if address:
             address = cf.toChecksumAddress(address.strip()).lower()
-            # 从缓存中获取
-            rc = rh.get_redis_client()
-            count = rh.count_tx(rc, address)
-            txs = rh.query_tx(rc, address, limit, page*limit)
+            address_filter = {'$or': [{'from': address}, {'to': address}]}
+            if flag == 'in':
+                address_filter = {'to': address}
+            elif flag == 'out':
+                address_filter = {'from': address}                
+
+            filters = address_filter
+            if exclude_empty_value:
+                filters = {'$and': [
+                    address_filter,
+                    {'value': {'$ne': 0.0}}
+                ]}
+
+        found = txs_collection.find(filters)
+        count = found.count()
+        txs = found.sort('timestamp', -1).limit(limit).skip(page * limit)
 
         txs_wallet = []
         for tx in txs:
