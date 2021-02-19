@@ -46,10 +46,12 @@ CELERYBEAT_SCHEDULE = {
     #     'task': 'tasks.app.auto_send_email',
     #     'schedule': timedelta(minutes=1),
     # },
-    'updateInfo-every-3-seconds': {
-        'task': 'tasks.app.pushBlocksInfo',
-        'schedule': timedelta(seconds=3),
-    },
+
+    # Needn't this task anymore, because use the async thread to instead it.
+    # 'updateInfo-every-3-seconds': {
+    #     'task': 'tasks.app.pushBlocksInfo',
+    #     'schedule': timedelta(seconds=3),
+    # },
     'geo-ip': {
         'task': 'tasks.app.get_geo_for_ip',
         'schedule': timedelta(seconds=30)
