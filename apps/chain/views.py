@@ -18,7 +18,7 @@ from prometheus_client import Gauge
 from cpchain_test.settings import cf
 from log import get_log
 
-from .db import txs_collection, rnode_reward_total_col, rnode_col
+from .db import txs_collection, rnode_reward_total_col, rnode_col, rnode_reward_history_col
 
 log = get_log('app')
 
@@ -287,4 +287,25 @@ class RNodeStatusViewSet(viewsets.ViewSet):
         return Response({
             "address": addr,
             "status": status
+        })
+
+
+class RewardHistoryView(viewsets.ViewSet):
+    """
+    RNode Reward history 查询
+    """
+
+    def retrieve(self, request, pk):
+        addr = pk.lower()
+        if not addr.startswith('0x'):
+            addr = '0x'+addr
+        filters = {'miner': addr}
+        results = []
+        count = rnode_reward_history_col.count(filters)
+        if count > 0:
+            results = list(rnode_reward_history_col.find(filters, projection={'_id': False}).sort('date', -1).limit(30))
+            print(results)
+        return Response({
+            'count': count,
+            'results': results
         })
