@@ -33,4 +33,4 @@ rnode_col = cpchain_db['rnode']
 
 rnode_reward_meta_col = db[RNODE_REWARD_META]
 rnode_reward_total_col = db[RNODE_REWARD_TOTEL]
-rnode_reward_history = db[RNODE_REWARD_HISTORY]
+rnode_reward_history_col = db[RNODE_REWARD_HISTORY]
