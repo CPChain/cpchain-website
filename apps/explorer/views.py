@@ -3,6 +3,7 @@ from common.pageable import PageableBackend
 import json
 import math
 import time
+import csv
 from datetime import datetime as dt
 
 import eth_abi
@@ -620,11 +621,30 @@ def parse_txs_filter(request):
     if block_hash:
         block_hash_filter = {'blockHash': block_hash}
 
+    # date range
+    data_range_filter = None
+    start_date = request.GET.get('start_date', None)
+    end_date = request.GET.get('end_date', None)
+    if start_date:
+        start_at = dt.strptime(start_date, '%Y-%m-%d').timestamp()
+        end_at = dt.now().timestamp()
+        if end_date:
+            end_at = dt.strptime(end_date, '%Y-%m-%d').timestamp()
+        if (end_at - start_at) > 1 * 30 * 24 * 3600:
+            raise Exception("Date range can't greater than 1 month")
+        data_range_filter = {
+            "timestamp": {
+                "$gt": start_at,
+                "$lt": end_at
+            }
+        }
+
     filters_list = [address_filter,
-                    exclude_empty_value_filter, block_number_filter, block_hash_filter]
+                    exclude_empty_value_filter, block_number_filter, block_hash_filter, data_range_filter]
     filters_list = [i for i in filters_list if i is not None]
     if len(filters_list) > 0:
         filters = {"$and": filters_list}
+
     return filters
 
 
@@ -688,6 +708,38 @@ class TxsView(viewsets.ViewSet):
                 {'txhash': search}, projection={'_id': False})[0]['address']
 
         return Response(tx_dict)
+
+
+class ExportTxsView(viewsets.ViewSet):
+    filter_backends = [PageableBackend, TxsQueryBackend]
+
+    def list(self, request):
+        results = []
+        address = request.GET.get('address')
+        if not address:
+            raise Exception('address can not be None')
+        start_date = request.GET.get('start_date')
+        if not start_date:
+            raise Exception('start date can not be None')
+        response = HttpResponse(content_type='text/csv')
+        name = f"cpchain-export-address-{address}"
+        response['Content-Disposition'] = f'attachment; filename="{name}.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(['TxHash', 'Block', 'Timestamp', 'From', 'To', 'Value', 'TxFee'])
+
+        # query filters
+        filters = parse_txs_filter(request)
+        # txs
+        all_txs = txs_collection.find(
+            filters, projection={'_id': False}).sort('_id', DESCENDING)
+        
+        for tx in all_txs:
+            tx['value'] = currency.from_wei(tx['value'], 'ether')
+            ts = dt.strftime(dt.fromtimestamp(tx['timestamp']), '%Y-%m-%d %H:%M:%S')
+            writer.writerow([tx['hash'], tx['blockNumber'], ts, tx['from'], tx['to'], tx['value'], tx['txfee']])
+        
+        return response
 
 
 def txs(req):

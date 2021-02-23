@@ -15,6 +15,7 @@ router.register('blocks', views.BlocksView, basename='api/blocks')
 router.register('txs', views.TxsView, basename='api/txs')
 router.register('address', views.AddressView, basename='api/address')
 router.register('proposer-history', views.ProposerHistoryView, basename='api/proposer-history')
+router.register('export-txs', views.ExportTxsView, basename='api/explort-txs')
 
 # router = routers.DefaultRouter()
 # router.register('address-mark-type', AddressMarkTypeViewSet, basename='address-mark-type')

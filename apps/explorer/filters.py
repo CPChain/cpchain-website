@@ -68,4 +68,22 @@ class TxsQueryBackend(BaseFilterBackend):
                     description="获取指定区块号的交易列表"
                 )
             ),
+            compat.coreapi.Field(
+                name='start_date',
+                required=False,
+                type="string",
+                location='query',
+                schema=compat.coreschema.String(
+                    description="开始日期"
+                )
+            ),
+            compat.coreapi.Field(
+                name='end_date',
+                required=False,
+                type="string",
+                location='query',
+                schema=compat.coreschema.String(
+                    description="结束日期"
+                )
+            ),
         ]
